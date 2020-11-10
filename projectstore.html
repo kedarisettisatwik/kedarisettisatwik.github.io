@@ -1,0 +1,100 @@
+<html>
+<head> <title>project store </title>
+    <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
+    <style>
+        body{
+            align-content: center;
+            width:1500px;
+            height:5000px;
+            font-family: monospace;
+        }
+        div{
+            align-content: center;
+            text-align: center;
+            color:darkslateblue;
+            font-size:120px;
+            margin-top: 100px;
+            margin-bottom: 450px;
+        }
+        #alert{
+            position:absolute;
+            width:1000px;
+            height:auto;
+            font-size:85px;
+            border:6px solid black;
+            background-color: beige;
+            border-radius: 37px;
+            box-shadow: 0 0 80px grey;
+            display:none;
+            overflow: hidden;
+            margin-top:430px ;
+            margin-left:200px ;
+        }
+        #alert .hi{
+            color:darkblue;
+            
+        }
+        ol li {
+            margin-bottom: 170px;
+            font-size:100px;
+            color:black;
+
+        }
+        ol li a{
+            margin-bottom: 170px;
+            font-size:100px;
+            color:black;
+            text-decoration: none;
+        }
+        #link {
+            display:none;
+        }
+        .click{
+            padding:30px 20px 30px 20px;
+            font-size: 85px;
+            background-color: burlywood;
+            text-shadow: 0 0 6px darkblue;
+            box-shadow:0 0 20px brown;
+            margin-bottom: 120px;
+        }
+        .button{
+            padding:10px 40px 10px 40px;
+            color:white;
+            background: black;
+            font-size:60px;
+            margin-bottom: 50px;
+        }
+    </style>
+    
+    <script>
+        function thank(){
+            document.getElementById("alert").style.display="none";
+        }
+    function text(){
+        document.getElementById("alert").style.display="block";
+        document.getElementById("link").style.display="block";
+    }
+    
+    </script>
+    </head>
+<body>
+    <div id="alert">
+     <h1 class = "hi">Thank you for visiting <i class="em em-face_with_cowboy_hat" aria-role="presentation" aria-label="FACE WITH COWBOY HAT"></i></h1>
+        <button type="button" class="button" onclick="thank()">OK</button>
+    </div>
+    <div> PROJECT STORE </div>
+    <button type ="button" class="click" onclick="text()">CLICK ME to open project store </button>
+    <ol id="link">
+    <li><a href="https://www.youtube.com/channel/UCpLOopnR9TX9b1fjcDpapsw" target="_blank">1.LINK TO MY YOU TUBE CHANNEL</a></li>
+    <li><a href ="diwali.html" target="_blank">2.HAPPY DIWALI</a></li>
+    <li><a href ="calculator.html" target="_blank">3.CALCULATOR</a></li>
+    <li><a href ="shop.html" target="_blank">4.ONLINE SHOPPING</a></li>
+    <li><a href ="guess.html" target="_blank">5.GUESS GAME</a></li>
+    <li><a href ="puzzle.html" target="_blank">6.PUZZLE (some people names are hidden)</a></li>    
+    <li><a href ="design.html" target="_blank">7.MY NAME</a></li>    
+    <li><a href ="bio.html" target="_blank">8.BIOGRAPHY OF SOME PEOPLE</a></li>
+    <li><a href ="name.html" target="_blank">9.SCROLL CLOSE FRIEND'S</a></li>    
+    <li><a href ="cow1.html" target="_blank">10.COW'S & BULL'S GAME</a></li>       
+    </ol>
+    </body>
+</html>
