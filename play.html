@@ -1,0 +1,126 @@
+<html>
+<head>
+    <title> Start playing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body{
+            font-family: monospace;
+            width:1500px;
+            height:3800px;
+            background-image:url(https://img.freepik.com/free-vector/abstract-halftone-background_23-2148583453.jpg?size=626&ext=jpg);
+            background-repeat:no-repeat;
+            background-size: cover;
+        }
+        .head{
+            margin-left: 30%;
+            margin-bottom:540px;
+            text-align: center;
+            width:800px;
+            height:100px;
+            font-size: 90px;
+            border:2px solid white;
+            color:wheat;
+            padding-top: 4px;
+            font-weight:bold;
+            background-image: url(https://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials-hero.jpg);
+        }
+        .header{
+            color:floralwhite;
+            font-size:83px;
+            margin-bottom: 300px;
+            -webkit-animation-name: colorchange;
+            -webkit-animation-duration: 2s; 
+            -webkit-animation-iteration-count: infinite;
+        }
+        @keyframes colorchange{
+            0%{color:darkgreen;}
+            100%{color:darkblue;}
+        }
+        .button{
+            width: 150px;
+            height:150px;
+            margin-right: 55px;
+            margin-bottom: 40px;
+            font-size: 80px;
+            border:2px solid white;
+            border-radius: 50%;
+            background-color: forestgreen;
+            color:aliceblue;
+        }
+        .button:hover{
+            color:black;
+            background-color: bisque;
+            transform: scale(1.21);
+        }
+        #status{
+            width:700px;
+            height:300px;
+            padding:100px 0px 160px 0px;
+            font-size:96px;
+            color:darkblue;
+            text-align: center;
+            background-color:azure;
+            background-size: cover;
+            margin-left: 700px; 
+            margin-top: -570px;
+            box-shadow: 5px 5px 10px blue,-5px 5px 10px blue,5px -5px 10px blue,-5px -5px 10px blue ;
+        }
+        .head1{
+            font-size: 70px;
+            color:black;
+            text-shadow:4px 4px 4px white;
+            margin-left: 700px;
+            margin-top: 40px;
+        }
+    </style>
+    <script>
+        function insert(num){
+                var user = num * 5 ;
+            var count = 1;
+        var random = Math.floor(Math.random()*user + 1);
+            var max = user - num -1;
+        alert("you will have " + max + " chances " )
+         var guess = prompt("guess number in between 1 and " + user);
+        while(guess != random && guess != 1234){
+             var guess = prompt("enter number in between 1 and " + user+ "...  you have used " +count+"  chance's out of "+ max +"chances!!");
+            count += 1;
+            if(count == max){
+             document.getElementById("status").innerHTML = "chances completed &#128078;&#127995 <br/>" + random + " is right";
+                break
+            }
+        }
+        if (guess == random){
+         document.getElementById("status").innerHTML = "correct match <br/>" +count+" chances used  &#128077;&#127995;";
+        }
+        if (guess == 1234){
+          document.getElementById("status").innerHTML = random + " is correct match <br/> bye &#128075;" ;  
+        }
+    }
+    </script>
+    </head>
+<body>
+    <div class="head">GUESS GAME....</div>
+    <div class="header">SELECT THE LEVEL  :</div>
+    <div class="head1">Your status:</div>
+    <table>
+<tr>
+<td><input class="button" type="button" value="1" onclick="insert(1)"></td>
+<td><input class="button" type="button" value="2" onclick="insert(2)"></td>
+<td><input class="button" type="button" value="3" onclick="insert(3)"></td>
+</tr>
+
+<tr>
+<td><input class="button" type="button" value="4" onclick="insert(4)"></td>
+<td><input class="button" type="button" value="5" onclick="insert(5)"></td>
+<td><input class="button" type="button" value="6" onclick="insert(6)"></td>
+</tr>
+        
+<tr>
+<td><input class="button" type="button" value="7" onclick="insert(7)"></td>
+<td><input class="button" type="button" value="8" onclick="insert(8)"></td>
+<td><input class="button" type="button" value="9" onclick="insert(9)"></td>
+</tr>      
+</table>
+    <div id="status"></div>
+    </body>
+</html>

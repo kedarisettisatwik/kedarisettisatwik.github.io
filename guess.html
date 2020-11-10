@@ -1,0 +1,90 @@
+<html>
+<head>
+    <title> Guess </title>
+    <style>
+        body{
+            font-family: monospace;
+            width:1500px;
+            height:5000px;
+            background-image: url(https://i.pinimg.com/originals/8a/02/58/8a0258c6d0810180ae00ff888347df73.jpg);
+            background-repeat:no-repeat;
+            background-size: cover;
+        }
+        .head{
+            margin-left: 30%;
+            margin-bottom:600px;
+            text-align: center;
+            width:800px;
+            height:100px;
+            font-size: 90px;
+            border:2px solid white;
+            color:wheat;
+            padding-top: 4px;
+            font-weight:bold;
+            background-image: url(https://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials-hero.jpg);
+        }
+        .how{
+            margin-left: 70px;
+            font-size: 83px;
+            color:white;
+            text-decoration: none;
+            cursor:help;
+            text-align:center;
+            width:700px;
+            height:550px;
+            border:3px solid aqua;
+            padding:140px 0px 250px 0px;
+            border-radius: 7px;
+            box-shadow: 8px 8px 8px black,-8px 8px 8px black,8px -8px 8px black;
+            background-image: url(https://cdn.pixabay.com/photo/2016/11/29/05/45/astronomy-1867616__340.jpg);
+            background-size: cover;
+        }
+        .how:hover{
+            color:black;
+            cursor: progress;
+            background-image:linear-gradient(rgb(255,255,255,0.4),rgb(255,255,255,1) ),url(https://cdn.pixabay.com/photo/2016/11/29/05/45/astronomy-1867616__340.jpg);            
+        }
+        .go{
+            color:white;
+            text-decoration: none;
+            font-size: 83px;
+            width:900px;
+            border:3px solid wheat;
+            border-radius: 7px;
+            padding: 150px 60px 250px 10px;
+            font-weight: lighter;
+            margin-left: 800px;
+            box-shadow: 8px 8px 8px wheat,-8px 8px 8px wheat,8px -8px 8px wheat;
+            background-image:linear-gradient(rgb(0,0,0,0.2),rgb(0,0,0,0.7)),url(https://media.istockphoto.com/photos/brown-wood-texture-dark-wooden-abstract-background-picture-id1137996207?k=6&m=1137996207&s=612x612&w=0&h=Eli8yvjTkBpkkT7QZj_hd2wbdKojeNHcxmo209SN1MM=);
+        }
+        .play{
+            margin-top: -340px;
+        }
+        .go:hover{
+             color:black;
+             background-image:linear-gradient(rgb(255,255,255,0.2),rgb(255,255,255,0.7)),url(https://media.istockphoto.com/photos/brown-wood-texture-dark-wooden-abstract-background-picture-id1137996207?k=6&m=1137996207&s=612x612&w=0&h=Eli8yvjTkBpkkT7QZj_hd2wbdKojeNHcxmo209SN1MM=);           
+        }
+        #text{
+            margin-top:700px;
+            margin-left: 300px;
+            width:1300px;
+            font-family:monospace;
+            font-size:0px;
+            color:black;
+            letter-spacing: 4px;
+            word-spacing: 15px;
+        }
+    </style>
+    <script>
+    function help() { 
+       document.getElementById("text").style.fontSize = "82px";  
+    }
+    </script>
+    </head>
+<body>
+    <div class="head">GUESS GAME....</div>
+    <button type="button" class="how" onclick="help()">How to Play ?</button>
+    <div class="play"><a href="play.html" class="go">Play Game...</a></div>
+    <div id="text"> This game is very easy to play and give's you enjoyment,this is luck based game. <br/><br/> when you click on play button which is above, you will get a number key board each number indicating level's.<br/><br/>select one level  and for 1 st level you have to guess one number in between 1 and 5 with in 3 chances.<br/><br/>Range of number's and number of chance's varies from one level to another level.<br/>If your guess number is correct you will win <br/><br/>enter number 1234 to leave the game in middle <br/><br/>good luck .....</div>
+    </body>
+</html>
