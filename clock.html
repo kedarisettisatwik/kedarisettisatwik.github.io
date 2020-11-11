@@ -1,0 +1,365 @@
+<html>
+<head><title>Clock</title>
+    <script>
+        var cset = 0;
+        function setting(){
+            if (cset == 0){
+            document.getElementById("back").style.display="block";
+            document.getElementById("headchange").style.display="block";
+            document.getElementById("timecolor").style.display="block";
+            document.getElementById("setting").style.background="aqua";
+            document.getElementById("setting").style.color="black";
+            
+                cset += 1;
+            }
+            else {
+            document.getElementById("back").style.display="none";
+            document.getElementById("headchange").style.display="none";
+            document.getElementById("timecolor").style.display="none";
+            document.getElementById("wheat").style.display="none";
+            document.getElementById("blue").style.display="none";
+            document.getElementById("yellow").style.display="none";   
+            document.getElementById("setting").style.background="black";
+            document.getElementById("setting").style.color="aqua";    
+                cset *= 0;
+            }
+        }
+        var chead = 0;
+        function headchange(){
+             if (chead == 0){
+                 document.getElementById("head").style.color="wheat";
+                 chead += 1;
+             }
+            else {
+                document.getElementById("head").style.color="white";
+                chead *= 0;
+            }
+        }
+        var cback = 0;
+        function back(){
+           if (cback == 0){ document.getElementById("time").style.backgroundImage="url(https://previews.123rf.com/images/czarnybez/czarnybez1502/czarnybez150200083/36529205-blue-crumpled-tissue-paper-for-background.jpg)";
+           cback += 1;
+           }
+           else if(cback == 1){ document.getElementById("time").style.backgroundImage="url(https://besthqwallpapers.com/Uploads/25-4-2019/88616/thumb2-blue-crumpled-paper-macro-blue-paper-texture-blue-paper-vintage-texture.jpg)";
+                               cback *= 0;
+           } 
+        }
+        
+        var ctimecolor = 0;
+        function timecolor(){
+            if (ctimecolor == 0){
+              document.getElementById("timecolor").style.border="8px solid aqua";
+              document.getElementById("wheat").style.display="block";
+              document.getElementById("blue").style.display="block";
+              document.getElementById("yellow").style.display="block";
+                ctimecolor += 1;
+            }
+            else {
+            document.getElementById("wheat").style.display="none";
+            document.getElementById("blue").style.display="none";
+            document.getElementById("yellow").style.display="none";
+            document.getElementById("timecolor").style.border="2px solid white";
+                 ctimecolor *= 0;
+            }
+        }
+        
+        
+        function wheat(){
+            document.getElementById("hour").style.backgroundColor="wheat";
+            document.getElementById("minitue").style.backgroundColor="wheat";
+            document.getElementById("second").style.backgroundColor="wheat";
+            document.getElementById("com").style.color="wheat";
+            document.getElementById("round").style.border=" 8px solid wheat";
+        }
+        function blue(){
+            document.getElementById("hour").style.backgroundColor="aqua";
+            document.getElementById("minitue").style.backgroundColor="aqua";
+            document.getElementById("second").style.backgroundColor="aqua";
+            document.getElementById("com").style.color="aqua";
+            document.getElementById("round").style.border="8px solid aqua";
+        }
+        function yellow(){
+            document.getElementById("hour").style.backgroundColor="yellow";
+            document.getElementById("minitue").style.backgroundColor="yellow";
+            document.getElementById("second").style.backgroundColor="yellow";
+            document.getElementById("com").style.color="yellow";
+            document.getElementById("round").style.border=" 8px solid yellow";
+        }
+
+         
+        setInterval(function(){
+            var mo = new Date().getMonth();
+            var da = new Date().getDate();
+            var day = new Date().getDay();
+            var sc = new Date().getSeconds();
+            var mn = new Date().getMinutes();
+            var hr = new Date().getHours();
+            var hour = Math.floor(hr);
+            var min = Math.floor(mn);
+            var sec = Math.floor(sc);
+            var yr = new Date().getFullYear();
+            if (day == 1){
+                var day1 = "Monday";
+            }
+            if (day == 2){
+                var day1 = "Tuesday"
+            }            
+            if (day == 3){
+                var day1 = "Wednesday";
+            }            
+             if (day == 4){
+                var day1 = "Thursday "
+            }
+            if (day == 5){
+                var day1 = "Friday";
+            }            
+            if (day == 6){
+                var day1 = "Saturday"
+            }            
+             if (day == 7){
+                var day1 = "Sunday"
+            }
+            document.getElementById("hr").innerHTML = hour;
+            document.getElementById("mn").innerHTML = min;
+            document.getElementById("sc").innerHTML = sec;
+            document.getElementById("com").innerHTML = da + " / "+ (mo+1) +" / " + yr +"<br/> " + "<br/>"+day1;
+        },1000);
+        
+        
+        function showtime(){
+            document.getElementById("form").style.display="block";
+        }
+    </script>
+    
+    <style>
+        #time{
+            margin: 0;
+            padding: 0px;
+            font-family: monospace;
+            width:1500px;
+            height:3000px;
+            background:no-repeat;
+            background-size: cover;
+            background-image:url(https://c4.wallpaperflare.com/wallpaper/255/656/853/paper-texture-crumpled-surface-wallpaper-preview.jpg);
+            border-top:5px solid lightgreen;
+            border-right:5px solid lightgreen;
+            border-bottom:8px solid lightblue;
+            border-left:5px solid lightblue;
+            box-shadow: -10px -10px 10px white;
+        }
+        #head{
+         color: white;
+         font-size:100px;
+         text-align: center;
+         margin-top: 100px;
+         margin-bottom:200px;
+        }
+        #setting{
+            display: inline-block;
+        }
+        #setting{
+            width:350px;
+            height:100px;
+            background:linear-gradient(rgb(0,0,0,0.4),rgb(0,0,0,0.8));
+            color:aqua;
+            font-weight: lighter;
+            font-size:67px;
+            border-radius: 30px;
+            margin-right: 650px;
+        }
+        #setting:hover{
+            border:8px solid aqua;
+        }
+        #back{
+            color:white;
+            padding:20px 20px 20px 40px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            margin-right: 30px;
+            display:none;
+            overflow: hidden;
+            font-size: 70px;
+            background: transparent;
+            background-image: linear-gradient(rgb(0,0,0,0.5),rgb(0,0,0,0.5));
+            border:2px solid white;
+            width:auto;
+            height:auto;   
+        }
+        #back:hover{
+             border:8px solid aqua;
+        }
+        #headchange{
+            color:white;
+            padding:20px 20px 20px 40px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            margin-right: 30px;
+            display:none;
+            overflow: hidden;
+            font-size: 70px;
+            background: transparent;
+            background-image: linear-gradient(rgb(0,0,0,0.5),rgb(0,0,0,0.5));
+            border:2px solid white;
+            width:auto;
+            height:auto; 
+        }
+        #headchange:hover{
+             border:8px solid aqua;
+        }
+        #timecolor{
+            color:white;
+            padding:20px 20px 20px 40px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            margin-right: 30px;
+            display:none;
+            overflow: hidden;
+            font-size: 70px;
+            background: transparent;
+            background-image: linear-gradient(rgb(0,0,0,0.5),rgb(0,0,0,0.5));
+            border:2px solid white;
+            width:auto;
+            height:auto; 
+        }
+        #timecolor:hover{
+             border:8px solid aqua;
+        }
+        #wheat , #yellow , #blue{
+            color:white;
+            padding:20px 20px 20px 40px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            margin-right: 30px;
+            display:none;
+            overflow: hidden;
+            font-size: 70px;
+            background: transparent;
+            background-image: linear-gradient(rgb(0,0,0,0.5),rgb(0,0,0,0.5));
+            border:2px solid white;
+            width:auto;
+            height:auto; 
+        }
+        #wheat:hover , #yellow:hover , #blue:hover{
+             border:8px solid aqua;
+        }
+        #table{
+            margin-top: 700px;
+            position: static;
+            margin-bottom: 50px;
+        }
+        #hour , #minitue , #second{
+           width:360px;
+           height:360px;
+           color:darkslateblue;
+            font-size: 90px;
+            background-color: aqua;
+            border:2px solid black;
+            box-shadow: 0 0 20px black;
+            text-align: center;
+        }
+        .symbol{
+            color:wheat;
+            font-size:200px;
+            width:150px;
+            height:auto;
+            text-align: center;  
+        }
+        #com{
+            color:aqua;
+            font-size:90px;
+            margin-bottom: 150px;
+            text-align: center;
+        }
+        #round{
+            justify-content: center;
+            justify-items: center;
+            margin-top: 700px;
+            margin-left: 200px;;
+            width:1000px;
+            height:1000px;
+            display: none;
+            border: 8px solid aqua;
+            background:transparent;
+            background-image: linear-gradient(rgb(0,0,0,0.5),rgb(0,0,0,0.5));
+            border-radius: 50%;
+            margin-bottom: 200px;
+        }
+        .center{
+            position:static;
+            width:90px;
+            height:90px;
+            margin-top: 450px;
+            margin-left: 450px;
+            background-color: red;
+            border-radius:7px;
+        }
+        #hourhand{
+            width:50px;
+            height:230px;
+            background-color:wheat;
+            border-radius: 5px;
+            margin-left: 475px;
+            margin-top: -225px;
+            transform-origin: bottom;
+            transform: rotateZ(0deg);
+        }
+        #minhand{
+            width:40px;
+            height:330px;
+            background-color:aqua;
+            border-radius: 5px;
+            margin-left: 480px;
+            margin-top: -375px;
+            transform-origin: bottom;
+            transform: rotateZ(0deg);
+        }
+        #secondhand{
+            width:20px;
+            height:430px;
+            background-color:yellow;
+            border-radius: 5px;
+            margin-left: 490px;
+            margin-top: -425px;
+            transform-origin: bottom;
+            transform: rotateZ(0deg);
+        }
+    </style>
+    </head>
+<body>
+<div id = "time">
+    <div id = "head"> Digital Clock </div>
+    <button id = "setting" onclick="setting()">Settings..</button>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <table align = "left">
+    <tr><td><button id = "back" onclick="back()">Back Ground</button></td></tr>
+    <tr><td><button id = "headchange" onclick="headchange()">Heading Color</button>            </td>
+        </tr>
+    <tr><td><button id = "timecolor" onclick="timecolor()">Time BackGround</button>
+        </td>
+        <td><button id = "wheat" onclick="wheat()">Wheat</button></td>
+    <td><button id = "yellow" onclick="yellow()">Yellow</button></td>
+    <td><button id = "blue" onclick="blue()">Aqua</button></td>
+        </tr>
+    </table>
+    
+    <table id ="table" align="center">
+    <tr><td id ="hour"><h1 id ="hr"></h1></td>
+        <td class="symbol">:</td>
+        <td id ="minitue"><h1 id ="mn"></h1></td>
+        <td class="symbol">:</td>
+        <td id ="second"><h1 id ="sc"></h1></td>
+        </tr>
+    </table>
+    
+    <div id ="com">
+        
+    </div>
+    </div>
+
+    
+    
+    </body>
+</html>
