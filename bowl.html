@@ -1,0 +1,314 @@
+<html>
+<head>
+    <title>hand_cricket</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        section{
+            font-family: monospace;
+            background-image: linear-gradient(rgb(0,0,0,0.2),rgb(0,0,0,0.4)),url(https://cdn3.vectorstock.com/i/1000x1000/65/52/cricket-background-vector-4576552.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            width:1500px;
+            height: 3000px;
+        }
+        #name{
+            font-size: 120px;
+            color: white;
+            font-weight: 700;
+            background-image: linear-gradient(rgb(0,0,0,0.4),rgb(0,0,0,0.7));
+            margin-top: 100px;
+            margin-left: 200px;
+            padding: 50px 30px 0px 30px;
+            width:auto;
+            height:230px;  
+            position: absolute;
+        }
+        #state{
+             font-size: 90px;
+            color: white;
+            font-weight: 700;
+            background-image: linear-gradient(rgb(0,0,0,0.4),rgb(0,0,0,0.7));
+            margin-top: 370px;
+            margin-left: 130px;
+            padding: 50px 30px 0px 30px;
+            width:auto;
+            height:200px;  
+            position: absolute;           
+        }
+        #state1{
+            font-size:100px;
+            position: absolute;
+            margin-top: 650px;
+            background:wheat;
+            color:darkblue;
+            width:auto;
+            height: 180px;
+            padding: 30px 0px 0px 0px;
+            margin-left:100px;
+            margin-bottom: 20px;
+            border:7px solid black;
+        }
+        #state2{
+            font-size:100px;
+            position: absolute;
+            margin-top: 650px;
+            background:white;
+            color:darkblue;
+            min-width:200px;
+            height: 180px;
+            margin-left:800px;
+            padding: 20px 0px 0px 20px;
+            margin-bottom: 20px;
+            border:7px solid black;
+        }    
+        #state3{
+            font-size:100px;
+            position: absolute;
+            margin-top: 920px;
+            background:wheat;
+            color:darkblue;
+            width:auto;
+            height: 180px;
+            padding: 30px 0px 0px 0px;
+            margin-left:100px;
+            border:7px solid black;
+        }
+        #state4{
+            font-size:100px;
+            position: absolute;
+            margin-top: 920px;
+            background:white;
+            color:darkblue;
+            min-width:200px;
+            height: 180px;
+            margin-left:800px;
+            padding: 20px 0px 0px 20px;
+            border:7px solid black;
+        }         
+        .btn{
+            width:200px;
+            height: 200px;
+            font-size: 100px;
+            color:black;
+            border-radius: 30px;
+            border:3px solid blue;
+            margin-top: 20px;
+            margin-right: 20px;
+        }
+        .btn:hover{
+            background-color: blue;
+            color: white;
+        }
+        table{
+            margin-top: 1150px;
+            margin-right: 400px;
+        }
+        .btn1{
+             width:200px;
+            height: 200px;
+            font-size: 100px;
+            color:black;
+            border-radius: 30px;
+            margin-top: 20px;
+            margin-right: 20px;
+        }
+        #alert{
+            display: none;
+            overflow: hidden;
+            width:1000px;
+            height:600px;
+            position: absolute;
+            margin-top: 700px;
+            background:black;
+            margin-left: 100px;
+        }
+        #ok{
+            font-size: 90px;
+            color:white;
+            margin-left: 450px;
+            text-decoration: none;  
+        }
+        #point{
+            margin-top: 20px;
+            margin-bottom: 300px;
+            color:wheat;
+            font-size: 90px;
+        }
+    </style>
+    </head>
+    <body>
+        
+<script>
+    var user = 0;
+    var pc = -1;
+    var pc1 = 0;
+        function inset(num){
+            var num1 = Math.floor(Math.random()*10 + 1);
+            if (num != num1 && pc == -1){
+                pc1 += num1 ;
+                document.getElementById("state4").innerHTML = pc1 ;
+            }
+            else{
+                pc += 1;
+                if (pc == 0){
+                   alert("stop bowling..and start batting");  
+                }
+                if (pc > 0){
+                    var num2 = Math.floor(Math.random()*10 + 1);  
+                        user += num;
+                       document.getElementById("state2").innerHTML = user;
+                        if (user > pc1){
+                            document.getElementById("alert").style.display = "block";
+                            document.getElementById("point").innerHTML = "you won the game";
+                    }
+                        if (num == num2){
+                            if ( user > pc1){
+                            document.getElementById("alert").style.display = "block";
+                            document.getElementById("point").innerHTML = "you won the game";
+                          }
+                            else{
+                            document.getElementById("alert").style.display = "block";
+                            document.getElementById("point").innerHTML = "you lost the game";
+                            }
+                    }
+                } 
+            }
+        }
+        
+        </script>
+        <section>
+            <div id="name">Hand_Cricket...</div>
+            <div id = "state">you choosed bowling first </div>
+            <div id = "state1">your score : </div>
+            <div id = "state2"></div>
+             <div id = "state3">pc score : </div>
+            <div id = "state4"></div>           
+            <table align = "right">
+            <tr>
+                <td><button class = "btn" onclick="inset(1)" value = "1">1</button></td>
+                <td><button class = "btn" onclick="inset(2)" value = "2">2</button></td>
+                <td><button class = "btn" onclick="inset(3)" value = "3">3</button></td>
+                </tr>
+            <tr>
+                <td><button class = "btn" onclick="inset(4)" value = "4">4</button></td>
+                <td><button class = "btn" onclick="inset(5)" value = "5">5</button></td>
+                <td><button class = "btn" onclick="inset(6)" value = "6">6</button></td>
+                </tr>
+            <tr>
+                <td><button class = "btn" onclick="inset(7)" value = "7">7</button></td>
+                <td><button class = "btn" onclick="inset(8)" value = "8">8</button></td>
+                <td><button class = "btn" onclick="inset(9)" value = "9">9</button></td>
+                </tr>
+            <tr>
+                <td class = "btn1"></td>
+                <td><button class = "btn" onclick="inset(10)" value = "10">10</button></td>
+                <td class = "btn1"></td>
+                </tr>                
+                
+            </table>
+            <div id = "alert">
+            <p id = "point"></p>
+                <a href="choice.html" id="ok">ok</a>
+            </div>
+        </section>
+</body>
+</html>
+    <!--
+def hand_cricket():
+    print()
+    print("Hand cricket game start's now ")
+    print()
+    print("enter 0 for batting and 1 for bowling")
+    select = int(input("enter your selection : "))
+
+    if select == 0:
+        print()
+        print("start batting... ")
+        print()
+        bat1 = random.randint(1, 11)
+        bat = int(input("Enter your number : "))
+        bat_score = 0
+        while bat != bat1:
+            if bat > 10 or bat < 1:
+                print()
+                print("please enter a number in between 1 to 10")
+                print()
+            else:
+                bat_score += bat
+            bat = int(input("Enter your number : "))
+            bat1 = random.randint(1, 11)
+        if bat == bat1:
+            print()
+            print("your score is " + " " + str(bat_score))
+            print()
+            print("please start bowling")
+            print()
+            bbowl = int(input("Enter your number : "))
+            bbowl1 = random.randint(1, 11)
+            bbowl_score = 0
+            while bbowl != bbowl1:
+                if bbowl > 10 or bbowl < 1:
+                    print()
+                    print("please enter a number in between 1 and 10")
+                    print()
+                else:
+                    bbowl_score += bbowl1
+                bbowl = int(input("Enter your number : "))
+                bbowl1 = random.randint(1, 11)
+            if bbowl == bbowl1:
+                print()
+                print("stop bowling ")
+                print("score of computer is " + " " + str(bbowl_score))
+                if bbowl_score > bat_score:
+                    print()
+                    print("computer won the game ")
+                else:
+                    print()
+                    print("you won the game..")
+    elif select == 1:
+        print()
+        print("start bowling...")
+        print()
+        bowl = int(input("Enter your number : "))
+        bowl1 = random.randint(1, 11)
+        bowl_score = 0
+        while bowl != bowl1:
+            if bowl > 10 or bowl < 1:
+                print()
+                print("please enter a number in between 1 and 10")
+                print()
+            else:
+                bowl_score += bowl1
+            bowl = int(input("Enter your number : "))
+            bowl1 = random.randint(1, 11)
+        if bowl == bowl1:
+            print()
+            print("stop bowling ")
+            print("score of computer is " + " " + str(bowl_score))
+            print()
+            print("please start batting ")
+            bbat1 = random.randint(1, 11)
+            bbat = int(input("Enter your number : "))
+            bbat_score = 0
+            while bbat != bbat1:
+                if bbat > 10 or bbat < 1:
+                    print()
+                    print("please enter a number in between 1 to 10")
+                    print()
+                else:
+                    bbat_score += bbat
+                bbat = int(input("Enter your number : "))
+                bbat1 = random.randint(1, 11)
+            if bbat == bbat1:
+                print()aaaA
+                print("your score is " + " " + str(bbat_score))
+                if bbat_score > bowl_score:
+                    print("you won the game")
+                else:
+                    print("computer won the game ")
+
+-->
