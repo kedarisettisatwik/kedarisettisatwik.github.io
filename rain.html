@@ -1,0 +1,52 @@
+<html>
+<head>
+    <title>rain</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width:1500px;
+            height: 2500px;
+            background-color: azure;
+        }
+        h1{
+            background-color: blue;
+            width: 20px;
+            height:100px;
+            border-radius: 13px;
+            position: absolute;
+            margin-top: -2000px;
+            -webkit-animation-name:rain;
+            -webkit-animation-duration:3s;
+            -webkit-animation-iteration-count:1;
+        }
+        @keyframes rain{
+            0%{
+               margin-top:100vh; 
+            }
+            0.1%{
+                margin-top: -10px;
+                background-color: blue;
+            }
+            100%{
+                margin-top: 2500px;
+                background-color: red;
+            }
+        }
+    </style>
+    </head>
+    <body>
+        <script>
+            setInterval(function(){
+                var win = Math.floor(Math.random()*1300 + 10); 
+                let drop = document.createElement("h1");
+                drop.style.marginLeft = win + "px";
+                document.body.insertBefore(drop,document.querySelector("div"));
+            },150);
+        </script>
+        <div>
+        </div>
+    </body>
+</html>
