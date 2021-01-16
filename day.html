@@ -1,0 +1,323 @@
+<html>
+<head>
+    <title>date</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        section{
+            width:1400px;
+            height: 3000px;
+            background-image:url(https://img.freepik.com/free-photo/abstract-blue-extruded-voronoi-blocks-background-minimal-light-clean-corporate-wall-3d-geometric-surface-illustration-polygonal-elements-displacement_1217-2510.jpg?size=626&ext=jpg);
+            border: 6px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: absolute;
+        }
+        #head{
+            position: relative;
+            margin-top: 400px;
+            margin-left: 260px;
+            padding: 30px 0px 10px 20px;
+            color:white;
+            width:700px;
+            font-size: 130px;
+            background: transparent;
+            background-image: linear-gradient(rgb(0,0,0,0.3),rgb(0,0,0,0.7));
+        }
+        .date , .month, .year{
+            font-size: 130px;
+            background:transparent;
+            background-image: linear-gradient(rgb(0,0,0,0.3),rgb(0,0,0,0.7));
+            color: antiquewhite;
+        }
+        input{
+            margin-left: 300px;
+            margin-top:130px;
+            height: 130px;
+            width:600px;
+            font-size: 100px;
+            padding: 30px;
+        }
+        button{
+            font-size: 100px;
+            color:darkblue;
+            background-color: aqua;
+            padding: 20px;
+            margin-top:100px;
+            margin-left:400px;
+        }
+    </style>
+    <script>
+    function fun(){
+         var dat = Math.floor(document.form1.date.value);
+         var month = document.form2.month.value;
+         var year = document.form3.year.value;
+         var c = 0;
+         var s = 0;
+        var leap = 0;
+        var checkleap = year % 4;       
+        c = year - 2018;
+        if (year >= 2018){
+            for (let i =2018; i<year ;i++){
+                var y = i % 4;
+                if(y == 0){
+                    leap += 1;
+                }
+            }
+        }
+        else{
+                for (let i =2018; i>year ;i--){
+                var z = i % 4;
+                if(z == 0){
+                    leap += 1;
+                }
+            } 
+        }
+        if(month == 1){
+            if (year >= 2018){
+                if (checkleap == 0){
+                     s = 0;
+                }
+                else{
+                    s = 0;
+                }
+             }
+            else{
+                if (checkleap == 0){
+                    s = 0 -1;
+                }
+                else{
+                    s = 0;
+                }
+            }
+        }
+        if(month == 2){
+            if (year >= 2018){
+                if (checkleap == 0){
+                     s = 3;
+                }
+                else{
+                    s = 3;
+                }
+             }
+            else{
+               if(checkleap == 0){
+                   s = 3 - 1;
+               }
+                else{
+                    s = 3;
+                }
+            }
+        }
+        if(month == 3){
+            if (year >= 2018){
+                if (checkleap == 0){
+                     s = 3 + 1;
+                }
+                else{
+                    s = 3;
+                }
+             }
+            else{
+                s = 3;
+            }
+        }
+        if(month == 4){
+            if (year >= 2018){
+                if (checkleap == 0){
+                     s = 6 + 1;
+                }
+                else{
+                    s = 6;
+                }
+             }
+            else{
+                s = 6;
+            }
+        }
+        if(month == 5){
+            if (year >= 2018){
+                if (checkleap == 0){
+                     s = 1 + 1;
+                }
+                else{
+                    s = 1;
+                }
+             }
+                else{
+                s = 1;
+            }
+        }
+        if(month == 6){
+            if (year >= 2018){
+                if (checkleap == 0){
+                     s = 4 + 1;
+                }
+                else{
+                    s = 4;
+                }
+             }
+            else{
+                s = 4;
+            }
+        }
+        if(month == 7){
+            if (year >= 2018){
+                if (checkleap == 0){
+                     s = 6 + 1;
+                }
+                else{
+                    s = 6;
+                }
+             }
+            else{
+                s =6;
+            }
+        }
+        if(month == 8){
+            if (year >= 2018){
+                if (checkleap == 0){
+                     s = 2 + 1;
+                }
+                else{
+                    s = 2;
+                }
+             }
+            else{
+                s = 2;
+            }
+        }
+        if(month == 9){
+            if (year >= 2018){
+                if (checkleap == 0){
+                     s = 5 + 1;
+                }
+                else{
+                    s = 5;
+                }
+             }
+            else{
+                s = 5;
+            }
+        }
+        if(month == 10){
+            if (year >= 2018){
+                if (checkleap == 0){
+                     s = 0 + 1;
+                }
+                else{
+                    s = 0;
+                }
+             }
+            else{
+                s = 0;
+            }
+        }
+        if(month == 11){
+            if (year >= 2018){
+                if (checkleap == 0){
+                     s = 3 + 1;
+                }
+                else{
+                    s = 3;
+                }
+             }
+            else{
+                s = 3;
+            }
+        }
+        if(month == 12){
+            if (year >= 2018){
+                if (checkleap == 0){
+                     s = 5 + 1 ;
+                }
+                else{
+                    s = 3;
+                }
+             }
+            else{
+                s = 5;
+            }
+        }
+        if(year >= 2018){
+          var result = dat + c + s + leap ;
+          var reminder = result % 7;
+        if(reminder == 1 ){
+            alert("monday");   
+        }
+        if(reminder == 2 ){
+            alert("tuesday");
+        }
+        if(reminder == 3 ){
+            alert("wednesday");
+        }
+        if(reminder == 4 ){
+            alert("thursday");
+        }
+        if(reminder == 5 ){
+            alert("friday");
+        }
+        if(reminder == 6 ){
+            alert("saturday");
+        }
+        if(reminder == 0 ){
+            alert("sunday");
+        }            
+    }
+    if (year < 2018){
+        var result1 = dat + c + s - leap;
+          if(result1 >= 0){
+              result1 *= 1;
+          }
+          else{
+            result1 *= -1;
+          }
+          var reminder1 = 7 - (result1 % 7);
+        if(reminder1 == 1 ){
+            alert("monday");   
+        }
+        if(reminder1 == 2 ){
+            alert("tuesday");
+        }
+        if(reminder1 == 3 ){
+            alert("wednesday");
+        }
+        if(reminder1 == 4 ){
+            alert("thursday");
+        }
+        if(reminder1 == 5 ){
+            alert("friday");
+        }
+        if(reminder1 == 6 ){
+            alert("saturday");
+        }
+        if(reminder1 == 7 ){
+            alert("sunday");
+        }  
+    }
+
+
+    }
+ 
+    </script>
+    </head>
+<body>
+    <section id="sec">
+        <div id = "head">
+        Take's Date Give's Day.. 
+        </div>
+     <form name="form1">
+      <input class="textview" placeholder="enter date" name="date">
+     </form>
+     <form name="form2">
+      <input class="textview"  placeholder="enter month" name="month">
+     </form>
+    <form name="form3">
+      <input class="textview"  placeholder="enter year" name="year">
+     </form>
+        <button type="button" onclick="fun()">get day</button>
+    </section>
+    </body>
+</html>
