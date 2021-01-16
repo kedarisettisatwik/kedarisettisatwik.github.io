@@ -76,174 +76,54 @@
             } 
         }
         if(month == 1){
-            if (year >= 2018){
-                if (checkleap == 0){
                      s = 0;
-                }
-                else{
-                    s = 0;
-                }
-             }
-            else{
-                if (checkleap == 0){
-                    s = 0 -1;
-                }
-                else{
-                    s = 0;
-                }
-            }
         }
         if(month == 2){
-            if (year >= 2018){
-                if (checkleap == 0){
                      s = 3;
-                }
-                else{
-                    s = 3;
-                }
-             }
-            else{
-               if(checkleap == 0){
-                   s = 3 - 1;
-               }
-                else{
-                    s = 3;
-                }
-            }
         }
         if(month == 3){
-            if (year >= 2018){
-                if (checkleap == 0){
-                     s = 3 + 1;
-                }
-                else{
-                    s = 3;
-                }
-             }
-            else{
-                s = 3;
-            }
+                    s = 3;     
         }
         if(month == 4){
-            if (year >= 2018){
-                if (checkleap == 0){
-                     s = 6 + 1;
-                }
-                else{
                     s = 6;
-                }
-             }
-            else{
-                s = 6;
-            }
+
         }
         if(month == 5){
-            if (year >= 2018){
-                if (checkleap == 0){
-                     s = 1 + 1;
-                }
-                else{
                     s = 1;
-                }
-             }
-                else{
-                s = 1;
-            }
+
         }
         if(month == 6){
-            if (year >= 2018){
-                if (checkleap == 0){
-                     s = 4 + 1;
-                }
-                else{
                     s = 4;
-                }
-             }
-            else{
-                s = 4;
-            }
         }
         if(month == 7){
-            if (year >= 2018){
-                if (checkleap == 0){
-                     s = 6 + 1;
-                }
-                else{
                     s = 6;
-                }
-             }
-            else{
-                s =6;
-            }
         }
         if(month == 8){
-            if (year >= 2018){
-                if (checkleap == 0){
-                     s = 2 + 1;
-                }
-                else{
                     s = 2;
-                }
-             }
-            else{
-                s = 2;
-            }
         }
         if(month == 9){
-            if (year >= 2018){
-                if (checkleap == 0){
-                     s = 5 + 1;
-                }
-                else{
-                    s = 5;
-                }
-             }
-            else{
-                s = 5;
-            }
+                 s = 5;
         }
         if(month == 10){
-            if (year >= 2018){
-                if (checkleap == 0){
-                     s = 0 + 1;
-                }
-                else{
                     s = 0;
-                }
-             }
-            else{
-                s = 0;
-            }
         }
         if(month == 11){
-            if (year >= 2018){
-                if (checkleap == 0){
-                     s = 3 + 1;
-                }
-                else{
-                    s = 3;
-                }
-             }
-            else{
-                s = 3;
-            }
+                    s = 3;  
         }
         if(month == 12){
-            if (year >= 2018){
-                if (checkleap == 0){
-                     s = 5 + 1 ;
-                }
-                else{
-                    s = 3;
-                }
-             }
-            else{
-                s = 5;
-            }
+                    s = 5;
         }
         if(year >= 2018){
-          var result = dat + c + s + leap ;
-          var reminder = result % 7;
+                var result = dat + c + s + leap ;
+            if (checkleap == 0){
+                if(month == 1 || month == 2){
+                    result *= 1;
+                }
+                else{
+                    result += 1;
+                }
+            }
+             var reminder = result % 7; 
         if(reminder == 1 ){
             alert("monday");   
         }
@@ -267,38 +147,69 @@
         }            
     }
     if (year < 2018){
-        var result1 = dat + c + s - leap;
-          if(result1 >= 0){
-              result1 *= 1;
-          }
-          else{
+        var result1 = c -leap + dat + s;
+        if(checkleap == 0){
+            if (month == 2 || month == 1){
+                 result1 -= 1;  
+            }
+            if(month == 2 && dat == 29){
+                result += 1;
+            }
+        }
+        if(result1 < 0){
             result1 *= -1;
-          }
-          var reminder1 = 7 - (result1 % 7);
-        if(reminder1 == 1 ){
+            var reminder1 = result1 % 7;
+            var reminder11 = 7 -reminder1;
+        if(reminder11 == 1 ){
             alert("monday");   
         }
-        if(reminder1 == 2 ){
+        if(reminder11 == 2 ){
             alert("tuesday");
         }
-        if(reminder1 == 3 ){
+        if(reminder11 == 3 ){
             alert("wednesday");
         }
-        if(reminder1 == 4 ){
+        if(reminder11 == 4 ){
             alert("thursday");
         }
-        if(reminder1 == 5 ){
+        if(reminder11 == 5 ){
             alert("friday");
         }
-        if(reminder1 == 6 ){
+        if(reminder11 == 6 ){
             alert("saturday");
         }
-        if(reminder1 == 7 ){
+        if(reminder11 == 7 ){
             alert("sunday");
-        }  
+        } 
+        }
+        else{
+            result1 *= 1;
+            var reminder2 = result1 % 7;
+         if(reminder2 == 1 ){
+            alert("monday");   
+        }
+        if(reminder2 == 2 ){
+            alert("tuesday");
+        }
+        if(reminder2 == 3 ){
+            alert("wednesday");
+        }
+        if(reminder2 == 4 ){
+            alert("thursday");
+        }
+        if(reminder2 == 5 ){
+            alert("friday");
+        }
+        if(reminder2 == 6 ){
+            alert("saturday");
+        }
+        if(reminder2 == 0 ){
+            alert("sunday");
+        }            
+            
+        }
     }
-
-
+        
     }
  
     </script>
@@ -321,3 +232,63 @@
     </section>
     </body>
 </html>
+
+
+/*
+        var result1 = c -leap + dat + s;
+        if(checkleap == 0){
+            result1 -= 1;
+        }
+        if(result1 < 0){
+            result1 *= -1;
+            var reminder1 = result1 % 7;
+        if(reminder == 1 ){
+            alert("monday");   
+        }
+        if(reminder == 2 ){
+            alert("tuesday");
+        }
+        if(reminder == 3 ){
+            alert("wednesday");
+        }
+        if(reminder == 4 ){
+            alert("thursday");
+        }
+        if(reminder == 5 ){
+            alert("friday");
+        }
+        if(reminder == 6 ){
+            alert("saturday");
+        }
+        if(reminder == 0 ){
+            alert("sunday");
+        } 
+        }
+        else{
+            result1 *= 1;
+            var reminder2 = result1 % 7;
+         if(reminder == 1 ){
+            alert("monday");   
+        }
+        if(reminder == 2 ){
+            alert("tuesday");
+        }
+        if(reminder == 3 ){
+            alert("wednesday");
+        }
+        if(reminder == 4 ){
+            alert("thursday");
+        }
+        if(reminder == 5 ){
+            alert("friday");
+        }
+        if(reminder == 6 ){
+            alert("saturday");
+        }
+        if(reminder == 0 ){
+            alert("sunday");
+        }            
+            
+        }
+
+*/
