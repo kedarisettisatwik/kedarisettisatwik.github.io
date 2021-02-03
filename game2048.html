@@ -1,0 +1,855 @@
+<html>
+<head>
+    <title>2048</title>
+    
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        section{
+            width: 1500px;
+            height:2800px;
+            border:10px solid black;
+            background-color:antiquewhite;
+        }
+        h1{
+            font-size: 220px;
+            position: absolute;
+            left: 200px;
+            top:500px;
+            text-align: center;
+            font-weight: 300;
+        }
+        #reset{
+            width: 300px;
+            height: auto;
+            border: 5px solid black;
+            font-size:70px;
+            left: 800px;
+            top: 780px;
+            padding: 10px;
+            position: absolute;
+            background: transparent;
+            background-color: brown;
+            color: white;
+        }
+        #start{
+            width: 300px;
+            height: auto;
+            border: 5px solid black;
+            font-size:70px;
+            left: 800px;
+            top: 600px;
+            padding: 10px;
+            position: absolute;
+            background: transparent;
+            background-color: brown;
+            color: white;
+        }
+        #bla{
+            font-family: monospace;
+            font-size:90px;
+            width:auto;
+            height: 200px;
+            position: absolute;
+            left:200px;
+            top:780px;
+        }
+        #sc{
+            margin-left: -20px;
+            margin-top:30px;
+        }
+        #b11,#b12,#b13,#b14,#b21,#b22,#b23,#b24,#b31,#b32,#b33,#b34,#b41,#b42,#b43,#b44{
+            background-color: darkgrey;
+            width:200px;
+            height: 200px;
+            position:absolute;
+            display:block;
+            border:10px solid grey;
+        }
+        #b11{
+            left:200px;
+            top:1000px;
+        }
+        #b12{
+            left:420px;
+            top:1000px;
+        }
+        #b13{
+            left:640px;
+            top:1000px;
+        }
+        #b14{
+            left:860px;
+            top:1000px;
+        }
+        #b21{
+            left:200px;
+            top:1220px;
+        }
+        #b22{
+            left:420px;
+            top:1220px;
+        }
+        #b23{
+            left:640px;
+            top:1220px;
+        }
+        #b24{
+            left:860px;
+            top:1220px;
+        }
+        #b31{
+            left:200px;
+            top:1440px;
+        }
+        #b32{
+            left:420px;
+            top:1440px;
+        }
+        #b33{
+            left:640px;
+            top:1440px;
+        }
+        #b34{
+            left:860px;
+            top:1440px;
+        }
+        #b41{
+            left:200px;
+            top:1660px;
+        }
+        #b42{
+            left:420px;
+            top:1660px;
+        }
+        #b43{
+            left:640px;
+            top:1660px;
+        }
+        #b44{
+            left:860px;
+            top:1660px;
+        }
+        
+        #btncontainer{
+            height:200px;
+            width:900px;
+            font-size:70px;
+            position: absolute;
+            left:220px;
+            top:2000px;
+        }
+        #one{
+            width:200px;
+            height: 200px;
+            border:2px solid black;
+            font-size:60px;
+            transition: 1s;
+        }
+        #two{
+            width:200px;
+            height: 200px;
+            border:2px solid black;
+            font-size:60px;
+            transition: 1s;
+        }
+        #three{
+            width:200px;
+            height: 200px;
+            border:2px solid black;
+            font-size:60px;
+            transition: 1s;
+        }
+        #four{
+            width:200px;
+            height: 200px;
+            border:2px solid black;
+            font-size:60px;
+            transition: 1s;
+        }
+        #one:hover{
+            background-color: brown;
+            color: white;
+        }
+        #two:hover{
+            background-color: brown;
+            color: white;
+        }
+        #three:hover{
+            background-color: brown;
+            color: white;
+        }
+        #four:hover{
+            background-color: brown;
+            color: white;
+        }
+        .block{
+            height:100%;
+            width: 100%;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            font-size:75px;
+            font-family: monospace;
+            background-color:beige;
+            position: absolute;
+            font-weight:900;
+        }
+        #by{
+            font-size: 70px;
+            background-color: azure;
+            color: black;
+            position: absolute;
+            left:210px;
+            top:1400px;
+            width:850px;
+            height:200px;
+            display: flex;
+            z-index:0;
+            justify-content: center;
+            align-items: center;
+        }
+        #how{
+            font-size:60px;
+            position: absolute;
+            left:650px;
+            top:350px;
+            color: black;
+            width:500px;
+            height: 200px;
+            background-color: aliceblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #how a{
+            color: black;
+            text-decoration: none;
+            
+        }
+    </style>
+    </head>
+<body>
+    <section>
+    <h1>2048</h1>
+    <button id="start" onclick="start()">Start</button>
+    <button  id="reset" onclick="location.reload()">Reset</button>
+    <div id="bla">
+        <label>score:</label>
+        <label id="sc">0</label>
+    </div>
+    
+        <div id="b11"></div>
+        <div id="b12"></div>
+        <div id="b13"></div>
+        <div id="b14"></div>
+     
+        <div id="b21"></div>
+        <div id="b22"></div>
+        <div id="b23"></div>
+        <div id="b24"></div>
+     
+     
+        <div id="b31"></div>
+        <div id="b32"></div>
+        <div id="b33"></div>
+        <div id="b34"></div>
+     
+      
+        <div id="b41"></div>
+        <div id="b42"></div>
+        <div id="b43"></div>
+        <div id="b44"></div>
+        
+<div id="btncontainer">
+    <button id="one" onclick="left()">Left</button> 
+    <button id="two" onclick="up()">Up</button>
+    <button id="three" onclick="down()">Down</button>
+    <button id="four" onclick="right()">Right</button>
+</div>
+    <div id="by"> created by satwik</div>
+    <div id="how"><a href="https://www.imore.com/2048-tips-and-tricks" target="_blank">How to play ?</a></div>
+    </section>
+    
+    <script>
+        var array = [];
+        var sample = [];
+        var onlystart = 0;
+        var soc = 0;
+       
+    setInterval(function (){
+        for(var i = 1;i<5;i++){
+            for(var j =1;j<5;j++){
+                var d = document.getElementById("bb"+i+j);
+                if (parseInt(d.innerHTML) == 2){
+                    d.style.backgroundColor = "white";
+                    d.style.color = "black";
+                    d.style.fontSize = "75px";
+                }
+                if (parseInt(d.innerHTML) == 4){
+                    d.style.backgroundColor = "rgb(255, 255, 204)";
+                    d.style.color = "black";
+                    d.style.fontSize = "75px";
+                }
+                if (parseInt(d.innerHTML) == 8){
+                   d.style.backgroundColor = "floralwhite";
+                    d.style.color = "black";
+                    d.style.fontSize = "75px";
+                }
+                if (parseInt(d.innerHTML) == 16){
+                   d.style.backgroundColor = "rgb(255, 153, 51)"; 
+                    d.style.color = "white";
+                    d.style.fontSize = "75px";
+                }
+                if (parseInt(d.innerHTML) == 32){
+                   d.style.backgroundColor = "rgb(255, 153, 204)";
+                    d.style.color = "black";
+                    d.style.fontSize = "75px";
+                }
+                if (parseInt(d.innerHTML) == 64){
+                   d.style.backgroundColor = "rgb(153, 204, 255)";
+                    d.style.color = "black";
+                    d.style.fontSize = "75px";
+                }
+                if (parseInt(d.innerHTML) == 128){
+                   d.style.backgroundColor = "rgb(255, 102, 102)";
+                    d.style.color = "white";
+                    d.style.fontSize = "75px";
+                }
+                if (parseInt(d.innerHTML) == 256){
+                   d.style.backgroundColor = "rgb(153, 255, 102)";
+                    d.style.color = "black";
+                    d.style.fontSize = "75px";
+                }
+                if (parseInt(d.innerHTML) == 512){
+                   d.style.backgroundColor = "rgb(255, 255, 102)";
+                    d.style.color = "black";
+                    d.style.fontSize = "75px";
+                }
+                if (parseInt(d.innerHTML) == 1024){
+                   d.style.backgroundColor = "rgb(102, 0, 255)";
+                    d.style.color = "white";
+                    d.style.fontSize = "75px";
+                }
+                if (parseInt(d.innerHTML) == 2048){
+                   d.style.backgroundColor = "rgb(255, 255, 204)";
+                    d.style.color = "black";
+                    d.style.fontSize = "75px";
+                }
+                if (parseInt(d.innerHTML) == 4096){
+                   d.style.backgroundColor = "white";
+                    d.style.color = "black";
+                    d.style.fontSize = "75px";
+                }
+                if (parseInt(d.innerHTML) == 8192){
+                   d.style.backgroundColor = "white";
+                    d.style.color = "black";
+                    d.style.fontSize = "75px";
+                }
+                if (parseInt(d.innerHTML) == 16384){
+                   d.style.backgroundColor = "white";
+                    d.style.color = "black";
+                    d.style.fontSize = "65px";
+                }
+            }
+        }
+    },10);
+            
+        var cout = 0;
+    function start(){
+        var by = document.getElementById("by");
+        by.style.display = "none";
+            for(var i = 1;i<5;i++){
+             for (var j=1;j<5;j++){
+            var d = document.getElementById("b"+i+j);
+                var c = document.createElement("div");
+                 c.setAttribute("class","block");
+                 c.setAttribute("id","bb"+i+j);
+                 c.innerHTML = 0;
+                 sample.push(c);
+                array.push(d);
+                 d.appendChild(c);
+             }
+         }
+        if (onlystart == 0){
+           generate();
+           generate();
+            onlystart += 1;
+        }
+        
+        cout += 1;
+        draw();
+    }
+        
+    function generate(){
+        var random = Math.floor(Math.random()*16 + 0);
+        var ran = Math.floor(Math.random()*2 + 1);
+        if (sample[random].innerHTML == 0){
+            if (soc < 30){
+               sample[random].innerHTML = 2; 
+            }
+            if (soc >= 30){
+                if (ran == 1){
+                    sample[random].innerHTML = 2;
+                }
+                else{
+                    sample[random].innerHTML = 4;
+                }
+            }
+            sample[random].style.display = "flex";
+        }
+        else{
+            generate();
+        }
+    }
+        
+    function draw(){
+        for (var i = 1;i<5;i++){
+           for (var j = 1;j<5;j++){
+            var com = document.getElementById("bb"+i+j);
+               if (com.innerHTML != 0){
+                   com.style.display = "flex";
+               }
+               else{
+                   com.style.display = "none";
+               }
+           }
+       }
+    } 
+        
+    function left(){
+        var leftconfirm1 = 0;
+        var leftconfirm2 = 0;
+        for (var i=1;i<5;i++){
+            for (var j=2;j<5;j++){
+                var com1 = document.getElementById("bb"+i+j);
+                if (parseInt(com1.innerHTML) != 0){
+                    var check = 0; 
+                for(var z=j-1;z>0;z--){
+                     var just = document.getElementById("bb"+i+z);
+                        if (just.innerHTML == 0){
+                            check += 1;
+                        }
+                }
+                if (check > 0){
+                 var cc = j-check;  
+         document.getElementById("bb"+i+cc).innerHTML = com1.innerHTML;
+                com1.innerHTML = 0;
+                    leftconfirm1 += 1;
+                }
+                }
+              }
+            }
+        
+        for (var i=1;i<5;i++){
+           for (var j=1;j<4;j++){
+               var com1 = document.getElementById("bb"+i+j);
+               var z = j + 1;
+               var com2 = document.getElementById("bb"+i+z);
+               if (parseInt(com1.innerHTML) != 0){
+                   if (com1.innerHTML == com2.innerHTML){
+                   com1.innerHTML = parseInt(com1.innerHTML) + parseInt(com2.innerHTML);
+                   com2.innerHTML = 0;
+                       leftconfirm2 += 1;
+               }
+               }
+           } 
+        }
+        
+        
+        for (var i=1;i<5;i++){
+            for (var j=2;j<5;j++){
+                var com1 = document.getElementById("bb"+i+j);
+                if (parseInt(com1.innerHTML) != 0){
+                    var check = 0; 
+                for(var z=j-1;z>0;z--){
+                     var just = document.getElementById("bb"+i+z);
+                        if (just.innerHTML == 0){
+                            check += 1;
+                        }
+                }
+                if (check > 0){
+                 var cc = j-check;  
+         document.getElementById("bb"+i+cc).innerHTML = com1.innerHTML;
+                com1.innerHTML = 0;
+                }
+                }
+              }
+            }
+        if (leftconfirm1 > 0 || leftconfirm2 >0){
+            generate(); 
+        }
+        if (leftconfirm2 > 0){
+            soc += 1;
+            var sc = document.getElementById("sc");
+            sc.innerHTML = soc;
+        }
+        draw();
+        sayout();
+        }
+          
+    function right(){
+        var rightconfirm1 = 0;
+        var rightconfirm2 = 0;
+        
+        for (var i=1;i<5;i++){
+            for (var j=3;j>0;j--){
+                var com1 = document.getElementById("bb"+i+j);
+                if (parseInt(com1.innerHTML) != 0){
+                    var check = 0; 
+                for(var z=j+1;z<5;z++){
+                     var just = document.getElementById("bb"+i+z);
+                        if (just.innerHTML == 0){
+                            check += 1;
+                        }
+                }
+                if (check > 0){
+                 var cc = j+check;  
+    document.getElementById("bb"+i+cc).innerHTML = com1.innerHTML;
+                com1.innerHTML = 0;
+                    rightconfirm1 += 1;
+                }
+                }
+              }
+            }
+        
+        
+        for (var i=1;i<5;i++){
+           for (var j=4;j>1;j--){
+               var com1 = document.getElementById("bb"+i+j);
+               var z = j - 1;
+               var com2 = document.getElementById("bb"+i+z);
+               if (parseInt(com1.innerHTML) != 0){
+                   if (com1.innerHTML == com2.innerHTML){
+                   com1.innerHTML = parseInt(com1.innerHTML) + parseInt(com2.innerHTML);
+                   com2.innerHTML = 0;
+                       rightconfirm2 += 1;
+               }
+               }
+           } 
+        }
+        
+        for (var i=1;i<5;i++){
+            for (var j=3;j>0;j--){
+                var com1 = document.getElementById("bb"+i+j);
+                if (parseInt(com1.innerHTML) != 0){
+                    var check = 0; 
+                for(var z=j+1;z<5;z++){
+                     var just = document.getElementById("bb"+i+z);
+                        if (just.innerHTML == 0){
+                            check += 1;
+                        }
+                }
+                if (check > 0){
+                 var cc = j+check;  
+    document.getElementById("bb"+i+cc).innerHTML = com1.innerHTML;
+                com1.innerHTML = 0;
+                }
+                }
+              }
+            }
+        if (rightconfirm1 >0 || rightconfirm2 > 0){
+           generate(); 
+        }
+        if (rightconfirm2 > 0){
+            soc += 1;
+            var sc = document.getElementById("sc");
+            sc.innerHTML = soc;
+        }
+        draw();
+        sayout();
+    }
+               
+    function up(){
+        var upconfirm1 = 0;
+        var upconfirm2 = 0;
+        for (var i=1;i<5;i++){
+            for (var j=2;j<5;j++){
+                var com1 = document.getElementById("bb"+j+i);
+                if (parseInt(com1.innerHTML) != 0){
+                    var check = 0; 
+                for(var z=j-1;z>0;z--){
+                     var just = document.getElementById("bb"+z+i);
+                        if (just.innerHTML == 0){
+                            check += 1;
+                        }
+                }
+                if (check > 0){
+                 var cc = j-check;  
+         document.getElementById("bb"+cc+i).innerHTML = com1.innerHTML;
+                com1.innerHTML = 0;
+                    upconfirm1 += 1;
+                }
+                }
+              }
+            }
+        
+       for(var i=1;i<5;i++){
+            for(var j=1;j<4;j++){
+                var com1 = document.getElementById("bb"+j+i);
+                var z = j+1;
+                var com2 = document.getElementById("bb"+z+i);
+                if (parseInt(com1.innerHTML) != 0){
+                    if (com1.innerHTML == com2.innerHTML){
+                    com1.innerHTML = parseInt(com1.innerHTML) + parseInt(com2.innerHTML);
+                    com2.innerHTML = 0;
+                    upconfirm2 += 1;
+                }
+                }
+            }
+        }
+        
+        for (var i=1;i<5;i++){
+            for (var j=2;j<5;j++){
+                var com1 = document.getElementById("bb"+j+i);
+                if (parseInt(com1.innerHTML) != 0){
+                    var check = 0; 
+                for(var z=j-1;z>0;z--){
+                     var just = document.getElementById("bb"+z+i);
+                        if (just.innerHTML == 0){
+                            check += 1;
+                        }
+                }
+                if (check > 0){
+                 var cc = j-check;  
+         document.getElementById("bb"+cc+i).innerHTML = com1.innerHTML;
+                com1.innerHTML = 0;
+                }
+                }
+              }
+            }
+        if (upconfirm1 > 0||upconfirm2 > 0){
+             generate();
+        }
+        if (upconfirm2 > 0){
+            soc += 1;
+            var sc = document.getElementById("sc");
+            sc.innerHTML = soc;
+        }
+        draw();
+        sayout();
+    }   
+        
+    function down(){
+        var conform1 = 0;
+        var conform2 = 0;
+        for (var i=1;i<5;i++){
+            for (var j=3;j>0;j--){
+                var com1 = document.getElementById("bb"+j+i);
+                if (parseInt(com1.innerHTML) != 0){
+                    var check = 0; 
+                 for(var z=j+1;z<5;z++){
+                     var just = document.getElementById("bb"+z+i);
+                        if (just.innerHTML == 0){
+                            check += 1;
+                        }
+                 }
+                 if (check > 0){
+                     conform1 += 1;
+                    var cc = j+check;  
+       document.getElementById("bb"+cc+i).innerHTML = com1.innerHTML;
+                com1.innerHTML = 0;
+                }
+                }
+              }
+            }
+        
+        for(var i=1;i<5;i++){
+            for(var j=4;j>1;j--){
+                var com1 = document.getElementById("bb"+j+i);
+                var z = j-1;
+                var com2 = document.getElementById("bb"+z+i);
+            if (parseInt(com1.innerHTML) != 0){
+                if (com1.innerHTML == com2.innerHTML){
+                    com1.innerHTML = parseInt(com1.innerHTML) + parseInt(com2.innerHTML);
+                    com2.innerHTML = 0;
+                    conform2 += 1;
+                }
+                }
+            }
+        }
+        
+        for (var i=1;i<5;i++){
+            for (var j=3;j>0;j--){
+                var com1 = document.getElementById("bb"+j+i);
+                if (parseInt(com1.innerHTML) != 0){
+                    var check = 0; 
+                 for(var z=j+1;z<5;z++){
+                     var just = document.getElementById("bb"+z+i);
+                        if (just.innerHTML == 0){
+                            check += 1;
+                        }
+                 }
+                 if (check > 0){
+                    var cc = j+check;  
+       document.getElementById("bb"+cc+i).innerHTML = com1.innerHTML;
+                com1.innerHTML = 0;
+                }
+                }
+              }
+            }
+        
+        if (conform1 >0 || conform2 >0){
+            generate();
+        }
+        if (conform2 > 0){
+            soc += 1;
+            var sc = document.getElementById("sc");
+            sc.innerHTML = soc;
+        }
+        draw();
+        sayout();
+    }
+        
+    function sayout(){
+       
+        var leftconfirm1 = 0;
+        var leftconfirm2 = 0;
+        for (var i=1;i<5;i++){
+            for (var j=2;j<5;j++){
+                var com1 = document.getElementById("bb"+i+j);
+                if (parseInt(com1.innerHTML) != 0){
+                    var check = 0; 
+                for(var z=j-1;z>0;z--){
+                     var just = document.getElementById("bb"+i+z);
+                        if (just.innerHTML == 0){
+                            check += 1;
+                        }
+                }
+                if (check > 0){
+                    leftconfirm1 += 1;
+                }
+                }
+              }
+            }
+        
+        for (var i=1;i<5;i++){
+           for (var j=1;j<4;j++){
+               var com1 = document.getElementById("bb"+i+j);
+               var z = j + 1;
+               var com2 = document.getElementById("bb"+i+z);
+               if (parseInt(com1.innerHTML) != 0){
+                   if (com1.innerHTML == com2.innerHTML){
+                       leftconfirm2 += 1;
+               }
+               }
+           } 
+        }
+       
+        var rightconfirm1 = 0;
+        var rightconfirm2 = 0;
+        
+        for (var i=1;i<5;i++){
+            for (var j=3;j>0;j--){
+                var com1 = document.getElementById("bb"+i+j);
+                if (parseInt(com1.innerHTML) != 0){
+                    var check = 0; 
+                for(var z=j+1;z<5;z++){
+                     var just = document.getElementById("bb"+i+z);
+                        if (just.innerHTML == 0){
+                            check += 1;
+                        }
+                }
+                if (check > 0){
+                    rightconfirm1 += 1;
+                }
+                }
+              }
+            }
+        
+        
+        for (var i=1;i<5;i++){
+           for (var j=4;j>1;j--){
+               var com1 = document.getElementById("bb"+i+j);
+               var z = j - 1;
+               var com2 = document.getElementById("bb"+i+z);
+               if (parseInt(com1.innerHTML) != 0){
+                   if (com1.innerHTML == com2.innerHTML){
+                       rightconfirm2 += 1;
+               }
+               }
+           } 
+        }
+        
+        var upconfirm1 = 0;
+        var upconfirm2 = 0;
+        for (var i=1;i<5;i++){
+            for (var j=2;j<5;j++){
+                var com1 = document.getElementById("bb"+j+i);
+                if (parseInt(com1.innerHTML) != 0){
+                    var check = 0; 
+                for(var z=j-1;z>0;z--){
+                     var just = document.getElementById("bb"+z+i);
+                        if (just.innerHTML == 0){
+                            check += 1;
+                        }
+                }
+                if (check > 0){
+                    upconfirm1 += 1;
+                }
+                }
+              }
+            }
+        
+       for(var i=1;i<5;i++){
+            for(var j=1;j<4;j++){
+                var com1 = document.getElementById("bb"+j+i);
+                var z = j+1;
+                var com2 = document.getElementById("bb"+z+i);
+                if (parseInt(com1.innerHTML) != 0){
+                    if (com1.innerHTML == com2.innerHTML){
+                    upconfirm2 += 1;
+                }
+                }
+            }
+        }
+        
+      var conform1 = 0;
+        var conform2 = 0;
+        for (var i=1;i<5;i++){
+            for (var j=3;j>0;j--){
+                var com1 = document.getElementById("bb"+j+i);
+                if (parseInt(com1.innerHTML) != 0){
+                    var check = 0; 
+                 for(var z=j+1;z<5;z++){
+                     var just = document.getElementById("bb"+z+i);
+                        if (just.innerHTML == 0){
+                            check += 1;
+                        }
+                 }
+                 if (check > 0){
+                     conform1 += 1;
+                }
+                }
+              }
+            }
+        
+        for(var i=1;i<5;i++){
+            for(var j=4;j>1;j--){
+                var com1 = document.getElementById("bb"+j+i);
+                var z = j-1;
+                var com2 = document.getElementById("bb"+z+i);
+            if (parseInt(com1.innerHTML) != 0){
+                if (com1.innerHTML == com2.innerHTML){
+                    conform2 += 1;
+                }
+                }
+            }
+        }
+        
+        if (leftconfirm1 == 0 && leftconfirm2 == 0 && rightconfirm1 == 0 && rightconfirm2 == 0 && upconfirm1 == 0 && upconfirm2 == 0 && conform1 == 0 && conform2 == 0){
+            var p = confirm("game over !! Dou you want to reset the game ?");
+            if (p){
+                location.reload();
+            }
+            else{
+                
+            }
+        }
+        
+    }  
+    </script>
+    </body>
+</html>
