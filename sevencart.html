@@ -1,0 +1,1396 @@
+<html lang="en">
+<head>
+    <title>stores</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            position:relative;
+            width:100vw;
+            min-height:100vh;
+            font-size:3vw;
+            box-sizing: border-box;
+        }
+        #banner{
+            display:flex;
+            flex-direction:row;
+            position: absolute;
+            top:20vh;
+            background-color:antiquewhite;
+            justify-content: center;
+            align-items: center;
+            width:100vw;
+            height:10vh;
+            font-size:2.5vh;
+            letter-spacing:0.2vh;
+            -webkit-animation-name:scrollin;
+            -webkit-animation-duration:5s;
+            -webkit-animation-iteration-count:infinite;
+        }
+        @keyframes scrollin{
+            0%{transform: scale(0)}
+            100%{transform: scale(1)}
+        }
+        #intro{
+            position:fixed;
+            overflow: hidden;
+            top:0;
+            left: 0;
+            width:100vw;
+            height:20vh;
+            background-color:rgb(0, 51, 102);
+            z-index:10;
+        }
+        #intro .log{
+            position:relative;
+            width:15vh;
+            height:auto;
+            top:10%;
+            left:70%;
+        }
+        #intro .user{
+            width:35vw;
+            font-size:3.5vw;
+            color:azure;
+            position:absolute;
+            font-family: monospace;
+            font-weight:900;
+            left:20%;
+            top:30%;
+            letter-spacing:0.3vh;
+        }
+        .menu{
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top:4.5vh;
+            left:8vw;
+            transition-duration:1s;
+            -webkit-animation-name:menubar;
+            -webkit-animation-duration:5s;
+            -webkit-animation-iteration-count:infinite;
+        }
+        @keyframes menubar{
+            0%{transform:scale(0.25)}
+            20%{transform:scale(1)}
+            100%{transform:scale(1)}
+        }
+        .menu:active{
+            transform: rotateZ(90deg);
+        }
+        .menu div{
+            background-color:azure;
+            width:5vh;
+            height:1vh;
+            border-radius:30px;
+            position:relative;
+            margin-bottom:0.5vh;
+        }
+        #sidebar{
+            overflow: hidden;
+            width:auto;
+            height:auto;
+            background-color:white;
+            position:fixed;
+            z-index:100;
+            padding:1vh;
+            border:0.1vh solid black;
+            top:-100vh;
+            transition-duration:1s;
+            padding:3vh;
+        }
+        #sidebar label{
+            color: aliceblue;
+            background-color:rgb(0, 51, 102); 
+            position:relative;
+            cursor: pointer;
+            width:10vh;
+            font-size: 2.5vh;
+            font-weight:500;
+            top:1vh;
+            left:15vh;
+            display:flex;
+            justify-content: center;
+            text-align: center;
+            border:0.2vh solid black;
+            margin-bottom:2vh;
+        }
+        #sidebar a{
+            text-decoration: none;
+            position: relative;
+            font-size:2.5vh;
+            display: flex;
+            align-items:center;
+            height:8vh;
+            padding:1vh;
+            letter-spacing:0.1vh;
+            color:rgb(0, 51, 102);
+            font-weight:530;
+            cursor:pointer;
+            width:100%;
+            margin-top:0.3vh;
+            background-color: white;
+        }
+        #searchbar{
+            padding-top:3vh;
+            padding-bottom:3vh;
+            width:100vw;
+            min-height:75vh;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color:white;
+            top:30vh;
+            flex-direction: column;
+        }
+        .container{
+            position: relative;
+            width:90%;
+            margin-top:0.5vh;
+            margin-bottom:0.5vh;
+            min-height:20vh;
+            background-color: aliceblue;
+            border:0.2vh solid rgb(0, 51, 102);
+            display:none;
+            box-shadow:0 0 1vh black;
+        }
+        .pimg{
+            width:13vh;
+            height:10vh;
+            top:8vh;
+            position: absolute;
+        }
+        .pname{
+            font-size:3vh;
+            position: absolute;
+            left:2vh;
+            top:2vh; 
+            letter-spacing:0.2vh;
+            font-weight:700;
+        }
+        .description{
+            font-size:2vh;
+            position: absolute;
+            left:15vh;
+            top:10vh;
+            font-weight:500;
+        }
+        .quantity{
+            font-size:2.7vh;
+            position: absolute;
+            left:16vh;
+            top:13vh;
+            font-weight:500;
+        }
+        .rate{
+            font-size:3vh;
+            position: absolute;
+            left:45vh;
+            top:2vh;
+            font-weight:500; 
+        }
+        .addcart{
+            width:8vh;
+            height:8vh;
+            background-image: url(https://image.flaticon.com/icons/png/512/70/70619.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: absolute;
+            left:50vh;
+            top:10vh;
+            cursor: pointer;
+        }
+        </style>
+    </head>
+<body>
+    <script>
+        function menuplay(){
+            var d = document.getElementById("sidebar");
+            d.style.top = 0 + "vh";
+        }
+        function close_menu(){
+            var d = document.getElementById("sidebar");
+            d.style.top = -100 + "vh";
+        }
+        function cost(id1,id2,r,d){
+            var p2 = parseInt(id2.value);
+            var p1 = parseInt(d);
+            var rate1 = eval((p2/p1)*r);
+            var rate = rate1.toFixed(2);
+            id1.innerHTML = rate + "/-";
+        }
+        function addcart(io){
+            var n = io.id;
+            if (localStorage.getItem("kedarcheck") == "yes"){
+                var pp = JSON.parse(localStorage.getItem("kedarcart"));
+                var in1 = pp.indexOf(n);
+                pp.splice(in1,1);
+localStorage.setItem("kedarcart",JSON.stringify(pp));
+                var l = pp.length;
+                alert("you have total " + l + " number of items in cart");
+                location.reload();
+                }
+            }
+        setInterval(function (){
+            if (localStorage.getItem("kedarcheck") == "yes"){
+                var pp = JSON.parse(localStorage.getItem("kedarcart"));
+                for (var i = 0;i<pp.length;i++){
+                    var t = document.getElementById(pp[i]);
+                    t.style.display = "flex";
+                }
+            }
+        },10);
+        setInterval(function (){
+            var t = document.getElementById("user_name");
+            var t1 = document.getElementById("namescroll")
+            if (localStorage.getItem("kedarcheck") == "yes"){
+                t.innerHTML = "Hello " + localStorage.getItem("kedaruser");
+                t1.innerHTML = "Hello " + localStorage.getItem("kedaruser");
+            }
+            else{
+               t.innerHTML = "Hello User..";
+            }
+            var d = document.getElementById("day")
+            var day1 = new Date().getHours();
+            if (day1 <= 5){
+                d.innerHTML = "Good Night..";
+            }
+            if (day1 < 12 && day1 >= 5){
+                d.innerHTML = "Good Morning..";
+            }
+            if (day1 >= 12 && day1 <= 16){
+                d.innerHTML = "Good Afternoon..";
+            }
+            if (day1 > 16 && day1 < 20){
+                d.innerHTML = "Good Evening..";
+            }
+            if (day1 >= 20){
+                d.innerHTML = "Good Night..";
+            }
+        },10); 
+        console.log(localStorage);
+    </script>
+    <section id="banner">
+        <label style="position: absolute;left:10vh" id="namescroll">Hello  User</label>
+        <label id="day" style="position: absolute;left:50%;">Good Morning..</label>
+    </section>
+    <section id="intro">
+        <img src="logo.jpeg" class="log">
+        <div class="user" id="user_name">HELLO USER..</div>
+        <div class="menu" onclick="menuplay()">
+        <div></div>
+        <div></div>
+        <div></div>
+        </div>
+    </section>
+    <section id="sidebar">
+    <label onclick="close_menu()">BACK</label>
+    <a href="sevencart.html">CART</a>
+    <a href="https://g.page/r/CUCngrxZSC08EAE/review">REVIEW'S</a>
+    <a href="twoaccount.html">YOUR ACCOUNT</a>
+    <a href="sixcus.html">CUSTOMER SERVICE</a>
+    <a href="fivemore.html">MORE ABOUT US</a>   
+    </section>
+    <section id="searchbar">
+    <!-- completed-->
+        
+        <div class="container" id="pasupu">
+            <img src="https://img.emedihealth.com/wp-content/uploads/2020/10/turmeric-expert-answers.jpg" class="pimg">
+            <div class="pname">Turmeric (Pasupu)</div>
+            <div class="description">Usable for cooking and pooja's</div>
+            <select class="quantity" onchange="cost(pasupurate,pas,6,25)" id="pas">
+                <option value="25">25 grams</option>
+                <option value="50">50 grams</option>
+                <option value="90">100 grams</option>
+                <option value="235">250 grams</option>
+                <option value="450">500 grams</option>
+                <option value="940">1 kg</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="pasupurate">6/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(pasupu)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <!-- completed-->
+        
+        <div class="container" id="honey">
+            <img src="https://images-na.ssl-images-amazon.com/images/I/813BPfFuhkL._SL1500_.jpg" class="pimg">
+            <div class="pname">Honey(Thenne)</div>
+            <div class="description">Dabur and lion brand available..</div>
+            <select class="quantity" onchange="cost(honeyrate,hon,28,50)" id="hon">
+                <option value="50">50 grams</option>
+                <option value="85">100 grams</option>
+                <option value="225">250 grams</option>
+                <option value="455">500 grams</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="honeyrate">28/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(honey)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <!-- completed-->
+        
+        <div class="container" id="neyya">
+            <img src="https://images-na.ssl-images-amazon.com/images/I/71zHc0R1toL._SY550_.jpg" class="pimg">
+            <div class="pname">Ghee(Neyya)</div>
+            <div class="description">krishna brand available..</div>
+            <select class="quantity" onchange="cost(neyyarate,ney,15,50)" id="ney">
+                <option value="50">50 grams</option>
+                <option value="100">100 grams</option>
+                <option value="230">250 grams</option>
+                <option value="480">500 grams</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="neyyarate">15/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(neyya)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+<!-- completed-->
+        
+        <div class="container" id="kunkam">
+            <img src="https://5.imimg.com/data5/ANDROID/Default/2020/11/KZ/JS/IQ/83768007/product-jpeg-250x250.jpg" class="pimg">
+            <div class="pname">Saffron (Kunkam)</div>
+            <div class="description">Usable for pooja's</div>
+            <select class="quantity" onchange="cost(kunkamrate,kun,6,25)" id="kun">
+                <option value="25">25 grams</option>
+                <option value="50">50 grams</option>
+                <option value="90">100 grams</option>
+                <option value="235">250 grams</option>
+                <option value="450">500 grams</option>
+                <option value="940">1 kg</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="kunkamrate">6/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(kunkam)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <!-- completed-->
+        
+        <div class="container" id="gandham">
+            <img src="https://5.imimg.com/data5/PM/VF/MY-30666090/sandal-powder-500x500.jpg" class="pimg">
+            <div class="pname">Sandal powder(Gandham)</div>
+            <div class="description">Usable for pooja's</div>
+            <select class="quantity" onchange="cost(gandhamrate,gan,10,1)" id="gan">
+                <option value="1">1 box</option>
+                <option value="10">12 box</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="gandhamrate">10/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(gandham)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+<!-- completed-->
+        
+    <div class="container" id="kandhipapu">
+            <img src="https://3.imimg.com/data3/WO/FJ/MY-11548528/red-gram-500x500.jpg" class="pimg">
+            <div class="pname">Red gram (Khandhipapu)</div>
+            <div class="description">For eating</div>
+            <select class="quantity" onchange="cost(khandhirate,khan,30,250)" id="khan">
+                <option value="250">250 grams</option>
+                <option value="480">500 grams</option>
+                <option value="960">1 kg</option>
+                <option value="1920">2 kg</option>
+                <option value="4900">5 kg</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="khandhirate">30/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(kandhipapu)">   
+            </button>
+    </div>
+        
+        <!-- completed-->
+        
+        <!-- completed-->
+        
+    <div class="container" id="senagapapu">
+            <img src="https://media.istockphoto.com/photos/chickpeas-or-chana-dal-pluse-also-known-as-split-bengal-gram-picture-id1148180275?k=6&m=1148180275&s=170667a&w=0&h=FkoUCRWibjbPOTa5lEmFCQagQe0OvOJ6KwyUzHDUOkM=" class="pimg">
+            <div class="pname">Bengal gram (senaga papu)</div>
+            <div class="description">For eating</div>
+            <select class="quantity" onchange="cost(senegaparate,senaga,19,250)" id="senaga">
+                <option value="250">250 grams</option>
+                <option value="480">500 grams</option>
+                <option value="960">1 kg</option>
+                <option value="1920">2 kg</option>
+                <option value="4900">5 kg</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="senegaparate">19/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(senagapapu)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+<!-- completed-->
+        
+        <div class="container" id="purikosa">
+            <img src="https://images-eu.ssl-images-amazon.com/images/I/616mufoNGFL._AC._SR360,460.jpg" class="pimg">
+            <div class="pname">Purikosa (Thread)</div>
+            <div class="description">Used as suppoter's..</div>
+            <select class="quantity" onchange="cost(purikosarate,pur,10,1)" id="pur">
+                <option value="1">1 Ball</option>
+                <option value="10">12 Balls</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="purikosarate">10/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(purikosa)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <!-- completed-->
+        
+        <div class="container" id="molathadu">
+            <img src="https://m.media-amazon.com/images/I/61Z36Nh0IiL._AC_SX466_.jpg" class="pimg">
+            <div class="pname">Cotton Thread(Molthadu)</div>
+            <div class="description">Red & Black available..</div>
+            <select class="quantity" onchange="cost(molathadurate,mol,3,1)" id="mol">
+                <option value="1">1 Meters</option>
+                <option value="11">12 Meters</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="molathaduarate">3/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(molathadu)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+<!-- completed-->
+        
+        <div class="container" id="santoor">
+            <img src="https://5.imimg.com/data5/TW/XJ/MY-40681581/santoor-soap-500x500.jpg" class="pimg">
+            <div class="pname">Santoor</div>
+            <div class="description"></div>
+            <select class="quantity" onchange="cost(santoorrate,san,25,1)" id="san">
+                <option value="1">1 piece</option>
+                <option value="4">5 piece</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="santoorrate">25/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(santoor)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <!-- completed-->
+        
+        <div class="container" id="cinthol">
+            <img src="https://www.cyberkart.in/wp-content/uploads/2019/11/gcl.jpg" class="pimg">
+            <div class="pname">Cinthol</div>
+            <div class="description"></div>
+            <select class="quantity" onchange="cost(cintholrate,cin,25,1)" id="cin">
+                <option value="1">1 piece</option>
+                <option value="5.2">6 piece</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="cintholrate">25/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(cinthol)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <div class="container" id="minnapappu">
+            <img src="https://assets.lybrate.com/q_auto:eco,f_auto,w_400,h_240,c_fill,g_auto/imgs/product/health-wiki/bpages/Benefits-Of-Black-Gram-(Urad-Dal).jpg" class="pimg">
+            <div class="pname">Urad Bean (Minna pappu)</div>
+            <div class="description">For eating</div>
+            <select class="quantity" onchange="cost(minnapappurate,mina,30,250)" id="mina">
+                <option value="250">250 grams</option>
+                <option value="480">500 grams</option>
+                <option value="960">1 kg</option>
+                <option value="1920">2 kg</option>
+                <option value="4900">5 kg</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="minnapappurate">30/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(minnapappu)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <!-- completed-->
+        
+        <div class="container" id="pesarapappu">
+            <img src="https://images-na.ssl-images-amazon.com/images/I/51Rha6S05AL.jpg" class="pimg">
+            <div class="pname">Moong Dal(pesara pappu)</div>
+            <div class="description">For eating</div>
+            <select class="quantity" onchange="cost(minnapapurate,pesra,30,250)" id="pesra">
+                <option value="250">250 grams</option>
+                <option value="480">500 grams</option>
+                <option value="960">1 kg</option>
+                <option value="1920">2 kg</option>
+                <option value="4900">5 kg</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="pesarapappurate">30/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(pesarapappu)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <div class="container" id="karachi">
+            <img src="https://static.wixstatic.com/media/92e7dd_0c1cfa5e602d43398f4bc7422522e4d9~mv2.jpg/v1/fill/w_980,h_551,al_c,q_85,usm_0.66_1.00_0.01/92e7dd_0c1cfa5e602d43398f4bc7422522e4d9~mv2.jpg" class="pimg">
+            <div class="pname">Soojii (karachi)</div>
+            <div class="description">For eating</div>
+            <select class="quantity" onchange="cost(karachirate,kara,10,250)" id="kara">
+                <option value="250">250 grams</option>
+                <option value="480">500 grams</option>
+                <option value="960">1 kg</option>
+                <option value="1920">2 kg</option>
+                <option value="4900">5 kg</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="karachirate">10/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(karachi)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <div class="container" id="Maidha">
+            <img src="https://www.nayadukan.com/wp-content/uploads/2020/07/MAIDA.jpg" class="pimg">
+            <div class="pname">Maidha</div>
+            <div class="description">For eating</div>
+            <select class="quantity" onchange="cost(Maidharate,midh,10,250)" id="midh">
+                <option value="250">250 grams</option>
+                <option value="480">500 grams</option>
+                <option value="960">1 kg</option>
+                <option value="1920">2 kg</option>
+                <option value="4900">5 kg</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="Maidharate">10/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(Maidha)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <div class="container" id="Saimya">
+            <img src="https://images-na.ssl-images-amazon.com/images/I/91xppD4yspL._SY445_.jpg" class="pimg">
+            <div class="pname">Vernicelli (seimyaa)</div>
+            <div class="description">For eating</div>
+            <select class="quantity" onchange="cost(Saimyarate,sam,10,1)" id="sam">
+                <option value="1">1 Small packet</option>
+                <option value="4">1 Medium packet</option>
+                <option value="6">1 Big packet</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="Saimyarate">10/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(Saimya)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <!-- completed-->
+        
+        <div class="container" id="sugar">
+            <img src="https://www.ledgerinsights.com/wp-content/uploads/2020/10/sugar.2-810x476.jpg" class="pimg">
+            <div class="pname">Sugar</div>
+            <div class="description">For eating</div>
+            <select class="quantity" onchange="cost(sugarrate,sug,10,250)" id="sug">
+                <option value="250">250 grams</option>
+                <option value="480">500 grams</option>
+                <option value="960">1 kg</option>
+                <option value="1920">2 kg</option>
+                <option value="4900">5 kg</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="sugarrate">10/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(sugar)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <!-- completed-->
+        
+        <div class="container" id="varinukka">
+            <img src="https://bhimavaram.online/image/cache/grocery/DSC01625-500x500.JPG" class="pimg">
+            <div class="pname">Rice Raava (Varinukka)</div>
+            <div class="description">For eating</div>
+            <select class="quantity" onchange="cost(varinukkarate,vari,20,1)" id="vari">
+                <option value="1">1 packet</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="varinukkarate">20/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(varinukka)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <!-- completed-->
+        
+        <div class="container" id="varipindi">
+            <img src="https://www.epoojastore.in/image/cache/catalog/Products/pooja-items/homam-samagri/rice-flour-epoojastore-2-1000x1000.jpg" class="pimg">
+            <div class="pname">Rice Flour (varipindi)</div>
+            <div class="description">For eating</div>
+            <select class="quantity" onchange="cost(varipindirate,varip,20,1)" id="varip">
+                <option value="1">1 packet</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="varipindirate">20/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(varipindi)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <!-- completed-->
+        
+        <div class="container" id="yerranukka">
+            <img src="http://4.bp.blogspot.com/_NXfbilHyia4/RyIId-CwU4I/AAAAAAAABVY/J2SVDjKo0Us/s400/crackedwheat.jpg" class="pimg">
+            <div class="pname">Wheat Raava (yerranukka)</div>
+            <div class="description">For eating</div>
+            <select class="quantity" onchange="cost(yerranukkarate,yerra,80,1)" id="yerra">
+                <option value="1">1 packet</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="yerranukkarate">80/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(yerranukka)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <!-- completed-->
+        
+        <div class="container" id="godhumpindi">
+            <img src="http://www.freedomcart.com/image/cache/catalog/data/Products/Aashirvaad_Whole_Wheat_Atta-700x700.jpg" class="pimg">
+            <div class="pname">Wheat Flour (godhumpindi)</div>
+            <div class="description">For eating</div>
+            <select class="quantity" onchange="cost(godhumpindirate,godh,50,1)" id="godh">
+                <option value="1">1 packet</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="godhumpindirate">50/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(godhumpindi)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <!-- completed-->
+        
+        <div class="container" id="ragipindhi">
+            <img src="https://www.ecohoy.com/media/catalog/product/cache/1/thumbnail/9df78eab33525d08d6e5fb8d27136e95/r/a/ragi-flour_turn.jpg" class="pimg">
+            <div class="pname">Raagi Flour (Raagi pindi)</div>
+            <div class="description">For eating</div>
+            <select class="quantity" onchange="cost(ragipindhirate,ragi,30,1)" id="ragi">
+                <option value="1">1 packet</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="ragipindhirate">30/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(ragipindhi)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <div class="container" id="vim">
+            <img src="https://images-na.ssl-images-amazon.com/images/I/61szrCRWOEL._SY450_.jpg" class="pimg">
+            <div class="pname">Vim</div>
+            <div class="description"></div>
+            <select class="quantity" onchange="cost(vimrate,vi,10,1)" id="vi">
+                <option value="1">1 Small bar</option>
+                <option value="2">1 Big bar</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="vimrate">10/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(vim)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <!-- completed-->
+        
+        <div class="container" id="surfexcel">
+            <img src="https://sgmaart.in/userdata/public/gfx/1056/SURF-EXCEL-BAR-95G.jpg" class="pimg">
+            <div class="pname">Surfexcel</div>
+            <div class="description"></div>
+            <select class="quantity" onchange="cost(surfexcelrate,sur,10,1)" id="sur">
+                <option value="1">1 Small bar</option>
+                <option value="2">1 Big bar</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="surfexcelrate">10/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(surfexcel)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <div class="container" id="Aavalu">
+            <img src="http://d2s8edsvfzlfgk.cloudfront.net/images/detailed/9/musterd.jpg?t=1578721432" class="pimg">
+            <div class="pname">Mustard Seeds..(Aavalu)</div>
+            <div class="description">Indian Speices.</div>
+            <select class="quantity" onchange="cost(Aavalurate,aav,10,1)" id="aav">
+                <option value="1">50 grams</option>
+                <option value="2">100 grams</option>
+                <option value="5">250 grams</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="Aavalurate">10/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(Aavalu)">   
+            </button>
+        </div>
+        <!-- completed -->
+        
+        <!-- completed-->
+        
+        <div class="container" id="jeera">
+            <img src="https://m.media-amazon.com/images/I/71BR+05WU0L._SX679_.jpg" class="pimg">
+            <div class="pname">Cumin Seeds..(Jeera)</div>
+            <div class="description">Indian Speices.</div>
+            <select class="quantity" onchange="cost(jeerarate,jer,15,1)" id="jer">
+                <option value="1">50 grams</option>
+                <option value="2">100 grams</option>
+                <option value="5">250 grams</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="jeerarate">15/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(jeera)">   
+            </button>
+        </div>
+        <!-- completed -->
+        
+        <!-- completed-->
+        
+        <div class="container" id="karpurram">
+            <img src="https://commons.wikishia.net/images/thumb/d/d5/%DA%A9%D8%A7%D9%81%D9%88%D8%B1.jpeg/250px-%DA%A9%D8%A7%D9%81%D9%88%D8%B1.jpeg" class="pimg">
+            <div class="pname">Camphor (Karpurram)</div>
+            <div class="description">Usable for pooja's</div>
+            <select class="quantity" onchange="cost(Karpurramrate,karp,14,1)" id="karp">
+                <option value="1">1 small</option>
+                <option value="3">1 Big </option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="Karpurramrate">14/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(Karpurram)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <!-- completed-->
+        
+        <div class="container" id="vathulu">
+            <img src="https://d39vol41m7feya.cloudfront.net/1597771285-71jymZmcKOL._SL1500_.jpg" class="pimg">
+            <div class="pname">Vathulu packets</div>
+            <div class="description">Usable for pooja's</div>
+            <select class="quantity" onchange="cost(vathulurate,vathu,5,1)" id="vathu">
+                <option value="1">1 small</option>
+                <option value="2">1 Big </option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="vathulurate">5/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(vathulu)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        
+        <!-- completed-->
+        
+        <div class="container" id="PuvvuVathulu">
+            <img src="https://3.imimg.com/data3/YI/WX/MY-604597/cotton-wicks-250x250.jpg" class="pimg">
+            <div class="pname">Puvvu Vathulu</div>
+            <div class="description"> made with cotton</div>
+            <select class="quantity" onchange="cost(PuvvuVathulurate,puv,10,1)" id="puv">
+                <option value="1">1 small</option>
+                <option value="6">1 Big Special </option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="PuvvuVathulurate">10/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(PuvvuVathulu)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <!-- completed-->
+        
+        <div class="container" id="Agarbathi">
+            <img src="https://res.sastasundar.com/incom/images/product/Mangaldeep-Anushri-Agarbattis-1498560619-10033425.jpg" class="pimg">
+            <div class="pname">Agarbathi</div>
+            <div class="description">for cycles and mandaldeep</div>
+            <select class="quantity" onchange="cost(Agarbathirate,agar,10,1)" id="agar">
+                <option value="1">1 small</option>
+                <option value="2">1 Medium</option>
+                <option value="5">1 Big Pouches</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="Agarbathirate">10/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(Agarbathi)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <!-- completed-->
+        
+        <div class="container" id="doopsticks">
+            <img src="https://images-na.ssl-images-amazon.com/images/I/81ksLYGF8AL._SL1500_.jpg" class="pimg">
+            <div class="pname">Doop Sticks</div>
+            <div class="description">mandaldeep</div>
+            <select class="quantity" onchange="cost(doopsticksrate,doop,15,1)" id="doop">
+                <option value="1">1 small</option>
+                <option value="11">1 set</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="doopsticksrate">15/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(doopsticks)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <!-- completed-->
+        
+        <div class="container" id="vibhudhhi">
+            <img src="https://groceryraja.com/media/catalog/product/cache/1/image/650x/b18ed23dc911715dd8d6f628f7872d6b/s/w/swami-vilas-vipoothi-800.jpg" class="pimg">
+            <div class="pname">Vibhudhhi</div>
+            <div class="description"></div>
+            <select class="quantity" onchange="cost(vibhudhhirate,vibhu,12,1)" id="vibhu">
+                <option value="1">1 small</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="vibhudhhirate">12/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(vibhudhhi)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <!-- completed-->
+        
+        <div class="container" id="loadbag">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHuFVvCXo2nI5JvugMbPvJM-3K4kQEwljOmA&usqp=CAU" class="pimg">
+            <div class="pname">Load Bags..</div>
+            <div class="description">for Heavy weights..</div>
+            <select class="quantity" onchange="cost(loadbagrate,loa,10,1)" id="loa">
+                <option value="3">1 small</option>
+                <option value="4">1 Medium</option>
+                <option value="5">1 Big</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="loadbagrate">30/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(loadbag)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <!-- completed-->
+        
+        <div class="container" id="nuvulanunni">
+            <img src="https://images-na.ssl-images-amazon.com/images/I/31TKyqiFT-L.jpg" class="pimg">
+            <div class="pname">Sesame Oil (Nuvulla Nunni)</div>
+            <div class="description"></div>
+            <select class="quantity" onchange="cost(nuvulanunnirate,nu,41,1)" id="nu">
+                <option value="1">0.25 liters</option>
+                <option value="2">0.5 liters</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="nuvulanunnirate">41/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(nuvulanunni)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <!-- completed-->
+        
+        <div class="container" id="AavalaNunni">
+            <img src="https://cpimg.tistatic.com/04822679/b/4/Double-Filter-Mustard-Oil.jpg" class="pimg">
+            <div class="pname">Mustard Oil (Aavala Nunni)</div>
+            <div class="description"></div>
+            <select class="quantity" onchange="cost(AavalaNunnirate,aava,40,1)" id="aava">
+                <option value="1">0.25 liters</option>
+                <option value="2">0.5 liters</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="AavalaNunnirate">40/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(AavalaNunni)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <!-- completed-->
+        
+        <div class="container" id="copperbowl">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMUggMGfvjSelATqFu80W2AIjItyPyEszBQA&usqp=CAU" class="pimg">
+            <div class="pname">Copper Bowls</div>
+            <div class="description"></div>
+            <select class="quantity" onchange="cost(copperbowlrate,co,100,1)" id="co">
+                <option value="1">1 Fixed Size</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="copperbowlrate">100/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(copperbowl)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <!-- completed-->
+        
+        <div class="container" id="bronaebowl">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMUggMGfvjSelATqFu80W2AIjItyPyEszBQA&usqp=CAU" class="pimg">
+            <div class="pname">Bronze Bowls</div>
+            <div class="description"></div>
+            <select class="quantity" onchange="cost(bronaebowlrate,br,100,1)" id="br">
+                <option value="1">1 Small</option>
+                <option value="1.8">1 Medium</option>
+                <option value="2.7">1 Big</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="bronaebowlrate">60/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(bronaebowl)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <!-- completed-->
+        
+        <div class="container" id="badham">
+            <img src="https://img.maharanimart.com/uploads/products/2545/1602250614_64ff387419e0c3285f16.jpg" class="pimg">
+            <div class="pname">Badham</div>
+            <div class="description">Dry fruits</div>
+            <select class="quantity" onchange="cost(badhamrate,bad,250,1)" id="bad">
+                <option value="1">250 grams</option>
+                <option value="2">500 grams</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="badhamrate">250/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(badham)">   
+            </button>
+        </div>
+        <!-- completed -->
+        
+        <!-- completed-->
+        
+        <div class="container" id="jeedipappu">
+            <img src="http://justhap.com/image/cache/catalog/SATISH/S%20BRANCH/dry-cashew-nut-500x500-500x500.jpg" class="pimg">
+            <div class="pname">Cashew (Jeedi Pappu)</div>
+            <div class="description">Dry fruits</div>
+            <select class="quantity" onchange="cost(jeedipappurate,jeedi,175,1)" id="jeedi">
+                <option value="1">250 grams</option>
+                <option value="2">500 grams</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="jeedipappurate">175/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(jeedipappu)">   
+            </button>
+        </div>
+        <!-- completed -->
+        
+        <!-- completed-->
+        
+        <div class="container" id="kissmiss">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3j3tuRkpMy8cQ7JpUieY6lkUzolSO6v_yYQ&usqp=CAU" class="pimg">
+            <div class="pname">Raisin (Kisshmiss)</div>
+            <div class="description">Dry fruits</div>
+            <select class="quantity" onchange="cost(kissmissrate,kis,100,1)" id="kis">
+                <option value="1">250 grams</option>
+                <option value="2">500 grams</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="kissmissrate">100/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(kissmiss)">   
+            </button>
+        </div>
+        <!-- completed -->
+        
+        <!-- completed-->
+        
+        <div class="container" id="Khajuram">
+            <img src="https://www.dateland.com/product_images/uploaded_images/cta-all-dates.jpg" class="pimg">
+            <div class="pname">Date (Khajuram)</div>
+            <div class="description">Dry fruits</div>
+            <select class="quantity" onchange="cost(Khajuramrate,kha,40,1)" id="kha">
+                <option value="1">100 grams</option>
+                <option value="2.5">250 grams</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="Khajuramrate">40/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(Khajuram)">   
+            </button>
+        </div>
+        <!-- completed -->
+        
+        <!-- completed-->
+        
+        <div class="container" id="Yendidraksha">
+            <img src="https://cdn2.momjunction.com/wp-content/uploads/2014/09/Health-Benefits-Of-Raisins-For-Your-Baby1-910x1024.jpg" class="pimg">
+            <div class="pname">Dry Grapes(Yendidraksha)</div>
+            <div class="description">Dry fruits</div>
+            <select class="quantity" onchange="cost(Yendidraksharate,kha,120,1)" id="kha">
+                <option value="1">250 grams</option>
+                <option value="2">500 grams</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="Yendidraksharate">120/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(Yendidraksha)">   
+            </button>
+        </div>
+        <!-- completed -->
+        
+        <!-- completed-->
+        
+        <div class="container" id="marati">
+            <img src="https://5.imimg.com/data5/QQ/GX/GL/SELLER-26605812/marathi-moggu-500x500.jpg" class="pimg">
+            <div class="pname">Moggu (Marati mogga)</div>
+            <div class="description">Indian Speices.</div>
+            <select class="quantity" onchange="cost(maratirate,mar,15,1)" id="maar">
+                <option value="1">10 grams</option>
+                <option value="5">50 grams</option>
+                <option value="10">10 grams</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="maratirate">15/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(marati)">   
+            </button>
+        </div>
+        <!-- completed -->
+        
+        <!-- completed-->
+        
+        <div class="container" id="freedom">
+            <img src="https://khadyaa.com/wp-content/uploads/2016/06/freedom_refined_sunflower_oil-286x400.jpg" class="pimg">
+            <div class="pname">Freedom</div>
+            <div class="description">light weight more food</div>
+            <select class="quantity" onchange="cost(freedomrate,free,140,1)" id="free">
+                <option value="1">1 liter</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="freedomrate">140/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(freedom)">   
+            </button>
+        </div>
+        <!-- completed -->
+        
+        <!-- completed-->
+        
+        <div class="container" id="Ruchigold">
+            <img src="https://ud-img-v2.azureedge.net/t_im_w480/u/products/cidyrb36t7zivk2ay3og.jpg/RUCHI-GOLD-REFINED-PALMOLEIN-OIL-1-LTR-10-PCS-" class="pimg">
+            <div class="pname">Ruchigold</div>
+            <div class="description"></div>
+            <select class="quantity" onchange="cost(Ruchigoldrate,ruchi,115,1)" id="ruchi">
+                <option value="1">1 liter</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="Ruchigoldrate">115/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(Ruchigold)">   
+            </button>
+        </div>
+        <!-- completed -->
+        
+        <!-- completed-->
+        
+        <div class="container" id="Ricebrand">
+            <img src="https://priyafoods.com/wp-content/uploads/2018/06/Rice-rich-1ltr.jpg" class="pimg">
+            <div class="pname">Ruchigold</div>
+            <div class="description"></div>
+            <select class="quantity" onchange="cost(Ricebrandrate,ric,139,1)" id="ric">
+                <option value="1">1 liter</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="Ricebrandrate">139/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(Ricebrand)">   
+            </button>
+        </div>
+        <!-- completed -->
+        
+        <div class="container" id="minnuvullu">
+            <img src="https://opt.toiimg.com/recuperator/img/toi/m-63926063/63926063.jpg&width=500&resizemode=4" class="pimg">
+            <div class="pname">Black gram(Minuvullu)</div>
+            <div class="description">For eating</div>
+            <select class="quantity" onchange="cost(minnuvullurate,minu,25,250)" id="minu">
+                <option value="250">250 grams</option>
+                <option value="480">500 grams</option>
+                <option value="960">1 kg</option>
+                <option value="1920">2 kg</option>
+                <option value="4900">5 kg</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="minnuvullurate">25/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(minnuvullu)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <!-- completed-->
+        
+        <div class="container" id="goduvullu">
+            <img src="https://m.2lua.vn/upload/userfiles/2017-06/8b1db226-593b6abae4951947418b4568.jpg" class="pimg">
+            <div class="pname"> Wheat(Godhuvullu)</div>
+            <div class="description">For eating</div>
+            <select class="quantity" onchange="cost(goduvullurate,godu,12,250)" id="godu">
+                <option value="250">250 grams</option>
+                <option value="490">500 grams</option>
+                <option value="980">1 kg</option>
+                <option value="1950">2 kg</option>
+                <option value="4950">5 kg</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="goduvullurate">12/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(goduvullu)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <!-- completed-->
+        
+        <div class="container" id="groundnuts">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIBCFzWxvMTgUVz4TIIQnuVo_JmZqIWRDeTw&usqp=CAU" class="pimg">
+            <div class="pname">Ground nuts</div>
+            <div class="description">For eating</div>
+            <select class="quantity" onchange="cost(groundnutsrate,gr,35,250)" id="gr">
+                <option value="250">250 grams</option>
+                <option value="490">500 grams</option>
+                <option value="980">1 kg</option>
+                <option value="1950">2 kg</option>
+                <option value="4950">5 kg</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="groundnutsrate">35/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(groundnuts)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <!-- completed-->
+        
+        <div class="container" id="pessalu">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs1uQAbDYzM5JmduA_-k_bBH7_pYXMiNTbig&usqp=CAU" class="pimg">
+            <div class="pname">(Pessalu)</div>
+            <div class="description">For eating</div>
+            <select class="quantity" onchange="cost(pessalurate,pe,25,250)" id="pe">
+                <option value="250">250 grams</option>
+                <option value="490">500 grams</option>
+                <option value="980">1 kg</option>
+                <option value="1950">2 kg</option>
+                <option value="4950">5 kg</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="pessalurate">25/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(pessalu)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <!-- completed-->
+        
+        <div class="container" id="chinthapandu">
+            <img src="https://3.imimg.com/data3/UC/RR/MY-897108/dry-tamarind-250x250.jpg" class="pimg">
+            <div class="pname">Tarmanid (Chinthapandu)</div>
+            <div class="description">For eating</div>
+            <select class="quantity" onchange="cost(chinthapandurate,pe,60,250)" id="pe">
+                <option value="250">250 grams</option>
+                <option value="490">500 grams</option>
+                <option value="980">1 kg</option>
+                <option value="1950">2 kg</option>
+                <option value="4950">5 kg</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="chinthapandurate">60/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(chinthapandu)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <!-- completed-->
+        
+        <div class="container" id="tablesalt">
+            <img src="https://www.theladders.com/wp-content/uploads/salt-2-191031-800x450.jpg" class="pimg">
+            <div class="pname">Table Salt</div>
+            <div class="description">For eating</div>
+            <select class="quantity" onchange="cost(tablesaltrate,ta,20,1)" id="ta">
+                <option value="1">1 packet</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="tablesaltrate">20/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(tablesalt)">   
+            </button>
+        </div>
+        
+        <!-- completed-->
+        
+        <!-- completed-->
+        
+        <div class="container" id="lavangallu">
+            <img src="https://images.immediate.co.uk/production/volatile/sites/30/2020/02/Cloves-41ffdd3.jpg?quality=90&resize=960,872" class="pimg">
+            <div class="pname">Cloves..(Lavangallu)</div>
+            <div class="description">Indian Speices.</div>
+            <select class="quantity" onchange="cost(lavangallurate,lav,14,1)" id="lav">
+                <option value="1">10 grams</option>
+                <option value="5">50 grams</option>
+                <option value="10">100 grams</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="lavangallurate">14/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(lavangallu)">   
+            </button>
+        </div>
+        <!-- completed -->
+        
+        <!-- completed-->
+        
+        <div class="container" id="miriyallu">
+            <img src="http://www.flyingkart.com/product_images/2451_2984%20Black_Pepper_Miriyalu.jpg" class="pimg">
+            <div class="pname">Black Pepper(Miriyallu)</div>
+            <div class="description">Indian Speices.</div>
+            <select class="quantity" onchange="cost(miriyallurate,yali,80,1)" id="yali">
+                <option value="1">100 grams</option>
+            </select>
+            <div class="rate">
+            <label>Rate :</label>
+            <label id="miriyallurate">80/-</label>
+            </div>
+            <button class="addcart" onclick="addcart(miriyallu)">   
+            </button>
+        </div>
+        <!-- completed -->
+    </section>
+    </body>
+</html>                                                              

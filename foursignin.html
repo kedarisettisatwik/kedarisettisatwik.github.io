@@ -1,0 +1,259 @@
+<html lang="en">
+<head>
+    <title>stores</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            position:relative;
+            width:100vw;
+            min-height:100vh;
+            font-size:3vw;
+            box-sizing: border-box;
+        }
+        #intro{
+            position:fixed;
+            overflow: hidden;
+            top:0;
+            left: 0;
+            width:100vw;
+            height:25vh;
+            background-color:rgb(0, 51, 102);
+            z-index:10;
+        }
+        #intro .log{
+            position:relative;
+            width:15vh;
+            height:auto;
+            top:10%;
+            left:70%;
+        }
+        #intro .user{
+            width:35vw;
+            font-size:3.5vw;
+            color:azure;
+            position:absolute;
+            font-family: monospace;
+            font-weight:900;
+            left:20%;
+            top:30%;
+            letter-spacing:0.3vh;
+        }
+        .menu{
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top:4.5vh;
+            left:8vw;
+            transition-duration:1s;
+            -webkit-animation-name:menubar;
+            -webkit-animation-duration:5s;
+            -webkit-animation-iteration-count:infinite;
+        }
+        @keyframes menubar{
+            0%{transform:scale(0.25)}
+            20%{transform:scale(1)}
+            100%{transform:scale(1)}
+        }
+        .menu:active{
+            transform: rotateZ(90deg);
+        }
+        .menu div{
+            background-color:azure;
+            width:5vh;
+            height:1vh;
+            border-radius:30px;
+            position:relative;
+            margin-bottom:0.5vh;
+        }
+        #sidebar{
+            overflow: hidden;
+            width:auto;
+            height:auto;
+            background-color:white;
+            position:fixed;
+            z-index:100;
+            padding:1vh;
+            border:0.1vh solid black;
+            top:-100vh;
+            transition-duration:1s;
+            padding:3vh;
+        }
+        #sidebar label{
+            color: aliceblue;
+            background-color:rgb(0, 51, 102); 
+            position:relative;
+            cursor: pointer;
+            width:10vh;
+            font-size: 2.5vh;
+            font-weight:500;
+            top:1vh;
+            left:15vh;
+            display:flex;
+            justify-content: center;
+            text-align: center;
+            border:0.2vh solid black;
+            margin-bottom:2vh;
+        }
+        #sidebar a{
+            text-decoration: none;
+            position: relative;
+            font-size:2.5vh;
+            display: flex;
+            align-items:center;
+            height:8vh;
+            padding:1vh;
+            letter-spacing:0.1vh;
+            color:rgb(0, 51, 102);
+            font-weight:530;
+            cursor:pointer;
+            width:100%;
+            margin-top:0.3vh;
+            background-color: white;
+        }
+        #signingin{
+            overflow: hidden;
+            width:100vw;
+            height:75vh;
+            top:25vh;
+            position: absolute;
+            display:flex;
+            justify-content: center;
+            align-items:center;
+            background-image:url("https://www.sagatraining.ca/wp-content/uploads/2018/10/background-images-for-login-form-8.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        #signingin .page{
+            width:80%;
+            height:90%;
+            position: absolute;
+            background-color: aliceblue;
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items:center;
+        }
+        #signingin .page label{
+            font-size:3vh;
+            color:black;
+            font-weight:700;
+            margin-top:3vh;
+            position:relative;
+        }
+        #signingin .page form{
+            display:flex;
+            justify-content: center;
+        }
+        #signingin .page input{
+            font-size:3vh;
+            width:100%;
+            position:relative;
+            margin-bottom:8vh;
+            text-align: center;
+            padding:1vh;
+        }
+        #signingin .page button{
+            width:auto;
+            height:5vh;
+            padding:1vh;
+            margin-bottom:1vh;
+            background-image:url("https://www.sagatraining.ca/wp-content/uploads/2018/10/background-images-for-login-form-8.jpg");
+            color: aquamarine;
+            font-family: monospace;
+            font-size:2.5vh;
+            font-weight:700;
+            cursor: pointer;
+        }
+        </style>
+    </head>
+<body>
+    <script>
+        function menuplay(){
+            var d = document.getElementById("sidebar");
+            d.style.top = 0 + "vh";
+        }
+        function close_menu(){
+            var d = document.getElementById("sidebar");
+            d.style.top = -100 + "vh";
+        }
+        function search1(){
+            var p1 =document.search11.search22.value;
+            alert(p1);
+        }
+        function verify(){
+            var p1 = document.verifyphone.verifyphone1.value;
+            var p2 = document.verifypass.verifypass1.value;
+            if (p1 == localStorage.getItem("kedarphone")){
+                if (p2 == localStorage.getItem("kedarpass")){
+                    alert("you are succesfully signed in");
+             localStorage.setItem("kedarcheck","yes");
+                    location.reload();
+                }
+                else{
+                    alert("wrong password");
+                }
+            }
+            else{
+                alert("wrong phone number");
+            }
+        }
+        function forgot(){
+            var p1 = document.verifyphone.verifyphone1.value;
+            if (p1 == localStorage.getItem("kedarphone")){
+             alert(localStorage.getItem("kedarpass")+" is your password");
+            }
+            else{
+                alert("enter phone number and click me");
+            }
+        }
+        setInterval(function (){
+            var t = document.getElementById("user_name");
+            if (localStorage.getItem("kedarcheck") == "yes"){
+                t.innerHTML = "Hello " + localStorage.getItem("kedaruser");
+            }
+            else{
+               t.innerHTML = "Hello User..";
+            }
+        },10);
+        console.log(localStorage);
+    </script>
+    <section id="intro">
+        <img src="logo.jpeg" class="log">
+        <div class="user" id="user_name">HELLO USER..</div>
+        <div class="menu" onclick="menuplay()">
+        <div></div>
+        <div></div>
+        <div></div>
+        </div>
+    </section>
+    <section id="sidebar">
+    <label onclick="close_menu()">BACK</label>
+    <a href="sevencart.html">CART</a>
+    <a href="https://g.page/r/CUCngrxZSC08EAE/review">REVIEW'S</a>
+    <a href="twoaccount.html">YOUR ACCOUNT</a>
+    <a href="sixcus.html">CUSTOMER SERVICE</a>
+    <a href="fivemore.html">MORE ABOUT US</a>   
+    </section>
+    <section id="signingin">
+        <div class="page">
+        <label>Enter Phone-Number :</label>
+            <form name="verifyphone">
+             <input type="text" placeholder="Phone Number" name="verifyphone1">
+            </form>
+            
+        <label>Enter Password :</label>
+            <form name="verifypass">
+             <input type="password" placeholder="Password" name="verifypass1">
+            </form>
+            <button onclick="verify()">Sign In</button>
+            <button onclick="forgot()">Forgot password</button>
+        </div>
+    </section>
+    </body>
+</html>                                                              

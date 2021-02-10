@@ -1,0 +1,187 @@
+<html lang="en">
+<head>
+    <title>stores</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            position:relative;
+            width:100vw;
+            min-height:100vh;
+            font-size:3vw;
+            box-sizing: border-box;
+        }
+        #intro{
+            position:fixed;
+            overflow: hidden;
+            top:0;
+            left: 0;
+            width:100vw;
+            height:25vh;
+            background-color:rgb(0, 51, 102);
+            z-index:10;
+        }
+        #intro .log{
+            position:relative;
+            width:15vh;
+            height:auto;
+            top:10%;
+            left:70%;
+        }
+        #intro .user{
+            width:35vw;
+            font-size:3.5vw;
+            color:azure;
+            position:absolute;
+            font-family: monospace;
+            font-weight:900;
+            left:20%;
+            top:30%;
+            letter-spacing:0.3vh;
+        }
+        .menu{
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top:4.5vh;
+            left:8vw;
+            transition-duration:1s;
+            -webkit-animation-name:menubar;
+            -webkit-animation-duration:5s;
+            -webkit-animation-iteration-count:infinite;
+        }
+        @keyframes menubar{
+            0%{transform:scale(0.25)}
+            20%{transform:scale(1)}
+            100%{transform:scale(1)}
+        }
+        .menu:active{
+            transform: rotateZ(90deg);
+        }
+        .menu div{
+            background-color:azure;
+            width:5vh;
+            height:1vh;
+            border-radius:30px;
+            position:relative;
+            margin-bottom:0.5vh;
+        }
+        #sidebar{
+            overflow: hidden;
+            width:auto;
+            height:auto;
+            background-color:white;
+            position:fixed;
+            z-index:100;
+            padding:1vh;
+            border:0.1vh solid black;
+            top:-100vh;
+            transition-duration:1s;
+            padding:3vh;
+        }
+        #sidebar label{
+            color: aliceblue;
+            background-color:rgb(0, 51, 102); 
+            position:relative;
+            cursor: pointer;
+            width:10vh;
+            font-size: 2.5vh;
+            font-weight:500;
+            top:1vh;
+            left:15vh;
+            display:flex;
+            justify-content: center;
+            text-align: center;
+            border:0.2vh solid black;
+            margin-bottom:2vh;
+        }
+        #sidebar a{
+            text-decoration: none;
+            position: relative;
+            font-size:2.5vh;
+            display: flex;
+            align-items:center;
+            height:8vh;
+            padding:1vh;
+            letter-spacing:0.1vh;
+            color:rgb(0, 51, 102);
+            font-weight:530;
+            cursor:pointer;
+            width:100%;
+            margin-top:0.3vh;
+            background-color: white;
+        }
+        #moreinfo{
+            display:flex;
+            width:100vw;
+            min-height:75vh;
+            overflow:hidden;
+            background-color: aliceblue;
+            position: absolute;
+            top:25vh;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        </style>
+    </head>
+<body>
+    <script>
+        function menuplay(){
+            var d = document.getElementById("sidebar");
+            d.style.top = 0 + "vh";
+        }
+        function close_menu(){
+            var d = document.getElementById("sidebar");
+            d.style.top = -100 + "vh";
+        }
+        function search1(){
+            var p1 =document.search11.search22.value;
+            alert(p1);
+        }
+        setInterval(function (){
+            var t = document.getElementById("user_name");
+            if (localStorage.getItem("kedarcheck") == "yes"){
+                t.innerHTML = "Hello " + localStorage.getItem("kedaruser");
+            }
+            else{
+               t.innerHTML = "Hello User..";
+            }
+        },10);
+        console.log(localStorage);
+    </script>
+    <section id="intro">
+        <img src="logo.jpeg" class="log">
+        <div class="user" id="user_name">HELLO USER..</div>
+        <div class="menu" onclick="menuplay()">
+        <div></div>
+        <div></div>
+        <div></div>
+        </div>
+    </section>
+    <section id="sidebar">
+    <label onclick="close_menu()">BACK</label>
+    <a href="sevencart.html">CART</a>
+    <a href="https://g.page/r/CUCngrxZSC08EAE/review">REVIEW'S</a>
+    <a href="twoaccount.html">YOUR ACCOUNT</a>
+    <a href="sixcus.html">CUSTOMER SERVICE</a>
+    <a href="fivemore.html">MORE ABOUT US</a>   
+    </section>
+    <section id="moreinfo">
+    <img style="position: relative;width:20%;height:auto;margin:4vh;"src="logo.png">
+    <p style="position: relative;font-size:3vh;padding:2vh">This is made only for advertinsing shop and no order's can be taken from this website. <br> <br>This shop is established in 1940's before independence and located in main market kakinada & shop name is <strong> KEDARSETTI SUBHA RAO & C.O.</strong><br><br>Here you can all type of groceries and devotional items and aryurvedic items also.<br><br>Here you can shop items based on categeory also.Here you will get all the things which are needed for festivels or events.<br><br>This website is made by <strong> Kedarisetti Satwik. </strong>At the age of 18 and by using html css and js.</p>
+    <br>
+    <a style="position: relative;font-size:3vh;" href="https://www.youtube.com/channel/UCpLOopnR9TX9b1fjcDpapsw" target="_blank"> Link to my youtube channel</a>
+    <br>
+    <a style="position: relative;font-size:3vh;" href="https://kedarisettisatwik.github.io/index.html" target="_blank"> Link to my Project Store</a>
+    <video src="smoky.mp4" autoplay muted style="position: relative;width:50%;height:30vh;top:4vh;left:0;"></video>
+    <br>
+    <img style="position: relative;width:40%;height:auto;margin:4vh;"src="me.jpeg">
+    </section>
+    </body>
+</html>                                                              

@@ -1,0 +1,230 @@
+<html lang="en">
+<head>
+    <title>stores</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            position:relative;
+            width:100vw;
+            min-height:100vh;
+            font-size:3vw;
+            box-sizing: border-box;
+        }
+        #intro{
+            position:fixed;
+            overflow: hidden;
+            top:0;
+            left: 0;
+            width:100vw;
+            height:20vh;
+            background-color:rgb(0, 51, 102);
+            z-index:10;
+        }
+        #intro .log{
+            position:relative;
+            width:15vh;
+            height:auto;
+            top:10%;
+            left:70%;
+        }
+        #intro .user{
+            width:35vw;
+            font-size:3.5vw;
+            color:azure;
+            position:absolute;
+            font-family: monospace;
+            font-weight:900;
+            left:20%;
+            top:30%;
+            letter-spacing:0.3vh;
+        }
+        .menu{
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top:4.5vh;
+            left:8vw;
+            transition-duration:1s;
+            -webkit-animation-name:menubar;
+            -webkit-animation-duration:5s;
+            -webkit-animation-iteration-count:infinite;
+        }
+        @keyframes menubar{
+            0%{transform:scale(0.25)}
+            20%{transform:scale(1)}
+            100%{transform:scale(1)}
+        }
+        .menu:active{
+            transform: rotateZ(90deg);
+        }
+        .menu div{
+            background-color:azure;
+            width:5vh;
+            height:1vh;
+            border-radius:30px;
+            position:relative;
+            margin-bottom:0.5vh;
+        }
+        #sidebar{
+            overflow: hidden;
+            width:auto;
+            height:auto;
+            background-color:white;
+            position:fixed;
+            z-index:100;
+            padding:1vh;
+            border:0.1vh solid black;
+            top:-100vh;
+            transition-duration:1s;
+            padding:3vh;
+        }
+        #sidebar label{
+            color: aliceblue;
+            background-color:rgb(0, 51, 102); 
+            position:relative;
+            cursor: pointer;
+            width:10vh;
+            font-size: 2.5vh;
+            font-weight:500;
+            top:1vh;
+            left:15vh;
+            display:flex;
+            justify-content: center;
+            text-align: center;
+            border:0.2vh solid black;
+            margin-bottom:2vh;
+        }
+        #sidebar a{
+            text-decoration: none;
+            position: relative;
+            font-size:2.5vh;
+            display: flex;
+            align-items:center;
+            height:8vh;
+            padding:1vh;
+            letter-spacing:0.1vh;
+            color:rgb(0, 51, 102);
+            font-weight:530;
+            cursor:pointer;
+            width:100%;
+            margin-top:0.3vh;
+            background-color: white;
+        }
+        #account{
+            overflow: hidden;
+            display:flex;
+            width:100vw;
+            height:85vh;
+            top:15vh;
+            position: absolute;
+            justify-content: center;
+            align-items: center;
+            background-image:url(https://lh3.googleusercontent.com/proxy/cehmdPpkamkN7N74hOk7RBh6cL2F1J1AAMX-8JR8uoMZUa8srpsi1uibGh-9chDL045wHvIuPcr3qo9JpevoSwT-k3ud-mpxpxhzlfWdt8luMpKr7rySD4NGD_i6_LQbaUX4GVgOl9EAKn76T3Xh3gyeRIg0sEeFsgTBXg=s0-d);
+            background-size: cover;
+            transition-duration:2s;
+        }
+        .registration{
+            position:absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width:50%;
+            height:50%;
+            background-image: linear-gradient(rgb(0,0,0,0.6),rgb(0,0,0,0.6))
+        }
+        .signin{
+            position:absolute;
+            width:80%;
+            height:80%;
+        }
+        .signin a{
+            color:black;
+            text-decoration: none;
+            width:100%;
+            height:33%;
+            text-align: center;
+            display:flex;
+            justify-content: center;
+            align-items:center;
+            font-size:3vh;
+            font-weight:500;
+            cursor: pointer;
+            background-color: white;
+        }
+        #search{
+            position:fixed;
+            overflow: hidden;
+            top:15vh;
+            width:100vw;
+            height:10vh;
+            background-color:rgb(0, 51, 102);
+        }
+        </style>
+    </head>
+<body>
+    <script>
+        function menuplay(){
+            var d = document.getElementById("sidebar");
+            d.style.top = 0 + "vh";
+        }
+        function close_menu(){
+            var d = document.getElementById("sidebar");
+            d.style.top = -100 + "vh";
+        }
+        function search1(){
+            var d = document.search11.search22.value;
+            alert(d);
+        }
+        function out(){
+            var p = confirm("Are you sure want to log out ? ");
+            if (p){
+             localStorage.setItem("kedarcheck","no");
+            }
+        }
+        setInterval(function (){
+            var t = document.getElementById("user_name");
+            if (localStorage.getItem("kedarcheck") == "yes"){
+                t.innerHTML = "Hello " + localStorage.getItem("kedaruser");
+            }
+            else{
+               t.innerHTML = "Hello User..";
+            }
+        },10);
+        console.log(localStorage);
+    </script>
+    <section id="intro">
+        <img src="logo.jpeg" class="log">
+        <div class="user" id="user_name">HELLO USER..</div>
+        <div class="menu" onclick="menuplay()">
+        <div></div>
+        <div></div>
+        <div></div>
+        </div>
+        
+
+    </section>
+    <section id="sidebar">
+    <label onclick="close_menu()">BACK</label>
+    <a href="sevencart.html">CART</a>
+    <a href="https://g.page/r/CUCngrxZSC08EAE/review">REVIEW'S</a>
+    <a href="twoaccount.html">YOUR ACCOUNT</a>
+    <a href="sixcus.html">CUSTOMER SERVICE</a>
+    <a href="fivemore.html">MORE ABOUT US</a>   
+    </section>
+    <section id="account">
+    <div class="registration" id="reg">
+        <div class="signin">
+          <a onclick="out()">Log Out</a>
+          <a href="foursignin.html">Sign In</a> 
+          <a href = "threesignup.html">Sign Up</a>
+        </div>
+    </div>
+    </section>
+    </body>
+</html>                                                              
