@@ -1,0 +1,2084 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>hello</title>
+    <!-- goggle fonts-->
+          <link rel="preconnect" href="https://fonts.gstatic.com">
+          <link href="https://fonts.googleapis.com/css2?family=Merienda&display=swap" rel="stylesheet">
+    <!-- goggle fonts-->
+    
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400&display=swap" rel="stylesheet">
+    <!-- font -->
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+     <link href="https://fonts.googleapis.com/css2?family=Akaya+Telivigala&display=swap" rel="stylesheet">
+    <!-- font -->
+    
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap" rel="stylesheet">
+    <!-- font -->
+    
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        html{
+            scroll-behavior: smooth;
+        }
+        .tot{
+            display: flex;
+            flex-direction:column;
+            list-style: none;
+            position: relative;
+            z-index:0;
+        }
+        .section1{
+            font-family: 'Merienda',cursive;
+            position:fixed;
+            top:10px;
+            background-image: linear-gradient(rgb(0,0,0,0.7),rgb(0,0,0,0.7));
+            width:100%;
+            min-height:200px;
+            margin:auto;
+            padding-right:25px;
+            padding-left:25px;
+            z-index:100;
+        }
+        #men,#men1{
+           position: absolute; 
+            font-family: monospace;
+            padding:10px;
+            top:40%;
+            right:20%;
+            font-size:250%;
+            background-color:white;
+            letter-spacing:2px;
+            cursor:pointer;
+        }
+        #men{
+          display:block;
+        }
+        #men1{
+            display:none;
+        }
+        /*rgb(0, 51, 153)*/
+        .navbar{
+            display: flex;
+            align-items: center;
+            padding:20px;
+        }
+        .nav1{
+            position: absolute;
+            top:-700px;
+            flex:1;
+            text-align: left;
+            color:black;
+            padding:30px;
+            transition:1s;
+        }
+        .nav1 ul {
+            display: inline-block;
+        }
+        .nav1 ul li {
+            margin-top:50px;
+            margin-right:20px;
+            display:block;
+        }
+        .nav1 ul li a{
+            font-size:250%;
+            letter-spacing:2px;
+            color:white;
+            text-decoration: none;
+            cursor:pointer;
+            border-bottom:0.1em solid black;
+            background-color:black;
+            padding:10px;
+        }
+        .nav1 ul li a:hover{
+            background-color:wheat;
+            color:black;
+        }
+        #container{
+            display:flex;
+            align-items:center;
+            justify-content: center;
+            flex-direction: column;
+            list-style: none;
+            margin-top:210px;
+        }
+        #home{
+            text-align: center;
+            display:block;
+            width:100%;
+            background-image:linear-gradient(rgb(0,0,0,.4),rgb(0,0,0,.8)),url(https://previews.123rf.com/images/zamakk/zamakk1906/zamakk190600260/124187755-online-shopping-banner.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: aliceblue;
+            font-size:400%;
+            font-family:monospace;
+            letter-spacing:1px;
+            padding-bottom:50px;
+        }
+        #home video{
+            width:80%;
+            margin-top:10px;
+            margin-bottom:50px;
+        }
+        #acc{
+            background-image:url("https://www.sagatraining.ca/wp-content/uploads/2018/10/background-images-for-login-form-8.jpg");
+            width:100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family:monospace;
+            min-height:1200px;
+        }
+        
+        .btn-container{
+            position: relative;
+            width:100%;
+            display: flex;
+            top:30px;
+            justify-content: center;
+        }
+        .btn-container button {
+            padding:20px;
+            font-size:300%;
+            position:relative;
+            margin-right:30px;
+            border-radius:10px;
+            cursor: pointer;
+            outline: 0;
+            border: 0;
+        }
+        #btnone{
+            background-color:orange;
+        }
+        #btntwo{
+            background-color:aliceblue;
+        }
+        #btnthree{
+            background-color:aliceblue;
+        }
+        .formcontainer{
+            position:relative;
+            width:60%;
+            top:70px;
+            background-color: white;
+            height:800px;
+            margin:6% auto;
+            overflow:hidden;
+            padding:30px;
+        }
+        #registerform{
+            position: absolute;
+            margin:40px;
+            width:80%;
+            color: black;
+            left:0px;
+            transition:1s;
+        }
+        #registerform .regin{
+            padding:10px;
+            font-size:250%;
+            background:transparent;
+            border:0;
+            border-bottom:2px solid black;
+            margin-bottom:80px;
+            outline:0;
+        }
+        #btnreg{
+            padding:10px;
+            font-size:250%;
+            background-color:orange;
+            border:0;
+            border-radius:10px;
+            letter-spacing:1px;
+            cursor:pointer;
+            outline:0;
+        }
+        #loginform{
+            position: absolute;
+            width:80%;
+            margin:40px;
+            color: black;
+            left:800px;
+            transition:1s;
+        }
+        #loginform .ininpu{
+            padding:10px;
+            font-size:250%;
+            background:transparent;
+            border:0;
+            border-bottom:2px solid black;
+            margin-bottom:80px;
+            outline:0;
+        }
+        #logins{
+            padding:10px;
+            font-size:250%;
+            background-color:orange;
+            border:0;
+            border-radius:10px;
+            letter-spacing:1px;
+            cursor:pointer;
+            outline:0;
+        }
+        #logoutform{
+            position: absolute;
+            width:80%;
+            margin:40px;
+            color: black;
+            left:1600px;
+            transition:1s;
+        }
+        #logoutform p {
+            font-size:250%;
+            letter-spacing:1px;
+        }
+        #logoutform input{
+            padding:10px;
+            font-size:250%;
+            background-color:orange;
+            border:0;
+            border-radius:10px;
+            letter-spacing:1px;
+            cursor:pointer;
+            outline:0;
+        }
+        #forg{
+            font-size:200%;
+            padding:10px;
+            background-color:orange;
+            border:0;
+            border-radius:10px;
+            letter-spacing:1px;
+            cursor:pointer;
+            outline:0;
+        }
+        #forgotform{
+            position: absolute;
+            width:80%;
+            margin:40px;
+            color: black;
+            left:2400px;
+            transition:1s;
+        }
+        #forgotform .forin{
+            padding:10px;
+            font-size:250%;
+            background:transparent;
+            border:0;
+            border-bottom:2px solid black;
+            margin-bottom:80px;
+            outline:0;
+        }
+        #forgotform .forbtn{
+             padding:10px;
+            font-size:250%;
+            background-color:orange;
+            border:0;
+            border-radius:10px;
+            letter-spacing:1px;
+            cursor:pointer;
+        }
+        #car{
+            background-color:wheat;
+            width:100%;
+        }
+        #car .cartlist{
+            width:100%;
+            position: relative;
+            background-image: url(https://png.pngtree.com/thumb_back/fh260/background/20200701/pngtree-abstract-polygonal-geometric-background-image_340628.jpg);
+            min-height:500px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding-bottom:100px;
+        }
+        #car .cartlist h3{
+            font-size:600%;
+            font-family: 'RocknRoll One', sans-serif;
+            letter-spacing:10px;
+        }
+        #car .cartlist label{
+            padding:20px;
+            background-color:azure;
+            margin-top:100px;
+            font-size:200%;
+            font-family: 'RocknRoll One', sans-serif;
+            letter-spacing:5px;
+        }
+        #car .cartlist div{
+            display: none;
+            text-align: center;
+            width:100%;
+            margin-top:30px;
+            font-size:250%;
+            font-family: 'RocknRoll One', sans-serif;
+            letter-spacing:5px;
+            text-transform: uppercase;
+        }
+        #car .cartlist div span{
+            font-family: 'RocknRoll One', sans-serif;
+        letter-spacing:5px;
+        outline:none;
+        border:none;
+        font-weight:700;
+        padding:10px;
+        font-size:100%;
+        margin-top:10px;
+        background-color:azure;
+        padding:20px;
+        }
+        #car .remove button{
+            font-family: 'RocknRoll One', sans-serif;
+        letter-spacing:5px;
+        outline:none;
+        border:none;
+        color: aliceblue;
+        font-weight:700;
+        padding:10px;
+        font-size:80%;
+        margin-top:10px;
+        background-color:blue;
+        padding:20px;
+        margin-left:10px;
+        }
+        #abo{
+            background-image: url(https://globetrender.com/wp-content/uploads/2020/05/Caribbean-beach.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            width:100%;
+            min-height:1000px;
+        }
+        #abo .aboutme{
+        margin:50px auto;
+        background-image: linear-gradient(rgb(0,0,0,0.5),rgb(0,0,0,0.5));
+            width:75%;
+            height:900px;
+            font-size:250%;
+            color: aliceblue;
+            display:flex;
+            justify-content: center;
+            align-items:center;
+            letter-spacing:3px;
+            padding:50px;
+            flex-direction: column;
+        }
+        #con{
+            background-image: url("https://media.istockphoto.com/photos/watercolor-textured-background-picture-id887755698?k=6&m=887755698&s=612x612&w=0&h=_yEUF8gLpWjZv5IgwuWkecNVt4X4P7vpuFBKCWIuR44=");
+            background-size: cover;
+            background-position: center;
+            width:100%;
+            min-height:1700px;
+            background-repeat: no-repeat;
+        }
+        .review{
+            width:80%;
+            height:1500px;
+            background-color:white;
+            position: relative;
+            margin:10px auto;
+            top:100px; 
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items:center;
+            padding:30px;
+        }
+        .review h1{
+            font-size:300%;
+            letter-spacing:5px;
+            font-family: 'Akaya Telivigala', cursive;
+            margin-bottom:40px;
+        }
+        .review form{
+            display:flex;
+            flex-direction: column;
+        }
+        .review form .ek{
+            font-size:250%;
+            padding:10px;
+            margin:20px;
+            border-left: 0;
+            border-right:0;
+            border-top:0;
+            border-bottom:3px solid black;
+            outline:0;
+            background: transparent;
+        }
+        .review form textarea{
+            margin:30px;
+            min-height:200px;
+            border:3px solid black;
+            resize: vertical;
+            text-align: center;
+            padding:20px;
+            font-size:250%;
+            max-height:350px;
+            
+        }
+        .review form input[type="submit"]{
+            font-size:300%;
+            letter-spacing:5px;
+            font-family: 'Akaya Telivigala', cursive;
+            padding:20px;
+            width:100%;
+            margin:10px;
+            background-color:orange;
+            border:none;
+            outline: none;
+            border-radius:30px;
+            margin-bottom:10px;
+            font-weight:700;
+        }
+        .review form input[type="button"]{
+            font-size:300%;
+            letter-spacing:5px;
+            font-family: 'Akaya Telivigala', cursive;
+            padding:20px;
+            width:100%;
+            margin:10px;
+            background-color:blue;
+            border:none;
+            outline: none;
+            border-radius:30px;
+            margin-bottom:50px;
+            font-weight:700;
+            color:white;
+        }
+        .review .img-container{
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            margin:30px;
+            letter-spacing:3px;
+        }
+        .review .img-container1{
+            text-align:left;
+            letter-spacing:3px;
+            margin-left:27%;
+            margin-top:20px;
+        }
+        .review .img-container1 img{
+            text-align: center;
+            letter-spacing:3px;
+            transform:translateY(10px);
+            margin-right:10px;
+        }
+        .review .img-container img{
+            margin:20px 30px 0px 30px;
+            cursor:pointer;
+        }
+        
+        #pro{
+            width:100%;
+           padding-bottom:100px;
+            background-color:darkblue;
+        }
+        #pro section{
+        padding-top: 100px;
+        position: relative;
+        width:100%;
+        background-color:darkblue;
+         display: flex;
+        justify-content: center;
+        flex-direction: column;
+        }
+        .mainblock{
+            margin-top:30px;
+            width:100%;
+            height:1300px;
+            background-color: ghostwhite;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            border-radius:30px;
+            overflow:hidden;
+        }
+        .mainblock span{
+            position: absolute;
+            top:1150px;
+        }
+        .mainblock span img{
+            position:relative;
+        }
+        .mainblock h1{
+            font-size:300%;
+            position: absolute;
+            top:100px;
+            font-family: 'Merienda',cursive;
+            letter-spacing:5px;
+            font-weight:700;
+            padding-bottom:10px;
+            border-bottom:10px solid black;
+        }
+        .mainlist{
+        height:800px;
+        position: absolute;
+        top:300px;
+        display: flex;
+        flex-direction: row;
+        left:0px;
+        transition:0.3s;
+        }
+        .product{
+            position:relative;
+            width:500px;
+            height:700px;
+            background-color: snow;
+            box-shadow:0 0 20px black;
+            margin:10px 20px 5px 50px;
+            display:flex;
+            padding:20px;
+            text-align: center;
+            flex-direction: column;
+        }
+        .product h2{
+            font-family: 'RocknRoll One', sans-serif;
+            font-size:250%;
+            letter-spacing:5px;
+            margin-top:20px;
+            text-transform: uppercase;
+        }
+        .product div{
+            margin-top:30px;
+            width:400px;
+            height:300px;
+            margin-left:50px;
+            box-shadow:0 0 10px black;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .product label{
+         margin-top:30px;
+          font-family: 'RocknRoll One', sans-serif;
+          font-size:200%;
+          font-weight:lighter;
+        }
+        .product a{
+          margin-top:20px;
+          font-family: 'RocknRoll One', sans-serif;
+          font-size:250%;
+          font-weight:lighter;
+          color: red;
+        }
+        .select{
+        font-family: 'RocknRoll One', sans-serif;
+        letter-spacing:5px;
+        outline:none;
+        border:none;
+        color: aliceblue;
+        font-weight:700;
+        padding:10px;
+        font-size:190%;
+        margin-top:30px;
+         background-color:cadetblue;   
+        }
+        .remove1{
+          font-family: 'RocknRoll One', sans-serif;
+        letter-spacing:5px;
+        outline:none;
+        border:none;
+        color: aliceblue;
+        font-weight:700;
+        padding:10px;
+        font-size:190%;
+          margin-top:30px;
+         background-color:blue;    
+        }
+        #pasupu1 div{
+            background-image:url(https://images-na.ssl-images-amazon.com/images/I/61WQvQYX77L._SL1000_.jpg);
+        }
+        #sunflower1 div{
+            background-image: url(https://mma.prnewswire.com/media/1389133/Freedom_Refined_Sunflower_TVC.jpg?p=publish);
+        }
+        #varinukka1 div{
+            background-image: url(https://groceriesandveggies.in/wp-content/uploads/2018/01/Sri-lalitha-Rice-ravva-in-vizag.png);
+        }
+        #jeera1 div{
+            background-image: url(https://www.thehindubusinessline.com/economy/agri-business/t4ppqu/article26071721.ece/ALTERNATES/LANDSCAPE_1200/bl24cumin-seed);
+        }
+        #pesalu1 div{
+            background-image: url(https://images-na.ssl-images-amazon.com/images/I/41xwJDUVrKL.jpg);
+        }
+        #badham1 div{
+            background-image: url(https://5.imimg.com/data5/AJ/HL/MY-43149065/selection_287-500x500.png);
+        }
+         #copper-bowl1 div{
+            background-image: url(https://www.mangalandmangal.com/stores/2800/pure-copper-pooja-thondi-kudam-kalash.jpg);
+        }       
+        #soap1 div{
+            background-image: url(https://img3.exportersindia.com/product_images/bc-full/dir_138/4125539/bath-soaps-1489051331-2749546.jpeg);
+        } 
+        #karakayyi1 div{
+            background-image: url(http://www.flyingkart.com/product_images/2455_2988%20Chebulic_Myrobalan_Karakkaya.jpg);
+        }
+        #sec2{
+            background-color:beige;
+            margin:20px auto;
+            width:100%;
+        }
+        #prointro{
+            width: 100%; 
+        }
+        #prointro img{
+            display: block;
+            width:80%;
+            margin:30px auto;
+        }
+        .header{
+            position: relative;
+            font-size:320%;
+            font-family: 'RocknRoll One', sans-serif;
+            margin:0 auto;
+            color: white;
+            letter-spacing:5px;
+            padding:20px;
+            border-bottom:10px solid white;
+            display: block;
+        }
+        
+    </style>
+    </head>
+    <body>
+        <div class="section1">
+        <div class="navbar">
+            <div class="logo">
+            <img src="logo.png" width="60%" height="auto" class="log">
+            </div>
+        <nav class="nav1" id="menubar">
+          <ul>
+            <li><a href="#home" onclick="menuclose()">HOME</a></li>
+            <li><a href="#pro" onclick="menuclose()">PRODUCTS</a></li>
+            <li><a href="#acc" onclick="menuclose()">ACCOUNT</a></li>
+            <li><a href="#car" onclick="menuclose()">CART</a></li>
+            <li><a href="#con" onclick="menuclose()">CONTACT</a></li>
+            <li><a href="#abo" onclick="menuclose()">ABOUT US</a></li>
+          </ul>
+        </nav>
+            <div width="80px" id="men" onclick="menuopen()">MENU</div>
+            <div width="80px" id="men1" onclick="menuclose()">CLOSE</div>
+        </div>
+    </div>
+        
+<ul id="container">
+        <!--HOME-->
+<li id="home">
+         <video src="qq.mp4" autoplay muted>
+         </video><br>
+        <span id="day"></span>
+        <span id="user">USER...</span>
+</li>
+        <!--HOME-->
+    
+<li id="sec2">
+   <div id="prointro">
+      
+      <img src="qq.jpg">
+      <img src="364.jpg">
+      
+    </div> 
+</li>
+    
+<li id="pro">
+  <section class="section">
+    <!--product-->
+      <div class="header">OUR PRODUCTS..</div>
+    <div class="mainblock" id="fixedoption" ontouchstart="ts1(event,pooja)" ontouchmove="tm1(event,pooja)" ontouchend="te1()">
+     <h1>
+      POOJA ITEMS - 1 
+     </h1> 
+      <div class="mainlist" id="pooja">
+          <div class="product" id="pasupu1">
+             <h2>PASUPU</h2>
+             <div></div>
+              <label>Turmeric powder</label>
+              <p class="addcontainer" id="pasupu11"><button class="select" id="pasupu">ADD TO CART</button></p>
+              <p class="removecontainer" id="pasupu22"><button class="remove1" id="pasupu">REMOVE FROM CART</button></p>
+          </div>
+      </div>
+        <span>
+    <img src="reset.png" height="100px" width="100px" onclick="leftmove(pooja)">
+        </span>
+    </div>
+      
+    <!--product-->
+      
+      
+      <!--product-->
+    <div class="mainblock" id="optionsix" ontouchstart="ts1(event,pot)" ontouchmove="tm1(event,pot)" ontouchend="te1()">
+     <h1>
+      POOJA ITEMS - 2
+     </h1> 
+      <div class="mainlist" id="pot">
+         <div class="product" id="copper-bowl1">
+          <h2>COPPER BOWLS</h2>
+             <div></div>
+              <label></label>
+              <p class="addcontainer" id="copper-bowl11"><button class="select" id="copper-bowl">ADD TO CART</button></p>
+             <p class="removecontainer" id="copper-bowl22"><button class="remove1" id="copper-bowl">REMOVE FROM CART</button></p>
+         </div>
+      </div>
+      <span>
+    <img src="reset.png" height="100px" width="100px" onclick="leftmove(pot)">
+        </span>
+    </div>
+    <!--product-->
+      
+      <!--product-->
+    <div class="mainblock" id="optionone" ontouchstart="ts1(event,floorravaa)" ontouchmove="tm1(event,floorravaa)" ontouchend="te1()">
+     <h1>
+      FLOOR & RAVAA ITEMS..
+     </h1> 
+      <div class="mainlist" id="floorravaa">
+         <div class="product" id="varinukka1">
+          <h2>VAARI NUKKA</h2>
+             <div></div>
+              <label>Rice husk</label>
+              <p class="addcontainer" id="varinukka11"><button class="select" id="varinukka">ADD TO CART</button></p>
+             <p class="removecontainer" id="varinukka22"><button class="remove1" id="varinukka">REMOVE FROM CART</button></p>
+         </div>
+      </div>
+      <span>
+    <img src="reset.png" height="100px" width="100px" onclick="leftmove(floorravaa)">
+        </span>
+    </div>
+    <!--product-->
+    
+      <!--product-->
+    <div class="mainblock" id="optiontwo" ontouchstart="ts1(event,pulse)" ontouchmove="tm1(event,pulse)" ontouchend="te1()">
+     <h1>
+      PULSES & CEREALS..
+     </h1> 
+      <div class="mainlist" id="pulse">
+         <div class="product" id="pesalu1">
+          <h2>PESALU</h2>
+             <div></div>
+              <label>Green-gram</label>
+              <p class="addcontainer" id="pesalu11"><button class="select" id="pesalu">ADD TO CART</button></p>
+             <p class="removecontainer" id="pesalu22"><button class="remove1" id="pesalu">REMOVE FROM CART</button></p>
+         </div>
+      </div>
+      <span>
+    <img src="reset.png" height="100px" width="100px" onclick="leftmove(pulse)">
+        </span>
+    </div>
+    <!--product-->
+      
+      
+      
+    <!--product-->
+    <div class="mainblock" id="optionthree" ontouchstart="ts1(event,oils)" ontouchmove="tm1(event,oils)" ontouchend="te1()">
+     <h1>
+      COOKING OILS & etc..
+     </h1> 
+      <div class="mainlist" id="oils">
+         <div class="product" id="sunflower1">
+          <h2>SUN FLOWER OIL</h2>
+             <div></div>
+              <label>Very light & healthy..</label>
+              <p class="addcontainer" id="sunflower-oil11"><button class="select" id="sunflower-oil">ADD TO CART</button></p>
+             <p class="removecontainer" id="sunflower-oil22"><button class="remove1" id="sunflower-oil">REMOVE FROM CART</button></p>
+         </div>
+      </div>
+      <span>
+    <img src="reset.png" height="100px" width="100px" onclick="leftmove(oils)">
+        </span>
+    </div>
+    <!--product-->
+      
+      
+    <!--product-->
+    <div class="mainblock" id="optionfour" ontouchstart="ts1(event,spieces)" ontouchmove="tm1(event,spieces)" ontouchend="te1()">
+     <h1>
+      INDIAN SPIECES..
+     </h1> 
+      <div class="mainlist" id="spieces">
+         <div class="product" id="jeera1">
+          <h2>JEERA</h2>
+             <div></div>
+              <label>Cumin</label>
+              <p class="addcontainer" id="jeera11"><button class="select" id="jeera">ADD TO CART</button></p>
+             <p class="removecontainer" id="jeera22"><button class="remove1" id="jeera">REMOVE FROM CART</button></p>
+         </div>
+      </div>
+      <span>
+    <img src="reset.png" height="100px" width="100px" onclick="leftmove(spieces)">
+        </span>
+    </div>
+    <!--product-->
+      
+    <!--product-->
+    <div class="mainblock" id="optionfive" ontouchstart="ts1(event,fruits)" ontouchmove="tm1(event,fruits)" ontouchend="te1()">
+     <h1>
+      DRY-FRUITS..
+     </h1> 
+      <div class="mainlist" id="fruits">
+         <div class="product" id="badham1">
+          <h2>BADHAM</h2>
+             <div></div>
+              <label>Almond..good for health</label>
+              <p class="addcontainer" id="badham11"><button class="select" id="badham">ADD TO CART</button></p>
+             <p class="removecontainer" id="badham22"><button class="remove1" id="badham">REMOVE FROM CART</button></p>
+         </div>
+      </div>
+      <span>
+    <img src="reset.png" height="100px" width="100px" onclick="leftmove(fruits)">
+        </span>
+    </div>
+    <!--product-->
+    
+      
+    <!--product-->
+    <div class="mainblock" id="optionseven" ontouchstart="ts1(event,special)" ontouchmove="tm1(event,special)" ontouchend="te1()">
+     <h1>
+      SPECIALS...
+     </h1> 
+      <div class="mainlist" id="special">
+         <div class="product" id="karakayyi1">
+          <h2>KARAKAYYI</h2>
+             <div></div>
+              <label>Haritaki</label>
+              <p class="addcontainer" id="karakayyi11"><button class="select" id="karakayyi">ADD TO CART</button></p>
+             <p class="removecontainer" id="karakayyi22"><button class="remove1" id="karakayyi">REMOVE FROM CART</button></p>
+         </div>
+      </div>
+      <span>
+    <img src="reset.png" height="100px" width="100px" onclick="leftmove(special)">
+        </span>
+    </div>
+    <!--product-->
+      
+      
+      
+    <!--product-->
+    <div class="mainblock" id="optionsix" ontouchstart="ts1(event,casual)" ontouchmove="tm1(event,casual)" ontouchend="te1()">
+     <h1>
+      CASUALS..
+     </h1> 
+      <div class="mainlist" id="casual">
+         <div class="product" id="soap1">
+          <h2>SOAPS..</h2>
+             <div></div>
+              <label>we have so many brands of soaps.</label>
+              <p class="addcontainer" id="soap11"><button class="select" id="soap">ADD TO CART</button></p>
+             <p class="removecontainer" id="soap22"><button class="remove1" id="soap">REMOVE FROM CART</button></p>
+         </div>
+      </div>
+      <span>
+    <img src="reset.png" height="100px" width="100px" onclick="leftmove(casual)">
+        </span>
+    </div>
+    <!--product-->  
+      
+ </section>
+</li>
+            
+<li id="acc">
+    <div class="btn-container">
+        <button id="btnone" onclick="register()">REGISTER</button>
+        <button id="btntwo" onclick="login()">LOG IN</button>
+        <button id="btnthree" onclick="logout()">LOG OUT</button>
+     </div>
+    <div class="formcontainer">
+       <form id="registerform" name="registerform" method="get" autocomplete="off">
+         <input type="text" id="user-id" name="reguser" class="regin" placeholder="USER ID" required><br>
+         <input type="number" id="user-phone" name="regphone" class="regin" placeholder="PHONE NUMBER" required><br>
+         <input type="text" id="user-pass" name="regpass" class="regin" placeholder="PASSWORD" required><br>
+         <input type="password" id="user-repass" name="regrepass" class="regin" placeholder="CONFIRM PASSWORD" required><br>
+         <input type="submit" id="btnreg" value="SUBMIT">
+        </form>
+        
+        <form id="loginform" name="loginform" autocomplete="off">
+         <input type="text" id="name-signin" class="ininpu" placeholder="USER ID" required><br>
+         <input type="password" id = "pass-signin" class="ininpu" placeholder="PASSWORD" required><br>
+         <input type="submit" id="logins" value="SUBMIT"><br><br>
+         <input type="button" id="forg" value="FORGOT-PASSWORD" onclick="wantpass()">   
+        </form>
+        
+        <form id="logoutform" name="logoutform" autocomplete="off">
+         <br><br><br><br><br><br><br><br>
+         <p>DO YOU WANT TO LOG OUT ?</p><br>
+         <input type="submit" value="YES">  
+        </form>
+        
+        <form id="forgotform" name="forgotform" autocomplete="off">
+         <input type="text" id="ver-name" class="forin" placeholder="USER ID" required><br>
+         <input type="number" id="ver-phone" class="forin" placeholder="PHONE NUMBER" required><br>
+         <input type="submit" class="forbtn" value="GET PASSWORD">
+        </form>
+        
+     </div>
+</li>
+            
+<li id="car">
+    <div class="cartlist" id="cartdisk">
+         <h3>CART</h3>
+         <label id="notsign1">YOU SHOULD SIGN IN TO USE CART</label>
+        
+    </div>
+</li>
+            
+<li id="con">
+    <div class="review">
+        <h1>ANY THING TO SAY..</h1>
+        <form method="post" id="reviewform" autocomplete="off" action="https://script.google.com/macros/s/AKfycbzDAGwoj6wn6oGEBSk6bu3e2DXpJWYdtfd-GvlahgKcDZDU3TTE1Oe3NA/exec">
+        <input type="text" class="ek" placeholder="NAME" id="name" name="name" required>
+        <input type="email" class="ek" placeholder="e-mail-ID" id="email" name="email" required>
+        <textarea required placeholder="YOUR MESSAGE.." id="message" name="message"></textarea>
+        <input type="submit" value="SEND">
+         <input type="button" value="SEE REVIWES" onclick="seemy()">   
+        </form>
+        <div class="img-container">
+        <img src="001-facebook.png" width="10%" onclick="go(1)">
+        <img src="002-instagram.png" width="10%" onclick="go(2)">
+        <img src="003-youtube.png" width="10%" onclick="go(3)">
+        <img src="p.jpeg" width="10%" onclick="go(4)">
+        </div>
+        <div class="img-container1">
+            <img src="manager.png" width="10%">
+            <label style="font-size:250%;letter-spacing: 3px;">SURESH KUMAR</label>
+            <br><br><br>
+                <img src="telephone.png" width="10%">
+            <label style="font-size:250%;letter-spacing: 3px;">9290864905</label>
+            <br><br><br>
+            <img src="map.png" width="10%">
+            <label style="font-size:250%;letter-spacing: 3px;color:blue;cursor: pointer" onclick="map()">ADDRESS</label>
+            <br><br><br>
+        </div>
+    </div>
+</li> 
+
+<li id="abo">
+    <div class="aboutme">
+      <img src="me.jpeg" width="250px"><br> 
+      Hello I am kedarisetti Satwik.<br>
+     I made this website just for adversting our shop, online payments will occur in this website.<br>Here you can create password and login, logout and you can store items in cart..<br><br>published on : 21-02-2021
+    </div>
+</li>
+</ul>
+        
+        
+    <script>
+        var poojalist = document.getElementById("pooja");
+        var oilslist = document.getElementById("oils");
+        var floorlist = document.getElementById("floorravaa");
+        var spieceslist = document.getElementById("spieces");
+        var pulselist = document.getElementById("pulse"); 
+        var fruitslist = document.getElementById("fruits");
+        var ropelist = document.getElementById("pot");
+        var casuallist = document.getElementById("casual");
+        var speciallist = document.getElementById("special");
+        
+    var listofcartitems = ["sunflower-oil","varinukka","ghee","jeera","pesalu","badham","karachi-nooka","semyya","yeera-nooka","pesera-biyum-nooka","chenegapindi","biyampindi","cornflour","maidapindi","ragipindi","minnappindi","godhumpindi","idli-nooka","palm-oil","sunrich","sugar","salt","bellam","rock-salt","blacksalt","jeedi-pappu","kishmiss","dry-kishmiss","lion-dates","dry-dates","tamarind","inguva","Avaalu","Pasupu-koomullu","dhaniyaallu","garam-masala","dalchina-chakka","elachi","miriyaalu","kunkumma-puvvu","jajji-kayya","lavangallu","menthulu","nalla-jeerakara","soampu","bay-leaves","anasa-puvvu","marati-mooga","red-chilles","gasgasalu","garlic","pasupu","kunkam","ghee","sandal-powder","vibhudhi","sindhuram","camphor","aagarbhati",
+    "doopsticks","patika-bellam","vathullu","sambrani","guguulam","rose-water","varti-verllu","copper-coins","match-box","scent","soap","toothpaste","brushs","shampoos","cloth-washing-sopas","comfort","hair-color-dyes","dish-wash-scrubbers","dish-wash-soaps","lagguage-bags","indian-flag","broomsticks","nets","stools","scissors",
+    "kinfes","blades","batteries","coffe-tea","boost-horlicks", "smiley-balls","ballons","vakkalu","copper-bowl","brass-bowls","god-photos","yantralu","thavijulu","kundallu","dhakallu",
+    "kobari-thadulu","suunam","paarani","coconout-oil","nuvulla-nunni","aavala-nunni","vippa-nunni","veppa-nunni","towels","panchellu","chaapalu","chetalu","pidakallu","pramidallu","dhanyam","ganttlu","boobarlu","senegalu","godumulu",
+     "ulavalu","minvullu","annuvullu","kandulu","nuupappu",
+    "senegapappu","ground-nuts","minapagullu",
+"saggubiyyam","baarli","sajallu","karakayyi","indupukayyi","vasaa","menthol","vaampuvuu","kachurallu",
+"gobbiginjallu","black-jeedi","bavanchallu","dry amlaa","sunaamukki","kasturi","javadhi","punugu"]
+        
+        //for pooja //for pooja //for pooja //for pooja 
+        
+    function creationpooja(a,b,c,e){
+        var p1 = document.createElement("div");
+            p1.setAttribute("class","product");
+            poojalist.appendChild(p1);
+        var p2 = document.createElement("h2");
+         var p3 = document.createElement("div");   
+         var p4 = document.createElement("label"); 
+        var p6 = document.createElement("button");
+        p6.classList.add("select");
+        var p7 = document.createElement("p");
+        p7.classList.add("addcontainer");
+        var p8 = document.createElement("p");
+        p8.classList.add("removecontainer");
+        var p9 = document.createElement("button");
+        p9.classList.add("remove1");
+           p9.innerHTML = "REMOVE FROM CART";
+            p3.style.backgroundImage = a;
+            p2.innerHTML = b;
+            p4.innerHTML = c;
+            p6.innerHTML = "ADD TO CART";
+            p1.appendChild(p2);
+            p1.appendChild(p3);
+            p1.appendChild(p4);
+            p1.appendChild(p7);
+            p1.appendChild(p8);
+           
+            p6.setAttribute("id",e);
+            p9.setAttribute("id",e);
+            p7.setAttribute("id",e+"11");
+            p8.setAttribute("id",e+"22");
+            p7.appendChild(p6);
+            p8.appendChild(p9);
+        }
+        
+    function creationoil(a,b,c,e){
+        var p1 = document.createElement("div");
+            p1.setAttribute("class","product");
+            oilslist.appendChild(p1);
+        var p2 = document.createElement("h2");
+         var p3 = document.createElement("div");   
+         var p4 = document.createElement("label"); 
+        var p6 = document.createElement("button");
+        p6.classList.add("select");
+        var p7 = document.createElement("p");
+        p7.classList.add("addcontainer");
+        var p8 = document.createElement("p");
+        p8.classList.add("removecontainer");
+        var p9 = document.createElement("button");
+        p9.classList.add("remove1");
+           p9.innerHTML = "REMOVE FROM CART";
+            p3.style.backgroundImage = a;
+            p2.innerHTML = b;
+            p4.innerHTML = c;
+            p6.innerHTML = "ADD TO CART";
+            p1.appendChild(p2);
+            p1.appendChild(p3);
+            p1.appendChild(p4);
+            p1.appendChild(p7);
+            p1.appendChild(p8);
+           
+            p6.setAttribute("id",e);
+            p9.setAttribute("id",e);
+            p7.setAttribute("id",e+"11");
+            p8.setAttribute("id",e+"22");
+            p7.appendChild(p6);
+            p8.appendChild(p9);
+        }
+      
+    function creationflour(a,b,c,e){
+        var p1 = document.createElement("div");
+            p1.setAttribute("class","product");
+            floorlist.appendChild(p1);
+        var p2 = document.createElement("h2");
+         var p3 = document.createElement("div");   
+         var p4 = document.createElement("label"); 
+        var p6 = document.createElement("button");
+        p6.classList.add("select");
+        var p7 = document.createElement("p");
+        p7.classList.add("addcontainer");
+        var p8 = document.createElement("p");
+        p8.classList.add("removecontainer");
+        var p9 = document.createElement("button");
+        p9.classList.add("remove1");
+           p9.innerHTML = "REMOVE FROM CART";
+            p3.style.backgroundImage = a;
+            p2.innerHTML = b;
+            p4.innerHTML = c;
+            p6.innerHTML = "ADD TO CART";
+            p1.appendChild(p2);
+            p1.appendChild(p3);
+            p1.appendChild(p4);
+            p1.appendChild(p7);
+            p1.appendChild(p8);
+           
+            p6.setAttribute("id",e);
+            p9.setAttribute("id",e);
+            p7.setAttribute("id",e+"11");
+            p8.setAttribute("id",e+"22");
+            p7.appendChild(p6);
+            p8.appendChild(p9);
+        }
+    
+    function creationspiece(a,b,c,e){
+        var p1 = document.createElement("div");
+            p1.setAttribute("class","product");
+            spieceslist.appendChild(p1);
+        var p2 = document.createElement("h2");
+         var p3 = document.createElement("div");   
+         var p4 = document.createElement("label"); 
+        var p6 = document.createElement("button");
+        p6.classList.add("select");
+        var p7 = document.createElement("p");
+        p7.classList.add("addcontainer");
+        var p8 = document.createElement("p");
+        p8.classList.add("removecontainer");
+        var p9 = document.createElement("button");
+        p9.classList.add("remove1");
+           p9.innerHTML = "REMOVE FROM CART";
+            p3.style.backgroundImage = a;
+            p2.innerHTML = b;
+            p4.innerHTML = c;
+            p6.innerHTML = "ADD TO CART";
+            p1.appendChild(p2);
+            p1.appendChild(p3);
+            p1.appendChild(p4);
+            p1.appendChild(p7);
+            p1.appendChild(p8);
+           
+            p6.setAttribute("id",e);
+            p9.setAttribute("id",e);
+            p7.setAttribute("id",e+"11");
+            p8.setAttribute("id",e+"22");
+            p7.appendChild(p6);
+            p8.appendChild(p9);
+        }    
+        
+        function creationspecial(a,b,c,e){
+        var p1 = document.createElement("div");
+            p1.setAttribute("class","product");
+            speciallist.appendChild(p1);
+        var p2 = document.createElement("h2");
+         var p3 = document.createElement("div");   
+         var p4 = document.createElement("label"); 
+        var p6 = document.createElement("button");
+        p6.classList.add("select");
+        var p7 = document.createElement("p");
+        p7.classList.add("addcontainer");
+        var p8 = document.createElement("p");
+        p8.classList.add("removecontainer");
+        var p9 = document.createElement("button");
+        p9.classList.add("remove1");
+           p9.innerHTML = "REMOVE FROM CART";
+            p3.style.backgroundImage = a;
+            p2.innerHTML = b;
+            p4.innerHTML = c;
+            p6.innerHTML = "ADD TO CART";
+            p1.appendChild(p2);
+            p1.appendChild(p3);
+            p1.appendChild(p4);
+            p1.appendChild(p7);
+            p1.appendChild(p8);
+           
+            p6.setAttribute("id",e);
+            p9.setAttribute("id",e);
+            p7.setAttribute("id",e+"11");
+            p8.setAttribute("id",e+"22");
+            p7.appendChild(p6);
+            p8.appendChild(p9);
+        } 
+        
+        
+     function creationpulse(a,b,c,e){
+        var p1 = document.createElement("div");
+            p1.setAttribute("class","product");
+            pulselist.appendChild(p1);
+        var p2 = document.createElement("h2");
+         var p3 = document.createElement("div");   
+         var p4 = document.createElement("label"); 
+        var p6 = document.createElement("button");
+        p6.classList.add("select");
+        var p7 = document.createElement("p");
+        p7.classList.add("addcontainer");
+        var p8 = document.createElement("p");
+        p8.classList.add("removecontainer");
+        var p9 = document.createElement("button");
+        p9.classList.add("remove1");
+           p9.innerHTML = "REMOVE FROM CART";
+            p3.style.backgroundImage = a;
+            p2.innerHTML = b;
+            p4.innerHTML = c;
+            p6.innerHTML = "ADD TO CART";
+            p1.appendChild(p2);
+            p1.appendChild(p3);
+            p1.appendChild(p4);
+            p1.appendChild(p7);
+            p1.appendChild(p8);
+           
+            p6.setAttribute("id",e);
+            p9.setAttribute("id",e);
+            p7.setAttribute("id",e+"11");
+            p8.setAttribute("id",e+"22");
+            p7.appendChild(p6);
+            p8.appendChild(p9);
+        }     
+        
+     function creationfruits(a,b,c,e){
+        var p1 = document.createElement("div");
+            p1.setAttribute("class","product");
+            fruitslist.appendChild(p1);
+        var p2 = document.createElement("h2");
+         var p3 = document.createElement("div");   
+         var p4 = document.createElement("label"); 
+        var p6 = document.createElement("button");
+        p6.classList.add("select");
+        var p7 = document.createElement("p");
+        p7.classList.add("addcontainer");
+        var p8 = document.createElement("p");
+        p8.classList.add("removecontainer");
+        var p9 = document.createElement("button");
+        p9.classList.add("remove1");
+           p9.innerHTML = "REMOVE FROM CART";
+            p3.style.backgroundImage = a;
+            p2.innerHTML = b;
+            p4.innerHTML = c;
+            p6.innerHTML = "ADD TO CART";
+            p1.appendChild(p2);
+            p1.appendChild(p3);
+            p1.appendChild(p4);
+            p1.appendChild(p7);
+            p1.appendChild(p8);
+           
+            p6.setAttribute("id",e);
+            p9.setAttribute("id",e);
+            p7.setAttribute("id",e+"11");
+            p8.setAttribute("id",e+"22");
+            p7.appendChild(p6);
+            p8.appendChild(p9);
+        }   
+        
+     function creationropes(a,b,c,e){
+        var p1 = document.createElement("div");
+            p1.setAttribute("class","product");
+            ropelist.appendChild(p1);
+        var p2 = document.createElement("h2");
+         var p3 = document.createElement("div");   
+         var p4 = document.createElement("label"); 
+        var p6 = document.createElement("button");
+        p6.classList.add("select");
+        var p7 = document.createElement("p");
+        p7.classList.add("addcontainer");
+        var p8 = document.createElement("p");
+        p8.classList.add("removecontainer");
+        var p9 = document.createElement("button");
+        p9.classList.add("remove1");
+           p9.innerHTML = "REMOVE FROM CART";
+            p3.style.backgroundImage = a;
+            p2.innerHTML = b;
+            p4.innerHTML = c;
+            p6.innerHTML = "ADD TO CART";
+            p1.appendChild(p2);
+            p1.appendChild(p3);
+            p1.appendChild(p4);
+            p1.appendChild(p7);
+            p1.appendChild(p8);
+           
+            p6.setAttribute("id",e);
+            p9.setAttribute("id",e);
+            p7.setAttribute("id",e+"11");
+            p8.setAttribute("id",e+"22");
+            p7.appendChild(p6);
+            p8.appendChild(p9);
+        }   
+        
+      function creationcasual(a,b,e){
+        var p1 = document.createElement("div");
+            p1.setAttribute("class","product");
+            casuallist.appendChild(p1);
+        var p2 = document.createElement("h2");
+         var p3 = document.createElement("div");    
+        var p6 = document.createElement("button");
+        p6.classList.add("select");
+        var p7 = document.createElement("p");
+        p7.classList.add("addcontainer");
+        var p8 = document.createElement("p");
+        p8.classList.add("removecontainer");
+        var p9 = document.createElement("button");
+        p9.classList.add("remove1");
+           p9.innerHTML = "REMOVE FROM CART";
+            p3.style.backgroundImage = a;
+            p2.innerHTML = b;
+            p6.innerHTML = "ADD TO CART";
+            p1.appendChild(p2);
+            p1.appendChild(p3);
+            p1.appendChild(p7);
+            p1.appendChild(p8);
+           
+            p6.setAttribute("id",e);
+            p9.setAttribute("id",e);
+            p7.setAttribute("id",e+"11");
+            p8.setAttribute("id",e+"22");
+            p7.appendChild(p6);
+            p8.appendChild(p9);
+        }
+        
+        
+        // pooja // pooja
+        
+        
+    var forpoojabg = [
+"url(https://www.bigbasket.com/media/uploads/p/l/40120347_2-srirudra-kunkam.jpg)",
+"url(https://images-na.ssl-images-amazon.com/images/I/71Sw%2BCNSThL._SL1167_.jpg)",
+"url(https://5.imimg.com/data5/PM/VF/MY-30666090/sandal-powder-500x500.jpg)",
+"url(https://miro.medium.com/max/450/1*JyKESzI5oLunt0jnGt-WfA.jpeg)",
+"url(https://ambajidhoop.com/wp-content/uploads/2019/04/red-sindoor-500x500.jpg)",
+"url(https://www.assignmentpoint.com/wp-content/uploads/2017/08/Camphor.jpg)",
+"url(https://lh3.googleusercontent.com/proxy/f1VVYaFOdena-WAs1wYV0UIfClQbmqygW4ldhX14K78Yln6nQ3wI3WICFwh7TJ1lRzq_S6vJuiPbz6vW76mtlS-tqqWqcQSTtp1-h8Cw-9zs-hmIA-2HoPYUGEXTcV-iQw)",
+"url(https://5.imimg.com/data5/LY/UJ/MY-11733590/raw-dhoop-stick-500x500.jpg)",
+"url(https://cdn.telugustop.com/wp-content/uploads/2020/10/health-benefits-of-patika-bellam.jpg)",
+"url(https://images-na.ssl-images-amazon.com/images/I/71Y-EwXfIvL._SX355_.jpg)",
+"url(https://images-na.ssl-images-amazon.com/images/I/71Pu09g1njL._SL1280_.jpg)",
+"url(https://5.imimg.com/data5/VC/JX/MY-11942611/mora-dhoop-500x500.jpg)",
+"url(https://images-na.ssl-images-amazon.com/images/I/71eGvw1VPnL._SL1500_.jpg)",
+"url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiZpnjdNSlniOtzviwU8hy2zkCNF1Wix2KKw&usqp=CAU)",
+"url(https://previews.123rf.com/images/christopherhall/christopherhall1607/christopherhall160701180/60221704-old-wooden-chest-filled-with-old-copper-coins.jpg)",
+"url(http://cdn.shopify.com/s/files/1/0173/7644/4470/products/8906016579993_image1_6cf982a7-290f-4517-ae9a-37056e2c6e75_grande.jpg?v=1592527869)",
+"url(https://images-na.ssl-images-amazon.com/images/I/61t5Qbaii2L._SL1500_.jpg)",
+"url(https://images-na.ssl-images-amazon.com/images/I/51wR2RlZ7TL.jpg)"
+];
+        
+var forpoojah2 = ["kunkam","ghee","sandal-powder","vibhudhi","sindhuram","camphor","aagarbhati",
+    "doopsticks","patika-bellam","vathullu","sambrani","guguulam","rose-water","varti-verllu","copper-coins","match-box","scent","vakkalu"];
+        
+var forpoojalabel = [
+"Saffron",
+"Purely cow ghee..","","",""," ","Inscene sticks","","Rocky cansy","","","","","","","match-box","",""];
+        
+var forpoojaid = [
+    "kunkam","ghee","sandal-powder","vibhudhi","sindhuram","camphor","aagarbhati",
+    "doopsticks","patika-bellam","vathullu","sambrani","guguulam","rose-water","varti-verllu","copper-coins","match-box","scent","vakkalu"];
+        
+    for (var i = 0;i<forpoojaid.length;i++){
+        var aa = forpoojabg[i];
+        var bb = forpoojah2[i];
+        var cc = forpoojalabel[i];
+        var ee = forpoojaid[i];
+            creationpooja(aa,bb,cc,ee);
+        }
+        
+    
+       //for pooja //for pooja //for pooja //for pooja 
+        
+        
+        
+        //oil//oil//oil//oil//oil//oil//oil
+ var oilbg = [
+     "url(https://5.imimg.com/data5/PC/OP/EL/SELLER-43425290/ruchi-gold-palmolein-oil-500x500.jpg)",
+     "url(https://images-na.ssl-images-amazon.com/images/I/81nvoOaSrrL._SL1500_.jpg)",
+     "url(https://i0.wp.com/cdn-prod.medicalnewstoday.com/content/images/articles/320/320901/the-sugar-alcohol-xylitol-in-a-glass-bowl.jpg?w=1155&h=1541)",
+     "url(https://www.tatasalt.com/public/front_assets/images/product-image-02.png)",
+     "url(https://wp-public-fs.s3.ap-south-1.amazonaws.com/tasks/15f22ad9fa5c2fc8bf3e30a74140fa068448ff4d2f8f0b/images/eid-5f23b9e5a723d.jpg)",
+     "url(https://wijcln2olk-flywheel.netdna-ssl.com/wp-content/uploads/2016/03/Rock-Salt-SISCU.jpg)",
+     "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLr3YYRtMmDFoaoCWNqxfOZIS4RcdDsLti9g&usqp=CAU)",
+     "url(https://www.findongo.com/wp-content/uploads/2020/03/TAMARIND-1KG-1.jpg)"
+ ];
+        
+var foroilh2 = ["palm-oil","sunrich","sugar","salt","bellam","rock-salt","blacksalt","tamarind"];
+        
+var foroillabel = [" "," "," "," ","Jaggery"," "," ","chinthapandu"];
+        
+var foroilid = ["palm-oil","sunrich","sugar","salt","bellam","rock-salt","blacksalt","tamarind"];
+        
+    for (var i = 0;i<foroilid.length;i++){
+        var aa = oilbg[i];
+        var bb = foroilh2[i];
+        var cc = foroillabel[i];
+        var ee = foroilid[i];
+            creationoil(aa,bb,cc,ee);
+        }         
+        
+    //oil//oil//oil//oil//oil//oil//oil
+        
+        // flour// flour// flour// flour// flour 
+ var forflourbg = [
+     "url(https://cdn.grofers.com/app/images/products/full_screen/pro_378875.jpg)",
+     "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRb2hsqxmGIzYgg8gLYy5MdHhbjLsa6N32REQ&usqp=CAU)",
+     "url(https://cdn.shopify.com/s/files/1/0561/3553/products/IN-102.jpg?v=1579744073)",
+     
+     "url(https://ambicaprovisions.in/wp-content/uploads/2019/07/wheat-rava-sugi.jpg)",
+     "url()",
+     "url(https://teluguchitkalu.com/wp-content/uploads/2019/07/sanaga-pindi-1.jpg)",
+     "url(https://5.imimg.com/data5/VT/FY/FL/SELLER-20354835/rice-flour-500x500.png)",
+     "url(https://static.toiimg.com/photo/70143808.cms)",
+     "url(https://cdn3.mycity4kids.com/images/article-images/web/headersV2/img-20180927-5bacaf7db34ae.jpg)",
+     "url(https://thumbs.dreamstime.com/b/ragi-millet-flour-powder-cup-used-cooking-106194905.jpg)",
+     "url(https://i0.wp.com/2.bp.blogspot.com/-3J0ubMKKCR0/WAtL-M6ZbiI/AAAAAAAAF5g/KU6lKSWkIL0pc6LlvW730Tu6QC_xcwOjwCLcB/s1600/DSC_1613.JPG?ssl=1)",
+     "url(http://www.aashirvaad.com//assets/Aashirvaad/images/big-4.png)"
+ ];
+        
+var forflourh2 = ["idli-nooka","karachi-nooka","semyya","yeera-nooka","pesera-biyum-nooka","chenegapindi","biyampindi","cornflour","maidapindi","ragipindi","minnappindi","godhumpindi"];
+        
+var forflourlabel = ["idli-nooka","Semolina","Vermicelli","godhum nooka","","Besan","Rice flour","Mooka-jonna-pindi","Maize-flour","Finger millet","Urad flour","wheat-flour"];
+        
+var forflourid = ["idli-nooka","karachi-nooka","semyya","yeera-nooka","pesera-biyum-nooka","chenegapindi","biyampindi","cornflour","maidapindi","ragipindi","minnappindi","godhumpindi"];
+        
+    for (var i = 0;i<forflourid.length;i++){
+        var aa = forflourbg[i];
+        var bb = forflourh2[i];
+        var cc = forflourlabel[i];
+        var ee = forflourid[i];
+            creationflour(aa,bb,cc,ee);
+        }       
+
+    // flour// flour// flour// flour// flour 
+        
+        
+        // spieces
+        
+        var forspiecebg = [
+            "url(https://mictv.in/wp-content/uploads/2019/08/Benefits-Of-Poppy.jpg)",
+            "url(https://i.ndtvimg.com/i/2018-03/hing_620x350_61521443637.jpg)",
+            "url(https://previews.123rf.com/images/andriigorulko/andriigorulko1312/andriigorulko131200014/24187290-black-mustard-seeds-isolated-on-white.jpg)",
+            "url(https://5.imimg.com/data5/VD/EW/MY-39836769/indian-turmeric-powder-500x500.jpg)",
+ "url(https://images.jdmagicbox.com/quickquotes/images_main/b07fq7jbqg_jai_jinendra_coriander_seeds_whole_400_grams_dhaniya_seeds_sabut_dhania_whole_dhania_seeds_dhania_whole_seeds_99463738_1.jpg)",
+            "url(https://www.ishopindian.com/images/D/GARAM-MASALA-50G_c.jpg)",
+            "url(https://i.pinimg.com/originals/2c/18/85/2c188543b4637cea84c2609fe61ee16e.jpg)",
+            "url(https://www.netmeds.com/images/cms/wysiwyg/blog/2020/10/1602493346_Elaichi_big_450.jpg)",
+            "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNY0M1mNlPZ9GUXZS2tHEUxxWkROwDUfIVsQ&usqp=CAU)",
+            "url(https://5.imimg.com/data5/SH/IC/MY-5088968/kashmiri-saffron-500x500.jpg)",
+            "url(https://cdn.shopclues.com/images/thumbnails/17398/320/320/Jathikai1431502951.jpg)",
+            "url(https://images.immediate.co.uk/production/volatile/sites/30/2020/02/Cloves-41ffdd3.jpg?quality=90&resize=960,872)",
+            "url(https://images-na.ssl-images-amazon.com/images/I/51scAzbk84L.jpg)",
+            "url(https://www.netmeds.com/images/cms/wysiwyg/blog/2019/08/Kalonji_oil_big_898_2.jpg)",
+            "url(https://i.ndtvimg.com/i/2016-03/625-fennel_625x350_61458024381.jpg)",
+            "url(https://4.imimg.com/data4/BO/JM/MY-1473185/bay-leaves-500x500.jpg)",
+            
+            "url(http://images.ctfassets.net/3s5io6mnxfqz/2l0FhdlIP8OiR1L5syZ5vu/95cf5534eebf6ef2c5ea34e360729267/AdobeStock_176139364.jpg)",
+            
+            "url(https://3.imimg.com/data3/AS/IN/MY-7775666/marati-moggu-500x500.jpg)",
+            
+            "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaFbSrEVN-70k1vU08R9hfChHZQbgjghvWBA&usqp=CAU)",
+            
+            "url(https://5.imimg.com/data5/HL/FE/MY-24461174/garlic-500x500.png)",
+        ];
+        
+    var forspieceh2 = ["gasgasalu","inguva","Avaalu","Pasupu-koomullu","dhaniyaallu","garam-masala","dalchina-chakka","elachi","miriyaalu","kunkumma-puvvu","jajji-kayya","lavangallu","menthulu","nalla-jeerakara","soampu","bay-leaves","anasa-puvvu","marati-mooga","red-chilles","garlic"];
+        
+var forspiecelabel = ["Poopy seeds","hing","black mustard seeds","ground turmeric","coriander seeds","MTR","caasia bark","green cardmon pods","black pepper cons","saffron","nutmeg","cloves","Fenugreek sedds","Black cumin","Fennel seeds"," ","startanise","","",""];
+        
+var forspieceid = ["gasgasalu","inguva","Avaalu","Pasupu-koomullu","dhaniyaallu","garam-masala","dalchina-chakka","elachi","miriyaalu","kunkumma-puvvu","jajji-kayya","lavangallu","menthulu","nalla-jeerakara","soampu","bay-leaves","anasa-puvvu","marati-mooga","red-chilles","garlic"];
+        
+    for (var i = 0;i<forspieceid.length;i++){
+        var aa = forspiecebg[i];
+        var bb = forspieceh2[i];
+        var cc = forspiecelabel[i];
+        var ee = forspieceid[i];
+            creationspiece(aa,bb,cc,ee);
+        }   
+        
+        
+        //spieces
+ 
+        
+    // pulsess
+        
+        var forpulsebg = [
+           "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ5QBbaAGk2drC3FeqSErusacTs4tyxIMxQg&usqp=CAU)",
+            "url(http://wirally.com/wp-content/uploads/2018/03/3-Different-types-of-millets.jpg)",
+ "url(https://cdn.shopify.com/s/files/1/0251/6942/8589/products/image_4d05366b-febf-4589-b475-24dcaa1787a5_1024x1024@2x.jpg?v=1605072507)",
+ "url(https://telugu.boldsky.com/img/2015/12/25-1369484756-kala-chana-08-1449546724.jpg)",
+    "url(https://3.imimg.com/data3/KX/DU/GLADMIN-3399/wheat-grains-500x500.jpg)",
+    "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRWEW62wqwGDMws90dTLl_d33nbTckouMbyg&usqp=CAU)",
+    "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToIJc0RYi5bf4ba6d2JmwiYWUMAbK65jwl3w&usqp=CAU)",
+    "url(https://5.imimg.com/data5/OE/XL/HL/ANDROID-55985877/prod-20200218-0704474882672887360229227-jpg-250x250.jpg)",
+    "url(https://grotels.in/wp-content/uploads/2019/10/kandulu.jpg)",
+    "url(https://vizaggrocers.com/2383-large_default/bengal-gram-sanagapappu-bangaal-graam.jpg)",
+    "url(https://5.imimg.com/data5/KC/DL/MY-25884273/ground-nuts-seed-500x500.jpg)",
+    "url(https://images-na.ssl-images-amazon.com/images/I/7104b2hZQ-L._SY550_.jpg)",
+    "url(https://vizaggrocers.com/557-home_default/saggubiyyam-tapioca-sago-sabudhana.jpg)",
+    "url(https://ud-img-v2.azureedge.net/t_im_w480/u/products/d2f6duppnrqq8evhlafy.jpg/BARLI-BEEJA-BARLEY-5-KG-ALLWIN-BRAND)",
+ "url(http://www.organicdepot.in/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/1/3/1313748527_pearl_20millet.jpg)"
+        ];
+        
+    var forpulseh2 = [
+"dhanyam","ganttlu","boobarlu","senegalu","godumulu",
+     "ulavalu","minvullu","annuvullu","kandulu","nuupappu",
+        "senegapappu","ground-nuts",
+        "minapagullu","saggubiyyam","baarli","sajallu"
+    ];
+           
+var forpulseid = [
+    "dhanyam","ganttlu","boobarlu","senegalu","godumulu",
+     "ulavalu","minvullu","annuvullu","kandulu","nuupappu",
+        "senegapappu","ground-nuts",
+        "minapagullu","saggubiyyam","baarli","sajallu"
+];
+        
+    for (var i = 0;i<forpulseid.length;i++){
+        var aa = forpulsebg[i];
+        var bb = forpulseh2[i];
+        var cc = " ";
+        var ee = forpulseid[i];
+            creationpulse(aa,bb,cc,ee);
+        }   
+        
+        
+        //pulses
+        
+        //fruits
+        var forfruitbg = [
+            "url(https://images-na.ssl-images-amazon.com/images/I/81dlxT2vHkL._SL1500_.jpg)",
+            "url(https://attarayurveda.com/wp-content/uploads/2017/11/81quI-W0UJL._SL1500_-compressor.jpg)",
+            "url(https://3.imimg.com/data3/MC/PN/MY-406175/black-raisin-black-kismis-seedless.jpg)",
+            "url(https://assetscdn1.paytm.com/images/catalog/product/F/FA/FASLION-DATES-5BIGB985832915A36F3/1562238773008_4.jpg?imwidth=320&impolicy=hq)",
+            "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5M_9W9c1iF81zV_A0PduBB9T53E8NT_7Ldw&usqp=CAU)"
+        ];
+        
+    var forfruith2 = ["jeedi-pappu","kishmiss","dry-kishmiss","lion-dates","dry-dates"];
+        
+var forfruitlabel = ["Cashew","Raisins"," "," "," "];
+        
+var forfruitid = ["jeedi-pappu","kishmiss","dry-kishmiss","lion-dates","dry-dates"];
+        
+    for (var i = 0;i<forfruitid.length;i++){
+        var aa = forfruitbg[i];
+        var bb = forfruith2[i];
+        var cc = forfruitlabel[i];
+        var ee = forfruitid[i];
+            creationfruits(aa,bb,cc,ee);
+        } 
+        
+        //fruits
+        
+        //rope
+var forropebg = [
+    "url(https://5.imimg.com/data5/JT/IF/MY-15542386/idli-maker-500x500.jpg)",
+    "url(https://images-na.ssl-images-amazon.com/images/I/51sB-Pk7q7L.jpg)",
+    "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_Mq63QmSbhvilTrKHnVsWqedGjWrAZvnF7g&usqp=CAU)",
+    "url(https://5.imimg.com/data5/LY/NQ/MY-5025426/silver-taweez-250x250.jpg)",
+    "url(https://www.boldsky.com/img/2017/03/x03-1488514558-clay-pots4.jpg.pagespeed.ic.xzZHtHVwHX.jpg?w=144)",
+    "url(https://media.istockphoto.com/photos/many-homemades-of-clay-plates-picture-id1058716532?k=6&m=1058716532&s=170667a&w=0&h=ykWlpu0T5b0fdF3oKbxSARoFd8EiO0H6h3q1qtFOW7s=)",
+    "url(https://www.colourbox.com/preview/6340633-clay-plates.jpg)",
+    "url(https://5.imimg.com/data5/NK/AX/MY-69694977/thin-coir-rope-500x500.jpg)",
+    "url(https://images-na.ssl-images-amazon.com/images/I/51pQhIqJraL._SX450_.jpg)",
+    "url(https://i.pinimg.com/originals/39/4c/21/394c214210b1edbe0064d9935fc1a462.jpg)",
+    "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc2szXb3q4d9F2CjJOZ_CkHGVSabWg9jBThA&usqp=CAU)",
+    "url(https://images-na.ssl-images-amazon.com/images/I/71KB1NTrOWL._SX466_.jpg)",
+    "url(https://lh3.googleusercontent.com/proxy/pCh35_ZSx5ky1ILk-nPZBk2MHkI1bL3VM_NOuGaw0Qq7kO913d1KbfRNcpnH9vKkxxkHlhE1Gt-OwaizQsictR5ftCHFP1qtMJQKTDPS_VJXjsLRVUt4CZk8llGfFzWBEVpRwO47mzANsVvusg)",
+    "url(https://5.imimg.com/data5/BY/TO/LZ/ANDROID-6503779/product-jpeg-500x500.jpg)",
+    "url(https://images-na.ssl-images-amazon.com/images/I/61UdS8Sbd6L._SX679_.jpg)",
+    "url(https://www.epoojastore.in/image/cache/catalog/Products/towel-500x500_0-1000x1000.jpg)",
+    "url(https://5.imimg.com/data5/DN/TX/MY-15312482/white-gamcha-500x500.jpg)",
+    "url(https://images-na.ssl-images-amazon.com/images/I/91P6o0sksoL._SL1500_.jpg)",
+    "url()",
+    "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZZHKzG-tWeDD7E0nCwGg_i0jIFEFzGVeYRA&usqp=CAU)"
+];
+        
+var forropeh2 = [
+    "brass-bowls","god-photos","yantralu","thavijulu","kundallu","dhakallu",
+    "pramidallu","kobari-thadulu","suunam","paarani",
+    "coconout-oil","nuvulla-nunni","aavala-nunni","vippa-nunni","veppa-nunni","towels","panchellu","chaapalu","chetalu","pidakallu"
+];
+        
+var forropeid = [
+    "brass-bowls","god-photos","yantralu","thavijulu","kundallu","dhakallu",
+    "pramidallu","kobari-thadulu","suunam","paarani","coconout-oil","nuvulla-nunni","aavala-nunni","vippa-nunni","veppa-nunni","towels","panchellu","chaapalu","chetalu","pidakallu"
+];
+        
+    for (var i = 0;i<forropeid.length;i++){
+        var aa = forropebg[i];
+        var bb = forropeh2[i];
+        var cc = " ";
+        var ee = forropeid[i];
+            creationropes(aa,bb,cc,ee);
+        } 
+        
+        //rope
+        
+        
+    // casuals
+        
+var forcasualbg = [
+       "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhipKC-YxBbxu0PtEnyOTjo_siV8W8w-xo9Q&usqp=CAU)", 
+      "url(https://ironcitydentistry.com/wp-content/uploads/2019/02/colorful-toothbrushes-7htvpzk.jpg)",
+    "url(https://4.imimg.com/data4/BK/XF/MY-2546358/sachet-packing-material-500x500.jpg)",
+    "url(https://3.imimg.com/data3/UU/WO/MY-2134834/rin-250x250.jpg)",
+    "url(https://images-na.ssl-images-amazon.com/images/I/61TAoiTs%2BZL._SL1148_.jpg)",
+    "url(https://images-na.ssl-images-amazon.com/images/I/41Ync71IdVL.jpg)",
+    "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGxSuAeD---8y2ma5XxT8rIexuLWjRIznHwg&usqp=CAU)",
+    "url(https://cpimg.tistatic.com/06036497/b/4/600-gm-Vim-Bar.jpg)",
+    "url(https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/best-reusable-grocery-bags-1583767299.png?crop=0.502xw:1.00xh;0.250xw,0&resize=640:*)",
+    "url(https://www.mapsofindia.com/maps/india/images/flag-wallpapers/indian-flag-image.jpg)",
+    "url(http://d2s8edsvfzlfgk.cloudfront.net/images/detailed/15/long-grass-floor-broomstick.jpg?t=1589351962)",
+    
+    "url(https://thumbs.dreamstime.com/b/african-fruits-tropical-nets-africa-99005961.jpg)",
+    "url(https://static.toiimg.com/photo/msid-79492540,resizemode-4/79492540.cms)",
+    "url(https://cdn.thewirecutter.com/wp-content/uploads/2015/03/scissors-kitchen-shears-lowres.jpg)",
+    "url(https://ls-m.globallinker.net/52419/2020/3795181.jpeg?width=195&height=195)",
+    "url(https://5.imimg.com/data5/NX/LM/MY-21000161/stainless-steel-razor-blade-250x250.png)",
+    "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSKqhQ3D8qTwpLzIREwBEdWFSPvP7E4RahaA&usqp=CAU)",
+    "url(https://5.imimg.com/data5/YK/SV/GLADMIN-6654568/bru-instant-coffee-500x500.png)",
+    "url(https://www.truebuyz.com/wp-content/uploads/2019/01/boost_small-packet.jpg)",
+    "url(https://images-na.ssl-images-amazon.com/images/I/61M5W1NsujL._SL1500_.jpg)",
+    "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlDaI0yBmy4Obtm5M_ypIaeelN72etnpsr-Q&usqp=CAU)"
+];
+        
+    var forcasualh2 = [
+        "toothpaste","brushs","shampoos","cloth-washing-sopas","comfort","hair-color-dyes","dish-wash-scrubbers","dish-wash-soaps","lagguage-bags","indian-flag","broomsticks","nets","stools","scissors",
+    "kinfes","blades","batteries","coffe-tea",
+        "boost-horlicks", "smiley-balls","ballons"
+    ];
+             
+var forcasualid = [
+    "toothpaste","brushs","shampoos","cloth-washing-sopas","comfort","hair-color-dyes","dish-wash-scrubbers","dish-wash-soaps","lagguage-bags","indian-flag","broomsticks","nets","stools","scissors",
+    "kinfes","blades","batteries","coffe-tea",
+    "boost-horlicks", "smiley-balls","ballons"
+];
+        
+    for (var i = 0;i<forcasualid.length;i++){
+        var aa = forcasualbg[i];
+        var bb = forcasualh2[i];
+        var ee = forcasualid[i];
+            creationcasual(aa,bb,ee);
+        }   
+        
+        
+        //casual
+        
+        //special
+var forspecialbg = [
+"url()",
+"url(https://www.healthbenefitstimes.com/9/gallery/sweet-flag-2/Small-dried-root-pieces-of-Sweet-Flag.jpg)",
+"url(https://4.imimg.com/data4/TK/QN/MY-714555/natural-menthol-crystals-500x500.jpeg)",
+"url(https://images-na.ssl-images-amazon.com/images/I/71R86VbK%2BUL._SX569_.jpg)",
+"url(https://seller.shoponn.in/Item/Balu%20Herbals%20Gandha%20Kachuralu%20100gA.jpg)",
+"url()",
+"url(https://i2.wp.com/www.easyayurveda.com/wp-content/uploads/2012/12/Semecarpus-anacardium1.jpg?resize=448%2C291&ssl=1)",
+"url(https://5.imimg.com/data5/ME/PN/MY-2662260/babchi-seed-carrier-virgin-oil-500x500.jpg)",
+"url(https://rppoojaghar.com/wp-content/uploads/2018/04/whole-dried-amla-fruits-600x492.jpg)",
+"url(http://www.somasygreentech.com/img/pro1.jpg)",
+"url()",
+"url()",
+"url()"
+];
+        
+    var forspecialh2 = [
+"indupukayyi","vasaa","menthol","vaampuvuu","kachurallu",
+"gobbiginjallu","black-jeedi","bavanchallu","dry amlaa","sunaamukki","kasturi","javadhi","punugu"
+    ];
+          
+var forspecialid = [
+"indupukayyi","vasaa","menthol","vaampuvuu","kachurallu",
+"gobbiginjallu","black-jeedi","bavanchallu","dry amlaa","sunaamukki","kasturi","javadhi","punugu"
+];
+        
+    for (var i = 0;i<forspecialid.length;i++){
+        var aa = forspecialbg[i];
+        var bb = forspecialh2[i];
+        var cc = " ";
+        var ee = forspecialid[i];
+            creationspecial(aa,bb,cc,ee);
+        }         
+        
+        
+        //specail
+        
+        function recart(){
+        var main = document.getElementById("cartdisk");
+              for (var i=0;i<listofcartitems.length;i++){
+               var divdiv  = document.createElement("div");
+                  divdiv.setAttribute("id",listofcartitems[i]+"c");
+                var pnam = document.createElement("span");
+                pnam.innerHTML = listofcartitems[i];
+                var aa = document.createElement("a");
+                aa.setAttribute("class","remove");
+                var bt = document.createElement("button");
+                bt.innerHTML = "REMOVE";
+                bt.setAttribute("id",listofcartitems[i]);
+                main.appendChild(divdiv);
+                divdiv.appendChild(pnam);
+                divdiv.appendChild(aa);
+                aa.appendChild(bt);  
+        }
+        }
+        recart();
+        
+        
+        
+        var addbuttons = document.getElementsByClassName("addcontainer");
+        var removebuttons = document.getElementsByClassName("removecontainer");
+        var removecartbuttons = document.getElementsByClassName("remove");
+        
+        for(var k = 0;k<addbuttons.length;k++){
+            var p = addbuttons.item(k);
+            p.addEventListener("click",carting,false);
+        }
+        
+        for (var kk =0 ;kk<removebuttons.length;kk++){
+            var pp = removebuttons.item(kk);
+            pp.addEventListener("click",removecarting,false);
+        }
+        
+        for (var kkk =0 ;kkk<removecartbuttons.length;kkk++){
+            var pp = removecartbuttons.item(kkk);
+            pp.addEventListener("click",removecarting,false);
+        }
+        
+        const removecart = (arr,item) => {
+            let newarray = [...arr];
+            let copynew = [...arr];
+            const index = newarray.findIndex((element) => element === item)
+            if (index !== -1){
+                newarray.splice(index,1)
+                return newarray;
+            }else{
+                return copynew;
+            }
+        }
+        
+        function carting(e){
+            if (localStorage.getItem("kedarcheck") == "true"){
+                var clickeditemid = e.target.id;
+    var oldlist = JSON.parse(localStorage.getItem("kedarcartlist"));
+            oldlist.push(clickeditemid);
+    localStorage.setItem("kedarcartlist", JSON.stringify(oldlist));
+            }else{
+                alert("TO USE CART YOU HAVE TO SIGN IN");
+            }
+        
+        };
+        
+        function removecarting(e){
+            if (localStorage.getItem("kedarcheck") == "true"){
+            var clickeditemid = e.target.id;
+            var oldlist1 = JSON.parse(localStorage.getItem("kedarcartlist"));
+            var ppptest = removecart(oldlist1,clickeditemid);
+     localStorage.setItem("kedarcartlist",JSON.stringify(ppptest));
+            }else{
+                alert("TO USE CART YOU HAVE TO SIGN IN");
+            }
+        };
+        
+        function removecarting1(e){
+            var clickk = e.target.id;
+            alert(clickk);
+            
+        }
+        function menuopen(){
+              var t = document.getElementById("menubar");
+              var tt = document.getElementById("men");
+              var tt1 = document.getElementById("men1");
+              t.style.top = 150 + "px";
+              tt.style.display = "none";
+              tt1.style.display = "block";
+        }
+        function menuclose(){
+             var t = document.getElementById("menubar");
+              var tt = document.getElementById("men");
+              var tt1 = document.getElementById("men1");
+              t.style.top = -700 + "px";
+              tt.style.display = "block";
+              tt1.style.display = "none";
+        }
+        function go(num){
+            if(num == 1){
+    location.assign("https://www.facebook.com/people/Satwik-Kedaresetti/100008718079201");
+            }
+            if(num == 2){
+ location.assign("https://www.instagram.com/p/CLMt8zzF4SdQagQQeiqo40zKpOkGtdiH-5fMlY0/?igshid=1ssat0zj5iic5");
+            }
+            if(num == 3){
+ location.assign("https://www.youtube.com/channel/UCpLOopnR9TX9b1fjcDpapsw");
+            }
+            if(num == 4){
+ location.assign("https://kedarisettisatwik.github.io/index.html");
+            }
+        }
+        function map(){
+ location.assign("https://goo.gl/maps/BZ9aaRao5SstNLY96");
+        }
+        var re = document.getElementById("btnone");
+        var inin = document.getElementById("btntwo");
+        var out = document.getElementById("btnthree");
+        
+        var regform = document.getElementById("registerform");
+        var inform = document.getElementById("loginform");
+        var outform = document.getElementById("logoutform");
+        var forgotform = document.getElementById("forgotform");
+        var reviewform = document.getElementById("reviewform");
+        
+        function register(){
+            re.style.backgroundColor = "orange";
+            inin.style.backgroundColor = "aliceblue";
+            out.style.backgroundColor = "aliceblue";
+            regform.style.left = 0 + "px";
+            inform.style.left = 800 + "px";
+            outform.style.left = 1600 + "px";
+            forgotform.style.left = 2400 + "px";
+        }
+        function login(){
+            inin.style.backgroundColor = "orange";
+            re.style.backgroundColor = "aliceblue";
+            out.style.backgroundColor = "aliceblue";
+            regform.style.left = -800 + "px";
+            inform.style.left = 0 + "px";
+            outform.style.left = 800 + "px";
+            forgotform.style.left = 1600 + "px";
+        }
+        function logout(){
+            out.style.backgroundColor = "orange";
+            inin.style.backgroundColor = "aliceblue";
+            re.style.backgroundColor = "aliceblue";
+            regform.style.left = -1600 + "px";
+            inform.style.left = -800 + "px";
+            outform.style.left = 0 + "px";
+            forgotform.style.left = 800 + "px";
+        }
+        function wantpass(){
+            regform.style.left = -2400 + "px";
+            inform.style.left = -1600 + "px";
+            outform.style.left = -800 + "px";
+            forgotform.style.left = 0 + "px";
+        }
+        regform.addEventListener("submit",(e) => {
+            e.preventDefault();
+    var username = document.getElementById("user-id");
+    var userphone = document.getElementById("user-phone");
+    var userpass = document.getElementById("user-pass");
+    var userrepass = document.getElementById("user-repass");
+            if(userpass.value == userrepass.value){
+                if (userphone.value.length == 10){
+    localStorage.setItem("kedarname",username.value);
+    localStorage.setItem("kedarphone",userphone.value);
+    localStorage.setItem("kedarpass",userpass.value);
+    alert("Registration process completed sucssesfully");
+        localStorage.setItem("kedarcheck","true");
+    localStorage.setItem("kedarcartlist",'[]');
+                    username.value = "";
+                    userpass.value = "";
+                    userphone.value = "";
+                    userrepass.value = "";
+                }else{
+                 alert("INVALID PHONE NUMBER..");   
+                }
+            }else{
+                alert("password confirmation failed");
+            }
+        });
+        
+        
+        inform.addEventListener("submit",(e) => { e.preventDefault();
+  var namesignin = document.getElementById("name-signin");
+   var passsignin = document.getElementById("pass-signin");          if(localStorage.getItem("kedarcheck") == "false"){
+       if (localStorage.getItem("kedarname") == namesignin.value && localStorage.getItem("kedarpass") == passsignin.value){
+           alert("welcome back " + localStorage.getItem("kedarname"));
+           localStorage.setItem("kedarcheck","true");
+           
+           namesignin.value = "";
+           passsignin.value = "";
+           
+            }else{alert("WRONG INPUT'S..");}
+          }else{
+              alert("YOU ARE ALREADY SIGNED IN");
+          }
+        });
+        
+        
+        outform.addEventListener("submit",(e) => {
+            e.preventDefault();
+                if (localStorage.getItem("kedarcheck") == "true"){
+          localStorage.setItem("kedarcheck","false"); 
+        alert("SUCESSFULLY SIGNED OUT");
+                location.reload();
+                }
+        });
+        
+        
+        forgotform.addEventListener("submit",(e) => {
+            e.preventDefault();
+            if (localStorage.length != 0){
+                if (localStorage.getItem("kedarcheck") == "false"){
+        var vername = document.getElementById("ver-name");
+        var verphone = document.getElementById("ver-phone");
+        if (localStorage.getItem("kedarname") == vername.value && verphone.value == localStorage.getItem("kedarphone")){
+        alert("your password is " +localStorage.getItem("kedarpass"));
+            vername.value ="";
+            verphone.value = "";
+                    }
+                else{
+            alert("WRONG INPUT'S..");
+                }
+                }else{
+            alert("you are already signed in..");
+                }
+            }else{
+                alert("you are not yet registered..");
+            }
+        });
+        
+        function seemy(){
+location.assign("https://docs.google.com/spreadsheets/d/e/2PACX-1vQTUZuNggOPVnQsbIpweJsjtKG-SAjnURDNITxATMzWbYp0mLciXwPX_rHyLidXE-Y9v-yzXIM3Lp03/pubhtml");
+        }
+        
+        function leftmove(a){
+            a.style.left = 0 +"px";  
+        }
+        
+        var st1X,m1X,ele;
+        
+        function ts1(evt,pmm){
+            st1X = evt.touches[0].clientX;
+            ele = pmm;
+        }
+        function tm1(evt,pmm){
+            m1X = evt.touches[0].clientX;
+            ele = pmm;
+        }
+        function te1(){
+           var t = parseInt(window.getComputedStyle(ele).getPropertyValue("left"));
+            if (st1X + 100 < m1X){
+               ele.style.left = t+610+"px"; 
+            }
+            else if (st1X - 100 > m1X){
+               ele.style.left = t-610+"px";  
+            }
+            
+        }
+        
+        
+        
+        
+        var i = 0;
+        setInterval(function(){
+            var tt = document.getElementById("notsign");
+        var date = new Date().getHours();
+        var da ;
+        if (date >= 0 && date <= 4){
+            da = "GOOD NIGHT ";
+        }
+        if (date >= 5 && date <= 11){
+            da = "GOOD MORNING ";
+        }
+        if (date >= 12 && date <= 15){
+            da = "GOOD AFTERNOON ";
+        }
+        if (date >= 16 && date <= 19){
+            da = "GOOD EVENING ";
+        }
+        if (date >= 20 && date <= 24){
+            da = "GOOD NIGHT ";
+        }    
+        var sdiv = da;
+        var b = sdiv.length;
+        if (i < b){
+    document.getElementById("day").innerHTML = document.getElementById("day").innerHTML + sdiv[i];  
+        }
+        i += 1;
+        if (i == 50){
+    document.getElementById("day").innerHTML = " ";
+            i = 0;
+        }
+            if (localStorage.getItem("kedarcheck")=="true"){
+    document.getElementById("user").innerHTML = localStorage.getItem("kedarname")+"...";
+            }else{
+    document.getElementById("user").innerHTML = "USER...";   
+            }
+    },250);  
+        
+
+        setInterval( function(){
+               if (localStorage.getItem("kedarcheck") == "true"){
+                var lli = JSON.parse(localStorage.getItem("kedarcartlist"));
+                   if (lli.length == 0){
+                    document.getElementById("notsign1").innerHTML = "CART IS EMPTY";
+                }else{
+                    document.getElementById("notsign1").innerHTML = "";
+                } 
+        for(var ppk = 0;ppk <listofcartitems.length;ppk++){
+            var lkg = listofcartitems[ppk];
+              var tf = lli.includes(lkg) ? "true" : "false";
+               var tt = lkg + "c";
+                    if (tf == "true"){
+                    document.getElementById(tt).style.display="block";
+            
+                    }else{
+                      document.getElementById(tt).style.display="none";  
+                    }
+                   }
+            }
+        },10);
+        
+        setInterval( function(){
+            
+            if (localStorage.getItem("kedarcheck") == "true"){
+                var lli = JSON.parse(localStorage.getItem("kedarcartlist")); 
+        for(var ppk = 0;ppk <listofcartitems.length;ppk++){
+            var lkg = listofcartitems[ppk];
+              var tf = lli.includes(lkg) ? "true" : "false";
+               var tt = lkg + "11";
+               var ff = lkg + "22";
+                    if (tf == "true"){
+                    document.getElementById(tt).style.display="none";
+                     document.getElementById(ff).style.display="block";  
+            
+                    }else{
+                      document.getElementById(tt).style.display="block"; 
+                      document.getElementById(ff).style.display="none"; 
+                    }
+                   }
+            }
+        },10);
+        
+    </script>
+    </body>
+</html>
+<!--
+reviewform.addEventListener("submit",(e) => {
+                e.preventDefault();
+               alert("hello");
+        });-->
+<!--<li><a onclick="menuclose()">CLOSE</a></li>-->
+
+
+<!--
+
+for(var k =0;k<bt;k++){
+                    var p = btns.item(k);
+                    var pp = p.getAttribute("id");
+                    var tf = plist.includes(pp) ? "true" : "false";
+                    if (tf == "true"){
+                        p.classList.remove("select");
+                        p.classList.add("notselect");
+                        p.innerHTML = "REMOVE FROM CART";
+                    }
+                    if(tf = "false"){
+                        p.classList.remove("notselect");
+                        p.classList.add("select");
+                        p.innerHTML = "ADD TO CART";
+                    }
+                }
+
+
+.select{
+            font-size:220%;
+            background-color:cadetblue;
+        }
+        .notselect{
+            font-size:200%;
+            background-color:blue;
+        }
+-->
+
+
+<!--
+
+if (localStorage.getItem("kedarcheck") == "true"){
+            var clickeditemid = e.target.id;
+            var oldlist1 = JSON.parse(localStorage.getItem("kedarcartlist"));
+            var ppptest = removecart(oldlist1,clickeditemid);
+     localStorage.setItem("kedarcartlist",JSON.stringify(ppptest));
+            }else{
+                alert("TO USE CART YOU HAVE TO SIGN IN");
+            }
+
+
+
+<div class = "pasupu" id="pasupuc">
+        <span>pasupu</span>
+            <a class="remove"><button id = "pasupu">RETURN</button></a>
+        
+        </div>
+        <div class = "sunflower-oil" id="sunflower-oilc">
+        <span>sunflower-oil</span>
+        <a class="remove"><button id = "sunflower-oil">RETURN</button></a>
+        </div>
+        <div class = "varinukka" id="varinukkac">
+        <span>vaarinukka</span>
+       <a class="remove"><button id = "varinukka">RETURN</button></a>
+        </div>
+-->
+
+<!--
+
+"url()",
+"url(https://images-na.ssl-images-amazon.com/images/I/71eGvw1VPnL._SL1500_.jpg)",
+"url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiZpnjdNSlniOtzviwU8hy2zkCNF1Wix2KKw&usqp=CAU)",
+"url(https://previews.123rf.com/images/christopherhall/christopherhall1607/christopherhall160701180/60221704-old-wooden-chest-filled-with-old-copper-coins.jpg)",
+
+-->
