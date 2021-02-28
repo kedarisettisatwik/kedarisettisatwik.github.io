@@ -1,0 +1,142 @@
+<html>
+<head>
+    <title>neuromorhisim</title>
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap" rel="stylesheet">
+    <!-- font -->
+    
+    <style>
+    
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            padding-top:300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #ecf0f3;
+        }
+        section{
+            display: flex;
+            flex-direction: column;
+            width:700px;
+            height:1300px;
+            border-radius:30px;
+            background: #ecf0f3;
+            padding:40px;
+            box-shadow: 13px 13px 30px #cbced1,-13px -13px 30px #fff;
+            position: relative;
+        }
+        .userto{
+            font-family: 'RocknRoll One', sans-serif;
+            font-size:260%;
+            letter-spacing:2.5px;
+            padding:20px; 
+            float:left;
+        }
+        .state{
+            font-family: 'RocknRoll One', sans-serif;
+            letter-spacing:2.5px;
+            float:right;
+            color: blue;
+        }
+        .sep{
+            margin-top:10px;
+            margin-bottom:10px;
+            height:10px;
+            background-color: black;
+            -webkit-animation-name:linesep;
+            -webkit-animation-duration:8s;
+            -webkit-animation-iteration-count:infinite;
+        }
+        @keyframes linesep{
+            0%{width:100%}
+            50%{width:0%}
+            100%{width:100%}
+        }
+        .chatbox{
+            padding:30px 10px 10px 30px;
+            height:1000px;
+            width:90%;
+            border:none;
+            outline:none;
+            background:none;
+            letter-spacing:2.5px;
+            color:#555;
+            border-radius:30px;
+            box-shadow: inset 8px 8px 8px #cbced1,
+                        inset -8px -8px 8px #fff;
+            overflow-y: auto;
+            word-wrap: break-word;
+        }
+        .msg{
+            width:100%;
+            display: flex;
+            align-items: center;
+        }
+        .msg textarea{
+            margin-top:5px;
+            width:80%;
+            text-align: center;
+            font-size:250%;
+            padding:30px;
+            border:none;
+            outline:none;
+            background:none;
+            word-wrap: break-word;
+            letter-spacing:2.5px;
+            color:#555;
+            border-radius:30px;
+            box-shadow: inset 8px 8px 8px #cbced1,
+                        inset -8px -8px 8px #fff;
+            margin-right:5px;
+        }
+        .msgvalue{
+            width:80%;
+            font-family: 'RocknRoll One', sans-serif;
+            letter-spacing:2px;
+            font-weight:700;
+            padding:15px;
+            font-size:200%;
+            margin-bottom:40px;
+            word-wrap: break-word;
+            background-color: bisque;
+            border-bottom-left-radius:30px;
+            border-bottom-right-radius:0px;
+            border-top-left-radius:30px;
+            border-top-right-radius:30px;
+            float: right;
+            white-space: pre-wrap;
+        }
+    </style>
+    </head>
+<body>
+    
+    <section>
+    <div class="userto">user1  <label class="state">online</label></div>
+    <div class="sep"></div>
+    <div class="chatbox" id="chatbox"></div>
+    <div class="msg">
+        <textarea placeholder="enter message" id="msg"></textarea>
+        <img src="right-arrow.png" width="10%" style="margin-left:20px; cursor: pointer;transition:1s" onclick="send()" id="sendbtn">
+    </div>
+    </section>
+    
+    <script>
+        function send(){
+            var box = document.getElementById("chatbox");
+            var ms = document.getElementById("msg");
+            var ele = document.createElement("div");
+            ele.classList.add("msgvalue")
+            ele.innerHTML = ms.value;
+            if (ms.value.length != 0){
+                box.appendChild(ele);
+                ms.value = "";
+            }
+        }
+    </script>
+    </body>
+</html>

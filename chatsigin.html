@@ -1,0 +1,158 @@
+<html>
+<head>
+    <title>neuromorhisim</title>
+    <style>
+    
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #ecf0f3;
+        }
+        section{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width:600px;
+            height:900px;
+            border-radius:30px;
+            background: #ecf0f3;
+            padding:40px;
+            box-shadow: 13px 13px 30px #cbced1,-13px -13px 30px #fff;
+            position: relative;
+        }
+        .logo{
+            outline:0;
+            border: 0;
+            width:120px;
+            height:120px;
+            border-radius:50%;
+            margin:30px;
+            box-shadow:0px 0px 3px #5f5f5f,
+                       0px  0px 0px 5px #ecf0f3,
+                       8px 8px 15px #a7aaaf,
+                       -8px -8px 15px #fff;
+        }
+        #text{
+            font-size:250%;
+            letter-spacing:2.5px;
+            padding:20px;
+        }
+        .input{
+            padding-top:30px;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        .input1{
+            width:100%;
+            text-align: center;
+            font-size:200%;
+            padding:30px;
+            margin:30px auto;
+            border:none;
+            outline:none;
+            background:none;
+            letter-spacing:2.5px;
+            color:#555;
+            border-radius:30px;
+            box-shadow: inset 8px 8px 8px #cbced1,
+                        inset -8px -8px 8px #fff;
+        }
+        .input2{
+            width:100%;
+            text-align: center;
+            font-size:200%;
+            padding:30px;
+            margin:30px auto;
+            border:none;
+            outline:none;
+            background:none;
+            letter-spacing:2.5px;
+            color:#555;
+            border-radius:30px;
+            box-shadow: inset 8px 8px 8px #cbced1,
+                        inset -8px -8px 8px #fff;
+        }
+        .btn{
+            text-align: center;
+            font-size:200%;
+            padding:20px;
+            margin-top:30px;
+            border:none;
+            outline:none;
+            background:none;
+            letter-spacing:2.5px;
+            color:#555;
+            font-weight:700;
+            cursor:pointer;
+            background:#24cfaa;
+            border-radius:10px;
+            box-shadow:3px 3px 8px #b1b1b1,
+                      -3px -3px 8px #fff;
+            transition:0.5s;
+        }
+        .btn :hover{
+            background: #2fdbb6;
+        }
+        .btn:active{
+            background: #2fdbb6;
+        }
+        .forgot{
+            font-size:230%;
+            margin-top:50px;
+            text-decoration: none;
+            letter-spacing:3px;
+            float:left;
+        }
+        .alre{
+            font-size:230%;
+            margin-top:30px;
+            text-decoration: none;
+            letter-spacing:3px;
+        }
+        .alre a{
+            text-decoration: none;
+            letter-spacing:3px;  
+        }
+    </style>
+    </head>
+<body>
+    
+    <section>
+    <img class="logo" src="k.png">
+    <div id="text"> </div>
+    <form class="input" id="forminput">
+        <input type="email" placeholder="ENTER E-MAIL" class="input1" required>    
+        <input type="password" placeholder="ENTER PASSWORD" class="input2" required>  
+        <input type="submit" value="LOG IN" class="btn">
+    </form>
+    <a href="#" class="forgot">Forgott Password</a>
+    <div class="alre">
+    <span>Don't have account</span>    
+    <a href="chatsignup.html">sign up </a>
+    </div>
+    </section>
+    
+    <script>
+    var t = document.getElementById("text");
+        var il = 0;
+        setInterval(function (){
+            var tt ="Let's start chatting..";
+            if(il <tt.length){
+                t.innerHTML += tt[il];
+                il++;
+            }
+        },250);
+    var form1 = document.getElementById("forminput");
+        form1.addEventListener("submit",(e) =>{
+            e.preventDefault();
+            location.assign("profile.html");
+        });
+    </script>
+    </body>
+</html>
