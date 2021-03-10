@@ -1,0 +1,197 @@
+<html>
+<head>
+    <title>quiz app</title>
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap" rel="stylesheet">
+    <!-- font -->
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .container,.container1{
+        width:100%;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        min-height:200px;
+        position: relative;
+    }
+    .container{
+        background-color:rgb(102, 102, 153);
+    }
+    .container1{
+        padding:100px 0 100px 0;
+        background-color:cornflowerblue;
+    }
+    .container h1{
+        margin-top:100px;
+        font-family: 'RocknRoll One', sans-serif;
+        font-size:270%;
+        color:white;
+        letter-spacing:5px;
+    }
+    .container label{
+        margin-bottom:20px;
+        margin-top:20px;
+        font-family: 'RocknRoll One', sans-serif;
+        font-size:200%;
+        color:white;
+        letter-spacing:5px;
+    }
+    .container1 select {
+        font-size:1.8em;
+        font-family: 'RocknRoll One', sans-serif;
+        outline: none;
+        padding:30px;
+    }
+    .problem{
+        padding:50px;
+        margin-top:100px;
+        margin-bottom:100px;
+        width:60%;
+        min-height:300px;
+        background-color:aliceblue;
+        border-radius:30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        word-wrap: break-word;
+        font-family: 'RocknRoll One', sans-serif;
+        font-size:2.5em;
+    }
+    #sub input{
+        font-size:200%;
+        text-align: center;
+        padding:30px;
+    }
+    #sub input[type="number"]{
+        border:none;
+        outline:none;
+        margin-right:20px;
+    }
+    #sub input[type="submit"]{
+        border:none;
+        outline:none;
+        background-color:rgb(102, 102, 153);
+        color: white;
+    }
+    .tim {
+        padding-top:30px;
+        font-size:200%;
+        color:aliceblue;
+    }
+    #noeasy,#nohard,#nomed,#run{
+        font-size:100%;
+    }
+</style>
+    </head>
+<body>
+<section class="container">
+    <h1>MATH QUIZ APP</h1>
+    <label class="tim">Timer : <label id="run">0</label> seconds..</label>
+</section> 
+<section class="container1">
+    <select onchange="level()" id="levalue">
+    <option value="0">select level</option>
+    <option value="1">EASY</option>
+    <option value="2">MEDIUM</option>
+    <option value="3">HARD</option>   
+    </select>
+    
+    <div class="problem" id="prblm">
+        Hello, select level & answer the math questions..
+    </div>
+    <form id="sub" autocomplete="off" action="#">
+    <input type="text" placeholder="YOUR ANSWER" required id="myans">
+    <input type="submit" value="SUBMIT">
+    </form>
+</section>
+<section class="container">
+    <label>QUESTIONS U SOLVED</label><br>
+    <label>EASY : <label id="noeasy">0</label></label><br>
+    <label>MEDIUM : <label  id="nomed">0</label></label><br>
+    <label>HARD : <label id="nohard">0</label></label><br>
+</section>
+<script>
+    var pr = document.getElementById("prblm");
+    var le = document.getElementById("levalue");
+    var fo = document.getElementById("sub");
+    function level(){
+        var operation = ["+","-","*","/"];
+        var l = le.value;
+        if (l == 1){
+            var r1 = Math.floor(Math.random()*9 + 1);
+            var r2 = Math.floor(Math.random()*9 + 1);
+            var op = Math.floor(Math.random()*3);
+            pr.innerHTML = r1 + " " + operation[op] + " " +  r2 ;
+        }
+        if (l == 2){
+            var r3 = Math.floor(Math.random()*40 + 10);
+            var op1 = Math.floor(Math.random()*4);
+            if (op1 == 3){
+                var r4 = Math.floor(Math.random()*10 + 1);
+            }else if (op1 == 2){
+                var r4 = Math.floor(Math.random()*20 + 1);
+            }else{var r4 = Math.floor(Math.random()*40 + 10);}
+            pr.innerHTML = r3 + " " + operation[op1] + " " +  r4 ;
+        }
+        if (l == 3){
+            var r5 = Math.floor(Math.random()*900 + 100);
+            var r6 = Math.floor(Math.random()*900 + 100);
+            var op2 = Math.floor(Math.random()*4);
+            pr.innerHTML = r5 + " " + operation[op2] + " " +  r6 ;
+        }
+    }
+    var boo = false;
+    var myans = document.getElementById("myans");
+    fo.addEventListener("submit",(e) => {
+            e.preventDefault();
+        var l = le.value;
+        if (l == 1 || l == 2 || l == 3){
+         boo = true;
+         var ans1 = eval(pr.innerHTML);
+        var ans = ans1.toFixed(3);
+        var mya = eval(myans.value);
+        var my = mya.toFixed(3);
+        if (ans == my){
+            var noeas = document.getElementById("noeasy");
+            var nomed = document.getElementById("nomed");
+            var nohard = document.getElementById("nohard");
+            if (l == 1){
+                noeas.innerHTML = eval(noeas.innerHTML) + 1;
+            }
+            if (l == 2){
+                nomed.innerHTML = eval(nomed.innerHTML) + 1;
+            }
+            if (l == 3){
+                nohard.innerHTML = eval(nohard.innerHTML) + 1;
+            }
+            
+            alert("right answer");
+            myans.value = "";
+            level();
+        }else{
+            var per = confirm("wrong answer, Do u want to skip the sum ");
+            if (per){
+            myans.value = "";
+             level();
+            }
+        }
+        }else{
+            alert("select level");
+        }
+    });
+    var t = 0;
+    setInterval(function(){
+        var ru = document.getElementById("run");
+        if (boo){
+         ru.innerHTML = t;
+        t += 1;   
+        }
+    },1000);
+</script>
+</body>
+</html>
