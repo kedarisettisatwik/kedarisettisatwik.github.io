@@ -280,7 +280,9 @@
         var soc = 0;
        
     setInterval(function (){
-        for(var i = 1;i<5;i++){
+        if (onlystart != 0){
+            
+            for(var i = 1;i<5;i++){
             for(var j =1;j<5;j++){
                 var d = document.getElementById("bb"+i+j);
                 if (parseInt(d.innerHTML) == 2){
@@ -354,6 +356,9 @@
                     d.style.fontSize = "65px";
                 }
             }
+            
+        }
+        
         }
     },10);
             
