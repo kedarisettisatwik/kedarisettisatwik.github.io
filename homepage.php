@@ -1,0 +1,559 @@
+<html>
+<head>
+    <title>splash</title>
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            width:100vw;
+            height:100vh;
+            background-color:white;
+        }
+        .menu{
+            position:relative;
+            margin-top:10px;
+            width:100vw;
+            height:200px;
+            background-color:white;
+            box-shadow:5px 5px 30px grey,-15px -5px 30px ghostwhite;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+        .menubar,.searchbar{
+            margin:0 100px 0 100px;
+            cursor:pointer;
+        }
+        .myname{
+            cursor: pointer;
+            background-color:rgb(0, 0, 153);
+            color: white;
+            margin:0 40px 0 40px;
+            padding:20px;
+            border-radius:20px;
+            font-size:500%;
+            text-transform: uppercase;
+            font-family: 'Roboto', sans-serif;
+            letter-spacing:2px;
+        }
+        .menuicon,.searchicon{
+            width:80px;
+            height:auto;
+            transition:0.5s;
+        }
+        .open{
+            transform:rotateZ(0deg);
+        }
+        .close{
+            transform: rotateZ(90deg);
+        }
+        .container{
+            position: relative;
+            margin-top:10px;
+            width:100vw;
+            height:350px;
+            display:flex;
+            justify-content: center;
+            align-items:center;
+        }
+        .chat,.searching,.menuopen{
+            position: absolute;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            flex-wrap:wrap;
+            width:100vw;
+            height:350px;
+        }
+        #chatting{
+            display:flex;
+        }
+        #searching{
+            display:none;
+        }
+        #menuopen{
+            display:none;
+        }
+        
+        .chat h1{
+            text-transform: uppercase;
+            font-family: 'Roboto', sans-serif;
+            font-size:300%;
+            letter-spacing:5px;
+        }
+        .chat label button{
+            color:white;
+            background-color:rgb(0, 0, 153);
+            padding:30px;
+            text-transform: uppercase;
+            font-family: 'Roboto', sans-serif;
+            font-size:200%;
+            letter-spacing:5px;
+            margin:0 20px 0 20px;
+            font-weight:bold;
+            border-radius:30px;
+            outline: none;
+            border:none;
+            box-shadow:5px 5px 8px grey;
+        }
+        .chat label{
+            margin-top:20px;
+        }
+        .searching form input[type="text"]{
+            outline:none;
+            border:5px solid grey;
+            padding:20px 30px 20px 30px;
+            font-family: 'Roboto', sans-serif;
+            font-size:250%;
+            letter-spacing:5px;
+            border-radius:40px;
+        }
+        .searching span{
+            color:darkblue;
+            text-transform: uppercase;
+            font-family: 'Roboto', sans-serif;
+            font-size:180%;
+            letter-spacing:5px;
+            margin-top:70px;
+            font-weight:bold;
+        }
+        .searching form input[type="submit"]{
+            outline:none;
+            padding:20px 30px 20px 30px;
+            text-transform: uppercase;
+            font-family: 'Roboto', sans-serif;
+            font-size:180%;
+            letter-spacing:5px;
+            border-radius:30px;
+            margin:0 20px 0 20px;
+            font-weight:bold;
+            background-color:rgb(0, 0, 153);
+            color:white;
+        }
+        .menuopen label{
+            color:darkblue;
+            text-transform: uppercase;
+            font-family: 'Roboto', sans-serif;
+            font-size:180%;
+            letter-spacing:5px;
+            margin:20px 0px;
+            font-weight:bold;
+        }
+        .menuopen label img{
+            margin:0 20px;
+        }
+        .context{
+            position: relative;
+            width:90vw;
+            height:100px;
+            background-color:lightpink;
+            text-transform: uppercase;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items:center;
+            font-size:180%;
+            letter-spacing:5px;
+            border-radius:10px;
+            margin:10px auto;
+            font-weight:bold;
+        }
+        #writemsg{
+            z-index: 1;
+            padding:100px 0px;
+            width:100vw;
+            height:1100px;
+            position:fixed;
+            top:220px;
+            background-color:ghostwhite;
+            margin-left:-100vw;
+            transition:0.6s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #writemsg form{
+            width:80%;
+            display: flex;
+            flex-direction: column;
+        }
+        #writemsg h1{
+            text-transform: uppercase;
+            font-family: 'Roboto', sans-serif;
+            font-size:200%;
+            letter-spacing:5px;
+            margin-top:70px;
+            font-weight:bold;
+            margin-bottom:50px;
+        }
+        #writemsg form .in,#writemsg form textarea{
+            width:90%;
+            padding:20px 30px 20px 30px;
+            font-size:220%;
+            margin:20px 0px;
+            outline:none;
+            border:2px solid grey;
+        }
+        #writemsg form textarea{
+            min-height:300px;
+            white-space:pre-wrap;
+            word-wrap: break-word;
+            resize:none;
+        }
+        #writemsg form input[type="submit"]{
+            width:60%;
+            outline:none;
+            padding:20px 30px 20px 30px;
+            text-transform: uppercase;
+            font-family: 'Roboto', sans-serif;
+            font-size:180%;
+            letter-spacing:5px;
+            border-radius:30px;
+            margin-top:40px;
+            font-weight:bold;
+            background-color:lightpink;
+            color:darkblue;
+        }
+        #writemsg form label{
+            color:darkblue;
+            text-transform: uppercase;
+            font-family: 'Roboto', sans-serif;
+            font-size:180%;
+            letwritereviewter-spacing:5px;
+            margin:10px 0px;
+            font-weight:bold; 
+        }
+        #writemsg button{
+            outline:none;
+            padding:20px 30px 20px 30px;
+            text-transform: uppercase;
+            font-family: 'Roboto', sans-serif;
+            font-size:180%;
+            letter-spacing:5px;
+            border-radius:30px;
+            margin-top:40px;
+            font-weight:bold;
+            background-color:rgb(0, 0, 153);
+            color:white;
+        }
+        #writereview{
+            z-index: 1;
+            width:100vw;
+            height:1200px;
+            position:fixed;
+            top:220px;
+            background-color:ghostwhite;
+            margin-left:100vw;
+            transition:0.6s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        
+        #writereview form{
+            width:80%;
+            display: flex;
+            flex-direction: column;
+        }
+        #writereview h1{
+            text-transform: uppercase;
+            font-family: 'Roboto', sans-serif;
+            font-size:200%;
+            letter-spacing:5px;
+            margin-top:70px;
+            font-weight:bold;
+            margin-bottom:50px;
+        }
+        #writereview form .in,#writereview form textarea{
+            width:90%;
+            padding:20px 30px 20px 30px;
+            font-size:220%;
+            margin:20px 0px;
+            outline:none;
+            border:2px solid grey;
+        }
+        #writereview form textarea{
+            min-height:300px;
+            white-space:pre-wrap;
+            word-wrap: break-word;
+            resize:none;
+        }
+        #writereview form input[type="submit"]{
+            width:60%;
+            outline:none;
+            padding:20px 30px 20px 30px;
+            text-transform: uppercase;
+            font-family: 'Roboto', sans-serif;
+            font-size:180%;
+            letter-spacing:5px;
+            border-radius:30px;
+            margin-top:40px;
+            font-weight:bold;
+            background-color:lightpink;
+            color:darkblue;
+        }
+        #writereview form label{
+            color:darkblue;
+            text-transform: uppercase;
+            font-family: 'Roboto', sans-serif;
+            font-size:180%;
+            letter-spacing:5px;
+            margin:10px 0px;
+            font-weight:bold; 
+        }
+        #writereview button{
+            outline:none;
+            padding:20px 30px 20px 30px;
+            text-transform: uppercase;
+            font-family: 'Roboto', sans-serif;
+            font-size:180%;
+            letter-spacing:5px;
+            border-radius:30px;
+            margin-top:40px;
+            font-weight:bold;
+            background-color:rgb(0, 0, 153);
+            color:white;
+        }
+        .btns{
+            width:100vw;
+            position: relative;
+            margin-top:50px;
+            display: flex;
+            justify-content:center;
+            align-items:center;
+            z-index:0;
+        }
+        .btns button{
+            font-size:200%;
+            padding:30px;
+            border:none;
+            outline:none;
+            margin:0 50px;
+            text-transform:uppercase;
+            letter-spacing:5px;
+            font-family: 'Roboto', sans-serif;
+        }
+        #reviews{
+            width:100vw;
+            position: relative;
+            margin-top:50px;
+            display: flex;
+            justify-content:center;
+            align-items:center;
+            z-index:0;
+            flex-direction: column;
+        }
+        #reviews .box1{
+            width:90vw;
+            height:300px;
+            border:2px solid grey;
+            margin:10px 0px;
+            color:darkblue;
+            text-transform: uppercase;
+            font-family: 'Roboto', sans-serif;
+            font-size:200%;
+            letter-spacing:5px;
+            margin-top:70px;
+            font-weight:bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #reviews .box{
+            width:80vw;
+            min-height:200px;
+            border:2px solid grey;
+            margin:10px 0px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            padding:30px;
+        }
+        #reviews .box span{
+            color:darkblue;
+            text-transform: uppercase;
+            font-family: 'Roboto', sans-serif;
+            font-size:180%;
+            letter-spacing:5px;
+            margin-top:70px;
+            font-weight:bold;
+        }
+        #reviews .box label{
+            font-family: 'Roboto', sans-serif;
+            font-size:180%;
+            letter-spacing:5px;
+            margin-top:70px;
+            font-weight:bold;
+        }
+    </style>
+</head>
+<body>
+    <section class="menu" id="menu">
+      <div class="menubar" title="Menu">
+          <img src="menu.png" onclick="menubar(menuicon)" class="menuicon open" id="menuicon">
+      </div>
+      <div class="myname">
+        kedar
+      </div>
+      <div class="searchbar" title="Google Search">
+        <img src="search.png" onclick="searchbar()" class="searchicon">
+      </div>
+    </section>
+    <section class="container">
+      <section class="chat" id="chatting">
+          <h1>chat with me</h1><br>
+          <label>
+          <button onclick="writemsg1()">MESSAGE ME !</button>
+          <button onclick="writereview1()">WRITE A REVIEW</button>
+          </label>
+      </section>
+      <section class="searching" id="searching">
+        <form action="https://www.google.com/search" method="get">
+          <input type="text" placeholder="Google Search ..." name="q">
+          <input type="submit" value="SEARCH">
+        </form>
+          <span onclick="chat()">chat with me !</span>
+      </section>
+      <section class="menuopen" id="menuopen">
+          <label>about Website Designer</label>
+          <label class="icons">
+            <img src="001-facebook.png" style="width:80px;height: auto" onclick="navigate(1)">
+            <img src="002-instagram.png" style="width:80px;height: auto" onclick="navigate(2)">
+            <img src="003-youtube.png" style="width:80px;height: auto" onclick="navigate(3)">  
+            <img src="p.jpeg" style="width:80px;height: auto" onclick="navigate(4)">
+          </label>
+          <label>created on 20 - 03 - 2021</label>
+      </section>
+    </section>
+    <section class="context">
+    gain knowledge freely..
+    </section>
+    <section id="writemsg">
+    <h1>write a message </h1>
+    <form autocomplete="off" method="post" action="https://script.google.com/macros/s/AKfycbxKtcFXO9Fz-y1m1iDuRck3UAYC-OrjRIoq8F64big2PMnlybZUT4jcoF4vVWIkNA60/exec">
+        <label>name (required) :</label>
+        <input type="text" required class="in" name="name" id="name">
+        <label>email-id (required) :</label>
+        <input type="email" required class="in" name="email" id="email">
+        <label>message (required) :</label>
+        <textarea required name="message" id="message"></textarea>
+        <input type="submit" value="send">
+    </form>
+    <button onclick="backmsgreview()">BACK</button>
+    </section>
+    <section id="writereview">
+    <h1>write a review </h1>
+    <form autocomplete="off" id="formreview">
+        <label>name (required) :</label>
+        <input type="text" required class="in" name="name1" >
+        <label>email-id (optional) :</label>
+        <input type="email" class="in" name="email1" required>
+        <label>message (required) :</label>
+        <textarea required name="message1"></textarea>
+        <input type="submit" value="send">
+    </form>
+    <button onclick="backmsgreview()">BACK</button>
+    </section>
+    
+    <section class="btns">
+        <button>review's</button>
+        <button>course's</button>
+    </section>
+    <section id="reviews">
+    <?php
+        $conn1 = mysqli_connect("localhost","root","","chatgroup");
+        $sql1 = "SELECT name,email,message FROM chats";
+        $result = $conn1 -> query($sql1);
+        if ($result -> num_rows > 0){
+            while ($row = $result -> fetch_assoc()){
+                echo "<section class = 'box'><span>".$row['name']."</span><span>".$row['email']."</span><label>".$row['message']."</label></section>";
+            }
+        }else{
+            echo "<section class = 'box1'>Be the first person to write review</section>";
+        }
+    ?>
+    
+    </section>
+    <script>
+        var chatt = document.getElementById("chatting");
+        var search = document.getElementById("searching");
+        var menu = document.getElementById("menuopen");
+    function menubar(a){
+        if(a.classList.contains("open")){
+            a.classList.remove("open");
+            a.classList.add("close");
+            chatt.style.display = "none";
+            search.style.display = "none";
+            menu.style.display = "flex";
+        }else{
+            a.classList.add("open");
+            a.classList.remove("close");
+            chatt.style.display = "flex";
+            search.style.display = "none";
+            menu.style.display = "none";
+        }
+    }
+    function searchbar(){
+        chatt.style.display = "none";
+        search.style.display = "flex";
+        menu.style.display = "none";
+    }
+    function chat(){
+        chatt.style.display = "flex";
+        search.style.display = "none";
+        menu.style.display = "none";
+    }
+    function navigate(c){
+            if (c == 1){  location.assign("https://www.facebook.com/profile.php?id=100008718079201");
+            }
+            if (c == 2){ location.assign("https://www.instagram.com/p/CLMt8zzF4SdQagQQeiqo40zKpOkGtdiH-5fMlY0/?igshid=1ssat0zj5iic5");
+            }
+            if (c == 3){ location.assign("https://youtube.com/channel/UCpLOopnR9TX9b1fjcDpapsw");
+            }
+            if (c == 4){ location.assign("https://kedarisettisatwik.github.io/index.html");
+            }
+    }
+        var msg = document.getElementById("writemsg");
+        var review = document.getElementById("writereview");
+    function writemsg1(){
+        msg.style.marginLeft = "0vw";
+        review.style.marginLeft = "100vw";
+    }
+    function writereview1(){
+        msg.style.marginLeft = "-100vw";
+        review.style.marginLeft = "0vw";
+    }
+    function backmsgreview(){
+        msg.style.marginLeft = "-100vw";
+        review.style.marginLeft = "100vw";
+    }
+    var reviewform = document.getElementById("formreview");
+        reviewform.onsubmit = (e) => {
+            e.preventDefault();
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST","db1.php",true);
+            xhr.onload = ()=> {
+                if(xhr.readyState === XMLHttpRequest.DONE){
+                    if (xhr.status === 200){
+                        let data = xhr.response;
+                         alert(data);
+                        if (data == "thank you for writting review"){
+                            location.reload();
+                        }
+                    }
+                }
+            }
+            let formData = new FormData(reviewform);
+            xhr.send(formData);
+        }
+    </script>
+</body>
+</html>
