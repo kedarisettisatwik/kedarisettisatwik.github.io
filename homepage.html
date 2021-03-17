@@ -165,7 +165,6 @@
             font-weight:bold;
         }
         #writemsg{
-            z-index: 1;
             padding:100px 0px;
             width:100vw;
             height:1100px;
@@ -178,6 +177,7 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            z-index: 1;
         }
         #writemsg form{
             width:80%;
@@ -244,7 +244,6 @@
             color:white;
         }
         #writereview{
-            z-index: 1;
             width:100vw;
             height:1200px;
             position:fixed;
@@ -256,6 +255,7 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
+            z-index:1;
         }
         
         #writereview form{
@@ -341,58 +341,6 @@
             letter-spacing:5px;
             font-family: 'Roboto', sans-serif;
         }
-        #reviews{
-            width:100vw;
-            position: relative;
-            margin-top:50px;
-            display: flex;
-            justify-content:center;
-            align-items:center;
-            z-index:0;
-            flex-direction: column;
-        }
-        #reviews .box1{
-            width:90vw;
-            height:300px;
-            border:2px solid grey;
-            margin:10px 0px;
-            color:darkblue;
-            text-transform: uppercase;
-            font-family: 'Roboto', sans-serif;
-            font-size:200%;
-            letter-spacing:5px;
-            margin-top:70px;
-            font-weight:bold;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        #reviews .box{
-            width:80vw;
-            min-height:200px;
-            border:2px solid grey;
-            margin:10px 0px;
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            padding:30px;
-        }
-        #reviews .box span{
-            color:darkblue;
-            text-transform: uppercase;
-            font-family: 'Roboto', sans-serif;
-            font-size:180%;
-            letter-spacing:5px;
-            margin-top:70px;
-            font-weight:bold;
-        }
-        #reviews .box label{
-            font-family: 'Roboto', sans-serif;
-            font-size:180%;
-            letter-spacing:5px;
-            margin-top:70px;
-            font-weight:bold;
-        }
     </style>
 </head>
 <body>
@@ -451,37 +399,22 @@
     </section>
     <section id="writereview">
     <h1>write a review </h1>
-    <form autocomplete="off" id="formreview">
+    <form autocomplete="off" method="post" action="https://script.google.com/macros/s/AKfycbxKtcFXO9Fz-y1m1iDuRck3UAYC-OrjRIoq8F64big2PMnlybZUT4jcoF4vVWIkNA60/exec">
         <label>name (required) :</label>
-        <input type="text" required class="in" name="name1" >
-        <label>email-id (optional) :</label>
-        <input type="email" class="in" name="email1" required>
+        <input type="text" required class="in" name="name" id="name">
+        <label>email-id (required) :</label>
+        <input type="email" required class="in" name="email" id="email">
         <label>message (required) :</label>
-        <textarea required name="message1"></textarea>
+        <textarea required name="message" id="message"></textarea>
         <input type="submit" value="send">
     </form>
     <button onclick="backmsgreview()">BACK</button>
     </section>
-    
     <section class="btns">
-        <button>review's</button>
+        <button>event's</button>
         <button>course's</button>
     </section>
-    <section id="reviews">
-    <?php
-        $conn1 = mysqli_connect("localhost","root","","chatgroup");
-        $sql1 = "SELECT name,email,message FROM chats";
-        $result = $conn1 -> query($sql1);
-        if ($result -> num_rows > 0){
-            while ($row = $result -> fetch_assoc()){
-                echo "<section class = 'box'><span>".$row['name']."</span><span>".$row['email']."</span><label>".$row['message']."</label></section>";
-            }
-        }else{
-            echo "<section class = 'box1'>Be the first person to write review</section>";
-        }
-    ?>
     
-    </section>
     <script>
         var chatt = document.getElementById("chatting");
         var search = document.getElementById("searching");
@@ -535,25 +468,6 @@
         msg.style.marginLeft = "-100vw";
         review.style.marginLeft = "100vw";
     }
-    var reviewform = document.getElementById("formreview");
-        reviewform.onsubmit = (e) => {
-            e.preventDefault();
-            let xhr = new XMLHttpRequest();
-            xhr.open("POST","db1.php",true);
-            xhr.onload = ()=> {
-                if(xhr.readyState === XMLHttpRequest.DONE){
-                    if (xhr.status === 200){
-                        let data = xhr.response;
-                         alert(data);
-                        if (data == "thank you for writting review"){
-                            location.reload();
-                        }
-                    }
-                }
-            }
-            let formData = new FormData(reviewform);
-            xhr.send(formData);
-        }
     </script>
 </body>
 </html>
