@@ -539,23 +539,27 @@
             chatt.style.display = "none";
             search.style.display = "none";
             menu.style.display = "flex";
+            sound.play();
         }else{
             a.classList.add("open");
             a.classList.remove("close");
             chatt.style.display = "flex";
             search.style.display = "none";
             menu.style.display = "none";
+            sound.play();
         }
     }
     function searchbar(){
         chatt.style.display = "none";
         search.style.display = "flex";
         menu.style.display = "none";
+        sound.play();
     }
     function chat(){
         chatt.style.display = "flex";
         search.style.display = "none";
         menu.style.display = "none";
+        sound.play();
     }
     function navigate(c){
             if (c == 1){  location.assign("https://www.facebook.com/profile.php?id=100008718079201");
@@ -574,12 +578,14 @@
                 var c = document.getElementById("box_courses");
                 u.style.display = "none";
                 c.style.display = "flex";
+                sound.play();
             }
             if (c == 7){
                 var u = document.getElementById("box_updates");
                 var c = document.getElementById("box_courses");
                 c.style.display = "none";
                 u.style.display = "flex";
+                sound.play();
             }
         
     }
@@ -588,26 +594,20 @@
     function writemsg1(){
         msg.style.marginLeft = "0vw";
         review.style.marginLeft = "100vw";
+        sound.play();
     }
     function writereview1(){
         msg.style.marginLeft = "-100vw";
         review.style.marginLeft = "0vw";
+        sound.play();
     }
     function backmsgreview(){
         msg.style.marginLeft = "-100vw";
         review.style.marginLeft = "100vw";
+        sound.play();
     }
-    function notification1(){
-        const notification = new Notification("New message from kedar",{
-           body:"Thank you for visting..",
-           icon:"logo.png"
-        });
-    }
-    console.log(Notification.permission);
-        
-        if (Notification.permission === "default" || Notification.permission === "granted"){
-            notification1();
-        }
+        var sound = new Audio();
+        sound.src = "button-20.mp3";
     </script>
 </body>
 </html>
