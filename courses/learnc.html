@@ -23,55 +23,86 @@
         .main{
             margin:10px 0;
             width:85vw;
+            overflow: hidden;
             position: relative;
             border:2px solid grey;
             background-color: whitesmoke;
             padding:40px;
             display: flex;
-            justify-content: center;
             align-items:center;
             flex-direction: column;
+        }
+        .less{
+            height:150px;
+        }
+        .more{
+            height: auto;
         }
         .main h1{
             text-align: center;
             width:100%;
             border-bottom:4px solid darkblue;
-            font-size:230%;
+            font-size:3em;
             padding:0 0 20px 0;
             text-transform: uppercase;
             font-family: 'Roboto', sans-serif;
             letter-spacing:3px; 
         }
-        .main p ,.main a{
+        .main p{
+            word-wrap: break-word;
+            white-space: pre-wrap;
             width:100%;
             margin-top:10px;
-            font-size:210%;
+            font-size:2.2em;
             font-family: 'Roboto', sans-serif;
             letter-spacing:3px; 
-            color:black;
         }
         .main a{
+            width:100%;
+            margin-top:10px;
+            font-size:2.2em;
+            font-family: 'Roboto', sans-serif;
+            letter-spacing:3px; 
             text-decoration: none;
         }
     </style>
     </head>
 <body id="container">
-    <section class="main">
+    <section class="main less" id="chapters" onclick="seemore(0)">
     <h1>chapters in c</h1>
-    <a href="chaptersinc.pdf" download>Here is a pdf</a>
+    <a href="https://drive.google.com/file/d/1m5ivtXhCg3p-ZReq7QxuNFsSaY75u_7B/view?usp=sharing">Here is a pdf</a>
     </section>
     <!--
-     <section class="main">
+     <section class="main" id="" ondbclick="seemore()">
     <h1></h1>
     <p></p>
     </section>
     -->
-    <section class="main">
+    <section class="main less" id="workplace" onclick="seemore(1)">
+    <h1>work place</h1>
+    <p>link for online compiler : </p>
+    <a href="https://www.onlinegdb.com/online_c_compiler" target="_blank">online compiler</a>
+    <p>for offline it is better to use codeblocks , here is link how to download codeblocks. </p>
+    <a href="https://youtu.be/GWJqsmitR2I" target="_blank">code-blocks</a>
+    </section>
+    <section class="main less" id="history" onclick="seemore(2)">
     <h1>1. history of computer's ..</h1>
-    <p>presently we are using fifth generation computer's. <br> In first generation : </p>
+    <p>presently we are using 5th generation computer's. <br><br><strong>In first generation (1946 - 1959) :</strong><br>computers are manufactured using thousands of vaccum tubes. which are made up of fragile glass.<br>programming is done by using maching learning.<br>examples : <strong>ENIAC, EDVAC, EDSAC, IBM701</strong><br><br><strong>In second generation (1959 - 1965):</strong><br>usage of transistors, high development programming languages started.<br>examples : <strong>IBM 7030, CDC 1604, HONEY WELL 400</strong><br><br><strong>In third generation (1965 - 1971) :</strong><br>invention of integrated chips <strong>( IC )</strong>which consists of thousands of transistors, capacitors, resistors on a single chip.<br>examples :<strong>IBM 360/370, CDC 6600, PDP - 8</strong>
+    </p>
     </section>
     
     <script>
+        var li = ["chapters","workplace","history"]
+        function seemore(a){
+            var el = document.getElementById(li[a]);
+            if(el.classList.contains("less")){
+                el.classList.remove("less");
+                el.classList.add("more");
+            }else{
+               el.classList.remove("more");
+                el.classList.add("less"); 
+            }
+        }
     </script>
 </body>
 </html>
