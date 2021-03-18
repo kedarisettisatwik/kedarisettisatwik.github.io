@@ -341,6 +341,77 @@
             letter-spacing:5px;
             font-family: 'Roboto', sans-serif;
         }
+        .box{
+            margin:50px auto;
+            position: relative;
+            width:95vw;
+            min-height:900px;
+            overflow-y: auto;
+            box-shadow:inset 5px 5px 10px grey,inset -15px -5px 10px ghostwhite;
+        }
+        #box_courses,#box_updates{
+        padding:100px 0;
+         position: absolute;
+         width:100%;
+        min-height:900px;
+        justify-content: center;
+        align-items:center;
+        flex-direction: column;
+        }
+        #box_courses{
+            display:flex;
+        }
+        #box_updates{
+            margin:0 auto;
+            display:none;
+        }
+        #box_courses div{
+            margin:30px 0;
+            width:80%;
+            border:2px solid grey;
+            min-height:300px;
+            padding:20px 50px;
+        }
+        #box_courses div h1{
+            color:darkblue;
+            text-transform: uppercase;
+            font-family: 'Roboto', sans-serif;
+            font-size:450%;
+            letter-spacing:5px;
+            margin-top:60px;
+            font-weight:bold;
+        }
+        #box_courses div p{
+            font-family: 'Roboto', sans-serif;
+            font-size:200%;
+            letter-spacing:5px;
+            margin-top:10px;
+            margin-bottom:30px;
+            font-weight:bold;
+        }
+        #box_courses div a{
+            font-family: 'Roboto', sans-serif;
+            font-size:200%;
+            letter-spacing:5px;
+            margin-top:10px;
+            font-weight:bold;
+            text-decoration: none;
+        }
+        #box_updates div{
+            width:80%;
+            min-height:200px;
+            padding:20px 50px;
+            background-color:whitesmoke;
+            margin:30px auto;
+        }
+        #box_updates p,#box_updates span{
+            font-family: 'Roboto', sans-serif;
+            font-size:200%;
+            letter-spacing:5px;
+            margin-top:10px;
+            font-weight:bold;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -378,7 +449,7 @@
             <img src="003-youtube.png" style="width:80px;height: auto" onclick="navigate(3)">  
             <img src="p.jpeg" style="width:80px;height: auto" onclick="navigate(4)">
           </label>
-          <label>created on 20 - 03 - 2021</label>
+          <label onclick="navigate(5)">see review's</label>
       </section>
     </section>
     <section class="context">
@@ -399,20 +470,62 @@
     </section>
     <section id="writereview">
     <h1>write a review </h1>
-    <form autocomplete="off" method="post" action="https://script.google.com/macros/s/AKfycbxKtcFXO9Fz-y1m1iDuRck3UAYC-OrjRIoq8F64big2PMnlybZUT4jcoF4vVWIkNA60/exec">
+    <form autocomplete="off" method="post" action="https://script.google.com/macros/s/AKfycbwY7Z1901_LYrfhWfjVUSSu3D6i64eM9xhrttQFmK6GOdDVd-gDHFlvtjMPA07XdDri7Q/exec">
         <label>name (required) :</label>
-        <input type="text" required class="in" name="name" id="name">
+        <input type="text" required class="in" name="name" id="user">
         <label>email-id (required) :</label>
-        <input type="email" required class="in" name="email" id="email">
+        <input type="email" required class="in" name="email_id" id="email_id">
         <label>message (required) :</label>
-        <textarea required name="message" id="message"></textarea>
+        <textarea required name="review" id="review"></textarea>
         <input type="submit" value="send">
     </form>
     <button onclick="backmsgreview()">BACK</button>
     </section>
     <section class="btns">
-        <button>event's</button>
-        <button>course's</button>
+        <button onclick="navigate(6)">course's</button>
+        <button onclick="navigate(7)">event's</button>
+    </section>
+    <section class="box">
+        <section id="box_updates">
+        <div>
+            <p>Hi, I am satwik. You can learn different languages and improve and explore you self ..</p>
+            <br>
+            <span>22 - 03 - 2021</span>
+        </div>
+        </section>
+        
+        <section id="box_courses">
+          <div> 
+            <h1>html</h1>
+            <p>HTML is a language to create web pages..</p>
+            <a href="">open course</a>
+         </div>
+           <div> 
+            <h1>css</h1>
+            <p>CSS is a language to make web pages stylish, css works along with html..</p>
+            <a href="">open course</a>
+         </div>
+            <div> 
+            <h1>js</h1>
+            <p>using JS we can create functanality, i.e clicking , page navigation , math calculation etc.. , js works along with html</p>
+            <a href="">open course</a>
+         </div>
+            <div> 
+            <h1>php</h1>
+            <p>PHP is updated html using database, php works along with my sql</p>
+            <a href="">open course</a>
+         </div>
+            <div>
+            <h1>python</h1>
+            <p>programming computer langauage</p>
+            <a href="">open course</a>
+         </div>
+            <div>
+            <h1>c</h1>  
+            <p>programming computer langauage</p>
+            <a href="">open course</a>
+        </div>
+        </section>
     </section>
     
     <script>
@@ -453,6 +566,22 @@
             }
             if (c == 4){ location.assign("https://kedarisettisatwik.github.io/index.html");
             }
+            if (c == 5){
+                location.assign("https://docs.google.com/spreadsheets/d/e/2PACX-1vTNkV9uSgzYdBuos5xdVzqCFIeI--iKy_LH7r23xuFNv9RxV66GNnTibSzoeyFIyDtazMPv0-rz6ics/pubhtml?gid=0&single=true");
+            }
+            if (c == 6){
+                var u = document.getElementById("box_updates");
+                var c = document.getElementById("box_courses");
+                u.style.display = "none";
+                c.style.display = "flex";
+            }
+            if (c == 7){
+                var u = document.getElementById("box_updates");
+                var c = document.getElementById("box_courses");
+                c.style.display = "none";
+                u.style.display = "flex";
+            }
+        
     }
         var msg = document.getElementById("writemsg");
         var review = document.getElementById("writereview");
@@ -468,6 +597,7 @@
         msg.style.marginLeft = "-100vw";
         review.style.marginLeft = "100vw";
     }
+        
     </script>
 </body>
 </html>
