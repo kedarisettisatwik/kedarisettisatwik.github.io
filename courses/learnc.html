@@ -73,7 +73,7 @@
     <a href="https://drive.google.com/file/d/1m5ivtXhCg3p-ZReq7QxuNFsSaY75u_7B/view?usp=sharing">Here is a pdf</a>
     </section>
     <!--
-     <section class="main" id="" ondbclick="seemore()">
+     <section class="main less" id="" onclick="seemore()">
     <h1></h1>
     <p></p>
     </section>
@@ -92,8 +92,20 @@
     </p>
     </section>
     
+    <section class="main less" id="ware" onclick="seemore(3)">
+    <h1>2. hard & soft ware</h1>
+    <p>we should know about some of the elements <br><br> <strong>DATA -</strong> all computer processors require data, which is a collection of raw facts, symbols, numbers, character's etc.. <br><br><strong>INFORMATION - </strong> a data is converted to information so that it can answer who what why when type of questions.<br><br>example: in our general sense : 94 is a data , i got 94 marks in exam is information.<br><br><strong>INPUT - </strong> computer will work based on the data,instructions given by user, the data that we give using keyboards, remote, mouse, touch etc.. are know as inputs.<br><br><strong>OUTPUT - </strong>the data present in screen we see is output.<br><br><strong>STORAGE UNIT - </strong>data has to be feed into system before actual processing starts.<br><br><strong>PROCESSOR - </strong> performs the task based on our instructions.(CPU)<br><br><strong>CONTROL UNIT - </strong> controlls the data traffic and flow of information between hardware and software components.<br><br><strong>ALU - </strong> Arthematic Logical Unit, the place where math calculations takes plaace.<br><br> <strong>1 BYTE = 8 BITS</strong><br>bit means a box in which comoputer stores 1 or 0<br><br><strong>MEMORY HIERACHY - </strong></p><a href="https://www.elprocus.com/wp-content/uploads/Memory-Hierarchy.jpg">click here !</a><p><strong>REGISTER MEMORY - </strong> data present in cpu or in buit data stores upto <strong>(2GB)</strong><br><br><strong>CACHE MEMORY - </strong> frequently opening applications,stores upto <strong>(>2GB)</strong><br><br><strong>MAIN MEMORY - (RAM)</strong>Random Acessing Memory , the data of currently working application is present<strong>(12GB)</strong><br><br><strong>STORAGE DISKS - </strong>data in hard disk (total full data) <strong>(1TB )</strong><br><br><strong>MAGNETIC TAPES - </strong>external devices like pendrive etc..<strong>(any size)</strong><br>
+    <br>understand clearly : <br> assume that we are using a smartphone and we want to open whatapp , the data alloted for whatsapp is present in harddrive, if we click on whatapp the data from harddrive is transferred to RAM , again after closing whatsapp the data will go back to harddrive and the RAM will be empty, but if we do the same process repeatedly then the data will be stored in cache so that when you again clicked on whaatapp the data is ready in cache.
+    </p>
+    </section>
+    
+    <section class="main less" id="intro" onclick="seemore(4)">
+    <h1>3. programming..</h1>
+    <p>generally we divide language into 2 types HIGH LEVEL LANGUAGE , LOW LEVEL LANGUAGE,<br><br>high level means java,python,programming languages,<br>low level means full of 0's and 1's only machines can read this..<br><br>the process of converting high level to low level is done by compiler , interpetter.<br><br><strong>COMPILER - </strong>means reads the full code that we write at a time, if full code is right then only it will show the output of our code,<br><br><strong>INTERPETTER - </strong>means reads one line after one line in code that we write, if there is wrong in code then the portion above that wrong will be executed..<br><br><strong>BASIC STRUCTURE OF C -</strong><br><br>#include&lt;stdio.h&gt;<br>int main {<br>here we should write extra code <br>return 0 ;<br>}</p>
+    </section>
+    
     <script>
-        var li = ["chapters","workplace","history"]
+        var li = ["chapters","workplace","history","ware","intro"]
         function seemore(a){
             var el = document.getElementById(li[a]);
             if(el.classList.contains("less")){
