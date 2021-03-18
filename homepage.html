@@ -597,7 +597,17 @@
         msg.style.marginLeft = "-100vw";
         review.style.marginLeft = "100vw";
     }
+    function notification1(){
+        const notification = new Notification("New message from kedar",{
+           body:"Thank you for visting..",
+           icon:"logo.png"
+        });
+    }
+    console.log(Notification.permission);
         
+        if (Notification.permission === "default" || Notification.permission === "granted"){
+            notification1();
+        }
     </script>
 </body>
 </html>
