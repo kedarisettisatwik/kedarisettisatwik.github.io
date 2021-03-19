@@ -11,6 +11,7 @@
             padding: 0;
         }
         body{
+            padding:100px 0px 100px 0;
             display: flex;
             justify-content:center;
             align-items: center;
@@ -32,13 +33,25 @@
             align-items:center;
             flex-direction: column;
         }
+        .main1{
+            margin:10px 0;
+            width:85vw;
+            overflow: hidden;
+            position: relative;
+            border:2px solid grey;
+            background-color:wheat;
+            padding:40px;
+            display: flex;
+            align-items:center;
+            flex-direction: column;
+        }
         .less{
             height:150px;
         }
         .more{
             height: auto;
         }
-        .main h1{
+        .main h1,.main1 h1{
             text-align: center;
             width:100%;
             border-bottom:4px solid darkblue;
@@ -48,7 +61,7 @@
             font-family: 'Roboto', sans-serif;
             letter-spacing:3px; 
         }
-        .main p{
+        .main p,.main1 p{
             word-wrap: break-word;
             white-space: pre-wrap;
             width:100%;
@@ -57,7 +70,7 @@
             font-family: 'Roboto', sans-serif;
             letter-spacing:3px; 
         }
-        .main a{
+        .main a,.main1 a{
             width:100%;
             margin-top:10px;
             font-size:2.2em;
@@ -70,7 +83,7 @@
 <body id="container">
     <section class="main less" id="chapters" onclick="seemore(0)">
     <h1>chapters in c</h1>
-    <a href="https://drive.google.com/file/d/1m5ivtXhCg3p-ZReq7QxuNFsSaY75u_7B/view?usp=sharing">Here is a pdf</a>
+    <P>click on chapters to expand..</P>
     </section>
     <!--
      <section class="main less" id="" onclick="seemore()">
@@ -104,8 +117,55 @@
     <p>generally we divide language into 2 types HIGH LEVEL LANGUAGE , LOW LEVEL LANGUAGE,<br><br>high level means java,python,programming languages,<br>low level means full of 0's and 1's only machines can read this..<br><br>the process of converting high level to low level is done by compiler , interpetter.<br><br><strong>COMPILER - </strong>means reads the full code that we write at a time, if full code is right then only it will show the output of our code,<br><br><strong>INTERPETTER - </strong>means reads one line after one line in code that we write, if there is wrong in code then the portion above that wrong will be executed..<br><br><strong>BASIC STRUCTURE OF C -</strong><br><br>#include&lt;stdio.h&gt;<br>int main {<br>here we should write extra code <br>return 0 ;<br>}</p>
     </section>
     
+    <section class="main less" id="keywords" onclick="seemore(5)">
+    <h1>4. key words</h1>
+    <p>key words means the in-built words or functions, computer know the meaning of these words and work on them following specific instructions..</p><br><a href="https://drive.google.com/file/d/1jSOZsVuapeGlSZyt0NRByqT5swJ--Pjk/view?usp=sharing">Here is a list of key words..</a>
+    </section>
+    
+    <section class="main less" id="varid" onclick="seemore(6)">
+    <h1>5. variables-identifiers..</h1>
+    <p>ifschool or college in solving maths problems we take unlnow quantity as x or a or something... <br>here also if you want to find sum of 2,3 we will write 2 + 3 , but in large programs it is better to write <br> a = 2 <br> b  = 3<br> a + b <br> here a , b are identifiers because computer will identify 2,3 as a, b</p><br><br><p>how to declare variables </p><br><br><p>#include&lt;stdio.h&gt;<br>int main(){<br>int a = 2;<br>int b = 3;<br>return 0 ;<br>}<br>here a , b are integers so int keyword is used before the identifer,<br>In C each statment should send with semicolon ; </p><br><br><p><strong>Rules in declaring variables..</strong><br>identifer should not match with any keyword.<br>Identifers must be unique if we have two numbers 5,6 then we should have seperate unique identifers for them i.e x = 5;y = 6;<br>identifer can contain underscores (_) , alphabets (lower case + upper case), numbers<br><br>But we should not start with numbers <br>a_1 = 5 is correct<br>1_a = 5 is wrong../p>
+    </section>
+    
+    <section class="main less" id="datatypes" onclick="seemore(7)">
+    <h1>6. data - types.. </h1>
+    <p>now we will observe and understand above chapter carefully. <br> our task is to give two numbers to computer.</p><br><p>so we know that we should give a identifer to them so let us give ab,cd as identifers, i.e <br>ab = 1st number; <br> cd = 2nd number ..</p><br><p><strong>if numbers are integers : </strong><br>#include&lt;stdio.h&gt;<br>int main(){<br>int ab = 2;<br>int cd = 3;<br>return 0 ;<br>}</p><br><p><strong>if numbers are decimal : </strong><br>#include&lt;stdio.h&gt;<br>int main(){<br>float ab = 1.56;<br>int cd = 3;<br>return 0 ;<br>}</p><br><p><strong>if we use aplhabets : </strong><br>#include&lt;stdio.h&gt;<br>int main(){<br>char ab = 'X';<br>char cd = 'Z';<br>return 0 ;<br>}</p><br><p>in above codes ab , cd are variables means the value of ab, cd can change by multiplying or operating any operating operation..<br><strong>if we want a constant :</strong><br>#include&lt;stdio.h&gt;<br>int main(){<br>const pi = 3.14;<br>return 0 ;<br>}<br>here value of pi cannot be change by any operation we can only read the value</p><br><p>the same thing is done is another way : <br>#include&lt;stdio.h&gt;<br>#define PI 3.14<br>int main(){<br>return 0 ;<br>}<br>here be carefull that identifer should be uppercase i.e PI not pi , we should not use = equal to symbol and no need of semi colon ;</p>
+    </section>
+    
+    <section class="main less" id="printf" onclick="seemore(8)">
+    <h1>7. print output</h1>
+    <p>we have seen how to declare variables a = 3 b = 4 now let's see how to print these values <br><br><strong>print integers : </strong><br>#include&lt;stdio.h&gt;<br>int main(){<br>int abc = 3;<br>int xyz = 4;<br><strong>printf("hello %d %d",abc,xyz);</strong><br>return 0 ;<br>}<br>here printf() is a inbuilt function <br>here %d is used for integers we are telling print %d %d means print two integers , identifier of 1st %d is abc , identifier of 2nd %d is xyz <br>so output is hello 3 4<br><br><strong>print decimals : </strong><br>#include&lt;stdio.h&gt;<br>int main(){<br>float abc = 3.5124;<br><strong>printf("decimal %f",abc);</strong><br>return 0 ;<br>}<br>here %fis used for decimals we are telling print %f means print decimal number, identifier of  %f is abc<br>so output is decimal 3.5124<br>if we write 0.2f instead of f then output will have upto 2 decimal places of f i.e 3.51<br><br><strong>print characters : </strong><br>#include&lt;stdio.h&gt;<br>int main(){<br>char abc = "x";<br><strong>printf("%c",abc);</strong><br>return 0 ;<br>}<br><br><strong>print text : </strong><br>#include&lt;stdio.h&gt;<br>int main(){<br><strong>printf("hello this is a text");</strong><br>return 0 ;<br>}<br></p>
+    </section>
+    
+    <section class="main less" id="take" onclick="seemore(9)">
+    <h1>8. take input</h1>
+    <p>#include&lt;stdio.h&gt;<br>int main(){<br>int abc;<br>printf("enter value of a :");<strong><br>scanf("%d",&abc);</strong><br>return 0 ;<br>}<br>here we have a integer abc but value to integer is not given, now we are asking user enter value of a the value that user enter will be given to abc here & symbol is important means we are scanning uaser input and giving to abc..<br>if i entered 5 then value of abc = 5</p>
+    </section>
+    
+    <section class="main less" id="line" onclick="seemore(10)">
+    <h1>9. line break</h1>
+    <p>#include&lt;stdio.h&gt;<br>int main(){<br>printf("good ");<br>printf(" morning")<br>return 0 ;<br>}<br>the output is good morning, but if we want good <br>morning <br>as output then you should use <strong>\n</strong><br><br>#include&lt;stdio.h&gt;<br>int main(){<br>printf("good ");<br>printf("\n morning")<br>return 0 ;<br>}<br>\n means braking line and going to next line..</p>
+    </section>
+    
+    <section class="main less" id="math" onclick="seemore(11)">
+    <h1>10. math operations..</h1>
+    <p>#include&lt;stdio.h&gt;<br>int main(){<br>int a = 10;<br>int b = 2;<br>int c;<br>c = a + b;<br>printf(" %d ",c);<br>printf(" %d ",a-b);<br>c = a * b;<br>printf(" %d ",c);<br>printf(" %d ",a/b);<br>printf(" %d ",a%b);<br>return 0 ;<br>}<br>the output is 12 8 20 5 0<br>here value of a = 10,b = 5 and value of c depends of a,b here starting c = a + b = 12 but after two lines i wrote c = a * b = 20 i.e value of c now became 20, a % b means reminder when a divides b </p>
+    </section>
+    
+    <section class="main less" id="comment" onclick="seemore(12)">
+    <h1>11. comments..</h1>
+    <p>#include&lt;stdio.h&gt;<br>int main(){<br>printf("hello");<br>/*this is a comment*/<br>return 0 ;<br>}<br>the output is hello <br>any text written in between /* */ will not visible<br>comments are written to make us more understanding code it</p>
+    </section>
+    
+    <section class="main1 less" id="ex1" onclick="seemore(13)">
+    <h1>12. a small program..</h1>
+    <p><strong>TASK : to find average of numbers<br><br>#include&lt;stdio.h&gt;<br>int main(){<br>int a = 1<br>int b = 3;<br>int c = 7;<br>float avg ;<br>/*average can be a decimal number so i have considered float */<br>avg = (a + b + c)/3;<br>printf("average = %f",avg);<br>return 0 ;<br>}
+    </strong></p><br><p>output is average = 3.667</p>
+    </section>
+    
     <script>
-        var li = ["chapters","workplace","history","ware","intro"]
+    var li = ["chapters","workplace","history","ware","intro","keywords",
+"varid","datatypes","printf","take","line","math","comment","ex1"]
         function seemore(a){
             var el = document.getElementById(li[a]);
             if(el.classList.contains("less")){
