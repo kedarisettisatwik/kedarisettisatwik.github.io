@@ -158,14 +158,30 @@
     </section>
     
     <section class="main1 less" id="ex1" onclick="seemore(13)">
-    <h1>12. a small program..</h1>
+    <h1>a small program..</h1>
     <p><strong>TASK : to find average of numbers<br><br>#include&lt;stdio.h&gt;<br>int main(){<br>int a = 1<br>int b = 3;<br>int c = 7;<br>float avg ;<br>/*average can be a decimal number so i have considered float */<br>avg = (a + b + c)/3;<br>printf("average = %f",avg);<br>return 0 ;<br>}
     </strong></p><br><p>output is average = 3.667</p>
     </section>
     
+    <section class="main less" id="operators" onclick="seemore(14)">
+    <h1>operators </h1>
+    <a href="https://cdn.journaldev.com/wp-content/uploads/2019/03/C-Operators.png">here is a list of operators : </a>
+    </section>
+    
+    <section class="main less" id="assign" onclick="seemore(15)">
+    <h1>12. assingnment operators </h1>
+    <p>we have already used one assignmment operator i.e equal to = <br> operators(symbols) that we use to assigna value to a variable are called assingment operators.<br><br><strong>=     +=     -=    /=    *=       %= </strong><br>these all are assignment operators now let's see how these work <br><br>#include&lt;stdio.h&gt;<br>int main(){<br>int a = 10;<br>int b = 2;<br>int c;<br>a += b ; /* value of a= a + b i.e 10 + 2*/<br>printf(" a = %d ",a);<br>b -= a ; /* value of b =  b - a i.e 2 - 12*/<br>printf("b = %d ",b);<br>c = a + b ; /* value of c =  a + b i.e 12 + - 10 i.e 2 */<br>printf("c = %d ",c);<br>return 0 ;<br>}<br>output is a = 12 b = -10 c = 2<br><br>so <br> x +=5 means x = x + 5 <br>y -= 2 means y = y - 2 <br>z = *= 4 means z = z * 4 <br>w /= 4 means w = w/4 <br>p %= 4 means p = p % 4</p>
+    </section>
+    
+    <section class="main less" id="if" onclick="seemore(16)">
+    <h1>13. if </h1>
+    <p>if is used if you want to check whether this stament is true or not,<br><br>let's see example<br>here is a programm that will take user's marks as input using scanf and if he got more than 50 it we will "print you have passed" otherwise it will "print you failed"<br><br>#include&lt;stdio.h&gt;<br>int main(){<br>int marks;<br>scanf("%d",&marks); /* taking user input and storing it to marks variable */<br><strong>if ( marks > 50 ){<br>printtf("you have passed);<br>}else{<br>printf("you failed");<br>}</strong><br>return 0 ;<br>}<br><br>here <br>if (condition you want){<br>this is work if condition is true<br>}else{<br>if condition is not true this will work<br>}<br><br> operators used for checking conditions are : <br> >=   &lt;=   >   &lt; <br> !=       for not equal <br> ==      for equal to condition</p>
+    </section>
+    
+    
     <script>
     var li = ["chapters","workplace","history","ware","intro","keywords",
-"varid","datatypes","printf","take","line","math","comment","ex1"]
+"varid","datatypes","printf","take","line","math","comment","ex1","operators","assign","if"]
         function seemore(a){
             var el = document.getElementById(li[a]);
             if(el.classList.contains("less")){
