@@ -211,11 +211,20 @@
     }<br>return 0 ;<br>}<br><br>please read and understand carefully ..</p>
     </section>
     
-    
+    <section class="main less" id="forloop" onclick="seemore(21)">
+    <h1>17. for loop</h1>
+    <img src="https://beginnersbook.com/wp-content/uploads/2017/09/for_loop_C.jpg" style="width:100%"><p>assume are waliking from start to end point along black lines, you will change direction of waliking based onthe conditions. you will walk in side loop untill the codition is false.</p>
+    <br>
+    <p>#include&lt;stdio.h&gt;<br>int main(){
+    for (int i = 1; i &lt; 6 ; i++){
+    printf("%d",i);    
+      }
+    }<br>return 0 ;<br>}<br>output is  1 2 3 4 5</p><p>here we have declared int i = 0 as starting value until i &lt; 6 the code inside loop will run but we are updating i value by writting i++ means once you go through code value of i will increment by 1 so by going 5 times through code i will increase to 6 and condition i &le; 6 will be false so it will exit loop ,so we have output of 5 numbers only</p>
+    </section>
     
     <script>
     var li = ["chapters","workplace","history","ware","intro","keywords",
-"varid","datatypes","printf","take","line","math","comment","ex1","operators","assign","if","onelineif","logic", "logoperators","nestedifelse" ]
+"varid","datatypes","printf","take","line","math","comment","ex1","operators","assign","if","onelineif","logic", "logoperators","nestedifelse","forloop"]
         function seemore(a){
             var el = document.getElementById(li[a]);
             if(el.classList.contains("less")){
