@@ -162,28 +162,31 @@
     <p><strong>TASK : to find average of numbers<br><br>#include&lt;stdio.h&gt;<br>int main(){<br>int a = 1<br>int b = 3;<br>int c = 7;<br>float avg ;<br>/*average can be a decimal number so i have considered float */<br>avg = (a + b + c)/3;<br>printf("average = %f",avg);<br>return 0 ;<br>}
     </strong></p><br><p>output is average = 3.667</p>
     </section>
-    
-    <section class="main less" id="operators" onclick="seemore(14)">
+    <section class="main1 less" id="ex2" onclick="seemore(14)">
+    <h1>DO THIS </h1>
+        <p><strong>TASK : wrire a program to find area of rectangle taking lenght and breath as inputs from user ..<br>area = lenght * breath </strong></p>
+    </section>
+    <section class="main less" id="operators" onclick="seemore(15)">
     <h1>operators </h1>
     <a href="https://cdn.journaldev.com/wp-content/uploads/2019/03/C-Operators.png">here is a list of operators : </a>
     </section>
     
-    <section class="main less" id="assign" onclick="seemore(15)">
+    <section class="main less" id="assign" onclick="seemore(16)">
     <h1>12. assingnment operators </h1>
     <p>we have already used one assignmment operator i.e equal to = <br> operators(symbols) that we use to assigna value to a variable are called assingment operators.<br><br><strong>=     +=     -=    /=    *=       %= </strong><br>these all are assignment operators now let's see how these work <br><br>#include&lt;stdio.h&gt;<br>int main(){<br>int a = 10;<br>int b = 2;<br>int c;<br>a += b ; /* value of a= a + b i.e 10 + 2*/<br>printf(" a = %d ",a);<br>b -= a ; /* value of b =  b - a i.e 2 - 12*/<br>printf("b = %d ",b);<br>c = a + b ; /* value of c =  a + b i.e 12 + - 10 i.e 2 */<br>printf("c = %d ",c);<br>return 0 ;<br>}<br>output is a = 12 b = -10 c = 2<br><br>so <br> x +=k means x = x + k <br>y -= k means y = y - k <br>z *= k means z = z * k <br>w /= k means w = w/k <br>p %= k means p = p % k<br><br>special usage for <br>z += 1 is z++ ;<br>z -= 1 is z-- ; </p>
     </section>
     
-    <section class="main less" id="if" onclick="seemore(16)">
+    <section class="main less" id="if" onclick="seemore(17)">
     <h1>13. if </h1>
     <p>if is used if you want to check whether this stament is true or not,<br><br>let's see example<br>here is a programm that will take user's marks as input using scanf and if he got more than 60 it we will "print you got A grade" if he got more than 40 "print you got B grade" otherwise "print you failed"<br><br>#include&lt;stdio.h&gt;<br>int main(){<br>int marks;<br>scanf("%d",&marks); /* taking user input and storing it to marks variable */<br><strong>if ( marks > 60 ){<br>printf("you got A grade);<br>}else if (marks > 40 ){<br>/*if condition one is wrong */<br>printf("you got B grade");<br>}<br>else{<br>/* if all the above conditions are false */<br>printf("you failed");<br>}</strong><br>return 0 ;<br>}<br><br>here <br>if (condition you want){<br>this will work if condition is true<br>}else{<br>if condition is not true this will work<br>}<br>computer if will read else if or else part if all the above conditions on them are false <br> operators used for checking conditions are : <br> >=   &lt;=   >   &lt; <br> !=       for not equal <br> ==      for equal to condition</p>
     </section>
     
-    <section class="main less" id="onelineif" onclick="seemore(17)">
+    <section class="main less" id="onelineif" onclick="seemore(18)">
     <h1>14. one line if </h1>
     <p>#include&lt;stdio.h&gt;<br>int main(){<br>int marks;<br><strong>int a = ( 3 > 5 ) ? 0 : 1 ;</strong><br>printf("%d",a);<br>return 0 ;<br>}<br>here output is 1 ; because 3 > 5 is wrong <br><br>(condition) ? if true : if false </p>
     </section>
     
-    <section class="main less" id="logic" onclick="seemore(18)">
+    <section class="main less" id="logic" onclick="seemore(19)">
     <h1>logic's</h1>
     <p>Now let us understand what is a logic ? </p>
     <p>if we have one condition a > b then we will have if condition is true or not which we write as <br>if (a > b ){<br>true<br>}else{<br>false<br>}</p>
@@ -191,12 +194,12 @@
     <p>so we will use logical operators..</p>
     </section>
     
-    <section class="main less" id="logoperators" onclick="seemore(19)">
+    <section class="main less" id="logoperators" onclick="seemore(20)">
     <h1>15. logical operators </h1>
     <p>#include&lt;stdio.h&gt;<br>int main(){<br>if (condition1 <strong>&&</strong> condition 2){<br>printf("if both the statments are true ");<br>}<br>if (condition1 <strong>||</strong> condition 2){<br>printf("if any one of the statment is true ");<br>}<br>return 0 ;<br>}</p>
     </section>
     
-    <section class="main less" id="nestedifelse" onclick="seemore(20)">
+    <section class="main less" id="nestedifelse" onclick="seemore(21)">
     <h1>16. nested if else</h1>
     <img src="https://www.tutlane.com/images/swift/swift-if-else-if-statement-algorithm-diagram.png" style="width:100%"><p>assume are waliking from start to end point along black lines, you will change direction of waliking based onthe conditions..</p>
     <p>#include&lt;stdio.h&gt;<br>int main(){<br>if (cond 1 ){
@@ -211,7 +214,7 @@
     }<br>return 0 ;<br>}<br><br>please read and understand carefully ..</p>
     </section>
     
-    <section class="main less" id="forloop" onclick="seemore(21)">
+    <section class="main less" id="forloop" onclick="seemore(22)">
     <h1>17. for loop</h1>
     <img src="https://beginnersbook.com/wp-content/uploads/2017/09/for_loop_C.jpg" style="width:100%"><p>assume are waliking from start to end point along black lines, you will change direction of waliking based onthe conditions. you will walk in side loop untill the codition is false.</p>
     <br>
@@ -220,11 +223,52 @@
     printf("%d",i);    
       }
     }<br>return 0 ;<br>}<br>output is  1 2 3 4 5</p><p>here we have declared int i = 0 as starting value until i &lt; 6 the code inside loop will run but we are updating i value by writting i++ means once you go through code value of i will increment by 1 so by going 5 times through code i will increase to 6 and condition i &le; 6 will be false so it will exit loop ,so we have output of 5 numbers only</p>
+    <br><br>
+    <p><strong>for (variable declaration , condition , update){
+    code 
+    code repeatly runs until condition is false<br>}    
+    </strong>
+    </p>
+    </section>
+    
+    <section class="main1 less" id="ex3" onclick="seemore(23)">
+    <h1>a small program..</h1>
+    <p><strong>TASK : take a number as input from user and print all odd numbers in between 0 and that number
+    <br>#include&lt;stdio.h&gt;
+    int main(){
+    int n;
+    printf("enter number : ");
+    scanf("%d",&n); /* take input and giving to variable n */
+    if ( n > 0){
+/*we should print output if user entered a number greater than 0 so we should if */
+        
+    for (int b = 0; b &lt; n ; b++){
+        
+/* here b takes value 0 and increase to n */
+/*b takes all the values in between 0 & n */
+        
+           if ( b % 2 == 0){
+        
+/* a number is a odd number if we get reminder not equal to 0 when it is divided with 2 */
+/* if b (an number betwwen 0 and n ) satisifies above condition */
+        
+         printf("%d",b);
+        
+            }
+          }
+       }
+    }
+    </strong></p><br><p>input = 8 ; <br>output is 1 3 5 7 </p>
+    </section>
+    
+    <section class="main1 less" id="ex4" onclick="seemore(24)">
+    <h1>DO THIS </h1>
+        <p><strong>TASK : wrire a program ask a number as input, print even numbers in between 0 and that numbers..</strong></p>
     </section>
     
     <script>
     var li = ["chapters","workplace","history","ware","intro","keywords",
-"varid","datatypes","printf","take","line","math","comment","ex1","operators","assign","if","onelineif","logic", "logoperators","nestedifelse","forloop"]
+"varid","datatypes","printf","take","line","math","comment","ex1","ex2","operators","assign","if","onelineif","logic", "logoperators","nestedifelse","forloop","ex3","ex4"]
         function seemore(a){
             var el = document.getElementById(li[a]);
             if(el.classList.contains("less")){
