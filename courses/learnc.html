@@ -1,6 +1,6 @@
 <html>
     <head>
-    <title>HTML</title>
+    <title>C</title>
         <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
@@ -85,12 +85,7 @@
     <h1>chapters in c</h1>
     <P>click on chapters to expand..</P>
     </section>
-    <!--
-     <section class="main less" id="" onclick="seemore()">
-    <h1></h1>
-    <p></p>
-    </section>
-    -->
+    
     <section class="main less" id="workplace" onclick="seemore(1)">
     <h1>work place</h1>
     <p>we need to have one workspace for doing programs<br><br>link for online compiler : </p>
@@ -266,9 +261,126 @@
         <p><strong>TASK : wrire a program ask a number as input, print even numbers in between 0 and that numbers..</strong></p>
     </section>
     
+    <section class="main less" id="whileloop" onclick="seemore(25)">
+    <h1>18. while loop</h1>
+    <img src="https://beginnersbook.com/wp-content/uploads/2017/09/for_loop_C.jpg" style="width:100%"><p>assume are waliking from start to end point along black lines, you will change direction of waliking based onthe conditions. you will walk in side loop untill the codition is false.</p>
+    <br>
+    <p>#include&lt;stdio.h&gt;<br>int main(){
+    int i = 10;
+    while(i > 2){ 
+
+/* loop will run repeatly until i > 2 */
+        
+    printf(" %d ",i);
+        i -= 2; 
+
+/*each time i decreases by 2*/   
+/* after 4 repeats i will be 2 which is not > 2 so loop stops.. */
+        
+      }
+    }<br>return 0 ;<br>}<br>output is  10 8 6 4 </p>
+    <p>
+    <strong>
+while (condition){
+    
+code
+        
+update of variable 
+        
+}    
+    </strong>
+    </p>
+    </section>
+    
+    <section class="main less" id="break" onclick="seemore(26)">
+    <h1>19. break & continue</h1>
+    <p>break = stop <br>continue = skip<br>break, continue are keywords used on loops..</p>
+    <p>
+    while(){
+        
+    }
+    for (){
+        
+    }
+
+you loops execute the code with in { } repeatly until the condition is false..
+        
+now lets see how break, continue works..
+    </p>
+    <p>
+for (int i = 0; i &lt; 5; i++){
+  printf(" %d ", i);
+  }
+        
+for (int i = 0; i &lt; 5; i++){ 
+  if (i == 3){
+  <strong>break ;</strong>    
+    }
+    printf(" %d ", i); 
+  }
+
+for (int i = 0; i &lt; 5; i++){  
+  if (i == 3){
+  <strong>continue ;</strong>    
+    }
+    printf(" %d ", i);
+  }
+
+output of 1st code is 0 1 2 3 4
+output of 2nd code is 0 1 2 
+output of 3rd code is 0 1 2 4
+        
+because, in 2nd code we wrote if i == 3 break means stop reading code and go outside of code...
+
+because, in 3rd code we wrote if i == 3 continue means skip this step and go to next step means i = 4
+        
+this applies for while loop also, try it yourself..
+    </p>
+    </section>
+    
+    <section class="main1 less" id="ex5" onclick="seemore(27)">
+    <h1>a small program..</h1>
+    <p><strong>TASK : to print math multiplication table of a number 
+    <br>#include&lt;stdio.h&gt;
+    int main(){
+    int n;
+    printf("enter number : ");
+    scanf("%d",&n); 
+/* take input and giving to variable n */
+    
+    for ( int i = 1; i &lt;= 5; i++ ){
+        int result = n * i;
+        printf(" n * %d = %d \n", i, result );
+    }
+        
+return 0;
+    }
+    </strong>
+    output is 
+    
+    enter number : 5 (my input)
+    5 * 1 = 5
+    5 * 2 = 10
+    5 * 3 = 15
+    5 * 4 = 20
+    5 * 5 = 25
+    </p>
+    </section>
+    
+    <section class="main1 less" id="ex6" onclick="seemore(28)">
+    <h1>do this</h1>
+    <p><strong>TASK : write a programm which should take three numbers as input (a, b, c) <br><br>output should be math multiplication table of a from ( a * b ) to (a * c ) </strong></p>
+    </section>
+    <!--
+     <section class="main less" id="" onclick="seemore()">
+    <h1></h1>
+    <p></p>
+    </section>
+    -->
+    
     <script>
     var li = ["chapters","workplace","history","ware","intro","keywords",
-"varid","datatypes","printf","take","line","math","comment","ex1","ex2","operators","assign","if","onelineif","logic", "logoperators","nestedifelse","forloop","ex3","ex4"]
+"varid","datatypes","printf","take","line","math","comment","ex1","ex2","operators","assign","if","onelineif","logic", "logoperators","nestedifelse","forloop","ex3","ex4","whileloop","break","ex5","ex6"]
         function seemore(a){
             var el = document.getElementById(li[a]);
             if(el.classList.contains("less")){
