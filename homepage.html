@@ -76,6 +76,7 @@
         }
         #searching{
             display:none;
+            margin-top:0px;
         }
         #menuopen{
             display:none;
@@ -106,6 +107,7 @@
             margin-top:20px;
         }
         .searching form input[type="text"]{
+            margin-bottom:20px;
             outline:none;
             border:5px solid grey;
             padding:20px 30px 20px 30px;
@@ -114,16 +116,18 @@
             letter-spacing:5px;
             border-radius:40px;
         }
+        
         .searching span{
             color:darkblue;
             text-transform: uppercase;
             font-family: 'Roboto', sans-serif;
             font-size:180%;
             letter-spacing:5px;
-            margin-top:70px;
+            margin-top:20px;
             font-weight:bold;
         }
-        .searching form input[type="submit"]{
+        .searching form:nth-child(1) input[type="submit"]{
+            margin-bottom:20px;
             outline:none;
             padding:20px 30px 20px 30px;
             text-transform: uppercase;
@@ -135,6 +139,20 @@
             font-weight:bold;
             background-color:rgb(0, 0, 153);
             color:white;
+        }
+        .searching form:nth-child(2) input[type="submit"]{
+            margin-bottom:20px;
+            outline:none;
+            padding:20px 30px 20px 30px;
+            text-transform: uppercase;
+            font-family: 'Roboto', sans-serif;
+            font-size:180%;
+            letter-spacing:5px;
+            border-radius:30px;
+            margin:0 20px 0 20px;
+            font-weight:bold;
+            background-color:orange;
+            color:black;
         }
         .menuopen label{
             color:darkblue;
@@ -439,7 +457,12 @@
           <input type="text" placeholder="Google Search ..." name="q">
           <input type="submit" value="SEARCH">
         </form>
+        <form action="https://www.youtube.com/results?search_query=" method="get">
+          <input type="text" placeholder="you tube Search" name="q">
+          <input type="submit" value="SEARCH">
+        </form>
           <span onclick="chat()">chat with me !</span>
+          
       </section>
       <section class="menuopen" id="menuopen">
           <label>about Website Designer</label>
