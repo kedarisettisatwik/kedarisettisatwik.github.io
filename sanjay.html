@@ -16,6 +16,7 @@
        
        
        .header{
+           overflow: hidden;
            margin-top:100px;
            height:auto;
            position: relative;
@@ -56,7 +57,7 @@
            justify-content: center;
            flex-direction: column;
        }
-       .container div{
+       #pop{
            font-size:300%;
            font-weight:bolder;
            letter-spacing:5px;
@@ -65,6 +66,25 @@
            padding:30px;
            border-radius:20px;
            border:2px solid black;
+       }
+       #change,#del{
+           font-size:220%;
+           font-weight:bolder;
+           letter-spacing:5px;
+           font-family: 'Roboto', sans-serif;
+           padding:30px;
+           border-radius:20px;
+           border:2px solid black;
+           margin:20px 0px;
+           display:none;
+       }
+       #change{
+           background-color:orange;
+           color:black;
+       }
+       #del{
+           background-color:brown;
+           color:white;
        }
        .container1{
            height:auto;
@@ -152,6 +172,8 @@
         <section class="header">
         <h1>write notes..</h1>
     <button onclick="create_new()">+ create new book</button>
+    <button  id="change" onclick="title1()">change title of a book</button >    
+        <button id="del" onclick="delete1()">delete a book</button >
         </section>
         
         <section class="container">
@@ -204,7 +226,7 @@ var oldlist1 = JSON.parse(localStorage.getItem("kedarparagraphs"));
             base.appendChild(el1);
             var li = JSON.parse(localStorage.getItem("kedarbooktitles"));
             var llii = JSON.parse(localStorage.getItem("kedarparagraphs"));
-            el2.innerHTML = li[i] ;
+            el2.innerHTML = (i + 1) + " . "+ li[i] ;
             el1.style.backgroundColor = bglist[i%5];
             el1.appendChild(el2);
             el1.appendChild(el3);
@@ -289,10 +311,54 @@ var oldlist1 = JSON.parse(localStorage.getItem("kedarparagraphs"));
         ele1.select();
         document.execCommand("copy");
     }
+    function title1(){
+        var page = prompt("enter serial no of book : ");
+        if (page.length > 0 ){
+            var oldlist11 = JSON.parse(localStorage.getItem("kedarbooktitles"));
+            var pp = parseInt(page) - 1;
+            var str = prompt("enter new title : ");
+            if (pp <= oldlist11.length){
+                if (str.length > 0){
+                oldlist11[pp] = str;
+                localStorage.setItem("kedarbooktitles",JSON.stringify(oldlist11));
+                location.reload();
+                 }   
+            }else{
+                alert(" sorry, we can't find book");
+            }
+        }
+    }
+    function delete1(){
+        var serialno = prompt("enter serial number :")
+        var listoftitles = JSON.parse(localStorage.getItem("kedarbooktitles"));
+        
+        var para = JSON.parse(localStorage.getItem("kedarparagraphs"));
+        
+        var n = parseInt(localStorage.getItem("numberof"));
+        
+    if (serialno.length > 0){
+        var ss = parseInt(serialno) - 1 ;
+        localStorage.setItem("numberof",n-1); 
+        listoftitles.splice(ss,1);
+        para.splice(ss,1);
+        localStorage.setItem("kedarbooktitles",JSON.stringify(listoftitles));
+        localStorage.setItem("kedarparagraphs",JSON.stringify(para));
+        location.reload();
+     }   
+    }
     setInterval(function(){
     if (localStorage.getItem("numberof") != "0"){
            var d = document.getElementById("pop");
            d.style.display = "none";
+        var ch = document.getElementById("change");
+        var del = document.getElementById("del");
+        ch.style.display = "block";
+        del.style.display = "block";
+       }else{
+          var ch = document.getElementById("change");
+         var del = document.getElementById("del");
+        ch.style.display = "none";
+        del.style.display = "none"; 
        }
     },10);
         
