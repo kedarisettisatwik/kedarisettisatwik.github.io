@@ -1,0 +1,2367 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>chess</title>
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+        <style>
+            *{
+                margin:0;
+                padding:0;
+            }
+            body{
+                position: absolute;
+                width:100vw;
+                min-height:100vh;
+                background-color: ghostwhite;
+                font-family: 'Roboto', sans-serif;
+                display: flex;
+                align-items: center;
+                flex-direction:column;
+            }
+            .header{
+                margin-top:150px;
+                position: relative;
+                font-size:350%;
+                font-weight:bold;
+                letter-spacing:4px;
+                text-transform:uppercase;
+            }
+            .scores{
+                margin-top:30px;
+                width:60%;
+                position: relative;
+                font-size:200%;
+                font-weight:bold;
+                letter-spacing:4px;
+                text-transform:uppercase;
+            }
+            .scores div {
+                margin:50px 0;
+            }
+            #cscore{
+                font-size:200%;
+                color:red;
+            }
+            #uscore{
+                font-size:200%;
+                color:darkblue;
+            }
+            #mainbox{
+                margin-top:50px;
+                position: relative;
+                width:80vw;
+                height:500px;
+                display: none;
+                justify-content: center;
+                align-items:center;
+                flex-direction: column;
+            }
+            #turn{
+                margin-top:50px;
+                position: relative;
+                font-size:220%;
+                font-weight:bold;
+                letter-spacing:5px;
+                text-transform:uppercase;  
+                opacity:0.5;
+            }
+            #btn{
+                outline:none;
+                background-color:darkblue;
+                padding:30px;
+                margin-top:50px;
+                position: relative;
+                font-size:240%;
+                font-weight:bold;
+                letter-spacing:5px;
+                text-transform:uppercase; 
+                color:white;
+                border-radius:10%;
+            } 
+            #control{
+                position: relative;
+                width:100%;
+                display:none;
+                align-items: center;
+                flex-direction:column;
+            }
+            .vertical{
+                position: relative;
+                width:100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .horizantal{
+                box-sizing: border-box;
+                position: relative;
+                border:3px solid black;
+                height:100%;
+                transition:0.2s;
+            }
+            .emptyblack{
+                background-color:forestgreen;
+                background-position: center;
+                background-size:80%;
+                background-repeat: no-repeat;
+            }
+            .emptywhite{
+                background-color:greenyellow;
+                background-position: center;
+                background-size:80%;
+                background-repeat: no-repeat;
+            }
+            .whitepawn{
+                background-image:url(whitepawn.png);
+            }
+            .whiterook{
+               background-image:url(whiterook.png); 
+            }
+            .whitequeen{
+                background-image:url(whitequeen.png);
+            }
+            .whitebishop{
+               background-image:url(whitebishop.png); 
+            }
+            .whiteking{
+                background-image:url(whiteking.png);
+            }
+            .whiteknight{
+               background-image:url(whiteknight.png); 
+            }
+            .blackpawn{
+                background-image:url(blackpawn.png);
+            }
+            .blackrook{
+               background-image:url(blackrook.png); 
+            }
+            .blackqueen{
+                background-image:url(blackqueen.png);
+            }
+            .blackbishop{
+               background-image:url(blackbishop.png); 
+            }
+            .blackking{
+                background-image:url(blackking.png);
+            }
+            .blackknight{
+               background-image:url(blackknight.png); 
+            }
+            .active{
+                transform:scale(0.8);
+            }
+        </style>
+    </head>
+    <body>
+        <h1 class="header">chess game</h1>
+        <button onclick="start()" id="btn">start game</button>
+        <div id="control">
+        <div class="scores" id="c">
+    <div>black score : <span id="cscore">0</span></div>
+    <div>white score : <span id="uscore">0</span></div>
+        </div>
+        <div id="turn">your's turn</div>
+        </div>
+        <section id="mainbox">
+        
+        </section>
+        <script>
+    var mainbox = document.getElementById("mainbox");
+    var mainwidth = parseInt(window.getComputedStyle(mainbox).getPropertyValue("width"));
+    mainbox.style.height = mainwidth+"px";
+            
+        function start(){
+        var con = document.getElementById("control");
+        con.style.display = "flex";
+        var b = document.getElementById("btn");
+        b.style.display = "none";
+        var main = document.getElementById("mainbox");
+        main.style.display = "flex";
+        
+        assign();
+        }
+            
+        for(var i = 0;i<8;i++){
+            var vert = document.createElement("div");
+            vert.setAttribute("class","vertical");
+            vert.style.height = mainwidth/8+"px";
+            mainbox.appendChild(vert);
+            for(var j = 0;j<8;j++){
+                var horz = document.createElement("div");
+                horz.setAttribute("class","horizantal");
+                if ((i + j) % 2 == 0){
+                    horz.classList.add("emptywhite");
+                }else{
+                    horz.classList.add("emptyblack");
+                }
+                var ii = (i+1)*10+j+1;
+                horz.setAttribute("id",ii);
+                vert.appendChild(horz);
+            }
+        }
+            
+        var h = document.getElementsByClassName("horizantal");
+        for(var m = 0;m<h.length;m++){
+            var el = h.item(m);
+            var hi = parseInt(window.getComputedStyle(el).getPropertyValue("height"));
+            el.style.width = (mainwidth/8) + "px";
+        }
+            
+        function assign(){
+        var liwhite = ["whiterook","whiteknight","whitebishop","whitequeen","whiteking","whitebishop","whiteknight","whiterook"];
+        var liblack = ["blackrook","blackknight","blackbishop","blackqueen","blackking","blackbishop","blackknight","blackrook"];    
+        var kk = document.getElementsByClassName("horizantal");
+        for(var mm = 0;mm<kk.length;mm++){
+            var el = kk.item(mm);
+            el.addEventListener("click",move1,false);
+            var sel = parseInt(el.getAttribute("id"));
+            if (sel <= 28 && sel >= 21){
+               el.classList.add("blackpawn");
+           }
+           if (sel <= 78 && sel >= 71){
+               el.classList.add("whitepawn");
+           }
+           if(sel <= 18){
+               var t = sel - 11;
+                el.classList.add(liblack[t]);
+           } 
+           if(sel >= 81){
+                var t = sel - 81;
+                el.classList.add(liwhite[t]);
+           }
+          }
+       }
+          
+        function clear(){
+            var toremove = [];
+    var bbactive = document.getElementsByClassName("active");
+        for (var jj = 0;jj<bbactive.length;jj++){
+            var pp = bbactive.item(jj);
+            toremove.push(pp);
+          }
+        for(var k = 0;k<toremove.length;k++){
+            var ele = toremove[k];
+            ele.classList.remove("active");
+        }
+     }
+            
+        var purpose = false;
+        var turn = "white";
+            
+        var selectedpiece;
+        var select;
+        var available = [];
+            
+       function move1(e){
+           if (turn == "white"){
+               
+               if(purpose){
+        //if purpose true means move piece
+               var tpiece = parseInt(e.target.id);
+               var aaa = available.includes(tpiece);
+               if(aaa){
+    var curr = document.getElementById(selectedpiece);
+    var tt = document.getElementById(tpiece);
+                curr.classList.remove(select);
+    var liblack = ["blackpawn","blackrook","blackknight","blackbishop","blackqueen","blackking"];   
+                for (var i = 0;i<liblack.length;i++){
+            var eee = tt.classList.contains(liblack[i]);
+                if(eee){
+                    tt.classList.remove(liblack[i]);
+                 }
+                }
+                tt.classList.add(select);
+                clear();
+                select = "";
+                selectedpiece = 0;
+                available = [];
+                purpose = false;
+                turn = "black";
+               }else{
+                 clear();
+                select = "";
+                selectedpiece = 0;
+                available = [];
+                purpose = false;
+                turn = "white";
+               } 
+           }else{
+        //if purpose false means only selection
+               selectedpiece = parseInt(e.target.id);
+               var selele = document.getElementById(selectedpiece);
+               
+    var list = ["whitepawn","whiterook","whiteknight","whitebishop","whitequeen","whiteking"]
+    var exist;
+    var t;
+               for (var i = 0;i<list.length;i++){
+       exist = selele.classList.contains(list[i]);
+                if(exist){
+                    t = i;
+                    break;
+                 }
+               }
+            if (t == 0){
+                if (selectedpiece > 20){
+                   pawn(selectedpiece);
+                }
+            }
+            else if (t == 1){
+                rook(selectedpiece);
+            }
+            else if (t == 2){
+                knight(selectedpiece);
+            }
+            else if (t == 3){
+                bishop(selectedpiece);
+            }
+            else if (t == 4){
+                queen(selectedpiece);
+            }
+            else if (t == 5){
+                king(selectedpiece);
+            }
+            else{
+                
+            }  
+               
+        }    
+           }
+           
+           else{
+              if(purpose){
+        //if purpose true means move piece
+               var tpiece = parseInt(e.target.id);
+               var aaa = available.includes(tpiece);
+               if(aaa){
+    var curr = document.getElementById(selectedpiece);
+    var tt = document.getElementById(tpiece);
+                curr.classList.remove(select);
+    var liwhite = ["whitepawn","whiterook","whiteknight","whitebishop","whitequeen","whiteking"];   
+                for (var i = 0;i<liwhite.length;i++){
+            var eee = tt.classList.contains(liwhite[i]);
+                if(eee){
+                    tt.classList.remove(liwhite[i]);
+                 }
+                }
+                tt.classList.add(select);
+                clear();
+                select = "";
+                selectedpiece = 0;
+                available = [];
+                purpose = false;
+                turn = "white";
+               }else{
+                 clear();
+                select = "";
+                selectedpiece = 0;
+                available = [];
+                purpose = false; 
+                turn = "black";
+               } 
+           }else{
+        //if purpose false means only selection
+               selectedpiece = parseInt(e.target.id);
+               var selele = document.getElementById(selectedpiece);
+               
+    var list = ["blackpawn","blackrook","blackknight","blackbishop","blackqueen","blackking"]
+    var exist;
+    var t;
+               for (var i = 0;i<list.length;i++){
+       exist = selele.classList.contains(list[i]);
+                if(exist){
+                    t = i;
+                    break;
+                 }
+               }
+            if (t == 0){
+                if (selectedpiece < 80){
+                  blackpawn(selectedpiece);  
+                }
+            }
+            else if (t == 1){
+                blackrook(selectedpiece);
+            }
+            else if (t == 2){
+                blackknight(selectedpiece);
+            }
+            else if (t == 3){
+                blackbishop(selectedpiece);
+            }
+            else if (t == 4){
+                blackqueen(selectedpiece);
+            }
+            else if (t == 5){
+                blackking(selectedpiece);
+            }
+            else{
+                
+            }
+               
+        } 
+           }
+    }
+    
+    function checkblack(a){
+        //if a has black false
+        var liblack = ["blackpawn","blackrook","blackknight","blackbishop","blackqueen","blackking"]; 
+      var liwhite = ["whitepawn","whiterook","whiteknight","whitebishop","whitequeen","whiteking"];  
+      var el = document.getElementById(a);
+        var x = 0;
+      for(var i = 0;i<liblack.length;i++){
+          var p = el.classList.contains(liblack[i]);
+          if (p){
+             x += 1; 
+          }
+      }
+     if (x != 0){
+         return false;
+     }else{
+         return true;
+     }
+    }
+    
+    function check(a){
+        // if a has white false
+      var liblack = ["blackpawn","blackrook","blackknight","blackbishop","blackqueen","blackking"]; 
+      var liwhite = ["whitepawn","whiterook","whiteknight","whitebishop","whitequeen","whiteking"];  
+      var el = document.getElementById(a);
+        var x = 0;
+      for(var i = 0;i<liwhite.length;i++){
+          var p = el.classList.contains(liwhite[i]);
+          if (p){
+             x += 1; 
+          }
+      }
+     if (x != 0){
+         return false;
+     }else{
+         return true;
+     }
+    }
+      
+    function pawn(a){
+        var current = document.getElementById(a);
+        select = "whitepawn";
+        selectedpiece = a;
+        var liblack = ["blackpawn","blackrook","blackknight","blackbishop","blackqueen","blackking"]; 
+        var liwhite = ["whitepawn","whiterook","whiteknight","whitebishop","whitequeen","whiteking"]; 
+        if (a >= 21){
+            var x = 0;
+            for (var i = 0;i<liwhite.length;i++){
+             var top = a - 10;
+             var t = document.getElementById(top); 
+            var etl = t.classList.contains(liwhite[i]);
+            if(etl){
+                x += 1;
+            }
+            }
+            if (x == 0){
+                available.push(top);
+                t.classList.add("active");
+            }
+            
+          if ( (a % 10) >= 2){
+               var topleft = a - 10 - 1;
+        var tl = document.getElementById(topleft);
+        for (var i = 0;i<liblack.length;i++){
+           var etl = tl.classList.contains(liblack[i]);
+          if(etl){
+            available.push(topleft);
+              tl.classList.add("active");
+              break;
+               }
+             }
+           }
+           if ( (a % 10) <= 7){
+            var topright = a - 10 + 1;
+            var tr = document.getElementById(topright);
+             for (var i = 0;i<liblack.length;i++){
+         var etl = tr.classList.contains(liblack[i]);
+           if(etl){
+            available.push(topright);
+               tr.classList.add("active");
+               break;
+          }
+        }  
+           }
+            
+        }
+        if (available.length == 0){
+            available = [];
+            select = "";
+            selectedpiece = 0;
+            purpose = false;
+        }else{
+            purpose = true;
+        }
+  }
+    
+    // black moves start now
+            
+    function blackpawn(a){
+        var current = document.getElementById(a);
+        select = "blackpawn";
+        selectedpiece = a;
+        var liblack = ["blackpawn","blackrook","blackknight","blackbishop","blackqueen","blackking"]; 
+        var liwhite = ["whitepawn","whiterook","whiteknight","whitebishop","whitequeen","whiteking"]; 
+        if (a <= 80){
+            var x = 0;
+            for (var i = 0;i<liblack.length;i++){
+             var down = a + 10;
+             var d = document.getElementById(down); 
+            var etl = d.classList.contains(liblack[i]);
+            if(etl){
+                x += 1;
+            }
+            }
+            if (x == 0){
+                available.push(down);
+                d.classList.add("active");
+            }
+            
+          if ( (a % 10) >= 2){
+               var downleft = a + 10 - 1;
+        var dl = document.getElementById(downleft);
+        for (var i = 0;i<liwhite.length;i++){
+           var etl = dl.classList.contains(liwhite[i]);
+          if(etl){
+            available.push(downleft);
+              dl.classList.add("active");
+              break;
+               }
+             }
+           }
+           if ( (a % 10) <= 7){
+            var downright = a + 10 + 1;
+            var dr = document.getElementById(downright);
+             for (var i = 0;i<liwhite.length;i++){
+         var etl = dr.classList.contains(liwhite[i]);
+           if(etl){
+            available.push(downright);
+               dr.classList.add("active");
+               break;
+          }
+        }  
+           }
+            
+        }
+        if(available.length == 0){
+            select = "";
+            selectedpiece = 0;
+            available = [];
+            purpose = false;
+        }else{
+            purpose = true;
+        }
+    }
+            
+    function rook(a){
+        var current = document.getElementById(a);
+        select = "whiterook";
+        selectedpiece = a;
+        var liblack = ["blackpawn","blackrook","blackknight","blackbishop","blackqueen","blackking"]; 
+        var liwhite = ["whitepawn","whiterook","whiteknight","whitebishop","whitequeen","whiteking"]; 
+        var row = Math.floor(a/10);
+        var col = a % 10;
+        for (var i = row-1;i>0;i--){
+            var tco = document.getElementById(i*10+col);
+            var elb,elw;
+            for (var b = 0;b<liblack.length;b++){
+               elb = tco.classList.contains(liblack[b]);
+               elw = tco.classList.contains(liwhite[b]);
+               if (elb || elw){
+                    break;
+                }
+            }
+            if (elb || elw){
+                if (elw){
+                    break;
+                 }else{
+                   available.push(i*10+col); 
+                   tco.classList.add("active");
+                     break;
+                 }   
+                }else{
+                 available.push(i*10+col);   
+                tco.classList.add("active");
+            }
+        }
+        
+        for (var i = row+1;i<9;i++){
+            var tco = document.getElementById(i*10+col);
+            var elb,elw;
+            for (var b = 0;b<liblack.length;b++){
+               elb = tco.classList.contains(liblack[b]);
+               elw = tco.classList.contains(liwhite[b]);
+               if (elb || elw){
+                    break;
+                }
+            }
+            if (elb || elw){
+                if (elw){
+                    break;
+                 }else{
+                   available.push(i*10+col); 
+                   tco.classList.add("active");
+                     break;
+                 }   
+                }else{
+                 available.push(i*10+col);   
+                tco.classList.add("active");
+            }
+        }
+        for (var i = col+1;i<9;i++){
+            var tco = document.getElementById(row*10+i);
+            var elb,elw;
+            for (var b = 0;b<liblack.length;b++){
+               elb = tco.classList.contains(liblack[b]);
+               elw = tco.classList.contains(liwhite[b]);
+               if (elb || elw){
+                    break;
+                }
+            }
+            if (elb || elw){
+                if (elw){
+                    break;
+                 }else{
+                   available.push(row*10+i); 
+                   tco.classList.add("active");
+                     break;
+                 }   
+                }else{
+                 available.push(row*10+i);   
+                tco.classList.add("active");
+            }
+        }
+        for (var i = col-1;i>0;i--){
+            var tco = document.getElementById(row*10+i);
+            var elb,elw;
+            for (var b = 0;b<liblack.length;b++){
+               elb = tco.classList.contains(liblack[b]);
+               elw = tco.classList.contains(liwhite[b]);
+               if (elb || elw){
+                    break;
+                }
+            }
+            if (elb || elw){
+                if (elw){
+                    break;
+                 }else{
+                   available.push(row*10+i); 
+                   tco.classList.add("active");
+                     break;
+                 }   
+                }else{
+                 available.push(row*10+i);   
+                tco.classList.add("active");
+            }
+        }
+        if (available.length == 0){
+            available = [];
+            select = "";
+            selectedpiece = 0;
+            purpose = false;
+        }else{
+            purpose = true;
+        }
+    }
+     // black moves start now
+      function blackrook(a){
+        var current = document.getElementById(a);
+        select = "blackrook";
+        selectedpiece = a;
+        var liblack = ["blackpawn","blackrook","blackknight","blackbishop","blackqueen","blackking"]; 
+        var liwhite = ["whitepawn","whiterook","whiteknight","whitebishop","whitequeen","whiteking"]; 
+        var row = Math.floor(a/10);
+        var col = a % 10;
+        for (var i = row-1;i>0;i--){
+            var tco = document.getElementById(i*10+col);
+            var elb,elw;
+            for (var b = 0;b<liwhite.length;b++){
+               elb = tco.classList.contains(liblack[b]);
+               elw = tco.classList.contains(liwhite[b]);
+               if (elb || elw){
+                    break;
+                }
+            }
+            if (elb || elw){
+                if (elb){
+                    break;
+                 }else{
+                   available.push(i*10+col); 
+                   tco.classList.add("active");
+                     break;
+                 }   
+                }else{
+                 available.push(i*10+col);   
+                tco.classList.add("active");
+            }
+        }
+        
+        for (var i = row+1;i<9;i++){
+            var tco = document.getElementById(i*10+col);
+            var elb,elw;
+            for (var b = 0;b<liblack.length;b++){
+               elb = tco.classList.contains(liblack[b]);
+               elw = tco.classList.contains(liwhite[b]);
+               if (elb || elw){
+                    break;
+                }
+            }
+            if (elb || elw){
+                if (elb){
+                    break;
+                 }else{
+                   available.push(i*10+col); 
+                   tco.classList.add("active");
+                     break;
+                 }   
+                }else{
+                 available.push(i*10+col);   
+                tco.classList.add("active");
+            }
+        }
+        for (var i = col+1;i<9;i++){
+            var tco = document.getElementById(row*10+i);
+            var elb,elw;
+            for (var b = 0;b<liblack.length;b++){
+               elb = tco.classList.contains(liblack[b]);
+               elw = tco.classList.contains(liwhite[b]);
+               if (elb || elw){
+                    break;
+                }
+            }
+            if (elb || elw){
+                if (elb){
+                    break;
+                 }else{
+                   available.push(row*10+i); 
+                   tco.classList.add("active");
+                     break;
+                 }   
+                }else{
+                 available.push(row*10+i);   
+                tco.classList.add("active");
+            }
+        }
+        for (var i = col-1;i>0;i--){
+            var tco = document.getElementById(row*10+i);
+            var elb,elw;
+            for (var b = 0;b<liblack.length;b++){
+               elb = tco.classList.contains(liblack[b]);
+               elw = tco.classList.contains(liwhite[b]);
+               if (elb || elw){
+                    break;
+                }
+            }
+            if (elb || elw){
+                if (elb){
+                    break;
+                 }else{
+                   available.push(row*10+i); 
+                   tco.classList.add("active");
+                     break;
+                 }   
+                }else{
+                 available.push(row*10+i);   
+                tco.classList.add("active");
+            }
+        }
+        if (available.length == 0){
+            available = [];
+            select = "";
+            selectedpiece = 0;
+            purpose = false;
+        }else{
+            purpose = true;
+        }
+    }
+            
+    function king(a){
+        var current = document.getElementById(a);
+        select = "whiteking";
+        selectedpiece = a;
+        var col = a % 10;
+        var row = Math.floor(a/10);
+        var top;
+        var topleft;
+        var topright;
+        var down;
+        var downleft;
+        var downright;
+        var left;
+        var right;
+        var s = [];
+        if (col > 1 && col < 8){
+            if (row > 1 && row < 8){
+               var pright = check((row*10)+col+1);
+               var pleft = check((row*10)+col-1);
+               var ptop = check((row-1)*10+col);
+               var ptopleft = check((row-1)*10+col-1);
+               var ptopright = check((row-1)*10+col+1);
+               var pdown = check((row+1)*10+col);
+               var pdownleft = check((row+1)*10+col-1);
+               var pdownright = checkblack((row+1)*10+col+1); if (pright){
+                s.push((row*10)+col+1);
+               }
+               if (pleft){
+                   s.push((row*10)+col-1);
+               }
+               if (ptop){
+                   s.push((row-1)*10+col);
+               }
+               if (ptopleft){
+                   s.push((row-1)*10+col-1);
+               }
+               if (ptopright){
+                   s.push((row-1)*10+col+1);
+               }
+               if (pdown){
+                   s.push((row+1)*10+col);
+               }
+               if (pdownleft){
+                   s.push((row+1)*10+col-1);
+               }
+               if (pdownright){
+                   s.push((row+1)*10+col+1);
+               } 
+            }
+            if (row == 1){
+              var pright = check((row*10)+col+1);
+              var pleft = check((row*10)+col-1);
+              var pdown = check((row+1)*10+col);
+              var pdownleft = check((row+1)*10+col-1);
+              var pdownright = checkblack((row+1)*10+col+1);  
+              if (pright){
+                s.push((row*10)+col+1);
+               }
+               if (pleft){
+                   s.push((row*10)+col-1);
+               }
+               if (pdown){
+                   s.push((row+1)*10+col);
+               }
+               if (pdownleft){
+                   s.push((row+1)*10+col-1);
+               }
+               if (pdownright){
+                   s.push((row+1)*10+col+1);
+               }   
+            }
+            if (row == 8){
+               var pright = check((row*10)+col+1);
+               var pleft = check((row*10)+col-1);
+               var ptop = check((row-1)*10+col);
+               var ptopleft = check((row-1)*10+col-1);
+               var ptopright = check((row-1)*10+col+1); 
+               if (pright){
+                s.push((row*10)+col+1);
+               }
+               if (pleft){
+                   s.push((row*10)+col-1);
+               }
+               if (ptop){
+                   s.push((row-1)*10+col);
+               }
+               if (ptopleft){
+                   s.push((row-1)*10+col-1);
+               }
+               if (ptopright){
+                   s.push((row-1)*10+col+1);
+               }
+            }
+        }
+        if (col == 1){
+            if (row > 1 && row < 8){
+              var pright = check((row*10)+col+1);
+              var ptop = check((row-1)*10+col);
+              var ptopright = check((row-1)*10+col+1);
+              var pdown = check((row+1)*10+col);
+              var pdownright = check((row+1)*10+col+1);
+               if (pright){
+                s.push((row*10)+col+1);
+               }
+               if (ptop){
+                   s.push((row-1)*10+col);
+               }
+               if (ptopright){
+                   s.push((row-1)*10+col+1);
+               }
+               if (pdown){
+                   s.push((row+1)*10+col);
+               }
+               if (pdownright){
+                   s.push((row+1)*10+col+1);
+               } 
+            }
+            if (row == 1){
+              var pright = check((row*10)+col+1);
+              var pdown = check((row+1)*10+col);
+              var pdownright = check((row+1)*10+col+1); 
+              if (pright){
+                s.push((row*10)+col+1);
+               }
+               if (pdown){
+                   s.push((row+1)*10+col);
+               }
+               if (pdownright){
+                   s.push((row+1)*10+col+1);
+               } 
+            }
+            if (row == 8){
+              var pright = check((row*10)+col+1);
+              var ptop = check((row-1)*10+col);
+              var ptopright = check((row-1)*10+col+1); 
+              if (pright){
+                s.push((row*10)+col+1);
+               }
+               if (ptop){
+                   s.push((row-1)*10+col);
+               }
+               if (ptopright){
+                   s.push((row-1)*10+col+1);
+               }
+            }
+        }
+        if (col == 8){
+           if (row > 1 && row < 8){
+              var pleft = check((row*10)+col-1);
+              var ptop = check((row-1)*10+col);
+              var ptopleft = check((row-1)*10+col-1);
+              var pdown = check((row+1)*10+col);
+              var pdownleft = check((row+1)*10+col-1);
+               if (pleft){
+                s.push((row*10)+col-1);
+               }
+               if (ptop){
+                   s.push((row-1)*10+col);
+               }
+               if (ptopleft){
+                   s.push((row-1)*10+col-1);
+               }
+               if (pdown){
+                   s.push((row+1)*10+col);
+               }
+               if (pdownleft){
+                   s.push((row+1)*10+col-1);
+               }  
+            }
+            if (row == 1){
+              var pleft = check((row*10)+col-1);
+              var pdown = check((row+1)*10+col);
+              var pdownleft = check((row+1)*10+col-1); 
+              if (pleft){
+                s.push((row*10)+col-1);
+               }
+               if (pdown){
+                   s.push((row+1)*10+col);
+               }
+               if (pdownleft){
+                   s.push((row+1)*10+col-1);
+               }  
+            }
+            if (row == 8){
+               var pleft = check((row*10)+col-1);
+              var ptop = check((row-1)*10+col);
+              var ptopleft = check((row-1)*10+col-1); 
+              if (pleft){
+                s.push((row*10)+col-1);
+               }
+               if (ptop){
+                   s.push((row-1)*10+col);
+               }
+               if (ptopleft){
+                   s.push((row-1)*10+col-1);
+               } 
+            } 
+        }
+        
+       for (var x = 0;x<s.length;x++){
+           var p = s[x];
+           available.push(p);
+           var pp = document.getElementById(p);
+           pp.classList.add("active");
+       } 
+        if (available.length == 0){
+            available = [];
+            select = "";
+            selectedpiece = 0;
+            purpose = false;
+        }else{
+            purpose = true;
+        }
+    }
+      // black moves start now
+      function blackking(a){
+        var current = document.getElementById(a);
+        select = "blackking";
+        selectedpiece = a;
+        var col = a % 10;
+        var row = Math.floor(a/10);
+        var top;
+        var topleft;
+        var topright;
+        var down;
+        var downleft;
+        var downright;
+        var left;
+        var right;
+        var s = [];
+        if (col > 1 && col < 8){
+            if (row > 1 && row < 8){
+               var pright = checkblack((row*10)+col+1);
+               var pleft = checkblack((row*10)+col-1);
+               var ptop = checkblack((row-1)*10+col);
+               var ptopleft = checkblack((row-1)*10+col-1);
+               var ptopright = checkblack((row-1)*10+col+1);
+               var pdown = checkblack((row+1)*10+col);
+               var pdownleft = checkblack((row+1)*10+col-1);
+               var pdownright = checkblack((row+1)*10+col+1); if (pright){
+                s.push((row*10)+col+1);
+               }
+               if (pleft){
+                   s.push((row*10)+col-1);
+               }
+               if (ptop){
+                   s.push((row-1)*10+col);
+               }
+               if (ptopleft){
+                   s.push((row-1)*10+col-1);
+               }
+               if (ptopright){
+                   s.push((row-1)*10+col+1);
+               }
+               if (pdown){
+                   s.push((row+1)*10+col);
+               }
+               if (pdownleft){
+                   s.push((row+1)*10+col-1);
+               }
+               if (pdownright){
+                   s.push((row+1)*10+col+1);
+               } 
+            }
+            if (row == 1){
+              var pright = checkblack((row*10)+col+1);
+              var pleft = checkblack((row*10)+col-1);
+              var pdown = checkblack((row+1)*10+col);
+              var pdownleft = checkblack((row+1)*10+col-1);
+              var pdownright = checkblack((row+1)*10+col+1);  
+              if (pright){
+                s.push((row*10)+col+1);
+               }
+               if (pleft){
+                   s.push((row*10)+col-1);
+               }
+               if (pdown){
+                   s.push((row+1)*10+col);
+               }
+               if (pdownleft){
+                   s.push((row+1)*10+col-1);
+               }
+               if (pdownright){
+                   s.push((row+1)*10+col+1);
+               }   
+            }
+            if (row == 8){
+               var pright = checkblack((row*10)+col+1);
+               var pleft = checkblack((row*10)+col-1);
+               var ptop = checkblack((row-1)*10+col);
+               var ptopleft = checkblack((row-1)*10+col-1);
+               var ptopright = checkblack((row-1)*10+col+1); 
+               if (pright){
+                s.push((row*10)+col+1);
+               }
+               if (pleft){
+                   s.push((row*10)+col-1);
+               }
+               if (ptop){
+                   s.push((row-1)*10+col);
+               }
+               if (ptopleft){
+                   s.push((row-1)*10+col-1);
+               }
+               if (ptopright){
+                   s.push((row-1)*10+col+1);
+               }
+            }
+        }
+        if (col == 1){
+            if (row > 1 && row < 8){
+              var pright = checkblack((row*10)+col+1);
+              var ptop = checkblack((row-1)*10+col);
+              var ptopright = checkblack((row-1)*10+col+1);
+              var pdown = checkblack((row+1)*10+col);
+              var pdownright = checkblack((row+1)*10+col+1);
+               if (pright){
+                s.push((row*10)+col+1);
+               }
+               if (ptop){
+                   s.push((row-1)*10+col);
+               }
+               if (ptopright){
+                   s.push((row-1)*10+col+1);
+               }
+               if (pdown){
+                   s.push((row+1)*10+col);
+               }
+               if (pdownright){
+                   s.push((row+1)*10+col+1);
+               } 
+            }
+            if (row == 1){
+              var pright = checkblack((row*10)+col+1);
+              var pdown = checkblack((row+1)*10+col);
+              var pdownright = checkblack((row+1)*10+col+1); 
+              if (pright){
+                s.push((row*10)+col+1);
+               }
+               if (pdown){
+                   s.push((row+1)*10+col);
+               }
+               if (pdownright){
+                   s.push((row+1)*10+col+1);
+               } 
+            }
+            if (row == 8){
+              var pright = checkblack((row*10)+col+1);
+              var ptop = checkblack((row-1)*10+col);
+              var ptopright = checkblack((row-1)*10+col+1); 
+              if (pright){
+                s.push((row*10)+col+1);
+               }
+               if (ptop){
+                   s.push((row-1)*10+col);
+               }
+               if (ptopright){
+                   s.push((row-1)*10+col+1);
+               }
+            }
+        }
+        if (col == 8){
+           if (row > 1 && row < 8){
+              var pleft = checkblack((row*10)+col-1);
+              var ptop = checkblack((row-1)*10+col);
+              var ptopleft = checkblack((row-1)*10+col-1);
+              var pdown = checkblack((row+1)*10+col);
+              var pdownleft = checkblack((row+1)*10+col-1);
+               if (pleft){
+                s.push((row*10)+col-1);
+               }
+               if (ptop){
+                   s.push((row-1)*10+col);
+               }
+               if (ptopleft){
+                   s.push((row-1)*10+col-1);
+               }
+               if (pdown){
+                   s.push((row+1)*10+col);
+               }
+               if (pdownleft){
+                   s.push((row+1)*10+col-1);
+               }  
+            }
+            if (row == 1){
+              var pleft = checkblack((row*10)+col-1);
+              var pdown = checkblack((row+1)*10+col);
+              var pdownleft = checkblack((row+1)*10+col-1); 
+              if (pleft){
+                s.push((row*10)+col-1);
+               }
+               if (pdown){
+                   s.push((row+1)*10+col);
+               }
+               if (pdownleft){
+                   s.push((row+1)*10+col-1);
+               }  
+            }
+            if (row == 8){
+               var pleft = checkblack((row*10)+col-1);
+              var ptop = checkblack((row-1)*10+col);
+              var ptopleft = checkblack((row-1)*10+col-1); 
+              if (pleft){
+                s.push((row*10)+col-1);
+               }
+               if (ptop){
+                   s.push((row-1)*10+col);
+               }
+               if (ptopleft){
+                   s.push((row-1)*10+col-1);
+               } 
+            } 
+        }
+        
+       for (var x = 0;x<s.length;x++){
+           var p = s[x];
+           available.push(p);
+           var pp = document.getElementById(p);
+           pp.classList.add("active");
+       } 
+        if (available.length == 0){
+            available = [];
+            select = "";
+            selectedpiece = 0;
+            purpose = false;
+        }else{
+            purpose = true;
+        }
+    }      
+            
+    function knight(a){
+        var current = document.getElementById(a);
+        select = "whiteknight";
+        selectedpiece = a;
+        var col = a % 10;
+        var row = Math.floor(a / 10);
+        var coloptions = [col-1,col-2,col-2,col-1,col+1,col+2,col+2,col+1];
+        var rowoptions = [row - 2,row-1,row+1,row+2,row+2,row+1,row-1,row-2];
+        var opt = [];
+        for (var i = 0;i<8;i++){
+            var one = coloptions[i];
+            var two = rowoptions[i];
+            if (one >= 1 && one <= 8){
+                
+            }else{
+                coloptions[i] = 0;
+                rowoptions[i] = 0;
+            }
+            if (two >= 1 && two <= 8){
+                
+            }else{
+                coloptions[i] = 0;
+                rowoptions[i] = 0;
+            }
+        }
+        for(var j = 0; j<8;j++){
+            var aa = coloptions[j];
+            var bb = rowoptions[j];
+            if (aa != 0 && bb != 0){
+                opt.push((bb*10)+aa);
+            }
+        }
+        for (var i = 0;i<opt.length;i++){
+            var p = check(opt[i]);
+            if (p){
+                var pp = document.getElementById(opt[i]);
+                pp.classList.add("active");
+                available.push(opt[i]);
+            }
+        }
+        if (available.length == 0){
+            available = [];
+            select = "";
+            selectedpiece = 0;
+            purpose = false;
+        }else{
+            purpose = true;
+        }
+    }
+      // black knight
+     function blackknight(a){
+        var current = document.getElementById(a);
+        select = "blackknight";
+        selectedpiece = a;
+        var col = a % 10;
+        var row = Math.floor(a / 10);
+        var coloptions = [col-1,col-2,col-2,col-1,col+1,col+2,col+2,col+1];
+        var rowoptions = [row - 2,row-1,row+1,row+2,row+2,row+1,row-1,row-2];
+        var opt = [];
+        for (var i = 0;i<8;i++){
+            var one = coloptions[i];
+            var two = rowoptions[i];
+            if (one >= 1 && one <= 8){
+                
+            }else{
+                coloptions[i] = 0;
+                rowoptions[i] = 0;
+            }
+            if (two >= 1 && two <= 8){
+                
+            }else{
+                coloptions[i] = 0;
+                rowoptions[i] = 0;
+            }
+        }
+        for(var j = 0; j<8;j++){
+            var aa = coloptions[j];
+            var bb = rowoptions[j];
+            if (aa != 0 && bb != 0){
+                opt.push((bb*10)+aa);
+            }
+        }
+        for (var i = 0;i<opt.length;i++){
+            var p = checkblack(opt[i]);
+            if (p){
+                var pp = document.getElementById(opt[i]);
+                pp.classList.add("active");
+                available.push(opt[i]);
+            }
+        }
+        if (available.length == 0){
+            available = [];
+            select = "";
+            selectedpiece = 0;
+            purpose = false;
+        }else{
+            purpose = true;
+        }
+    }
+            
+    function bishop(a){
+        var current = document.getElementById(a);
+        select = "whitebishop";
+        selectedpiece = a;
+        var optionstopleft = [];
+        var optionstopright = [];
+        var optionsdownleft = [];
+        var optionsdownright = [];
+        var krow1 = Math.floor(a/10);
+        var kcol1 = a % 10;
+        for (var m = 0;m<8;m++){
+            var x = 0;
+            var y = 0;
+            krow1 -= 1;
+            kcol1 -= 1;
+            if (kcol1 > 8 || kcol1 < 1){
+                x += 1;
+            }
+            if (krow1 > 8 || krow1 < 1){
+                y += 1;
+            }
+            if (x != 0 || y != 0){
+                krow1 = Math.floor(a/10);
+                kcol1 = a % 10;
+                break;
+            }else{
+                var n = krow1*10 + kcol1;
+                optionstopleft.push(n);
+            }
+        }
+        for (var m = 0;m<8;m++){
+            var x = 0;
+            var y = 0;
+            krow1 -= 1;
+            kcol1 += 1;
+            if (kcol1 > 8 || kcol1 < 1){
+                x += 1;
+            }
+            if (krow1 > 8 || krow1 < 1){
+                y += 1;
+            }
+            if (x != 0 || y != 0){
+                krow1 = Math.floor(a/10);
+                kcol1 = a % 10;
+                break;
+            }else{
+                var n = krow1*10 + kcol1;
+                optionstopright.push(n);
+            }
+        }
+        for (var m = 0;m<8;m++){
+            var x = 0;
+            var y = 0;
+            krow1 += 1;
+            kcol1 -= 1;
+            if (kcol1 > 8 || kcol1 < 1){
+                x += 1;
+            }
+            if (krow1 > 8 || krow1 < 1){
+                y += 1;
+            }
+            if (x != 0 || y != 0){
+                krow1 = Math.floor(a/10);
+                kcol1 = a % 10;
+                break;
+            }else{
+                var n = krow1*10 + kcol1;
+                optionsdownleft.push(n);
+            }
+        }
+        for (var m = 0;m<8;m++){
+            var x = 0;
+            var y = 0;
+            krow1 += 1;
+            kcol1 += 1;
+            if (kcol1 > 8 || kcol1 < 1){
+                x += 1;
+            }
+            if (krow1 > 8 || krow1 < 1){
+                y += 1;
+            }
+            if (x != 0 || y != 0){
+                krow1 = Math.floor(a/10);
+                kcol1 = a % 10;
+                break;
+            }else{
+                var n = krow1*10 + kcol1;
+                optionsdownright.push(n);
+            }
+        }
+
+        for(var i = 0;i<optionstopleft.length;i++){
+        var p = check(optionstopleft[i]);
+        var p1 = checkblack(optionstopleft[i]);    
+           if (p && p1){
+            available.push(optionstopleft[i]);
+            var pp = document.getElementById(optionstopleft[i]);
+            pp.classList.add("active");
+           }else{
+               if ( !p ){
+                  break; 
+               }
+               if (!p1){
+                 available.push(optionstopleft[i]);
+            var pp = document.getElementById(optionstopleft[i]);
+            pp.classList.add("active"); 
+            break;
+               }
+           }    
+        }
+        for(var i = 0;i<optionstopright.length;i++){
+        var p = check(optionstopright[i]);
+        var p1 = checkblack(optionstopright[i]);    
+           if (p && p1){
+            available.push(optionstopright[i]);
+            var pp = document.getElementById(optionstopright[i]);
+            pp.classList.add("active");
+           }else{
+               if ( !p ){
+                  break; 
+               }
+               if (!p1){
+                 available.push(optionstopright[i]);
+            var pp = document.getElementById(optionstopright[i]);
+            pp.classList.add("active"); 
+            break;
+               }
+           }    
+        }
+        for(var i = 0;i<optionsdownright.length;i++){
+        var p = check(optionsdownright[i]);
+        var p1 = checkblack(optionsdownright[i]);    
+           if (p && p1){
+            available.push(optionsdownright[i]);
+            var pp = document.getElementById(optionsdownright[i]);
+            pp.classList.add("active");
+           }else{
+               if ( !p ){
+                  break; 
+               }
+               if (!p1){
+                 available.push(optionsdownright[i]);
+            var pp = document.getElementById(optionsdownright[i]);
+            pp.classList.add("active"); 
+            break;
+               }
+           }    
+        }
+        for(var i = 0;i<optionsdownleft.length;i++){
+        var p = check(optionsdownleft[i]);
+        var p1 = checkblack(optionsdownleft[i]);    
+           if (p && p1){
+            available.push(optionsdownleft[i]);
+            var pp = document.getElementById(optionsdownleft[i]);
+            pp.classList.add("active");
+           }else{
+               if ( !p ){
+                  break; 
+               }
+               if (!p1){
+                 available.push(optionsdownleft[i]);
+            var pp = document.getElementById(optionsdownleft[i]);
+            pp.classList.add("active"); 
+            break;
+               }
+           }    
+        }
+        if (available.length == 0){
+            available = [];
+            select = "";
+            selectedpiece = 0;
+            purpose = false;
+        }else{
+            purpose = true;
+        }
+    }
+    // black bishop
+     function blackbishop(a){
+        var current = document.getElementById(a);
+        select = "blackbishop";
+        selectedpiece = a;
+        var optionstopleft = [];
+        var optionstopright = [];
+        var optionsdownleft = [];
+        var optionsdownright = [];
+        var krow1 = Math.floor(a/10);
+        var kcol1 = a % 10;
+        for (var m = 0;m<8;m++){
+            var x = 0;
+            var y = 0;
+            krow1 -= 1;
+            kcol1 -= 1;
+            if (kcol1 > 8 || kcol1 < 1){
+                x += 1;
+            }
+            if (krow1 > 8 || krow1 < 1){
+                y += 1;
+            }
+            if (x != 0 || y != 0){
+                krow1 = Math.floor(a/10);
+                kcol1 = a % 10;
+                break;
+            }else{
+                var n = krow1*10 + kcol1;
+                optionstopleft.push(n);
+            }
+        }
+        for (var m = 0;m<8;m++){
+            var x = 0;
+            var y = 0;
+            krow1 -= 1;
+            kcol1 += 1;
+            if (kcol1 > 8 || kcol1 < 1){
+                x += 1;
+            }
+            if (krow1 > 8 || krow1 < 1){
+                y += 1;
+            }
+            if (x != 0 || y != 0){
+                krow1 = Math.floor(a/10);
+                kcol1 = a % 10;
+                break;
+            }else{
+                var n = krow1*10 + kcol1;
+                optionstopright.push(n);
+            }
+        }
+        for (var m = 0;m<8;m++){
+            var x = 0;
+            var y = 0;
+            krow1 += 1;
+            kcol1 -= 1;
+            if (kcol1 > 8 || kcol1 < 1){
+                x += 1;
+            }
+            if (krow1 > 8 || krow1 < 1){
+                y += 1;
+            }
+            if (x != 0 || y != 0){
+                krow1 = Math.floor(a/10);
+                kcol1 = a % 10;
+                break;
+            }else{
+                var n = krow1*10 + kcol1;
+                optionsdownleft.push(n);
+            }
+        }
+        for (var m = 0;m<8;m++){
+            var x = 0;
+            var y = 0;
+            krow1 += 1;
+            kcol1 += 1;
+            if (kcol1 > 8 || kcol1 < 1){
+                x += 1;
+            }
+            if (krow1 > 8 || krow1 < 1){
+                y += 1;
+            }
+            if (x != 0 || y != 0){
+                krow1 = Math.floor(a/10);
+                kcol1 = a % 10;
+                break;
+            }else{
+                var n = krow1*10 + kcol1;
+                optionsdownright.push(n);
+            }
+        }
+
+        for(var i = 0;i<optionstopleft.length;i++){
+        var p = check(optionstopleft[i]);
+        var p1 = checkblack(optionstopleft[i]);    
+           if (p && p1){
+            available.push(optionstopleft[i]);
+            var pp = document.getElementById(optionstopleft[i]);
+            pp.classList.add("active");
+           }else{
+               if ( !p1 ){
+                  break; 
+               }
+               if (!p){
+                 available.push(optionstopleft[i]);
+            var pp = document.getElementById(optionstopleft[i]);
+            pp.classList.add("active"); 
+            break;
+               }
+           }    
+        }
+        for(var i = 0;i<optionstopright.length;i++){
+        var p = check(optionstopright[i]);
+        var p1 = checkblack(optionstopright[i]);    
+           if (p && p1){
+            available.push(optionstopright[i]);
+            var pp = document.getElementById(optionstopright[i]);
+            pp.classList.add("active");
+           }else{
+               if ( !p1 ){
+                  break; 
+               }
+               if (!p){
+                 available.push(optionstopright[i]);
+            var pp = document.getElementById(optionstopright[i]);
+            pp.classList.add("active"); 
+            break;
+               }
+           }    
+        }
+        for(var i = 0;i<optionsdownright.length;i++){
+        var p = check(optionsdownright[i]);
+        var p1 = checkblack(optionsdownright[i]);    
+           if (p && p1){
+            available.push(optionsdownright[i]);
+            var pp = document.getElementById(optionsdownright[i]);
+            pp.classList.add("active");
+           }else{
+               if ( !p1 ){
+                  break; 
+               }
+               if (!p){
+                 available.push(optionsdownright[i]);
+            var pp = document.getElementById(optionsdownright[i]);
+            pp.classList.add("active"); 
+            break;
+               }
+           }    
+        }
+        for(var i = 0;i<optionsdownleft.length;i++){
+        var p = check(optionsdownleft[i]);
+        var p1 = checkblack(optionsdownleft[i]);    
+           if (p && p1){
+            available.push(optionsdownleft[i]);
+            var pp = document.getElementById(optionsdownleft[i]);
+            pp.classList.add("active");
+           }else{
+               if ( !p1 ){
+                  break; 
+               }
+               if (!p){
+                 available.push(optionsdownleft[i]);
+            var pp = document.getElementById(optionsdownleft[i]);
+            pp.classList.add("active"); 
+            break;
+               }
+           }    
+        }
+        if (available.length == 0){
+            available = [];
+            select = "";
+            selectedpiece = 0;
+            purpose = false;
+        }else{
+            purpose = true;
+        }
+    }       
+            
+    function queen(a){
+        var current = document.getElementById(a);
+        select = "whitequeen";
+        selectedpiece = a;
+        var optionstopleft = [];
+        var optionstopright = [];
+        var optionsdownleft = [];
+        var optionsdownright = [];
+        var optionstop = [];
+        var optionsdown = [];
+        var optionsleft = [];
+        var optionsright = [];
+        var krow1 = Math.floor(a/10);
+        var kcol1 = a % 10;
+        for (var m = 0;m<8;m++){
+            var x = 0;
+            var y = 0;
+            krow1 -= 1;
+            kcol1 -= 1;
+            if (kcol1 > 8 || kcol1 < 1){
+                x += 1;
+            }
+            if (krow1 > 8 || krow1 < 1){
+                y += 1;
+            }
+            if (x != 0 || y != 0){
+                krow1 = Math.floor(a/10);
+                kcol1 = a % 10;
+                break;
+            }else{
+                var n = krow1*10 + kcol1;
+                optionstopleft.push(n);
+            }
+        }
+        for (var m = 0;m<8;m++){
+            var x = 0;
+            var y = 0;
+            krow1 -= 1;
+            kcol1 += 1;
+            if (kcol1 > 8 || kcol1 < 1){
+                x += 1;
+            }
+            if (krow1 > 8 || krow1 < 1){
+                y += 1;
+            }
+            if (x != 0 || y != 0){
+                krow1 = Math.floor(a/10);
+                kcol1 = a % 10;
+                break;
+            }else{
+                var n = krow1*10 + kcol1;
+                optionstopright.push(n);
+            }
+        }
+        for (var m = 0;m<8;m++){
+            var x = 0;
+            var y = 0;
+            krow1 += 1;
+            kcol1 -= 1;
+            if (kcol1 > 8 || kcol1 < 1){
+                x += 1;
+            }
+            if (krow1 > 8 || krow1 < 1){
+                y += 1;
+            }
+            if (x != 0 || y != 0){
+                krow1 = Math.floor(a/10);
+                kcol1 = a % 10;
+                break;
+            }else{
+                var n = krow1*10 + kcol1;
+                optionsdownleft.push(n);
+            }
+        }
+        for (var m = 0;m<8;m++){
+            var x = 0;
+            var y = 0;
+            krow1 += 1;
+            kcol1 += 1;
+            if (kcol1 > 8 || kcol1 < 1){
+                x += 1;
+            }
+            if (krow1 > 8 || krow1 < 1){
+                y += 1;
+            }
+            if (x != 0 || y != 0){
+                krow1 = Math.floor(a/10);
+                kcol1 = a % 10;
+                break;
+            }else{
+                var n = krow1*10 + kcol1;
+                optionsdownright.push(n);
+            }
+        }
+        for (var m = 0;m<8;m++){
+            var x = 0;
+            var y = 0;
+            krow1 += 1;
+            kcol1 += 0;
+            if (kcol1 > 8 || kcol1 < 1){
+                x += 1;
+            }
+            if (krow1 > 8 || krow1 < 1){
+                y += 1;
+            }
+            if (x != 0 || y != 0){
+                krow1 = Math.floor(a/10);
+                kcol1 = a % 10;
+                break;
+            }else{
+                var n = krow1*10 + kcol1;
+                optionsdown.push(n);
+            }
+        }
+        for (var m = 0;m<8;m++){
+            var x = 0;
+            var y = 0;
+            krow1 -= 1;
+            kcol1 += 0;
+            if (kcol1 > 8 || kcol1 < 1){
+                x += 1;
+            }
+            if (krow1 > 8 || krow1 < 1){
+                y += 1;
+            }
+            if (x != 0 || y != 0){
+                krow1 = Math.floor(a/10);
+                kcol1 = a % 10;
+                break;
+            }else{
+                var n = krow1*10 + kcol1;
+                optionstop.push(n);
+            }
+        }
+        for (var m = 0;m<8;m++){
+            var x = 0;
+            var y = 0;
+            krow1 -= 0;
+            kcol1 += 1;
+            if (kcol1 > 8 || kcol1 < 1){
+                x += 1;
+            }
+            if (krow1 > 8 || krow1 < 1){
+                y += 1;
+            }
+            if (x != 0 || y != 0){
+                krow1 = Math.floor(a/10);
+                kcol1 = a % 10;
+                break;
+            }else{
+                var n = krow1*10 + kcol1;
+                optionsright.push(n);
+            }
+        }
+        for (var m = 0;m<8;m++){
+            var x = 0;
+            var y = 0;
+            krow1 -= 0;
+            kcol1 -= 1;
+            if (kcol1 > 8 || kcol1 < 1){
+                x += 1;
+            }
+            if (krow1 > 8 || krow1 < 1){
+                y += 1;
+            }
+            if (x != 0 || y != 0){
+                krow1 = Math.floor(a/10);
+                kcol1 = a % 10;
+                break;
+            }else{
+                var n = krow1*10 + kcol1;
+                optionsleft.push(n);
+            }
+        }
+
+        for(var i = 0;i<optionstopleft.length;i++){
+        var p = check(optionstopleft[i]);
+        var p1 = checkblack(optionstopleft[i]);    
+           if (p && p1){
+            available.push(optionstopleft[i]);
+            var pp = document.getElementById(optionstopleft[i]);
+            pp.classList.add("active");
+           }else{
+               if ( !p ){
+                  break; 
+               }
+               if (!p1){
+                 available.push(optionstopleft[i]);
+            var pp = document.getElementById(optionstopleft[i]);
+            pp.classList.add("active"); 
+            break;
+               }
+           }    
+        }
+        for(var i = 0;i<optionstopright.length;i++){
+        var p = check(optionstopright[i]);
+        var p1 = checkblack(optionstopright[i]);    
+           if (p && p1){
+            available.push(optionstopright[i]);
+            var pp = document.getElementById(optionstopright[i]);
+            pp.classList.add("active");
+           }else{
+               if ( !p ){
+                  break; 
+               }
+               if (!p1){
+                 available.push(optionstopright[i]);
+            var pp = document.getElementById(optionstopright[i]);
+            pp.classList.add("active"); 
+            break;
+               }
+           }    
+        }
+        for(var i = 0;i<optionsdownright.length;i++){
+        var p = check(optionsdownright[i]);
+        var p1 = checkblack(optionsdownright[i]);    
+           if (p && p1){
+            available.push(optionsdownright[i]);
+            var pp = document.getElementById(optionsdownright[i]);
+            pp.classList.add("active");
+           }else{
+               if ( !p ){
+                  break; 
+               }
+               if (!p1){
+                 available.push(optionsdownright[i]);
+            var pp = document.getElementById(optionsdownright[i]);
+            pp.classList.add("active"); 
+            break;
+               }
+           }    
+        }
+        for(var i = 0;i<optionsdownleft.length;i++){
+        var p = check(optionsdownleft[i]);
+        var p1 = checkblack(optionsdownleft[i]);    
+           if (p && p1){
+            available.push(optionsdownleft[i]);
+            var pp = document.getElementById(optionsdownleft[i]);
+            pp.classList.add("active");
+           }else{
+               if ( !p ){
+                  break; 
+               }
+               if (!p1){
+                 available.push(optionsdownleft[i]);
+            var pp = document.getElementById(optionsdownleft[i]);
+            pp.classList.add("active"); 
+            break;
+               }
+           }    
+        }
+        for(var i = 0;i<optionstop.length;i++){
+        var p = check(optionstop[i]);
+        var p1 = checkblack(optionstop[i]);    
+           if (p && p1){
+            available.push(optionstop[i]);
+            var pp = document.getElementById(optionstop[i]);
+            pp.classList.add("active");
+           }else{
+               if ( !p ){
+                  break; 
+               }
+               if (!p1){
+                 available.push(optionstop[i]);
+            var pp = document.getElementById(optionstop[i]);
+            pp.classList.add("active"); 
+            break;
+               }
+           }    
+        }
+        for(var i = 0;i<optionsright.length;i++){
+        var p = check(optionsright[i]);
+        var p1 = checkblack(optionsright[i]);    
+           if (p && p1){
+            available.push(optionsright[i]);
+            var pp = document.getElementById(optionsright[i]);
+            pp.classList.add("active");
+           }else{
+               if ( !p ){
+                  break; 
+               }
+               if (!p1){
+                 available.push(optionsright[i]);
+            var pp = document.getElementById(optionsright[i]);
+            pp.classList.add("active"); 
+            break;
+               }
+           }    
+        }
+        for(var i = 0;i<optionsdown.length;i++){
+        var p = check(optionsdown[i]);
+        var p1 = checkblack(optionsdown[i]);    
+           if (p && p1){
+            available.push(optionsdown[i]);
+            var pp = document.getElementById(optionsdown[i]);
+            pp.classList.add("active");
+           }else{
+               if ( !p ){
+                  break; 
+               }
+               if (!p1){
+                 available.push(optionsdown[i]);
+            var pp = document.getElementById(optionsdown[i]);
+            pp.classList.add("active"); 
+            break;
+               }
+           }    
+        }
+        for(var i = 0;i<optionsleft.length;i++){
+        var p = check(optionsleft[i]);
+        var p1 = checkblack(optionsleft[i]);    
+           if (p && p1){
+            available.push(optionsleft[i]);
+            var pp = document.getElementById(optionsleft[i]);
+            pp.classList.add("active");
+           }else{
+               if ( !p ){
+                  break; 
+               }
+               if (!p1){
+                 available.push(optionsleft[i]);
+            var pp = document.getElementById(optionsleft[i]);
+            pp.classList.add("active"); 
+            break;
+               }
+           }    
+        }
+        if (available.length == 0){
+            available = [];
+            select = "";
+            selectedpiece = 0;
+            purpose = false;
+        }else{
+            purpose = true;
+        }
+    }
+    // black queen
+            
+     function blackqueen(a){
+        var current = document.getElementById(a);
+        select = "blackqueen";
+        selectedpiece = a;
+        var optionstopleft = [];
+        var optionstopright = [];
+        var optionsdownleft = [];
+        var optionsdownright = [];
+        var optionstop = [];
+        var optionsdown = [];
+        var optionsleft = [];
+        var optionsright = [];
+        var krow1 = Math.floor(a/10);
+        var kcol1 = a % 10;
+        for (var m = 0;m<8;m++){
+            var x = 0;
+            var y = 0;
+            krow1 -= 1;
+            kcol1 -= 1;
+            if (kcol1 > 8 || kcol1 < 1){
+                x += 1;
+            }
+            if (krow1 > 8 || krow1 < 1){
+                y += 1;
+            }
+            if (x != 0 || y != 0){
+                krow1 = Math.floor(a/10);
+                kcol1 = a % 10;
+                break;
+            }else{
+                var n = krow1*10 + kcol1;
+                optionstopleft.push(n);
+            }
+        }
+        for (var m = 0;m<8;m++){
+            var x = 0;
+            var y = 0;
+            krow1 -= 1;
+            kcol1 += 1;
+            if (kcol1 > 8 || kcol1 < 1){
+                x += 1;
+            }
+            if (krow1 > 8 || krow1 < 1){
+                y += 1;
+            }
+            if (x != 0 || y != 0){
+                krow1 = Math.floor(a/10);
+                kcol1 = a % 10;
+                break;
+            }else{
+                var n = krow1*10 + kcol1;
+                optionstopright.push(n);
+            }
+        }
+        for (var m = 0;m<8;m++){
+            var x = 0;
+            var y = 0;
+            krow1 += 1;
+            kcol1 -= 1;
+            if (kcol1 > 8 || kcol1 < 1){
+                x += 1;
+            }
+            if (krow1 > 8 || krow1 < 1){
+                y += 1;
+            }
+            if (x != 0 || y != 0){
+                krow1 = Math.floor(a/10);
+                kcol1 = a % 10;
+                break;
+            }else{
+                var n = krow1*10 + kcol1;
+                optionsdownleft.push(n);
+            }
+        }
+        for (var m = 0;m<8;m++){
+            var x = 0;
+            var y = 0;
+            krow1 += 1;
+            kcol1 += 1;
+            if (kcol1 > 8 || kcol1 < 1){
+                x += 1;
+            }
+            if (krow1 > 8 || krow1 < 1){
+                y += 1;
+            }
+            if (x != 0 || y != 0){
+                krow1 = Math.floor(a/10);
+                kcol1 = a % 10;
+                break;
+            }else{
+                var n = krow1*10 + kcol1;
+                optionsdownright.push(n);
+            }
+        }
+        for (var m = 0;m<8;m++){
+            var x = 0;
+            var y = 0;
+            krow1 += 1;
+            kcol1 += 0;
+            if (kcol1 > 8 || kcol1 < 1){
+                x += 1;
+            }
+            if (krow1 > 8 || krow1 < 1){
+                y += 1;
+            }
+            if (x != 0 || y != 0){
+                krow1 = Math.floor(a/10);
+                kcol1 = a % 10;
+                break;
+            }else{
+                var n = krow1*10 + kcol1;
+                optionsdown.push(n);
+            }
+        }
+        for (var m = 0;m<8;m++){
+            var x = 0;
+            var y = 0;
+            krow1 -= 1;
+            kcol1 += 0;
+            if (kcol1 > 8 || kcol1 < 1){
+                x += 1;
+            }
+            if (krow1 > 8 || krow1 < 1){
+                y += 1;
+            }
+            if (x != 0 || y != 0){
+                krow1 = Math.floor(a/10);
+                kcol1 = a % 10;
+                break;
+            }else{
+                var n = krow1*10 + kcol1;
+                optionstop.push(n);
+            }
+        }
+        for (var m = 0;m<8;m++){
+            var x = 0;
+            var y = 0;
+            krow1 -= 0;
+            kcol1 += 1;
+            if (kcol1 > 8 || kcol1 < 1){
+                x += 1;
+            }
+            if (krow1 > 8 || krow1 < 1){
+                y += 1;
+            }
+            if (x != 0 || y != 0){
+                krow1 = Math.floor(a/10);
+                kcol1 = a % 10;
+                break;
+            }else{
+                var n = krow1*10 + kcol1;
+                optionsright.push(n);
+            }
+        }
+        for (var m = 0;m<8;m++){
+            var x = 0;
+            var y = 0;
+            krow1 -= 0;
+            kcol1 -= 1;
+            if (kcol1 > 8 || kcol1 < 1){
+                x += 1;
+            }
+            if (krow1 > 8 || krow1 < 1){
+                y += 1;
+            }
+            if (x != 0 || y != 0){
+                krow1 = Math.floor(a/10);
+                kcol1 = a % 10;
+                break;
+            }else{
+                var n = krow1*10 + kcol1;
+                optionsleft.push(n);
+            }
+        }
+
+        for(var i = 0;i<optionstopleft.length;i++){
+        var p = check(optionstopleft[i]);
+        var p1 = checkblack(optionstopleft[i]);    
+           if (p && p1){
+            available.push(optionstopleft[i]);
+            var pp = document.getElementById(optionstopleft[i]);
+            pp.classList.add("active");
+           }else{
+               if ( !p1 ){
+                  break; 
+               }
+               if (!p){
+                 available.push(optionstopleft[i]);
+            var pp = document.getElementById(optionstopleft[i]);
+            pp.classList.add("active"); 
+            break;
+               }
+           }    
+        }
+        for(var i = 0;i<optionstopright.length;i++){
+        var p = check(optionstopright[i]);
+        var p1 = checkblack(optionstopright[i]);    
+           if (p && p1){
+            available.push(optionstopright[i]);
+            var pp = document.getElementById(optionstopright[i]);
+            pp.classList.add("active");
+           }else{
+               if ( !p1 ){
+                  break; 
+               }
+               if (!p){
+                 available.push(optionstopright[i]);
+            var pp = document.getElementById(optionstopright[i]);
+            pp.classList.add("active"); 
+            break;
+               }
+           }    
+        }
+        for(var i = 0;i<optionsdownright.length;i++){
+        var p = check(optionsdownright[i]);
+        var p1 = checkblack(optionsdownright[i]);    
+           if (p && p1){
+            available.push(optionsdownright[i]);
+            var pp = document.getElementById(optionsdownright[i]);
+            pp.classList.add("active");
+           }else{
+               if ( !p1 ){
+                  break; 
+               }
+               if (!p){
+                 available.push(optionsdownright[i]);
+            var pp = document.getElementById(optionsdownright[i]);
+            pp.classList.add("active"); 
+            break;
+               }
+           }    
+        }
+        for(var i = 0;i<optionsdownleft.length;i++){
+        var p = check(optionsdownleft[i]);
+        var p1 = checkblack(optionsdownleft[i]);    
+           if (p && p1){
+            available.push(optionsdownleft[i]);
+            var pp = document.getElementById(optionsdownleft[i]);
+            pp.classList.add("active");
+           }else{
+               if ( !p1 ){
+                  break; 
+               }
+               if (!p){
+                 available.push(optionsdownleft[i]);
+            var pp = document.getElementById(optionsdownleft[i]);
+            pp.classList.add("active"); 
+            break;
+               }
+           }    
+        }
+        for(var i = 0;i<optionstop.length;i++){
+        var p = check(optionstop[i]);
+        var p1 = checkblack(optionstop[i]);    
+           if (p && p1){
+            available.push(optionstop[i]);
+            var pp = document.getElementById(optionstop[i]);
+            pp.classList.add("active");
+           }else{
+               if ( !p1 ){
+                  break; 
+               }
+               if (!p){
+                 available.push(optionstop[i]);
+            var pp = document.getElementById(optionstop[i]);
+            pp.classList.add("active"); 
+            break;
+               }
+           }    
+        }
+        for(var i = 0;i<optionsright.length;i++){
+        var p = check(optionsright[i]);
+        var p1 = checkblack(optionsright[i]);    
+           if (p && p1){
+            available.push(optionsright[i]);
+            var pp = document.getElementById(optionsright[i]);
+            pp.classList.add("active");
+           }else{
+               if ( !p1 ){
+                  break; 
+               }
+               if (!p){
+                 available.push(optionsright[i]);
+            var pp = document.getElementById(optionsright[i]);
+            pp.classList.add("active"); 
+            break;
+               }
+           }    
+        }
+        for(var i = 0;i<optionsdown.length;i++){
+        var p = check(optionsdown[i]);
+        var p1 = checkblack(optionsdown[i]);    
+           if (p && p1){
+            available.push(optionsdown[i]);
+            var pp = document.getElementById(optionsdown[i]);
+            pp.classList.add("active");
+           }else{
+               if ( !p1 ){
+                  break; 
+               }
+               if (!p){
+                 available.push(optionsdown[i]);
+            var pp = document.getElementById(optionsdown[i]);
+            pp.classList.add("active"); 
+            break;
+               }
+           }    
+        }
+        for(var i = 0;i<optionsleft.length;i++){
+        var p = check(optionsleft[i]);
+        var p1 = checkblack(optionsleft[i]);    
+           if (p && p1){
+            available.push(optionsleft[i]);
+            var pp = document.getElementById(optionsleft[i]);
+            pp.classList.add("active");
+           }else{
+               if ( !p1 ){
+                  break; 
+               }
+               if (!p){
+                 available.push(optionsleft[i]);
+            var pp = document.getElementById(optionsleft[i]);
+            pp.classList.add("active"); 
+            break;
+               }
+           }    
+        }
+        if (available.length == 0){
+            available = [];
+            select = "";
+            selectedpiece = 0;
+            purpose = false;
+        }else{
+            purpose = true;
+        }
+    }       
+   
+        setInterval(function(){
+             var tt = document.getElementById("turn");
+            tt.innerHTML = turn + " 's turn"; 
+            var blackscore = 0;
+            var whitescore = 0;
+        var liblack = ["blackpawn","blackrook","blackknight","blackbishop","blackqueen","blackking"]; 
+        var liwhite = ["whitepawn","whiterook","whiteknight","whitebishop","whitequeen","whiteking"]; 
+        for (var i = 0;i<liblack.length;i++){
+            var p = document.getElementsByClassName(liblack[i]);
+           blackscore +=  p.length;
+        }
+        for (var i = 0;i<liwhite.length;i++){
+            var p = document.getElementsByClassName(liwhite[i]);
+           whitescore +=  p.length;
+        }   
+            var c = document.getElementById("cscore");
+            var u = document.getElementById("uscore");
+            c.innerHTML = 16 - blackscore;
+            u.innerHTML = 16 - whitescore;
+           },10); 
+        </script>
+    </body>
+</html>
+
+
+
