@@ -173,6 +173,7 @@
     var mainwidth = parseInt(window.getComputedStyle(mainbox).getPropertyValue("width"));
     mainbox.style.height = mainwidth+"px";
             
+            var start1 = false;
         function start(){
         var con = document.getElementById("control");
         con.style.display = "flex";
@@ -180,8 +181,8 @@
         b.style.display = "none";
         var main = document.getElementById("mainbox");
         main.style.display = "flex";
-        
         assign();
+        start1 = true;
         }
             
         for(var i = 0;i<8;i++){
@@ -2358,8 +2359,21 @@
         }   
             var c = document.getElementById("cscore");
             var u = document.getElementById("uscore");
-            c.innerHTML = 16 - blackscore;
-            u.innerHTML = 16 - whitescore;
+            u.innerHTML = 16 - blackscore;
+            c.innerHTML = 16 - whitescore;
+        var ltp1 = document.getElementsByClassName("blackking");
+        var ltp2 = document.getElementsByClassName("whiteking");   
+        if (start1){
+           if (ltp1.length == 0){
+            alert("game over ! white is the winner");
+            location.reload();
+        }
+        if (ltp2.length == 0){
+            alert("game over ! black is the winner");
+            location.reload();
+        } 
+        }
+        
            },10); 
         </script>
     </body>
