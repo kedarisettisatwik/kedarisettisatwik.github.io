@@ -2342,7 +2342,7 @@
         }
     }       
    
-        setInterval(function(){
+        var inter = setInterval(function(){
              var tt = document.getElementById("turn");
             tt.innerHTML = turn + " 's turn"; 
             var blackscore = 0;
@@ -2366,10 +2366,12 @@
         if (start1){
            if (ltp1.length == 0){
             alert("game over ! white is the winner");
+               clearInterval(inter);
             location.reload();
         }
         if (ltp2.length == 0){
             alert("game over ! black is the winner");
+            clearInterval(inter);
             location.reload();
         } 
         }
