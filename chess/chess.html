@@ -454,7 +454,8 @@
              var top = a - 10;
              var t = document.getElementById(top); 
             var etl = t.classList.contains(liwhite[i]);
-            if(etl){
+            var etlw = t.classList.contains(liblack[i]);
+            if(etl || etlw){
                 x += 1;
             }
             }
@@ -513,7 +514,8 @@
              var down = a + 10;
              var d = document.getElementById(down); 
             var etl = d.classList.contains(liblack[i]);
-            if(etl){
+            var etlb = d.classList.contains(liwhite[i]);
+            if(etl || etlb){
                 x += 1;
             }
             }
