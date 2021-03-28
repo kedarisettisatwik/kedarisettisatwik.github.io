@@ -308,6 +308,9 @@
                 if (selectedpiece > 20){
                    pawn(selectedpiece);
                 }
+                if (selectedpiece > 70){
+                    pawnw(selectedpiece);
+                }
             }
             else if (t == 1){
                 rook(selectedpiece);
@@ -378,8 +381,11 @@
                  }
                }
             if (t == 0){
-                if (selectedpiece < 80){
+                if (selectedpiece < 80 && selectedpiece > 30){
                   blackpawn(selectedpiece);  
+                }
+                if (selectedpiece < 30){
+                  pawnb(selectedpiece);   
                 }
             }
             else if (t == 1){
@@ -501,8 +507,155 @@
         }
   }
     
+function pawnw(a){
+    var current = document.getElementById(a);
+        select = "whitepawn";
+        selectedpiece = a;
+        var liblack = ["blackpawn","blackrook","blackknight","blackbishop","blackqueen","blackking"]; 
+        var liwhite = ["whitepawn","whiterook","whiteknight","whitebishop","whitequeen","whiteking"]; 
+        if (a >= 71){
+            var x = 0;
+            for (var i = 0;i<liwhite.length;i++){
+             var top = a - 10;
+             var t = document.getElementById(top); 
+            var etl = t.classList.contains(liwhite[i]);
+            var etlw = t.classList.contains(liblack[i]);
+            if(etl || etlw){
+                x += 1;
+            }
+            }
+            if (x == 0){
+                available.push(top);
+                t.classList.add("active");
+            }
+            
+          if ( (a % 10) >= 2){
+               var topleft = a - 10 - 1;
+        var tl = document.getElementById(topleft);
+        for (var i = 0;i<liblack.length;i++){
+           var etl = tl.classList.contains(liblack[i]);
+          if(etl){
+            available.push(topleft);
+              tl.classList.add("active");
+              break;
+               }
+             }
+           }
+           if ( (a % 10) <= 7){
+            var topright = a - 10 + 1;
+            var tr = document.getElementById(topright);
+             for (var i = 0;i<liblack.length;i++){
+         var etl = tr.classList.contains(liblack[i]);
+           if(etl){
+            available.push(topright);
+               tr.classList.add("active");
+               break;
+          }
+        }  
+           }
+            
+        }
+    if (a >= 71){
+        var x = 0;
+            for (var i = 0;i<liwhite.length;i++){
+             var top = a - 20;
+             var t = document.getElementById(top); 
+            var etl = t.classList.contains(liwhite[i]);
+            var etlw = t.classList.contains(liblack[i]);
+            if(etl || etlw){
+                x += 1;
+            }
+            }
+            if (x == 0){
+                available.push(top);
+                t.classList.add("active");
+            }
+    }
+        if (available.length == 0){
+            available = [];
+            select = "";
+            selectedpiece = 0;
+            purpose = false;
+        }else{
+            purpose = true;
+        }
+}
     // black moves start now
             
+    function pawnb(a){
+        
+    var current = document.getElementById(a);
+        select = "blackpawn";
+        selectedpiece = a;
+        var liblack = ["blackpawn","blackrook","blackknight","blackbishop","blackqueen","blackking"]; 
+        var liwhite = ["whitepawn","whiterook","whiteknight","whitebishop","whitequeen","whiteking"]; 
+        if (a <= 30){
+            var x = 0;
+            for (var i = 0;i<liwhite.length;i++){
+             var top = a + 10;
+             var t = document.getElementById(top); 
+            var etl = t.classList.contains(liwhite[i]);
+            var etlw = t.classList.contains(liblack[i]);
+            if(etl || etlw){
+                x += 1;
+            }
+            }
+            if (x == 0){
+                available.push(top);
+                t.classList.add("active");
+            }
+            
+          if ( (a % 10) >= 2){
+               var topleft = a + 10 - 1;
+        var tl = document.getElementById(topleft);
+        for (var i = 0;i<liblack.length;i++){
+           var etl = tl.classList.contains(liwhite[i]);
+          if(etl){
+            available.push(topleft);
+              tl.classList.add("active");
+              break;
+               }
+             }
+           }
+           if ( (a % 10) <= 7){
+            var topright = a + 10 + 1;
+            var tr = document.getElementById(topright);
+             for (var i = 0;i<liblack.length;i++){
+         var etl = tr.classList.contains(liwhite[i]);
+           if(etl){
+            available.push(topright);
+               tr.classList.add("active");
+               break;
+          }
+        }  
+           }
+            
+        }
+    if (a <= 30){
+        var x = 0;
+            for (var i = 0;i<liwhite.length;i++){
+             var top = a + 20;
+             var t = document.getElementById(top); 
+            var etl = t.classList.contains(liwhite[i]);
+            var etlw = t.classList.contains(liblack[i]);
+            if(etl || etlw){
+                x += 1;
+            }
+            }
+            if (x == 0){
+                available.push(top);
+                t.classList.add("active");
+            }
+    }
+        if (available.length == 0){
+            available = [];
+            select = "";
+            selectedpiece = 0;
+            purpose = false;
+        }else{
+            purpose = true;
+        }
+    }
     function blackpawn(a){
         var current = document.getElementById(a);
         select = "blackpawn";
