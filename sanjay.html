@@ -1,4 +1,3 @@
-
 <html>
   <head>
  <title>notes</title>    
@@ -6,6 +5,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <!-- google fonts -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.1/html2pdf.bundle.min.js">
+    </script>
    <style>
        *{
            margin:0;
@@ -116,24 +117,82 @@
            margin-left:100px;
        }
        .open{
-           position:relative;
-          font-size:200%;
-           font-weight:bolder;
-           letter-spacing:5px;
-           font-family: 'Roboto', sans-serif;
-           padding:30px;
-           border-radius:20px; 
-           background-color:transparent;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           position:absolute;
+           top:4.5em;
+           right:5em;
+           width:6em;
+           height:6em;
+           background-color:darkblue;
            border:none;
-           outline:0;
-           color:darkblue;
+           outline:none;
+       }
+       .open::before{
+           position: absolute;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           transform:translateY(-1em);
+           content: '';
+           width:80%;
+           height:8%;
+           background-color:white;
+       }
+       .open::after{
+           position: absolute;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           transform:translateY(1em);
+           content: '';
+           width:80%;
+           height:8%;
+           background-color:white;
+       }
+       .active{
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           position:absolute;
+           top:4.5em;
+           right:5em;
+           width:5em;
+           height:5em;
+           background-color:red;
+           border:none;
+           outline:none;
+       }
+       .active::before{
+           position: absolute;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           transform:translateY(-1em);
+           content: '';
+           transform:rotateZ(-45deg);
+           width:80%;
+           height:8%;
+           background-color:white;
+       }
+       .active::after{
+           position: absolute;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           transform:translateY(1em);
+           transform:rotateZ(45deg);
+           content: '';
+           width:80%;
+           height:8%;
+           background-color:white;
        }
        .opt{
            position: relative;
-           margin-top:20px;
            width:100%;
            background-color: aliceblue;
-           margin:50px 0px;
+           margin:50px auto;
            display:none;
            padding:20px 0px;
        }
@@ -143,7 +202,7 @@
            justify-content: center;
            align-items: center;
        }
-       .closeclose,.savesave,.copycopy{
+       .pdfpdf,.savesave,.copycopy{
             position:relative;
           font-size:250%;
            font-weight:bolder;
@@ -156,6 +215,7 @@
            border-bottom:5px solid black;
        }
        .inputtext{
+           margin-top:20px;
            min-height:300px;
            resize: vertical;
            width:100%;
@@ -186,6 +246,7 @@
     </section>
 
     
+        
     <script>
        if (localStorage.getItem("numberof")){
         
@@ -222,7 +283,6 @@ var oldlist1 = JSON.parse(localStorage.getItem("kedarparagraphs"));
             el1.setAttribute("class","box");
             el2.setAttribute("class","title");
             el3.setAttribute("class","open");
-            el3.innerHTML = "open";
             el3.setAttribute("id",i);
             base.appendChild(el1);
             var li = JSON.parse(localStorage.getItem("kedarbooktitles"));
@@ -240,10 +300,10 @@ var oldlist1 = JSON.parse(localStorage.getItem("kedarparagraphs"));
             var el6 = document.createElement("button");
             var el7 = document.createElement("button");
             var el8 = document.createElement("button");
-            el6.setAttribute("class","closeclose");
+            el6.setAttribute("class","pdfpdf");
             el7.setAttribute("class","savesave");
             el8.setAttribute("class","copycopy");
-            el6.innerHTML = "close";
+            el6.innerHTML = "create pdf";
             el7.innerHTML = "save";
             el8.innerHTML = "copy-text";
             el4.appendChild(el5);
@@ -253,13 +313,12 @@ var oldlist1 = JSON.parse(localStorage.getItem("kedarparagraphs"));
             el6.setAttribute("id",i);
             el7.setAttribute("id",i);
             el8.setAttribute("id",i);
-            el1.appendChild(el4);
             var el9 = document.createElement("textarea");
             el9.setAttribute("class","inputtext");
             el9.setAttribute("id","in"+i);
             el9.innerHTML = llii[i];
             el1.appendChild(el9);
-          
+            el1.appendChild(el4);
         }
     }
     board();
@@ -269,27 +328,42 @@ var oldlist1 = JSON.parse(localStorage.getItem("kedarparagraphs"));
         var p = btns.item(k);
         p.addEventListener("click",openbook,false);
     }    
+    
     function openbook(e){
         var selected = parseInt(e.target.id);
-        var ele1 = document.getElementById("options"+selected);
-        ele1.style.display = "block";
-        var ele2 = document.getElementById("in"+selected);
-        ele2.style.display = "flex";
-    }
-    var btnsclose = document.getElementsByClassName("closeclose");
-    for(var kk = 0;kk<btnsclose.length;kk++){
-        var pp = btnsclose.item(kk);
-        pp.addEventListener("click",closebook,false);
-    }    
-    function closebook(e){
-        var selected = parseInt(e.target.id);
+        if (e.target.classList.contains("active")){
+            var selected = parseInt(e.target.id);
         var ele1 = document.getElementById("options"+selected);
         ele1.style.display = "none";
         var ele2 = document.getElementById("in"+selected);
         ele2.style.display = "none";
+            e.target.classList.remove("active");
+            e.target.classList.add("open");
+        }else{
+            var ele1 = document.getElementById("options"+selected);
+        ele1.style.display = "block";
+        var ele2 = document.getElementById("in"+selected);
+        ele2.style.display = "flex";
+            e.target.classList.remove("open");
+            e.target.classList.add("active");
+        }
+    }
+        
+    var btnscreate = document.getElementsByClassName("pdfpdf");
+    for(var kk = 0;kk<btnscreate.length;kk++){
+        var pp = btnscreate.item(kk);
+        pp.addEventListener("click",newpdf,false);
+    } 
+        
+    function newpdf(e){
+        var selected = parseInt(e.target.id);
+        var ele2 = document.getElementById("in"+selected);
+        html2df()
+        .from(ele2)
+        .save();
     } 
     var btnssave = document.getElementsByClassName("savesave");
-    for(var kkk = 0;kkk<btnsclose.length;kkk++){
+    for(var kkk = 0;kkk<btns.length;kkk++){
         var ppp = btnssave.item(kkk);
         ppp.addEventListener("click",savebook,false);
     }    
