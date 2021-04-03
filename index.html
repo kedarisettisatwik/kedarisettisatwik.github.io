@@ -62,23 +62,23 @@
             margin-bottom:1em;
             word-wrap: break-word;
             text-align: center;
-            background-color:white;
+            background-color:ghostwhite;
             border-radius:5%;
             padding:3em 0px;
             transition:1s;
+            box-shadow:13px 13px 10px #cbced1,-13px -13px 10px #ffffff;
             -webkit-animation-name:shadow;
-            -webkit-animation-duration:4s;
-            -webkit-animation-iteration-count:infinite;
+            -webkit-animation-duration:10s;
+            -webkit-animation-iteration-count:forwards;
         }
         @keyframes shadow{
             0%{
+                background-color:white;
                 box-shadow:none; 
             }
-            50%{
-               box-shadow:13px 13px 10px #cbced1,-13px -13px 10px #cbced1;  
-            }
             100%{
-               box-shadow:none; 
+                background-color:ghostwhite;
+                box-shadow:13px 13px 10px #cbced1,-13px -13px 10px #fffff;   
             }
         }
     </style>
@@ -95,6 +95,7 @@
         <img src="003-youtube.png" onclick="move(3)">
     </div>
     <span>
+    <a href = "firechat.html" target="_blank" class="link" id="firechat">SIMPLE <br> CHAT APP</a> 
     <a href = "chess/chess.html" target="_blank" class="link" id="chess">CHESS GAME</a>
     <a href = "game2048.html" target="_blank" class="link" id="2048">2048</a>
     <a href = "helper.html" target="_blank" 

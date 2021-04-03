@@ -1,0 +1,196 @@
+<html>
+<head>
+    <title>chat app by kedar</title>
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+        body{
+            height:100vh;
+            width:100vw;
+            display:flex;
+            align-items: center;
+            flex-direction: column;
+        }
+        #header{
+            position: relative;
+            padding:1.5em 0;
+            width:100%;
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+            font-size:2em;
+            color:white;
+            border-bottom:5px solid white;
+            background-color:black;
+        }
+        #header h1{
+            letter-spacing:4px;
+            text-transform:uppercase;
+            margin-bottom:20px;
+        }
+        #header label{
+            color:antiquewhite;
+            margin-left:1em;
+            float:left;
+        }
+        #msg{
+            position: relative;
+            width:98%;
+            height:100vh;
+            overflow-y: auto;
+            display:flex;
+            align-items: center;
+            flex-direction: column;
+        }
+        .text{
+            position: relative;
+            width:100%;
+            margin:10px 10px;
+        }
+        .me{
+            float:right;
+            position:relative;
+            max-width:70%;
+            padding:10px;
+            height:auto;
+            font-family: 'Roboto', sans-serif;
+            font-size:2.2em;
+            margin-left:10px;
+            padding:30px 20px 30px 30px;
+            background-color:aliceblue;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+        .other{
+            float:left;
+            position:relative;
+            max-width:70%;
+            padding:10px;
+            height:auto;
+            font-family: 'Roboto', sans-serif;
+            font-size:2.2em;
+            margin-left:10px;
+            padding:30px 30px 30px 20px;
+            background-color: antiquewhite;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+        .other p {
+            opacity:0.6;
+            margin-bottom:20px;
+        }
+        #controls{
+            width:100%;
+            position:relative;
+            bottom:0;
+            display:flex;
+            justify-content:space-between;
+            align-items: center;
+        }
+        #controls form{
+            width:100%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #controls textarea{
+            width:80%;
+            font-family: 'Roboto', sans-serif;
+            font-size:2.2em;
+            padding:0.5em;
+            letter-spacing:2px;
+            color:black;
+            border-bottom:4px solid black;
+            white-space: pre-wrap;
+        }
+        #controls form input[type="submit"]{
+            width:20%;
+            font-family: 'Roboto', sans-serif;
+            font-size:2.2em;
+            padding:1em;
+            letter-spacing:2px;
+            outline:none;
+            border:0;
+            background-color:deepskyblue;
+            color:black;
+            font-weight:bold;
+            letter-spacing:3px;
+        }
+    </style>
+    
+    </head>
+    <body id="box">
+    <div id="header">
+       <h1>chat app</h1>
+       <label>By kedar - satwik</label> 
+    </div>
+    <section id="msg">
+        
+    </section>
+    <div id="controls">
+    <form id="msgs" autocomplete="off">
+        <textarea type="text" required placeholder="enter message" id="memsg"></textarea>
+        <input type="submit" value="send">
+    </form>
+    </div>
+        
+    
+        
+<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script>
+
+
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyAwXmu5xy6nXym5nowt5eyfQotPBoCmbVY",
+    authDomain: "chat-26286.firebaseapp.com",
+    projectId: "chat-26286",
+    storageBucket: "chat-26286.appspot.com",
+    messagingSenderId: "789714637006",
+    appId: "1:789714637006:web:ba74e31dee1a7e02f6809f",
+    measurementId: "G-W5KJCHHYC6"
+  };
+  firebase.initializeApp(firebaseConfig);
+</script>
+        
+<script>
+    var mee;
+        if (localStorage.getItem("kedarchatfire")){
+        mee = localStorage.getItem("kedarchatfire");
+        }else{
+            var person = prompt("enter name");
+            localStorage.setItem("kedarchatfire",person);
+            location.reload();
+        }
+        
+        var inputtext = document.getElementById("msgs");
+        var sec = document.getElementById("msg");
+        
+        inputtext.addEventListener("submit",(e) => {
+            e.preventDefault();
+            var text = document.getElementById("memsg").value;
+            firebase.database().ref("chat/Texts").push({
+                user : mee,
+                msg  :text
+            });
+          document.getElementById("memsg").value = "";
+        });
+    
+    firebase.database().ref("chat/Texts").on("child_added",(s) => {
+            if (s.val().user == mee){
+                sec.innerHTML += "<div class='text'><p class='me'>"+s.val().msg+ "</p></div>";
+            }else{
+                sec.innerHTML += "<div class='text'><label class='other'>"+ "<p>"+s.val().user+"</p>"+s.val().msg+"</label></div>";
+            }
+        });
+    
+    </script>
+    
+    </body>
+</html>
