@@ -43,8 +43,9 @@
             margin-bottom:20px;
         }
         span{
+            padding:0 1vw;
             position: relative;
-            width:100vw;
+            width:98vw;
             display:flex;
             flex-wrap: wrap;
             justify-content:space-around;
@@ -61,12 +62,25 @@
             margin-bottom:1em;
             word-wrap: break-word;
             text-align: center;
-            background-color:#ecf0f3;
+            background-color:white;
             border-radius:5%;
             padding:3em 0px;
-            box-shadow:13px 13px 20px #cbced1,-13px 13px 20px #ffffff;
+            transition:1s;
+            -webkit-animation-name:shadow;
+            -webkit-animation-duration:4s;
+            -webkit-animation-iteration-count:infinite;
         }
-        
+        @keyframes shadow{
+            0%{
+                box-shadow:none; 
+            }
+            50%{
+               box-shadow:13px 13px 10px #cbced1,-13px -13px 10px #cbced1;  
+            }
+            100%{
+               box-shadow:none; 
+            }
+        }
     </style>
     </head>
 <body id="zoom">
@@ -81,39 +95,39 @@
         <img src="003-youtube.png" onclick="move(3)">
     </div>
     <span>
-    <a href = "chess/chess.html" target="_blank" class="link">CHESS GAME</a>
-    <a href = "game2048.html" target="_blank" class="link">2048</a>
+    <a href = "chess/chess.html" target="_blank" class="link" id="chess">CHESS GAME</a>
+    <a href = "game2048.html" target="_blank" class="link" id="2048">2048</a>
     <a href = "helper.html" target="_blank" 
-    class="link">SUPER <br> CALCULATOR</a>
-    <a href = "homepage.html" target="_blank" class="link">LEARN FREE</a> 
-    <a href = "sanjay.html" target="_blank" class="link">NOTES APP</a> 
-    <a href = "testone1.html" target="_blank" class="link">KEDAR IS ONLINE</a> 
-    <a href = "quiz.html" target="_blank" class="link">MATH QUIZ</a>
-    <a href ="cow1.html" target="_blank" class="link">COW'S & BULL'S GAME</a>
-    <a href ="clock.html" target="_blank" class="link">DIGITAL CLOCK</a>
+    class="link" id="super">SUPER <br> CALCULATOR</a>
+    <a href = "homepage.html" target="_blank" class="link" id="learn">LEARN FREE</a> 
+    <a href = "sanjay.html" target="_blank" class="link" id="notes">NOTES APP</a> 
+    <a href = "testone1.html" target="_blank" class="link" id="online">KEDAR IS ONLINE</a> 
+    <a href = "quiz.html" target="_blank" class="link" id="quiz">MATH QUIZ</a>
+    <a href ="cow1.html" target="_blank" class="link" id="cb">COW'S & BULL'S GAME</a>
+    <a href ="clock.html" target="_blank" class="link" id="digital">DIGITAL CLOCK</a>
     <a href = "day.html" target="_blank" 
-    class="link">Find Day..</a> 
+    class="link" id="find">Find Day..</a> 
     <a href ="first.html" target="_blank" 
-    class="link">ACE TOURISIM</a>
-    <a href = "choice.html" target="_blank" class="link">HAND_CRICKET</a> 
-    <a href = "web.html" target="_blank" class="link">ANIMATION'S</a>      
-    <a href ="guess.html" target="_blank" class="link">GUESS GAME</a>   
-    <a href ="cal.html" target="_blank" class="link">CALCULATOR</a>
+    class="link" id="ace">ACE TOURISIM</a>
+    <a href = "choice.html" target="_blank" class="link" id="hand">HAND_CRICKET</a> 
+    <a href = "web.html" target="_blank" class="link" id="animations">ANIMATION'S</a>      
+    <a href ="guess.html" target="_blank" class="link" id="guess">GUESS GAME</a>   
+    <a href ="cal.html" target="_blank" class="link" id="calc">CALCULATOR</a>
     
-    <a href ="shop.html" target="_blank" class="link">ONLINE SHOPPING</a> 
-    <a href ="diwali.html" target="_blank"  class="link">HAPPY DIWALI</a>
-    <a href ="puzzle.html" target="_blank" class="link">PUZZLE</a> 
+    <a href ="shop.html" target="_blank" class="link" id="shop">ONLINE SHOPPING</a> 
+    <a href ="diwali.html" target="_blank"  class="link" id="hd">HAPPY DIWALI</a>
+    <a href ="puzzle.html" target="_blank" class="link" id="puzz">PUZZLE</a> 
     <a href ="design.html" target="_blank" 
-       class="link">MY NAME</a>   
-    <a href ="bio.html" target="_blank" class="link">BIOGRAPHY OF SOME PEOPLE</a>
-    <a href ="name.html" target="_blank" class="link">SCROLL CLOSE FRIEND'S</a>  
+       class="link" id="my">MY NAME</a>   
+    <a href ="bio.html" target="_blank" class="link" id="bio">BIOGRAPHY OF SOME PEOPLE</a>
+    <a href ="name.html" target="_blank" class="link" id="frn">SCROLL CLOSE FRIEND'S</a>  
     
-    <a href ="happydiwali.html" target="_blank" class="link">HAPPY DIWALI 2</a>
-    <a href = "yourname.html" target="_blank" class="link">STYLE YOUR NAME</a>
-    <a href = "playicon.html" target="_blank" class="link">PLAY WITH ICON'S.</a>
-    <a href = "lookeyes.html" target="_blank" class="link">LOOK INTO MY EYES..</a>
-    <a href = "rain.html" target="_blank" class="link">RAIN..</a>   
-    <a href = "newyear.html" target="_blank" class="link">HAPPY NEW YEAR..</a>     
+    <a href ="happydiwali.html" target="_blank" class="link" id="hd2">HAPPY DIWALI 2</a>
+    <a href = "yourname.html" target="_blank" class="link" id="name">STYLE YOUR NAME</a>
+    <a href = "playicon.html" target="_blank" class="link" id="icons">PLAY WITH ICON'S.</a>
+    <a href = "lookeyes.html" target="_blank" class="link" id="eyes">LOOK INTO MY EYES..</a>
+    <a href = "rain.html" target="_blank" class="link" id="rain">RAIN..</a>   
+    <a href = "newyear.html" target="_blank" class="link" id="new">HAPPY NEW YEAR..</a>     
     </span>
 </section>
     
@@ -130,5 +144,6 @@ location.assign("https://www.youtube.com/channel/UCpLOopnR9TX9b1fjcDpapsw");
             }
         }
     </script>
+    
     </body>
 </html>
