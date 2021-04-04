@@ -273,17 +273,26 @@
             flex-direction: column;
             background-color:white;  
         }
-        #chatplace h1{
+        #chatplace span{
             margin:1em 0;
-            font-size:3em;
+            font-size:2.5em;
             position:absolute;
             width:90%;
-            height:10vh;
+            min-height:10vh;
             padding-left:1em;
             border:0.1em solid black;
             display: flex;
             align-items: center;
             letter-spacing:3px;
+        }
+        #chatplace span button{
+          position: absolute;
+          right:1em;
+          background-color: black;
+          color:white;
+           font-weight:bold;
+           padding:0.5em 1em;
+            font-size:1em;
         }
         #chatplace #area{
             top:14vh;
@@ -302,7 +311,7 @@
             top:84vh;
             position:absolute;
             width:90%;
-            height:10vh;
+            min-height:10vh;
             padding-left:1em;
             border:0.1em solid black;
             display: flex;
@@ -315,6 +324,7 @@
             padding:1em;
             border:0;
             outline:0;
+            height:9vh;
         }
         #sendmsg input[type = "submit"]{
            font-size:2em;
@@ -325,6 +335,7 @@
             background-color:black;
             color:white;  
             white-space: pre-wrap;
+            height:9vh;
         }
         .bb{
             position: relative;
@@ -394,8 +405,12 @@
            </div>  
         </section> 
         <section id="chatplace">
-        <h1 id="touser">
-        </h1>
+        <span>
+           <h1 id="touser"></h1>
+            <button onclick="changepage(3)">
+            back
+            </button>
+        </span>
         <div id="area">
             
         </div>
@@ -404,23 +419,55 @@
             <input type="submit" value="send">
         </form>
         </section>
-    <script>
+
+<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script>
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyAAf-t316qGcYZgpJZ8QhQ_9CVPabDzX48",
+    authDomain: "what-s-app-ad417.firebaseapp.com",
+    databaseURL: "https://what-s-app-ad417-default-rtdb.firebaseio.com",
+    projectId: "what-s-app-ad417",
+    storageBucket: "what-s-app-ad417.appspot.com",
+    messagingSenderId: "692077766689",
+    appId: "1:692077766689:web:afff3786389b8379829b60",
+    measurementId: "G-D8YRKX04X8"
+  };
+  firebase.initializeApp(firebaseConfig);
+</script>
+<script>
+        var admin;
+        var toto;
+    
        setTimeout(function(){
 var i = document.getElementById("intro");
          document.body.removeChild(i); 
-        },2000);
+        },1500);
+        
+        
+        var arr = [];  
+        
         function adduser(){
             var id = document.getElementById("user_id").value;
             var pass = document.getElementById("pass").value;
             var repass = document.getElementById("repass").value;
             var display = document.getElementById("error");
             if (id != "" && pass != "" && repass != ""){
-                if (pass == repass){
-                  display.style.display = "block";
+                if (pass == repass){ 
+        if (arr.includes(id)){
+                   display.style.display = "block";
+               display.style.backgroundColor = "lightpink";
+               display.innerHTML = "sorry,this user id already exist try different one..";
+               }else{
+                   display.style.display = "block";
                display.style.backgroundColor = "lightgreen";
-               display.innerHTML = "success";  
-                    
-                }else{
+               display.innerHTML = "successfully registered";   
+    firebase.database().ref("sim/users").push({
+                user_id : id,
+                password : pass
+            });
+                load();
+               }
+            } else{
                display.style.display = "block";
                display.style.backgroundColor = "lightpink";
                display.innerHTML = "password confirmation failed";
@@ -431,6 +478,7 @@ var i = document.getElementById("intro");
                display.innerHTML = "All fields required";
             }
         }
+        
         function changepage(a){
             var aa = document.getElementById("signin");
             var bb = document.getElementById("signup");
@@ -453,6 +501,7 @@ var i = document.getElementById("intro");
                 aa.style.display = "none"; 
                 cc.style.display = "flex"; 
                 dd.style.display = "none";
+                draw();
             }
             if (a == 4){
                 bb.style.display = "none";
@@ -461,15 +510,20 @@ var i = document.getElementById("intro");
                 dd.style.display = "flex"; 
             }
         }
-        var arraynames = ["hanish","pranny","kedar","kiran","dinesh"];
+    
+        
+        
+         var arraynames = arr;
+    
         function draw(a){
             var d = document.getElementById("names");
             d.innerHTML = '';
-            for (var i = 0;i<a.length;i++){
+           for (var i = 0;i<arraynames.length;i++){
+    if (arraynames[i] != admin){
         d.innerHTML += "<label onclick = place('"+arraynames[i]+"')>"+arraynames[i]+"</label>";
-            }
+    }    
+           } 
         }
-        draw(arraynames);
         
         var sec = document.getElementById("users");
         var search = document.getElementById("search_field");
@@ -485,48 +539,87 @@ var i = document.getElementById("intro");
                     var xyz = arraynames[i].toLowerCase() ;
                     var value1 = value.toLowerCase();
                     if (xyz.indexOf(value1) > -1){
-        d.innerHTML += "<label onclick = place('"+arraynames[i]+"')>"+arraynames[i]+"</label>";
+        if (arraynames[i] != admin){
+            d.innerHTML += "<label onclick = place('"+arraynames[i]+"')>"+arraynames[i]+"</label>";
+            }
                     } 
                  }
               }
            }
         });
+        
         function checkuser(){
-            changepage(3);
+            var display = document.getElementById("error1");
+        var usercheck = document.getElementById("user_id1").value;
+    var pp = document.getElementById("pass1").value;
+         if (usercheck != "" & pp != ""){
+firebase.database().ref('sim/users').once('value',function(snapshot){
+        snapshot.forEach(function(ChildSnapShot){
+            let u = ChildSnapShot.val().user_id;
+            let p = ChildSnapShot.val().password;
+            if (u == usercheck && p == pp){
+                admin = u;
+               changepage(3); 
+            }else{
+              display.style.display = "block";
+               display.style.backgroundColor = "lightpink";
+               display.innerHTML = "wrong credits";  
+            }
+        })
+    });
+         }else{
+             display.style.display = "block";
+               display.style.backgroundColor = "lightpink";
+               display.innerHTML = "All fields required";
+         }
         }
+            
         function place(abc){
             changepage(4);
             var p = document.getElementById("touser");
             p.innerHTML = abc;
+            toto = abc;
+ var section = document.getElementById("area");       document.getElementById("area").innerHTML = "";    
+            checktext(admin,toto);
         }
+    
+       function checktext(f,t){
+var section = document.getElementById("area");       document.getElementById("area").innerHTML = "";
+firebase.database().ref("sim/Texts").on("child_added",(s) => {
+    if (s.val().from == f && s.val().to == t){
+    section.innerHTML += "<div class='bb'>"+"<label class='memsg'>"+s.val().msg+"</label>";
+        }
+    if (s.val().to == f && s.val().from == t){
+    section.innerHTML += "<div class='bb'>"+"<label class='othermsg'>"+s.val().msg+"</label>";
+        }
+        });
+       }
+    
         var sendform = document.getElementById("sendmsg");
         sendform.addEventListener("submit",(e) => {
               e.preventDefault();
-             var section = document.getElementById("area");
-            var intext = document.getElementById("text").value;
-            section.innerHTML += "<div class='bb'>"+"<label class='memsg'>"+intext+"</label>";
-            document.getElementById("text").value = "";
+var intext = document.getElementById("text").value;
+    firebase.database().ref("sim/Texts").push({
+                from : admin,
+                to  :toto,
+                msg:intext
+            });
+    document.getElementById("text").value = "";
         });
-    </script>
         
-<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-analytics.js"></script>
-
-<script>
-  var firebaseConfig = {
-    apiKey: "AIzaSyAAf-t316qGcYZgpJZ8QhQ_9CVPabDzX48",
-    authDomain: "what-s-app-ad417.firebaseapp.com",
-    databaseURL: "https://what-s-app-ad417-default-rtdb.firebaseio.com",
-    projectId: "what-s-app-ad417",
-    storageBucket: "what-s-app-ad417.appspot.com",
-    messagingSenderId: "692077766689",
-    appId: "1:692077766689:web:afff3786389b8379829b60",
-    measurementId: "G-D8YRKX04X8"
-  };
-  firebase.initializeApp(firebaseConfig);
-</script>
-        
+        function load(){
+            setTimeout(function(){
+                location.reload();
+            },2000);
+        }
+    
+firebase.database().ref('sim/users').once('value',function(snapshot){
+           snapshot.forEach(function(ChildSnapshot){
+               let username = ChildSnapshot.val().user_id;
+               arr.push(username);
+           }) 
+        });
+    </script>   
     </body>
 </html>
 
@@ -539,5 +632,9 @@ var i = document.getElementById("intro");
      <label class="othermsg">hi ra</label>
 </div>
 
+var section = document.getElementById("area");
+var intext = document.getElementById("text").value;
+section.innerHTML += "<div class='bb'>"+"<label class='memsg'>"+intext+"</label>";
+document.getElementById("text").value = "";
 
 -->
