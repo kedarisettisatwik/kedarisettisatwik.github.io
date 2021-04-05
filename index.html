@@ -4,21 +4,34 @@
     <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
     <style>
         body{
-            align-content: center;
             width:100vw;
-            height:100vh;
+            min-height:100vh;
+        }
+        .main_box{
+            position:relative;
+            top:2vh;
+            left:0;
+            flex-direction: column;
+            display:flex;
+            align-items: center;
+            width:100vw;
+            min-height:100vh;
             font-family: monospace;
+            background-image:url(https://img.freepik.com/free-photo/abstract-blue-extruded-voronoi-blocks-background-minimal-light-clean-corporate-wall-3d-geometric-surface-illustration-polygonal-elements-displacement_1217-2510.jpg?size=626&ext=jpg);
+            background-repeat:repeat-y;
+            background-size: cover;
         }
         .name{
             padding:30px 0px;
-            margin-top:100px;
-            width:100%;
+            margin-top:70px;
+            min-width:50%;
             position: relative;
             align-content: center;
             text-align: center;
-            color:darkslateblue;
             font-size:5em;
             margin-bottom:10px;
+            background-image: linear-gradient(rgb(0,0,0,0.5),rgb(0,0,0,0.5));
+            color:white;
         } 
        .container{
             width:100%;
@@ -29,10 +42,7 @@
             align-items: center;
            flex-direction: column;
         }
-        img{
-            position: relative;
-            width:8%;
-        }
+        
         #follow{
             position:relative;
             display: flex;
@@ -43,74 +53,64 @@
             margin-bottom:20px;
         }
         span{
-            padding:0 1vw;
             position: relative;
-            width:98vw;
+            width:100vw;
             display:flex;
             flex-wrap: wrap;
             justify-content:space-around;
         }
         .link{
+            padding:0.5em 0;
             display:flex;
             justify-content: center;
             align-items:center;
+            flex-direction: column;
             position: relative;
-            text-decoration: none;
-            color: black;
-            font-size:4em;
             width:45%;
             margin-bottom:1em;
-            word-wrap: break-word;
             text-align: center;
-            background-color:ghostwhite;
-            border-radius:5%;
-            padding:3em 0px;
-            transition:1s;
-            box-shadow:13px 13px 10px #cbced1,-13px -13px 10px #ffffff;
-            -webkit-animation-name:shadow;
-            -webkit-animation-duration:10s;
-            -webkit-animation-iteration-count:forwards;
+            min-height:15vh;
+            font-size:4em;
+            background: transparent;
+            background-image: linear-gradient(rgb(0,0,0,0.5),rgb(0,0,0,0.5));
+            color:white;
+            text-decoration:none;
         }
-        @keyframes shadow{
-            0%{
-                background-color:white;
-                box-shadow:none; 
-            }
-            100%{
-                background-color:ghostwhite;
-                box-shadow:13px 13px 10px #cbced1,-13px -13px 10px #fffff;   
-            }
+        .c{
+            font-size:2em;
+            background-color: azure;
         }
     </style>
     </head>
 <body id="zoom">
     <!-- hitwebcounter Code START -->
-<a href="https://www.hitwebcounter.com" target="_blank">
-<img src="https://hitwebcounter.com/counter/counter.php?page=7711238&style=0001&nbdigits=6&type=ip&initCount=0" title="Total Website Hits" Alt="Web Hits"   border="0" /></a><br>    
+<a href="https://www.hitwebcounter.com" target="_blank" class="c">
+<img src="https://hitwebcounter.com/counter/counter.php?page=7711238&style=0001&nbdigits=6&type=ip&initCount=0" title="Total Website Hits" Alt="Web Hits"   border="0" /></a><br> 
+    <section class="main_box">
         <div class="name"> PROJECT STORE </div>
 <section class="container">
     <div id="follow">
-        <img src= "001-facebook.png" onclick="move(1)">
-        <img src = "002-instagram.png" onclick="move(2)">
-        <img src="003-youtube.png" onclick="move(3)">
+        <img src= "001-facebook.png" onclick="move(1)" style="width:10%;padding:2em;background-image: linear-gradient(rgb(0,0,0,0.5),rgb(0,0,0,0.5))">
+        <img src = "002-instagram.png" style="width:10%;padding:2em;background-image: linear-gradient(rgb(0,0,0,0.5),rgb(0,0,0,0.5))" onclick="move(2)">
+        <img src="003-youtube.png" style="width:10%;padding:2em;background-image: linear-gradient(rgb(0,0,0,0.5),rgb(0,0,0,0.5))" onclick="move(3)">
     </div>
     <span>
-    <a href = "sim.html" target="_blank" class="link" id="firechat">SIM send <br>instant messages ..</a> 
-    <a href = "chess/chess.html" target="_blank" class="link" id="chess">CHESS GAME</a>
-    <a href = "game2048.html" target="_blank" class="link" id="2048">2048</a>
+        <a href = "sim.html" target="_blank" class="link" id="firechat"><img src="index%20icons/sim.png" style="width: 30%"><br>CHAT APP</a> 
+    <a href = "chess/chess.html" target="_blank" class="link" id="chess"><img src="index%20icons/chess.png" style="width:30%"><br>CHESS GAME</a>
+    <a href = "game2048.html" target="_blank" class="link" id="2048"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJXeqb0tKY7cMLInjbLm0le-sDB9Da-U_slZEQ1kPBIdRKK4vlziXHNEnhAd8CnmHx5ag&usqp=CAU" style="width: 35%"><br>2048</a>
     <a href = "helper.html" target="_blank" 
-    class="link" id="super">SUPER <br> CALCULATOR</a>
-    <a href = "homepage.html" target="_blank" class="link" id="learn">LEARN FREE</a> 
-    <a href = "sanjay.html" target="_blank" class="link" id="notes">NOTES APP</a> 
-    <a href = "testone1.html" target="_blank" class="link" id="online">KEDAR IS ONLINE</a> 
-    <a href = "quiz.html" target="_blank" class="link" id="quiz">MATH QUIZ</a>
-    <a href ="cow1.html" target="_blank" class="link" id="cb">COW'S & BULL'S GAME</a>
-    <a href ="clock.html" target="_blank" class="link" id="digital">DIGITAL CLOCK</a>
+    class="link" id="super"><img src="index%20icons/super%20calculator.png" style="width:30%"><br>SUPER <br> CALCULATOR</a>
+    <a href = "homepage.html" target="_blank" class="link" id="learn"><img src="index%20icons/learn%20free.png" style="width:30%"><br>LEARN FREE</a> 
+    <a href = "sanjay.html" target="_blank" class="link" id="notes"><img src="index%20icons/notes%20app.png" style="width:30%"><br>NOTES APP</a> 
+    <a href = "testone1.html" target="_blank" class="link" id="online"><img src="index%20icons/kedar%20is%20online.png" style="width:30%"><br>KEDAR <br>IS ONLINE</a> 
+    <a href = "quiz.html" target="_blank" class="link" id="quiz"><img src="index%20icons/math%20quiz.png" style="width:30%"><br>MATH QUIZ</a>
+    <a href ="cow1.html" target="_blank" class="link" id="cb"><img src="index%20icons/cows%20and%20bulls.png" style="width:30%"><br>COW'S & BULL'S GAME</a>
+    <a href ="clock.html" target="_blank" class="link" id="digital"><img src="index%20icons/digital%20clock.png" style="width:30%"><br>DIGITAL CLOCK</a>
     <a href = "day.html" target="_blank" 
-    class="link" id="find">Find Day..</a> 
+    class="link" id="find"><img src="index%20icons/find%20day.png" style="width:40%"><br>Find Day..</a> 
     <a href ="first.html" target="_blank" 
-    class="link" id="ace">ACE TOURISIM</a>
-    <a href = "choice.html" target="_blank" class="link" id="hand">HAND_CRICKET</a> 
+    class="link" id="ace"><img src="index%20icons/ace%20tourism.png" style="width:40%"><br>ACE TOURISIM</a>
+    <a href = "choice.html" target="_blank" class="link" id="hand"><img src="index%20icons/hand%20cricket.png" style="width:30%"><br>HAND_CRICKET</a> 
     <a href = "web.html" target="_blank" class="link" id="animations">ANIMATION'S</a>      
     <a href ="guess.html" target="_blank" class="link" id="guess">GUESS GAME</a>   
     <a href ="cal.html" target="_blank" class="link" id="calc">CALCULATOR</a>
@@ -128,9 +128,11 @@
     <a href = "playicon.html" target="_blank" class="link" id="icons">PLAY WITH ICON'S.</a>
     <a href = "lookeyes.html" target="_blank" class="link" id="eyes">LOOK INTO MY EYES..</a>
     <a href = "rain.html" target="_blank" class="link" id="rain">RAIN..</a>   
-    <a href = "newyear.html" target="_blank" class="link" id="new">HAPPY NEW YEAR..</a>     
+    <a href = "newyear.html" target="_blank" class="link" id="new">HAPPY NEW YEAR..</a>  
     </span>
 </section>
+    </section>
+        
     
     <script>
         function move(a){
