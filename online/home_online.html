@@ -1,0 +1,1542 @@
+<html>
+<head>
+    <title>online ksr</title>
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+        html{
+            scroll-behavior: smooth;
+        }
+        body{
+            width:100vw;
+            min-height:100vh;
+            background-color:white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #menu_bar{
+            z-index:10;
+            top:0;
+            left:-100vw;
+            position: fixed;
+            width:100vw;
+            height:100vh;
+            background-image: linear-gradient(rgb(0,0,0,0.5),rgb(0,0,0,0.5));
+            transition:0.7s;
+        }
+        #menu_bar .bar{
+            position: absolute;
+            background-color:white;
+            width:50%;
+            height:100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #menu_bar .bar a{
+            position: relative;
+            width:100%;
+            text-decoration: none;
+            color:black;
+            font-family: 'Roboto', sans-serif;
+            font-size:35px;
+            display: block;
+            padding:25px 30px;
+            text-align: left;
+            letter-spacing:1px;
+        }
+        #menu_bar button{
+            min-width:20%;
+            position: absolute;
+            top:30px;
+            right:10%;
+            font-family: 'Roboto', sans-serif;
+            font-size:35px;
+            padding:20px;
+            border-radius:20px;
+            outline:0;
+            background-color: deepskyblue;
+            font-weight:bold;
+            letter-spacing:3px;
+        }
+        #search_bar{
+            z-index:8;
+            position: fixed;
+            width:100vw;
+            background-color:#004d4d;
+            padding:30px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #search_bar .open{
+            filter:invert(1);
+            height:70px;
+            margin-right:20px;
+        }
+        #search_bar input{
+            font-family: 'Roboto', sans-serif;
+            font-size:35px;
+            padding:20px;
+            position: relative;
+            letter-spacing:1px;
+            border-radius:10px;
+            outline:0;
+            margin:0 20px 0 -20px;
+        }
+        #search_bar input::placeholder{
+            color:black;
+        }
+        #search_bar h2{
+            font-size:60px;
+            color:snow;
+            font-family: 'Roboto', sans-serif; 
+            margin-left:30px;
+            letter-spacing:2px;
+        }
+        #pop{
+            z-index:10;
+            position: fixed;
+            top:0;
+            left:0;
+            background-color: white;
+            width:100vw;
+            height:100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-image:  linear-gradient(rgb(0,0,0,0.4),rgb(0,0,0,0.4)),url(https://t4.ftcdn.net/jpg/03/02/25/25/360_F_302252503_L5kfFuSrIlOuEXLZ6rJgsKOCwMBLLSuX.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        #pop div{
+        background-image: linear-gradient(rgb(255,255,255,0.9),rgb(255,255,255,0.9));
+         position: relative;
+        width:90%;
+        padding:20px;
+        display: flex;
+        justify-content:space-around;
+        align-items: center;
+        flex-wrap: wrap;
+        }
+        #pop div img{
+            height:200px;
+        }
+        .main{
+            font-family: 'Roboto', sans-serif;
+            font-size:60px;
+            margin-left:20px;
+            letter-spacing:4px;
+            font-weight:bold;
+        }
+        .des{
+            margin-top:20px;
+            font-weight:bold;
+            font-family: 'Roboto', sans-serif;
+            font-size:33px;
+            letter-spacing:3px;
+        }
+        #pop .tim {
+            letter-spacing:2px;
+            margin-top:20px;
+            background-image:  linear-gradient(rgb(0,0,0,0.8),rgb(0,0,0,0.8));
+            color:white;
+            font-weight:bold;
+            font-family: 'Roboto', sans-serif;
+            font-size:33px;
+            padding:20px;
+        }
+        .sign_msg,#home{
+         padding:25px;
+         font-family: 'Roboto', sans-serif; 
+         position: relative;
+        font-weight:bold;
+        letter-spacing:2px;
+        text-align: center;
+        border-radius:20px;
+        font-size:33px;
+        }
+        #home{
+           width:80%;
+           margin-top:160px; 
+           background-color:darkblue;
+           color:white;
+        }
+        .sign_msg{
+            width:80%;
+            margin-top:20px;
+            background-color:orange;
+            color:black;
+        }
+        .pics{
+            justify-content: space-around;
+            align-items: center;
+            display: flex;
+            width:100%;
+            padding:10px;
+            margin:20px 0;
+        }
+        .pics img{
+            width:40%;
+        }
+        .note{
+            position: relative;
+            width:85%;
+            padding:30px;
+            background-color: whitesmoke;
+            box-shadow:0 0 5px black;
+            margin:20px 0;
+        }
+        .note p{
+            font-family: 'Roboto', sans-serif; 
+            font-size:35px;
+        }
+        .form_place{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin:20px 0;
+            width:90vw;
+            padding:20px 0 20px 0;
+            background-color:white;
+            overflow:hidden;
+            min-height:900px;
+            box-shadow:0 0 20px black;
+        }
+        #circle{
+            top:-50vw;
+            left:-50vw;
+            position: absolute;
+            width:100vw;
+            height:100vw;
+            background-color:cornflowerblue;
+            border-radius:50%;
+            z-index:0;
+            transition:1.5s;
+        }
+        #sign_in_page{
+            top:0;
+            left:0;
+            position: absolute;
+            z-index:1;
+            width:100%;
+            height:100%;
+            display: flex;
+            justify-content:flex-end;
+            align-items: center;
+            flex-direction: column;
+            transition:0.7s;
+        }
+        #sign_up_page{
+            top:0;
+            left:0;
+            position: absolute;
+            z-index:1;
+            width:100%;
+            height:100%;
+            display:none;
+            justify-content:flex-end;
+            align-items: center;
+            flex-direction: column;
+            transition:0.7s;
+        }
+        .user,.pass{
+            display:flex;
+            justify-content: center;
+            padding:20px;
+            border-radius:20px;
+            z-index:1;
+            width:90%;
+            margin:20px 0;
+        }
+        .user img,.pass img{
+            margin:0 20px;
+            z-index:1;
+            width:100px;
+        }
+        .user input,.pass input{
+            margin-left:20px;
+            background:none;
+            height:90%;
+            width:70%;
+            font-family: 'Roboto', sans-serif;
+            font-size:40px;
+            border:0;
+            outline:0;
+            padding:10px;
+            letter-spacing:2px;
+            border-bottom:5px solid cornflowerblue;
+        }
+        .user input::placeholder,.pass input::placeholder{
+            color:black;
+        }
+        .submit{
+            position: relative;
+            min-width:40%;
+            padding:20px;
+            background-color:darkblue;
+            font-family: 'Roboto', sans-serif;
+            font-size:35px;
+            font-weight:bold;
+            color:white;
+            letter-spacing:3px;
+            border-radius:20px;
+            margin:25px 0;
+            outline:0;
+            border:0;
+        }
+        .page_name{
+            position: absolute;
+            top:10%;
+            left:6%;
+            font-family: 'Roboto', sans-serif;
+            font-size:45px;
+            font-weight:bold;
+            letter-spacing:3px;
+        }
+        .shift{
+            position: absolute;
+            top:6%;
+            right:3%;
+            font-family: 'Roboto', sans-serif;
+            font-size:35px;
+            font-weight:bold;
+            letter-spacing:3px;
+            padding:20px;
+            background-color:darkblue;
+            color:white;
+            outline:0;
+            width:40%;
+            word-wrap: break-word;
+            border-radius:20px;
+            border:0;
+        }
+        .page_name1{
+            position: absolute;
+            top:10%;
+            right:3%;
+            font-family: 'Roboto', sans-serif;
+            font-size:45px;
+            font-weight:bold;
+            letter-spacing:3px;
+        }
+        .shift1{
+            position: absolute;
+            top:6%;
+            left:3%;
+            font-family: 'Roboto', sans-serif;
+            font-size:35px;
+            font-weight:bold;
+            letter-spacing:3px;
+            padding:20px;
+            background-color:darkblue;
+            color:white;
+            outline:0;
+            width:40%;
+            word-wrap: break-word;
+            border-radius:20px;
+            border:0;
+        }
+        #error{
+            position:relative;
+            z-index:0;
+            font-family: 'Roboto', sans-serif;
+            font-size:40px;
+            opacity:0;
+            transition:0.3s;
+        }
+        #errormsg{
+            font-weight:bold;
+            letter-spacing:3px;
+        }
+        #error button{
+            padding:20px;
+            font-family: 'Roboto', sans-serif;
+            font-size:40px;
+            background-color:darkblue;
+            letter-spacing:3px;
+            font-weight:bold;
+            margin-top:50px;
+            outline:0;
+            border:0;
+            color:white;
+        }
+        #account{
+            flex-direction: column;
+            width:90vw;
+            padding:20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #account h1{
+            font-family: 'Roboto', sans-serif; 
+            text-transform:uppercase;
+            letter-spacing:4px;
+            font-weight:bold;
+            font-size:50px;
+            margin:100px 0 30px 0;
+        }
+        #food_items,#spieces_dryfruits{
+            position:relative;
+            flex-direction: column;
+            width:93vw;
+            padding:30px;
+            margin:50px 0;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow:0 0 20px black;
+        }
+        .header{
+            font-family: 'Roboto', sans-serif; 
+            text-transform:uppercase;
+            letter-spacing:7px;
+            font-weight:bold;
+            font-size:50px;
+            width:80%;
+            padding:20px 40px;
+        }
+        .first{
+            font-family: 'Roboto', sans-serif;
+            font-size:40px;
+            color:darkblue;
+        }
+        .last{
+            font-family: 'Roboto', sans-serif;
+            font-size:40px;
+            color:red;
+            text-decoration: none;
+            margin-bottom:30px;
+            margin-top:10px;
+        }
+        .img_grid{
+            margin:30px 0;
+            justify-content:space-around;
+            position: relative;
+            width:100%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .item_box{
+            margin:10px 5px;
+            box-shadow:0 0 5px black;
+            display:flex;
+            justify-content:center;
+            align-items: center;
+            flex-direction: column;
+            padding:20px;
+            width:400px;
+        }
+        .pic{
+            width:250px;
+        }
+        .name_item{
+            font-family: 'Roboto', sans-serif;
+            font-size:38px;
+            font-weight:bold;
+            margin:30px 0;
+            letter-spacing:3px;
+            text-transform:capitalize;
+        }
+        #search_results{
+            position:fixed;
+            top:0;
+            left:0;
+            width:100vw;
+            height:100vh;
+            background-color:white;
+            z-index:5;
+            display:none;
+            align-items: center;
+            flex-direction: column;
+            overflow:hidden;
+        }
+        #search_content{
+            overflow-y:scroll;
+            padding:30px 0;
+            box-shadow:0 0 20px black;
+            position:relative;
+            margin-top:350px;
+            width:95%;
+            display:flex;
+            align-items: center;
+            flex-direction: column;
+            max-height:75vh;
+        }
+        .search_item{
+            width:95%;
+            padding:20px;
+            display:flex;
+            justify-content: space-around;
+            align-items: center;
+            border:3px solid black;
+            margin:10px 0;
+        }
+        .search_item img{
+            width:300px;
+            height:300px;
+        }
+        .search_item p{
+             font-family: 'Roboto', sans-serif;
+            font-size:45px; 
+            font-weight:bold;
+            letter-spacing:3px;
+            margin-left:10px;
+        }
+        #review{
+            width:93%;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            box-shadow:0 0 20px black;
+            margin:50px 0 30px 0;
+            padding:30px;
+        }
+        #review h1{
+            font-family: 'Roboto', sans-serif; 
+            text-transform:uppercase;
+            letter-spacing:7px;
+            font-weight:bold;
+            font-size:50px;
+            width:80%;
+            padding:20px 40px;
+            margin-bottom:30px;
+        }
+        .re{
+            width:80%;
+            font-family: 'Roboto', sans-serif; 
+            font-size:35px;
+            outline:0;
+            background:none;
+            border:0;
+            border-bottom:4px solid black;
+            padding:20px 30px;
+            margin:20px 0;
+        }
+        .re::placeholder,#review textarea::placeholder{
+            color:black;
+            font-weight:bold;
+            letter-spacing:4px;
+        }
+        #review textarea{
+            width:80%;
+            margin:30px 0;
+            font-family: 'Roboto', sans-serif; 
+            font-size:35px;
+            border:3px solid black;
+            outline:0;
+            padding:20px;
+            text-align: center;
+            min-height:200px;
+        }
+        #review button{
+            width:60%;
+            font-family: 'Roboto', sans-serif; 
+            font-size:40px;
+            background-color: darkblue;
+            color:white;
+            padding:20px;
+            margin:20px 0;
+            border-radius:20px;
+            font-weight:bold;
+            letter-spacing:4px;
+        }
+        .img-container{
+            width:80%;
+            display:flex;
+            justify-content: space-around;
+            align-items: center;
+            margin:30px 0;
+        }
+        .img-container1{
+            width:80%;
+            padding:20px;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .img-container1 div{
+            width:100%;
+            padding:20px;
+            display: flex;
+            justify-content:space-between;
+            align-items: center;
+            margin:10px 0;
+        }
+        #review_section{
+            position:relative;
+            margin:50px 0;
+            width:95%;
+            padding:20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #review_section h1{
+            font-family: 'Roboto', sans-serif; 
+            text-transform:uppercase;
+            letter-spacing:7px;
+            font-weight:bold;
+            font-size:50px;
+            width:80%;
+            padding:20px 40px;
+            margin-bottom:30px;
+        }
+        #block_review{
+            overflow-x:scroll;
+            width:100%;
+            padding:20px;
+            display:flex;
+            flex-direction:row;
+        }
+        .block{
+            min-width:500px;
+            max-width:500px;
+            height:500px;
+            box-shadow:0 0 10px black;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            word-wrap: break-word;
+            padding:20px;
+            margin:10px;
+            overflow-x: hidden;
+            overflow-y: scroll;
+        }
+        .block h2{
+            font-family: 'Roboto', sans-serif; 
+            font-size:50px;
+            letter-spacing:4px;
+            margin:30px 0;
+        }
+        .block p{
+            font-family: 'Roboto', sans-serif; 
+            font-size:35px;
+            letter-spacing:1px;
+        }
+        #extra{
+            position: relative;
+            margin:30px 0;
+            width:95%;
+            box-shadow:0 0 20px black;
+            padding:20px;
+            display:flex;
+            align-items: center;
+            flex-direction: column;
+        }
+        #extra h1{
+            width:80%;
+            padding:20px 30px;
+            font-family: 'Roboto', sans-serif; 
+            font-size:50px;
+            letter-spacing:4px;
+            margin:20px 0;
+        }
+        #extra p{
+            width:100%;
+            margin-top:40px;
+           font-family: 'Roboto', sans-serif; 
+            font-size:35px;
+        }
+        #extra p img{
+            width:300px;
+            border-radius:50%;
+            float:left;
+            margin:10px 30px;
+        }
+        #cart{
+            position:relative;
+            width:100%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            overflow:hidden;
+        }
+        #cart h1{
+            width:78%;
+            margin:40px 0 20px 0;
+            font-family: 'Roboto', sans-serif; 
+            font-size:55px;
+            letter-spacing:4px;
+        }
+        #cart_box{
+            margin:40px 0;
+            display:flex;
+            overflow-y:auto;
+            flex-direction: column;
+            align-items: center;
+            width:95%;
+            box-shadow:0 0 20px black;
+            max-height:60vh;
+            padding:50px 0;
+        }
+        .cart_item{
+            width:90%;
+            border:3px solid black;
+            margin:10px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .cart_item img{
+            width:300px;
+            height:300px;
+        }
+        .cart_item p{
+           font-family: 'Roboto', sans-serif; 
+           font-size:45px; 
+           font-weight:bold;
+          letter-spacing:3px;
+          margin-left:20px;
+        }
+        #product_full{
+            display:none;
+            z-index:9;
+            position: fixed;
+            top:0;
+            left:0;
+            width:100vw;
+            height:100vh;
+            background-image: linear-gradient(rgb(0,0,0,0.8),rgb(0,0,0,0.8));
+        }
+        #product_full img{
+            position: absolute;
+            top:5%;
+            left:5%;
+            width:300px;
+            height:300px;
+            border-radius:20px;
+        }
+        #product_full h1{
+            font-family: 'Roboto', sans-serif; 
+           font-size:45px; 
+           font-weight:bold;
+          letter-spacing:5px;
+          color:white;
+            position: absolute;
+            right:12%;
+            top:30%;
+            text-transform:uppercase;
+        }
+        #product_full h2{
+            font-family: 'Roboto', sans-serif; 
+           font-size:55px; 
+           font-weight:bold;
+          letter-spacing:3px;
+          color:aqua;
+            position: absolute;
+            right:15%;
+            top:45%;
+            text-transform:uppercase;
+        }
+        .ccc{
+            font-family: 'Roboto', sans-serif; 
+           font-size:35px; 
+             font-weight:bold;
+          letter-spacing:3px;
+            outline:0;
+            border:0;
+            background-color:aquamarine;
+            position: absolute;
+            padding:22px;
+            bottom:5%;
+            right:5%;
+            border-radius:20px;
+        }
+        .rrr{
+            font-family: 'Roboto', sans-serif; 
+           font-size:35px; 
+             font-weight:bold;
+          letter-spacing:3px;
+            outline:0;
+            border:0;
+            background-color:orangered;
+            position: absolute;
+            padding:22px;
+            bottom:10%;
+            left:5%;
+            border-radius:20px;
+            color:white;
+        }
+        .bbb{
+           font-family: 'Roboto', sans-serif; 
+           font-size:40px; 
+             font-weight:bold;
+          letter-spacing:3px;
+            outline:0;
+            border:0;
+            background-color:white;
+            position: absolute;
+            padding:22px;
+            top:5%;
+            right:6%;
+            border-radius:20px;
+        }
+        #product_full p{
+             font-family: 'Roboto', sans-serif; 
+           font-size:35px; 
+          letter-spacing:3px;
+          color:white;
+            position: absolute;
+            left:15%;
+            bottom:25%;
+            max-height:500px;
+            max-width:600px;
+            overflow:scroll;
+            word-wrap: break-word;
+        }
+        .back_btn{
+            position:absolute;
+            font-size:45px;
+            font-family: 'Roboto', sans-serif; 
+            background-color:black;
+            color:white;
+            letter-spacing:3px;
+            top:250px;
+            right:50px;
+        }
+        .check_box{
+            width:50px;
+            height:50px;
+            border:3px solid black;
+        }
+        .loca{
+            display: flex;
+            width:100%;
+            justify-content: center;
+            align-items: center;
+        }
+        .loca span{
+            font-size:35px;
+            font-family: 'Roboto', sans-serif;
+            font-weight:bold;
+            margin-left:30px;
+            letter-spacing:2px;
+        }
+    </style>
+    </head>
+    <body>
+    <section id="product_full">
+        <button onclick="close_full()" class="bbb">CLOSE</button>
+        <img src="https://www.eatrightbasket.com/wp-content/uploads/2019/03/Wheat-Flour.jpg">
+        <p>this product is completely 100% safe and healthy to eat and improves digistive power also..this product is completely 100% safe and healthy to eat and improves digistive power also..this product is completely 100% safe and healthy to eat and improves digistive power also..this product is completely 100% safe and healthy to eat and improves digistive power also..</p>
+        <h1>WHEAT</h1>
+        <h2>1kg - 230/-</h2>
+        <button onclick="cart_add()" class="ccc">
+         ADD TO CART
+        </button>
+        <button onclick="cart_remove()" class="rrr">
+         REMOVE FROM CART
+        </button>
+    </section>    
+    <section id="search_results">
+        <button onclick="close_search()" class="back_btn">BACK</button>
+        <div id="search_content">
+            
+        </div>
+    </section>
+        
+    <section id="search_bar">
+        <h2>KSR</h2>
+        <input type="text" id="search_in" placeholder="search here">
+        <img src="menu.png" onclick="menu_move(1)" class="open">
+    </section>
+    <section id="menu_bar">
+        <div class="bar">
+            <a href="#home" onclick="menu_move(2)">HOME</a>
+            <a href="#account" onclick="menu_move(2)">SIGN IN | SIGN UP</a>
+            <a onclick="prodis(),pro(),menu_move(2)">PRODUCTS</a>
+            <a href="#cart" onclick="menu_move(2)">CART</a>
+            <a href="#review_section" onclick="menu_move(2)">WRITE A REVIEW</a>
+            <a href="#review" onclick="menu_move(2)">CONTACT</a>
+            <a href="#extra" onclick="menu_move(2)">ABOUT WEB DESIGNER</a>
+        </div>
+        <button onclick="menu_move(2)">
+        GO BACK
+        </button>
+    </section>
+    <section id="pop">
+        <div>
+        <img src="kedar%20is%20online.png">
+     <label class="main">kSR<br><p class="des">Kedarisetti Subha Rao & co</p></label>
+        </div>
+        <p class="tim">since 1940</p>
+    </section>
+        
+    <section id="home">
+        
+    </section>
+    <section class="sign_msg">
+        SIGN IN FOR BETTER EXPERIENCE
+    </section>
+    <section class="pics">
+        <img src="364.jpg">
+        <img src="qq.jpg">
+    </section>
+    <section class="note">
+        <p>we are running this shop before independence, here you can find all A to Z pooja, food and some aurvedic items also <br> we are having a total of 300 + items..</p> 
+    </section>
+    <section id="food_items">
+    <h1 class="header">
+        food items
+    </h1>
+    <p class="first">Here you can see what we buy..</p>
+    <div class="img_grid">
+        <div class="item_box" onclick="open_full()">
+           <img src="https://www.eatrightbasket.com/wp-content/uploads/2019/03/Wheat-Flour.jpg" class="pic">
+           <p class="name_item">
+            wheat flour
+           </p>
+        </div>
+        
+        <div class="item_box" onclick="open_full()">
+           <img src="https://www.eatrightbasket.com/wp-content/uploads/2019/03/Wheat-Flour.jpg" class="pic">
+           <p class="name_item">
+            wheat flour
+           </p>
+        </div>
+        <div class="item_box" onclick="open_full()">
+           <img src="https://www.eatrightbasket.com/wp-content/uploads/2019/03/Wheat-Flour.jpg" class="pic">
+           <p class="name_item" onclick="open_full()">
+            wheat flour
+           </p>
+        </div>
+        <div class="item_box">
+           <img src="https://www.eatrightbasket.com/wp-content/uploads/2019/03/Wheat-Flour.jpg" class="pic">
+           <p class="name_item" onclick="open_full()">
+            wheat flour
+           </p>
+        </div>
+    </div>
+    </section>
+    <section id="spieces_dryfruits">
+    <h1 class="header">
+        INDIAN SPIECES | DRY FRUITS
+    </h1>
+    <p class="first">Here you can see what we buy..</p>
+    <div class="img_grid">
+        <div class="item_box" onclick="open_full()">
+           <img src="https://www.eatrightbasket.com/wp-content/uploads/2019/03/Wheat-Flour.jpg" class="pic">
+           <p class="name_item">
+            wheat flour
+           </p>
+        </div>
+        <div class="item_box" onclick="open_full()">
+           <img src="https://www.eatrightbasket.com/wp-content/uploads/2019/03/Wheat-Flour.jpg" class="pic">
+           <p class="name_item">
+            wheat flour
+           </p>
+        </div>
+        <div class="item_box" onclick="open_full()">
+           <img src="https://www.eatrightbasket.com/wp-content/uploads/2019/03/Wheat-Flour.jpg" class="pic">
+           <p class="name_item">
+            wheat flour
+           </p>
+        </div>
+        <div class="item_box" onclick="open_full()">
+           <img src="https://www.eatrightbasket.com/wp-content/uploads/2019/03/Wheat-Flour.jpg" class="pic">
+           <p class="name_item">
+            wheat flour
+           </p>
+        </div>
+    </div>
+    </section>
+    <section id="spieces_dryfruits">
+    <h1 class="header">
+        POOJA ITEMS
+    </h1>
+    <p class="first">Here you can see what we buy..</p>
+    <div class="img_grid" onclick="open_full()">
+        <div class="item_box">
+           <img src="https://images-na.ssl-images-amazon.com/images/I/61WQvQYX77L._SL1000_.jpg" class="pic">
+           <p class="name_item">
+            turmeric powder
+           </p>
+        </div>
+        <div class="item_box" onclick="open_full()">
+           <img src="" class="pic">
+           <p class="name_item">
+            wheat flour
+           </p>
+        </div>
+        <div class="item_box" onclick="open_full()">
+           <img src="https://www.eatrightbasket.com/wp-content/uploads/2019/03/Wheat-Flour.jpg" class="pic">
+           <p class="name_item">
+            wheat flour
+           </p>
+        </div>
+        <div class="item_box" onclick="open_full()">
+           <img src="https://www.eatrightbasket.com/wp-content/uploads/2019/03/Wheat-Flour.jpg" class="pic">
+           <p class="name_item">
+            wheat flour
+           </p>
+        </div>
+    </div>
+    </section>
+    <section id="spieces_dryfruits">
+    <h1 class="header">
+        HEALTH CARE ITEMS
+    </h1>
+    <p class="first">Here you can see what we buy..</p>
+    <div class="img_grid">
+        <div class="item_box" onclick="open_full()">
+           <img src="https://www.eatrightbasket.com/wp-content/uploads/2019/03/Wheat-Flour.jpg" class="pic">
+           <p class="name_item">
+            wheat flour
+           </p>
+        </div>
+        <div class="item_box" onclick="open_full()">
+           <img src="https://www.eatrightbasket.com/wp-content/uploads/2019/03/Wheat-Flour.jpg" class="pic">
+           <p class="name_item">
+            wheat flour
+           </p>
+        </div>
+        <div class="item_box" onclick="open_full()">
+           <img src="https://www.eatrightbasket.com/wp-content/uploads/2019/03/Wheat-Flour.jpg" class="pic">
+           <p class="name_item">
+            wheat flour
+           </p>
+        </div>
+        <div class="item_box" onclick="open_full()">
+           <img src="https://www.eatrightbasket.com/wp-content/uploads/2019/03/Wheat-Flour.jpg" class="pic">
+           <p class="name_item">
+            wheat flour
+           </p>
+        </div>
+    </div>
+    </section>
+    <section id="spieces_dryfruits">
+    <h1 class="header">
+        CASUAL'S
+    </h1>
+    <p class="first">Here you can see what we buy..</p>
+    <div class="img_grid">
+        <div class="item_box" onclick="open_full()">
+           <img src="https://www.eatrightbasket.com/wp-content/uploads/2019/03/Wheat-Flour.jpg" class="pic">
+           <p class="name_item">
+            wheat flour
+           </p>
+        </div>
+        <div class="item_box" onclick="open_full()">
+           <img src="https://www.eatrightbasket.com/wp-content/uploads/2019/03/Wheat-Flour.jpg" class="pic">
+           <p class="name_item">
+            wheat flour
+           </p>
+        </div>
+        <div class="item_box" onclick="open_full()">
+           <img src="https://www.eatrightbasket.com/wp-content/uploads/2019/03/Wheat-Flour.jpg" class="pic">
+           <p class="name_item">
+            wheat flour
+           </p>
+        </div>
+        <div class="item_box" onclick="open_full()">
+           <img src="https://www.eatrightbasket.com/wp-content/uploads/2019/03/Wheat-Flour.jpg" class="pic">
+           <p class="name_item">
+            wheat flour
+           </p>
+        </div>
+    </div>
+    </section>
+    <section id="account">
+        <h1>ACCOUNT SECTION</h1>
+        <section class="form_place">
+        <div id="sign_in_page">
+            <div class="user">
+            <img src="programmer.png">
+            <input type="text" placeholder="user-id" id="signin_user_id">
+            </div>
+            <div class="pass">
+            <img src="lock.png">
+            <input type="password" placeholder="password" id="signin_user_pass">
+            </div>
+            <button class="submit" onclick="check()">
+            SUBMIT
+            </button>
+            <label class="page_name">
+               SIGN IN PAGE
+            </label>
+            <button class="shift" onclick="shift_form(1)">
+            GO to SIGN UP PAGE
+            </button>
+        </div>
+        <div id="sign_up_page">
+            <div class="user">
+            <img src="programmer.png">
+            <input type="text" placeholder="user-id" id="signup_user_id">
+            </div>
+            <div class="pass">
+            <img src="lock.png">
+            <input type="password" placeholder="password" id="signup_user_pass">
+            </div>
+            <div class="pass">
+            <img src="lock.png">
+            <input type="text" placeholder="re-type password" id="signup_repeat_pass">
+            </div>
+            <button class="submit" onclick="create()">
+            SUBMIT
+            </button>
+            <label class="page_name1">
+               SIGN UP PAGE
+            </label>
+            <button class="shift1" onclick="shift_form(2)">
+            GO to SIGN IN PAGE
+            </button>
+        </div>
+        <div id="circle"></div>
+        <div id="error">
+        <p id="errormsg"></p>
+    <button onclick="retry()" id="btn_err"></button>
+        </div>
+    </section> 
+    </section>
+    <section id="cart">
+        <h1>CART</h1>
+        <div id="cart_box">
+            <div class="cart_item">
+            <img src="cart.png">
+            <p>EMPTY CART<br>sign-in to use cart</p>
+            </div>
+        </div>
+    </section>
+    <section id="review_section">
+        <h1>REVIEW'S</h1>
+        <div id="block_review">
+            
+        </div>
+    </section>
+        
+    <section id="review">
+        <h1>ANY THING TO SAY..</h1>
+        <input type="text" class="re" placeholder="NAME" id="reviewname">
+        <input type="email" class="re" placeholder="e-mail-ID" id="reviewemail">
+        <textarea placeholder="YOUR MESSAGE.." id="reviewmessage"></textarea>
+        <button onclick="addmsg()">SEND</button>  
+        <button onclick="addreview()">ADD AS REVIEW</button> 
+        <div class="img-container1">
+            <div><img src="manager.png" width="10%">
+            <label style="font-size:250%;letter-spacing: 3px;">SURESH KUMAR</label></div>
+            <div><img src="001-phone.png" width="10%">
+            <label style="font-size:250%;letter-spacing: 3px;">9290864905</label></div>
+            <div><img src="map.png" width="10%">
+            <label style="font-size:250%;letter-spacing: 3px;color:blue;cursor: pointer" onclick="goto(5)">ADDRESS</label></div>    
+        </div>
+    </section>
+    <section id="extra">
+        <h1>WEB DESIGNER</h1>
+        <div class="img-container">
+        <img src="001-facebook.png" width="10%" onclick="goto(1)">
+        <img src="002-instagram.png" width="10%" onclick="goto(2)">
+        <img src="003-youtube.png" width="10%" onclick="goto(3)">
+        <img src="p.jpeg" width="10%" onclick="goto(4)">
+        </div>
+        <p>
+        <img src="me.jpeg">
+        Hello, I am satwik (kedar). This website is designed by  me. I started to learn coding at 18 years old. This website provides you the items that are available in our general store.you can also my remaining projects by clicking on above icons... <br><br><br> THANK YOU FOR VISTING THIS WEBSITE ...<br><br>
+        </p>
+    </section>
+    
+        <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase.js"></script>
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyC9HqXjTvwCNH4yHJzYryBZhq2TEm3YGMo",
+    authDomain: "online-store-33f84.firebaseapp.com",
+    projectId: "online-store-33f84",
+    storageBucket: "online-store-33f84.appspot.com",
+    messagingSenderId: "726514067806",
+    appId: "1:726514067806:web:81d3da32d9be603fb447cf",
+    measurementId: "G-9D689P5XXK"
+  };
+  firebase.initializeApp(firebaseConfig);
+</script>
+        
+        <script>
+            var admin;
+            var inorout = false;
+            var name_list = [];
+            var para_list = [];
+            var img_list = [];
+            var rate_list = [];
+            
+firebase.database().ref('products/').once('value',function(snapshot){
+           snapshot.forEach(function(ChildSnapshot){
+    let proname = ChildSnapshot.val().nameofproduct;
+    let propara = ChildSnapshot.val().paragraph;
+    let prorate = ChildSnapshot.val().rateofproduct;
+    let proimg = ChildSnapshot.val().imagesource;
+               name_list.push(proname);
+               para_list.push(propara);
+               rate_list.push(prorate);
+               img_list.push(proimg);
+           }) 
+    pro();
+        }); 
+        function menu_move(a){
+            var m = document.getElementById("menu_bar");
+            if (a == 1){
+                m.style.left = "0vw";
+            }else{
+            m.style.left = "-100vw";   
+            }
+        }
+        
+        function shift_form(b){
+            var inform = document.getElementById("sign_in_page");
+            var upform = document.getElementById("sign_up_page");
+            var circle = document.getElementById("circle");
+            if (b == 1){
+                circle.style.width = "200vw";
+                circle.style.height = "200vw";
+                setTimeout(function(){
+                circle.style.left ="50vw";
+                circle.style.width = "100vw";
+                circle.style.height = "100vw";
+                inform.style.display = "none";
+                upform.style.display = "flex";
+                },1000);
+            }else{
+                circle.style.left ="-50vw";
+                circle.style.width = "200vw";
+                circle.style.height = "200vw";
+                setTimeout(function(){
+                circle.style.width = "100vw";
+                circle.style.height = "100vw";
+                upform.style.display = "none";
+                inform.style.display = "flex";
+                },1000);
+            }
+        }
+        var se = document.getElementById("search_in");
+        se.addEventListener("keyup",(e) => {
+            var ini = se.value.toLowerCase();
+            var re = document.getElementById("search_results");
+            if (ini != ""){
+                re.style.display = "flex";
+        var c = document.getElementById("search_content");
+            c.innerHTML = "";
+            for (var i = 0;i<name_list.length;i++){
+               var part = name_list[i].toLowerCase();
+                if (part.indexOf(ini) > -1){
+                    c.innerHTML += "<div class = 'search_item' onclick = open_full('" + i +"')>"+"<img src = '"+ img_list[i]+"'>"+"<p>"+name_list[i]+"</p></div>";
+                }
+            }   
+            }else{
+         var re1 = document.getElementById("search_results");
+            re1.style.display = "flex";
+                pro();
+            }
+        });
+        function prodis(){
+             var re = document.getElementById("search_results");
+            re.style.display = "flex";
+        }
+        function pro(){
+            var c = document.getElementById("search_content");
+            c.innerHTML = "";
+            for (var i = 0;i<name_list.length;i++){
+    c.innerHTML += "<div class = 'search_item' onclick = open_full('" + i +"')>"+"<img src = '"+ img_list[i]+"'>"+"<p>"+name_list[i]+"</p></div>";
+            }   
+        }
+        function close_search(){
+            var re = document.getElementById("search_results");
+            re.style.display = "none";
+        }
+        function check(){
+            var id_value = document.getElementById("signin_user_id").value;
+            var pass_value = document.getElementById("signin_user_pass").value;
+            var msg = document.getElementById("errormsg");
+            if (id_value == "" || pass_value == ""){
+    document.getElementById("errormsg").innerHTML = "ALL FIELDS REQUIRED ...";
+    document.getElementById("btn_err").innerHTML = "TRY AGAIN";
+                error();
+            }else{
+                var uu;
+                var pp;
+                var xpresence = 0;
+ firebase.database().ref('users/'+id_value).on("value",function(snapshot){
+        xpresence += 1;
+        uu = snapshot.val().iduser;
+        pp = snapshot.val().password;
+        if (uu == id_value && pp == pass_value){
+        document.getElementById("errormsg").innerHTML = "SUCCESFULLY SIGNED IN";
+    document.getElementById("btn_err").innerHTML = "BACK";
+                admin = uu;
+                inorout = true;
+                error();
+                cart_draw();
+                    }else{
+        document.getElementById("errormsg").innerHTML = "WRONG CREDITS";
+                document.getElementById("btn_err").innerHTML = "TRY AGAIN";
+                error();
+                    }
+    })
+                if (xpresence == 0){
+        document.getElementById("errormsg").innerHTML = "WRONG CREDITS";
+                document.getElementById("btn_err").innerHTML = "TRY AGAIN";
+                error();
+                }
+            }
+        }
+        function create(){
+            var id_value = document.getElementById("signup_user_id").value;
+            var pass_value = document.getElementById("signup_user_pass").value;
+            var repass_value = document.getElementById("signup_repeat_pass").value;
+            var msg = document.getElementById("errormsg");
+            if (id_value == "" || pass_value == "" || repass_value == ""){
+                document.getElementById("errormsg").innerHTML = "ALL FIELDS REQUIRED ...";
+                document.getElementById("btn_err").innerHTML = "TRY AGAIN";
+                error();
+            }else{
+                if (pass_value == repass_value){
+                    var xcheck = 0;
+firebase.database().ref('users/'+id_value).on("value",function(snapshot){
+         xcheck += 1;
+            });
+                if (xcheck == 0){
+     firebase.database().ref("users/"+id_value).set({
+     iduser : id_value,
+     password : pass_value
+ }); 
+            xcheck = 0;
+    document.getElementById("errormsg").innerHTML = "SUCCESFULLY SIGNED UP, U CAN SIGN-IN NOW";
+        document.getElementById("btn_err").innerHTML = "BACK";
+            
+             error();    
+           }else{
+document.getElementById("errormsg").innerHTML = "THIS USER-ID ALREADY EXISTS,";
+document.getElementById("btn_err").innerHTML = "BACK";
+             error(); 
+           }  
+                }else{
+        document.getElementById("errormsg").innerHTML = "PASSWORD CONFIRMATION FAILED";
+        document.getElementById("btn_err").innerHTML = "TRY AGAIN";
+                error();
+                }
+            }
+        }
+        function error(){
+document.getElementById("signup_user_id").value = "";
+document.getElementById("signup_user_pass").value = "";
+document.getElementById("signup_repeat_pass").value = "";
+document.getElementById("signin_user_id").value = "";
+document.getElementById("signin_user_pass").value = "";
+           var circle = document.getElementById("circle");
+           var msg = document.getElementById("error");
+            circle.style.zIndex = "2";
+            circle.style.left = "-50vw";
+           circle.style.width = "200vw";
+           circle.style.height = "200vw";
+           msg.style.zIndex = "2";
+           msg.style.opacity = "1";
+        }
+        function retry(){
+             var inform = document.getElementById("sign_in_page");
+            var upform = document.getElementById("sign_up_page");
+            var circle = document.getElementById("circle");
+            var msg = document.getElementById("error");
+            circle.style.width = "100vw";
+           circle.style.height = "100vw";
+            circle.style.left ="-50vw";
+            circle.style.zIndex = "0";
+            msg.style.zIndex = "0";
+            msg.style.opacity = "0";
+            upform.style.display = "none";
+            inform.style.display = "flex"; 
+        }
+        function open_full(a){
+            var f = document.getElementById("product_full");
+            f.style.display = "block";
+            f.innerHTML = "<button onclick = 'close_full()' class='bbb'>CLOSE</button>"+"<img src='"+img_list[a]+"'>"+"<p>"+para_list[a]+"</p>"+"<h1>"+name_list[a]+"</h1>"+"<h2>"+rate_list[a]+"</h2>"+"<button onclick= cart_add('"+a+"') class='ccc'> ADD TO CART </button>"+"<button onclick= cart_remove('"+a+"') class='rrr'> REMOVE TO CART </button>"
+        }
+        function close_full(){
+            var f = document.getElementById("product_full");
+            f.style.display = "none";
+        }
+        function cart_add(a){
+            if (inorout){
+                var q = prompt("enter quantity");
+    var nn = name_list[a];
+firebase.database().ref("users/"+admin+"/cart/"+nn).set({
+     nameofproduct : nn,
+     quantity : q
+ });            
+            }else{
+               alert("sign-in to use cart"); 
+            }
+        }
+        function cart_remove(a){
+           if (inorout){
+     var nn = name_list[a];          
+firebase.database().ref("users/"+admin+"/cart/"+nn).remove();   
+            }else{
+               alert("sign-in to use cart"); 
+            } 
+        }
+        function cart_draw(){
+            var box = document.getElementById("cart_box");
+            var xitem = 0;
+firebase.database().ref("users/"+admin+"/cart/").on("value",function(snapshot){
+    xitem += 1;
+     box.innerHTML = "";
+     snapshot.forEach(function(ChildSnapShot){
+         var na = ChildSnapShot.val().nameofproduct;
+         var ms = ChildSnapShot.val().quantity;
+         var indexis = name_list.indexOf(na);
+         box.innerHTML += "<div class='cart_item' onclick='open_full("+indexis+")'>"+"<img src='"+img_list[indexis]+"'>"+"<p>"+name_list[indexis]+"<br>"+ms+"</p></div>";
+     })
+    }); 
+        if (xitem == 0){
+            box.innerHTML += "<div class='cart_item'>"+"<img src='cart.png'>"+"<p>"+"CART IS EMPTY"+"</p></div>";
+        }
+        }
+        function addreview(){
+var n = document.getElementById("reviewname").value;
+var e = document.getElementById("reviewemail").value;
+var m = document.getElementById("reviewmessage").value;
+            if (n != "" && e != "" && m != ""){
+                
+firebase.database().ref("reviews/"+n).set({
+     nameofperson : n,
+     email : e,
+     msg : m
+ });
+                
+document.getElementById("reviewname").value = "";     
+document.getElementById("reviewemail").value = "";
+document.getElementById("reviewmessage").value = "";                
+            }else{
+                alert("all fields required");
+            }
+        }
+         function addmsg(){
+var n = document.getElementById("reviewname").value;
+var e = document.getElementById("reviewemail").value;
+var m = document.getElementById("reviewmessage").value;
+            if (n != "" && e != "" && m != ""){
+                
+firebase.database().ref("messages/"+n).set({
+     nameofperson : n,
+     email : e,
+     msg : m
+ });
+                
+document.getElementById("reviewname").value = "";     
+document.getElementById("reviewemail").value = "";
+document.getElementById("reviewmessage").value = "";                
+            }else{
+                alert("all fields required");
+            }
+        }   
+        function goto(num){
+            if(num == 1){
+ location.assign("https://www.facebook.com/people/Satwik-Kedaresetti/100008718079201");
+            }
+            if(num == 2){
+ location.assign("https://www.instagram.com/p/CLMt8zzF4SdQagQQeiqo40zKpOkGtdiH-5fMlY0/?igshid=1ssat0zj5iic5");
+            }
+            if(num == 3){
+ location.assign("https://www.youtube.com/channel/UCpLOopnR9TX9b1fjcDpapsw");
+            }
+            if(num == 4){
+ location.assign("https://kedarisettisatwik.github.io/index.html");
+            }
+            if (num == 5){
+location.assign("https://goo.gl/maps/BZ9aaRao5SstNLY96");
+            }
+        }
+        var i = 0;
+        setInterval(function(){
+        var date = new Date().getHours();
+        var da ;
+        if (date >= 0 && date <= 4){
+            da = "GOOD NIGHT ";
+        }
+        if (date >= 5 && date <= 11){
+            da = "GOOD MORNING ";
+        }
+        if (date >= 12 && date <= 15){
+            da = "GOOD AFTERNOON ";
+        }
+        if (date >= 16 && date <= 19){
+            da = "GOOD EVENING ";
+        }
+        if (date >= 20 && date <= 24){
+            da = "GOOD NIGHT ";
+        }    
+        var sdiv = da;
+        var b = sdiv.length;
+        if (i < b){
+    document.getElementById("home").innerHTML = document.getElementById("home").innerHTML + sdiv[i];  
+        }
+        i += 1;
+        if (i == 50){
+    document.getElementById("home").innerHTML = "";
+            i = 0;
+        }
+    },250);
+        
+var rev = document.getElementById("block_review");
+firebase.database().ref('reviews/').on("value",function(snapshot){
+     rev.innerHTML = "";
+     snapshot.forEach(function(ChildSnapShot){
+         var na = ChildSnapShot.val().nameofperson;
+         var ms = ChildSnapShot.val().msg;
+         rev.innerHTML += "<div class='block'>"+"<h2>"+na+"</h2>"+"<p>"+ms+"</p></div>";
+     })
+    });   
+        setTimeout(function(){
+            var e = document.getElementById("pop");
+            document.body.removeChild(e);
+        },2500);
+        
+        
+    </script>
+    </body>
+</html>
+
+<!-- 
+
+for adding products 
+
+<div id="search_content">
+            <div class="search_item" onclick="open_full('name of item')">
+            <img src="">
+            <p>name of item</p>
+            </div>
+</div>
+
+for adding in cart
+
+<div id="cart_box">
+            <div class="cart_item" 
+            onclick="open_full('name of item')">
+            <img src="">
+            <p>name of item</p>
+            </div>
+</div>
+
+for adding reviews
+
+<div id="block_review">
+            <div class="block">
+                <h2>satwik</h2>
+                <p>hello gud mrng ..</p>
+            </div>
+</div>
+-->
