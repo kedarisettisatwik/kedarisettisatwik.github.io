@@ -15,8 +15,11 @@
             width:100vw;
             height:100vh;
             background-color:white;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
         }
-        .main{
+        section{
             margin:10px 0;
             width:85vw;
             overflow: hidden;
@@ -28,57 +31,36 @@
             align-items:center;
             flex-direction: column;
         }
-        .main1{
-            margin:10px 0;
-            width:85vw;
-            overflow: hidden;
-            position: relative;
-            border:2px solid grey;
-            background-color:wheat;
-            padding:40px;
-            display: flex;
-            align-items:center;
-            flex-direction: column;
-        }
-        .less{
-            height:150px;
-        }
-        .more{
-            height: auto;
-        }
-        .main h1,.main1 h1{
-            text-align: center;
-            width:100%;
-            border-bottom:4px solid darkblue;
-            font-size:3em;
-            padding:0 0 20px 0;
-            text-transform: uppercase;
+        section p{
+            font-size:45px;
             font-family: 'Roboto', sans-serif;
-            letter-spacing:3px; 
+            margin:5px;
+            font-weight:bold;
+            letter-spacing:4px;
         }
-        .main p,.main1 p{
-            word-wrap: break-word;
-            white-space: pre-wrap;
-            width:100%;
-            margin-top:10px;
-            font-size:2.2em;
+        span{
+            font-size:35px;
             font-family: 'Roboto', sans-serif;
-            letter-spacing:3px; 
         }
-        .main a,.main1 a{
-            width:100%;
-            margin-top:10px;
-            font-size:2.2em;
-            font-family: 'Roboto', sans-serif;
-            letter-spacing:3px; 
-            text-decoration: none;
+        iframe{
+            width:800px;
+            height:500px;
         }
     </style>
     </head>
 <body>
-    <section id="main">
+    <section>
+        <p>what is HTML ? </p><br>
+        <span>HTML - Hyper Text Markup Language,<br>used for creating web pages..</span>
     </section>
+    <section>
+        <p>working platform </p><br>
+        <span>for pratice or work of html is done basically on brackets software, which is free of cost.</span><br><br>
+        <iframe src="https://www.youtube.com/embed/TaXCES-4Cpo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </section>
+    <section>
     
+    </section>
     <script>
     
     </script>
