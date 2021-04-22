@@ -111,14 +111,7 @@
             opacity:1;
         }
         .logo_img{
-            -webkit-animation-name:rot1;
-            -webkit-animation-duration:6s;
-            -webkit-animation-iteration-count:infinite;
             width:60px;
-        }
-        @keyframes rot1{
-            0%{transform:rotateZ(0deg)}
-            100%{transform:rotateZ(-360deg)}
         }
         .quote{
             position: relative;
@@ -698,7 +691,7 @@
     <section id="home">
         <nav id="nav_bar">
         <div class="log">
-            <img src="travel%20logo.png" class="logo_img">
+            <img src="travel%20logo.png" class="logo_img" id="logo_img">
             <span>ACE TRAVEL'S</span>
         </div>
         <div class="links">
@@ -979,6 +972,9 @@
         } 
             
         window.addEventListener("scroll", () => {
+            var ll = document.getElementById("logo_img");
+            var value = Math.abs(scrollY);
+            ll.style.transform = "rotate("+value*-0.1+"deg)";
             var h1 = document.getElementById("home").getBoundingClientRect().top;            
             var a1 = document.getElementById("account").getBoundingClientRect().top;
             var p1 = document.getElementById("plans").getBoundingClientRect().top;
