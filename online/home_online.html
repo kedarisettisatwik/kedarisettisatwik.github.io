@@ -482,6 +482,11 @@
         .bar .sear input::placeholder{
             color:black;
         }
+        .bar .sear select{
+            max-width:100px;
+            font-size:16px;
+            padding:4px;
+        }
         .pro_con{
             position:relative;
             width:95vw;
@@ -905,7 +910,21 @@
     <section id="pro">
         <div class="bar">
         <h1>Available Products</h1>
-        <div class="sear"><img src="searchicon.png"><input type="text" placeholder="search for a item" id="search_form"></div>
+        <div class="sear"><img src="searchicon.png"><input type="text" placeholder="search for a item" id="search_form"><select id="procate" onchange="set()">
+         <option value="all">all</option>
+        <option value="food">food</option>
+        <option value="ravaa and floor items and pulses items">ravaa and floor items and pulses items </option>
+        <option value="indian spieces">indian spieces</option>
+        <option value="dry fruits">dry fruits</option> 
+        <option value="aurvedic health care food items">aurvedic health care food items</option>
+         <option value="oils">oils</option>   
+        <option value="pooja items">pooja items</option>
+         <option value="soil items">soil items</option>  
+        <option value="cloth wash items">cloth wash items</option>
+        <option value="dish wash">dish wash</option>
+        <option value="body care items">body care items</option>
+        <option value="other fancy">other fancy</option>
+        </select></div>
         </div>
         <div class="pro_con" id="pro_con">
 
@@ -1013,7 +1032,7 @@
         var adminname;
         
         document.addEventListener('contextmenu',(e) => {
-                   e.preventDefault();   
+                   // e.preventDefault();   
         });
         
         var productsname = [];
@@ -1022,6 +1041,7 @@
         var productsquantity = [];
         var productsrate = [];
         var productsmore = [];
+        var productssub = [];
         
         var pro_conn = document.getElementById("pro_con");
         
@@ -1037,6 +1057,7 @@
     let proquantity = ChildSnapshot.val().proquantity;
     let prorate = ChildSnapshot.val().prorate;
     let promore = ChildSnapshot.val().promore;
+    let prosub =  ChildSnapshot.val().prosub;
                
                pro_conn.innerHTML += "<div class='pro_conn1'>"+"<div class='pro_conn2'><div class='pro_conn3'><h2>"+proname+"</h2></div><div class='pro_conn4' id='pro"+inum+"'><p>"+prodes+"</p><label>"+proquantity+ " " +proselect+" - "+ prorate +"/- </label><button onclick='add("+inum+")'><img src='shopping-cart.png'>add to cart</button><button><a target = '_blank' href ='"+promore+"'>view more</a></button></div></div></div>";
                inum += 1;
@@ -1046,6 +1067,7 @@
                      productsquantity.push(proquantity);
                      productsrate.push(prorate);
                      productsmore.push(promore);
+                     productssub.push(prosub);
            }) 
         });
         
@@ -1067,8 +1089,8 @@
                var rr = JSON.parse(productsrate[idpro]);
                var qq = JSON.parse(productsquantity[idpro]);
                var uu = rr/qq;
-               let rateis = JSON.parse(cartproquannity);
-               var rrrr = JSON.parse((uu * rateis));
+               let rateis = cartproquannity;
+               var rrrr = uu * rateis;
         cart_addon.innerHTML += "<div class='cart_conn1'><div class='cart_conn2'><div class = 'cart_conn3'><h2>"+productsname[idpro]+"</h2></div><div class = 'cart_conn4' id = 'cart"+idpro+"'><p>"+productspara[idpro]+"</p><label>"+"<span id = 'pro11"+idpro+"'>"+cartproquannity+"</span>"+" "+ productscat[idpro] + " - "+"<span id='pro22"+idpro+"'>"+rrrr+"</span>"+"/- </label><button onclick = 'remove("+idpro+")'><img src='shopping-cart.png'>remove from cart</button><div class = 'input_quan'><input type='number' class = 'procartquan' id='proinput"+idpro+"' placeholder='quantity in ' onkeyup='searchrate("+idpro+")'><span>"+productscat[idpro]+"</span></div><button><a href = '"+productsmore[idpro]+"' >view more</a><a onclick = 'searchsave("+idpro+")'>"+"save"+"</a></button></div></div></div></div";
                cart_list += 1;
                cartrate += rrrr;
@@ -1097,6 +1119,7 @@
                 iiirrr.innerHTML =  unit;
             }
         }
+        
         function searchsave(aa){
             var iiiqqq = document.getElementById("pro11"+aa);
                var iiirrr = document.getElementById("pro22"+aa);
@@ -1129,6 +1152,18 @@
         re.innerHTML += "<div class='user_rev'>"+"<h2>"+nna+"</h2>"+"<p>"+mms+"</p></div>"; 
             }
     });
+        
+        
+        function set(){
+            var searchsub = document.getElementById("procate").value;
+            pro_conn.innerHTML = "";
+            for (var i = 0;i<productssub.length;i++){
+                var pppxx = productssub[i];
+                if (pppxx.includes(searchsub)){
+                    pro_conn.innerHTML += "<div class='pro_conn1'>"+"<div class='pro_conn2'><div class='pro_conn3'><h2>"+productsname[i]+"</h2></div><div class='pro_conn4' id='pro"+i+"'><p>"+productspara[i]+"</p><label>"+productsquantity[i]+ " " + productscat[i] +" - "+productsrate[i]+"/- </label><button onclick='add("+i+")'><img src='shopping-cart.png'>add to cart</button><button><a target = '_blank' href ='"+productsmore[i]+"'>view more</a></button></div></div></div>";
+                }
+            }
+        }
         
         
         document.getElementById("search_form").addEventListener('keyup', function(){
@@ -1181,7 +1216,7 @@
                var rrrr = (uu * rateis).toFixed(2);
                cart_list_len += 1;
                cart_1rate += rrrr;
-               wmsg += "%0a ( "+cartproname1+" ) %20%20 "+cartproquannity1+"%20 "+productscat[idpro]+"%20%20 "+rrrr+"/- %0a ";
+               wmsg += "%0a " + cart_list_len +" : ( "+ cartproname1+" ) %20%20 "+cartproquannity1+"%20 "+productscat[idpro]+"%20%20 "+rrrr+"/- %0a ";
            })
                             
     location.href = "https://wa.me/919290864905?text= "+"name : "+adminname +"%0a e-mail : " +adminofpage+"@gmial.com  %0a "+ wmsg; 
