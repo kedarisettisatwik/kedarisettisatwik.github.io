@@ -679,6 +679,9 @@
             align-items: center;
             flex-direction:row;
         }
+        .cart_conn2 .cart_conn4 button a{
+            margin:5px;
+        }
         .cart_conn2 .cart_conn4 button img{
             width:30px;
             margin:0 10px;
@@ -852,7 +855,7 @@
                 min-height:100px;
             }
             .pro_conn2 .pro_conn3 h2{
-                font-size:20px;
+                font-size:18px;
             }
             #errorname{
                 font-size:24px;
@@ -933,9 +936,9 @@
     </section>
     <section id="cart">
         <h1><div class="cart_icon">
-            <img src="shopping-cart.png"><label>items : <label id="cart_number"> 123</label><br><br>expected rate : <label id="cart_rate"> 456/-</label></label>
+            <img src="shopping-cart.png"><label>items : <label id="cart_number">0</label><br><br>expected rate : <label id="cart_rate"> 0/-</label></label>
         </div>CART</h1>
-        <button class="buy">Buy cart</button>
+        <button class="buy" onclick="buy()">Buy cart</button>
         <div class="cart_con" id="cart_addon">
                   
         </div>
@@ -1007,10 +1010,12 @@
     <script>
         var adminofpage;
         var trfal = false;
+        var adminname;
         
         document.addEventListener('contextmenu',(e) => {
-                    e.preventDefault();   
+                   e.preventDefault();   
         });
+        
         var productsname = [];
         var productspara = [];
         var productscat = [];
@@ -1045,6 +1050,7 @@
         });
         
         var cart_list;
+        var cartrate;
         
     function draw_cart(){
             var cart_addon = document.getElementById("cart_addon");
@@ -1052,13 +1058,25 @@
         firebase.database().ref("users/"+adminofpage+"/cart/").once('value',function(snapshot){
             cart_addon.innerHTML = "";
             cart_list = 0;
-           snapshot.forEach(function(ChildSnapshot){
-               let proname = ChildSnapshot.val().cartproname;
-               var idpro = productsname.indexOf(proname);
-        cart_addon.innerHTML += "<div class='cart_conn1'><div class='cart_conn2'><div class = 'cart_conn3'><h2>"+productsname[idpro]+"</h2></div><div class = 'cart_conn4' id = 'cart"+idpro+"'><p>"+productspara[idpro]+"</p><label>"+"<span id = 'pro11"+idpro+"'>"+productsquantity[idpro]+"</span>"+" "+productscat[idpro] + " - "+"<span id='pro22"+idpro+"'>"+productsrate[idpro]+"</span>"+"/- </label><button onclick = 'remove("+idpro+")'><img src='shopping-cart.png'>remove from cart</button><div class = 'input_quan'><input type='number' class = 'procartquan' id='proinput"+idpro+"' placeholder='quantity in ' onkeyup='searchrate("+idpro+")'><span>"+productscat[idpro]+"</span></div><button><a href = '"+productsmore[idpro]+"' >view more</a></button></div></div></div></div";
-               cart_list += 1;
-           })        
+            cartrate = 0;
             
+           snapshot.forEach(function(ChildSnapshot){
+               let cartproname = ChildSnapshot.val().cartproname;
+               let cartproquannity = ChildSnapshot.val().cartproquantity;
+               var idpro = productsname.indexOf(cartproname);
+               var rr = JSON.parse(productsrate[idpro]);
+               var qq = JSON.parse(productsquantity[idpro]);
+               var uu = rr/qq;
+               let rateis = JSON.parse(cartproquannity);
+               var rrrr = JSON.parse((uu * rateis));
+        cart_addon.innerHTML += "<div class='cart_conn1'><div class='cart_conn2'><div class = 'cart_conn3'><h2>"+productsname[idpro]+"</h2></div><div class = 'cart_conn4' id = 'cart"+idpro+"'><p>"+productspara[idpro]+"</p><label>"+"<span id = 'pro11"+idpro+"'>"+cartproquannity+"</span>"+" "+ productscat[idpro] + " - "+"<span id='pro22"+idpro+"'>"+rrrr+"</span>"+"/- </label><button onclick = 'remove("+idpro+")'><img src='shopping-cart.png'>remove from cart</button><div class = 'input_quan'><input type='number' class = 'procartquan' id='proinput"+idpro+"' placeholder='quantity in ' onkeyup='searchrate("+idpro+")'><span>"+productscat[idpro]+"</span></div><button><a href = '"+productsmore[idpro]+"' >view more</a><a onclick = 'searchsave("+idpro+")'>"+"save"+"</a></button></div></div></div></div";
+               cart_list += 1;
+               cartrate += rrrr;
+           })        
+           var xccc = document.getElementById("cart_number");
+            xccc.innerHTML = cart_list;
+            var ccrr = document.getElementById("cart_rate");
+            ccrr.innerHTML = cartrate+"/-";
         });
         
         }
@@ -1079,7 +1097,21 @@
                 iiirrr.innerHTML =  unit;
             }
         }
-        
+        function searchsave(aa){
+            var iiiqqq = document.getElementById("pro11"+aa);
+               var iiirrr = document.getElementById("pro22"+aa);
+                var qra = JSON.parse(productsquantity[aa]);
+                var pra = JSON.parse(productsrate[aa]);
+                var pppp = document.getElementById("proinput"+aa).value;
+            if (pppp == ""){
+                
+            }else{
+                firebase.database().ref("users/"+adminofpage+"/cart/"+productsname[aa]).update({
+                    cartproquantity:pppp
+                  });
+                draw_cart();
+            }
+        }
         var re = document.getElementById("rev");
         firebase.database().ref('reviews/').on("value",function(snapshot){
      re.innerHTML = "";
@@ -1125,11 +1157,40 @@
             var un = document.getElementById("user_name");
             var ue = document.getElementById("user_mail");
             var um = document.getElementById("user_msg");
-    location.href = "https://wa.me/919290864905?text= "+" name : "+un.value +" e-mail : " +ue.value+"  message : "+um.value;
-            un.value = "";
+    location.href = "https://wa.me/919290864905?text= "+"name : "+un.value +" %0a e-mail : " +ue.value+" %0a message : "+um.value;
+                un.value = "";
                 ue.value = "";
                 um.value = "";
         });
+        
+        function buy(){
+            if (trfal){
+                var wmsg = "";
+        firebase.database().ref("users/"+adminofpage+"/cart/").once('value',function(snapshot){
+            var cart_list_len = 0;
+            var cart_1rate = 0;
+            
+           snapshot.forEach(function(ChildSnapshot){
+               let cartproname1 = ChildSnapshot.val().cartproname;
+               let cartproquannity1 = ChildSnapshot.val().cartproquantity;
+               var idpro = productsname.indexOf(cartproname1);
+               var rr = JSON.parse(productsrate[idpro]);
+               var qq = JSON.parse(productsquantity[idpro]);
+               var uu = rr/qq;
+               let rateis = JSON.parse(cartproquannity1);
+               var rrrr = (uu * rateis).toFixed(2);
+               cart_list_len += 1;
+               cart_1rate += rrrr;
+               wmsg += "%0a ( "+cartproname1+" ) %20%20 "+cartproquannity1+"%20 "+productscat[idpro]+"%20%20 "+rrrr+"/- %0a ";
+           })
+                            
+    location.href = "https://wa.me/919290864905?text= "+"name : "+adminname +"%0a e-mail : " +adminofpage+"@gmial.com  %0a "+ wmsg; 
+        });
+
+               }else{
+                   
+               }
+       }
         
         function add_rev(){
             var un = document.getElementById("user_name");
@@ -1354,6 +1415,7 @@
                     error1("welcome back " + listofnames[listofmail.indexOf(signuser)],"back");
                     var indexofs = signuser.indexOf("@");
                     adminofpage = signuser.substring(0,indexofs);
+                    adminname = listofnames[listofmail.indexOf(signuser)];
                     trfal = true;
                     draw_cart();
                     
@@ -1442,7 +1504,7 @@
             if (trfal){
                 firebase.database().ref("users/"+adminofpage+"/cart/"+productsname[aa]).set({
                     cartproname : productsname[aa],
-                    cartproquantity : 0
+                    cartproquantity:productsquantity[aa]
                   });
                 draw_cart();
             }else{
