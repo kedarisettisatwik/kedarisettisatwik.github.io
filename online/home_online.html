@@ -400,9 +400,6 @@
             border-radius:20px;
             box-shadow:0 0 2px black;
         }
-        #sign_in input:valid,#sign_up input:valid{
-            background-color:greenyellow;
-        }
         #sign_in input[type="submit"],#sign_up input[type="submit"]{
             font-size:19px;
             background-color:darkblue;
@@ -513,7 +510,6 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            word-break: break-all;
         }
         .pro_conn2 .pro_conn3{
             width:100%;
@@ -539,13 +535,11 @@
         }
         .pro_conn2 .pro_conn4 p{
             word-wrap: break-word;
-            word-break: break-all;
             font-size:16px;
             color:white;
         }
         .pro_conn2 .pro_conn4  label{
             word-wrap: break-word;
-            word-break: break-all;
             font-size:19px;
             color:white;
             margin-top:14px;
@@ -633,7 +627,6 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            word-break: break-all;
         }
         .cart_conn2 .cart_conn3{
             width:100%;
@@ -659,13 +652,11 @@
         }
         .cart_conn2 .cart_conn4 p{
             word-wrap: break-word;
-            word-break: break-all;
             font-size:16px;
             color:white;
         }
         .cart_conn2 .cart_conn4  label{
             word-wrap: break-word;
-            word-break: break-all;
             font-size:19px;
             color:white;
             margin-top:14px;
@@ -691,10 +682,52 @@
             width:30px;
             margin:0 10px;
         }
-        
-        
-        
-        
+        .buy{
+            padding:10px;
+            margin:10px;
+            color:darkblue;
+            background-color:azure;
+            border:none;
+            border-radius:20px;
+            outline:none;
+            cursor:pointer;
+            box-shadow:0 0 10px black;
+            font-size:18px;
+            font-weight:bold;
+            letter-spacing:1px;
+        }
+        #error{
+            position:absolute;
+            top:0;
+            left:0;
+            display:none;
+            justify-content:space-around;
+            align-items: center;
+            flex-direction: column;
+            width:100vw;
+            height:100%;
+            z-index:98;
+            background-color:transparent;
+        }
+        #errorname{
+            font-weight:bold;
+            color:black;
+            font-size:35px;
+            letter-spacing:2px;
+            max-width:90vw;
+            word-wrap: break-word;
+        }
+        #backerror{
+            padding:10px 20px;
+            background-color:black;
+            color:white;
+            font-size:28px;
+            letter-spacing:2px;
+            border:none;
+            outline:none;
+            border-radius:20px;
+            font-weight:bold;
+        }
 
         
         
@@ -794,42 +827,15 @@
             .pro_conn2 .pro_conn3 h2{
                 font-size:20px;
             }
+            #errorname{
+                font-size:24px;
+            }
+            #backerror{
+                font-size:20px;
+            }
         }
                 
-        
-        
-        /* for desktop */
-.whatsapp_float {
-	position:fixed;
-	width:60px;
-	height:60px;
-	bottom:40px;
-	right:40px;
-	background-color:#25d366;
-	color:#FFF;
-	border-radius:50px;
-	text-align:center;
-        font-size:30px;
-	box-shadow: 2px 2px 3px #999;
-        z-index:100;
-}
-
-.whatsapp-icon {
-	margin-top:16px;
-}
-/* for mobile */
-@media screen and (max-width: 767px){
-     .whatsapp-icon {
-	 margin-top:10px;
-     }
-    .whatsapp_float {
-        width: 40px;
-        height: 40px;
-        bottom: 20px;
-        right: 10px;
-        font-size: 22px;
-    }
-}
+    
     </style>
 </head>
     <body>
@@ -879,19 +885,20 @@
     <section id="account">
         <div id="form_con">
         <div id="circle"></div>
+        <div id="error"><h4 id="errorname">error</h4><button id="backerror" onclick="backerror()">retry</button></div>
         <h1 id="name_form1">SIGN IN <img src="lock.png"></h1>
         <h1 id="name_form2"><img src="sign-up.png"> SIGN UP </h1>
-        <form id="sign_in">
-        <input type="text" placeholder="user-id" required>
-        <input type="password" placeholder="password" required>
+        <form id="sign_in" autocomplete="off">
+        <input type="email" placeholder="e-mail@gmail.com" required id="sign_in_user">
+        <input type="password" placeholder="password" required id="sign_in_pass">
         <input type="submit" value="SIGN IN">
             <P>Doesn't have account <a onclick="switch1(0)"> go to sign up page </a></P>
         </form>
-        <form id="sign_up">
-        <input type="text" placeholder="keep a user-id" required>
-        <input type="email" placeholder="e-mail address" required>
-        <input type="text" placeholder="set a password" required>    
-        <input type="password" placeholder="confirm password" required>
+        <form id="sign_up" autocomplete="off">
+        <input type="text" placeholder="set a user-id" required id="sign_up_user">
+        <input type="email" placeholder="e-mail@gmail.com" required id="sign_up_email">
+        <input type="text" placeholder="set a password" required id="sign_up_pass">    
+        <input type="password" placeholder="confirm password" required id="sign_up_repass">
         <input type="submit" value="SIGN UP">
             <p>Already a customer ? <a onclick="switch1(1)"> go to sign in page </a> </p>
         </form>
@@ -899,61 +906,22 @@
     </section>
     <section id="cart">
         <h1><div class="cart_icon">
-            <img src="shopping-cart.png"><label id="cart_number"> 123</label>
+            <img src="shopping-cart.png"><label>items : <label id="cart_number"> 123</label><br><br>rate : <label id="cart_rate"> 456/-</label></label>
         </div>CART</h1>
+        <button class="buy">Buy cart</button>
         <div class="cart_con">
                   <div class="cart_conn1" onclick="view1(0)">
                       <div class="cart_conn2">
                            <div class="cart_conn3">
                                <h2>hello</h2>
                            </div> 
-                           <div class="cart_conn4" id="cart0"> <p>sjgnjksdngkjsdnbpsdbfnpseibbpsdifnbkjdsnbjksdfnvpssjgnjksdngkjsdnbpsdbfnpseibbpsdifnbkjdsnbjksdfnvpssjgnjksdngkjsdnbpsdbfnpseibbpsdifnbkjdsnbjksdfnvps</p>
+                           <div class="cart_conn4" id="cart0"> <p>sjgnjksdngk jsdnbpsdbf  npseibbpsdif nbkjds  nbjksdfn vpssjg njksdngkjsd nbpsdbfnpseibbpsd if nbkjdsnbjksdf nvpss jgnjk dngkjsdn bpsdb fnpseibb psdif nbkjdsn bjksdf nvps</p>
                            <label>120 grams - 120/-</label>
                            <button onclick="remove(0)"><img src="shopping-cart.png">remove from cart</button>
                                <button><a href="#">view more</a></button>
                            </div>
                       </div>
                   </div>
-                   
-                  <div class="cart_conn1" onclick="view1(1)">
-                      <div class="cart_conn2">
-                           <div class="cart_conn3">
-                               <h2>hello</h2>
-                           </div> 
-                           <div class="cart_conn4" id="cart1"> <p>sjgnjksdngkjsdnbpsdbfnpseibbpsdifnbkjdsnbjksdfnvpssjgnjksdngkjsdnbpsdbfnpseibbpsdifnbkjdsnbjksdfnvpssjgnjksdngkjsdnbpsdbfnpseibbpsdifnbkjdsnbjksdfnvps</p>
-                           <label>120 grams - 120/-</label>
-                           <button onclick="remove(1)"><img src="shopping-cart.png">remove from cart</button>
-                               <button><a href="#">view more</a></button>
-                           </div>
-                      </div>
-                  </div>
-            
-                  <div class="cart_conn1" onclick="view1(2)">
-                      <div class="cart_conn2">
-                           <div class="cart_conn3">
-                               <h2>hello</h2>
-                           </div> 
-                           <div class="cart_conn4" id="cart2"> <p>sjgnjksdngkjsdnbpsdbfnpseibbpsdifnbkjdsnbjksdfnvpssjgnjksdngkjsdnbpsdbfnpseibbpsdifnbkjdsnbjksdfnvpssjgnjksdngkjsdnbpsdbfnpseibbpsdifnbkjdsnbjksdfnvps</p>
-                           <label>120 grams - 120/-</label>
-                           <button onclick="remove(2)"><img src="shopping-cart.png">remove from cart</button>
-                               <button><a href="#">view more</a></button>
-                           </div>
-                      </div>
-                  </div>
-                   
-                  <div class="cart_conn1" onclick="view1(3)">
-                      <div class="cart_conn2">
-                           <div class="cart_conn3">
-                               <h2>hello</h2>
-                           </div> 
-                           <div class="cart_conn4" id="cart3"> <p>sjgnjksdngkjsdnbpsdbfnpseibbpsdifnbkjdsnbjksdfnvpssjgnjksdngkjsdnbpsdbfnpseibbpsdifnbkjdsnbjksdfnvpssjgnjksdngkjsdnbpsdbfnpseibbpsdifnbkjdsnbjksdfnvps</p>
-                           <label>120 grams - 120/-</label>
-                           <button onclick="remove(3)"><img src="shopping-cart.png">remove from cart</button>
-                               <button><a href="#">view more</a></button>
-                           </div>
-                      </div>
-                  </div>
-                  
         </div>
     </section>
     <section id="contact">
@@ -1023,7 +991,7 @@
     <script>
         
         document.addEventListener('contextmenu',(e) => {
-                        e.preventDefault();
+                        
         });
         var productsname = [];
         var productspara = [];
@@ -1096,7 +1064,7 @@
             var un = document.getElementById("user_name");
             var ue = document.getElementById("user_mail");
             var um = document.getElementById("user_msg");
-    location.href = "https://wa.me/919290864905?text="+" name : "+un.value +" e-mail : " +ue.value+" message : "+um.value;
+    location.href = "https://wa.me/919290864905?text= "+" name : "+un.value +"  e-mail : " +ue.value+"  message : "+um.value;
             un.value = "";
                 ue.value = "";
                 um.value = "";
@@ -1297,6 +1265,102 @@
         });
         
         
+        var sin = document.getElementById("sign_in");
+        var sup = document.getElementById("sign_up");
+        
+         
+        
+        
+        sin.addEventListener('submit', (e) => {
+            e.preventDefault();
+            var signuser = document.getElementById("sign_in_user").value;
+            var signpass = document.getElementById("sign_in_pass").value;
+            
+
+    firebase.database().ref('users/').once('value',function(snapshot){
+        snapshot.forEach(function(ChildSnapShot){
+            let una = ChildSnapShot.val().emailuser;
+            let pas = ChildSnapShot.val().passuser;
+            let unn = ChildSnapShot.val().nameuser;
+            if (una == signuser){
+                if (pas == signpass){
+                    error1("welcome back " +unn,"back");
+                }else{
+                    error1("wrong credits","re-try");
+                }
+            }else{
+                error1("wrong credits","retry");
+            }
+        })
+    }); 
+
+        });
+  
+        
+        var checkuser = [];
+        firebase.database().ref('users/').once('value',function(snapshot){
+        snapshot.forEach(function(ChildSnapShot){
+            let uem = ChildSnapShot.val().emailuser;
+            checkuser.push(uem);
+        })
+    }); 
+        
+        sup.addEventListener('submit', (e) => {
+            e.preventDefault();
+            var sign_up_user = document.getElementById("sign_up_user").value;
+            var sign_up_email = document.getElementById("sign_up_email").value;
+            var sign_up_pass = document.getElementById("sign_up_pass").value;
+            var sign_up_repass = document.getElementById("sign_up_repass").value;
+            
+            if (sign_up_email.includes("@gmail.com")){
+                if (checkuser.includes(sign_up_email)){
+                error1(sign_up_email+" already exists");
+            }else{
+                if (sign_up_pass == sign_up_repass){
+                    var indexofn = sign_up_email.indexOf("@");
+                    var see = sign_up_email.substring(0,indexofn);
+                firebase.database().ref("users/"+see).set({
+     nameuser : sign_up_user,
+     emailuser : sign_up_email,
+     passuser : sign_up_pass
+                    
+                  });
+                    error1("registration completed succsesfully, now you can sign in ","back");
+                 }else{
+                       error1("password  confirmation failed","re-try");
+                 }
+            }
+            }else{
+                error1("invalid email use : @gmail.com","re-try");
+            }
+        });
+
+        
+        function error1(aa,bb){
+            var circle1 = document.getElementById("circle");
+            circle1.style.zIndex = "95";
+            circle1.style.transform = "scale("+8+")";
+            setTimeout(function(){
+                var xxsss = document.getElementById("error");
+                xxsss.style.display = "flex";
+                var hn = document.getElementById("errorname");
+                hn.innerHTML = aa;
+                var bc = document.getElementById("backerror");
+                bc.innerHTML = bb;
+            },600);
+        }
+        function backerror(){
+            var xxsss = document.getElementById("error");
+                xxsss.style.display = "none";
+            var circle1 = document.getElementById("circle");
+            circle1.style.zIndex = "80";
+            circle1.style.transform = "scale("+1+")";
+            
+            var bc = document.getElementById("backerror").innerHTML;
+            if (bc == "back"){
+                alert("g");
+            }
+        }
         function add(aa){
             alert(aa);
         }
