@@ -747,6 +747,9 @@
             padding:4px;
             font-size:17px;
         }
+        .input_quan input::placeholder{
+            color:black;
+        }
         .input_quan span{
             font-size:16px;
             color:darkblue;
@@ -1052,34 +1055,29 @@
            snapshot.forEach(function(ChildSnapshot){
                let proname = ChildSnapshot.val().cartproname;
                var idpro = productsname.indexOf(proname);
-        cart_addon.innerHTML += "<div class='cart_conn1'><div class='cart_conn2'><div class = 'cart_conn3'><h2>"+productsname[idpro]+"</h2></div><div class = 'cart_conn4' id = 'cart"+idpro+"'><p>"+productspara[idpro]+"</p><label>"+"<span id = 'pro11"+idpro+"'>"+productsquantity[idpro]+"</span>"+" "+productscat[idpro] + " - "+"<span id='pro22"+idpro+"'>"+productsrate[idpro]+"</span>"+"/- </label><button onclick = 'remove("+idpro+")'><img src='shopping-cart.png'>remove from cart</button><div class = 'input_quan'><input type='number' class = 'procartquan' id='"+idpro+"' placeholder='quantity in '><span>"+productscat[idpro]+"</span></div><button><a href = '"+productsmore[idpro]+"' >view more</a></button></div></div></div></div";
+        cart_addon.innerHTML += "<div class='cart_conn1'><div class='cart_conn2'><div class = 'cart_conn3'><h2>"+productsname[idpro]+"</h2></div><div class = 'cart_conn4' id = 'cart"+idpro+"'><p>"+productspara[idpro]+"</p><label>"+"<span id = 'pro11"+idpro+"'>"+productsquantity[idpro]+"</span>"+" "+productscat[idpro] + " - "+"<span id='pro22"+idpro+"'>"+productsrate[idpro]+"</span>"+"/- </label><button onclick = 'remove("+idpro+")'><img src='shopping-cart.png'>remove from cart</button><div class = 'input_quan'><input type='number' class = 'procartquan' id='proinput"+idpro+"' placeholder='quantity in ' onkeyup='searchrate("+idpro+")'><span>"+productscat[idpro]+"</span></div><button><a href = '"+productsmore[idpro]+"' >view more</a></button></div></div></div></div";
                cart_list += 1;
-           })
-            
-            var inpq = document.getElementsByClassName(".procartquan");
-        for (var inni = 0;inni < inpq.length;inni++){
-            var innc = inpq[inni];
-            console.log()
-        innc.addEventListener('keyup', searchrate, false);
-        }
-            
+           })        
             
         });
         
         }
         
         
-        function searchrate(e){
-                alert("A");
-               var xxxid = JSON.parse(e.target.id);
-               var iiiqqq = document.getElementById("pro11"+xxxid);
-               var iiirrr = document.getElementById("pro22"+xxxid);
-                var qra = JSON.parse(productsquantity[xxxid]);
-                var pra = JSON.parse(productsrate[xxxid]);
-                
-                iiiqqq.innerHTML = document.getElementById(xxxid).value;
-                var unit = (pra / qra) * document.getElementById(xxxid).value;
+        function searchrate(aa){
+               var iiiqqq = document.getElementById("pro11"+aa);
+               var iiirrr = document.getElementById("pro22"+aa);
+                var qra = JSON.parse(productsquantity[aa]);
+                var pra = JSON.parse(productsrate[aa]);
+                var pppp = document.getElementById("proinput"+aa).value;
+            if (pppp == ""){
+                iiiqqq.innerHTML = productsquantity[aa];
+                iiirrr.innerHTML = productsrate[aa];
+            }else{
+                iiiqqq.innerHTML = document.getElementById("proinput"+aa).value;
+                var unit = (pra / qra) * document.getElementById("proinput"+aa).value;
                 iiirrr.innerHTML =  unit;
+            }
         }
         
         var re = document.getElementById("rev");
@@ -1127,7 +1125,7 @@
             var un = document.getElementById("user_name");
             var ue = document.getElementById("user_mail");
             var um = document.getElementById("user_msg");
-    location.href = "https://wa.me/919290864905?text= "+" name : "+un.value +"  e-mail : " +ue.value+"  message : "+um.value;
+    location.href = "https://wa.me/919290864905?text= "+" name : "+un.value +" e-mail : " +ue.value+"  message : "+um.value;
             un.value = "";
                 ue.value = "";
                 um.value = "";
