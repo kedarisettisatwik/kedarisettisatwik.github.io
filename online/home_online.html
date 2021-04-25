@@ -889,16 +889,16 @@
         <h1 id="name_form1">SIGN IN <img src="lock.png"></h1>
         <h1 id="name_form2"><img src="sign-up.png"> SIGN UP </h1>
         <form id="sign_in" autocomplete="off">
-        <input type="email" placeholder="e-mail@gmail.com" required id="sign_in_user">
-        <input type="password" placeholder="password" required id="sign_in_pass">
+        <input type="email" placeholder="e-mail@gmail.com" required id="sign_in_user" class="input_clear">
+        <input type="password" placeholder="password" required id="sign_in_pass" class="input_clear">
         <input type="submit" value="SIGN IN">
             <P>Doesn't have account <a onclick="switch1(0)"> go to sign up page </a></P>
         </form>
         <form id="sign_up" autocomplete="off">
-        <input type="text" placeholder="set a user-id" required id="sign_up_user">
-        <input type="email" placeholder="e-mail@gmail.com" required id="sign_up_email">
-        <input type="text" placeholder="set a password" required id="sign_up_pass">    
-        <input type="password" placeholder="confirm password" required id="sign_up_repass">
+        <input type="text" placeholder="set a user-id" required id="sign_up_user" class="input_clear">
+        <input type="email" placeholder="e-mail@gmail.com" required id="sign_up_email" class="input_clear">
+        <input type="text" placeholder="set a password" required id="sign_up_pass" class="input_clear">    
+        <input type="password" placeholder="confirm password" required id="sign_up_repass" class="input_clear">
         <input type="submit" value="SIGN UP">
             <p>Already a customer ? <a onclick="switch1(1)"> go to sign in page </a> </p>
         </form>
@@ -989,9 +989,10 @@
         
         
     <script>
+        var adminofpage;
         
         document.addEventListener('contextmenu',(e) => {
-                        
+                     e.preventDefault();   
         });
         var productsname = [];
         var productspara = [];
@@ -1268,6 +1269,19 @@
         var sin = document.getElementById("sign_in");
         var sup = document.getElementById("sign_up");
         
+        
+    firebase.database().ref('users/').once('value',function(snapshot){
+             var listofnames = [];
+             var listofpass = [];
+             var listofmail = [];
+        snapshot.forEach(function(ChildSnapShot){
+            let una = ChildSnapShot.val().emailuser;
+            let pas = ChildSnapShot.val().passuser;
+            let unn = ChildSnapShot.val().nameuser;
+            listofnames.push(unn);
+            listofpass.push(pas);
+            listofmail.push(una);
+        })
          
         
         
@@ -1275,23 +1289,15 @@
             e.preventDefault();
             var signuser = document.getElementById("sign_in_user").value;
             var signpass = document.getElementById("sign_in_pass").value;
-            
-
-    firebase.database().ref('users/').once('value',function(snapshot){
-        snapshot.forEach(function(ChildSnapShot){
-            let una = ChildSnapShot.val().emailuser;
-            let pas = ChildSnapShot.val().passuser;
-            let unn = ChildSnapShot.val().nameuser;
-            if (una == signuser){
-                if (pas == signpass){
-                    error1("welcome back " +unn,"back");
+            if (listofmail.includes(signuser)){
+                if (signpass == listofpass[listofmail.indexOf(signuser)]){
+                    error1("welcome back " + listofnames[listofmail.indexOf(signuser)],"back");
                 }else{
                     error1("wrong credits","re-try");
                 }
             }else{
-                error1("wrong credits","retry");
+                error1("wrong credits","re-try");
             }
-        })
     }); 
 
         });
@@ -1358,7 +1364,8 @@
             
             var bc = document.getElementById("backerror").innerHTML;
             if (bc == "back"){
-                alert("g");
+                var xxin = document.querySelectorAll(".input_clear");
+                xxin.forEach(input => input.value = "");
             }
         }
         function add(aa){
