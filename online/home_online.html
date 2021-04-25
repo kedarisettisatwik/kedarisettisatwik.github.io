@@ -642,6 +642,7 @@
             font-size:25px;
             color:white;
             letter-spacing:1px;
+            word-wrap:break-word;
         }
         .cart_conn4 {
             display:flex;
@@ -672,7 +673,7 @@
             font-size:18px;
             font-weight:bold;
             padding:10px;
-            margin-top:15px;
+            margin-top:12px;
             display:flex;
             justify-content: center;
             align-items: center;
@@ -728,7 +729,30 @@
             border-radius:20px;
             font-weight:bold;
         }
-
+        .input_quan{
+            padding:10px;
+            background-color:white;
+            margin:5px;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+        .input_quan input{
+            border:none;
+            outline:none;
+            background:none;
+            border-bottom:2px solid black;
+            margin-right:5px;
+            padding:4px;
+            font-size:17px;
+        }
+        .input_quan span{
+            font-size:16px;
+            color:darkblue;
+            font-weight:bold;
+            letter-spacing:1px;
+        }
         
         
         @media (max-width:700px){
@@ -906,22 +930,11 @@
     </section>
     <section id="cart">
         <h1><div class="cart_icon">
-            <img src="shopping-cart.png"><label>items : <label id="cart_number"> 123</label><br><br>rate : <label id="cart_rate"> 456/-</label></label>
+            <img src="shopping-cart.png"><label>items : <label id="cart_number"> 123</label><br><br>expected rate : <label id="cart_rate"> 456/-</label></label>
         </div>CART</h1>
         <button class="buy">Buy cart</button>
-        <div class="cart_con">
-                  <div class="cart_conn1" onclick="view1(0)">
-                      <div class="cart_conn2">
-                           <div class="cart_conn3">
-                               <h2>hello</h2>
-                           </div> 
-                           <div class="cart_conn4" id="cart0"> <p>sjgnjksdngk jsdnbpsdbf  npseibbpsdif nbkjds  nbjksdfn vpssjg njksdngkjsd nbpsdbfnpseibbpsd if nbkjdsnbjksdf nvpss jgnjk dngkjsdn bpsdb fnpseibb psdif nbkjdsn bjksdf nvps</p>
-                           <label>120 grams - 120/-</label>
-                           <button onclick="remove(0)"><img src="shopping-cart.png">remove from cart</button>
-                               <button><a href="#">view more</a></button>
-                           </div>
-                      </div>
-                  </div>
+        <div class="cart_con" id="cart_addon">
+                  
         </div>
     </section>
     <section id="contact">
@@ -990,14 +1003,18 @@
         
     <script>
         var adminofpage;
+        var trfal = false;
         
         document.addEventListener('contextmenu',(e) => {
-                     e.preventDefault();   
+                    e.preventDefault();   
         });
         var productsname = [];
         var productspara = [];
+        var productscat = [];
+        var productsquantity = [];
         var productsrate = [];
         var productsmore = [];
+        
         var pro_conn = document.getElementById("pro_con");
         
         
@@ -1006,19 +1023,64 @@
         firebase.database().ref('products/').once('value',function(snapshot){
             pro_conn.innerHTML = "";
            snapshot.forEach(function(ChildSnapshot){
-    let proname = ChildSnapshot.val().nameofproduct;
-    let propara = ChildSnapshot.val().paragraph;
-    let prorate = ChildSnapshot.val().rateofproduct;
-    let promore = ChildSnapshot.val().more;
-               pro_conn.innerHTML += "<div class='pro_conn1'>"+"<div class='pro_conn2'><div class='pro_conn3'><h2>"+proname+"</h2></div><div class='pro_conn4' id='pro"+inum+"'><p>"+propara+"</p><label>"+prorate+"</label><button onclick='add("+inum+")'><img src='shopping-cart.png'>add to cart</button><button><a target = '_blank' href ='"+promore+"'>view more</a></button></div></div></div>";
+    let proname = ChildSnapshot.val().proname;
+    let prodes = ChildSnapshot.val().prodes;
+    let proselect = ChildSnapshot.val().proselect;
+    let proquantity = ChildSnapshot.val().proquantity;
+    let prorate = ChildSnapshot.val().prorate;
+    let promore = ChildSnapshot.val().promore;
+               
+               pro_conn.innerHTML += "<div class='pro_conn1'>"+"<div class='pro_conn2'><div class='pro_conn3'><h2>"+proname+"</h2></div><div class='pro_conn4' id='pro"+inum+"'><p>"+prodes+"</p><label>"+proquantity+ " " +proselect+" - "+ prorate +"/- </label><button onclick='add("+inum+")'><img src='shopping-cart.png'>add to cart</button><button><a target = '_blank' href ='"+promore+"'>view more</a></button></div></div></div>";
                inum += 1;
-               productsname.push(proname);
-               productspara.push(propara);
-               productsrate.push(prorate);
-               productsmore.push(promore);
+                     productsname.push(proname);
+                     productspara.push(prodes);
+                     productscat.push(proselect);
+                     productsquantity.push(proquantity);
+                     productsrate.push(prorate);
+                     productsmore.push(promore);
            }) 
         });
         
+        var cart_list;
+        
+    function draw_cart(){
+            var cart_addon = document.getElementById("cart_addon");
+        
+        firebase.database().ref("users/"+adminofpage+"/cart/").once('value',function(snapshot){
+            cart_addon.innerHTML = "";
+            cart_list = 0;
+           snapshot.forEach(function(ChildSnapshot){
+               let proname = ChildSnapshot.val().cartproname;
+               var idpro = productsname.indexOf(proname);
+        cart_addon.innerHTML += "<div class='cart_conn1'><div class='cart_conn2'><div class = 'cart_conn3'><h2>"+productsname[idpro]+"</h2></div><div class = 'cart_conn4' id = 'cart"+idpro+"'><p>"+productspara[idpro]+"</p><label>"+"<span id = 'pro11"+idpro+"'>"+productsquantity[idpro]+"</span>"+" "+productscat[idpro] + " - "+"<span id='pro22"+idpro+"'>"+productsrate[idpro]+"</span>"+"/- </label><button onclick = 'remove("+idpro+")'><img src='shopping-cart.png'>remove from cart</button><div class = 'input_quan'><input type='number' class = 'procartquan' id='"+idpro+"' placeholder='quantity in '><span>"+productscat[idpro]+"</span></div><button><a href = '"+productsmore[idpro]+"' >view more</a></button></div></div></div></div";
+               cart_list += 1;
+           })
+            
+            var inpq = document.getElementsByClassName(".procartquan");
+        for (var inni = 0;inni < inpq.length;inni++){
+            var innc = inpq[inni];
+            console.log()
+        innc.addEventListener('keyup', searchrate, false);
+        }
+            
+            
+        });
+        
+        }
+        
+        
+        function searchrate(e){
+                alert("A");
+               var xxxid = JSON.parse(e.target.id);
+               var iiiqqq = document.getElementById("pro11"+xxxid);
+               var iiirrr = document.getElementById("pro22"+xxxid);
+                var qra = JSON.parse(productsquantity[xxxid]);
+                var pra = JSON.parse(productsrate[xxxid]);
+                
+                iiiqqq.innerHTML = document.getElementById(xxxid).value;
+                var unit = (pra / qra) * document.getElementById(xxxid).value;
+                iiirrr.innerHTML =  unit;
+        }
         
         var re = document.getElementById("rev");
         firebase.database().ref('reviews/').on("value",function(snapshot){
@@ -1047,17 +1109,17 @@
                 for (var i = 0; i<productsname.length;i++){
                 var yyv = productsname[i].toLowerCase();
                 if (yyv.indexOf(xxv) > -1){
-                    pro_conn.innerHTML += "<div class='pro_conn1'>"+"<div class='pro_conn2'><div class='pro_conn3'><h2>"+productsname[i]+"</h2></div><div class='pro_conn4' id='pro"+i+"'><p>"+productspara[i]+"</p><label>"+productsrate[i]+"</label><button onclick='add("+i+")'><img src='shopping-cart.png'>add to cart</button><button><a target = '_blank' href ='"+productsmore[i]+"'>view more</a></button></div></div></div>";
+                     pro_conn.innerHTML += "<div class='pro_conn1'>"+"<div class='pro_conn2'><div class='pro_conn3'><h2>"+productsname[i]+"</h2></div><div class='pro_conn4' id='pro"+i+"'><p>"+productspara[i]+"</p><label>"+productsquantity[i]+ " " + productscat[i] +" - "+productsrate[i]+"/- </label><button onclick='add("+i+")'><img src='shopping-cart.png'>add to cart</button><button><a target = '_blank' href ='"+productsmore[i]+"'>view more</a></button></div></div></div>";
                 }
               }
         }else{
             for (var j = 0;j<productsname.length;j++){
-                pro_conn.innerHTML += "<div class='pro_conn1'>"+"<div class='pro_conn2'><div class='pro_conn3'><h2>"+productsname[j]+"</h2></div><div class='pro_conn4' id='pro"+j+"'><p>"+productspara[j]+"</p><label>"+productsrate[j]+"</label><button onclick='add("+j+")'><img src='shopping-cart.png'>add to cart</button><button><a target = '_blank' href ='"+productsmore[j]+"'>view more</a></button></div></div></div>";
+                pro_conn.innerHTML += "<div class='pro_conn1'>"+"<div class='pro_conn2'><div class='pro_conn3'><h2>"+productsname[j]+"</h2></div><div class='pro_conn4' id='pro"+j+"'><p>"+productspara[j]+"</p><label>"+productsquantity[j]+ " " + productscat[j] +" - "+productsrate[j]+"/- </label><button onclick='add("+j+")'><img src='shopping-cart.png'>add to cart</button><button><a target = '_blank' href ='"+productsmore[j]+"'>view more</a></button></div></div></div>";
             }
         }
         });
         
-        
+  
         
         var cf = document.getElementById("contact_form");
         cf.addEventListener('submit', (e) => {
@@ -1292,11 +1354,22 @@
             if (listofmail.includes(signuser)){
                 if (signpass == listofpass[listofmail.indexOf(signuser)]){
                     error1("welcome back " + listofnames[listofmail.indexOf(signuser)],"back");
+                    var indexofs = signuser.indexOf("@");
+                    adminofpage = signuser.substring(0,indexofs);
+                    trfal = true;
+                    draw_cart();
+                    
                 }else{
                     error1("wrong credits","re-try");
+                    trfal = false;
+                    var cccc = document.getElementById("cart_addon");
+                    cccc.innerHTML = "";
                 }
             }else{
                 error1("wrong credits","re-try");
+                trfal = false;
+                var cccc = document.getElementById("cart_addon");
+                    cccc.innerHTML = "";
             }
     }); 
 
@@ -1329,7 +1402,6 @@
      nameuser : sign_up_user,
      emailuser : sign_up_email,
      passuser : sign_up_pass
-                    
                   });
                     error1("registration completed succsesfully, now you can sign in ","back");
                  }else{
@@ -1369,10 +1441,19 @@
             }
         }
         function add(aa){
-            alert(aa);
+            if (trfal){
+                firebase.database().ref("users/"+adminofpage+"/cart/"+productsname[aa]).set({
+                    cartproname : productsname[aa],
+                    cartproquantity : 0
+                  });
+                draw_cart();
+            }else{
+                
+            }
         }
         function remove(aa){
-            alert(aa);
+            firebase.database().ref("users/"+adminofpage+"/cart/"+productsname[aa]).remove();
+            draw_cart();
         }
     </script>
     </body>
