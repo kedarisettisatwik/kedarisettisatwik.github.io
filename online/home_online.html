@@ -1051,6 +1051,7 @@
             adminofpage = addd;
             adminname = adddd1;
             trfal = true;
+             error1("welcome back " + adminname,"back");
             draw_cart();
         }else{
             
@@ -1274,7 +1275,7 @@
             if (un.value == "" || ue.value == "" || um.value == ""){
                 alert("all fields required");
             }else{
-                firebase.database().ref("reviews/"+un.value).set({
+                firebase.database().ref("reviews/").push({
      nameofperson : un.value,
      email : ue.value,
      msg : um.value
