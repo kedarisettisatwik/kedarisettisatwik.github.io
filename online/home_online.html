@@ -1233,7 +1233,8 @@
             var un = document.getElementById("user_name");
             var ue = document.getElementById("user_mail");
             var um = document.getElementById("user_msg");
-    location.href = "https://wa.me/919290864905?text= "+"name : "+un.value +" %0a e-mail : " +ue.value+" %0a message : "+um.value;
+    var loc = "https://wa.me/919290864905?text= "+"name : "+un.value +" %0a e-mail : " +ue.value+" %0a message : "+um.value;
+            window.open(loc,"_blank");
                 un.value = "";
                 ue.value = "";
                 um.value = "";
@@ -1260,7 +1261,8 @@
                wmsg += "%0a " + cart_list_len +" : ( "+ cartproname1+" ) %20%20 "+cartproquannity1+"%20 "+productscat[idpro]+"%20%20 "+rrrr+"/- %0a ";
            })
                             
-    location.href = "https://wa.me/919290864905?text= "+"name : "+adminname +"%0a e-mail : " +adminofpage+"@gmial.com  %0a "+ wmsg; 
+    var linktoopen = "https://wa.me/919290864905?text= "+"name : "+adminname +"%0a e-mail : " +adminofpage+"@gmial.com  %0a "+ wmsg; 
+            window.open(linktoopen,"_blank");
         });
 
                }else{
