@@ -1041,13 +1041,15 @@
         var adminname;
         
         document.addEventListener('contextmenu',(e) => {
-                    e.preventDefault();   
+                  e.preventDefault();   
         });
         
         
-        if (localStorage.getItem("ksruser")){
+        if (localStorage.getItem("ksrname")){
             var addd = localStorage.getItem("ksruser");
+            var adddd1 = localStorage.getItem("ksrname");
             adminofpage = addd;
+            adminname = adddd1;
             trfal = true;
             draw_cart();
         }else{
@@ -1492,6 +1494,7 @@
                     trfal = true;
                     draw_cart();
                     localStorage.setItem("ksruser",adminofpage);
+                    localStorage.setItem("ksrname",adminname);
                 }else{
                     error1("wrong credits","re-try");
                     trfal = false;
