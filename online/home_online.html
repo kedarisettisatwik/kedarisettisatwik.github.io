@@ -744,6 +744,7 @@
             display:flex;
             justify-content: center;
             align-items: center;
+            width:95%;
             flex-direction: row;
         }
         .input_quan input{
@@ -754,6 +755,7 @@
             margin-right:5px;
             padding:4px;
             font-size:17px;
+            width:80%;
         }
         .input_quan input::placeholder{
             color:black;
@@ -862,12 +864,19 @@
             .pro_conn2 .pro_conn3 h2{
                 font-size:18px;
             }
+            .cart_conn2 .cart_conn3 h2{
+                font-size:18px;
+            }
             #errorname{
                 font-size:24px;
             }
             #backerror{
                 font-size:20px;
             }
+            .bar .sear{
+                flex-direction:column-reverse;
+            }
+            
         }
                 
     
@@ -1032,7 +1041,7 @@
         var adminname;
         
         document.addEventListener('contextmenu',(e) => {
-                   // e.preventDefault();   
+                    e.preventDefault();   
         });
         
         var productsname = [];
