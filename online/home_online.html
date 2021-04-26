@@ -456,7 +456,6 @@
             letter-spacing:1px;
         }
         .bar .sear{
-            max-width:90vw;
             border-radius:20px;
             padding:10px 20px;
             background:none;
@@ -1045,6 +1044,16 @@
                     e.preventDefault();   
         });
         
+        
+        if (localStorage.getItem("ksruser")){
+            var addd = localStorage.getItem("ksruser");
+            adminofpage = addd;
+            trfal = true;
+            draw_cart();
+        }else{
+            
+        }
+        
         var productsname = [];
         var productspara = [];
         var productscat = [];
@@ -1086,6 +1095,8 @@
         
     function draw_cart(){
             var cart_addon = document.getElementById("cart_addon");
+        
+        
         
         firebase.database().ref("users/"+adminofpage+"/cart/").once('value',function(snapshot){
             cart_addon.innerHTML = "";
@@ -1170,7 +1181,16 @@
             for (var i = 0;i<productssub.length;i++){
                 var pppxx = productssub[i];
                 if (pppxx.includes(searchsub)){
-                    pro_conn.innerHTML += "<div class='pro_conn1'>"+"<div class='pro_conn2'><div class='pro_conn3'><h2>"+productsname[i]+"</h2></div><div class='pro_conn4' id='pro"+i+"'><p>"+productspara[i]+"</p><label>"+productsquantity[i]+ " " + productscat[i] +" - "+productsrate[i]+"/- </label><button onclick='add("+i+")'><img src='shopping-cart.png'>add to cart</button><button><a target = '_blank' href ='"+productsmore[i]+"'>view more</a></button></div></div></div>";
+                    var xv1 = document.getElementById("search_form").value;
+                    var xxv1 = xv1.toLowerCase();
+                    if (xv1 != "" || xv1 != " "){
+                        var yyv1 = productsname[i].toLowerCase();
+                        if (yyv1.indexOf(xxv1) > -1){
+                            pro_conn.innerHTML += "<div class='pro_conn1'>"+"<div class='pro_conn2'><div class='pro_conn3'><h2>"+productsname[i]+"</h2></div><div class='pro_conn4' id='pro"+i+"'><p>"+productspara[i]+"</p><label>"+productsquantity[i]+ " " + productscat[i] +" - "+productsrate[i]+"/- </label><button onclick='add("+i+")'><img src='shopping-cart.png'>add to cart</button><button><a target = '_blank' href ='"+productsmore[i]+"'>view more</a></button></div></div></div>";
+                        }
+                    }else{
+                        pro_conn.innerHTML += "<div class='pro_conn1'>"+"<div class='pro_conn2'><div class='pro_conn3'><h2>"+productsname[i]+"</h2></div><div class='pro_conn4' id='pro"+i+"'><p>"+productspara[i]+"</p><label>"+productsquantity[i]+ " " + productscat[i] +" - "+productsrate[i]+"/- </label><button onclick='add("+i+")'><img src='shopping-cart.png'>add to cart</button><button><a target = '_blank' href ='"+productsmore[i]+"'>view more</a></button></div></div></div>";
+                    }
                 }
             }
         }
@@ -1179,17 +1199,25 @@
         document.getElementById("search_form").addEventListener('keyup', function(){
             var xv = document.getElementById("search_form").value;
             var xxv = xv.toLowerCase();
+            var searchsub1 = document.getElementById("procate").value;
+            
             if (xv != "" || xv != " "){
                 pro_conn.innerHTML = "";
                 for (var i = 0; i<productsname.length;i++){
                 var yyv = productsname[i].toLowerCase();
                 if (yyv.indexOf(xxv) > -1){
-                     pro_conn.innerHTML += "<div class='pro_conn1'>"+"<div class='pro_conn2'><div class='pro_conn3'><h2>"+productsname[i]+"</h2></div><div class='pro_conn4' id='pro"+i+"'><p>"+productspara[i]+"</p><label>"+productsquantity[i]+ " " + productscat[i] +" - "+productsrate[i]+"/- </label><button onclick='add("+i+")'><img src='shopping-cart.png'>add to cart</button><button><a target = '_blank' href ='"+productsmore[i]+"'>view more</a></button></div></div></div>";
+                     var ppxxpp = productssub[i];
+                    if (ppxxpp.includes(searchsub1)){
+                        pro_conn.innerHTML += "<div class='pro_conn1'>"+"<div class='pro_conn2'><div class='pro_conn3'><h2>"+productsname[i]+"</h2></div><div class='pro_conn4' id='pro"+i+"'><p>"+productspara[i]+"</p><label>"+productsquantity[i]+ " " + productscat[i] +" - "+productsrate[i]+"/- </label><button onclick='add("+i+")'><img src='shopping-cart.png'>add to cart</button><button><a target = '_blank' href ='"+productsmore[i]+"'>view more</a></button></div></div></div>";
+                    }
                 }
               }
         }else{
             for (var j = 0;j<productsname.length;j++){
-                pro_conn.innerHTML += "<div class='pro_conn1'>"+"<div class='pro_conn2'><div class='pro_conn3'><h2>"+productsname[j]+"</h2></div><div class='pro_conn4' id='pro"+j+"'><p>"+productspara[j]+"</p><label>"+productsquantity[j]+ " " + productscat[j] +" - "+productsrate[j]+"/- </label><button onclick='add("+j+")'><img src='shopping-cart.png'>add to cart</button><button><a target = '_blank' href ='"+productsmore[j]+"'>view more</a></button></div></div></div>";
+                var ppuu = productssub[j];
+                if (ppuu.includes(searchsub1)){
+                    pro_conn.innerHTML += "<div class='pro_conn1'>"+"<div class='pro_conn2'><div class='pro_conn3'><h2>"+productsname[j]+"</h2></div><div class='pro_conn4' id='pro"+j+"'><p>"+productspara[j]+"</p><label>"+productsquantity[j]+ " " + productscat[j] +" - "+productsrate[j]+"/- </label><button onclick='add("+j+")'><img src='shopping-cart.png'>add to cart</button><button><a target = '_blank' href ='"+productsmore[j]+"'>view more</a></button></div></div></div>";
+                }
             }
         }
         });
@@ -1463,18 +1491,24 @@
                     adminname = listofnames[listofmail.indexOf(signuser)];
                     trfal = true;
                     draw_cart();
-                    
+                    localStorage.setItem("ksruser",adminofpage);
                 }else{
                     error1("wrong credits","re-try");
                     trfal = false;
                     var cccc = document.getElementById("cart_addon");
                     cccc.innerHTML = "";
+                    localStorage.clear();
+                    document.getElementById("cart_number").innerHTML = 0;
+                    document.getElementById("cart_rate").innerHTML = 0+"/-";
                 }
             }else{
                 error1("wrong credits","re-try");
                 trfal = false;
                 var cccc = document.getElementById("cart_addon");
                     cccc.innerHTML = "";
+                localStorage.clear();
+                document.getElementById("cart_number").innerHTML = 0;
+                    document.getElementById("cart_rate").innerHTML = 0+"/-";
             }
     }); 
 
@@ -1509,12 +1543,21 @@
      passuser : sign_up_pass
                   });
                     error1("registration completed succsesfully, now you can sign in ","back");
+                    localStorage.clear();
+                    document.getElementById("cart_number").innerHTML = 0;
+                    document.getElementById("cart_rate").innerHTML = 0+"/-";
                  }else{
                        error1("password  confirmation failed","re-try");
+                     localStorage.clear();
+                     document.getElementById("cart_number").innerHTML = 0;
+                    document.getElementById("cart_rate").innerHTML = 0+"/-";
                  }
             }
             }else{
                 error1("invalid email use : @gmail.com","re-try");
+                localStorage.clear();
+                document.getElementById("cart_number").innerHTML = 0;
+                    document.getElementById("cart_rate").innerHTML = 0+"/-";
             }
         });
 
