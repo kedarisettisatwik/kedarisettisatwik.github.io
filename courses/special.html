@@ -1,0 +1,142 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <title>EX</title>  
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: 'Poppins', sans-serif;
+            /*
+            font-family: 'Roboto', sans-serif;
+            */
+        }
+        html{
+            scroll-behavior: smooth;
+        }
+        body{
+            width:100vw;
+            min-height:100vh;
+            overflow-x: hidden;
+        }
+        .full{
+            padding-top:100px;
+            position:absolute;
+            width:100vw;
+            min-height:100vh;
+            overflow:hidden;
+            background-color:white;
+            display:flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        .name{
+            font-size:50px;
+            max-width:80vw;
+            word-wrap: break-word;
+        }
+        .name label{
+            letter-spacing:2px;
+            font-weight:bolder;
+            -webkit-animation-name:name;
+            -webkit-animation-duration:5s;
+        }
+        .name p{
+            margin-top:10px;
+            font-size:16px;
+        }
+        .name span{
+            opacity:0.4;
+            font-size:40px;
+            -webkit-animation-name:name1;
+            -webkit-animation-duration:5s;
+        }
+         @keyframes name{
+            0%{margin-right:100px;opacity:0.4}
+            100%{margin-right:0px;opacity:1}
+        }
+         @keyframes name1{
+            0%{opacity:1}
+            100%{opacity:0.4}
+        }
+        .links{
+            position:relative;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: column;
+            padding:20px;
+        }
+        .links a{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction:row;
+        }
+        .links a img{
+            width:40px;
+            margin:20px;
+        }
+        .intro{
+            background-color:black;
+            color:white;
+            padding:10px 20px;
+            font-weight:bold;
+            text-decoration:none;
+            letter-spacing:2px;
+            font-size:17px;
+            border-radius:20px;
+        }
+        .my{
+            width:100px;
+            position: absolute;
+            top:10px;
+            right:10px;
+            border-radius:50%;
+            height:100px;
+        }
+        @keyframes scalee{
+            0%{transform:scale(1) rotate(-90deg)}
+            25%{transform:scale(0.6) rotate(-90deg)}
+            50%{transform:scale(1) rotate(-90deg)}
+            75%{transform:scale(0.6) rotate(-90deg)}
+            100%{transform:scale(1) rotate(-90deg)}
+        }
+        
+        
+        
+        @media (max-width:700px){
+            .full{
+                flex-direction:column;
+            }
+            .links{
+                flex-direction: row;
+            }
+        }
+    </style>
+</head>
+    <body>
+    <section class="full" id="home">
+        <div class="name">
+            <label>EX</label><span>plore</span><p>I am kedarisetti satwik (kedar), can you help me in exploring the world<br>let's start our journey today <br> I am intrested in computers, historical scientific reasons and theories, what about u ? </p>
+        </div>
+        <a href="subjects.html" class="intro">start journey</a>
+        <div class="links">
+            <a href="https://www.facebook.com/people/Satwik-Kedaresetti/100008718079201/" target="_blank"><img src="001-facebook.png"></a>
+            <a href="https://www.youtube.com/channel/UCpLOopnR9TX9b1fjcDpapsw" target="_blank"><img src="002-instagram.png"></a>
+            <a href="https://www.instagram.com/p/CLMt8zzF4SdQagQQeiqo40zKpOkGtdiH-5fMlY0/?igshid=1ssat0zj5iic5" target="_blank"><img src="003-youtube.png"></a>
+        </div>
+        <img src="me.jpeg" class="my">
+    </section> 
+    </body>
+</html>
