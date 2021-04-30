@@ -1,83 +1,49 @@
 <html>
-    <head>
-    <title>CSS</title>
-       <!-- google fonts -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <!-- google fonts -->
+    <title>EX-CSS</title>  
     <style>
         *{
             margin:0;
-            padding: 0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: 'Poppins', sans-serif;
+            /*
+            font-family: 'Roboto', sans-serif;
+            */
         }
-        
+        html{
+            scroll-behavior: smooth;
+        }
         body{
+            padding-top:10px;
+            position:absolute;
             width:100vw;
-            height:100vh;
+            min-height:100vh;
+            overflow:hidden;
             background-color:white;
+            display:flex;
+            align-items: center;
+            flex-direction:column;
         }
-        .main{
-            margin:10px 0;
-            width:85vw;
-            overflow: hidden;
-            position: relative;
-            border:2px solid grey;
-            background-color: whitesmoke;
-            padding:40px;
-            display: flex;
-            align-items:center;
-            flex-direction: column;
-        }
-        .main1{
-            margin:10px 0;
-            width:85vw;
-            overflow: hidden;
-            position: relative;
-            border:2px solid grey;
-            background-color:wheat;
-            padding:40px;
-            display: flex;
-            align-items:center;
-            flex-direction: column;
-        }
-        .less{
-            height:150px;
-        }
-        .more{
-            height: auto;
-        }
-        .main h1,.main1 h1{
-            text-align: center;
-            width:100%;
-            border-bottom:4px solid darkblue;
-            font-size:3em;
-            padding:0 0 20px 0;
-            text-transform: uppercase;
-            font-family: 'Roboto', sans-serif;
-            letter-spacing:3px; 
-        }
-        .main p,.main1 p{
-            word-wrap: break-word;
-            white-space: pre-wrap;
-            width:100%;
-            margin-top:10px;
-            font-size:2.2em;
-            font-family: 'Roboto', sans-serif;
-            letter-spacing:3px; 
-        }
-        .main a,.main1 a{
-            width:100%;
-            margin-top:10px;
-            font-size:2.2em;
-            font-family: 'Roboto', sans-serif;
-            letter-spacing:3px; 
-            text-decoration: none;
-        }
-        </style>
-    </head>
-    <body>
-    <section id="main">
         
-    </section>
+        @media (max-width:500px){
+            
+        }
+    </style>
+</head>
+    <body>
+
+        <script>
+        
+            
+        </script>
     </body>
 </html>

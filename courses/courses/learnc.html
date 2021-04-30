@@ -1,396 +1,49 @@
 <html>
-    <head>
-    <title>C</title>
-        <!-- google fonts -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <!-- google fonts -->
+    <title>EX-C</title>  
     <style>
         *{
             margin:0;
-            padding: 0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: 'Poppins', sans-serif;
+            /*
+            font-family: 'Roboto', sans-serif;
+            */
+        }
+        html{
+            scroll-behavior: smooth;
         }
         body{
-            padding:100px 0px 100px 0;
-            display: flex;
-            justify-content:center;
-            align-items: center;
-            flex-direction:column;
+            padding-top:10px;
+            position:absolute;
             width:100vw;
             min-height:100vh;
+            overflow:hidden;
             background-color:white;
-            overflow-y: auto;
+            display:flex;
+            align-items: center;
+            flex-direction:column;
         }
-        .main{
-            margin:10px 0;
-            width:85vw;
-            overflow: hidden;
-            position: relative;
-            border:2px solid grey;
-            background-color: whitesmoke;
-            padding:40px;
-            display: flex;
-            align-items:center;
-            flex-direction: column;
-        }
-        .main1{
-            margin:10px 0;
-            width:85vw;
-            overflow: hidden;
-            position: relative;
-            border:2px solid grey;
-            background-color:wheat;
-            padding:40px;
-            display: flex;
-            align-items:center;
-            flex-direction: column;
-        }
-        .less{
-            height:150px;
-        }
-        .more{
-            height: auto;
-        }
-        .main h1,.main1 h1{
-            text-align: center;
-            width:100%;
-            border-bottom:4px solid darkblue;
-            font-size:3em;
-            padding:0 0 20px 0;
-            text-transform: uppercase;
-            font-family: 'Roboto', sans-serif;
-            letter-spacing:3px; 
-        }
-        .main p,.main1 p{
-            word-wrap: break-word;
-            white-space: pre-wrap;
-            width:100%;
-            margin-top:10px;
-            font-size:2.2em;
-            font-family: 'Roboto', sans-serif;
-            letter-spacing:3px; 
-        }
-        .main a,.main1 a{
-            width:100%;
-            margin-top:10px;
-            font-size:2.2em;
-            font-family: 'Roboto', sans-serif;
-            letter-spacing:3px; 
-            text-decoration: none;
+        
+        @media (max-width:500px){
+            
         }
     </style>
-    </head>
-<body id="container">
-    <section class="main less" id="chapters" onclick="seemore(0)">
-    <h1>chapters in c</h1>
-    <P>click on chapters to expand..</P>
-    </section>
-    
-    <section class="main less" id="workplace" onclick="seemore(1)">
-    <h1>work place</h1>
-    <p>we need to have one workspace for doing programs<br><br>link for online compiler : </p>
-    <a href="https://www.onlinegdb.com/online_c_compiler" target="_blank">online compiler</a><br>
-    <p>for offline it is better to use codeblocks..</p><br><br>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/GWJqsmitR2I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </section>
-    
-    <section class="main less" id="history" onclick="seemore(2)">
-    <h1>1. history of computer's ..</h1>
-    <p>presently we are using 5th generation computer's. <br><br><strong>In first generation (1946 - 1959) :</strong><br>computers are manufactured using thousands of vaccum tubes. which are made up of fragile glass.<br>programming is done by using maching learning.<br>examples : <strong>ENIAC, EDVAC, EDSAC, IBM701</strong><br><br><strong>In second generation (1959 - 1965):</strong><br>usage of transistors, high development programming languages started.<br>examples : <strong>IBM 7030, CDC 1604, HONEY WELL 400</strong><br><br><strong>In third generation (1965 - 1971) :</strong><br>invention of integrated chips <strong>( IC )</strong>which consists of thousands of transistors, capacitors, resistors on a single chip.<br>examples :<strong>IBM 360/370, CDC 6600, PDP - 8</strong><br><br>SSI - small scale IC (10 -20 components)<br>LSI - large scale IC (30,000 components)<br>VLSI - very large scale IC (1Million components)<br>ULSI - ultra scale IC (10Million components)<br><br><strong>In fourth generation (1975 - 1980) :</strong><br>using of LSI, VSLI, Microcomputers came.<br>Java, Python, C++, C are developed <br>examples : <strong>IBM PC , TRS-80, CRAY - 1,2,X/MP</strong><br><br><strong>In fifth generation (1980 - present) :</strong><br>using of ULSI came.<br>examples : <strong>PENTIUM PC'S</strong>
-    </p>
-    </section>
-    
-    <section class="main less" id="ware" onclick="seemore(3)">
-    <h1>2. hard & soft ware</h1>
-    <p>we should know about some of the elements <br><br> <strong>DATA -</strong> all computer processors require data, which is a collection of raw facts, symbols, numbers, character's etc.. <br><br><strong>INFORMATION - </strong> a data is converted to information so that it can answer who what why when type of questions.<br><br>example: in our general sense : 94 is a data , i got 94 marks in exam is information.<br><br><strong>INPUT - </strong> computer will work based on the data,instructions given by user, the data that we give using keyboards, remote, mouse, touch etc.. are know as inputs.<br><br><strong>OUTPUT - </strong>the data present in screen we see is output.<br><br><strong>STORAGE UNIT - </strong>data has to be feed into system before actual processing starts.<br><br><strong>PROCESSOR - </strong> performs the task based on our instructions.(CPU)<br><br><strong>CONTROL UNIT - </strong> controlls the data traffic and flow of information between hardware and software components.<br><br><strong>ALU - </strong> Arthematic Logical Unit, the place where math calculations takes plaace.<br><br> <strong>1 BYTE = 8 BITS</strong><br>bit means a box in which comoputer stores 1 or 0<br><br><strong>MEMORY HIERACHY - </strong></p><a href="https://www.elprocus.com/wp-content/uploads/Memory-Hierarchy.jpg">click here !</a><p><strong>REGISTER MEMORY - </strong> data present in cpu or in buit data stores upto <strong>(2GB)</strong><br><br><strong>CACHE MEMORY - </strong> frequently opening applications,stores upto <strong>(>2GB)</strong><br><br><strong>MAIN MEMORY - (RAM)</strong>Random Acessing Memory , the data of currently working application is present<strong>(12GB)</strong><br><br><strong>STORAGE DISKS - </strong>data in hard disk (total full data) <strong>(1TB )</strong><br><br><strong>MAGNETIC TAPES - </strong>external devices like pendrive etc..<strong>(any size)</strong><br>
-    <br>understand clearly : <br> assume that we are using a smartphone and we want to open whatapp , the data alloted for whatsapp is present in harddrive, if we click on whatapp the data from harddrive is transferred to RAM , again after closing whatsapp the data will go back to harddrive and the RAM will be empty, but if we do the same process repeatedly then the data will be stored in cache so that when you again clicked on whaatapp the data is ready in cache.
-    </p>
-    </section>
-    
-    <section class="main less" id="intro" onclick="seemore(4)">
-    <h1>3. programming..</h1>
-    <p>generally we divide language into 2 types HIGH LEVEL LANGUAGE , LOW LEVEL LANGUAGE,<br><br>high level means java,python,programming languages,<br>low level means full of 0's and 1's only machines can read this..<br><br>the process of converting high level to low level is done by compiler , interpetter.<br><br><strong>COMPILER - </strong>means reads the full code that we write at a time, if full code is right then only it will show the output of our code,<br><br><strong>INTERPETTER - </strong>means reads one line after one line in code that we write, if there is wrong in code then the portion above that wrong will be executed..<br><br><strong>BASIC STRUCTURE OF C -</strong><br><br>#include&lt;stdio.h&gt;<br>int main {<br>here we should write extra code <br>return 0 ;<br>}</p>
-    </section>
-    
-    <section class="main less" id="keywords" onclick="seemore(5)">
-    <h1>4. key words</h1>
-    <p>key words means the in-built words or functions, computer know the meaning of these words and work on them following specific instructions..</p><br><a href="https://drive.google.com/file/d/1jSOZsVuapeGlSZyt0NRByqT5swJ--Pjk/view?usp=sharing">Here is a list of key words..</a>
-    </section>
-    
-    <section class="main less" id="varid" onclick="seemore(6)">
-    <h1>5. variables-identifiers..</h1>
-    <p>ifschool or college in solving maths problems we take unlnow quantity as x or a or something... <br>here also if you want to find sum of 2,3 we will write 2 + 3 , but in large programs it is better to write <br> a = 2 <br> b  = 3<br> a + b <br> here a , b are identifiers because computer will identify 2,3 as a, b</p><br><br><p>how to declare variables </p><br><br><p>#include&lt;stdio.h&gt;<br>int main(){<br>int a = 2;<br>int b = 3;<br>return 0 ;<br>}<br>here a , b are integers so int keyword is used before the identifer,<br>In C each statment should send with semicolon ; </p><br><br><p><strong>Rules in declaring variables..</strong><br>identifer should not match with any keyword.<br>Identifers must be unique if we have two numbers 5,6 then we should have seperate unique identifers for them i.e x = 5;y = 6;<br>identifer can contain underscores (_) , alphabets (lower case + upper case), numbers<br><br>But we should not start with numbers <br>a_1 = 5 is correct<br>1_a = 5 is wrong../p>
-    </section>
-    
-    <section class="main less" id="datatypes" onclick="seemore(7)">
-    <h1>6. data - types.. </h1>
-    <p>now we will observe and understand above chapter carefully. <br> our task is to give two numbers to computer.</p><br><p>so we know that we should give a identifer to them so let us give ab,cd as identifers, i.e <br>ab = 1st number; <br> cd = 2nd number ..</p><br><p><strong>if numbers are integers : </strong><br>#include&lt;stdio.h&gt;<br>int main(){<br>int ab = 2;<br>int cd = 3;<br>return 0 ;<br>}</p><br><p><strong>if numbers are decimal : </strong><br>#include&lt;stdio.h&gt;<br>int main(){<br>float ab = 1.56;<br>int cd = 3;<br>return 0 ;<br>}</p><br><p><strong>if we use aplhabets : </strong><br>#include&lt;stdio.h&gt;<br>int main(){<br>char ab = 'X';<br>char cd = 'Z';<br>return 0 ;<br>}</p><br><p>in above codes ab , cd are variables means the value of ab, cd can change by multiplying or operating any operating operation..<br><strong>if we want a constant :</strong><br>#include&lt;stdio.h&gt;<br>int main(){<br>const pi = 3.14;<br>return 0 ;<br>}<br>here value of pi cannot be change by any operation we can only read the value</p><br><p>the same thing is done is another way : <br>#include&lt;stdio.h&gt;<br>#define PI 3.14<br>int main(){<br>return 0 ;<br>}<br>here be carefull that identifer should be uppercase i.e PI not pi , we should not use = equal to symbol and no need of semi colon ;</p>
-    </section>
-    
-    <section class="main less" id="printf" onclick="seemore(8)">
-    <h1>7. print output</h1>
-    <p>we have seen how to declare variables a = 3 b = 4 now let's see how to print these values <br><br><strong>print integers : </strong><br>#include&lt;stdio.h&gt;<br>int main(){<br>int abc = 3;<br>int xyz = 4;<br><strong>printf("hello %d %d",abc,xyz);</strong><br>return 0 ;<br>}<br>here printf() is a inbuilt function <br>here %d is used for integers we are telling print %d %d means print two integers , identifier of 1st %d is abc , identifier of 2nd %d is xyz <br>so output is hello 3 4<br><br><strong>print decimals : </strong><br>#include&lt;stdio.h&gt;<br>int main(){<br>float abc = 3.5124;<br><strong>printf("decimal %f",abc);</strong><br>return 0 ;<br>}<br>here %fis used for decimals we are telling print %f means print decimal number, identifier of  %f is abc<br>so output is decimal 3.5124<br>if we write 0.2f instead of f then output will have upto 2 decimal places of f i.e 3.51<br><br><strong>print characters : </strong><br>#include&lt;stdio.h&gt;<br>int main(){<br>char abc = "x";<br><strong>printf("%c",abc);</strong><br>return 0 ;<br>}<br><br><strong>print text : </strong><br>#include&lt;stdio.h&gt;<br>int main(){<br><strong>printf("hello this is a text");</strong><br>return 0 ;<br>}<br></p>
-    </section>
-    
-    <section class="main less" id="take" onclick="seemore(9)">
-    <h1>8. take input</h1>
-    <p>#include&lt;stdio.h&gt;<br>int main(){<br>int abc;<br>printf("enter value of a :");<strong><br>scanf("%d",&abc);</strong><br>return 0 ;<br>}<br>here we have a integer abc but value to integer is not given, now we are asking user enter value of a the value that user enter will be given to abc here & symbol is important means we are scanning uaser input and giving to abc..<br>if i entered 5 then value of abc = 5</p>
-    </section>
-    
-    <section class="main less" id="line" onclick="seemore(10)">
-    <h1>9. line break</h1>
-    <p>#include&lt;stdio.h&gt;<br>int main(){<br>printf("good ");<br>printf(" morning")<br>return 0 ;<br>}<br>the output is good morning, but if we want good <br>morning <br>as output then you should use <strong>\n</strong><br><br>#include&lt;stdio.h&gt;<br>int main(){<br>printf("good ");<br>printf("\n morning")<br>return 0 ;<br>}<br>\n means braking line and going to next line..</p>
-    </section>
-    
-    <section class="main less" id="math" onclick="seemore(11)">
-    <h1>10. math operations..</h1>
-    <p>#include&lt;stdio.h&gt;<br>int main(){<br>int a = 10;<br>int b = 2;<br>int c;<br>c = a + b;<br>printf(" %d ",c);<br>printf(" %d ",a-b);<br>c = a * b;<br>printf(" %d ",c);<br>printf(" %d ",a/b);<br>printf(" %d ",a%b);<br>return 0 ;<br>}<br>the output is 12 8 20 5 0<br>here value of a = 10,b = 5 and value of c depends of a,b here starting c = a + b = 12 but after two lines i wrote c = a * b = 20 i.e value of c now became 20, a % b means reminder when a divides b </p>
-    </section>
-    
-    <section class="main less" id="comment" onclick="seemore(12)">
-    <h1>11. comments..</h1>
-    <p>#include&lt;stdio.h&gt;<br>int main(){<br>printf("hello");<br>/*this is a comment*/<br>return 0 ;<br>}<br>the output is hello <br>any text written in between /* */ will not visible<br>comments are written to make us more understanding code it</p>
-    </section>
-    
-    <section class="main1 less" id="ex1" onclick="seemore(13)">
-    <h1>a small program..</h1>
-    <p><strong>TASK : to find average of numbers<br><br>#include&lt;stdio.h&gt;<br>int main(){<br>int a = 1<br>int b = 3;<br>int c = 7;<br>float avg ;<br>/*average can be a decimal number so i have considered float */<br>avg = (a + b + c)/3;<br>printf("average = %f",avg);<br>return 0 ;<br>}
-    </strong></p><br><p>output is average = 3.667</p>
-    </section>
-    <section class="main1 less" id="ex2" onclick="seemore(14)">
-    <h1>DO THIS </h1>
-        <p><strong>TASK : wrire a program to find area of rectangle taking lenght and breath as inputs from user ..<br>area = lenght * breath </strong></p>
-    </section>
-    <section class="main less" id="operators" onclick="seemore(15)">
-    <h1>operators </h1>
-    <a href="https://cdn.journaldev.com/wp-content/uploads/2019/03/C-Operators.png">here is a list of operators : </a>
-    </section>
-    
-    <section class="main less" id="assign" onclick="seemore(16)">
-    <h1>12. assingnment operators </h1>
-    <p>we have already used one assignmment operator i.e equal to = <br> operators(symbols) that we use to assigna value to a variable are called assingment operators.<br><br><strong>=     +=     -=    /=    *=       %= </strong><br>these all are assignment operators now let's see how these work <br><br>#include&lt;stdio.h&gt;<br>int main(){<br>int a = 10;<br>int b = 2;<br>int c;<br>a += b ; /* value of a= a + b i.e 10 + 2*/<br>printf(" a = %d ",a);<br>b -= a ; /* value of b =  b - a i.e 2 - 12*/<br>printf("b = %d ",b);<br>c = a + b ; /* value of c =  a + b i.e 12 + - 10 i.e 2 */<br>printf("c = %d ",c);<br>return 0 ;<br>}<br>output is a = 12 b = -10 c = 2<br><br>so <br> x +=k means x = x + k <br>y -= k means y = y - k <br>z *= k means z = z * k <br>w /= k means w = w/k <br>p %= k means p = p % k<br><br>special usage for <br>z += 1 is z++ ;<br>z -= 1 is z-- ; </p>
-    </section>
-    
-    <section class="main less" id="if" onclick="seemore(17)">
-    <h1>13. if </h1>
-    <p>if is used if you want to check whether this stament is true or not,<br><br>let's see example<br>here is a programm that will take user's marks as input using scanf and if he got more than 60 it we will "print you got A grade" if he got more than 40 "print you got B grade" otherwise "print you failed"<br><br>#include&lt;stdio.h&gt;<br>int main(){<br>int marks;<br>scanf("%d",&marks); /* taking user input and storing it to marks variable */<br><strong>if ( marks > 60 ){<br>printf("you got A grade);<br>}else if (marks > 40 ){<br>/*if condition one is wrong */<br>printf("you got B grade");<br>}<br>else{<br>/* if all the above conditions are false */<br>printf("you failed");<br>}</strong><br>return 0 ;<br>}<br><br>here <br>if (condition you want){<br>this will work if condition is true<br>}else{<br>if condition is not true this will work<br>}<br>computer if will read else if or else part if all the above conditions on them are false <br> operators used for checking conditions are : <br> >=   &lt;=   >   &lt; <br> !=       for not equal <br> ==      for equal to condition</p>
-    </section>
-    
-    <section class="main less" id="onelineif" onclick="seemore(18)">
-    <h1>14. one line if </h1>
-    <p>#include&lt;stdio.h&gt;<br>int main(){<br>int marks;<br><strong>int a = ( 3 > 5 ) ? 0 : 1 ;</strong><br>printf("%d",a);<br>return 0 ;<br>}<br>here output is 1 ; because 3 > 5 is wrong <br><br>(condition) ? if true : if false </p>
-    </section>
-    
-    <section class="main less" id="logic" onclick="seemore(19)">
-    <h1>logic's</h1>
-    <p>Now let us understand what is a logic ? </p>
-    <p>if we have one condition a > b then we will have if condition is true or not which we write as <br>if (a > b ){<br>true<br>}else{<br>false<br>}</p>
-    <p>but if we have 2 conditions,we will have 4 cases if both are true , if both are false , if first one only true,if second one only true ;</p>
-    <p>so we will use logical operators..</p>
-    </section>
-    
-    <section class="main less" id="logoperators" onclick="seemore(20)">
-    <h1>15. logical operators </h1>
-    <p>#include&lt;stdio.h&gt;<br>int main(){<br>if (condition1 <strong>&&</strong> condition 2){<br>printf("if both the statments are true ");<br>}<br>if (condition1 <strong>||</strong> condition 2){<br>printf("if any one of the statment is true ");<br>}<br>return 0 ;<br>}</p>
-    </section>
-    
-    <section class="main less" id="nestedifelse" onclick="seemore(21)">
-    <h1>16. nested if else</h1>
-    <img src="https://www.tutlane.com/images/swift/swift-if-else-if-statement-algorithm-diagram.png" style="width:100%"><p>assume are waliking from start to end point along black lines, you will change direction of waliking based onthe conditions..</p>
-    <p>#include&lt;stdio.h&gt;<br>int main(){<br>if (cond 1 ){
-        /*statment 1 */
-    }else{
-        if (cond 2){
-    /* statment 2 */
-        }else{
-    /* statment 3 */
-    /* this goes on ...*/
-        }
-    }<br>return 0 ;<br>}<br><br>please read and understand carefully ..</p>
-    </section>
-    
-    <section class="main less" id="forloop" onclick="seemore(22)">
-    <h1>17. for loop</h1>
-    <img src="https://beginnersbook.com/wp-content/uploads/2017/09/for_loop_C.jpg" style="width:100%"><p>assume are waliking from start to end point along black lines, you will change direction of waliking based onthe conditions. you will walk in side loop untill the codition is false.</p>
-    <br>
-    <p>#include&lt;stdio.h&gt;<br>int main(){
-    for (int i = 1; i &lt; 6 ; i++){
-    printf("%d",i);    
-      }
-    }<br>return 0 ;<br>}<br>output is  1 2 3 4 5</p><p>here we have declared int i = 0 as starting value until i &lt; 6 the code inside loop will run but we are updating i value by writting i++ means once you go through code value of i will increment by 1 so by going 5 times through code i will increase to 6 and condition i &le; 6 will be false so it will exit loop ,so we have output of 5 numbers only</p>
-    <br><br>
-    <p><strong>for (variable declaration , condition , update){
-    code 
-    code repeatly runs until condition is false<br>}    
-    </strong>
-    </p>
-    </section>
-    
-    <section class="main1 less" id="ex3" onclick="seemore(23)">
-    <h1>a small program..</h1>
-    <p><strong>TASK : take a number as input from user and print all odd numbers in between 0 and that number
-    <br>#include&lt;stdio.h&gt;
-    int main(){
-    int n;
-    printf("enter number : ");
-    scanf("%d",&n); /* take input and giving to variable n */
-    if ( n > 0){
-/*we should print output if user entered a number greater than 0 so we should if */
-        
-    for (int b = 0; b &lt; n ; b++){
-        
-/* here b takes value 0 and increase to n */
-/*b takes all the values in between 0 & n */
-        
-           if ( b % 2 == 0){
-        
-/* a number is a odd number if we get reminder not equal to 0 when it is divided with 2 */
-/* if b (an number betwwen 0 and n ) satisifies above condition */
-        
-         printf("%d",b);
-        
-            }
-          }
-       }
-    }
-    </strong></p><br><p>input = 8 ; <br>output is 1 3 5 7 </p>
-    </section>
-    
-    <section class="main1 less" id="ex4" onclick="seemore(24)">
-    <h1>DO THIS </h1>
-        <p><strong>TASK : wrire a program ask a number as input, print even numbers in between 0 and that numbers..</strong></p>
-    </section>
-    
-    <section class="main less" id="whileloop" onclick="seemore(25)">
-    <h1>18. while loop</h1>
-    <img src="https://beginnersbook.com/wp-content/uploads/2017/09/for_loop_C.jpg" style="width:100%"><p>assume are waliking from start to end point along black lines, you will change direction of waliking based onthe conditions. you will walk in side loop untill the codition is false.</p>
-    <br>
-    <p>#include&lt;stdio.h&gt;<br>int main(){
-    int i = 10;
-    while(i > 2){ 
+</head>
+    <body>
 
-/* loop will run repeatly until i > 2 */
+        <script>
         
-    printf(" %d ",i);
-        i -= 2; 
-
-/*each time i decreases by 2*/   
-/* after 4 repeats i will be 2 which is not > 2 so loop stops.. */
-        
-      }
-    }<br>return 0 ;<br>}<br>output is  10 8 6 4 </p>
-    <p>
-    <strong>
-while (condition){
-    
-code
-        
-update of variable 
-        
-}    
-    </strong>
-    </p>
-    </section>
-    
-    <section class="main less" id="break" onclick="seemore(26)">
-    <h1>19. break & continue</h1>
-    <p>break = stop <br>continue = skip<br>break, continue are keywords used on loops..</p>
-    <p>
-    while(){
-        
-    }
-    for (){
-        
-    }
-
-you loops execute the code with in { } repeatly until the condition is false..
-        
-now lets see how break, continue works..
-    </p>
-    <p>
-for (int i = 0; i &lt; 5; i++){
-  printf(" %d ", i);
-  }
-        
-for (int i = 0; i &lt; 5; i++){ 
-  if (i == 3){
-  <strong>break ;</strong>    
-    }
-    printf(" %d ", i); 
-  }
-
-for (int i = 0; i &lt; 5; i++){  
-  if (i == 3){
-  <strong>continue ;</strong>    
-    }
-    printf(" %d ", i);
-  }
-
-output of 1st code is 0 1 2 3 4
-output of 2nd code is 0 1 2 
-output of 3rd code is 0 1 2 4
-        
-because, in 2nd code we wrote if i == 3 break means stop reading code and go outside of code...
-
-because, in 3rd code we wrote if i == 3 continue means skip this step and go to next step means i = 4
-        
-this applies for while loop also, try it yourself..
-    </p>
-    </section>
-    
-    <section class="main1 less" id="ex5" onclick="seemore(27)">
-    <h1>a small program..</h1>
-    <p><strong>TASK : to print math multiplication table of a number 
-    <br>#include&lt;stdio.h&gt;
-    int main(){
-    int n;
-    printf("enter number : ");
-    scanf("%d",&n); 
-/* take input and giving to variable n */
-    
-    for ( int i = 1; i &lt;= 5; i++ ){
-        int result = n * i;
-        printf(" n * %d = %d \n", i, result );
-    }
-        
-return 0;
-    }
-    </strong>
-    output is 
-    
-    enter number : 5 (my input)
-    5 * 1 = 5
-    5 * 2 = 10
-    5 * 3 = 15
-    5 * 4 = 20
-    5 * 5 = 25
-    </p>
-    </section>
-    
-    <section class="main1 less" id="ex6" onclick="seemore(28)">
-    <h1>do this</h1>
-    <p><strong>TASK : write a programm which should take three numbers as input (a, b, c) <br><br>output should be math multiplication table of a from ( a * b ) to (a * c ) </strong></p>
-    </section>
-    <!--
-     <section class="main less" id="" onclick="seemore()">
-    <h1></h1>
-    <p></p>
-    </section>
-    -->
-    
-    <script>
-    var li = ["chapters","workplace","history","ware","intro","keywords",
-"varid","datatypes","printf","take","line","math","comment","ex1","ex2","operators","assign","if","onelineif","logic", "logoperators","nestedifelse","forloop","ex3","ex4","whileloop","break","ex5","ex6"]
-        function seemore(a){
-            var el = document.getElementById(li[a]);
-            if(el.classList.contains("less")){
-                el.classList.remove("less");
-                el.classList.add("more");
-            }else{
-               el.classList.remove("more");
-                el.classList.add("less"); 
-            }
-        }
-    </script>
-</body>
+            
+        </script>
+    </body>
 </html>
