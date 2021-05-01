@@ -20,7 +20,7 @@
             */
         }
         html{
-            scroll-behavior: smooth;
+            scroll-behavior:smooth;
         }
         body{
             padding-top:10px;
@@ -32,6 +32,7 @@
             display:flex;
             align-items: center;
             flex-direction:column;
+            padding-bottom:100vh;
         }
         nav{
             position:fixed;
@@ -74,7 +75,6 @@
         .full{
             position: relative;
             width:100vw;
-            min-height:100vh;
             overflow-x: hidden;
             display: flex;
             align-items: center;
@@ -82,6 +82,8 @@
             flex-direction:column;
             justify-content: space-around;
             background-color: floralwhite;
+            padding:20px 0;
+            margin:10px 0;
         }
         .mat{
             position: relative;
@@ -151,7 +153,13 @@
 <option value="0">SELECT</option>
 <option value="1">HTML Definition</option>
 <option value="2">Basic structure</option>
-<option value="3">tags ? </option>
+<option value="3">para </option>
+<option value="4">comment </option> 
+<option value="5">del - u - other</option> 
+<option value="6">sub - sup</option>
+<option value="7">image</option>
+<option value="8">link</option> 
+<option value="9">Heading's</option>
 </select>
             </nav>
         
@@ -191,17 +199,149 @@
               </div>
               <div class="expl">
                   here our main intrest is on the space between &lt;body&gt; &lt;/body&gt;<br>
-                  the text written in between title tag is useful for browsing engines to search
+                  the text written in between title tag is useful for browsing engines to search, these files should be saved as name_of_file.html
               </div>
             
              </div>
         </section>
         
         <section id="p3" class="full">
+            <div class="id">
+                 <label>paragraph - br</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+&lt;body&gt;
+    &lt;p&gt; 
+            any text written on this file will appear on screen, but using of tags will give u a chance to develop the page with more tools,usage of br &lt;br&gt; will give a line break 
+    &lt;/p&gt; 
+&lt;/body&gt;
+              </div>
+              <div class="expl">
+                 output is : <br>  any text written on this file will appear on screen, but using of tags will give u a chance to develop the page with more tools,usage of br <br> will give a line break 
+              </div>
+            
+             </div>
+        </section>
+        <section id="p4" class="full">
+            <div class="id">
+                 <label>comment</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+&lt;body&gt;
+      &lt;p&gt;
+     &lt;!-- i am a comment -- &gt; i am invisible
+        &lt;/p&gt;
+&lt;/body&gt;
+              </div>
+              <div class="expl">
+                 output is : <br> 
+                  i am invisible, <br> comments are only visible to programmers, computers can't read them
+              </div>
+            
+             </div>
+        </section>
+        <section id="p5" class="full">
+            <div class="id">
+                 <label>del - u - other</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+&lt;body&gt;
+      &lt;del&gt; deleted text &lt;/del&gt;
+    &lt;br&gt;
+      &lt;u&gt; underline text &lt;/u&gt;
+    &lt;br&gt;
+      &lt;i&gt; italic text &lt;/i&gt;
+    &lt;br&gt;
+      &lt;b&gt; bold text &lt;/b&gt;            
+&lt;/body&gt;
+              </div>
+              <div class="expl">
+                 output is : <br> 
+                 <del>deleted text</del><u>underline text</u><i>italic text</i><b>bold text</b>
+              </div>
+            
+             </div>
+        </section>
+        <section id="p6" class="full">
+            <div class="id">
+                 <label>sub - sup</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+&lt;body&gt;
+      x suffix &lt;sub&gt;y&lt;/sub&gt;
+     &lt;br&gt;     
+      a power &lt;sub&gt;b&lt;/sub&gt;
+&lt;/body&gt;
+              </div>
+              <div class="expl">
+                 output is : <br> 
+                 <p>
+                 x suffix <sub>y</sub><br>
+                 a power <sup>b</sup> 
+                 </p><br>
+                  try to use sup in sup and other different combinations
+              </div>
+            
+             </div>
+        </section>
+        <section id="p7" class="full">
+            <div class="id">
+                 <label>Image</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+&lt;body&gt;
+      &lt;img src="link_to_image" width = "100px" &gt; 
+&lt;/body&gt;
+              </div>
+              <div class="expl">
+                 output is : <br> 
+                 <img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80" width="100px" style="margin-top:10px;">
+              </div>
+             </div>
+        </section>
         
+        <section id="p8" class="full">
+            <div class="id">
+                 <label>Link</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+&lt;body&gt;
+      &lt;a href = "link_to_site" target = "_blank"&gt; click here &lt;/a&gt;  
+&lt;/body&gt;
+              </div>
+              <div class="expl">
+                 output is : <br> 
+                 <a href="https://www.youtube.com/" target="_blank">click here</a>
+                  <p>usage of target will add special properties like if <br> target = "_blank" <br>page will open in new tab<br>if target = "_self" <br> page will open will existing window</p>
+              </div>
+             </div>
+        </section>
+        <section id="p9" class="full">
+            <div class="id">
+                 <label>Heading's</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+&lt;body&gt;
+      &lt;h1&gt; heading - 1&lt;/h1&gt;
+      &lt;h6&gt; heading - 6&lt;/h6&gt;          
+&lt;/body&gt;
+              </div>
+              <div class="expl">
+                 output is : <br> 
+               <h1>heading - 1</h1> <h6>heading - 6</h6>
+            <p>h1, h2 upto h6 decreases in size</p>
+              </div>
+             </div>
         </section>
         <script>
-            var list = ["p1","p1","p2","p3"];
+            var list = ["p1","p1","p2","p3","p4","p5","p6","p7","p8","p9"];
             
         function go(){
             var li = document.getElementById("list").value; 
