@@ -62,7 +62,7 @@
             padding:5px 10px;
             outline:none;
             border:none;
-            background-color:floralwhite;
+            background-color:darkseagreen;
             font-size:17px;
             max-width:200px;
         }
@@ -76,6 +76,68 @@
             width:100vw;
             min-height:100vh;
             overflow-x: hidden;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            flex-direction:column;
+            padding-top:100px;
+            justify-content: space-around;
+            background-color:darkseagreen;
+        }
+        .mat{
+            position: relative;
+            width:100vw;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            flex-direction:row;
+            margin-top:20px;
+        }
+        .code{
+            white-space:pre-wrap;
+            padding:10px 20px;
+            font-size:15px;
+            box-shadow:0 0 3px rgb(0,0,0,0.4);
+            max-width:50vw;
+            background-color: white;
+        }
+        .id{
+            position:relative;
+            left:10px;  
+            width:80%;
+            font-size:20px;
+            letter-spacing:2px;
+            margin-bottom:10px;
+        }
+        .id label{
+             box-shadow:0 0 3px rgb(0,0,0,0.4);
+            padding:10px;
+            background-color: white;
+        }
+        .expl{
+            padding:10px 20px;
+            margin:10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow:0 0 3px rgb(0,0,0,0.4);
+            max-width:40vw;
+            word-wrap: break-word;
+            background-color: white;
+            max-height:80vh;
+            overflow-y: auto;
+            flex-direction: column;
+        }
+        @media (max-width:500px){
+            .mat{
+                justify-content: flex-start;
+                flex-direction: column;
+                flex-wrap: nowrap;
+            }
+            .expl{
+                max-width:80vw;
+            }
         }
     </style>
 </head>
@@ -84,22 +146,23 @@
  <label>EX<span>plore</span></label>
 <select onchange="go()" id="list">
 <option value="0">SELECT</option>
-<option value="1">Third eye</option>
-<option value="2">Linga</option>
-<option value="3">weapons</option>
+<option value="1">print</option>
+<option value="2">function</option>
 </select>
             </nav>
+        
+        
         <section id="p1" class="full">
         
         </section>
+        
         <section id="p2" class="full">
-        
+           
         </section>
-        <section id="p3" class="full">
         
-        </section>
+
         <script>
-            var list = ["p1","p1","p2","p3"];
+            var list = ["p1","p1","p2"];
             
         function go(){
             var li = document.getElementById("list").value;
@@ -120,3 +183,40 @@
         </script>
     </body>
 </html>
+
+
+
+
+
+
+<!-- 
+
+
+<section id="p2" class="full">
+            <div class="id">
+                 <label>Basic structure</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+    *{      
+        width : 500px;
+        height : 1000px;      
+    }
+    
+    body{
+            color : red;
+    }
+    
+    element_name{
+         property1 : value1;
+         property2 : value2;
+    }
+              </div>
+              <div class="expl">
+                  here our main intrest is mainly decorating our website that is built by using html,
+              </div>
+            
+             </div>
+        </section>
+
+-->

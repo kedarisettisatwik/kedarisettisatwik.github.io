@@ -76,6 +76,68 @@
             width:100vw;
             min-height:100vh;
             overflow-x: hidden;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            flex-direction:column;
+            padding-top:100px;
+            justify-content: space-around;
+            background-color: floralwhite;
+        }
+        .mat{
+            position: relative;
+            width:100vw;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            flex-direction:row;
+            margin-top:20px;
+        }
+        .code{
+            white-space:pre-wrap;
+            padding:10px 20px;
+            font-size:15px;
+            box-shadow:0 0 3px rgb(0,0,0,0.4);
+            max-width:50vw;
+            background-color: white;
+        }
+        .id{
+            position:relative;
+            left:10px;  
+            width:80%;
+            font-size:20px;
+            letter-spacing:2px;
+            margin-bottom:10px;
+        }
+        .id label{
+             box-shadow:0 0 3px rgb(0,0,0,0.4);
+            padding:10px;
+            background-color: white;
+        }
+        .expl{
+            padding:10px 20px;
+            margin:10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow:0 0 3px rgb(0,0,0,0.4);
+            max-width:40vw;
+            word-wrap: break-word;
+            background-color: white;
+            max-height:80vh;
+            overflow-y: auto;
+            flex-direction: column;
+        }
+        @media (max-width:500px){
+            .mat{
+                justify-content: flex-start;
+                flex-direction: column;
+                flex-wrap: nowrap;
+            }
+            .expl{
+                max-width:80vw;
+            }
         }
     </style>
 </head>
@@ -89,12 +151,49 @@
 <option value="3">tags ? </option>
 </select>
             </nav>
+        
+        
         <section id="p1" class="full">
-        
+        <div class="id">
+                 <label>HTML Definition</label>
+            </div>
+              <div class="mat">
+                  
+              <div class="expl">
+                  HTML - Hypertext Markup Language <br>
+                  Creation of any websites involves basic of HTML language, combination of HTML + CSS + JS is give you a great result of website. These languages are supported by all present devices<br>
+              </div>
+            
+             </div>
         </section>
+        
         <section id="p2" class="full">
-        
+            <div class="id">
+                 <label>Basic structure</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+&lt; html &gt;
+     &lt; head &gt;
+            &lt; title &gt;
+                   title of the page
+            &lt;/title &gt;
+    &lt;/head &gt;
+        &lt; body &gt;
+                   
+        online websites like this
+                   
+        &lt;/body &gt;
+&lt;/html &gt;
+              </div>
+              <div class="expl">
+                  here our main intrest is body tag ,<br> tag means &lt;open tag&gt; &lt;/closed tag&gt;<br>
+                  the text written in between title tag is useful for browsing engines to search
+              </div>
+            
+             </div>
         </section>
+        
         <section id="p3" class="full">
         
         </section>
