@@ -135,8 +135,11 @@
                 flex-direction: column;
                 flex-wrap: nowrap;
             }
-            .expl{
+            .expl,.code{
                 max-width:80vw;
+            }
+            .mat{
+                justify-content: center;
             }
         }
     </style>
@@ -144,7 +147,7 @@
     <body>
             <nav>
  <label>EX<span>plore</span></label>
-<select onchange="go()" id="list">
+<select id="list" onchange="go()">
 <option value="0">SELECT</option>
 <option value="1">HTML Definition</option>
 <option value="2">Basic structure</option>
@@ -161,7 +164,7 @@
                   
               <div class="expl">
                   HTML - Hypertext Markup Language <br>
-                  Creation of any websites involves basic of HTML language, combination of HTML + CSS + JS is give you a great result of website. These languages are supported by all present devices<br>
+                  Creation of any websites involves basic of HTML language, combination of HTML + CSS + JS is give you a great result of website. These languages are supported by all present devices<br><br>we all need a app or platform to work<br>the best IDE (APP) is BRACKETS<br> click the below link <br> <a href="https://youtu.be/TaXCES-4Cpo" style="color:blue">how to download brackets.. </a>
               </div>
             
              </div>
@@ -187,7 +190,7 @@
 &lt;/html &gt;
               </div>
               <div class="expl">
-                  here our main intrest is body tag ,<br> tag means &lt;open tag&gt; &lt;/closed tag&gt;<br>
+                  here our main intrest is on the space between &lt;body&gt; &lt;/body&gt;<br>
                   the text written in between title tag is useful for browsing engines to search
               </div>
             
@@ -201,7 +204,7 @@
             var list = ["p1","p1","p2","p3"];
             
         function go(){
-            var li = document.getElementById("list").value;
+            var li = document.getElementById("list").value; 
             var xx = document.getElementById(list[li]).getBoundingClientRect().top;
             window.scrollBy(0,xx);
         }
