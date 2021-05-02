@@ -155,7 +155,10 @@
 <option value="7">strings</option>   
 <option value="8">input</option>
 <option value="9">if else</option>  
-<option value="10">elif</option>     
+<option value="10">elif</option>    
+<option value="11">math operations</option>  
+<option value="12">comment</option>
+<option value="13">re assign</option>    
 </select>
             </nav>
         
@@ -342,8 +345,70 @@ function()
               </div>            
              </div>
         </section>
+        <section id="p11" class="full">
+            <div class="id">
+                 <label>math operations</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+def function():
+    a = 10
+    b = 5
+    print(a + b)
+    print(a - b)
+    print(a * b)
+    print(a / b)
+    print(a // 2)
+    print(a ** 2)
+    print(a % 3)
+                
+function()
+              </div>
+              <div class="expl">
+                  output is :<br>25<br>15<br>50<br>2<br>5<br>100<br>1<br>
+                  // - quoitent<br> a ** b - a power b<br>% reminder
+              </div>            
+             </div>
+        </section>
+        <section id="p12" class="full">
+            <div class="id">
+                 <label>comment</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+def function():
+    print(123) # i am invisible
+
+function()
+              </div>
+              <div class="expl">
+                  comment is written for the sake of understanding a code, computers cannot read comments
+              </div>            
+             </div>
+        </section>
+        <section id="p13" class="full">
+            <div class="id">
+                 <label>re assign</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+def function():
+    a = 3
+    b = 4
+    a = a + 3
+    b = b - 2
+    print("a = "+str(a))
+    print("b = "+str(b))
+        
+function()
+              </div>
+              <div class="expl">
+                  output is : <br> a = 6 <br> b = 2<br><br> a = a + 3 means adding 3 to the value stored in a<br>we can use any math operations in the place of + like <br> + , - , / , // , % , **<br> shortcut for a = a + 3 is <br> a += 3 i.e a %= 3 , a *= 3 are also possible try them
+              </div>            
+             </div>
+        </section>
         <script>
-            var list = ["p1","p1","p2","p3","p4","p5","p6","p7","p8","p9","p10"];
+            var list = ["p1","p1","p2","p3","p4","p5","p6","p7","p8","p9","p10","p11","p12","p13"];
             
         function go(){
             var li = document.getElementById("list").value;
