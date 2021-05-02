@@ -81,7 +81,7 @@
             flex-wrap: wrap;
             flex-direction:column;
             justify-content: space-around;
-            background-color:yellow;
+            background-color:floralwhite;
             padding:20px 0;
             margin:10px 0;
         }
@@ -146,23 +146,204 @@
  <label>EX<span>plore</span></label>
 <select onchange="go()" id="list">
 <option value="0">SELECT</option>
-<option value="1">print</option>
-<option value="2">function</option>
+<option value="1">Platform</option>
+<option value="2">print</option>
+<option value="3">str</option>
+<option value="4">function</option>
+<option value="5">line break</option>  
+<option value="6">variables</option> 
+<option value="7">strings</option>   
+<option value="8">input</option>
+<option value="9">if else</option>  
+<option value="10">elif</option>     
 </select>
             </nav>
         
         
         <section id="p1" class="full">
-        
+            <div class="id">
+                 <label>Platform</label>
+            </div>
+              <div class="mat">
+              <div class="expl">
+                  python is high level programming language, we should have a platform for working on it,<br> i suggest pycharm as a platform , click the link below <br> <a href="https://youtu.be/SZUNUB6nz3g">how to download pycharm</a>
+              </div>
+            
+             </div>
         </section>
         
         <section id="p2" class="full">
-           
+            <div class="id">
+                 <label>Print</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+    print("hello world")
+    print("h"+"i")
+    print(123)
+    print(12+1)
+    print("hello"+123)
+              </div>
+              <div class="expl">
+                  output is :<br>
+                 for 1st line : hello world<br>
+                 for 2nd line : hi<br> 
+                 for 3rd line : 123<br>
+                 for 4th line : 13 <br> 
+                 for 5th line : error <br>
+              </div>
+             </div>
         </section>
-        
+        <section id="p3" class="full">
+            <div class="id">
+                 <label>str</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+    print("hello"+124)
+    print("hello "+str(123))
+              </div>
+              <div class="expl">
+                  output is <br>
+                 for 1st line : error<br>
+                 for 2nd line : hello 123<br><br>
+            here 123 is a number, hello is word(we call it as string) number + word is a error so first gives u a error <br> but in 2nd line we have added str() for number means we are converting number to word i.e str(123) is now a word so hello + str(123) is hello 123
+              </div>            
+             </div>
+        </section>
+        <section id="p4" class="full">
+            <div class="id">
+                 <label>functions</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+def function_name():
+     print("hello")
 
+function_name()
+function_name()
+              </div>
+              <div class="expl">
+                  output is : <br>
+                  hello<br>
+                  hello<br><br>
+                  function means a group code, when we call a function function_name() the code in side function will run as many times we call the function, def is a keyword, u can't change but function_name u can change <br> we have used str(), print() above these are also  pre built function
+              </div>            
+             </div>
+        </section>
+        <section id="p5" class="full">
+            <div class="id">
+                 <label>line break</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+def function():
+    print("hello \n world ")
+
+function()
+              </div>
+              <div class="expl">
+                  output is :<br>hello <br>world <br><br>\n is used to break a string into two lines 
+              </div>            
+             </div>
+        </section>
+        <section id="p6" class="full">
+            <div class="id">
+                 <label>variables</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+def function():
+    a = 2
+    b = 2.12
+    c = "hello"
+    print(str(a) + str(b) + c)
+function()
+              </div>
+              <div class="expl">
+                  output is :<br> 2 2.12 hello <br><br> here a b c are variables means the elements which are holding some data
+              </div>            
+             </div>
+        </section>
+        <section id="p7" class="full">
+            <div class="id">
+                 <label>strings</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+def function():
+    a = 2
+    b = "hello"
+    print(a * b)
+    print("2"+"3")
+function()
+              </div>
+              <div class="expl">
+                  output is :<br> hellohello <br>23<br><br> we know string + number is error but string multiplied byy number is not a error, <br> 2 is a number "2" is a string so <br>2 + 3 = 5, "2" + "3" = "23" 
+              </div>            
+             </div>
+        </section>
+        <section id="p8" class="full">
+            <div class="id">
+                 <label>input</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+def function():
+    name = input("enter name : ")
+    age = int(input("enter age :"))
+    print(name * age)
+function()
+              </div>
+              <div class="expl">
+                  output is :<br> enter name : sat <br> enter age : 3<br> satsatsat<br><br> here input(" any text ") is a inbuilt function, here int() is a function which converts the input as number
+              </div>            
+             </div>
+        </section>
+        <section id="p9" class="full">
+            <div class="id">
+                 <label>if else</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+def function():
+    pass = int(input("enter password : "))
+    if pass == 2 :
+       print("hello")
+    else :
+       print("wrong password")
+function()
+              </div>
+              <div class="expl">
+                  output is :<br>case 1 : <br>enter password : 3<br> wrong password <br>case 2 : <br>enter password : 2 <br> helllo <br><br> if and else are key words, if we enter 2 then value of pass = 2 then <br>pass == 2 equation becomes true so the code inside if will work other wise code insiide else will work <br> other relations we can use are<br> a == 2 <br> a &lt;= 2 <br> a &gt;= 2   
+              </div>            
+             </div>
+        </section>
+        <section id="p10" class="full">
+            <div class="id">
+                 <label>elif</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+def function():
+    pass = int(input("enter password : "))
+    if pass == 2 :
+       print("hello")
+    elif pass == 3:
+       print("hi")
+    elif pass == 4:
+       print("bye")
+    else :
+       print("wrong password")
+function()
+              </div>
+              <div class="expl">
+                  output is :<br> if you enter 2 we will get hello <br>if it is not 2 then only computer check for another case if it is 3 we will get hi <br> if all the if and elif completed but all are false then only code in else will work 
+              </div>            
+             </div>
+        </section>
         <script>
-            var list = ["p1","p1","p2"];
+            var list = ["p1","p1","p2","p3","p4","p5","p6","p7","p8","p9","p10"];
             
         function go(){
             var li = document.getElementById("list").value;
@@ -198,24 +379,11 @@
             </div>
               <div class="mat">
             <div class="code">
-    *{      
-        width : 500px;
-        height : 1000px;      
-    }
-    
-    body{
-            color : red;
-    }
-    
-    element_name{
-         property1 : value1;
-         property2 : value2;
-    }
+
               </div>
               <div class="expl">
-                  here our main intrest is mainly decorating our website that is built by using html,
-              </div>
-            
+                  
+              </div>            
              </div>
         </section>
 
