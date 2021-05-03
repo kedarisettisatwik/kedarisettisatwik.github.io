@@ -479,12 +479,16 @@ function()
             <div class="code">
 def function():
     list1 = [1, 2, 3] 
-    
-                
+    print(len(list1))
+    list1.insert(0,4)
+    print(list1)
+    list1.append(5)
+    print(list1)
+
 function()
               </div>
               <div class="expl">
-                  output is :<br> 
+                  output is :<br> 3<br> [4, 1, 2, 3]<br> [4, 1, 2, 3, 5]<br><br> starting list1 is 1,2,3 <br> len() is a in-built function which gives output as length of list / size of list <br> insert(x,y) is a in-built function that adds element y to list at a postion x <br> here i wrote list1.insert(0,4) means i am adding element 4 to list1 at position 0 i.e now list1 is [4,1,2,3]<br> append(y) is a shortcut of insert() i.e element y is added to list at the end poition, i.e list1 is now [4, 1, 2, 3, 5]
               </div>            
              </div>
         </section>
