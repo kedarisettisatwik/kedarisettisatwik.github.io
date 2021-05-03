@@ -158,7 +158,11 @@
 <option value="10">elif</option>    
 <option value="11">math operations</option>  
 <option value="12">comment</option>
-<option value="13">re assign</option>    
+<option value="13">re assign</option> 
+<option value="14">List</option>  
+<option value="15">List operations</option>
+<option value="16">List re-assign</option>  
+<option value="17">List functions</option>      
 </select>
             </nav>
         
@@ -318,7 +322,7 @@ def function():
 function()
               </div>
               <div class="expl">
-                  output is :<br>case 1 : <br>enter password : 3<br> wrong password <br>case 2 : <br>enter password : 2 <br> helllo <br><br> if and else are key words, if we enter 2 then value of pass = 2 then <br>pass == 2 equation becomes true so the code inside if will work other wise code insiide else will work <br> other relations we can use are<br> a == 2 <br> a &lt;= 2 <br> a &gt;= 2   
+                  output is :<br>case 1 : <br>enter password : 3<br> wrong password <br>case 2 : <br>enter password : 2 <br> helllo <br><br> if and else are key words, if we enter 2 then value of pass = 2 then <br>pass == 2 equation becomes true so the code inside if will work other wise code insiide else will work <br> other relations we can use are<br> a == 2 for equal <br> a &lt;= 2 for less than <br> a &gt;= 2 for greater than <br> a != 2 for not equal to  
               </div>            
              </div>
         </section>
@@ -396,19 +400,96 @@ def function():
     a = 3
     b = 4
     a = a + 3
-    b = b - 2
+    b = b % 3
     print("a = "+str(a))
     print("b = "+str(b))
         
 function()
               </div>
               <div class="expl">
-                  output is : <br> a = 6 <br> b = 2<br><br> a = a + 3 means adding 3 to the value stored in a<br>we can use any math operations in the place of + like <br> + , - , / , // , % , **<br> shortcut for a = a + 3 is <br> a += 3 i.e a %= 3 , a *= 3 are also possible try them
+                  output is : <br> a = 6 <br> b = 1<br><br> a = a + 3 means, starting we have <br> a = 3 b = 4 calculate a + 3 i.e 6 this value is again given to a it self means now a = 3 + 3 = 6 same as b = 4 and b % 3 = 1 and we are giving this value 1 to b it self so now b = 1,<br> we can use diiferent math operations like <br> + , - , / , // , % , ** <br> shortcut for a = a + 3 is a += 3
+              </div>            
+             </div>
+        </section>
+        <section id="p14" class="full">
+            <div class="id">
+                 <label>List</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+def function():
+    a = 3
+    b = [10, "satwik", 2.12]
+    print(a)
+    print(b)
+    print(b[0])
+    print(b[1])
+    print(b[2])
+function()
+              </div>
+              <div class="expl">
+                  output is : <br> 3 <br> [10, "satwik", 2.12]<br>10<br>satwik<br>2.12<br><br> here a is holding only one data i.e 3 but b is holding 3 values i.e <br> list is a collection of elements <br> each element of list can be divided are used seperately using syntax <br> list_name[index] <br> index means position of element i.e in above list b index(position) of 10 is 0 and index of satwik is 1 and index of 2.12 is 2
+              </div>            
+             </div>
+        </section>
+        <section id="p15" class="full">
+            <div class="id">
+                 <label>list operations</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+def function():
+    list1 = [1,2,3] 
+    list2 = [4,5,6]
+    print(list1+list2)
+    print(list1*2)
+    
+function()
+              </div>
+              <div class="expl">
+                  output is :<br> [1,2,3,4,5,6]<br>[1,2,3,1,2,3]<br><br> adding of list means writting elements of two lists in one list <br>multiply of list means repetation of elements
+              </div>            
+             </div>
+        </section>
+        <section id="p16" class="full">
+            <div class="id">
+                 <label>list re-assign</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+def function():
+    list1 = [1, 2, 3] 
+    list1[0] = 4
+    list1[1] *= 0.5
+    list1[2] += 1
+    print(list1)
+                
+function()
+              </div>
+              <div class="expl">
+                  output is :<br> [4, 1, 4]<br><br>starting list1[0] = 1, list1[1] = 2, list1[2] = 3 after that <br> we have changed <br> list1[0] with 4 <br> list1[1] i.e 2 is multiplied with 0.5 i.e list1[1] is updated to 41 <br> list1[2] i.e 3 is increased by 1 i.e list1[2] is updated to 4 <br> now list1 = [4, 1, 4]
+              </div>            
+             </div>
+        </section>
+        <section id="p17" class="full">
+            <div class="id">
+                 <label>list functions</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+def function():
+    list1 = [1, 2, 3] 
+    
+                
+function()
+              </div>
+              <div class="expl">
+                  output is :<br> 
               </div>            
              </div>
         </section>
         <script>
-            var list = ["p1","p1","p2","p3","p4","p5","p6","p7","p8","p9","p10","p11","p12","p13"];
+            var list = ["p1","p1","p2","p3","p4","p5","p6","p7","p8","p9","p10","p11","p12","p13","p14","p15","p16","p17"];
             
         function go(){
             var li = document.getElementById("list").value;
