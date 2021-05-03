@@ -162,7 +162,12 @@
 <option value="14">List</option>  
 <option value="15">List operations</option>
 <option value="16">List re-assign</option>  
-<option value="17">List functions</option>      
+<option value="17">List len count</option>
+<option value="18">List in append</option> 
+<option value="19">List splice</option>
+<option value="20">Logical operators</option>
+<option value="21">Dictionaries</option>  
+<option value="22">Loops</option>
 </select>
             </nav>
         
@@ -473,27 +478,127 @@ function()
         </section>
         <section id="p17" class="full">
             <div class="id">
-                 <label>list functions</label>
+                 <label>List len count</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+def function():
+    list1 = [1, 3, 2, 3] 
+    print(len(list1))
+    print(list1.count(3))
+function()
+              </div>
+              <div class="expl">
+                  output is :<br> 3 <br> 2<br><br> starting list1 is 1,2,3 <br> len() is a in-built function which gives output as length of list / size of list <br> list_name.count(x) is a in-built function which gives the output as number of items x present in list here 3 is present in list1 2 times so output is 2
+              </div>            
+             </div>
+        </section>
+        <section id="p18" class="full">
+            <div class="id">
+                 <label>List in append</label>
             </div>
               <div class="mat">
             <div class="code">
 def function():
     list1 = [1, 2, 3] 
-    print(len(list1))
-    list1.insert(0,4)
+    list1.append(4)
     print(list1)
-    list1.append(5)
+    list1.insert(0,5)
     print(list1)
-
+    
 function()
               </div>
               <div class="expl">
-                  output is :<br> 3<br> [4, 1, 2, 3]<br> [4, 1, 2, 3, 5]<br><br> starting list1 is 1,2,3 <br> len() is a in-built function which gives output as length of list / size of list <br> insert(x,y) is a in-built function that adds element y to list at a postion x <br> here i wrote list1.insert(0,4) means i am adding element 4 to list1 at position 0 i.e now list1 is [4,1,2,3]<br> append(y) is a shortcut of insert() i.e element y is added to list at the end poition, i.e list1 is now [4, 1, 2, 3, 5]
+                  output is :<br>[ 1, 2, 3, 4]<br>[5, 1, 2, 3, 4]<br><br> append(y) is a in-built functions which adds element y to list at the end <br> insert(x,y) is a modified function of appened() insert(x,y) will add element y to list so that position of y in list will be x, <br> here i wrote insert(0,5) so 5 is added at 0th position
+              </div>            
+             </div>
+        </section>
+        <section id="p19" class="full">
+            <div class="id">
+                 <label>List splice</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+def function():
+    list1 = [1, 2, 3, 4, 5, 6, 3] 
+    list2 = list1[1:4]
+    print(list2)
+    list1.pop(3)
+    print(list1)
+    list1.remove(3)
+    print(list1)
+                
+function()
+              </div>
+              <div class="expl">
+                  output is :<br>[2, 3, 4]<br>[1, 2, 3, 5, 6, 3]<br>[1,2,5,6]<br><br> list2 = list1 means list2 is also having same elements of list1 but if we wrote list2 = list1[x : y] then list2 is having elements from position x to position y<br>list1.pop(x) means removing a element from list which is at position x , here i wrote list1.pop(3) so the 3rd position in list1 i.e element 4 is removed <br> list.remove(y) means removing all y's present in list here i wrote list1.remove(3) so all the 3's are removed from list1
+              </div>            
+             </div>
+        </section>
+        <section id="p20" class="full">
+            <div class="id">
+                 <label>logic operators</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+def function():
+    a = int(input("enter a : "))
+    b = int(input("enter b : "))
+    if a == 3 and b == 1: 
+        print("hello") 
+    elif a == 3 or b == 1:
+        print("hi") 
+    else:
+        print("bye") 
+                
+function()
+              </div>
+              <div class="expl">
+                output is : <br>case 1: if you entered both a and b correct then output is <br> hello <br> case 2: if you entered any one of a, b correctly output is hi <br>case 3 : if none of a,b are correct then output is bye <br> 
+              </div>            
+             </div>
+        </section>
+        <section id="p21" class="full">
+            <div class="id">
+                 <label>Dictionaries</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+def function():
+     d = {'name' : 'satwik', 'age' : 19}
+     print(d)
+     print(d['name'])
+     d['age'] = 20
+     print(d)
+                
+function()
+              </div>
+              <div class="expl">
+                output is : <br>{'name' : 'satwik', 'age' : 19}<br>satwik<br>{'name' : 'satwik', 'age' : 20}<br><br>syntax of dictionary is name = {key : value}
+              </div>            
+             </div>
+        </section>
+        <section id="p22" class="full">
+            <div class="id">
+                 <label>Loops</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+def function():
+    i = 0
+     while i &lt; 4 :
+        print("hello")
+        i += 1
+                
+function()
+              </div>
+              <div class="expl">
+                  output is : <br> hello <br>hello <br>hello <br><br>here we are using while(condition){--code--}<br> until the condition is false the code inside {} will executes repetedly, <br>here starting i = 0 i.e i &lt; 4 is true so hello will print and i increases to 1 after 3 repeatations i will increase to 4 so that for next time i &lt; 4 is false so the execution of code will stop
               </div>            
              </div>
         </section>
         <script>
-            var list = ["p1","p1","p2","p3","p4","p5","p6","p7","p8","p9","p10","p11","p12","p13","p14","p15","p16","p17"];
+    var list = ["p1","p1","p2","p3","p4","p5","p6","p7","p8","p9","p10","p11","p12","p13","p14","p15","p16","p17","p18","p19", "p20","p21","p22"];
             
         function go(){
             var li = document.getElementById("list").value;
