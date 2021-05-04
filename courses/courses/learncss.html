@@ -153,7 +153,9 @@
 <option value="5">Default</option>
 <option value="6">comment</option>
 <option value="7">bg</option>
-<option value="8">border</option>    
+<option value="8">border</option> 
+<option value="9">width - height</option> 
+    
 </select>
             </nav>
         
@@ -361,8 +363,35 @@
               </div>            
              </div>
         </section>
+        <section id="p9" class="full">
+            <div class="id">
+                 <label>width - height</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+ &lt;head&gt;
+    &lt;style&gt;       
+        div{
+          width : 500px;
+          height: 500px;
+          background-color:yelloe;
+        }
+    &lt;/style&gt;   
+&lt;/head&gt;
+  &lt;body&gt;
+       &lt;div&gt; 
+   
+       &lt;/div&gt;         
+  &lt;/body&gt;         
+              </div>
+              <div class="expl">
+                  output is : <br><p style="width:100px;height:100px;background-color:yellow"></p>
+              </div>            
+             </div>
+        </section>
+        
         <script>
-            var list = ["p1","p1","p2","p3","p4","p5","p6","p7","p8"];
+            var list = ["p1","p1","p2","p3","p4","p5","p6","p7","p8","p9"];
             
         function go(){
             var li = document.getElementById("list").value;
