@@ -149,7 +149,11 @@
 <option value="1">Y CSS </option>
 <option value="2">How to use</option>
 <option value="3">color</option>
-<option value="4">Default</option>
+<option value="4">font</option>
+<option value="5">Default</option>
+<option value="6">comment</option>
+<option value="7">bg</option>
+<option value="8">border</option>    
 </select>
             </nav>
         
@@ -227,6 +231,7 @@
     &lt;style&gt;       
         p{
           font-family:font-family: 'Roboto', sans-serif;
+          font-weight:bolder;
          }
         label{
          font-size:10px;       
@@ -243,7 +248,7 @@
   &lt;/body&gt;         
               </div>
               <div class="expl">
-                  output is : <br><p style="font-family:font-family: 'Roboto', sans-serif;">hi i am a paragraph</p><label style="font-size:10px; ">hello</label><br><br> here we are saying that all elements with p tag should have one font style and all elements with label tag should have size 10px
+                  output is : <br><p style="font-family:font-family: 'Roboto', sans-serif;font-weight:bolder;">hi i am a paragraph</p><label style="font-size:10px; ">hello</label><br><br> here we are saying that all elements with p tag should have one font style and all elements with label tag should have size 10px,<br>
               </div>            
              </div>
         </section>
@@ -266,7 +271,7 @@
   &lt;body&gt;
        &lt;p&gt; 
     hi i am a paragraph
-       &lt;/p&gt; 
+       &lt;/p&gt;
        &lt;label&gt; 
     hello
        &lt;/label&gt; 
@@ -277,8 +282,87 @@
               </div>            
              </div>
         </section>
+        <section id="p6" class="full">
+            <div class="id">
+                 <label>comment</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+ &lt;head&gt;
+    &lt;style&gt;       
+        *{
+          font-size:10px;
+    /* i am a comment */
+         }
+    &lt;/style&gt;   
+&lt;/head&gt;
+  &lt;body&gt;
+       &lt;p&gt; 
+    hi i am a paragraph
+       &lt;/p&gt; 
+  &lt;/body&gt;         
+              </div>
+              <div class="expl">
+                  output is : <br><p style="font-size:10px">hi i am a paragraph</p>
+              </div>            
+             </div>
+        </section>
+        <section id="p7" class="full">
+            <div class="id">
+                 <label>bg</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+ &lt;head&gt;
+    &lt;style&gt;       
+        p{
+          background-color : yellow;
+         }
+    &lt;/style&gt;   
+&lt;/head&gt;
+  &lt;body&gt;
+       &lt;p&gt; 
+    hi i am a paragraph
+       &lt;/p&gt; 
+  &lt;/body&gt;         
+              </div>
+              <div class="expl">
+                  output is : <br><p style="background-color: yellow">hi i am a paragraph</p>
+              </div>            
+             </div>
+        </section>
+        <section id="p8" class="full">
+            <div class="id">
+                 <label>border</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+ &lt;head&gt;
+    &lt;style&gt;       
+        p{
+          border : 2px solid balck;
+         }
+        label{
+         border : 2px dashed blue;   
+         }
+    &lt;/style&gt;   
+&lt;/head&gt;
+  &lt;body&gt;
+       &lt;p&gt; 
+    hi i am a paragraph
+       &lt;/p&gt;  &lt;br&gt;
+       &lt;label&gt; 
+    hello
+       &lt;/label&gt;         
+  &lt;/body&gt;         
+              </div>
+              <div class="expl">
+                  output is : <br><p style="border:2px solid black">hi i am a paragraph</p><br><label style="border: 2px dashed blue">hello</label>
+              </div>            
+             </div>
+        </section>
         <script>
-            var list = ["p1","p1","p2","p3","p4"];
+            var list = ["p1","p1","p2","p3","p4","p5","p6","p7","p8"];
             
         function go(){
             var li = document.getElementById("list").value;
