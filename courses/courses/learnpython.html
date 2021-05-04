@@ -166,8 +166,12 @@
 <option value="18">List in append</option> 
 <option value="19">List splice</option>
 <option value="20">Logical operators</option>
-<option value="21">Dictionaries</option>  
-<option value="22">Loops</option>
+<option value="21">Dictionaries</option> 
+<option value="22">Updating Dictionaries</option>  
+<option value="23">while Loops</option>
+<option value="24">for loop</option> 
+<option value="25">Break</option>
+<option value="26">Continue</option>  
 </select>
             </nav>
         
@@ -580,13 +584,32 @@ function()
         </section>
         <section id="p22" class="full">
             <div class="id">
-                 <label>Loops</label>
+                 <label>Update Dictionaries</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+def function():
+     d = {'name' : 'satwik', 'age' : 19}
+     print(d)
+     d['e'] = 1           
+     print(d)
+                
+function()
+              </div>
+              <div class="expl">
+                output is : <br>{'name' : 'satwik', 'age' : 19}<br>{'name' : 'satwik', 'age' : 19, 'e' : 1 }<br><br>syntax for adding new data is dictionary[key] = value
+              </div>            
+             </div>
+        </section>
+        <section id="p23" class="full">
+            <div class="id">
+                 <label>while Loops</label>
             </div>
               <div class="mat">
             <div class="code">
 def function():
     i = 0
-     while i &lt; 4 :
+     while i &lt; 3 :
         print("hello")
         i += 1
                 
@@ -597,8 +620,74 @@ function()
               </div>            
              </div>
         </section>
+        <section id="p24" class="full">
+            <div class="id">
+                 <label>for Loop</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+def function():
+    i = 0
+    for i in range(0,5):
+        print("hello")
+        i += 2
+                
+function()
+              </div>
+              <div class="expl">
+                  output is : <br> hello <br>hello <br>hello <br><br>starting i = 0; until i present in range 0 to 5 code inside for loop will execute, but after each repetation value of i am incresing value of i by 2 so after 3 repetations i = 6 which is not in range of 0 & 5 so excecution of code will stop. 
+              </div>            
+             </div>
+        </section>
+        
+        <section id="p25" class="full">
+            <div class="id">
+                 <label>Break</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+def function():
+    i = 0
+    for i in range(0,5):
+        if (i == 2){   
+        break
+        }
+        print(i)
+                
+        i += 1
+                
+function()
+              </div>
+              <div class="expl">
+                  output is : <br> 0 <br> 1 <br><br>here actually based on for loop we should get output as 0 1 2 3 4 but we are stopped after i = 1 because of key word break here i have said that if i reached 2 break the loop means it will not read code no more,  which will stop excecuting the code for i = 3 , 4
+              </div>            
+             </div>
+        </section>
+        <section id="p26" class="full">
+            <div class="id">
+                 <label>continue</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+def function():
+    i = 0
+    while i &lt; 5:
+        if (i == 2){   
+        continue
+        }
+        print(i)
+                
+        i += 1
+                
+function()
+              </div>
+              <div class="expl">
+                  output is : <br> 0 <br> 1 <br> 3 <br> 4<br><br> here actually based on while loop we should get output as 0 1 2 3 4 but we are skipped at 2 because of key word continue here i have said that if i reached 2 continue the loop which will skip reading of code for i = 2  
+              </div>            
+             </div>
+        </section>
         <script>
-    var list = ["p1","p1","p2","p3","p4","p5","p6","p7","p8","p9","p10","p11","p12","p13","p14","p15","p16","p17","p18","p19", "p20","p21","p22"];
+    var list = ["p1","p1","p2","p3","p4","p5","p6","p7","p8","p9","p10","p11","p12","p13","p14","p15","p16","p17","p18","p19", "p20","p21","p22","p23","p24","p25","p26"];
             
         function go(){
             var li = document.getElementById("list").value;
