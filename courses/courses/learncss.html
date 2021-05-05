@@ -155,7 +155,9 @@
 <option value="7">bg</option>
 <option value="8">border</option> 
 <option value="9">width - height</option> 
-    
+<option value="10">border-radius</option> 
+<option value="11">box-shadow</option> 
+<option value="12">text-shadow</option>     
 </select>
             </nav>
         
@@ -374,7 +376,7 @@
         div{
           width : 500px;
           height: 500px;
-          background-color:yelloe;
+          background-color:yellow;
         }
     &lt;/style&gt;   
 &lt;/head&gt;
@@ -385,13 +387,92 @@
   &lt;/body&gt;         
               </div>
               <div class="expl">
-                  output is : <br><p style="width:100px;height:100px;background-color:yellow"></p>
+                  output is : <br><p style="width:100px;height:100px;background-color:yellow"></p><p>units are px, vw , vh <br> vw - 100vw means widht of screen , <br> vh - 100vh means height of screen</p>
               </div>            
              </div>
         </section>
-        
+        <section id="p10" class="full">
+            <div class="id">
+                 <label>border-radius</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+ &lt;head&gt;
+    &lt;style&gt;       
+        div{
+          width : 500px;
+          height: 500px;
+          background-color :yellow;
+          border-radius :30px;
+          border : 3px solid black;
+        }
+    &lt;/style&gt;   
+&lt;/head&gt;
+  &lt;body&gt;
+       &lt;div&gt; 
+   
+       &lt;/div&gt;         
+  &lt;/body&gt;         
+              </div>
+              <div class="expl">
+                  output is : <br><br><p style="width:100px;height:100px;background-color:yellow;border:2px solid black;border-radius:30px;"></p><br><p>border-radius means curvature at edges and to get a circle height and width of element should be equal and border-radius is to be 50%</p>
+              </div>            
+             </div>
+        </section>
+        <section id="p11" class="full">
+            <div class="id">
+                 <label>box-shadow</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+ &lt;head&gt;
+    &lt;style&gt;       
+        div{
+          width : 500px;
+          height: 500px;
+          background-color :yellow;
+          box-shadow:40px 30px 30px black;
+          border-radius:50%;
+        }
+    &lt;/style&gt;   
+&lt;/head&gt;
+  &lt;body&gt;
+       &lt;div&gt; 
+   
+       &lt;/div&gt;         
+  &lt;/body&gt;         
+              </div>
+              <div class="expl">
+                  output is : <br><br><p style="width:100px;height:100px;background-color:yellow;box-shadow:40px 30px 30px black;border-radius:50%"></p><br><br>box -shadow : x y z c; <br>x - horizantal distance between shadow and block;<br>y - vertictal distance between shadow and block;<br>z - blurness of shadow ;<br> c - color
+              </div>            
+             </div>
+        </section>
+        <section id="p12" class="full">
+            <div class="id">
+                 <label>text-shadow</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+ &lt;head&gt;
+    &lt;style&gt;       
+        div{
+          text-shadow : 30px 20px 2px red;
+        }
+    &lt;/style&gt;   
+&lt;/head&gt;
+  &lt;body&gt;
+       &lt;div&gt; 
+   
+       &lt;/div&gt;         
+  &lt;/body&gt;         
+              </div>
+              <div class="expl">
+                  output is : <br><br><p style="text-shadow:30px 20px 2px red;">hello</p><br><br>box -shadow : x y z c; <br>x - horizantal distance between shadow and letter;<br>y - vertictal distance between shadow and letter;<br>z - blurness of shadow ;<br> c - color
+              </div>            
+             </div>
+        </section>
         <script>
-            var list = ["p1","p1","p2","p3","p4","p5","p6","p7","p8","p9"];
+            var list = ["p1","p1","p2","p3","p4","p5","p6","p7","p8","p9","p10","p11","p12"];
             
         function go(){
             var li = document.getElementById("list").value;
