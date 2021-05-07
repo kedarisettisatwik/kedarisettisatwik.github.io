@@ -129,6 +129,29 @@
             overflow-y: auto;
             flex-direction: column;
         }
+        
+        
+        .hover{
+            color:red;
+        }
+        .hover:hover{
+            color:blue;
+        }
+        .transition{
+            opacity:1;
+            transition:2s;
+        }
+        .transition:hover{
+            opacity:0;
+        }
+        .transform{
+            transform: rotate(0deg);
+            transition:2s;
+            width:200px;
+        }
+        .transform:hover{
+            transform:rotate(180deg);
+        }
         @media (max-width:500px){
             .mat{
                 justify-content: flex-start;
@@ -157,7 +180,15 @@
 <option value="9">width - height</option> 
 <option value="10">border-radius</option> 
 <option value="11">box-shadow</option> 
-<option value="12">text-shadow</option>     
+<option value="12">text-shadow</option>  
+<option value="13">opacity</option>  
+<option value="14">padding</option> 
+<option value="15">margin</option>  
+<option value="16">classes</option>  
+<option value="17">Id</option> 
+<option value="18">hover</option> 
+<option value="19">transition</option> 
+<option value="20">transform</option>     
 </select>
             </nav>
         
@@ -471,8 +502,229 @@
               </div>            
              </div>
         </section>
+        <section id="p13" class="full">
+            <div class="id">
+                 <label>opacity</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+ &lt;head&gt;
+    &lt;style&gt;       
+        p{
+          opacity:0.5;
+        }
+    &lt;/style&gt;   
+&lt;/head&gt;
+  &lt;body&gt;
+       &lt;span&gt;  helllo &lt;/span&gt; 
+                
+ &lt;p&gt; opacity &lt;/p&gt; 
+                
+  &lt;/body&gt;         
+              </div>
+              <div class="expl">
+                  output is : <br>hello<p style="opacity:0.5">opacity</p><br> in defalt opacity is 1, smaller the opacity value ligther the appearence
+              </div>            
+             </div>
+        </section>
+        <section id="p14" class="full">
+            <div class="id">
+                 <label>padding</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+ &lt;head&gt;
+    &lt;style&gt;       
+        p{
+          padding 20px 30px 10px 15px;
+          border:2px solid black;
+        }
+        a{
+            border:2px solid blue;    
+         }
+    &lt;/style&gt;   
+&lt;/head&gt;
+  &lt;body&gt;
+                
+ &lt;p&gt; with padding &lt;/p&gt; 
+ &lt;a&gt; with out padding &lt;/a&gt;                
+  &lt;/body&gt;         
+              </div>
+              <div class="expl">
+                  output is : <br><div><p style="padding:20px 30px 10px 15px; border:2px solid black;">with padding</p><p style="border:2px solid blue">with out padding</p></div><br>padding means gap between border and content<br>padding : a b c d; <br> a - top, b - right, c - bottom, d - left 
+              </div>            
+             </div>
+        </section>
+        <section id="p15" class="full">
+            <div class="id">
+                 <label>margin</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+ &lt;head&gt;
+    &lt;style&gt;       
+        p{
+          margin: 20px 10px 30px 15px;
+          border:2px solid black;
+        }
+        a{
+            border:2px solid blue;    
+         }
+    &lt;/style&gt;   
+&lt;/head&gt;
+  &lt;body&gt;
+                
+ &lt;p&gt; with padding &lt;/p&gt; 
+ &lt;a&gt; with out padding &lt;/a&gt;                
+  &lt;/body&gt;         
+              </div>
+              <div class="expl">
+                  output is : <br><div><p style="margin:20px 10px 30px 15px; border:2px solid black;">with margin</p><p style="border:2px solid blue">next element</p></div><br>margin means space between border and next element<br>margin : a b c d; <br> a - top, b - right, c - bottom, d - left 
+              </div>            
+             </div>
+        </section>
+        <section id="p16" class="full">
+            <div class="id">
+                 <label>classes</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+ &lt;head&gt;
+    &lt;style&gt;       
+        .one{
+          color : red;
+        }
+        .two{
+            color : blue; 
+         }
+    &lt;/style&gt;   
+&lt;/head&gt;
+  &lt;body&gt;
+                
+ &lt;p class="one"&gt; i want two paragraphs &lt;/p&gt; 
+ &lt;p class="two"&gt; with two different styles&lt;/p&gt;     
+ &lt;p class="one"&gt; we can use same class to any number of tags&lt;/p&gt;  
+                
+  &lt;/body&gt;         
+              </div>
+              <div class="expl">
+                  output is : <br><div><p style="color:red">i want two paragraphs</p><p style="color:blue">with two different styles</p><p style="color:red"> we can use same class to any number of tags</p></div><br>classes are useful for decoration, here if we we wrote p{color:red} both the paragraphs will be in red, for keeping different styles we will use classes
+              </div>            
+             </div>
+        </section>
+        <section id="p17" class="full">
+            <div class="id">
+                 <label>ID</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+ &lt;head&gt;
+    &lt;style&gt;       
+        #one{
+          color : red;
+        }
+        #two{
+            color : blue; 
+         }
+    &lt;/style&gt;   
+&lt;/head&gt;
+  &lt;body&gt;
+                
+ &lt;p id="one"&gt; same as classes&lt;/p&gt; 
+ &lt;p id="two"&gt; we shouldn't use same id for two different element&lt;/p&gt;     
+                
+  &lt;/body&gt;         
+              </div>
+              <div class="expl">
+                  output is : <br><div> <p style="color:red"> same as classes</p> 
+      <p style="color:blue">we shouldn't use same id for two different element</p>  </div><br>id are useful for decorating + js cousre also
+              </div>            
+             </div>
+        </section>
+        <section id="p18" class="full">
+            <div class="id">
+                 <label>Hover</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+ &lt;head&gt;
+    &lt;style&gt;       
+        .one{
+          color : red;
+        }
+        .one:hover{
+            color : blue; 
+         }
+    &lt;/style&gt;   
+&lt;/head&gt;
+  &lt;body&gt;
+                
+ &lt;p class="one"&gt;hover effects &lt;/p&gt;  
+                
+  &lt;/body&gt;         
+              </div>
+              <div class="expl">
+                  output is : <br><div class="hover"> hover effects </div><br><br> hover means when we move mouse on that element
+              </div>            
+             </div>
+        </section>
+        <section id="p19" class="full">
+            <div class="id">
+                 <label>transition</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+ &lt;head&gt;
+    &lt;style&gt;       
+        .one{
+          opacity:1;
+          transition:2s;
+        }
+        .one:hover{
+            opacity:0;
+         }
+    &lt;/style&gt;   
+&lt;/head&gt;
+  &lt;body&gt;
+                
+ &lt;p class="one"&gt;transition effects&lt;/p&gt;  
+                
+  &lt;/body&gt;         
+              </div>
+              <div class="expl">
+                  output is : <br><div class="transition"> transition effects </div><br><br> transition means time taken by element to change its properties 
+                  </div>            
+             </div>
+        </section>
+        <section id="p20" class="full">
+            <div class="id">
+                 <label>transform</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+ &lt;head&gt;
+    &lt;style&gt;       
+        .one{
+          transform:rotate(0deg);
+        }
+        .one:hover{
+            transform:rotate(360deg);
+         }
+    &lt;/style&gt;   
+&lt;/head&gt;
+  &lt;body&gt;
+                
+ &lt;p class="one"&gt;transform effects&lt;/p&gt;  
+                
+  &lt;/body&gt;         
+              </div>
+              <div class="expl">
+                  output is : <br><div class="transform"> transform effects </div><br><br> transform effects : <br> translate(x,y) - moving object x pixels horiantally, y pixels vertically <br>rotateX()<br>rotateY()<br>rotateZ()<br>scale(x) - scale means size of object changes by x times
+                  </div>            
+             </div>
+        </section>
         <script>
-            var list = ["p1","p1","p2","p3","p4","p5","p6","p7","p8","p9","p10","p11","p12"];
+            var list = ["p1","p1","p2","p3","p4","p5","p6","p7","p8","p9","p10","p11","p12","p13","p14","p15","p16","p17","p18","p19","p20"];
             
         function go(){
             var li = document.getElementById("list").value;
