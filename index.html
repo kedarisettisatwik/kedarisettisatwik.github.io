@@ -1,153 +1,337 @@
 <html>
 <head>
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!-- google fonts -->
     <title>project store </title>
-    <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
     <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        html{
+            scroll-behavior: smooth;
+        }
         body{
             width:100vw;
             min-height:100vh;
-        }
-        .main_box{
+            background-color:snow;
+            overflow-x: hidden;
+            padding:20px;
             position:relative;
-            top:2vh;
-            left:0;
+            display: flex;
+            align-items: center;
             flex-direction: column;
-            display:flex;
-            align-items: center;
-            width:100vw;
-            min-height:100vh;
-            font-family: monospace;
-            background-image:url(https://img.freepik.com/free-photo/abstract-blue-extruded-voronoi-blocks-background-minimal-light-clean-corporate-wall-3d-geometric-surface-illustration-polygonal-elements-displacement_1217-2510.jpg?size=626&ext=jpg);
-            background-repeat:repeat-y;
-            background-size: cover;
+            padding-bottom:100vh;
         }
-        .name{
-            padding:30px 0px;
-            margin-top:70px;
-            min-width:50%;
-            position: relative;
-            align-content: center;
-            text-align: center;
-            font-size:35px;
-            margin-bottom:10px;
-            background-image: linear-gradient(rgb(0,0,0,0.5),rgb(0,0,0,0.5));
-            color:white;
-        } 
-       .container{
+        header{
+            width:90%;
+            box-shadow:0 0 10px rgb(0,0,0,0.1);
+            padding:10px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            background-color: white;
+        }
+        header label{
             width:100%;
-            height: auto;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-           flex-direction: column;
+            padding-left:30px;
+            font-size:30px;
+            font-weight:lighter
         }
-        
-        #follow{
-            position:relative;
+        header .two{
             display: flex;
-            justify-content:space-around;
-            align-items:center;
-            padding:30px 0;
-            width:100vw;
+            width:100%;
+            padding:10px;
+            flex-wrap: wrap;
+            margin-top:30px;
+        }
+        header .two li{
+            cursor:pointer;
+            list-style:none;
+            margin:10px;
+            border-radius:5px;
+            padding:10px 20px;
+            box-shadow:0 0 10px rgb(0,0,0,0.2);
+        }
+        header .two li:nth-child(1){
+            background-color:skyblue;
+        }
+        header .two li:nth-child(2){
+            background-color:cornsilk
+        }
+        header .two li:nth-child(3){
+            background-color: darkturquoise
+        }
+        header .two li:nth-child(4){
+            background-color:antiquewhite
+        }
+        .visit{
+            width:90%;
             margin-bottom:20px;
         }
-        span{
-            position: relative;
-            width:100vw;
-            display:flex;
+        section{
+            width:90%;
+            box-shadow:0 0 10px rgb(0,0,0,0.2);
+            padding:10px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            margin:20px;
+            border-radius:5px;
+        }
+        
+        #my_projects span,#my_skills span,#my_intrests span,#contact span{
+            width:100%;
+            margin-top:10px;
+            padding-left:30px;
+            font-size:18px;
+            font-weight:bold;
+            letter-spacing:1.5px;
+        }
+        #my_projects ul,#my_skills ul,#contact ul{
+            display: flex;
+            width:100%;
+            padding:10px;
             flex-wrap: wrap;
-            justify-content:space-around;
+        }
+        #my_projects{
+          background-color:skyblue;
+        }
+        #my_projects ul a{
+            text-decoration:none;
+            color:black;
         }
         .link{
-            padding:0.5em 0;
-            display:flex;
+            border-radius:5px;
+            background-color:white;
+            display: flex;
             justify-content: center;
-            align-items:center;
-            flex-direction: column;
-            position: relative;
-            width:45%;
-            margin-bottom:1em;
-            text-align: center;
-            min-height:15vh;
-            font-size:4em;
-            background: transparent;
-            background-image: linear-gradient(rgb(0,0,0,0.5),rgb(0,0,0,0.5));
-            color:white;
+            align-items: center;
+            padding:10px;
+            margin:10px;
+            box-shadow:0 0 10px rgb(0,0,0,0.2);
+        }
+        .link img{
+            width:30px;
+            height:auto;
+            margin-right:10px;
+        }
+        #my_skills{
+            background-color:cornsilk
+        }
+        #my_skills ul{
+            list-style:none;
+            width:100%;
+        }
+        #my_skills ul li{
+            position:relative;
+            padding:10px;
+            margin:10px;
+            display:flex;
+            align-items: center;
+            justify-content:space-around;
+            flex-direction:row;
+            background-color:white;
+            box-shadow:0 0 10px rgb(0,0,0,0.2);
+            border-radius:5px;
+            width:250px;
+        }
+        .name{
+            font-size:18px;
+            font-weight:600;
+            letter-spacing:1px;
+            margin:5px;
+        }
+        .value{
+            font-size:17px;
+            font-weight:600;
+            letter-spacing:1px;
+        }
+        #my_intrests{
+            background-color: darkturquoise
+        }
+        #my_projects,#my_skills,#my_intrests,#contact{
+            max-height:70vh;
+            overflow-y:auto;
+        }
+        #my_intrests p{
+            margin-top:10px;
+            padding:10px;
+            width:100%;
+        }
+        #my_intrests a{
+            padding:10px 20px;
+            margin:10px;
+            background-color:white;
+            background-color:white;
+            box-shadow:0 0 10px rgb(0,0,0,0.2);
+            border-radius:5px;
+            color:black;
             text-decoration:none;
         }
-        .c{
-            font-size:2em;
-            background-color: azure;
+        #contact{
+             background-color:antiquewhite
+        }
+        #contact ul li{
+         list-style:none;
+         padding:10px;
+        margin:10px;
+        background-color:white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: row;
+            box-shadow:0 0 10px rgb(0,0,0,0.2);
+            border-radius:5px;
+            min-width:250px;
+        }
+        #contact ul li a{
+            color:black;
+            text-decoration:none;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: row;
+            width:100%;
+        }
+        #contact ul li a img{
+            width:30px;
+        }
+        @media (max-width:600px){
+            header{
+                flex-direction:column;
+            }
+            header label{
+                font-size:20px;
+            }
+            #my_skills ul li{
+                width:85%;
+            }
+            #contact ul li{
+                width:85%;
+            }
+            #contact ul{
+                align-items: center;
+            }
         }
     </style>
     </head>
-<body id="zoom">
-    <!-- hitwebcounter Code START -->
-<a href="https://www.hitwebcounter.com" target="_blank" class="c">
-<img src="https://hitwebcounter.com/counter/counter.php?page=7711238&style=0001&nbdigits=6&type=ip&initCount=0" title="Total Website Hits" Alt="Web Hits"   border="0" /></a><br> 
-    <section class="main_box">
-        <div class="name"> PROJECT STORE </div>
-<section class="container">
-    <div id="follow">
-        <img src= "001-facebook.png" onclick="move(1)" style="width:10%;padding:2em;background-image: linear-gradient(rgb(0,0,0,0.5),rgb(0,0,0,0.5))">
-        <img src = "002-instagram.png" style="width:10%;padding:2em;background-image: linear-gradient(rgb(0,0,0,0.5),rgb(0,0,0,0.5))" onclick="move(2)">
-        <img src="003-youtube.png" style="width:10%;padding:2em;background-image: linear-gradient(rgb(0,0,0,0.5),rgb(0,0,0,0.5))" onclick="move(3)">
-    </div>
-    <span>
-        <a href = "online/home_online.html" target="_blank" class="link" id="online"><img src="index%20icons/kedar%20is%20online.png" style="width:30%">KSR <br> online shopping ..</a> 
-        <a href = "courses/special.html" target="_blank" class="link" id="learn"><img src="index%20icons/learn%20free.png" style="width:30%"><br>EXplore</a>
-        <a href = "whatsapp/whatsappphome.html" target="_blank" class="link" id="whatsapp"><img src="whatsapp/whatsapp.png" style="width: 30%"><br>WHAT'S APP</a>
-        <a href = "sim.html" target="_blank" class="link" id="firechat"><img src="index%20icons/sim.png" style="width: 30%"><br>CHAT APP</a> 
-    <a href = "chess/chess.html" target="_blank" class="link" id="chess"><img src="index%20icons/chess.png" style="width:30%"><br>CHESS GAME</a>
-    <a href = "game2048.html" target="_blank" class="link" id="2048"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJXeqb0tKY7cMLInjbLm0le-sDB9Da-U_slZEQ1kPBIdRKK4vlziXHNEnhAd8CnmHx5ag&usqp=CAU" style="width: 35%"><br>2048</a>
+<body>
+   <nav class="visit">
+       <img src="https://hitwebcounter.com/counter/counter.php?page=7711238&style=0001&nbdigits=6&type=ip&initCount=0" title="Total Website Hits" Alt="Web Hits"   border="0" />
+   </nav>
+    <header>
+        <label>Project Store</label>
+        <ul class="two">
+        <li onclick="move('my_projects')">My Projects </li>
+        <li onclick="move('my_skills')">My Skills</li>
+        <li onclick="move('my_intrests')">My Intrests & More</li>
+        <li onclick="move('contact')">Contact Me</li>
+        </ul>
+    </header>
+    
+    <section id="my_projects">
+       <span>My Projects</span>
+        <ul>
+        <a href = "courses/special.html" target="_blank" class="link"><img src="index%20icons/learn%20free.png">EXplore</a>
+        <a href = "online/home_online.html" target="_blank" class="link"><img src="index%20icons/kedar%20is%20online.png">KSR <br> online shopping ..</a> 
+        <a href ="tr/travel_home.html" target="_blank" 
+    class="link"><img src="index%20icons/ace%20tourism.png">ACE TOURISIM</a>
+        <a href = "whatsapp/whatsappphome.html" target="_blank" class="link"><img src="whatsapp/whatsapp.png">WHAT'S APP</a>
+        <a href = "sim.html" target="_blank" class="link"><img src="index%20icons/sim.png" >CHAT APP</a> 
+    <a href = "chess/chess.html" target="_blank" class="link"><img src="index%20icons/chess.png">CHESS GAME</a>
+    <a href = "game2048.html" target="_blank" class="link"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJXeqb0tKY7cMLInjbLm0le-sDB9Da-U_slZEQ1kPBIdRKK4vlziXHNEnhAd8CnmHx5ag&usqp=CAU">2048</a>
     <a href = "helper.html" target="_blank" 
-    class="link" id="super"><img src="index%20icons/super%20calculator.png" style="width:30%"><br>SUPER <br> CALCULATOR</a> 
-    <a href = "sanjay.html" target="_blank" class="link" id="notes"><img src="index%20icons/notes%20app.png" style="width:30%"><br>NOTES APP</a> 
-    <a href = "quiz.html" target="_blank" class="link" id="quiz"><img src="index%20icons/math%20quiz.png" style="width:30%"><br>MATH QUIZ</a>
-    <a href ="cb/cow1.html" target="_blank" class="link" id="cb"><img src="index%20icons/cows%20and%20bulls.png" style="width:30%"><br>COW'S & BULL'S GAME</a>
-    <a href ="clock.html" target="_blank" class="link" id="digital"><img src="index%20icons/digital%20clock.png" style="width:30%"><br>DIGITAL CLOCK</a>
+    class="link" id="super"><img src="index%20icons/super%20calculator.png">SUPER <br> CALCULATOR</a> 
+    <a href = "sanjay.html" target="_blank" class="link"><img src="index%20icons/notes%20app.png">NOTES APP</a> 
+    <a href = "quiz.html" target="_blank" class="link"><img src="index%20icons/math%20quiz.png">MATH QUIZ</a>
+    <a href ="cb/cow1.html" target="_blank" class="link"><img src="index%20icons/cows%20and%20bulls.png">COW'S & BULL'S GAME</a>
+    <a href ="clock.html" target="_blank" class="link"><img src="index%20icons/digital%20clock.png">DIGITAL CLOCK</a>
     <a href = "day.html" target="_blank" 
-    class="link" id="find"><img src="index%20icons/find%20day.png" style="width:40%"><br>Find Day..</a> 
-    <a href ="tr/travel_home.html" target="_blank" 
-    class="link" id="ace"><img src="index%20icons/ace%20tourism.png" style="width:40%"><br>ACE TOURISIM</a>
-    <a href = "choice.html" target="_blank" class="link" id="hand"><img src="index%20icons/hand%20cricket.png" style="width:30%"><br>HAND_CRICKET</a> 
-    <a href = "web.html" target="_blank" class="link" id="animations">ANIMATION'S</a>      
-    <a href ="guess.html" target="_blank" class="link" id="guess">GUESS GAME</a>   
-    <a href ="cal.html" target="_blank" class="link" id="calc">CALCULATOR</a>
+    class="link"><img src="index%20icons/find%20day.png">Find Day..</a> 
+    <a href = "choice.html" target="_blank" class="link"><img src="index%20icons/hand%20cricket.png">HAND_CRICKET</a> 
+    <a href = "web.html" target="_blank" class="link">ANIMATION'S</a>      
+    <a href ="guess.html" target="_blank" class="link">GUESS GAME</a>   
+    <a href ="cal.html" target="_blank" class="link">CALCULATOR</a>
     
-    <a href ="shop.html" target="_blank" class="link" id="shop">ONLINE SHOPPING</a> 
-    <a href ="diwali.html" target="_blank"  class="link" id="hd">HAPPY DIWALI</a>
-    <a href ="puzzle.html" target="_blank" class="link" id="puzz">PUZZLE</a> 
+    <a href ="shop.html" target="_blank" class="link">ONLINE SHOPPING</a> 
+    <a href ="diwali.html" target="_blank"  class="link">HAPPY DIWALI</a>
+    <a href ="puzzle.html" target="_blank" class="link">PUZZLE</a> 
     <a href ="design.html" target="_blank" 
-       class="link" id="my">MY NAME</a>   
-    <a href ="bio.html" target="_blank" class="link" id="bio">BIOGRAPHY OF SOME PEOPLE</a>
-    <a href ="name.html" target="_blank" class="link" id="frn">SCROLL CLOSE FRIEND'S</a>  
+       class="link">MY NAME</a>   
+    <a href ="bio.html" target="_blank" class="link">BIOGRAPHY OF SOME PEOPLE</a>
+    <a href ="name.html" target="_blank" class="link">SCROLL CLOSE FRIEND'S</a>  
     
-    <a href ="happydiwali.html" target="_blank" class="link" id="hd2">HAPPY DIWALI 2</a>
-    <a href = "yourname.html" target="_blank" class="link" id="name">STYLE YOUR NAME</a>
-    <a href = "playicon.html" target="_blank" class="link" id="icons">PLAY WITH ICON'S.</a>
-    <a href = "lookeyes.html" target="_blank" class="link" id="eyes">LOOK INTO MY EYES..</a>
-    <a href = "rain.html" target="_blank" class="link" id="rain">RAIN..</a>   
-    <a href = "newyear.html" target="_blank" class="link" id="new">HAPPY NEW YEAR..</a>  
-    </span>
-</section>
+    <a href ="happydiwali.html" target="_blank" class="link">HAPPY DIWALI 2</a>
+    <a href = "yourname.html" target="_blank" class="link">STYLE YOUR NAME</a>
+    <a href = "playicon.html" target="_blank" class="link">PLAY WITH ICON'S.</a>
+    <a href = "lookeyes.html" target="_blank" class="link">LOOK INTO MY EYES..</a>
+    <a href = "rain.html" target="_blank" class="link">RAIN..</a>   
+    <a href = "newyear.html" target="_blank" class="link">HAPPY NEW YEAR..</a> </ul>
     </section>
-        
+    
+    <section id="my_skills">
+        <span>My Skills</span>
+        <ul>
+    <li><label class="name">HTML</label><label class="value">85%</label></li>
+    <li><label class="name">CSS</label><label class="value">80%</label></li> 
+    <li><label class="name">JS</label><label class="value">70%</label></li>
+    <li><label class="name">firebase</label><label class="value">50%</label></li>
+    <li><label class="name">Java</label><label class="value">80%</label></li>  
+    <li><label class="name">Python</label><label class="value">90%</label></li>
+     <li><label class="name">C</label><label class="value">85%</label></li>  
+     <li><label class="name">C++</label><label class="value">70%</label></li> 
+     <li><label class="name">blender</label><label class="value">50%</label></li> 
+     <li><label class="name">sketh up</label><label class="value">20%</label></li> 
+    <li><label class="name">PHP</label><label class="value">5%</label></li>           
+        </ul>
+    </section>
+    
+    <section id="my_intrests">
+        <span>My Intrests & More</span>
+        <p>I am kedarisetti satwik (kedar), can you help me in exploring the world
+let's start our journey today
+I am intrested in computers, historical scientific reasons and theories, what about u ?
+this is a completely free website aim of this site is just to
+spread knowledge and ideas, thank you for visiting this site ..</p>
+   <a href="https://kedarisettisatwik.github.io/courses/subjects.html">start journey</a>
+    </section>
+    
+    <section id="contact">
+        <span>Contact Me</span>
+        <ul>
+            <li><a href="https://www.facebook.com/people/Satwik-Kedaresetti/100008718079201/"><img src="001-facebook.png"><label>Facebook</label></a></li>
+            <li><a href="https://www.instagram.com/p/CLMt8zzF4SdQagQQeiqo40zKpOkGtdiH-5fMlY0/?igshid=1ssat0zj5iic5"><img src="002-instagram.png"><label>Instagram</label></a></li>
+            <li><a href="https://www.youtube.com/channel/UCpLOopnR9TX9b1fjcDpapsw"><img src="003-youtube.png"><label>Youtube</label></a></li>
+            <li><a><img src="gmail.png"><label style="margin-left:20px;">satwik1330@gmail.com</label></a></li>
+        </ul>
+    </section>
     
     <script>
         function move(a){
-            if (a == 1){
-location.assign("https://www.facebook.com/people/Satwik-Kedaresetti/100008718079201/");
-            }
-            if (a == 2){
-location.assign("https://www.instagram.com/p/CLMt8zzF4SdQagQQeiqo40zKpOkGtdiH-5fMlY0/?igshid=1ssat0zj5iic5");
-            }
-            if (a == 3){
-location.assign("https://www.youtube.com/channel/UCpLOopnR9TX9b1fjcDpapsw");               
-            }
+            var aa = document.getElementById(a);
+            var at = aa.getBoundingClientRect().top;
+            window.scrollBy(0,at);
         }
     </script>
-    
+
     </body>
 </html>
+
+
+
+
+<!--
+
+<a href="https://www.hitwebcounter.com" target="_blank" class="c">
+<img src="https://hitwebcounter.com/counter/counter.php?page=7711238&style=0001&nbdigits=6&type=ip&initCount=0" title="Total Website Hits" Alt="Web Hits"   border="0" /></a>
+
+-->
