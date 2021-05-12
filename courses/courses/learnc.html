@@ -32,7 +32,7 @@
             display:flex;
             align-items: center;
             flex-direction:column;
-            padding-bottom:100px;
+            padding-bottom:100vh;
         }
         nav{
             position:fixed;
@@ -146,23 +146,73 @@
  <label>EX<span>plore</span></label>
 <select onchange="go()" id="list">
 <option value="0">SELECT</option>
-<option value="1">History</option>
+<option value="1">Download</option>
 <option value="2">printf</option>
+<option value="3">Data types </option>
 </select>
             </nav>
         
-        
         <section id="p1" class="full">
-        
+           <div class="id">
+                 <label>Download</label>
+            </div>
+              <div class="mat">
+              <div class="expl">
+                  <p> we all need a platfomr for working, here is a link to know how to download code blocks which we are using for c and c++ language<br> <a href="https://youtu.be/5Na3x4Yjhq0">click here</a></p>
+              </div>
+            
+             </div>
         </section>
         
         <section id="p2" class="full">
-           
+        <div class="id">
+                 <label>Printf</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+    #include&lt;stdio.h&gt;
+    
+    int main(){
+
+    printf("hello how are you ?");
+      
+    return 0;
+    }
+              </div>
+              <div class="expl">
+                  <p>output is : <br> hello how are you ? <br><br> printf("output") is a function which gives output on screen <br>here main things we should take care of is every statment should end with ; semi-colon</p>
+              </div>
+             </div>   
+        </section>
+        
+        <section id="p3" class="full">
+        <div class="id">
+                 <label>Data types</label>
+            </div>
+              <div class="mat">
+            <div class="code">
+    #include&lt;stdio.h&gt;
+    
+    int main(){
+    
+    int satwik = 1;
+    float kedar = 1.23;
+    char hello = "a";
+    
+    printf("good %d %f %c",satwik,kedar,hello);
+      
+    return 0;
+    }
+              </div>
+              <div class="expl">
+                  <p>output is : <br> good 1 1.23 a<br><br> printf("%d",satwik) is a function we are telling print a integer(%d) which is called as satwik <br> we can use multiple data types at a time as shown in code, <br> %d - integer <br> %f - float <br> %c - single character<br></p>
+              </div>
+             </div>   
         </section>
         
 
         <script>
-            var list = ["p1","p1","p2"];
+            var list = ["p1","p1","p2","p3"];
             
         function go(){
             var li = document.getElementById("list").value;
@@ -198,25 +248,12 @@
             </div>
               <div class="mat">
             <div class="code">
-    *{      
-        width : 500px;
-        height : 1000px;      
-    }
     
-    body{
-            color : red;
-    }
-    
-    element_name{
-         property1 : value1;
-         property2 : value2;
-    }
               </div>
               <div class="expl">
-                  here our main intrest is mainly decorating our website that is built by using html,
+                  
               </div>
-            
              </div>
-        </section>
+</section>
 
 -->
