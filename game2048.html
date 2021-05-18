@@ -67,7 +67,8 @@
             height: 200px;
             position:absolute;
             display:block;
-            border:10px solid grey;
+            border:2px solid grey;
+            box-shadow:0 0 12px rgb(0,0,0,0.3);
         }
         #b11{
             left:200px;
@@ -287,7 +288,7 @@
             for(var j =1;j<5;j++){
                 var d = document.getElementById("bb"+i+j);
                 if (parseInt(d.innerHTML) == 2){
-                    d.style.backgroundColor = "white";
+                    d.style.backgroundColor = "snow";
                     d.style.color = "black";
                     d.style.fontSize = "75px";
                 }
@@ -297,8 +298,8 @@
                     d.style.fontSize = "75px";
                 }
                 if (parseInt(d.innerHTML) == 8){
-                   d.style.backgroundColor = "floralwhite";
-                    d.style.color = "black";
+                   d.style.backgroundColor = "green";
+                    d.style.color = "white";
                     d.style.fontSize = "75px";
                 }
                 if (parseInt(d.innerHTML) == 16){
@@ -856,6 +857,22 @@
         }
         
     }  
+        
+    window.addEventListener('keyup',(e) => {
+        if (e.keyCode == 37){
+            left();
+        }
+        if (e.keyCode == 38){
+            up();
+        }
+        if (e.keyCode == 39){
+            right();
+        }
+        if (e.keyCode == 40){
+            down();
+        }
+    })
+    
     </script>
     </body>
 </html>
