@@ -30,7 +30,7 @@
             background-color:#43345d;
             display: flex;
             flex-direction:row;
-            justify-content:space-around;
+            justify-content:center;
             align-items: center;
         }
         .bt1,.bt2,.bt3{
@@ -95,7 +95,7 @@
             transition:0.5s;
         }
         .bt1::before,.bt1:after{
-            background-color:red;
+            background-color:orange;
         }
         .bt2::before,.bt2::after{
             background-color:lawngreen;
@@ -129,6 +129,9 @@
         @media (max-width:700px){
             .main{
                 flex-direction: column;
+            }
+            .bt1,.bt2,.bt3{
+                margin:30px 0;
             }
         }
         
