@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <title>font-awesome</title>
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body{
+            width:100vw;
+            overflow-x: hidden;
+        }
+        .main {
+            width: 100vw;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-color: white;
+            display: flex;
+            flex-direction:row;
+            justify-content: center;
+            align-items: center;
+        }
+        .bt{
+            padding:10px 20px;
+            outline:none;
+            border:none;
+            background: transparent;
+            font-weight:bold;
+            border-radius: 8px;
+            cursor:pointer;
+            background-size:0%;
+            position:relative;
+            z-index:1000;
+            transition:0.2s;
+            margin-bottom:20px;
+            letter-spacing:1px;
+            font-size:17px;
+            text-transform:uppercase;
+            margin:10px;
+            color:black;
+        }
+        .bt::before{
+            content:'';
+            position: absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            border-radius:8px;
+            z-index:-200;
+            transition:0.2s;
+            transform:scale(0);
+        }
+        .bt::after{
+            content: '';
+            position: absolute;
+            bottom:-5px;
+            left:0;
+            width:100%;
+            height:5px;
+            border-radius:8px;
+            z-index:-200;
+            filter:blur(10px);
+            transition:0.2s;
+            transform:scale(0);
+        }
+        .bt:nth-child(1)::before,.bt:nth-child(1)::after{
+            background-color: blue;
+        }
+        .bt:nth-child(2)::before,.bt:nth-child(2)::after{
+            background-color:rgb(0, 153, 0);
+        }
+        .bt:nth-child(3)::before,.bt:nth-child(3)::after{
+            background-color:rgb(255, 153, 51);
+        }
+        .bt:nth-child(4)::before,.bt:nth-child(4)::after{
+            background-color:rgb(153, 51, 255);
+        }
+        
+        .bt:hover::before,.bt:hover::after{
+            transform:scale(1);
+        }
+        .bt:hover{
+              color:white;
+        }
+        
+        @media (max-width:700px){
+            .main{
+                flex-direction: column;
+            }
+        }
+        
+        
+    </style>
+</head>
+
+<body>
+    <section class="main">
+        <button class="bt">
+            hover me
+        </button>
+        <button class="bt">
+            hover me
+        </button>
+        <button class="bt">
+            hover me
+        </button>
+        <button class="bt">
+            hover me
+        </button>
+    </section>
+    
+    <script>
+    
+   </script>
+ 
+</body>
+</html>
