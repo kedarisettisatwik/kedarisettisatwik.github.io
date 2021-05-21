@@ -112,9 +112,14 @@
             font-weight:bold;
             font-family: 'Roboto',monospace;
             cursor:pointer;
+            transition:0.5s;
         }
         .signin .form button i,.signup .form button i{
             margin-left:4px;
+        }
+        .signin .form button:hover,.signup .form button:hover{
+            letter-spacing:2px;
+            box-shadow:0px 0px 10px rgb(0, 51, 153,0.5);
         }
         .signin a,.signup a{
             bottom:20px;
@@ -126,6 +131,13 @@
             cursor:pointer;
             letter-spacing:1px;
         }
+        .signin span,.signup span{
+            margin-top:12px;
+            font-size:16px;
+            opacity:0;
+            transition:0.5s;
+        }
+        
         .one{
             transform:rotateZ(180deg);
         }
@@ -153,22 +165,24 @@
                     <h1>Sign in</h1>
                     <p>sign in using e-mail & password</p>
                     <div class="form">
-                        <input type="email" placeholder="****@gmail.com">
-                        <input type="password" placeholder="password">
-                        <button>Sign in <i class="fas fa-long-arrow-alt-right"></i></button>
+                        <input type="email" placeholder="****@gmail.com" id="email1">
+                        <input type="password" placeholder="password" id="password1">
+            <button onclick="siin('email1','password1')">Sign in <i class="fas fa-long-arrow-alt-right"></i></button>
                     </div>
+                    <span id="error1">error</span>
                     <a onclick="rot(1)">Don't have account ?</a>
                 </div>
                 <div id="signup" class="signup">
                     <h1>Sign up</h1>
                     <p>sign up with us </p>
                     <div class="form">
-                        <input type="text" placeholder="your name">
-                        <input type="email" placeholder="**@gmail.com">
-                        <input type="password" placeholder="set a password">
-                        <input type="text" placeholder="confirm password">
-                        <button>Sign up <i class="fas fa-long-arrow-alt-right"></i></button>
+                        <input type="text" placeholder="your name" id="name1">
+                        <input type="email" placeholder="**@gmail.com" id="email2">
+                        <input type="password" placeholder="set a password" id="pass2">
+                        <input type="text" placeholder="confirm password" id="repass2">
+        <button onclick="siup('name1','email2','pass2','repass2')">Sign up <i class="fas fa-long-arrow-alt-right"></i></button>
                     </div>
+                    <span id="error2">error</span>
                     <a onclick="rot(2)">Already have account ?</a>
                 </div>
             </div>
@@ -179,6 +193,50 @@
     function rot(a){
         var container = document.getElementById("container");
         container.classList.toggle("one");
+    }
+    function errordis(a,b,c,d){
+        var aa = document.getElementById(a);
+        aa.innerHTML = b;
+        aa.style.color = c;
+        aa.style.opacity = d;
+        setTimeout(function(){
+            aa.style.opacity = "0";
+        },5000);
+    }
+    function siin(x,y){
+        var email = document.getElementById(x);
+        var pass = document.getElementById(y);
+        if (email.value == "" || pass.value == ""){
+            errordis("error1","All fields required","red","1");
+        }else{
+            var ee = email.value;
+            if (ee.indexOf("@gmail.com") < 0){
+              errordis("error1","Invalid e-mail use @gmail.com","red","1");    
+            }else{
+            errordis("error1","Succesfully signed in","green","1");
+            }
+        }
+    }
+    function siup(p,q,x,y){
+         var name = document.getElementById(p);
+        var email = document.getElementById(q);
+        var pass = document.getElementById(x);
+        var repass = document.getElementById(y);
+        var error = document.getElementById("error2");
+        if (email.value == "" || pass.value == "" || name.value == "" || repass.value == ""){
+            errordis("error2","All fields required","red","1");
+        }else{
+            if (pass.value == repass.value){
+                var ee = email.value;
+            if (ee.indexOf("@gmail.com") < 0){
+            errordis("error2","Invalid e-mail use @gmail.com","red","1"); 
+            }else{
+            errordis("error2","registration completed","green","1");
+               }
+            }else{
+            errordis("error2","password confirmation failed","red","1");
+            }
+        }
     }
    </script>
  
