@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <!-- google fonts -->
+    <title>font-awesome</title>
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        html{
+            scroll-behavior:smooth;
+        }
+        body{
+            width:100vw;
+            overflow-x: hidden;
+            min-height:100vh;
+        }
+        .main {
+            width: 100vw;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color:white;
+        }
+        .main2{
+            position:relative;
+        }
+        .main2 .container{
+            width:70px;
+            height:70px;
+            border-radius:50%;
+            box-shadow:6px 4px 13px rgb(0,0,0,0.5);
+            background-color:lightgreen;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            font-size:22px;
+            cursor:pointer;
+            transition:0.4s;
+            position:relative;
+            z-index:100;
+        }
+        .main2 .container:hover{
+            box-shadow:0px 0px 13px rgb(0,0,0,0.5);
+        }
+        .main2 .icons span{
+            position:absolute;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            width:70px;
+            height:70px;
+            border-radius:50%;
+            font-size:22px;
+            cursor:pointer;
+            box-shadow:0px 0px 13px rgb(255,255,255,0.5);
+            top:0;
+            left:0;
+            z-index:10;
+            transition:0.6s;
+        }
+        
+        .main2.active span:nth-child(1){
+            transform:translate(0,-100px);
+            transition-delay:0s;
+        }.main2.active span:nth-child(2){
+            transform:translate(100px,0px);
+            transition-delay:0.6s;
+        }.main2.active span:nth-child(3){
+            transform:translate(0,100px);
+            transition-delay:1.2s;
+        }.main2.active span:nth-child(4){
+            transform:translate(-100px,0px);
+            transition-delay:1.8s;
+        }
+        .main2.active span{
+            box-shadow:0px 0px 13px rgb(0,0,0,0.5);
+        }
+        .main2 span:nth-child(1){
+            transition-delay:1.8s;
+            background-color:black;
+            color:white;
+        }.main2 span:nth-child(2){
+            transition-delay:1.2s;
+            background-color: burlywood;
+            color:black;
+        }.main2 span:nth-child(3){    
+            transition-delay:0.6s;
+            background-color: crimson;
+            color:white;
+        }.main2 span:nth-child(4){
+            transition-delay:0s;
+            background-color:skyblue;
+            color:black;
+        }
+        
+        
+    </style>
+</head>
+
+<body>
+    <section class="main" id="home">
+        <section class="main2" id="main2">
+            <i class="fas fa-link container" onclick="go()"></i>
+             <div class="icons">
+                 <span><i class="fab fa-instagram"></i></span>
+               <span><i class="fab fa-facebook-f"></i></span>
+            <span><i class="fab fa-youtube"></i></span> 
+            <span><i class="fab fa-twitter"></i></span>
+             </div>
+        </section>
+    </section>
+    
+   <script>
+      function go(){
+           var box = document.getElementById("main2");
+          box.classList.toggle("active");
+       } 
+   </script>
+ 
+</body>
+</html>
