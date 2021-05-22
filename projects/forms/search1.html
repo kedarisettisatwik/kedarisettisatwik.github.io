@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <!-- google fonts -->
+    <title>font-awesome</title>
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body{
+            width:100vw;
+            overflow-x: hidden;
+        }
+        .main {
+            width: 100vw;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-color:deepskyblue;
+            display: flex;
+            flex-direction:row;
+            justify-content:center;
+            align-items: center;
+        }
+        .main2{
+            min-width:60px;
+            height:60px;
+            background-color:white;
+            box-shadow:5px 6px 20px rgb(0,0,0,0.5);
+            overflow: hidden;
+            border-radius:40px;
+            cursor:pointer;
+            display: flex;
+            flex-direction:row;
+        }
+        .main2 i{
+            height:60px;
+            width:60px;
+            font-size:25px;
+            display: flex;
+            justify-content: center;
+            align-items:center;
+            color:deepskyblue;
+        }
+        .box{
+            position:relative;
+            height:100%;
+            width:0px;
+            overflow: hidden;
+            transition:0.5s;
+        }
+        .box2{
+            width:200px;
+        }
+        .box input{
+            width:90%;
+            height:100%;
+            outline:none;
+            border:none;
+            font-size:16px;
+        }
+        .box input::placeholder{
+            color:black;
+        }
+        @media (max-width:700px){
+            .main{
+                flex-direction: column;
+            }
+        }
+        
+    </style>
+</head>
+
+<body>
+    <section class="main">
+        <section class="main2">
+            <i class="fas fa-search" onclick="open1()"></i>
+            <form class="box" id="box1" action="https://www.google.com/search">
+                <input type="search" placeholder="search box" required name="q">
+            </form>
+        </section>
+    </section>
+    
+    <script>
+        function open1(){
+            var s = document.getElementById("box1");
+            s.classList.toggle("box2");
+        }
+   </script>
+ 
+</body>
+</html>
