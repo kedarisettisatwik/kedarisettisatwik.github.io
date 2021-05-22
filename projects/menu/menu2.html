@@ -85,6 +85,9 @@
         }
         .container2 li i{
             margin:0 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .container2 li .tag{
             position:absolute;
@@ -100,6 +103,7 @@
             opacity:0;
             z-index:10;
             box-shadow:2px 3px 5px rgb(0,0,0,0.4);
+            visibility:hidden;
         }
         .container2 li .tag::before{
             content:'';
@@ -114,6 +118,7 @@
             z-index:-10;
         }
         .container2 li:hover .tag{
+            visibility: visible;
             opacity:1;
             transform:translate(-5px,-50%);
         }
