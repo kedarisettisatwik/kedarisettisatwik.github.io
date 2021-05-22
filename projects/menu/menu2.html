@@ -26,19 +26,20 @@
         body{
             width:100vw;
             overflow-x: hidden;
+            min-height:100vh;
         }
         .main {
-            display: flex;
-            justify-content: center;
-            align-items: center;
             width: 100vw;
             min-height: 100vh;
             overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .main:nth-child(1){
             background-color:#f53b57;
         }.main:nth-child(2){
-            background-color:white;
+            background-color:cornflowerblue;
         }.main:nth-child(3){
             background-color:#05c46b;
         }.main:nth-child(4){
@@ -61,59 +62,60 @@
         }
         .container2{
             position:relative;
-            width:10px;
-            overflow:hidden;
-            background-color:deepskyblue;
-            border-radius:10px;
-            box-shadow:4px 6px 5px rgb(0,0,0,0.5);
+            width:auto;
+            background-color:white;
+            border-radius:20px;
+            box-shadow:5px 6px 5px rgb(0,0,0,0.6);
             transition:0.5s;
         }
         .container2 li{
+            position: relative;
             min-width:100%;
-            padding:10px 20px; 
+            padding:10px; 
             font-weight:500;
             text-transform:uppercase;
             letter-spacing:1px;
             display: flex;
             align-items: center;
-            margin:10px;
             transition:0.4s;
             cursor:pointer;
             color:black;
             font-size:16px;
+            height:50px;
         }
         .container2 li i{
-            margin:0 10px;
+            margin:0 5px;
         }
-        .container2 li:hover{
-            letter-spacing:2px;
-            background-color:rgb(0, 0, 153,0.6);
+        .container2 li .tag{
+            position:absolute;
+            top:50%;
+            left:75px;
+            font-size:15px;
+            background-color:white;
+            padding:0 10px;
             border-radius:10px;
-            color:white;
-            font-size:17px;
-        }
-        .circle{
-            width:40px;
-            height:40px;
-            border-radius:50%;
-            position: absolute;
-            background-color:deepskyblue;
-            top:calc(50% - 20px);
-            left:-15px;
-            display:flex;
-            justify-content: center;
-            align-items: center;
-            font-size:17px;
-            border:1px solid grey;
-            cursor:pointer;
+            transform:translate(20px,-50%);
+            padding:5px 10px;
             transition:0.5s;
-            transform-origin:center;
+            opacity:0;
+            z-index:10;
+            box-shadow:2px 3px 5px rgb(0,0,0,0.4);
         }
-        .open{
-            width:200px;
+        .container2 li .tag::before{
+            content:'';
+            position:absolute;
+            top:50%;
+            left:-3px;
+            background-color:black;
+            height:15px;
+            width:15px;
+            transform:translateY(-50%) rotateZ(45deg);
+            background-color:white;
+            z-index:-10;
         }
-        .opencircle{
- transform:rotateZ(180deg);
+        .container2 li:hover .tag{
+            opacity:1;
+            transform:translate(-5px,-50%);
         }
         .main .header{
             font-size:20px;
@@ -129,35 +131,28 @@
         <section class="main2">
             <div class="container1">
                 <ul class="container2" id="container2">
-        <li onclick="go('home')"><i class="fas fa-home"></i>home</li>
-    <li onclick="go('profile')"><i class="fas fa-user"></i>profile</li>
-<li onclick="go('chats')"><i class="fas fa-comment-alt"></i>chats</li>
-    <li onclick="go('gifts')"><i class="fas fa-gift"></i>gifts</li>
-<li onclick="go('settings')"><i class="fas fa-cog"></i>settings</li>
-<li><i class="fas fa-sign-out-alt"></i>logout</li>
-            </ul>
-<span class="circle" onclick="toog()" id="circle"><i class="fas fa-arrow-right"></i></span>
+        <li onclick="go('home')"><i class="fas fa-home"></i><label class="tag">home</label></li>
+    <li onclick="go('profile')"><i class="fas fa-user"></i><label class="tag">profile</label></li>
+<li onclick="go('chats')"><i class="fas fa-comment-alt"></i><label class="tag">chats</label></li>
+    <li onclick="go('gifts')"><i class="fas fa-gift"></i><label class="tag">gifts</label></li>
+<li onclick="go('settings')"><i class="fas fa-cog"></i><label class="tag">settings</label></li>
+<li><i class="fas fa-sign-out-alt"></i><label class="tag">logout</label></li>
+                </ul>
             </div>
         </section>
-        <label class="header">Home</label>
+        <label class="header">home</label>
     </section>
-    <section class="main" id="profile"><label class="header">profile</label></section>
+     <section class="main" id="profile"><label class="header">profile</label></section>
     <section class="main" id="chats"><label class="header">chats</label></section>
     <section class="main" id="gifts"><label class="header">gits</label></section>
     <section class="main" id="settings"><label class="header">settings</label></section>
+    
    <script>
-        function toog(){
- var li = document.getElementById("container2");
-            li.classList.toggle("open");
-    var c = document.getElementById("circle");
-    c.classList.toggle("opencircle");
-        }
-       
-       function go(a){
+      function go(a){
            var box = document.getElementById(a);
            var e = box.getBoundingClientRect().top;
            window.scrollBy(0,e);
-       }
+       } 
    </script>
  
 </body>
