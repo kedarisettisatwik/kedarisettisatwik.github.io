@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <!-- google fonts -->
+    <title>font-awesome</title>
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body{
+            width:100vw;
+            overflow-x: hidden;
+        }
+        .main {
+            width: 100vw;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-color:deepskyblue;
+            display: flex;
+            flex-direction:row;
+            justify-content:center;
+            align-items: center;
+        }
+        .signin,.signup{
+            border-radius:10px;
+            width:400px;
+            background-color:white;
+            margin:10px;
+            position:relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow:10px 10px 20px rgb(0,0,0,0.5);
+            transition:0.4s;
+        }
+        .signin h1,.signup h1{
+            margin-top:20px;
+            width:100%;
+            font-size:20px;
+            padding:10px 0 10px 30px;
+            letter-spacing:1px;
+            text-transform:uppercase;
+        }
+        .signin p,.signup p{
+            margin-top:5px;
+            width:95%;
+            font-size:16px;
+            text-align: center;
+            opacity:0.6;
+        }
+        .signin .form,.signup .form{
+            height:0px;
+            overflow:hidden;
+            margin-top:10px;
+            width:95%;
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+            transition:0.5s;
+        }
+        .signin .form input,.signup .form input{
+            margin:7px 0;
+            width:100%;
+            padding:10px 0 10px 40px;
+            font-size:16px;
+            outline:none;
+            border:2px solid rgb(0,0,0,0.4);
+            border-radius:7px;
+            transition:0.5s;
+        }
+        .signin .form input::placeholder,.signup .form input::placeholder{
+            color:black;
+        }
+        .signin .form input:focus,.signup .form input:focus{
+            border:3px solid skyblue;
+        }
+        .signin .form button,.signup .form button{
+            padding:10px 20px;
+            margin:10px 0;
+            border-radius:7px;
+            background-color:lightskyblue;
+            border:none;
+            outline:none;
+            font-size:17px;
+            letter-spacing:1px;
+            box-shadow:10px 5px 10px rgb(0, 51, 153,0.5);
+            font-weight:bold;
+            font-family: 'Roboto',monospace;
+            cursor:pointer;
+            transition:0.5s;
+        }
+        .signin .form button i,.signup .form button i{
+            margin-left:4px;
+        }
+        .signin .form button:hover,.signup .form button:hover{
+            letter-spacing:2px;
+            box-shadow:0px 0px 10px rgb(0, 51, 153,0.5);
+        }
+        .signin span,.signup span{
+            margin-top:12px;
+            font-size:16px;
+            opacity:0;
+            transition:0.5s;
+            margin-bottom:20px;
+        }
+        .signin:hover,.signup:hover{
+            box-shadow:0 0 20px rgb(0,0,0,0.5);
+        }
+        
+        @media (max-width:700px){
+            .main{
+                flex-direction: column;
+            }
+        }
+        @media (max-width:400px){
+            .signin,.signup{
+                width:97vw;
+            }
+        }
+        
+    </style>
+</head>
+
+<body>
+    <section class="main">
+                <div id="signin" class="signin" onmouseenter="ext('form1','form2')" onmouseleave="me('form1')">
+                    <h1>Sign in</h1>
+                    <p>sign in using e-mail & password</p>
+                    <div class="form" id="form1">
+                        <input type="email" placeholder="****@gmail.com" id="email1">
+                        <input type="password" placeholder="password" id="password1">
+            <button onclick="siin('email1','password1')">Sign in <i class="fas fa-long-arrow-alt-right"></i></button>
+                   <span id="error1">error</span>
+                    </div>
+                </div>
+                <div id="signup" class="signup" onmouseenter="ext('form2','form1')" onmouseleave="me('form2')">
+                    <h1>Sign up</h1>
+                    <p>sign up with us </p>
+                    <div class="form" id="form2">
+                        <input type="text" placeholder="your name" id="name1">
+                        <input type="email" placeholder="**@gmail.com" id="email2">
+                        <input type="password" placeholder="set a password" id="pass2">
+                        <input type="text" placeholder="confirm password" id="repass2">
+        <button onclick="siup('name1','email2','pass2','repass2')">Sign up <i class="fas fa-long-arrow-alt-right"></i></button>
+                   <span id="error2">error</span>
+                    </div>
+                </div>
+    </section>
+    
+    <script>
+    function me(a){
+        document.getElementById(a).style.height = "0px";
+    }
+    function ext(a,b){
+        if (a == "form1"){
+            document.getElementById(a).style.height = "250px";
+            document.getElementById(b).style.height = "0px";
+        }else{
+            document.getElementById(a).style.height = "400px";
+            document.getElementById(b).style.height = "0px";
+        }
+        
+    }
+    function errordis(a,b,c,d){
+        var aa = document.getElementById(a);
+        aa.innerHTML = b;
+        aa.style.color = c;
+        aa.style.opacity = d;
+        setTimeout(function(){
+            aa.style.opacity = "0";
+        },5000);
+    }
+    function siin(x,y){
+        var email = document.getElementById(x);
+        var pass = document.getElementById(y);
+        if (email.value == "" || pass.value == ""){
+            errordis("error1","All fields required","red","1");
+        }else{
+            var ee = email.value;
+            if (ee.indexOf("@gmail.com") < 0){
+              errordis("error1","Invalid e-mail use @gmail.com","red","1");    
+            }else{
+            errordis("error1","Succesfully signed in","green","1");
+            }
+        }
+    }
+    function siup(p,q,x,y){
+         var name = document.getElementById(p);
+        var email = document.getElementById(q);
+        var pass = document.getElementById(x);
+        var repass = document.getElementById(y);
+        var error = document.getElementById("error2");
+        if (email.value == "" || pass.value == "" || name.value == "" || repass.value == ""){
+            errordis("error2","All fields required","red","1");
+        }else{
+            if (pass.value == repass.value){
+                var ee = email.value;
+            if (ee.indexOf("@gmail.com") < 0){
+            errordis("error2","Invalid e-mail use @gmail.com","red","1"); 
+            }else{
+            errordis("error2","registration completed","green","1");
+               }
+            }else{
+            errordis("error2","password confirmation failed","red","1");
+            }
+        }
+    }
+   </script>
+ 
+</body>
+</html>
