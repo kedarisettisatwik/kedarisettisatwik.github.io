@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <!-- google fonts -->
+    <title>font-awesome</title>
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body{
+            width:100vw;
+            height:100vh;
+            overflow: hidden;
+            background-color:deepskyblue;
+            display: flex;
+            flex-direction:row;
+            justify-content:center;
+            align-items: center;
+        }
+        .main {
+            width: 400px;
+            height:70vh;
+            overflow: hidden;
+            background-color:white;
+            display: flex;
+            flex-direction:row;
+            justify-content:center;
+            align-items: center;
+            box-shadow:10px 7px 20px rgb(0,0,0,0.5);
+        }
+        .bt{
+            width:200px;
+            height:60px;
+            background-color:deepskyblue;
+            color:black;
+            font-size:18px;
+            cursor:pointer;
+            border-radius:30px;
+            display: flex;
+            justify-content:flex-start;
+            align-items: center;
+            position:relative;
+            box-shadow:0 0 10px rgb(0,0,0,0.5);
+            overflow: visible;
+            transition:0.5s;
+        }
+        .bt span{
+            text-transform:uppercase;
+            font-weight:bold;
+            letter-spacing:1px;
+            margin-left:20px;
+        }
+        .bt span label{
+            margin-left:5px;
+        }
+        #check,#pro{
+            position: absolute;
+            font-size:25px;
+        }
+        #check{
+            top:50%;
+            right:30px;
+            transform:translateY(-50%);
+            opacity:1;
+            transition:0.5s;
+            opacity:0;
+        }
+        #pro{
+            top:0;
+            right:0;
+            height:100%;
+            width:100%;
+        }
+        #pro #Capa_1{
+        width:30px;
+        height:30px;
+        position: absolute;
+        top:50%;
+        right:30px;
+        transform:translate(0,-50%);
+        }
+        #pro .control{
+            position: absolute;
+            width:calc(100% - 30px);
+            background-color:transparent;
+            height:10px;
+            top:50%;
+            left:0;
+            transform-origin:left;
+        }
+        #pro .control #Layer_1{
+            width:60px;
+            position: absolute;
+            height:60px;
+            top:-30px;
+            right:-30px;
+            opacity:0;
+            transform:rotateZ(-70deg);
+        }
+        .totalani .control{
+            -webkit-animation: flight1 4s ease-in-out forwards
+        }
+        .totalani #Capa_1{
+            -webkit-animation: drop1 4s ease-in-out forwards
+        }
+        .checkcheck{
+            -webkit-animation: check1 4s ease-in-out forwards
+        }
+        
+        @keyframes total1{
+            
+        }
+        @keyframes drop1{
+            0%{
+                opacity:1;
+            }
+            55%{
+                opacity:1;
+            }
+            60%{
+                opacity:0;
+            }
+            80%{
+               opacity:0;
+            }
+            100%{
+                opacity:0;
+            }
+        }
+        @keyframes check1{
+            0%{
+                opacity:0;
+            }
+            90%{
+               opacity:0;
+            }
+            100%{
+                opacity:1;
+            }
+        }
+        @keyframes flight1{
+            0%{
+                opacity:0;
+                transform:rotateZ(180deg);
+            }
+            2%{
+                opacity:1;
+            }
+            50%{
+                transform:rotateZ(-0deg);
+            }
+            60%{
+                transform:rotateZ(-0deg);
+            }
+            80%{
+                opacity:1;
+            }
+            100%{
+                opacity:0;
+                transform:rotateZ(-90deg);
+            }
+        }
+        
+        @media (max-width:700px){
+            .main{
+                flex-direction: column;
+            }
+        }
+        
+        
+    </style>
+</head>
+
+<body>
+    <section class="main">
+        <div class="bt" onclick="addani()">
+           <div id="pro">
+               <svg  id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 392.8 392.8" style="enable-background:new 0 0 392.8 392.8;" xml:space="preserve">
+<g>
+	<polygon style="fill:#D9AC80;" points="196.4,0 292,49.2 388,98 292,147.2 196.4,196.4 100.8,147.2 4.8,98 100.8,49.2 	"/>
+	<polygon style="fill:#D7BAA4;" points="316,179.6 316,135.2 268,159.6 268,204 294.4,171.6 	"/>
+	<polygon style="fill:#A67E4F;" points="196.4,196.4 196.4,392.8 388,294.8 388,98 316,135.2 314.4,136 314.4,179.2 294.4,171.6 
+		268,204 268,159.6 	"/>
+	<polygon style="fill:#926E43;" points="196.4,392.8 196.4,196.4 100.8,147.2 4.8,98 4.8,294.8 	"/>
+	<polygon style="fill:#F2D3BA;" points="76.8,61.2 268,159.6 314.4,136 316,135.2 124.8,36.8 100.8,49.2 	"/>
+</g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+</svg>
+          
+           <div class="control">
+               <svg id="Layer_1"  viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1"><path d="m480.04 135.471a127.413 127.413 0 0 0 -101.58 6.22l-225.54 111.04-53.38-36.9a63.71 63.71 0 0 0 -59.69-6.82l-23.85 9.44 93.17 75.64a64.388 64.388 0 0 0 42.37 14.62 32.652 32.652 0 0 0 11.36-2.06l93.41-35.97.41.16 8.09-21.39 99.78-39.4-12.58 21.73 128.65-50.94a24.27 24.27 0 0 0 -.62-45.37z" fill="#e5f5fd"/><path d="m39.85 229.011a63.71 63.71 0 0 1 59.69 6.82l47.342 32.726a12.494 12.494 0 0 0 12.623.932l93.335-45.948 62.09-30.57 63.53-31.28a127.413 127.413 0 0 1 101.58-6.22 23.715 23.715 0 0 1 13.86 12.82 24.752 24.752 0 0 0 2.1-10 23.909 23.909 0 0 0 -15.96-22.82 127.413 127.413 0 0 0 -101.58 6.22l-63.53 31.28-62.09 30.57-99.92 49.19-53.38-36.9a63.71 63.71 0 0 0 -59.69-6.82l-23.85 9.44 16.561 13.449z" fill="#b9c8db"/><path d="m314.93 172.971-62.09 30.57-83.76-53.98 30.93-18.81z" fill="#72bcef"/><path d="m288.84 185.541-105.76-44.98-14 9 83.76 53.98z" fill="#67b5f4"/><path d="m276.84 191.541-98.76-47.98-9 6 83.76 53.98z" fill="#50a6ea"/><path d="m364.59 210.051-12.58 21.73-88.28 152.46h-49.89l42.88-113.4 8.09-21.39z" fill="#72bcef"/><path d="m302.81 235.451-36 14-8.09 21.39-42.88 113.4h19z" fill="#67b5f4"/><path d="m284.81 242.451-18 7-8.09 21.39-42.88 113.4h9z" fill="#50a6ea"/><path d="m482.1 129.834a133.8 133.8 0 0 0 -106.292 6.472l-61.222 30.143-112.51-41.333a5.994 5.994 0 0 0 -5.187.506l-30.922 18.808a6 6 0 0 0 -.133 10.169l74.841 48.24-87.242 42.954-50.486-34.9a69.578 69.578 0 0 0 -65.3-7.47l-23.855 9.444a6 6 0 0 0 -1.572 10.237l93.165 75.635a70.493 70.493 0 0 0 44.315 16q1.01 0 2.021-.031a38.607 38.607 0 0 0 13.331-2.459l81.453-31.369-38.281 101.238a6 6 0 0 0 5.612 8.122h49.893a6 6 0 0 0 5.192-2.993l87.239-150.659 126.712-50.167a30.273 30.273 0 0 0 -.773-56.587zm-301.711 19.866 20.264-12.326 99.062 36.393-46.483 22.886zm79.881 228.54h-37.75l46.961-124.188 81.282-32.091zm218.184-202.976-112.6 44.579 3.93-6.786a6 6 0 0 0 -7.4-8.588l-99.785 39.4a6 6 0 0 0 -3.409 3.458l-7 18.506-91.509 35.241a26.843 26.843 0 0 1 -9.328 1.643 58.344 58.344 0 0 1 -38.415-13.286l-85.2-69.173 14.321-5.67a57.606 57.606 0 0 1 54.062 6.185l53.385 36.9a6 6 0 0 0 6.061.448l225.618-111.088a121.815 121.815 0 0 1 96.8-5.926 18.273 18.273 0 0 1 .467 34.157z" fill="#284268"/></svg>
+           </div>
+           
+           </div>
+           <label id="check"><i class="far fa-check-circle"></i></label>
+            <span>order<label id="text">now</label></span>
+        </div>
+    </section>
+    
+    <script>
+    function addani(){
+        var ele = document.getElementById("pro");
+        var tt  = document.getElementById("text");
+        var tf = document.getElementById("Layer_1");
+        var cc = document.getElementById("check");
+        
+        if (ele.classList.contains("totalani")){
+            tt.classList.remove("textanim");
+            ele.classList.remove("totalani");
+            tf.style.opacity = "0";
+            cc.classList.remove("checkcheck");
+            tt.innerHTML = "now";
+        }else{
+            tf.style.opacity = "1";
+            tt.classList.add("textanim");
+            ele.classList.add("totalani");
+            cc.classList.add("checkcheck");
+            setTimeout(function(){
+                tt.innerHTML = "ed";
+            },3500);
+        }
+    }
+   </script>
+ 
+</body>
+</html>
