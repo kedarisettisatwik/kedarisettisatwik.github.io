@@ -63,6 +63,8 @@
         }
         .bt span label{
             margin-left:5px;
+            color:darkblue;
+            transition:0.4s;
         }
         #check,#pro{
             position: absolute;
@@ -75,6 +77,7 @@
             opacity:1;
             transition:0.5s;
             opacity:0;
+            color:darkblue;
         }
         #pro{
             top:0;
@@ -221,12 +224,14 @@
             tf.style.opacity = "0";
             cc.classList.remove("checkcheck");
             tt.innerHTML = "now";
+            tt.style.marginLeft = "5px";
         }else{
             tf.style.opacity = "1";
             tt.classList.add("textanim");
             ele.classList.add("totalani");
             cc.classList.add("checkcheck");
             setTimeout(function(){
+                 tt.style.marginLeft = "0px";
                 tt.innerHTML = "ed";
             },3500);
         }
