@@ -339,21 +339,21 @@
         <div id="physics">
             <nav><label onclick="close_all()">close</label></nav>
             <ul>
-                <li>
+                <li onclick="proj1()"> 
                   <span class="name">Projectile</span>
-                  <p>if input vale is &#x3B8; & u<br> &#x3B8; = angle of projection <br> u = initial velocity <br>output is H<sub>max</sub> Range, time period</p>
+                  <p>if input vale is &#x3B8; & u<br> &#x3B8; = angle of projection (in degrees ) <br> u = initial velocity <br>output is H<sub>max</sub> , Range, time period</p>
                </li>
                  <li>
                   <span class="name">kinetic energy</span>
-                  <p>if input vale is m & u <br>m = mass u = velocity <br> output is kinetic energy and momentum</p>
+                  <p>if input vale is m & u & k <br>m = mass, u = velocity, k = kinetic energy <br> (in the place of unknown use ? )<br>output is unknown value</p>
                </li>
                 <li>
                   <span class="name">potential energy</span>
-                  <p>if input vale is m & h <br>a = mass, h = height <br> output is potential energy</p>
+                  <p>if input vale is m & h & p<br>a = mass, h = height , p = potential energy<br> (in the place of unknown use ? )<br> output is unknow value</p>
                </li>
                 <li>
                   <span class="name">Time period</span>
-                  <p>if input vale is l & t <br>l = length, t = time (in the place of unknown use * ) <br> output is the unknown vale</p>
+                  <p>if input vale is l & t <br>l = length, t = time (in the place of unknown use ? ) <br> output is the unknown vale</p>
                </li>
                  <li>
                   <span class="name">gravitaion force</span>
@@ -392,7 +392,7 @@
                     <button class="button2" onclick="del1()">C</button>
                     <button class="button1" onclick="back1()"><i class="fas fa-long-arrow-alt-left"></i></button>
                     <button class="button1" onclick="insert1(' & ')">&</button>
-                    <button class="button1" onclick="close1()"><i class="fas fa-window-close"></i></button><button class="button1" onclick="insert1('?')">?</button>
+                    <button class="button1" onclick="close1()"><i class="fas fa-window-close"></i></button><button class="button1" onclick="insert1(' ? ')">?</button>
                 </li>
                    <li>
                     <button class="button1" onclick="insert1('7')">7</button>
@@ -405,22 +405,22 @@
                     <button class="button1" onclick="insert1('4')">4</button>
                     <button class="button1" onclick="insert1('5')">5</button>
                     <button class="button1" onclick="insert1('6')">6</button>
-                    <button class="button1" onclick="insert1(' / ')">/</button>
-                    <button class="button1" onclick="insert1(' * ')">*</button>
+                    <button class="button1" onclick="insert1('/')">/</button>
+                    <button class="button1" onclick="insert1('*')">*</button>
                 </li>
                 <li>
                     <button class="button1" onclick="insert1('1')">1</button>
                     <button class="button1" onclick="insert1('2')">2</button>
                     <button class="button1" onclick="insert1('3')">3</button>
-                    <button class="button1" onclick="insert1(' + ')">+</button>
-                    <button class="button1" onclick="insert1(' - ')">-</button>
+                    <button class="button1" onclick="insert1('+')">+</button>
+                    <button class="button1" onclick="insert1('-')">-</button>
                 </li>
                  <li>
                     <button class="button1" onclick="insert1('0')">0</button>
                     <button class="button1" onclick="insert1('.')">.</button>
                     <button class="button2" onclick="equal1()">=</button>
-                    <button class="button1" onclick="insert1(' ( ')">(</button>
-                    <button class="button1" onclick="insert1(' ) ')">)</button>
+                    <button class="button1" onclick="insert1('(')">(</button>
+                    <button class="button1" onclick="insert1(')')">)</button>
                 </li>
             </ul>
         </div>
@@ -598,6 +598,9 @@ var bd = document.getElementById("board")
                             pp1 = ppp1;
                          }
                          }
+                    }
+                    if (pp == 90){
+                        pp1 = 0;
                     }
                 }else {
                     if (pp == 45){
@@ -916,11 +919,11 @@ var bd = document.getElementById("board")
                 
                 bd.innerHTML = "<br>sides : <br> a = " + a + "<br> b = " + b + "<br> c = " + c;
                 bd.innerHTML += "<br><br>Angles : <br> A = "+ angle_a + "<br> B = " + angle_b + "<br> C = " + angle_c;
-                bd.innerHTML += "<br><br>Area = "+ area1 + " , perimeter = " + 2*s;
+                bd.innerHTML += "<br><br>Area = "+ (area1).toFixed(3) + " , perimeter = " + (2*s).toFixed(3);
                 bd.innerHTML += "<br><br>Inradius r = "+ inra;
-                bd.innerHTML += "<br> r<sub>1</sub> = "+ (area1)/(s-a) + " ";
-                bd.innerHTML += " r<sub>2</sub> = "+ (area1)/(s-b) + " ";
-                bd.innerHTML += " r<sub>3</sub> = "+ (area1)/(s-c) + " ";
+                bd.innerHTML += "<br> r<sub>1</sub> = "+ ((area1)/(s-a)).toFixed(3) + " ";
+                bd.innerHTML += "<br>r<sub>2</sub> = "+ ((area1)/(s-b) ).toFixed(3)+ " ";
+                bd.innerHTML += "<br>r<sub>3</sub> = "+ ((area1)/(s-c)).toFixed(3) + " ";
                 r.value = angle_a;
                 var circumradius = a / (2 * trig(1));
          bd.innerHTML += " <br> R (circumraidus) = "+ circumradius.toFixed(4);
@@ -1103,6 +1106,38 @@ var bd = document.getElementById("board")
             close_all();
             close1();
         }
+        
+        function proj1(){
+            var pp = r.value;
+                if (pp.includes('&')){
+                    var and1 = pp.indexOf('&');
+                    var a = JSON.parse(eval(pp.substr(0,and1)));
+                    var v = JSON.parse(eval(pp.substr(and1+1,pp.length)));
+                    r.value = a;
+                    var sinan = trig(1,2);
+                    var cosan = Math.sqrt(1-Math.pow(sinan,2));
+                    
+                    var time = 2 * v * sinan;
+                    var ran = 2 * v * v * sinan * cosan;
+                    var h = v * v * sinan *sinan / 2;
+                    
+                    
+                    bd.innerHTML = "angle = "+ a + ", velocity = " + v;
+                    bd.innerHTML += "<br>if g = 9.81 ms<sup>-2</sup> then ";
+                    bd.innerHTML += "<br> time of flight = "+ (time/ 9.81).toFixed(3);
+                    bd.innerHTML += "<br> Range = "+ (ran/ 9.81).toFixed(3);
+                    bd.innerHTML += "<br> H <sub>max</sub> = "+ (h/ 9.81).toFixed(3);
+                    bd.innerHTML += "<br><br>if g = 10 ms<sup>-2</sup> then ";
+                    bd.innerHTML += "<br> time of flight = "+ (time/ 10).toFixed(3);
+                    bd.innerHTML += "<br> Range = "+ (ran/ 10).toFixed(3);
+                    bd.innerHTML += "<br> H <sub>max</sub> = "+ (h/ 10).toFixed(3);
+                    close1();
+                    close_all();
+                }else{
+                    alert('please use the given format x & y to get x power y');
+                }
+        }
+        
    </script>
  
 </body>
