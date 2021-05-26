@@ -174,12 +174,11 @@
             justify-content: space-between;
             align-items: center;
             padding:10px 20px;
-            cursor:pointer;
             border:2px solid grey;
             border-radius:3px;
         }
-        .main header label{
-            font-size:30px;
+        .main header img{
+            cursor:pointer;
         }
         .main #result{
             width:90%;
@@ -343,15 +342,15 @@
                   <span class="name">Projectile</span>
                   <p>if input vale is &#x3B8; & u<br> &#x3B8; = angle of projection (in degrees ) <br> u = initial velocity <br>output is H<sub>max</sub> , Range, time period</p>
                </li>
-                 <li>
+                 <li onclick="kine()">
                   <span class="name">kinetic energy</span>
                   <p>if input vale is m & u & k <br>m = mass, u = velocity, k = kinetic energy <br> (in the place of unknown use ? )<br>output is unknown value</p>
                </li>
-                <li>
+                <li onclick="pot1()">
                   <span class="name">potential energy</span>
                   <p>if input vale is m & h & p<br>a = mass, h = height , p = potential energy<br> (in the place of unknown use ? )<br> output is unknow value</p>
                </li>
-                <li>
+                <li onclick="timep()">
                   <span class="name">Time period</span>
                   <p>if input vale is l & t <br>l = length, t = time (in the place of unknown use ? ) <br> output is the unknown vale</p>
                </li>
@@ -363,9 +362,9 @@
                   <span class="name">Electrostatic force</span>
                   <p>if input vale is q<sub>1</sub> & q<sub>2</sub> & r & F<br>q<sub>1</sub> = charge 1, q<sub>2</sub> = charge 2, r = distance between them, F = force btw them (in the place of unknown use ? ) <br> output is the unknown vale</p>
                </li>
-               <li>
+               <li onclick="tempc()">
                   <span class="name">Temperature convertor</span>
-                  <p>if input vale is T &  a(if a = ? if  T is in celsius, a = ?? if T is in farenheit, a = ??? if T is in kelvin) <br>(in placeo f unknown enter *)<br>output is the temperature in other degress</p>
+                  <p>if input vale is T &  a <br>(write a = ? if  T is in celsius, a = ?? if T is in farenheit, a = ??? if T is in kelvin) <br>(in placeo f unknown enter *)<br>output is the value of temperature in other degress</p>
                </li>
                <li>
                   <span class="name">Resistors</span>
@@ -392,7 +391,7 @@
                     <button class="button2" onclick="del1()">C</button>
                     <button class="button1" onclick="back1()"><i class="fas fa-long-arrow-alt-left"></i></button>
                     <button class="button1" onclick="insert1(' & ')">&</button>
-                    <button class="button1" onclick="close1()"><i class="fas fa-window-close"></i></button><button class="button1" onclick="insert1(' ? ')">?</button>
+                    <button class="button1" onclick="close1()"><i class="fas fa-window-close"></i></button><button class="button1" onclick="insert1('?')">?</button>
                 </li>
                    <li>
                     <button class="button1" onclick="insert1('7')">7</button>
@@ -1138,6 +1137,209 @@ var bd = document.getElementById("board")
                 }
         }
         
+        function kine(){
+            var pp = r.value;
+            var x = 0;
+            var ind = [];
+            for (var i = 0;i<pp.length;i++){
+                if (pp[i] == '&'){
+                    x += 1;
+                    ind.push(i);
+                }
+            }
+            if (x == 2){
+                var o1 = pp.substring(0,ind[0]);
+                var o2 = pp.substring(ind[0]+1,ind[1]-1);
+                var o3 = pp.substring(ind[1] + 1,pp.length);
+                var li = [o1,o2,o3];
+                var y = 0;
+                var xx = 0;
+                for (var j = 0;j<li.length;j++){
+                    if (li[j].includes('?')){
+                        y += 1;
+                        xx = j;
+                    }
+                }
+                if (y == 1){
+                    var p1;
+                    var one,two,three;
+                    if (xx == 2){
+                        var m = JSON.parse(eval(o1));
+                        var v = JSON.parse(eval(o2));
+                        p1 = 0.5 * m * v * v;
+                        one = m;
+                        two = v;
+                        three = p1;
+                    }else if (xx == 1){
+                        var m = JSON.parse(eval(o1));
+                        var k = JSON.parse(eval(o3));
+                        p1 = Math.sqrt(2 * k / m);
+                        one = m;
+                        two = p1;
+                        three = k;
+                    }else if (xx == 0){
+                        var v = JSON.parse(eval(o2));
+                        var k = JSON.parse(eval(o3));
+                        p1 = (2 * k )/( v * v);
+                        one = p1;
+                        two = v;
+                        three = k;
+                    }
+                    r.value = p1;
+                    bd.innerHTML = "<br> mass : " + one + "<br> velocity : " +two + "<br> kinetic enegy : " + three;
+                    close1();
+                }else{
+                    alert('we should have only one unknown ? ');
+                }
+                close_all();
+            }else{
+                alert('please use the given format m & v & k to get unknown values');
+            }
+        }
+        
+        function pot1(){
+            var pp = r.value;
+            var x = 0;
+            var ind = [];
+            for (var i = 0;i<pp.length;i++){
+                if (pp[i] == '&'){
+                    x += 1;
+                    ind.push(i);
+                }
+            }
+            if (x == 2){
+                var o1 = pp.substring(0,ind[0]);
+                var o2 = pp.substring(ind[0]+1,ind[1]-1);
+                var o3 = pp.substring(ind[1] + 1,pp.length);
+                var li = [o1,o2,o3];
+                var y = 0;
+                var xx = 0;
+                for (var j = 0;j<li.length;j++){
+                    if (li[j].includes('?')){
+                        y += 1;
+                        xx = j;
+                    }
+                }
+                if (y == 1){
+                    var p1;
+                    if (xx == 2){
+                        var m = JSON.parse(eval(o1));
+                        var h = JSON.parse(eval(o2));
+                        bd.innerHTML = "if g = 9.81 ms<sup>-2</sup> : ";
+            bd.innerHTML += "<br> mass : " + m + "<br> height : " +h + "<br> potential enegy : " + m * 9.81 * h;bd.innerHTML += "<br><br>if g = 10 ms<sup>-2</sup> : ";
+            bd.innerHTML += "<br> mass : " + m + "<br> height : " +h + "<br> potential enegy : " + m * 10 * h;
+                    
+                    }else if (xx == 1){
+                        var m = JSON.parse(eval(o1));
+                        var p = JSON.parse(eval(o3));
+        bd.innerHTML = "if g = 9.81 ms<sup>-2</sup> : ";
+     bd.innerHTML += "<br> mass : " + m + "<br> height : " + p / (m * 9.81) + "<br> potential enegy : " + p;
+    bd.innerHTML += "<br><br>if g = 10 ms<sup>-2</sup> : ";
+    bd.innerHTML += "<br> mass : " + m + "<br> height : " +p / (m * 10) + "<br> potential enegy : " + p;
+                    }else if (xx == 0){
+                        var h = JSON.parse(eval(o2));
+                        var p = JSON.parse(eval(o3));
+                        bd.innerHTML = "if g = 9.81 ms<sup>-2</sup> : ";
+    bd.innerHTML += "<br> mass : " + p / (h * 9.81) + "<br> height : " +h + "<br> potential enegy : " + p ;
+     bd.innerHTML += "<br><br>if g = 10 ms<sup>-2</sup> : ";
+    bd.innerHTML += "<br> mass : " + p / (h * 10) + "<br> height : " +h + "<br> potential enegy : " + p;
+                    }
+                    r.value = p1;
+                    close1();
+                }else{
+                    alert('we should have only one unknown ? ');
+                }
+                close_all();
+            }else{
+                alert('please use the given format m & h & p to get unknown values');
+            }
+        }
+        
+    function timep(){
+        var pp = r.value;
+            var x = 0;
+            var ind = [];
+            for (var i = 0;i<pp.length;i++){
+                if (pp[i] == '&'){
+                    x += 1;
+                    ind.push(i);
+                }
+            }
+            if (x == 1){
+                var o1 = pp.substring(0,ind[0]);
+                var o2 = pp.substring(ind[0]+1,pp.length);
+                var li = [o1,o2];
+                var y = 0;
+                var xx = 0;
+                for (var j = 0;j<li.length;j++){
+                    if (li[j].includes('?')){
+                        y += 1;
+                        xx = j;
+                    }
+                }
+                if (y == 1){
+                    var p1;
+                    if (xx == 1){
+                        var l = JSON.parse(eval(o1));
+                        var t1 = Math.PI * 2 * Math.sqrt(l / 9.81);
+                        var t2 = Math.PI * 2 * Math.sqrt(l / 10);
+                        bd.innerHTML = "if g = 9.81 ms<sup>-2</sup> : ";
+            bd.innerHTML += "<br> length : " + l + "<br> time : " + t1.toFixed(4);
+            bd.innerHTML += "<br><br>if g = 10 ms<sup>-2</sup> : ";
+            bd.innerHTML += "<br> length : " + l + "<br> time : " +t2.toFixed(4);
+                    
+                    }else if (xx == 0){
+                        var t = JSON.parse(eval(o2));
+                        var l1 = (t * t) / (4 * Math.PI * Math.PI);
+                        
+        bd.innerHTML = "if g = 9.81 ms<sup>-2</sup> : ";
+     bd.innerHTML += "<br> length : " + (l1 * 9.81).toFixed(4) + "<br> time : " + t;
+    bd.innerHTML += "<br><br>if g = 10 ms<sup>-2</sup> : ";
+    bd.innerHTML += "<br> length : " + (l1 * 10).toFixed(4) + "<br> time : " + t;
+                    }
+                    r.value = "";
+                    close1();
+                }else{
+                    alert('we should have one unknown ? ');
+                }
+                close_all();
+            }else{
+                alert('please use the given format l & t to get unknown values');
+            }
+    }
+        
+        function tempc(){
+                var pp = r.value;
+                if (pp.includes('&')){
+                    var and1 = pp.indexOf('&');
+                    var x = JSON.parse(eval(pp.substr(0,and1)));
+                    var y = pp.substr(and1+1,pp.length);
+                    if (y.includes('???')){
+                        var t = x;
+                       var  kc = t + 273.15;
+                      var fc = (t * 1.8) + 32;
+       bd.innerHTML  = "temperature = "+ t +" celsius , <br> In farenheit = "+ fc.toFixed(3) +"<br> In kelvin = "+kc.toFixed(3);                  
+                    }else if(y.includes('??')){
+                        var t = x;
+                         var kf = 273.15 + (((t - 32) * 10) / 18);
+                         var  cf = (10 * (t - 32)) / 18;
+      bd.innerHTML  = "temperature = "+ t +" farenheit , <br> In celsius = "+ cf.toFixed(3) +"<br> In kelvin = "+kf.toFixed(3);                   
+                    }else if (yy.includes('?')){
+                        var t = x;
+                        var ck = t - 273.15;
+                        var fk = 32 + ((t * 1.8) - (273.15 * 1.8));
+        bd.innerHTML  = "temperature = "+ t +" kelvin , <br> In celsius = "+ ck.toFixed(3) +"<br> In farenheit = "+fk.toFixed(3);
+                    }else{
+                        alert('we should have one a symbol of  ? after & see the format once');
+                    }
+                    r.value = "";
+                    close1();
+                    close_all();
+                }else{
+                    alert('please use the given format T & a values in other degrees');
+                }
+        }
+        
    </script>
  
 </body>
@@ -1145,4 +1347,33 @@ var bd = document.getElementById("board")
 <!--
 
 20,045
+
+
+
+
+def temperature():
+    print()
+    print("----- Temperature ------")
+    print()
+    print(
+        "enter c if your data is in celsius \n enter f if your data is in fahrenheit  \n enter k if your data is in kelvin")
+    print()
+    s = input("enter number :")
+    c = int(input("enter temperature : "))
+    if s == "c":
+        kc = c + 273
+        fc = (c * 1.8) + 32
+        print(str(c) + " " + "celsius is same as " + " \n " + str(kc) + " " + "kelvin" + " ,,, " + str(
+            fc) + " " + "fahrenheit")
+    if s == "f":
+        kf = 273 + (((c - 32) * 10) / 18)
+        cf = (10 * (c - 32)) / 18
+        print(str(c) + " " + "celsius is same as " + " \n " + str(kf) + " " + "kelvin" + " ,,, " + str(
+            cf) + " " + "celsius")
+    if s == "k":
+        ck = c - 273
+        fk = 32 + ((c * 1.8) - (273 * 1.8))
+        print(str(c) + " " + "celsius is same as " + " \n " + str(ck) + " " + "celsius" + " ,,, " + str(
+            fk) + " " + "fahrenheit")
+
 -->
