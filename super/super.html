@@ -1318,19 +1318,19 @@ var bd = document.getElementById("board")
                     var y = pp.substr(and1+1,pp.length);
                     if (y.includes('???')){
                         var t = x;
-                       var  kc = t + 273.15;
-                      var fc = (t * 1.8) + 32;
-       bd.innerHTML  = "temperature = "+ t +" celsius , <br> In farenheit = "+ fc.toFixed(3) +"<br> In kelvin = "+kc.toFixed(3);                  
+                       var  kc = t - 273.15;
+                        var fc = 32 + ((t * 1.8) - (273.15 * 1.8));
+       bd.innerHTML  = "temperature = "+ t +" kelvin , <br> In farenheit = "+ fc.toFixed(3) +"<br> In celsius = "+kc.toFixed(3);                  
                     }else if(y.includes('??')){
                         var t = x;
                          var kf = 273.15 + (((t - 32) * 10) / 18);
                          var  cf = (10 * (t - 32)) / 18;
       bd.innerHTML  = "temperature = "+ t +" farenheit , <br> In celsius = "+ cf.toFixed(3) +"<br> In kelvin = "+kf.toFixed(3);                   
-                    }else if (yy.includes('?')){
+                    }else if (y.includes('?')){
                         var t = x;
-                        var ck = t - 273.15;
-                        var fk = 32 + ((t * 1.8) - (273.15 * 1.8));
-        bd.innerHTML  = "temperature = "+ t +" kelvin , <br> In celsius = "+ ck.toFixed(3) +"<br> In farenheit = "+fk.toFixed(3);
+                        var ck = t + 273.15;
+                        var fk = (t * 1.8) + 32;
+        bd.innerHTML  = "temperature = "+ t +" celsius , <br> In kelvin = "+ ck.toFixed(3) +"<br> In farenheit = "+fk.toFixed(3);
                     }else{
                         alert('we should have one a symbol of  ? after & see the format once');
                     }
