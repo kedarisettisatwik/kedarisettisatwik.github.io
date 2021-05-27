@@ -962,8 +962,8 @@ var bd = document.getElementById("board")
                 var c = JSON.parse(eval(o3));
                 var d = Math.pow(b,2) - 4*a*c;
                 if (d >= 0){
-                    bd.innerHTML = "X<sub>1</sub> = " + (-1 * b + Math.sqrt(d)) / 2 * a;
-                    bd.innerHTML += "<br>X<sub>2</sub> = " + (-1 * b - Math.sqrt(d)) / 2 * a;
+                    bd.innerHTML = "X<sub>1</sub> = " + (-1 * b + Math.sqrt(d)) /(2*a);
+                    bd.innerHTML += "<br>X<sub>2</sub> = " + (-1 * b - Math.sqrt(d)) / (2 * a);
                     bd.innerHTML += "<br>descriminent = " + d;
                 }else{
                     bd.innerHTML = "the equation "+a+"X<sup>2</sup> + "+ b +"X + "+ c +" = 0 has no real solution";
