@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <!-- google fonts -->
+    <title>font-awesome</title>
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body{
+            display: flex;
+            flex-direction:row;
+            justify-content:center;
+            align-items: center;
+            flex-wrap: wrap;
+            width:100vw;
+            overflow-x: hidden;
+            height: 100vh;
+            background-image:linear-gradient(45deg, beige,bisque);
+        }
+        body::before,body::after{
+            content:'';
+            position:absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100vh;
+        }body::after{
+            clip-path:circle(20% at 90% 90%);
+            background-image: linear-gradient(45deg,red,pink);
+        }body::before{
+            clip-path:circle(20% at 10% 10%);
+            background-image: linear-gradient(45deg,hotpink,blue);
+        }
+        .main{
+            width:100vw;
+            height:100vh;
+            overflow-y: auto;
+            z-index:1;
+            backdrop-filter:blur(3px);
+            display: flex;
+            flex-direction:row;
+            justify-content:center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .product{
+            position:relative;
+            width:400px;
+            height:400px;
+            background-color:rgb(0,0,0,0.5);
+            border-radius:10px;
+            margin:14px;
+            box-shadow:6px 4px 10px rgb(0,0,0,0.4);
+            cursor:pointer;
+            border-top:2px solid rgb(255,255,255,0.4);
+            border-left:2px solid rgb(255,255,255,0.4);
+            overflow: hidden;
+        }
+        img,.bg{
+            position: absolute;
+            top:0;
+            left:0;
+            height:100%;
+            min-width:100%;
+            transition:0.5s;
+        }
+        .bg{
+            background-image:linear-gradient(30deg,rgb(0,0,0,0.5),rgb(0,0,0,0.7));
+            display: flex;
+            justify-content:flex-start;
+            align-items: center;
+            flex-direction: column;
+           opacity:0;
+            z-index:2;
+            width:100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        img{
+            transform-origin: top right;
+            clip-path: circle(155% at 0 0);
+            z-index:1;
+        }.product:hover .bg{
+            opacity:1;
+        }
+        
+        .bg h1{
+            margin-top:30px;
+            font-size:30px;
+            letter-spacing:1px;
+            text-transform:uppercase;
+            color:beige;
+        }.bg h2{
+            font-size:25px;
+            text-transform:uppercase;
+            color:white;
+            letter-spacing:1px;
+            margin-top:10px;
+            width:80%;
+        }
+        .bg p{
+            font-size:16px;
+            color:white;
+            width:100%;
+            margin-top:20px;
+            padding:10px 20px;
+        }
+        .bg button{
+            font-size:17px;
+            border-radius:10px;
+            border:none;
+            outline:none;
+            background-color:white;
+            margin-top:20px;
+            cursor:pointer;
+            width:80%;
+            padding:10px 20px;
+            transition:0.4s;
+            font-weight:bold;
+            letter-spacing:1px;
+        }
+        .bg button:hover{
+            background-color:beige;
+        }
+        @media (max-width:400px){
+            .product{
+                width:90vw;
+                height:90vw;
+            }
+            .bg h1{
+                font-size:18px;
+            }.bg h2{
+             font-size:18px;
+            }
+            .bg p{
+            font-size:15px;
+            }
+            .bg button{
+            font-size:16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="main">
+        <div class="product">
+           <div class="bg">
+           <h1> SUN GLASSES</h1>
+           <h2>800 /-</h2>
+           <button>Add to Cart</button>
+           <p> Sunset is the time of day when our sky meets the outer space solar winds. There are blue, pink, and purple swirls, spinning and twisting, like clouds of balloons caught in a whirlwind. The sun moves slowly to hide behind the line of horizon, while the moon races to take its place in prominence atop the night sky. People slow to a crawl, entranced, fully forgetting the deeds that must still be done. There is a coolness, a calmness, when the sun does set.<br><br>
+            On July 16, 1969, the Apollo 11 spacecraft launched from the Kennedy Space Center in Florida. Its mission was to go where no human being had gone before—the moon! The crew consisted of Neil Armstrong, Michael Collins, and Buzz Aldrin. The spacecraft landed on the moon in the Sea of Tranquility, a basaltic flood plain, on July 20, 1969. The moonwalk took place the following day. On July 21, 1969, at precisely 10:56 EDT, Commander Neil Armstrong emerged from the Lunar Module and took his famous first step onto the moon’s surface. He declared, “That’s one small step for man, one giant leap for mankind.” It was a monumental moment in human history!<br><br>
+            The Blue Whales just played their first baseball game of the new season; I believe there is much to be excited about. Although they lost, it was against an excellent team that had won the championship last year. The Blue Whales fell behind early but showed excellent teamwork and came back to tie the game. The team had 15 hits and scored 8 runs. That’s excellent! Unfortunately, they had 5 fielding errors, which kept the other team in the lead the entire game. The game ended with the umpire making a bad call, and if the call had gone the other way, the Blue Whales might have actually won the game. It wasn’t a victory, but I say the Blue Whales look like they have a shot at the championship, especially if they continue to improve.</p>
+           </div>
+           <img src="https://cdn11.bigcommerce.com/s-pkla4xn3/images/stencil/1280x1280/products/24919/227798/XojoX-Polarized-Sunglasses-Men-Brand-High-Quality-Classic-Driving-Designer-Sun-Glasses-Polarised-Male-Retro-glasses__35405.1549274440.jpg?c=2?imbypass=on">
+        </div>
+        <div class="product">
+           <div class="bg">
+           <h1>shoes</h1>
+           <h2>1200 /-</h2>
+           <button>Add to Cart</button>
+           <p> Sunset is the time of day when our sky meets the outer space solar winds. There are blue, pink, and purple swirls, spinning and twisting, like clouds of balloons caught in a whirlwind. The sun moves slowly to hide behind the line of horizon, while the moon races to take its place in prominence atop the night sky. People slow to a crawl, entranced, fully forgetting the deeds that must still be done. There is a coolness, a calmness, when the sun does set.<br><br>
+            On July 16, 1969, the Apollo 11 spacecraft launched from the Kennedy Space Center in Florida. Its mission was to go where no human being had gone before—the moon! The crew consisted of Neil Armstrong, Michael Collins, and Buzz Aldrin. The spacecraft landed on the moon in the Sea of Tranquility, a basaltic flood plain, on July 20, 1969. The moonwalk took place the following day. On July 21, 1969, at precisely 10:56 EDT, Commander Neil Armstrong emerged from the Lunar Module and took his famous first step onto the moon’s surface. He declared, “That’s one small step for man, one giant leap for mankind.” It was a monumental moment in human history!<br><br>
+            The Blue Whales just played their first baseball game of the new season; I believe there is much to be excited about. Although they lost, it was against an excellent team that had won the championship last year. The Blue Whales fell behind early but showed excellent teamwork and came back to tie the game. The team had 15 hits and scored 8 runs. That’s excellent! Unfortunately, they had 5 fielding errors, which kept the other team in the lead the entire game. The game ended with the umpire making a bad call, and if the call had gone the other way, the Blue Whales might have actually won the game. It wasn’t a victory, but I say the Blue Whales look like they have a shot at the championship, especially if they continue to improve.</p>
+           </div>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtuC18dCJhyLybEvF4AVOQeVHEmkYI3HDJuyDzm5d4Et2GcqPNaHC-1v1qMYsQ7yWoGvk&usqp=CAU">
+        </div>
+        <div class="product">
+           <div class="bg">
+           <h1>watch</h1>
+           <h2>2000 /-</h2>
+           <button>Add to Cart</button>
+           <p> Sunset is the time of day when our sky meets the outer space solar winds. There are blue, pink, and purple swirls, spinning and twisting, like clouds of balloons caught in a whirlwind. The sun moves slowly to hide behind the line of horizon, while the moon races to take its place in prominence atop the night sky. People slow to a crawl, entranced, fully forgetting the deeds that must still be done. There is a coolness, a calmness, when the sun does set.<br><br>
+            On July 16, 1969, the Apollo 11 spacecraft launched from the Kennedy Space Center in Florida. Its mission was to go where no human being had gone before—the moon! The crew consisted of Neil Armstrong, Michael Collins, and Buzz Aldrin. The spacecraft landed on the moon in the Sea of Tranquility, a basaltic flood plain, on July 20, 1969. The moonwalk took place the following day. On July 21, 1969, at precisely 10:56 EDT, Commander Neil Armstrong emerged from the Lunar Module and took his famous first step onto the moon’s surface. He declared, “That’s one small step for man, one giant leap for mankind.” It was a monumental moment in human history!<br><br>
+            The Blue Whales just played their first baseball game of the new season; I believe there is much to be excited about. Although they lost, it was against an excellent team that had won the championship last year. The Blue Whales fell behind early but showed excellent teamwork and came back to tie the game. The team had 15 hits and scored 8 runs. That’s excellent! Unfortunately, they had 5 fielding errors, which kept the other team in the lead the entire game. The game ended with the umpire making a bad call, and if the call had gone the other way, the Blue Whales might have actually won the game. It wasn’t a victory, but I say the Blue Whales look like they have a shot at the championship, especially if they continue to improve.</p>
+           </div>
+            <img src="https://www.coverwatches.com/assets/Vorseite/uhr-cover.png">
+        </div>
+    </section>
+    
+    
+    <script type="text/javascript" src="vanilla-tilt.js"></script>
+    <script>
+VanillaTilt.init(document.querySelectorAll(".product"), {
+		max: 15,
+		speed:300,
+	});
+	
+	//It also supports NodeList
+	VanillaTilt.init(document.querySelectorAll(".your-element"));
+   </script>
+ 
+</body>
+</html>
