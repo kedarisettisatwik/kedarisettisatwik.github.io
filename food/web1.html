@@ -238,6 +238,9 @@
             0%{transform:rotateZ(0deg)}
             100%{transform:rotateZ(360deg)}
         }
+        #contact{
+            background-color: cadetblue;
+        }
         
         
         @media (max-width:850px){
@@ -292,7 +295,7 @@
         <li onclick="go('more')"><i class="fas fa-info-circle"></i>more</li>
     </ul>
     
-    <section class="main" id="home" style="background-image: url(images/8.jpeg)">
+    <section class="main" id="home" style="background-image: url(images/8.jpeg);background-attachment: fixed">
         <div class="box">
         <h1>
         Food!e 😋
@@ -318,7 +321,11 @@
 
     <section class="main" id="products"> </section>
      <section class="main" id="cart"><label class="header">cart</label></section>
-     <section class="main" id="contact"><label class="header">contact</label></section>
+     
+     <section class="main" id="contact">
+       
+     </section>
+     
     <section class="main" id="profile"><label class="header">profile</label></section>
     <section class="main" id="more"><label class="header">More</label></section>
     
@@ -327,21 +334,15 @@
     
     <script>
         
-        document.addEventListener('DOMContentLoaded', () => {
-            
-            var q = window.matchMedia("(min-width:500px)");
-            if (q.matches){
                 
-                VanillaTilt.init(document.querySelectorAll(".product"), {
+     VanillaTilt.init(document.querySelectorAll(".product"), {
 		max: 15,
 		speed:300,
 	});
 	
 	//It also supports NodeList
 	VanillaTilt.init(document.querySelectorAll(".box"));
-                
-            }
-        })
+    
 
    </script>
    
