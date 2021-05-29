@@ -26,6 +26,71 @@
             width:100vw;
             overflow-x: hidden;
         }
+        .main33{
+            width:100vw;
+            height:100vh;
+            position:fixed;
+            top:0;
+            left:0;
+            background-color: white;
+            z-index:10000;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .main3{
+            position:relative;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            transform:rotateZ(-45deg);
+            transform-origin:center;
+        }
+        .main3 span{
+            position:relative;
+            font-size:35px;
+            font-weight:500;
+            letter-spacing:10px;
+            height:60px;
+            text-align:center;
+            border-top:3px solid black;
+            padding:0 30px;
+        }
+        .main3 .cont{
+            position:absolute;
+            top:-18px;
+            left:0%;
+            width:100%;
+            height:15px;
+            -webkit-animation:move1 2.5s ease-in-out infinite;
+        }
+        .main3 #circle1{
+            width:15px;
+            height:15px;
+            background-color:white;
+            position:relative;
+            border:3px solid black;
+            top:0;
+            left:60%;
+            transform:translateX(-40%);
+            -webkit-animation:pop 2.5s ease-in-out infinite;
+            box-shadow:0 0 2px rgb(0,0,0,0.4);
+            transform-origin:bottom right;
+        }
+        @keyframes move1{
+            0%{transform: translateX(0)}
+            100%{transform: translateX(-200px)}
+        }
+        @keyframes pop{
+            0%{transform:rotateZ(0deg) translateX(-50%);}
+            60%{transform:rotateZ(90deg);}
+            65%{transform:rotateZ(85deg);}
+            70%{transform:rotateZ(90deg);}
+            75%{transform:rotateZ(87.5deg);}
+            80%{transform:rotateZ(90deg);}
+            100%{transform:rotateZ(90deg) translateY(-200px);}
+        }
+        
         .main{
             position:relative;
             display: flex;
@@ -42,18 +107,18 @@
             content:'';
             position:absolute;
             left:0;
-            bottom:0px;
+            bottom:-20px;
             width:100%;
             height:40px;
             background-image:linear-gradient(rgb(0,0,0,0.5),rgb(0,0,0,0.7));
-            filter:blur(25px);
+            filter:blur(20px);
         }
         .main2{
             display:none;
             top:30px;
             left:30px;
             position:fixed;
-            z-index:10000;
+            z-index:100;
         }
         .container1{
             position:relative;
@@ -130,7 +195,7 @@
             background-image:linear-gradient(30deg,rgb(255,255,255,0.6),rgb(255,255,255,0.8));
             list-style:none;
             box-shadow:0 0 10px rgb(0,0,0,0.5);
-            z-index:1000;
+            z-index:100;
         }
         .nav li{
             font-size:18px;
@@ -347,6 +412,17 @@
             letter-spacing:1px;
             margin-bottom:20px;
         }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         .swiper-container {
       width: 100%;
             padding-bottom:50px;
@@ -378,6 +454,7 @@
             margin-top:20px;
             font-size:16px;
         }
+        
         @media (max-width:850px){
             .nav{
                 display:none;
@@ -414,6 +491,13 @@
 
 <body>
    
+    <section class="main33" id="rem">
+        <section class="main3">
+    <span id="in">LOADING<div class="cont"><div id="circle1"></div></div></span>
+        </section>
+    </section>
+    
+    
     <section class="main2">
             <div class="container1">
                 <ul class="container2" id="container2">
@@ -438,7 +522,7 @@
     </ul>
     
     <section class="main" id="home" style="background-image: url(images/8.jpeg);background-attachment: fixed">
-        <div class="box">
+        <div class="box" data-tilt data-tilt-scale="1.15">>
         <h1>
         Food!e 😋
         </h1>
@@ -461,9 +545,15 @@
         </div>
     </section>
 
-    <section class="main" id="products"> </section>
+    <section class="main" id="products">
     
-     <section class="main" id="cart"><label class="header">cart</label></section>
+    
+    </section>
+    
+     <section class="main" id="cart">
+     
+     
+     </section>
      
      <section class="main" id="contact">
                <form>
@@ -491,7 +581,9 @@
      </section>
      
      
-    <section class="main" id="profile"><label class="header">profile</label></section>
+    <section class="main" id="profile">
+        
+    </section>
     
     
     <section class="main" id="more">
@@ -499,6 +591,7 @@
     <div class="swiper-wrapper">
      <div class="swiper-slide">
          <h1 style="font-size:1.3em;letter-spacing:2px">Review's..</h1>
+         <span>swipe to see more</span>
          <video src="images/Star%20-%2031731.mp4" autoplay="" muted style="width:100%;height:100%;object-fit:scale-down"></video>
       </div>
       <div class="swiper-slide">
@@ -533,12 +626,12 @@
       slidesPerView: 'auto',
       coverflowEffect: {
         rotate: 0,
-        stretch: 0,
-        depth: 100,
-        modifier: 2,
+        stretch:0,
+        depth:100,
+        modifier:2,
         slideShadows: false,
       },
-      loop:true,
+      loop:false,
     });
   </script>
    
@@ -575,7 +668,10 @@
              c.classList.remove("opencircle");
        }
        
-       
+       setTimeout(function(){
+           var e = document.getElementById("rem");
+           document.body.removeChild(e);
+       },2000);
    </script>
    
 </body>
