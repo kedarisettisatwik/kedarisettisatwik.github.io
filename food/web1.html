@@ -412,17 +412,192 @@
             letter-spacing:1px;
             margin-bottom:20px;
         }
+        #profile{
+            background-color: beige;
+            flex-direction:row;
+            padding-bottom:50px;
+        }
+        .list{
+            margin-top:100px;
+            background-color: white;
+            box-shadow:0 0 20px rgb(0,0,0,0.4);
+            padding:20px;
+            border-radius:10px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            width:400px;
+            max-height:80vh;
+            overflow-y:scroll;
+            flex-direction: column;
+        }
+        .pic{
+            padding:20px;
+            border-radius:10px;
+            margin:20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .pic img{
+            margin-right:20px;
+        }
+        .pic label{
+            margin-right:20px;
+            cursor:pointer;
+        }
+        .nn{
+            position:relative;
+            width:90%;
+            height:60px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+            margin:20px;
+            font-size:17px;
+        }
+        .nn input{
+            font-size:17px;
+            width:100%;
+            height:100%;
+            padding:10px 20px;
+            border:none;
+            outline:none;
+            background:transparent;
+            border-bottom:3px solid black;
+            letter-spacing:1px;
+            z-index:10;
+        }
+        .nn label{
+            position: absolute;
+            left:20px;
+            letter-spacing:1px;
+            font-size:15px;
+            transform:translate(0,-50%);
+            z-index:1;
+            top:-5px;
+        }
+        .nn span{
+            position: absolute;
+            left:0px;
+            top:-6px;
+            width:100%;
+            height:calc(100% + 30px);
+            background-color:transparent;
+            z-index:20;
+            transition:0.4s;
+        }
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
+        .form_list{
+            margin-top:100px;
+            margin-left:10px;
+            width:400px;
+            height:80vh;
+            background-color:white;
+            box-shadow:0 0 20px rgb(0,0,0,0.5);
+            overflow: hidden;
+        }
+        #container{
+            min-width:100%;
+            min-height:100%;
+            position:relative;
+            background-color:white;
+            transform-origin:left bottom;
+            transition:1s;
+        }
+        .signin,.signup{
+            width:100%;
+            height:100%;
+            position:absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .signup{
+            transform:rotateZ(180deg);
+            transform-origin:bottom left;
+        }
+        .signin h1,.signup h1{
+            margin-top:20px;
+            width:100%;
+            font-size:20px;
+            padding:10px 0 10px 30px;
+            letter-spacing:1px;
+            text-transform:uppercase;
+        }
+        .signin p,.signup p{
+            margin-top:5px;
+            width:95%;
+            font-size:16px;
+            text-align: center;
+            opacity:0.6;
+        }
+        .signin .form,.signup .form{
+            margin-top:10px;
+            width:95%;
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .signin .form input,.signup .form input{
+            margin:7px 0;
+            width:100%;
+            padding:10px 0 10px 40px;
+            font-size:16px;
+            outline:none;
+            border:2px solid rgb(0,0,0,0.4);
+            border-radius:7px;
+            transition:0.5s;
+        }
+        .signin .form input::placeholder,.signup .form input::placeholder{
+            color:black;
+        }
+        .signin .form input:focus,.signup .form input:focus{
+            border:3px solid skyblue;
+        }
+        .signin .form button,.signup .form button{
+            padding:10px 20px;
+            margin:10px 0;
+            border-radius:7px;
+            background-color:lightskyblue;
+            border:none;
+            outline:none;
+            font-size:17px;
+            letter-spacing:1px;
+            box-shadow:10px 5px 10px rgb(0, 51, 153,0.5);
+            font-weight:bold;
+            cursor:pointer;
+            transition:0.5s;
+        }
+        .signin .form button i,.signup .form button i{
+            margin-left:4px;
+        }
+        .signin .form button:hover,.signup .form button:hover{
+            letter-spacing:2px;
+            box-shadow:0px 0px 10px rgb(0, 51, 153,0.5);
+        }
+        .signin a,.signup a{
+            bottom:20px;
+            position: absolute;
+            margin:10px;
+            font-size:16px;
+            color:skyblue;
+            font-weight:bold;
+            cursor:pointer;
+            letter-spacing:1px;
+        }
+        .signin span,.signup span{
+            margin-top:12px;
+            font-size:16px;
+            opacity:0;
+            transition:0.5s;
+        }
+        .one{
+            transform:rotateZ(180deg);
+        }
         .swiper-container {
       width: 100%;
             padding-bottom:50px;
@@ -473,6 +648,13 @@
             .swiper-slide{
                 width:calc(100vw - 50px);
             }
+            #profile{
+                flex-direction: column;
+            }
+            .list{
+                margin:20px;
+                width:95vw;
+            }
         }
         @media (max-width:600px){
             #home{
@@ -482,9 +664,14 @@
             .box{
                 margin-top:90px;
             }
-            #contact{
+            #contact,#profile{
                 flex-direction: column;
             }
+            .form_list{
+                width:95vw;
+                margin:10px;
+            }
+            
         }
     </style>
 </head>
@@ -582,13 +769,78 @@
      
      
     <section class="main" id="profile">
+        <div class="list">
+            <div class="pic">
+                <img src="images/user.jpeg" style="width:60px;height:60px;border-radius:50%;cursor:pointer;border:1px solid black" onclick="pimg('p_img')" id="p_img">
+                <label onclick="edit_mode()" id="switch"><i class="far fa-edit"></i> Edit</label>
+            </div>
+            <div class="nn">
+            <span class="remove_edit"></span>
+            <label>First name </label>
+            <input type="text" value="Hello">
+            </div>
+            <div class="nn">
+            <span class="remove_edit"></span>
+            <label>Last name </label>
+            <input type="text" value="Hello">
+            </div>
+            <div class="nn">
+            <span class="remove_edit"></span>
+            <label>E-mail </label>
+            <input type="text" value="Hello">
+            </div>
+            <div class="nn">
+            <span class="remove_edit"></span>
+            <label>Phone number </label>
+            <input type="number" value="987654321">
+            </div>
+            <div class="nn">
+            <span class="remove_edit"></span>
+            <label>Address </label>
+            <input type="text" value="1-2-3; Near Century park; gandhi nagar; mumbai">
+            </div>
+            <div class="nn">
+            <span class="remove_edit"></span>
+            <label>Password</label>
+            <input type="password" value="password">
+            </div>
+        </div>
+        
+        <section class="form_list">
+            <div class="other" id="container">
+                <div id="signin" class="signin">
+                    <h1>Sign in</h1>
+                    <p>sign in using e-mail & password</p>
+                    <div class="form">
+                        <input type="email" placeholder="****@gmail.com" id="email1">
+                        <input type="password" placeholder="password" id="password1">
+            <button onclick="siin('email1','password1')">Sign in <i class="fas fa-long-arrow-alt-right"></i></button>
+                    </div>
+                    <span id="error1">error</span>
+                    <a onclick="rot(1)">Don't have account ?</a>
+                </div>
+                <div id="signup" class="signup">
+                    <h1>Sign up</h1>
+                    <p>sign up with us </p>
+                    <div class="form">
+                        <input type="text" placeholder="your name" id="name1">
+                        <input type="email" placeholder="**@gmail.com" id="email2">
+                        <input type="password" placeholder="set a password" id="pass2">
+                        <input type="text" placeholder="confirm password" id="repass2">
+        <button onclick="siup('name1','email2','pass2','repass2')">Sign up <i class="fas fa-long-arrow-alt-right"></i></button>
+                    </div>
+                    <span id="error2">error</span>
+                    <a onclick="rot(2)">Already have account ?</a>
+                </div>
+            </div>
+        </section>
         
     </section>
     
     
     <section class="main" id="more">
          <div class="swiper-container">
-    <div class="swiper-wrapper">
+    <div class="swiper-wrapper" id="review_add">
      <div class="swiper-slide">
          <h1 style="font-size:1.3em;letter-spacing:2px">Review's..</h1>
          <span>swipe to see more</span>
@@ -613,7 +865,13 @@
     </div>
            </div>
     </section>
-    
+    <section style="width:100%;padding:50px;background-color:black">
+        <p style="font-size:17px;color: white;">Hi, Hello i am satwik.<br>I made this website using HTML + JS + CSS + Swiper.js + Vanilla.tilt. <br>this website works perfertly on any database but generally my own sample databasae is connected<br><br>support me by following in <br><br> 
+    <a href="https://www.instagram.com/p/CLMt8zzF4SdQagQQeiqo40zKpOkGtdiH-5fMlY0/?igshid=1ssat0zj5iic5" target="_blank" style="font-size:28px;margin-right:10px;color:white"><i class="fab fa-instagram"></i></a>
+    <a href="https://www.facebook.com/people/Satwik-Kedaresetti/100008718079201/" target="_blank" style="font-size:28px;margin-right:10px;;color:white"><i class="fab fa-facebook"></i></a>
+    <a href="https://www.youtube.com/channel/UCpLOopnR9TX9b1fjcDpapsw" target="_blank" style="font-size:28px;margin-right:10px;color:white"><i class="fab fa-youtube"></i></a>
+    </p>
+    </section>
     
     <script type="text/javascript" src="vanilla-tilt.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -651,6 +909,14 @@
    
    <script>
        
+       
+       
+       function review_write(){
+           var el = document.getElementById("review_add");
+                                            
+       }
+       
+       
         function toog(){
  var li = document.getElementById("container2");
             li.classList.toggle("open");
@@ -668,10 +934,91 @@
              c.classList.remove("opencircle");
        }
        
+       var edit_mode1 = false;
+       
+       function edit_mode(){
+           var sw = document.getElementById("switch");
+           var ss = sw.innerHTML;
+           var ee = document.getElementsByClassName("remove_edit");
+           if (ss.includes('Edit')){
+                  for (var i = 0;i<ee.length;i++){
+                     var l = ee[i];
+                       l.style.zIndex = "0";
+                    }
+               sw.innerHTML = "<i class='far fa-save'></i> save";
+               edit_mode1 = true;
+               
+           }else{
+               for (var i = 0;i<ee.length;i++){
+                     var l = ee[i];
+                       l.style.zIndex = "20";
+                    }
+               sw.innerHTML = "<i class='far fa-edit'></i> Edit";
+               edit_mode1 = false;
+           }
+       }
+       
+       function pimg(a){
+           var aa = document.getElementById(a);
+           if (edit_mode1){
+               var p = prompt("enter url of pic : ");
+               if (p){
+           aa.src = p;
+               }
+           }
+       }
+       function rot(a){
+        var container = document.getElementById("container");
+        container.classList.toggle("one");
+    }
+    function errordis(a,b,c,d){
+        var aa = document.getElementById(a);
+        aa.innerHTML = b;
+        aa.style.color = c;
+        aa.style.opacity = d;
+        setTimeout(function(){
+            aa.style.opacity = "0";
+        },5000);
+    }
+    function siin(x,y){
+        var email = document.getElementById(x);
+        var pass = document.getElementById(y);
+        if (email.value == "" || pass.value == ""){
+            errordis("error1","All fields required","red","1");
+        }else{
+            var ee = email.value;
+            if (ee.indexOf("@gmail.com") < 0){
+              errordis("error1","Invalid e-mail use @gmail.com","red","1");    
+            }else{
+            errordis("error1","Succesfully signed in","green","1");
+            }
+        }
+    }
+    function siup(p,q,x,y){
+         var name = document.getElementById(p);
+        var email = document.getElementById(q);
+        var pass = document.getElementById(x);
+        var repass = document.getElementById(y);
+        var error = document.getElementById("error2");
+        if (email.value == "" || pass.value == "" || name.value == "" || repass.value == ""){
+            errordis("error2","All fields required","red","1");
+        }else{
+            if (pass.value == repass.value){
+                var ee = email.value;
+            if (ee.indexOf("@gmail.com") < 0){
+            errordis("error2","Invalid e-mail use @gmail.com","red","1"); 
+            }else{
+            errordis("error2","registration completed","green","1");
+               }
+            }else{
+            errordis("error2","password confirmation failed","red","1");
+            }
+        }
+    }
        setTimeout(function(){
            var e = document.getElementById("rem");
            document.body.removeChild(e);
-       },2000);
+       },2050);
    </script>
    
 </body>
