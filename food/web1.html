@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <!-- google fonts -->
     <title>fresh</title>
 
@@ -338,6 +337,44 @@
             letter-spacing:1px;
             font-size:18px;
         }
+        #more{
+            padding-top:100px;
+            background-color:azure;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+        #more h1{
+            letter-spacing:1px;
+            margin-bottom:20px;
+        }
+        .swiper-container {
+      width: 100%;
+            padding-bottom:50px;
+            padding-top:50px;
+     height:100%;
+          }
+
+       .swiper-slide {
+           padding:50px 20px;
+     box-shadow:0 0 20px rgb(0,0,0,0.5);
+    background-color:white;
+    display: flex;
+        flex-direction: column;
+        align-items: center;
+      width: 400px;
+        overflow-x: hidden;
+           overflow-y: auto;
+      height:500px;
+        filter:blur(2px);
+        transition:0.5s;
+        }
+        .swiper-slide-active{
+            filter:blur(0);
+        }
+        .swiper-slide p{
+            margin-top:50px;
+            font-size:17px;
+        }
         @media (max-width:850px){
             .nav{
                 display:none;
@@ -353,7 +390,6 @@
             #contact form,#contact .add{
             width:90vw;
             }
-            
         }
         @media (max-width:600px){
             #home{
@@ -366,15 +402,13 @@
             #contact{
                 flex-direction: column;
             }
-            
         }
     </style>
 </head>
 
 <body>
    
-    <section class="main1" id="home">
-        <section class="main2">
+    <section class="main2">
             <div class="container1">
                 <ul class="container2" id="container2">
         <li onclick="go('home')"><i class="fas fa-home"></i>home</li>
@@ -387,7 +421,6 @@
 <span class="circle" onclick="toog()" id="circle"><i class="fas fa-arrow-right"></i></span>
             </div>
         </section>
-    </section>
     
     <ul class="nav">
         <li onclick="go('home')"><i class="fas fa-home"></i>Home</li>
@@ -423,6 +456,7 @@
     </section>
 
     <section class="main" id="products"> </section>
+    
      <section class="main" id="cart"><label class="header">cart</label></section>
      
      <section class="main" id="contact">
@@ -437,7 +471,10 @@
                     <div class="in">
                        <textarea placeholder="Message"></textarea>
                    </div>
-                   <input type="submit" value="send">
+                   <div class="btn">
+                       <input type="submit" value="send">
+                       <input type="submit" value="Post As Review" style="margin-top:10px">
+                   </div>
                </form>
                <div class="add">
                       <span><i class="fas fa-user"></i> Mr. XYZ</span>
@@ -447,12 +484,55 @@
                </div>
      </section>
      
+     
     <section class="main" id="profile"><label class="header">profile</label></section>
-    <section class="main" id="more"><label class="header">More</label></section>
+    
+    
+    <section class="main" id="more">
+         <div class="swiper-container">
+    <div class="swiper-wrapper">
+     <div class="swiper-slide">
+         <h1 style="font-size:1.3em;letter-spacing:2px">Review's..</h1>
+         <video src="images/Star%20-%2031731.mp4" autoplay="" muted style="width:100%;height:100%;object-fit:scale-down"></video>
+      </div>
+      <div class="swiper-slide">
+          <h2> some_one</h2>
+          <p>Sunset is the time of day when our sky meets the outer space solar winds. There are blue, pink, and purple swirls, spinning and twisting, like clouds of balloons caught in a whirlwind. The sun moves slowly to hide behind the line of horizon, while the moon races to take its place in prominence atop the night sky. People slow to a crawl, entranced, fully forgetting the deeds that must still be done. There is a coolness, a calmness, when the sun does set.<br><br>Sunset is the time of day when our sky meets the outer space solar winds. There are blue, pink, and purple swirls, spinning and twisting, like clouds of balloons caught in a whirlwind. The sun moves slowly to hide behind the line of horizon, while the moon races to take its place in prominence atop the night sky. People slow to a crawl, entranced, fully forgetting the deeds that must still be done. There is a coolness, a calmness, when the sun does set.</p>
+      </div> 
+       <div class="swiper-slide">
+          <h2> some_one</h2>
+          <p>thank you</p>
+      </div>
+        <div class="swiper-slide">
+          <h2> some_one</h2>
+          <p>Sunset is the time of day when our sky meets the outer space solar winds. There are blue, pink, and purple swirls, spinning and twisting, like clouds of balloons caught in a whirlwind. The sun moves slowly to hide behind the line of horizon, while the moon races to take its place in prominence atop the night sky. People slow to a crawl, entranced, fully forgetting the deeds that must still be done. There is a coolness, a calmness, when the sun does set.</p>
+      </div> 
+       
+    </div>
+           </div>
+    </section>
     
     
     <script type="text/javascript" src="vanilla-tilt.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     
+    <script>
+    var swiper = new Swiper('.swiper-container', {
+      effect: 'coverflow',
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: 'auto',
+      coverflowEffect: {
+        rotate: 0,
+        stretch: 0,
+        depth: 100,
+        modifier: 2,
+        slideShadows: false,
+      },
+      loop:true,
+    });
+  </script>
+   
     <script>
         
                 
