@@ -239,10 +239,105 @@
             100%{transform:rotateZ(360deg)}
         }
         #contact{
+            padding-top:100px;
             background-color: cadetblue;
+            width:100vw;
         }
-        
-        
+        #contact form,#contact .add{
+            width:400px;
+            padding:20px;
+            margin:30px 0;
+            background-color:white;
+            border-radius:10px;
+            box-shadow:0 0 10px rgb(0,0,0,0.5);
+            overflow: hidden;
+            margin:20px;
+        }
+        #contact .add {
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #contact .add span{
+            margin:10px;
+            width:100%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            letter-spacing:1px;
+        }
+        #contact .add span i{
+            margin-right:20px;
+        }
+        #contact form .in {
+            width:300px;
+            position:relative;
+            margin:30px 0 10px 0;
+        }
+        .in input{
+            position:relative;
+            width:300px;
+            height:100%;
+            padding:5px 20px;
+            border:none;
+            outline:none;
+            background:transparent;
+            border-bottom:3px solid black;
+            font-size:17px;
+            letter-spacing:1px;
+            z-index:10;
+            transition:0.4s;
+        }
+        .in label{
+            position: absolute;
+            top:50%;
+            left:20px;
+            letter-spacing:1px;
+            font-size:17px;
+            transform:translate(0,-50%);
+            z-index:1;
+            transition:0.4s;
+        }
+        .in input:focus ~ label,.in input:valid ~ label{
+            top:-5px;
+            font-size:15px;
+            color:darkblue;
+        }
+        .in input:focus,.in input:valid{
+         border-bottom:3px solid blue;     
+        }
+        .in textarea{
+            width:300px;
+            resize: none;
+            height:60px;
+            margin-bottom:20px;
+            outline:none;
+            background:none;
+            border:none;
+            border-bottom:3px solid black;
+            letter-spacing:1px;
+            font-size:17px;
+            padding:10px 20px;
+            transition:0.4s;
+        }
+        .in textarea::placeholder{
+            color:black;
+        }
+        .in textarea:focus{
+            height:140px;
+            border-bottom:3px solid blue;
+        }
+        #contact form input[type="submit"]{
+            padding:10px 20px;
+            background-color:antiquewhite;
+            cursor:pointer;
+            border:none;
+            outline:none;
+            border-radius:10px;
+            letter-spacing:1px;
+            font-size:18px;
+        }
         @media (max-width:850px){
             .nav{
                 display:none;
@@ -255,6 +350,10 @@
             #home .box h1{
                 font-size:1.7em;
             }
+            #contact form,#contact .add{
+            width:90vw;
+            }
+            
         }
         @media (max-width:600px){
             #home{
@@ -264,6 +363,10 @@
             .box{
                 margin-top:90px;
             }
+            #contact{
+                flex-direction: column;
+            }
+            
         }
     </style>
 </head>
@@ -323,7 +426,25 @@
      <section class="main" id="cart"><label class="header">cart</label></section>
      
      <section class="main" id="contact">
-       
+               <form>
+                  <h1 style="letter-spacing:1px">Contact Us <img src="images/contact.jpg" style="height:70px"></h1>
+                   <div class="in">
+                       <input type="text" required><label class="label">Name</label>
+                   </div>
+                    <div class="in">
+                       <input type="text" required><label class="label">E-mail</label>
+                   </div>
+                    <div class="in">
+                       <textarea placeholder="Message"></textarea>
+                   </div>
+                   <input type="submit" value="send">
+               </form>
+               <div class="add">
+                      <span><i class="fas fa-user"></i> Mr. XYZ</span>
+                      <span><i class="fas fa-phone-alt"></i> 123456789</span>
+                      <span><i class="fas fa-map-marker-alt"></i> Address</span>
+                      <span><i class="far fa-envelope"></i> foodie@gmail.com</span>
+               </div>
      </section>
      
     <section class="main" id="profile"><label class="header">profile</label></section>
