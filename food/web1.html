@@ -602,11 +602,9 @@
         #cart{
             padding-top:90px;
             align-items:center;
-            justify-content: flex-start;
+            justify-content:center;
             flex-direction: column;
             background-color:burlywood;
-            height:100vh;
-            overflow-y: auto;
         }
         #cart h1,.cart_pro{
             width:90%;
@@ -675,13 +673,114 @@
             height:90%;
             border-radius:50%;
         }
+        .pro_scroll{
+           width:100%;
+           max-height:100vh;
+            overflow-y: auto;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
+        }
+        #products{
+             background-color: aquamarine;
+            padding:90px 0 20px 0;
+            justify-content: flex-start;
+            flex-direction: column;
+        }
+        .products_place{
+            width:100vw;
+            min-height:90vh;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            background-color: aquamarine;
+            flex-direction: row;
+        }
+        .raw_pro{
+            width:400px;
+            padding:20px 0;
+            margin:20px;
+            height:70vh;
+            overflow-x:hidden;
+            overflow-y: auto;
+            background-color:white;
+            box-shadow: 0 0 20px rgb(0,0,0,0.4);
+            border-radius:10px;
+            padding-top:80px;
+            position:relative;
+        }
+        .raw_pro iframe{
+            margin:20px auto;
+            width:95%;
+            height:300px;
+        }
+        .raw_pro .name_cat{
+            position:absolute;
+            width:100%;
+            padding:20px;
+            text-align: center;
+            font-weight:500;
+            font-size:20px;
+            top:0;
+            left:0;
+            border-bottom:2px solid black;
+            height:80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         
         
         
         
         
         
-        
+        .main_s2{
+            position: absolute;
+            right:40px;
+            top:90px;
+            min-width:60px;
+            height:60px;
+            background-color:white;
+            box-shadow:5px 6px 20px rgb(0,0,0,0.5);
+            overflow: hidden;
+            border-radius:40px;
+            cursor:pointer;
+            display: flex;
+            flex-direction:row;
+            background-color: beige;
+        }
+        .main_s2 i{
+            height:60px;
+            width:60px;
+            font-size:25px;
+            display: flex;
+            justify-content: center;
+            align-items:center;
+        }
+        .box1{
+            position:relative;
+            height:100%;
+            width:0px;
+            overflow: hidden;
+            transition:0.5s;
+        }
+        .box2{
+            width:200px;
+        }
+        .box1 input{
+            width:90%;
+            height:100%;
+            outline:none;
+            border:none;
+             background-color: beige;
+            font-size:16px;
+        }
+        .box1 input::placeholder{
+            color:black;
+        }
         .swiper-container {
       width: 100%;
             padding-bottom:50px;
@@ -740,6 +839,9 @@
                 margin:20px;
                 width:95vw;
             }
+            .raw_pro{
+                width:95vw;
+            }
         }
         @media (max-width:600px){
             #home{
@@ -756,7 +858,6 @@
                 width:95vw;
                 margin:10px;
             }
-            
         }
     </style>
 </head>
@@ -817,14 +918,38 @@
     </section>
 
     <section class="main" id="products">
-    
+    <div class="search">
+        <section class="main_s2">
+            <i class="fas fa-search" onclick="open1()"></i>
+            <form class="box1" id="box1" action="https://www.google.com/search" autocomplete="off">
+                <input type="search" placeholder="search box" required name="q">
+            </form>
+        </section>
+        <section class="products_place"> 
+            <section class="raw_pro">
+                <h2 class="name_cat">special</h2>
+                <iframe src="https://www.youtube.com/embed/Vv70a0umKOo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/NLDHwBlhT0Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe  src="https://www.youtube.com/embed/FKmT-UfyEb8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/fohA4X5pYSg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/CFwSTTiLJyw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe  src="https://www.youtube.com/embed/837_mFRJlHE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe  src="https://www.youtube.com/embed/jKQwPyUoqrg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/mZDh527B_fY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe  src="https://www.youtube.com/embed/gLwFNrGKLk8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/PrtzEY5UIf0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/z1ql8wU-7nA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </section>
+            
+        </section>
+    </div>
     
     </section>
     
      <section class="main" id="cart">
      <h1>Cart <span id="number"> 5 products </span><label id="cost"> cost :  120/- </label></h1>
-     
-     <div class="cart_pro">
+     <div class="pro_scroll">
+         <div class="cart_pro">
          <div class="pro_de">
              <div class="pro_img"><img src="images/1.jpeg"></div>
              <h2>name</h2>
@@ -872,6 +997,7 @@
          <span> see details </span>
          <label>Remove from cart</label>
          <h3>120/-</h3>
+     </div>
      </div>
      </section>
      
@@ -1148,6 +1274,12 @@
             }
         }
     }
+       
+       function open1(){
+            var s = document.getElementById("box1");
+            s.classList.toggle("box2");
+        }
+       
        setTimeout(function(){
            var e = document.getElementById("rem");
            document.body.removeChild(e);
