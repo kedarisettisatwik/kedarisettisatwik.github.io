@@ -102,6 +102,7 @@
             background-position:center;
             background-size: cover;
             background-repeat:no-repeat;
+            padding-bottom:50px;
         }
         #home::before{
             content:'';
@@ -598,6 +599,89 @@
         .one{
             transform:rotateZ(180deg);
         }
+        #cart{
+            padding-top:90px;
+            align-items:center;
+            justify-content: flex-start;
+            flex-direction: column;
+            background-color:burlywood;
+            height:100vh;
+            overflow-y: auto;
+        }
+        #cart h1,.cart_pro{
+            width:90%;
+            letter-spacing:1px;
+            background-color: white;
+            box-shadow:0 0 20px rgb(0,0,0,0.4);
+            padding:10px 20px;
+            margin:20px 0;
+           display: flex;
+            justify-content:space-around;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        #number,#cost{
+            float:right;
+            font-size:17px;
+            margin:10px;
+        }
+        .cart_pro{
+            margin:10px 0;
+            justify-content: space-between;
+        }
+        .pro_de{
+            margin:10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+        .pro_img{
+            margin:0 10px;
+            width:60px;
+            height:60px;
+            border-radius:50%;
+            border:4px solid white;
+            box-shadow:0 0 10px rgb(0,0,0,0.2), inset 0 0 10px rgb(0,0,0,0.2);
+            justify-content: center;
+            align-items: center;
+            display: flex;
+        }
+        .pro_de h2{
+            font-size:20px;
+            font-weight:500;
+            margin-left:10px;
+        }
+        .cart_pro span,.cart_pro label{
+            margin:10px;
+            cursor:pointer;
+        }
+        .cart_pro span{
+            color:blue;
+        }
+        .cart_pro label{
+            background-color:red;
+            padding:10px 20px;
+            color:white;
+            border-radius:10px;
+            box-shadow:0 0 10px rgb(0,0,0,0.3);
+        }
+        .cart_pro h3{
+            font-weight:500;
+            margin:10px;
+        }
+        .pro_img img{
+            width:90%;
+            height:90%;
+            border-radius:50%;
+        }
+        
+        
+        
+        
+        
+        
+        
         .swiper-container {
       width: 100%;
             padding-bottom:50px;
@@ -629,6 +713,7 @@
             margin-top:20px;
             font-size:16px;
         }
+        
         
         @media (max-width:850px){
             .nav{
@@ -684,7 +769,6 @@
         </section>
     </section>
     
-    
     <section class="main2">
             <div class="container1">
                 <ul class="container2" id="container2">
@@ -738,8 +822,57 @@
     </section>
     
      <section class="main" id="cart">
+     <h1>Cart <span id="number"> 5 products </span><label id="cost"> cost :  120/- </label></h1>
      
+     <div class="cart_pro">
+         <div class="pro_de">
+             <div class="pro_img"><img src="images/1.jpeg"></div>
+             <h2>name</h2>
+         </div>
+         <span> see details </span>
+         <label>Remove from cart</label>
+         <h3>120/-</h3>
+     </div>
      
+     <div class="cart_pro">
+         <div class="pro_de">
+             <div class="pro_img"><img src="images/1.jpeg"></div>
+             <h2>name</h2>
+         </div>
+         <span> see details </span>
+         <label>Remove from cart</label>
+         <h3>120/-</h3>
+     </div>
+     
+     <div class="cart_pro">
+         <div class="pro_de">
+             <div class="pro_img"><img src="images/1.jpeg"></div>
+             <h2>name</h2>
+         </div>
+         <span> see details </span>
+         <label>Remove from cart</label>
+         <h3>120/-</h3>
+     </div>
+     
+     <div class="cart_pro">
+         <div class="pro_de">
+             <div class="pro_img"><img src="images/1.jpeg"></div>
+             <h2>name</h2>
+         </div>
+         <span> see details </span>
+         <label>Remove from cart</label>
+         <h3>120/-</h3>
+     </div>
+     
+     <div class="cart_pro">
+         <div class="pro_de">
+             <div class="pro_img"><img src="images/1.jpeg"></div>
+             <h2>name</h2>
+         </div>
+         <span> see details </span>
+         <label>Remove from cart</label>
+         <h3>120/-</h3>
+     </div>
      </section>
      
      <section class="main" id="contact">
