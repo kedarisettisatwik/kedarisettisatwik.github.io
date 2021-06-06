@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
     <!-- google fonts -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!--
@@ -243,30 +242,52 @@
 
 
         #reviews .swiper-container {
-            width: 100%;
+            width: 100vw;
+            height:100vh;
+            overflow-x:hidden;
+            overflow-y: auto;
             padding-bottom: 50px;
             padding-top: 50px;
             transition:0.3s;
             transition-delay:0.5s;
             opacity:0;
             transform: translateY(-100px);
+            flex-direction: row;
         }
 
+        #reviews .swiper-wrapper{
+            width:320px;
+            height:400px;
+            position: relative;
+            overflow-x: visible;
+            transition:0.4s;
+        }
+        
         #reviews .swiper-slide {
+            position: absolute;
             padding: 50px 20px;
             box-shadow: 0 0 20px rgb(0, 0, 0, 0.5);
             background-color: white;
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 320px;
+            width:100%;
             overflow-x: hidden;
             overflow-y: auto;
-            height: 400px;
+            height:100%;
             filter: blur(1.4px);
             opacity:0.7;
+            transform:translateX(calc(100% * var(--sli))) scale(calc(0.9 - 0.1*(var(--sli)))) ;
+            transition:0.4s;
         }
-
+        
+        #reviews .swiper-slide i{
+            font-size:20px;
+            margin:10px;
+            cursor:pointer;
+            color:darkblue;
+        }
+        
         #reviews.active .swiper-container{
             -webkit-animation:rev 0.7s linear forwards;
             -webkit-animation-delay:0.5s;
@@ -283,9 +304,11 @@
             }
         }
         
-        #reviews .swiper-slide-active {
+        
+        #reviews .swiper-slide.active {
             opacity:1;
             filter: blur(0);
+            transform:translateX(calc(100% * var(--sli)));
         }
 
         #reviews .swiper-slide p {
@@ -323,7 +346,7 @@
         }
 
         @media (max-width:330px) {
-            .swiper-slide {
+            #reviews .swiper-wrapper{
                 width: 97vw;
             }
         }
@@ -380,29 +403,10 @@
 
     <section id="reviews" class="sec flex bg">
        <video src="Waves%20-%2061950.mp4" autoplay="" muted class="waves"> </video>
-        <div class="swiper-container">
+        <div class="swiper-container flex">
             <div class="swiper-wrapper" id="review_add">
-                <div class="swiper-slide">
-                    <h1 style="font-size:1.3em;letter-spacing:2px">Review's..</h1>
-                    <span>swipe to see more</span>
-                    <video src="Star%20-%2031731.mp4" autoplay="" muted style="width:100%;height:100%;object-fit:scale-down"></video>
-                </div>
-                <div class="swiper-slide">
-                    <h2> some_one</h2>
-                    <span>29-03-2021</span>
-                    <p>Sunset is the time of day when our sky meets the outer space solar winds. There are blue, pink, and purple swirls, spinning and twisting, like clouds of balloons caught in a whirlwind. The sun moves slowly to hide behind the line of horizon, while the moon races to take its place in prominence atop the night sky. People slow to a crawl, entranced, fully forgetting the deeds that must still be done. There is a coolness, a calmness, when the sun does set.<br><br>Sunset is the time of day when our sky meets the outer space solar winds. There are blue, pink, and purple swirls, spinning and twisting, like clouds of balloons caught in a whirlwind. The sun moves slowly to hide behind the line of horizon, while the moon races to take its place in prominence atop the night sky. People slow to a crawl, entranced, fully forgetting the deeds that must still be done. There is a coolness, a calmness, when the sun does set.</p>
-                </div>
-                <div class="swiper-slide">
-                    <h2> some_one</h2>
-                    <span>27-03-2021</span>
-                    <p>thank you</p>
-                </div>
-                <div class="swiper-slide">
-                    <h2> some_one</h2>
-                    <span>19-02-2021</span>
-                    <p>Sunset is the time of day when our sky meets the outer space solar winds. There are blue, pink, and purple swirls, spinning and twisting, like clouds of balloons caught in a whirlwind. The sun moves slowly to hide behind the line of horizon, while the moon races to take its place in prominence atop the night sky. People slow to a crawl, entranced, fully forgetting the deeds that must still be done. There is a coolness, a calmness, when the sun does set.</p>
-                </div>
-
+               
+               
             </div>
         </div>
     </section>
@@ -423,33 +427,19 @@
     
     -->
     
+    
+    
+    
+    
     <script src="jquery.ripples-min.js"></script>
     <script>
     $(document).ready(function(){
         $(".water").ripples();
     })
     </script>
-    
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script>
-        var swiper = new Swiper('.swiper-container', {
-            effect: 'coverflow',
-            grabCursor: true,
-            centeredSlides: true,
-            slidesPerView: 'auto',
-            coverflowEffect: {
-                rotate: 0,
-                stretch: 0,
-                depth: 100,
-                modifier: 2,
-                slideShadows: false,
-            },
-            loop: false,
-        });
-
-    </script>
 
     <script>
+        
         function open1() {
             var m = document.getElementById("menu");
             var m1 = document.getElementById("menu_btn");
@@ -476,6 +466,7 @@
             }
             open1();
         }
+        
         function goto1(a) {
             var s = document.querySelectorAll('.sec');
             var b = document.querySelectorAll("#menu li");
@@ -489,6 +480,20 @@
             }1
         }
 
+        function swipe1(a){
+            var ee = document.querySelectorAll('.swiper-slide');
+            var ws = document.getElementById("review_add");
+            
+             ws.style.transform = "translateX(-"+ (a)*100 +"%)";
+            for(var i = 0;i<ee.length;i++){
+                if (i == a){
+                    ee[i].classList.add("active");
+                }else{
+                    ee[i].classList.remove("active");
+                }
+              }
+        }
+        
         var li = ["we have 200+ type of products ", "Quality & Quantity", "we welcome you "];
         var lii = 0;
 
@@ -512,7 +517,83 @@
         }, 3000);
 
     </script>
+    
+    
+
+    <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase.js"></script>
+    <script>
+          var firebaseConfig = {
+    apiKey: "AIzaSyC9HqXjTvwCNH4yHJzYryBZhq2TEm3YGMo",
+    authDomain: "online-store-33f84.firebaseapp.com",
+    projectId: "online-store-33f84",
+    storageBucket: "online-store-33f84.appspot.com",
+    messagingSenderId: "726514067806",
+    appId: "1:726514067806:web:81d3da32d9be603fb447cf",
+    measurementId: "G-9D689P5XXK"
+  };
+        firebase.initializeApp(firebaseConfig);
+   </script>
+   
+   <script>
+    
+       
+       var set_reviews = [];
+       
+       var re = document.getElementById("review_add");
+       
+    firebase.database().ref('reviews/').on("value",function(snapshot){
+        
+      re.innerHTML = "<div class='swiper-slide active' style='--sli:0'><h1 style='font-size:1.3em;letter-spacing:2px'>Reviews.. <i class='fas fa-arrow-circle-right' onclick='swipe1(1)'></i></h1><span>swipe to see more</span><video src='Star%20-%2031731.mp4' autoplay='' muted style='width:100%;height:100%;object-fit:scale-down'></video></div>";
+        
+    var relistna = [];
+    var relistms = [];
+    var relistdt = [];
+     snapshot.forEach(function(ChildSnapShot){
+         var na = ChildSnapShot.val().nameofperson;
+         var ms = ChildSnapShot.val().msg;
+         var dat = ChildSnapShot.val().dat;
+         relistna.push(na);
+         relistms.push(ms);
+         relistdt.push(dat);
+     })
+           var c = 0;
+        
+            for (var xy = relistms.length -1 ;xy >= 0 ;xy--){
+                var nna = relistna[xy];
+                var mms = relistms[xy];
+                var dds = relistdt[xy];
+                
+                if (xy == 0){
+                    re.innerHTML += "<div class='swiper-slide' style='--sli:" + (c+1) +"'><h2><i class='fas fa-arrow-circle-left' onclick='swipe1("+ c +")'></i> " + nna +" </h2><span>"+ dds +"</span><p>" + mms + "</p></div>";
+                }else{
+                    re.innerHTML += "<div class='swiper-slide' style='--sli:" + (c+1) +"'><h2><i class='fas fa-arrow-circle-left' onclick='swipe1("+ c +")'></i> " + nna + "<i class='fas fa-arrow-circle-right' onclick='swipe1("+ (c + 2) +")'></i></h2><span>"+ dds +"</span><p>" + mms + "</p></div>";
+                }
+                c += 1;
+            }
+    });
+       
+   </script>
+       
+      
+
 
 </body>
 
 </html>
+
+
+<!--
+
+                <div class='swiper-slide active' style='--sli:0'>
+                    <h1 style='font-size:1.3em;letter-spacing:2px'>Reviews.. <i class='fas fa-arrow-circle-right' onclick='swipe1(1)'></i></h1>
+                    <span>swipe to see more</span>
+                    <video src='Star%20-%2031731.mp4' autoplay='' muted style='width:100%;height:100%;object-fit:scale-down'></video>
+                </div>
+                
+               <div class='swiper-slide' style='--sli:1'>
+                    <h2><i class='fas fa-arrow-circle-left' onclick='swipe1(0)'></i> some_one </h2>
+                    <span>27-03-2021</span>
+                    <p>thank you</p>
+               </div>
+                  
+-->

@@ -1169,7 +1169,9 @@
                 draw_cart();
             }
         }
+        
         var re = document.getElementById("rev");
+        
         firebase.database().ref('reviews/').on("value",function(snapshot){
      re.innerHTML = "";
     var relistna = [];
