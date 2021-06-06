@@ -514,7 +514,9 @@
    
    
     
-   <!--  <script>
+   <!--  
+   
+    <script>
         $("#home").ripples({
             resolution : 200,
             perturbance : 0.04,
@@ -522,9 +524,6 @@
     </script>
     
     -->
-    
-    
-    
     
     
     <script src="jquery.ripples-min.js"></script>
@@ -547,7 +546,7 @@
                 m1.style.transform = "rotateZ(360deg)";
             }
             m.classList.toggle("active");
-            navigator.vibrate(200);
+            navigator.vibrate(75);
         }
 
         function goto(a) {
@@ -562,7 +561,7 @@
                 }
             }
             open1();
-            navigator.vibrate(200);
+            navigator.vibrate(75);
         }
         
 
@@ -578,7 +577,7 @@
                     ee[i].classList.remove("active");
                 }
               }
-            navigator.vibrate(200);
+            navigator.vibrate(75);
         }
         
         var li = ["we have 200+ type of products ", "Quality & Quantity", "we welcome you "];
