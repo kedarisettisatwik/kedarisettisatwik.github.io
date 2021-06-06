@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.ripples/0.5.3/jquery.ripples.min.js"></script>
+    -->
+    <title>online ksr</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .flex {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+
+        .bg {
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            flex-wrap: wrap;
+        }
+
+        #menu {
+            list-style: none;
+            position: absolute;
+            width: 300px;
+            padding: 40px 20px;
+            background-color: aliceblue;
+            top: 0;
+            left: 30px;
+            transform: translate(0, -110%);
+            box-shadow: 0 0 20px rgb(0, 0, 0, 0.4);
+            overflow: hidden;
+            transition: 0.5s;
+            z-index: 50;
+        }
+
+        #menu li {
+            box-sizing: content-box;
+            padding: 20px;
+            margin: 5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+            font-size: 18px;
+            opacity: 0;
+            transform: translate(-40px, 0);
+            transition: 0.5s;
+            transition-delay: calc(0.1s * var(--i));
+            cursor: pointer;
+        }
+
+        #menu li i {
+            font-size: 19px;
+            margin-right: 5px;
+            color: darkblue;
+        }
+
+        #menu.active {
+            transform: translate(0, 30px);
+        }
+
+        #menu.active li {
+            opacity: 1;
+            transform: translate(0px, 0);
+        }
+
+        #menu.active li:hover {
+            transition-delay: 0s;
+            transform: translate(20px, 0px);
+        }
+
+        #menu_btn {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 100;
+            border-radius: 50%;
+            padding: 20px;
+            width: 60px;
+            height: 60px;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            font-size: 22px;
+            color: black;
+            background-image: linear-gradient(10deg, rgb(0, 153, 255, 0.8), rgb(0, 153, 255, 0.6));
+            cursor: pointer;
+            box-shadow: 0 0 5px rgb(0, 0, 255, 0.5);
+            transition: 0.5s;
+        }
+        
+        .sec {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+            background-color: white;
+        }
+
+        #home {
+            flex-wrap: wrap;
+            justify-content: space-around;
+            transform: translate(-100%, 0);
+            background-position: bottom;
+            background-image:url(temple.jpg);
+        }
+
+        #products {
+            background-color: aquamarine;
+            transform: translate(100%, 0);
+        }
+
+        #cart {
+            background-color: blue;
+            transform: translate(0, 100%);
+        }
+
+        #profile {
+            background-color: burlywood;
+            transform: translate(0, -100%);
+        }
+
+        #reviews {
+            transform: translate(-100%, -0);
+        }
+
+        #more {
+            background-color: black;
+            background-position: bottom;
+            transform: translate(0, 100%);
+        }
+
+        #home,#products,#cart,#profile,#reviews,#more {
+            transition: 0.5s;
+        }
+
+        #home.active,#products.active,#cart.active,#profile.active,#reviews.active,#more.active {
+            transform: translate(0, 0);
+        }
+
+
+        .circle {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            flex-direction: column;
+            margin: 20px;
+            transform: perspective(1000px);
+            transform-style: preserve-3d;
+        }
+
+        .circle h1 {
+            margin-bottom: 25px;
+            font-size: 40px;
+            letter-spacing: 2.5px;
+            transform: translateZ(30px);
+        }
+
+        .circle p {
+            font-size: 17px;
+            letter-spacing: 1px;
+            font-weight: bold;
+            transform: translateZ(10px);
+        }
+
+        .circle span {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border: 2px solid black;
+            border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+            transform: rotateZ(calc(1deg * var(--j)));
+            -webkit-animation: rot 8s linear infinite forwards;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        #home .msg {
+            margin: 10px;
+            font-size: 17px;
+            letter-spacing: 1px;
+            width: 300px;
+            text-align: center;
+            background-image: linear-gradient(40deg, rgb(255, 255, 255, 0.8), rgb(255, 255, 255, 0.7));
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        @keyframes rot {
+            0% {
+                transform: rotateZ(calc(1deg * var(--j)));
+                background-color: white;
+            }
+
+            40% {
+                background-color: white;
+            }
+
+            50% {
+                background-color: cornflowerblue;
+            }
+
+            70% {
+                background-color: cornflowerblue;
+            }
+
+            100% {
+                transform: rotateZ(calc(360deg + 1deg * var(--j)));
+                background-color: white;
+            }
+        }
+
+
+        #reviews .swiper-container {
+            width: 100%;
+            padding-bottom: 50px;
+            padding-top: 50px;
+            transition:0.3s;
+            transition-delay:0.5s;
+            opacity:0;
+            transform: translateY(-100px);
+        }
+
+        #reviews .swiper-slide {
+            padding: 50px 20px;
+            box-shadow: 0 0 20px rgb(0, 0, 0, 0.5);
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 320px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            height: 400px;
+            filter: blur(1.4px);
+            opacity:0.7;
+        }
+
+        #reviews.active .swiper-container{
+            opacity:1;
+            transform: translateY(0px);
+        }
+
+        #reviews .swiper-slide-active {
+            opacity:1;
+            filter: blur(0);
+        }
+
+        #reviews .swiper-slide p {
+            margin-top: 50px;
+            font-size: 17px;
+        }
+
+        #reviews .swiper-slide span {
+            color: deepskyblue;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        #reviews .waves{
+            position: absolute;
+            width:100vw;
+            height:100vh;
+            background-image:linear-gradient(rgb(0,0,0,0.3),rgb(0,0,0,0.5));
+            object-fit: cover;
+            opacity:0.1;
+            transition:0.3s;
+            transition-delay:0.5s;
+        }
+        
+        #reviews.active .waves{
+            opacity:1;
+        }
+        @media (max-width:400px) {
+            #menu {
+                width: 95vw;
+                top: 20px;
+                left: 10px;
+            }
+        }
+
+        @media (max-width:330px) {
+            .swiper-slide {
+                width: 97vw;
+            }
+        }
+
+        @media (max-width:200px) {
+            .circle span {
+                display: none;
+            }
+        }
+    
+    </style>
+</head>
+
+<body class="flex">
+   
+    <div id="menu_btn" class="flex" onclick="open1()">
+        <i class="fas fa-bars"></i>
+    </div>
+    
+    <ul id="menu">
+        <li style="--i:2" onclick="goto(0)"><i class="fas fa-home"></i> Home</li>
+        <li style="--i:3" onclick="goto(1)"><i class="fas fa-puzzle-piece"></i> products</li>
+        <li style="--i:4" onclick="goto(2)"><i class="fas fa-shopping-bag"></i> bag</li>
+        <li style="--i:5" onclick="goto(3)"><i class="fas fa-user"></i> profile</li>
+        <li style="--i:6" onclick="goto(4)"><i class="far fa-smile"></i> reviews</li>
+        <li style="--i:7" onclick="goto(5)"><i class="fas fa-comment-alt"></i> contact</li>
+    </ul>
+
+    <section id="home" class="sec active flex bg water">
+        <div class="circle flex">
+            <span style="--j:0"></span>
+            <span style="--j:30"></span>
+            <span style="--j:90"></span>
+            <h1>KSR</h1>
+            <p>Kedarisetti <br> Subha Rao & c.o</p>
+        </div>
+        <div class="msg">
+            <label id="year" style="font-weight:bold;font-size:20px"></label><br><br>
+            <label id="ms">we welcome you </label>
+        </div>
+    </section>
+    
+    <section id="products" class="sec">
+
+    </section>
+
+    <section id="cart" class="sec">
+
+    </section>
+
+    <section id="profile" class="sec">
+
+    </section>
+
+    <section id="reviews" class="sec flex bg">
+       <video src="Waves%20-%2061950.mp4" autoplay="" muted class="waves"> </video>
+        <div class="swiper-container">
+            <div class="swiper-wrapper" id="review_add">
+                <div class="swiper-slide">
+                    <h1 style="font-size:1.3em;letter-spacing:2px">Review's..</h1>
+                    <span>swipe to see more</span>
+                    <video src="Star%20-%2031731.mp4" autoplay="" muted style="width:100%;height:100%;object-fit:scale-down"></video>
+                </div>
+                <div class="swiper-slide">
+                    <h2> some_one</h2>
+                    <span>29-03-2021</span>
+                    <p>Sunset is the time of day when our sky meets the outer space solar winds. There are blue, pink, and purple swirls, spinning and twisting, like clouds of balloons caught in a whirlwind. The sun moves slowly to hide behind the line of horizon, while the moon races to take its place in prominence atop the night sky. People slow to a crawl, entranced, fully forgetting the deeds that must still be done. There is a coolness, a calmness, when the sun does set.<br><br>Sunset is the time of day when our sky meets the outer space solar winds. There are blue, pink, and purple swirls, spinning and twisting, like clouds of balloons caught in a whirlwind. The sun moves slowly to hide behind the line of horizon, while the moon races to take its place in prominence atop the night sky. People slow to a crawl, entranced, fully forgetting the deeds that must still be done. There is a coolness, a calmness, when the sun does set.</p>
+                </div>
+                <div class="swiper-slide">
+                    <h2> some_one</h2>
+                    <span>27-03-2021</span>
+                    <p>thank you</p>
+                </div>
+                <div class="swiper-slide">
+                    <h2> some_one</h2>
+                    <span>19-02-2021</span>
+                    <p>Sunset is the time of day when our sky meets the outer space solar winds. There are blue, pink, and purple swirls, spinning and twisting, like clouds of balloons caught in a whirlwind. The sun moves slowly to hide behind the line of horizon, while the moon races to take its place in prominence atop the night sky. People slow to a crawl, entranced, fully forgetting the deeds that must still be done. There is a coolness, a calmness, when the sun does set.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="more" class="sec">
+
+    </section>
+
+   
+   
+    
+   <!--  <script>
+        $("#home").ripples({
+            resolution : 200,
+            perturbance : 0.04,
+        })
+    </script>
+    
+    -->
+    
+    <script src="jquery.ripples-min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $(".water").ripples();
+    })
+    </script>
+    
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            effect: 'coverflow',
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: 'auto',
+            coverflowEffect: {
+                rotate: 0,
+                stretch: 0,
+                depth: 100,
+                modifier: 2,
+                slideShadows: false,
+            },
+            loop: false,
+        });
+
+    </script>
+
+    <script>
+        function open1() {
+            var m = document.getElementById("menu");
+            var m1 = document.getElementById("menu_btn");
+            if (m.classList.contains("active")) {
+                m1.innerHTML = " <i class='fas fa-bars'></i>";
+                m1.style.transform = "rotateZ(0deg)";
+            } else {
+                m1.innerHTML = " <i class='fas fa-times'></i>";
+                m1.style.transform = "rotateZ(360deg)";
+            }
+            m.classList.toggle("active");
+        }
+
+        function goto(a) {
+            var s = document.querySelectorAll('.sec');
+            var b = document.querySelectorAll("#menu li");
+            for (var i = 0; i < s.length; i++) {
+                var p = s[i];
+                if (i == a) {
+                    p.classList.add("active");
+                } else {
+                    p.classList.remove("active");
+                }
+            }
+            open1();
+        }
+        function goto1(a) {
+            var s = document.querySelectorAll('.sec');
+            var b = document.querySelectorAll("#menu li");
+            for (var i = 0; i < s.length; i++) {
+                var p = s[i];
+                if (i == a) {
+                    p.classList.add("active");
+                } else {
+                    p.classList.remove("active");
+                }
+            }1
+        }
+
+        var li = ["we have 200+ type of products ", "Quality & Quantity", "we welcome you "];
+        var lii = 0;
+
+        var date1 = JSON.parse(new Date().getFullYear());
+        var inter = setInterval(function() {
+            var year1 = document.getElementById("year");
+            year1.innerHTML = "since - " + date1;
+            if (date1 == 1926) {
+                clearInterval(inter);
+            }
+            date1 -= 1;
+        }, 50);
+
+        setInterval(function() {
+            var ms = document.getElementById("ms");
+            ms.innerHTML = li[lii];
+            lii += 1;
+            if (lii == 3) {
+                lii = 0;
+            }
+        }, 3000);
+
+    </script>
+
+</body>
+
+</html>
