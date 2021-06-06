@@ -42,7 +42,6 @@
             width: 100vw;
             height: 100vh;
             overflow: hidden;
-            flex-wrap: wrap;
         }
 
         #menu {
@@ -114,15 +113,14 @@
             transition: 0.5s;
         }
         
-        .sec {
-            position: absolute;
+        #home,#products,#cart,#profile,#reviews,#more {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
             overflow-x: hidden;
             overflow-y: auto;
-            background-color: white;
         }
 
         #home {
@@ -322,7 +320,7 @@
     </style>
 </head>
 
-<body class="flex">
+<body>
    
     <div id="menu_btn" class="flex" onclick="open1()">
         <i class="fas fa-bars"></i>
