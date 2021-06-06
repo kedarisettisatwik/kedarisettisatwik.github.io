@@ -67,10 +67,6 @@
             letter-spacing: 2px;
             font-weight: bold;
             font-size: 18px;
-            opacity: 0;
-            transform: translate(-100%, 0);
-            transition: 0.5s;
-            transition-delay: calc(0.1s * var(--i));
             cursor: pointer;
         }
 
@@ -83,12 +79,26 @@
         #menu.active {
             transform: translate(0, 30px);
         }
-
-        #menu.active li {
-            opacity: 1;
-            transform: translate(0px, 0);
+        
+        #menu li label{
+            transition: 0.2s;
+            opacity:0;
         }
-
+        
+        #menu.active li label{
+            -webkit-animation:list1 0.2s linear forwards;
+            -webkit-animation-delay:calc(0.25s * var(--i));
+        }
+        
+        @keyframes list1{
+            0%{
+                opacity:0;
+            }
+            100%{
+                opacity:1;
+            }
+        }
+        
         #menu_btn {
             position: fixed;
             top: 30px;
@@ -151,12 +161,12 @@
             transform: translate(0, 100%);
         }
 
-        #home,#products,#cart,#profile,#reviews,#more {
-            transition: 0.5s;
-        }
-
         #home.active,#products.active,#cart.active,#profile.active,#reviews.active,#more.active {
             transform: translate(0, 0);
+        }
+        
+        #home,#products,#cart,#profile,#reviews,#more{
+            transition:0.5s;
         }
 
 
@@ -258,10 +268,21 @@
         }
 
         #reviews.active .swiper-container{
-            opacity:1;
-            transform: translateY(0px);
+            -webkit-animation:rev 0.7s linear forwards;
+            -webkit-animation-delay:0.5s;
         }
-
+        
+        @keyframes rev{
+            0%{
+              opacity:0;
+              transform: translateY(-100px);  
+            }
+            100%{
+                opacity:1;
+                transform: translateY(0px);
+            }
+        }
+        
         #reviews .swiper-slide-active {
             opacity:1;
             filter: blur(0);
@@ -292,6 +313,7 @@
         #reviews.active .waves{
             opacity:1;
         }
+        
         @media (max-width:400px) {
             #menu {
                 width: 95vw;
@@ -322,12 +344,12 @@
     </div>
     
     <ul id="menu">
-        <li style="--i:2" onclick="goto(0)"><i class="fas fa-home"></i> Home</li>
-        <li style="--i:3" onclick="goto(1)"><i class="fas fa-puzzle-piece"></i> products</li>
-        <li style="--i:4" onclick="goto(2)"><i class="fas fa-shopping-bag"></i> bag</li>
-        <li style="--i:5" onclick="goto(3)"><i class="fas fa-user"></i> profile</li>
-        <li style="--i:6" onclick="goto(4)"><i class="far fa-smile"></i> reviews</li>
-        <li style="--i:7" onclick="goto(5)"><i class="fas fa-comment-alt"></i> contact</li>
+        <li style="--i:2" onclick="goto(0)"><i class="fas fa-home"></i> <label>Home</label></li>
+        <li style="--i:3" onclick="goto(1)"><i class="fas fa-puzzle-piece"></i> <label>Products</label></li>
+        <li style="--i:4" onclick="goto(2)"><i class="fas fa-shopping-bag"></i> <label>Bag</label></li>
+        <li style="--i:5" onclick="goto(3)"><i class="fas fa-user"></i> <label>Profile</label></li>
+        <li style="--i:6" onclick="goto(4)"><i class="far fa-smile"></i> <label>Reviews</label></li>
+        <li style="--i:7" onclick="goto(5)"><i class="fas fa-comment-alt"></i> <label>Contact</label></li>
     </ul>
 
     <section id="home" class="sec active flex bg water">
