@@ -111,7 +111,7 @@
             flex-wrap: nowrap;
             font-size: 22px;
             color: black;
-            background-image: linear-gradient(10deg, rgb(0, 153, 255, 0.8), rgb(0, 153, 255, 0.6));
+            background-image: linear-gradient(10deg, rgb(0, 255, 255,0.7), rgb(0, 255, 255,0.6));
             cursor: pointer;
             box-shadow: 0 0 5px rgb(0, 0, 255, 0.5);
             transition: 0.5s;
@@ -155,8 +155,6 @@
         }
 
         #more {
-            background-color: black;
-            background-position: bottom;
             transform: translate(0, 100%);
         }
 
@@ -277,7 +275,7 @@
             height:100%;
             filter: blur(1.4px);
             opacity:0.7;
-            transform:translateX(calc(100% * var(--sli))) scale(calc(0.9 - 0.1*(var(--sli)))) ;
+            transform:translateX(calc(100% * var(--sli))) scale(0.8) ;
             transition:0.4s;
         }
         
@@ -322,19 +320,78 @@
             font-size: 16px;
         }
 
-        #reviews .waves{
+        #reviews .waves,#more .media{
             position: absolute;
             width:100vw;
             height:100vh;
-            background-image:linear-gradient(rgb(0,0,0,0.3),rgb(0,0,0,0.5));
-            object-fit: cover;
+            object-fit:cover;
             opacity:0.1;
             transition:0.3s;
             transition-delay:0.5s;
+            top:0;
+            left:0;
         }
         
-        #reviews.active .waves{
+        #reviews.active .waves,#more.active .media{
             opacity:1;
+        }
+        
+        #more form{
+            width:400px;
+            z-index:10;
+            position:relative;
+            padding:30px;
+            background-image:linear-gradient(40deg,rgb(255,255,255,0.7),rgb(255,255,255,0.6));
+            backdrop-filter:blur(10px);
+            border-radius:10px;
+            box-shadow:0 0 0px rgb(0,0,0,0);
+            filter:blur(2px);
+            transition:0.2s;
+            flex-direction: column;
+        }
+        
+        #more.active form{
+            -webkit-animation:blu 0.2s forwards;
+            -webkit-animation-delay:0.5s;
+        }
+        
+        @keyframes blu{
+            0%{filter:blur(2px);box-shadow:0 0 0px rgb(0,0,0,0);}
+            100%{filter:blur(0px);box-shadow:0 0 10px rgb(0,0,0,0.4);}
+        }
+        
+        #more.active form .inp{
+            width:96%;
+            margin:15px;
+            position:relative;
+        }
+        #more.active form .inp input,#more.active form .inp select,#more.active form .inp textarea{
+            padding:10px 10px 10px 30px;
+            width:100%;
+            height:100%;
+            outline:none;
+            border:none;
+            background:none;
+            border-bottom:2px solid black;
+            resize:none;
+            font-size:17px;
+        }
+        #more.active form .inp input::placeholder,#more.active form .inp textarea::placeholder{
+            color:black;
+        }
+        #more.active form input[type="submit"]{
+            margin-top:5px;
+            padding:10px 20px;
+            font-size:18px;
+            font-weight:bold;
+            letter-spacing:2px;
+            text-transform:uppercase;
+            border:none;
+            border-radius:10px;
+            box-shadow:0px 0px 10px rgb(0,0,0,0.7);
+            background:none;
+            background-color: rgb(0, 255, 255);
+            cursor:pointer;
         }
         
         @media (max-width:400px) {
@@ -342,6 +399,9 @@
                 width: 95vw;
                 top: 20px;
                 left: 10px;
+            }
+            #more form{
+                width:97vw;
             }
         }
 
@@ -411,8 +471,28 @@
         </div>
     </section>
 
-    <section id="more" class="sec">
-
+    <section id="more" class="sec flex">
+        <video src="Social%20Media.mp4" autoplay="" muted class="media"> </video>
+        
+        <form id="cont_form" class="flex">
+             <div class="inp">
+                 <input type="text" required placeholder="Name">
+             </div>
+              <div class="inp">
+                 <input type="text" required placeholder="E-mail">
+             </div>
+             <div class="inp">
+                 <textarea required placeholder="Message"></textarea>
+             </div>
+            <div class="inp">
+                 <select required><option value="0">HAVE</option><option value="1">Don't HAVE</option></select>
+            </div>
+            <div class="inp">
+                 <select required><option value="0">Review </option><option value="1">Personal message</option></select>
+            </div>
+             <input type="submit" value="submit">
+        </form>
+        
     </section>
 
    
@@ -507,6 +587,13 @@
             date1 -= 1;
         }, 50);
 
+        
+        var form_co = document.getElementById("cont_form");
+        form_co.addEventListener("submit", (e) => {
+            e.preventDefault();
+            alert("A");
+        })
+        
         setInterval(function() {
             var ms = document.getElementById("ms");
             ms.innerHTML = li[lii];
