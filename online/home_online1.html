@@ -393,6 +393,18 @@
             background-color: rgb(0, 255, 255);
             cursor:pointer;
         }
+        #more .extra{
+            margin-top:15px;
+            width:100%;
+            display: flex;
+            justify-content: space-around;
+        }
+        #more .extra a i{
+            padding:20px 30px;
+            color:darkblue;
+            cursor:pointer;
+            font-size:25px;
+        }
         
         @media (max-width:400px) {
             #menu {
@@ -491,6 +503,10 @@
                  <select required><option value="0">Review </option><option value="1">Personal message</option></select>
             </div>
              <input type="submit" value="submit">
+            <div class="extra">
+            <a href="https://goo.gl/maps/X2rnRG6K8rURh8Zh7" target="_blank"><i class="fas fa-map-marker-alt"></i></a>
+            <a onclick="whatsapp()"><i class="fas fa-phone-volume"></i></a>
+            </div>
         </form>
         
     </section>
@@ -531,6 +547,7 @@
                 m1.style.transform = "rotateZ(360deg)";
             }
             m.classList.toggle("active");
+            navigator.vibrate(200);
         }
 
         function goto(a) {
@@ -545,20 +562,9 @@
                 }
             }
             open1();
+            navigator.vibrate(200);
         }
         
-        function goto1(a) {
-            var s = document.querySelectorAll('.sec');
-            var b = document.querySelectorAll("#menu li");
-            for (var i = 0; i < s.length; i++) {
-                var p = s[i];
-                if (i == a) {
-                    p.classList.add("active");
-                } else {
-                    p.classList.remove("active");
-                }
-            }1
-        }
 
         function swipe1(a){
             var ee = document.querySelectorAll('.swiper-slide');
@@ -572,6 +578,7 @@
                     ee[i].classList.remove("active");
                 }
               }
+            navigator.vibrate(200);
         }
         
         var li = ["we have 200+ type of products ", "Quality & Quantity", "we welcome you "];
@@ -591,9 +598,13 @@
         var form_co = document.getElementById("cont_form");
         form_co.addEventListener("submit", (e) => {
             e.preventDefault();
-            alert("A");
+            navigator.vibrate(200);
         })
         
+        function whatsapp(){
+            var loc = "https://wa.me/919290864905?text= ";
+            window.open(loc,"_blank");
+        }
         setInterval(function() {
             var ms = document.getElementById("ms");
             ms.innerHTML = li[lii];
