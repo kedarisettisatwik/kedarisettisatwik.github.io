@@ -56,6 +56,8 @@
             overflow: hidden;
             transition: 0.5s;
             z-index: 50;
+            max-height:80vh;
+            overflow-y: auto;
         }
 
         #menu li {
@@ -476,6 +478,7 @@
         <li style="--i:5" onclick="goto(3)"><i class="fas fa-user"></i> <label>Profile</label></li>
         <li style="--i:6" onclick="goto(4)"><i class="far fa-smile"></i> <label>Reviews</label></li>
         <li style="--i:7" onclick="goto(5)"><i class="fas fa-comment-alt"></i> <label>Contact</label></li>
+        <li style="--i:8"><i class="fas fa-volume-up" style="margin-right:10px"  onclick="play1(1)"></i> <i class="fas fa-volume-mute" style="margin-left:10px" onclick="play1(2)"></i></li>
     </ul>
 
     <section id="home" class="sec active flex bg water">
@@ -570,6 +573,18 @@
     </script>
 
     <script>
+        
+        var aud = new Audio();
+        aud.src = "audio.mp3";
+        
+        function play1(a){
+            if (a == 1){
+                aud.play();
+            }else{
+                aud.pause();
+            }
+            open1();
+        }
         
         function open1() {
             var m = document.getElementById("menu");
