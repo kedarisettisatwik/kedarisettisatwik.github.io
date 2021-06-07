@@ -508,6 +508,7 @@
             padding:20px;
             flex-wrap: wrap;
             flex-direction: row;
+            justify-content: flex-start;
             width:100vw;
             opacity:1;
             transition:0.5s;
@@ -565,7 +566,9 @@
             outline:none;
             border:none;
             background-color:skyblue;
+            transition:0.4s;
         }
+        
         #products .pro_conn4 button i{
             margin-right:10px;
         }
@@ -576,7 +579,6 @@
         #products .ex button{
             background-color:transparent;
         }
-        
         @media (max-width:400px) {
             #menu {
                 width: 95vw;
@@ -644,7 +646,7 @@
                 </div>
             </div>
          
-<select id="select_list">
+<select id="select_list" onchange="filter1()">
          <option value="all">all</option>
         <option value="food">food</option>
         <option value="ravaa and floor items and pulses items">ravaa and floor items and pulses items </option>
@@ -872,10 +874,14 @@
             var f = document.getElementById("fill_search");
             var li_p = document.querySelectorAll(".pro_conn1");
             var dis = document.getElementById("pro_display");
+            var ca = document.getElementById("select_list");
+            
             dis.style.opacity = "0";
             
             setTimeout(function(){
-                if (f.value.length == 0){
+                
+                if (ca.value == "all"){
+                    if (f.value.length == 0){
                 for(var i = 0;i<li_p.length;i++){
                     var el = li_p[i];
                     el.classList.remove("active");
@@ -893,10 +899,29 @@
                         el.classList.add("active");
                     }
                 }
+                }  
+            }else{
+                for (var i = 0;i<li_p.length;i++){
+                    var li = li_p[i];
+                    var cs = productssub[i];
+                    if (cs.indexOf(ca.value) >= 0){
+                        if (f.value.length == 0){
+                            li.classList.remove("active");
+                        }else{
+                            var n11 = productsname[i];
+                            if (n11.indexOf(f.value) >= 0){
+                                li.classList.remove("active");
+                            }else{
+                                li.classList.add("active");
+                            }
+                        }
+                    }else{
+                        li.classList.add("active");
+                    }
+                }
             }
             dis.style.opacity = "1";
-            },500);
-            console.log(productsname);
+            },600);
         }
         
         
