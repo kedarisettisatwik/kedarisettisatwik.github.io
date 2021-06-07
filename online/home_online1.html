@@ -546,7 +546,7 @@
                 m1.style.transform = "rotateZ(360deg)";
             }
             m.classList.toggle("active");
-            navigator.vibrate(75);
+            navigator.vibrate();
         }
 
         function goto(a) {
@@ -561,7 +561,7 @@
                 }
             }
             open1();
-            navigator.vibrate(75);
+            navigator.vibrate(20);
         }
         
 
@@ -577,7 +577,6 @@
                     ee[i].classList.remove("active");
                 }
               }
-            navigator.vibrate(75);
         }
         
         var li = ["we have 200+ type of products ", "Quality & Quantity", "we welcome you "];
