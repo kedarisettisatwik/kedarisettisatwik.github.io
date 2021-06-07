@@ -111,7 +111,7 @@
             flex-wrap: nowrap;
             font-size: 22px;
             color: black;
-            background-image: linear-gradient(10deg, rgb(0, 255, 255,0.7), rgb(0, 255, 255,0.6));
+            background-image: linear-gradient(10deg, rgb(0, 255, 255,0.7), rgb(0, 255, 255,0.9));
             cursor: pointer;
             box-shadow: 0 0 5px rgb(0, 0, 255, 0.5);
             transition: 0.5s;
@@ -155,6 +155,7 @@
         }
 
         #more {
+            overflow: hidden;
             transform: translate(0, 100%);
         }
 
@@ -322,8 +323,8 @@
 
         #reviews .waves,#more .media{
             position: absolute;
-            width:100vw;
-            height:100vh;
+            width:100%;
+            height:100%;
             object-fit:cover;
             opacity:0.1;
             transition:0.3s;
@@ -336,7 +337,7 @@
             opacity:1;
         }
         
-        #more form{
+        #more form,#more .des{
             width:400px;
             z-index:10;
             position:relative;
@@ -348,6 +349,26 @@
             filter:blur(2px);
             transition:0.2s;
             flex-direction: column;
+        }
+        
+        #more .des{
+            width:auto;
+            margin:20px;
+            filter:none;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+        }
+        #more .des label{
+         margin:10px;
+        font-size:17px;
+        }
+        #more .des a{
+            color:darkblue;
+            text-decoration:none;
+            width:100%;
+        }
+        #more .des a i{
+            font-size:25px;
+            margin:10px;
         }
         
         #more.active form{
@@ -404,6 +425,16 @@
             color:darkblue;
             cursor:pointer;
             font-size:25px;
+        }
+        #more .con_con{
+            position: absolute;
+            top:0;
+            left:0;
+            width:100vw;
+            height:100vh;
+            flex-wrap: wrap;
+            padding-top:50px;
+            overflow-y: auto;
         }
         
         @media (max-width:400px) {
@@ -485,22 +516,19 @@
 
     <section id="more" class="sec flex">
         <video src="Social%20Media.mp4" autoplay="" muted class="media"> </video>
-        
-        <form id="cont_form" class="flex">
+        <div class="con_con flex">
+            <form id="cont_form" class="flex">
              <div class="inp">
-                 <input type="text" required placeholder="Name">
+                 <input type="text" required placeholder="Name" id="contact_name">
              </div>
               <div class="inp">
-                 <input type="text" required placeholder="E-mail">
+                 <input type="text" required placeholder="E-mail" id="contact_mail">
              </div>
              <div class="inp">
-                 <textarea required placeholder="Message"></textarea>
+                 <textarea required placeholder="Message" id="contact_message"></textarea>
              </div>
             <div class="inp">
-                 <select required><option value="0">HAVE</option><option value="1">Don't HAVE</option></select>
-            </div>
-            <div class="inp">
-                 <select required><option value="0">Review </option><option value="1">Personal message</option></select>
+                 <select id="contact_confirmation"><option> please confirm </option><option value="0"> Review </option><option value="1"> Personal message</option></select>
             </div>
              <input type="submit" value="submit">
             <div class="extra">
@@ -509,6 +537,14 @@
             </div>
         </form>
         
+        <div class="des flex">
+            <label>Support Designer : </label>
+             <a href="https://www.instagram.com/p/CLMt8zzF4SdQagQQeiqo40zKpOkGtdiH-5fMlY0/?igshid=1ssat0zj5iic5" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+    <a href="https://www.facebook.com/people/Satwik-Kedaresetti/100008718079201/" target="_blank"><i class="fab fa-facebook"></i> Facebook </a>
+    <a href="https://www.youtube.com/channel/UCpLOopnR9TX9b1fjcDpapsw" target="_blank"><i class="fab fa-youtube"></i> You tube</a>
+    <a><i class="far fa-envelope"></i>  satwik1330gmail.com</a>
+        </div>
+        </div>
     </section>
 
    
@@ -546,7 +582,7 @@
                 m1.style.transform = "rotateZ(360deg)";
             }
             m.classList.toggle("active");
-            navigator.vibrate();
+            navigator.vibrate(50);
         }
 
         function goto(a) {
@@ -561,7 +597,6 @@
                 }
             }
             open1();
-            navigator.vibrate(20);
         }
         
 
@@ -596,13 +631,61 @@
         var form_co = document.getElementById("cont_form");
         form_co.addEventListener("submit", (e) => {
             e.preventDefault();
-            navigator.vibrate(200);
+            var contact_name = document.getElementById("contact_name");
+            var contact_mail = document.getElementById("contact_mail");
+            var contact_message = document.getElementById("contact_message");
+            var contact_confirmation = document.getElementById("contact_confirmation");
+            if (contact_confirmation.value  == 0 || contact_confirmation.value  == 1){
+                var name = contact_name.value;
+                var mail = contact_mail.value;
+                var msg = contact_message.value;
+                var con = contact_confirmation.value;
+                var mon = new Date().getMonth();
+                var da = new Date().getDate();
+                var yr = new Date().getFullYear();
+                var st = da + " - "+mon + " - " + yr;
+                if (con == 0){
+                    // review
+                    firebase.database().ref("reviews/").push({
+                         nameofperson : name,
+                         email : mail,
+                         msg : msg,
+                         dat : st
+                  });
+                }else{
+                    // personal 
+                    var wd = confirm("in case of personal messages we prefer what's app, do you want to continue with what's app");
+                    if (wd){
+        var linktoopen = "https://wa.me/919290864905?text= "+" name : "+ name +"%0a e-mail : " + mail +"%0a message : %0a"+ msg; 
+            window.open(linktoopen,"_blank");
+                    }else{
+                        firebase.database().ref("messages/").push({
+                         nameofperson : name,
+                         email : mail,
+                         msg : msg,
+                         dat : st
+                  });
+                    }
+                }
+                contact_name.value = "";
+                contact_mail.value = "";
+                contact_message.value = "";      
+                   
+                    navigator.vibrate(50);  
+            }else{
+                alert("please confirm whether you are writting a review or personal message");
+            }
         })
         
         function whatsapp(){
             var loc = "https://wa.me/919290864905?text= ";
             window.open(loc,"_blank");
         }
+        
+        
+        
+        
+        
         setInterval(function() {
             var ms = document.getElementById("ms");
             ms.innerHTML = li[lii];
