@@ -710,7 +710,7 @@
         
         <div class="des flex">
             <label>Support Designer : </label>
-             <a href="https://www.instagram.com/p/CLMt8zzF4SdQagQQeiqo40zKpOkGtdiH-5fMlY0/?igshid=1ssat0zj5iic5" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+             <a href="https://www.instagram.com/satwikkedaresetti/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
     <a href="https://www.facebook.com/people/Satwik-Kedaresetti/100008718079201/" target="_blank"><i class="fab fa-facebook"></i> Facebook </a>
     <a href="https://www.youtube.com/channel/UCpLOopnR9TX9b1fjcDpapsw" target="_blank"><i class="fab fa-youtube"></i> You tube</a>
     <a><i class="far fa-envelope"></i>  satwik1330gmail.com</a>
@@ -893,7 +893,7 @@
                     var n = n1.toLowerCase();
                     var f1 = f.value.toLowerCase();
                     
-                    if (n.indexOf(f.value) >= 0){
+                    if (n.indexOf(f1) >= 0){
                          el.classList.remove("active");
                     }else{
                         el.classList.add("active");
@@ -909,7 +909,8 @@
                             li.classList.remove("active");
                         }else{
                             var n11 = productsname[i];
-                            if (n11.indexOf(f.value) >= 0){
+                            var f2 = f.value.toLowerCase();
+                            if (n11.indexOf(f2) >= 0){
                                 li.classList.remove("active");
                             }else{
                                 li.classList.add("active");
