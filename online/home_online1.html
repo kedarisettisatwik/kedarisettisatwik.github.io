@@ -26,10 +26,9 @@
 
         ::-webkit-scrollbar{
             width:5px;
-            background-color:aqua;
         }
         ::-webkit-scrollbar-thumb{
-            background-color:black;
+            background-color:blue;
         }
         .flex {
             display: flex;
@@ -152,12 +151,14 @@
         }
 
         #cart {
-            background-color: blue;
+            background-image:linear-gradient(45deg,beige,bisque);
             transform: translate(0, 100%);
+            flex-direction: column;
+            justify-content: flex-start;
         }
 
         #profile {
-            background-image:linear-gradient(rgb(255,255,255,0.4),rgb(255,255,255,0.6)),url(bui.jpg);
+            background-image:url(bui.jpg);
             transform: translate(0, -100%);
         }
 
@@ -511,7 +512,7 @@
             font-weight:bold;
             padding:10px 20px;
         }
-        #products #pro_display{
+        #products #pro_display,#cart_display{
             padding:20px;
             flex-wrap: wrap;
             flex-direction: row;
@@ -519,8 +520,10 @@
             opacity:1;
             transition:0.5s;
         }
-        
-        #products .pro_conn1{
+        #cart_display{
+            margin-top:20px;
+        }
+        #products .pro_conn1,#cart .cart_pro1{
             flex-direction: column;
             justify-content: flex-start;
             width:250px;
@@ -537,7 +540,12 @@
             box-shadow:0 0 10px rgb(0,0,0,0.4);
             border:none;
         }
-        #products .pro_conn1:hover{
+        #cart .cart_pro1{
+            overflow-y: hidden;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+            border:none;
+        }
+        #products .pro_conn1:hover,#cart .cart_pro1:hover{
             overflow-y: auto;
             box-shadow:0 0 10px rgb(0,0,0,0.4);
             border:none;
@@ -550,7 +558,7 @@
             width:100%;
             height:100%
         }
-        #products .pro_conn1 h3{
+        #products .pro_conn1 h3,#cart .cart_pro2 h1{
             font-size:18px;
             font-weight:500;
             letter-spacing:1px;
@@ -678,6 +686,7 @@
             height:100vh;
             background-color:white;
             display:none;
+            flex-wrap: wrap;
         }
         #status h1{
             font-size:18px;
@@ -697,6 +706,65 @@
         #status i{
             margin-right:10px;
             font-size:23px;
+        }
+        
+        #cart .header{
+            width:95vw;
+            flex-wrap: wrap;
+            margin-top:70px;
+        }   
+        #cart .header p{
+            padding:10px 20px;
+            background-color:white;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+            font-size:17px;
+            margin:10px;
+            border-radius:10px;
+        }
+        #cart .header .co{
+            cursor:pointer;
+            background-color:aliceblue;
+            font-weight:bold;
+            margin:20px;
+            letter-spacing:1px;
+        }
+        #cart .cart_pro2{
+            margin-bottom:10px;
+        }
+        #cart .cart_pro2 p{
+            margin:10px 0;
+        }
+        #cart .cart_pro2 button{
+            margin:5px;
+            width:100%;
+            padding:10px;
+            background-color:lavender;
+            font-size:16px;
+            border:none;
+            transition:0.4s;
+            outline:none;
+        }
+        #cart .cart_pro2 button:hover{
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+        }
+        #cart .cart_pro3 input{
+            padding:5px 0 5px 10px;
+            outline:none;
+            background-color:white;
+            width:100%;
+            margin:5px;
+        }
+        #cart .cart_pro3 button{
+            padding:5px 20px;
+            background-color:antiquewhite;
+            font-size:16px;
+            border:none;
+            outline:none;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+            margin:10px;
+        }
+        #cart .cart_pro3 p{
+            margin:10px 0 10px 0;
         }
         @media (max-width:400px) {
             #menu {
@@ -794,8 +862,17 @@
          
     </section>
 
-    <section id="cart" class="sec">
-
+    <section id="cart" class="sec flex">
+    <div class="header flex">
+        <p>Items : <span id="num">0</span></p>
+        <p>cost : <span id="rat">0/-</span></p>
+        <p class="co" onclick="buy_cart()">Buy Cart</p>
+    </div>
+    <p id="cart_msg">if you are signed in you can save the cart</p>
+    
+    <div id="cart_display" class="flex"> 
+        
+    </div>
     </section>
 
     <section id="profile" class="sec bg flex">
@@ -890,8 +967,203 @@
     $(document).ready(function(){
         $(".water").ripples();
     })
-    </script>
+    </script>    
 
+    <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase.js"></script>
+    <script>
+          var firebaseConfig = {
+    apiKey: "AIzaSyC9HqXjTvwCNH4yHJzYryBZhq2TEm3YGMo",
+    authDomain: "online-store-33f84.firebaseapp.com",
+    projectId: "online-store-33f84",
+    storageBucket: "online-store-33f84.appspot.com",
+    messagingSenderId: "726514067806",
+    appId: "1:726514067806:web:81d3da32d9be603fb447cf",
+    measurementId: "G-9D689P5XXK"
+  };
+        firebase.initializeApp(firebaseConfig);
+   </script>
+   
+   <script>
+    
+       
+       var set_reviews = [];
+       
+       var re = document.getElementById("review_add");
+       
+    firebase.database().ref('reviews/').on("value",function(snapshot){
+        
+      re.innerHTML = "<div class='swiper-slide active' style='--sli:0'><h1 style='font-size:1.3em;letter-spacing:2px'>Reviews.. <i class='fas fa-arrow-circle-right' onclick='swipe1(1)'></i></h1><span>swipe to see more</span><video src='Star%20-%2031731.mp4' autoplay='' muted style='width:100%;height:100%;object-fit:scale-down'></video></div>";
+        
+    var relistna = [];
+    var relistms = [];
+    var relistdt = [];
+     snapshot.forEach(function(ChildSnapShot){
+         var na = ChildSnapShot.val().nameofperson;
+         var ms = ChildSnapShot.val().msg;
+         var dat = ChildSnapShot.val().dat;
+         relistna.push(na);
+         relistms.push(ms);
+         relistdt.push(dat);
+     })
+           var c = 0;
+        
+            for (var xy = relistms.length -1 ;xy >= 0 ;xy--){
+                var nna = relistna[xy];
+                var mms = relistms[xy];
+                var dds = relistdt[xy];
+                
+                if (xy == 0){
+                    re.innerHTML += "<div class='swiper-slide' style='--sli:" + (c+1) +"'><h2><i class='fas fa-arrow-circle-left' onclick='swipe1("+ c +")'></i> " + nna +" </h2><span>"+ dds +"</span><p>" + mms + "</p></div>";
+                }else{
+                    re.innerHTML += "<div class='swiper-slide' style='--sli:" + (c+1) +"'><h2><i class='fas fa-arrow-circle-left' onclick='swipe1("+ c +")'></i> " + nna + "<i class='fas fa-arrow-circle-right' onclick='swipe1("+ (c + 2) +")'></i></h2><span>"+ dds +"</span><p>" + mms + "</p></div>";
+                }
+                c += 1;
+            }
+    });
+       
+       
+       var productsname = [];
+        var productspara = [];
+        var productscat = [];
+        var productsquantity = [];
+        var productsrate = [];
+        var productsmore = [];
+        var productssub = [];
+        
+        var pro_conn = document.getElementById("pro_display");
+        
+        
+        var inum = 0;
+        
+        firebase.database().ref('products/').once('value',function(snapshot){
+         pro_conn.innerHTML = "";
+           snapshot.forEach(function(ChildSnapshot){
+    let proname = ChildSnapshot.val().proname;
+    let prodes = ChildSnapshot.val().prodes;
+    let proselect = ChildSnapshot.val().proselect;
+    let proquantity = ChildSnapshot.val().proquantity;
+    let prorate = ChildSnapshot.val().prorate;
+    let promore = ChildSnapshot.val().promore;
+    let prosub =  ChildSnapshot.val().prosub;
+               
+               pro_conn.innerHTML += "<div class='pro_conn1'>"+"<div class='pro_conn2'><div class='pro_conn3'><h3>"+proname+"</h3></div><div class='pro_conn4' id='pro"+inum+"'><label>"+proquantity+ " " +proselect+" - "+ prorate +"/- </label><button onclick='add("+inum+")'><i class='fas fa-shopping-bag'></i> Add to Bag</button><p class='ex' >"+prodes+"<button><a target = '_blank' href ='"+promore+"'>view more</a></button></p></div></div></div>";
+               inum += 1;
+                     productsname.push(proname);
+                     productspara.push(prodes);
+                     productscat.push(proselect);
+                     productsquantity.push(proquantity);
+                     productsrate.push(prorate);
+                     productsmore.push(promore);
+                     productssub.push(prosub);
+           }) 
+        });
+       
+       var listofusers;
+        var listofpass;
+        var listofmail;
+       
+       firebase.database().ref('users/').on('value',function(snapshot){
+             listofusers = [];
+              listofpass = [];
+              listofmail = [];
+        snapshot.forEach(function(ChildSnapShot){
+            let una = ChildSnapShot.val().emailuser;
+            let pas = ChildSnapShot.val().passuser;
+            let unn = ChildSnapShot.val().nameuser;
+            listofusers.push(unn);
+            listofpass.push(pas);
+            listofmail.push(una);
+        })
+           
+       });
+       
+       var cart_list1 = [];
+       var cart_list_q = [];
+       
+       function cart1(){
+           
+           var cart_addon = document.getElementById("cart_display");
+           if (trfal){
+               
+           firebase.database().ref("users/"+adminofpage+"/cart/").once('value',function(snapshot){
+               cart_addon.innerHTML = "";
+                cart_list = 0;
+            cartrate = 0;
+                snapshot.forEach(function(ChildSnapshot){
+               let cartproname = ChildSnapshot.val().cartproname;
+               let cartproquannity = ChildSnapshot.val().cartproquantity;
+               var idpro = productsname.indexOf(cartproname);
+               var rr = JSON.parse(productsrate[idpro]);
+               var qq = JSON.parse(productsquantity[idpro]);
+               var uu = rr/qq;
+               let rateis = cartproquannity;
+               var rrrr = uu * rateis;
+        cart_addon.innerHTML += "<div class='cart_pro1'><div class='cart_pro2'><h1> "+ productsname[idpro] +" </h1><p>"+cartproquannity   +" " + productscat[idpro]  + " = "+ rrrr +"/- </p><button onclick='remove_cart("+ idpro +")'>remove from cart</button></div><div class='cart_pro3'><input type='number' placeholder='Quantity' onkeyup='quantity("+ cart_list +")'><button onclick='save_cart()'>save</button> <p>"+ productspara[idpro] +"</p> <a target='_blank' href='"+ productsmore[idpro] +"'>view more</a> </div></div>";
+               cart_list += 1;
+               cartrate += rrrr;    
+           })        
+           var xccc = document.getElementById("num");
+            xccc.innerHTML = cart_list;
+            var ccrr = document.getElementById("rat");
+            ccrr.innerHTML = cartrate+"/-";
+               
+            });
+               
+           }else{
+               cart_to = 0;
+               cart_addon.innerHTML = "";
+               for (var j = 0;j<cart_list1.length;j++){
+                   
+                   var p = cart_list1[j];
+                   
+                   cart_addon.innerHTML += "<div class='cart_pro1'><div class='cart_pro2'><h1> "+ productsname[p] +" </h1><p>"+ productsquantity[p]  +" " + productscat[p]  + " = "+ productsrate[p] +"/- </p><button onclick='remove_cart("+ p +")'>remove from cart</button></div><div class='cart_pro3'><input type='number' placeholder='Quantity' onkeyup='quantity("+ j +")'><button onclick='save_cart()'>save</button> <p>"+ productspara[p] +"</p> <a target='_blank' href='"+ productsmore[p] +"'>view more</a> </div></div>";
+                   var rq = productsquantity[p];
+                   var rr = productsrate[p];
+                   var pq = JSON.parse(rr) / JSON.parse(rq);
+                   var ar = pq * cart_list_q[j];
+                   cart_to += ar;
+               }
+               var xccc = document.getElementById("num");
+               xccc.innerHTML = cart_list1.length;
+                var ccrr = document.getElementById("rat");
+               ccrr.innerHTML = cart_to + "/-";
+           }
+
+       }
+    
+        function remove_cart(a){
+            if (trfal){
+                firebase.database().ref("users/"+adminofpage+"/cart/"+productsname[a]).remove();
+               cart1();
+            }else{
+                var e = cart_list1.indexOf(a);
+                cart_list1.splice(e,1);
+                cart1();
+            }
+            navigator.vibrate(75);
+        }
+        function add(a){
+            if (trfal){
+                firebase.database().ref("users/"+adminofpage+"/cart/"+productsname[a]).set({
+                    cartproname : productsname[a],
+                    cartproquantity:productsquantity[a]
+                  });
+                cart1();
+            }{
+                if (cart_list1.includes(a)){
+                    
+                }else{
+                    cart_list1.push(a);
+                    cart_list_q.push(productsquantity[a]);
+                    cart1();
+                }
+            }
+            navigator.vibrate(75);
+        }
+       
+       
+   </script>
+       
     <script>
         
         var adminofpage;
@@ -899,7 +1171,7 @@
         var trfal = false;
         
         document.addEventListener('contextmenu',(e) => {
-                  e.preventDefault();   
+                  // e.preventDefault();   
         });
         
         
@@ -911,7 +1183,8 @@
             trfal = true;
             var ssst = document.getElementById("status");
             ssst.style.display = "flex";
-             ssst.innerHTML = "<h1>signed in as - " + adddd1 + "</h1>"+"<button onclick='logout()'><i class='fas fa-sign-out-alt'></i> log out </button>"; 
+            ssst.innerHTML = "<h1>signed in as - " + adddd1 + "</h1>"+"<button onclick='logout()'><i class='fas fa-sign-out-alt'></i> log out </button>"; 
+            cart1();
         }
         
         var aud = new Audio();
@@ -1120,6 +1393,8 @@
         st.style.display = "none";
         st.innerHTML = "";
         localStorage.clear();
+         var cart_addon = document.getElementById("cart_display");
+        cart_addon.innerHTML = "";
     }
         
     function errordis(a,b,c,d){
@@ -1153,7 +1428,7 @@
                     trfal = true;
                     localStorage.setItem("ksruser",adminofpage);
                     localStorage.setItem("ksrname",adminname);
-                    
+                    cart1();
                     setTimeout(function(){
                         var st = document.getElementById("status");
                         st.style.display = "flex";
@@ -1215,126 +1490,18 @@
         }, 3000);
 
     </script>
-    
-    
-
-    <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase.js"></script>
-    <script>
-          var firebaseConfig = {
-    apiKey: "AIzaSyC9HqXjTvwCNH4yHJzYryBZhq2TEm3YGMo",
-    authDomain: "online-store-33f84.firebaseapp.com",
-    projectId: "online-store-33f84",
-    storageBucket: "online-store-33f84.appspot.com",
-    messagingSenderId: "726514067806",
-    appId: "1:726514067806:web:81d3da32d9be603fb447cf",
-    measurementId: "G-9D689P5XXK"
-  };
-        firebase.initializeApp(firebaseConfig);
-   </script>
-   
-   <script>
-    
-       
-       var set_reviews = [];
-       
-       var re = document.getElementById("review_add");
-       
-    firebase.database().ref('reviews/').on("value",function(snapshot){
-        
-      re.innerHTML = "<div class='swiper-slide active' style='--sli:0'><h1 style='font-size:1.3em;letter-spacing:2px'>Reviews.. <i class='fas fa-arrow-circle-right' onclick='swipe1(1)'></i></h1><span>swipe to see more</span><video src='Star%20-%2031731.mp4' autoplay='' muted style='width:100%;height:100%;object-fit:scale-down'></video></div>";
-        
-    var relistna = [];
-    var relistms = [];
-    var relistdt = [];
-     snapshot.forEach(function(ChildSnapShot){
-         var na = ChildSnapShot.val().nameofperson;
-         var ms = ChildSnapShot.val().msg;
-         var dat = ChildSnapShot.val().dat;
-         relistna.push(na);
-         relistms.push(ms);
-         relistdt.push(dat);
-     })
-           var c = 0;
-        
-            for (var xy = relistms.length -1 ;xy >= 0 ;xy--){
-                var nna = relistna[xy];
-                var mms = relistms[xy];
-                var dds = relistdt[xy];
-                
-                if (xy == 0){
-                    re.innerHTML += "<div class='swiper-slide' style='--sli:" + (c+1) +"'><h2><i class='fas fa-arrow-circle-left' onclick='swipe1("+ c +")'></i> " + nna +" </h2><span>"+ dds +"</span><p>" + mms + "</p></div>";
-                }else{
-                    re.innerHTML += "<div class='swiper-slide' style='--sli:" + (c+1) +"'><h2><i class='fas fa-arrow-circle-left' onclick='swipe1("+ c +")'></i> " + nna + "<i class='fas fa-arrow-circle-right' onclick='swipe1("+ (c + 2) +")'></i></h2><span>"+ dds +"</span><p>" + mms + "</p></div>";
-                }
-                c += 1;
-            }
-    });
-       
-       
-       var productsname = [];
-        var productspara = [];
-        var productscat = [];
-        var productsquantity = [];
-        var productsrate = [];
-        var productsmore = [];
-        var productssub = [];
-        
-        var pro_conn = document.getElementById("pro_display");
-        
-        
-        var inum = 0;
-        
-        firebase.database().ref('products/').once('value',function(snapshot){
-         pro_conn.innerHTML = "";
-           snapshot.forEach(function(ChildSnapshot){
-    let proname = ChildSnapshot.val().proname;
-    let prodes = ChildSnapshot.val().prodes;
-    let proselect = ChildSnapshot.val().proselect;
-    let proquantity = ChildSnapshot.val().proquantity;
-    let prorate = ChildSnapshot.val().prorate;
-    let promore = ChildSnapshot.val().promore;
-    let prosub =  ChildSnapshot.val().prosub;
-               
-               pro_conn.innerHTML += "<div class='pro_conn1'>"+"<div class='pro_conn2'><div class='pro_conn3'><h3>"+proname+"</h3></div><div class='pro_conn4' id='pro"+inum+"'><label>"+proquantity+ " " +proselect+" - "+ prorate +"/- </label><button onclick='add("+inum+")'><i class='fas fa-shopping-bag'></i> Add to Bag</button><p class='ex' >"+prodes+"<button><a target = '_blank' href ='"+promore+"'>view more</a></button></p></div></div></div>";
-               inum += 1;
-                     productsname.push(proname);
-                     productspara.push(prodes);
-                     productscat.push(proselect);
-                     productsquantity.push(proquantity);
-                     productsrate.push(prorate);
-                     productsmore.push(promore);
-                     productssub.push(prosub);
-           }) 
-        });
-       
-       var listofusers;
-        var listofpass;
-        var listofmail;
-       
-       firebase.database().ref('users/').on('value',function(snapshot){
-             listofusers = [];
-              listofpass = [];
-              listofmail = [];
-        snapshot.forEach(function(ChildSnapShot){
-            let una = ChildSnapShot.val().emailuser;
-            let pas = ChildSnapShot.val().passuser;
-            let unn = ChildSnapShot.val().nameuser;
-            listofusers.push(unn);
-            listofpass.push(pas);
-            listofmail.push(una);
-        })
-           
-       });
-       
-   </script>
-       
 
 </body>
 
 </html>
 
 
+
 <!--
+                
+
+               
+                
 
                 <div class='swiper-slide active' style='--sli:0'>
                     <h1 style='font-size:1.3em;letter-spacing:2px'>Reviews.. <i class='fas fa-arrow-circle-right' onclick='swipe1(1)'></i></h1>
