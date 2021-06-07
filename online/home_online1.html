@@ -24,6 +24,13 @@
             font-family: 'Poppins', sans-serif;
         }
 
+        ::-webkit-scrollbar{
+            width:5px;
+            background-color:aqua;
+        }
+        ::-webkit-scrollbar-thumb{
+            background-color:black;
+        }
         .flex {
             display: flex;
             justify-content: center;
@@ -150,7 +157,7 @@
         }
 
         #profile {
-            background-color: burlywood;
+            background-image:linear-gradient(rgb(255,255,255,0.4),rgb(255,255,255,0.6)),url(bui.jpg);
             transform: translate(0, -100%);
         }
 
@@ -508,7 +515,6 @@
             padding:20px;
             flex-wrap: wrap;
             flex-direction: row;
-            justify-content: flex-start;
             width:100vw;
             opacity:1;
             transition:0.5s;
@@ -579,6 +585,119 @@
         #products .ex button{
             background-color:transparent;
         }
+        
+        .signin,.signup{
+            border-radius:10px;
+            width:400px;
+            background-color:white;
+            margin:10px;
+            position:relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow:10px 10px 20px rgb(0,0,0,0.5);
+            transition:0.4s;
+        }
+        .signin h1,.signup h1{
+            margin-top:20px;
+            width:100%;
+            font-size:20px;
+            padding:10px 0 10px 30px;
+            letter-spacing:1px;
+            text-transform:uppercase;
+        }
+        .signin p,.signup p{
+            margin-top:5px;
+            width:95%;
+            font-size:16px;
+            text-align: center;
+            opacity:0.6;
+        }
+        .signin .form,.signup .form{
+            height:0px;
+            overflow:hidden;
+            margin-top:10px;
+            width:95%;
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+            transition:0.5s;
+        }
+        .signin .form input,.signup .form input{
+            margin:7px 0;
+            width:100%;
+            padding:10px 0 10px 40px;
+            font-size:16px;
+            outline:none;
+            border:2px solid rgb(0,0,0,0.4);
+            border-radius:7px;
+            transition:0.5s;
+        }
+        .signin .form input::placeholder,.signup .form input::placeholder{
+            color:black;
+        }
+        .signin .form input:focus,.signup .form input:focus{
+            border:3px solid skyblue;
+        }
+        .signin .form button,.signup .form button{
+            padding:10px 20px;
+            margin:10px 0;
+            border-radius:7px;
+            background-color:lightskyblue;
+            border:none;
+            outline:none;
+            font-size:17px;
+            letter-spacing:1px;
+            box-shadow:10px 5px 10px rgb(0, 51, 153,0.5);
+            font-weight:bold;
+            cursor:pointer;
+            transition:0.5s;
+        }
+        .signin .form button i,.signup .form button i{
+            margin-left:4px;
+        }
+        .signin .form button:hover,.signup .form button:hover{
+            letter-spacing:2px;
+            box-shadow:0px 0px 10px rgb(0, 51, 153,0.5);
+        }
+        .signin span,.signup span{
+            margin-top:12px;
+            font-size:16px;
+            opacity:0;
+            transition:0.5s;
+            margin-bottom:20px;
+        }
+        .signin:hover,.signup:hover{
+            box-shadow:0 0 20px rgb(0,0,0,0.5);
+        }
+        #status{
+            position: absolute;
+            top:0;
+            left:0;
+            width:100vw;
+            height:100vh;
+            background-color:white;
+            display:none;
+        }
+        #status h1{
+            font-size:18px;
+            font-weight:500;
+            margin:10px;
+        }
+        #status button{
+            padding:10px 20px;
+            background-color:wheat;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+            border:none;
+            outline:none;
+            font-size:18px;
+            margin:20px;
+            cursor:pointer;
+        }
+        #status i{
+            margin-right:10px;
+            font-size:23px;
+        }
         @media (max-width:400px) {
             #menu {
                 width: 95vw;
@@ -586,6 +705,9 @@
                 left: 10px;
             }
             #more form{
+                width:97vw;
+            }
+            .signin,.signup{
                 width:97vw;
             }
         }
@@ -601,7 +723,12 @@
                 display: none;
             }
         }
-    
+ 
+        @media (max-width:700px){
+            #profile {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 
@@ -671,8 +798,33 @@
 
     </section>
 
-    <section id="profile" class="sec">
-        
+    <section id="profile" class="sec bg flex">
+    
+        <div id="signin" class="signin" onmouseenter="ext('form1','form2')" onmouseleave="me('form1')">
+                    <h1>Sign in</h1>
+                    <p>sign in using e-mail & password</p>
+                    <div class="form" id="form1">
+                        <input type="email" placeholder="****@gmail.com" id="email1" class="add_user">
+                        <input type="password" placeholder="password" id="password1" class="add_user">
+            <button onclick="siin('email1','password1')">Sign in <i class="fas fa-long-arrow-alt-right"></i></button>
+                   <span id="error1">error</span>
+                    </div>
+                </div>
+                <div id="signup" class="signup" onmouseenter="ext('form2','form1')" onmouseleave="me('form2')">
+                    <h1>Sign up</h1>
+                    <p>sign up with us </p>
+                    <div class="form" id="form2">
+                        <input type="text" placeholder="your name" id="name1" class="add_user">
+                        <input type="email" placeholder="**@gmail.com" id="email2" class="add_user">
+                        <input type="password" placeholder="set a password" id="pass2" class="add_user">
+                        <input type="text" placeholder="confirm password" id="repass2" class="add_user">
+        <button onclick="siup('name1','email2','pass2','repass2')">Sign up <i class="fas fa-long-arrow-alt-right"></i></button>
+                   <span id="error2">error</span>
+                    </div>
+                </div>
+            <div id="status" class="flex">
+           
+            </div>
     </section>
 
     <section id="reviews" class="sec flex bg">
@@ -742,6 +894,26 @@
 
     <script>
         
+        var adminofpage;
+        var adminname;
+        var trfal = false;
+        
+        document.addEventListener('contextmenu',(e) => {
+                  e.preventDefault();   
+        });
+        
+        
+        if (localStorage.getItem("ksrname")){
+            var addd = localStorage.getItem("ksruser");
+            var adddd1 = localStorage.getItem("ksrname");
+            adminofpage = addd;
+            adminname = adddd1;
+            trfal = true;
+            var ssst = document.getElementById("status");
+            ssst.style.display = "flex";
+             ssst.innerHTML = "<h1>signed in as - " + adddd1 + "</h1>"+"<button onclick='logout()'><i class='fas fa-sign-out-alt'></i> log out </button>"; 
+        }
+        
         var aud = new Audio();
         aud.src = "audio.mp3";
         
@@ -767,7 +939,7 @@
             m.classList.toggle("active");
             navigator.vibrate(50);
         }
-
+        
         function goto(a) {
             var s = document.querySelectorAll('.sec');
             var b = document.querySelectorAll("#menu li");
@@ -925,6 +1097,113 @@
             },600);
         }
         
+        function me(a){
+        document.getElementById(a).style.height = "0px";
+    }
+        
+    function ext(a,b){
+        if (a == "form1"){
+            document.getElementById(a).style.height = "250px";
+            document.getElementById(b).style.height = "0px";
+        }else{
+            document.getElementById(a).style.height = "400px";
+            document.getElementById(b).style.height = "0px";
+        }
+        
+    }
+        
+    function logout(){
+        adminname = "";
+        adminofpage = "";
+        trfal = false;
+         var st = document.getElementById("status");
+        st.style.display = "none";
+        st.innerHTML = "";
+        localStorage.clear();
+    }
+        
+    function errordis(a,b,c,d){
+        var aa = document.getElementById(a);
+        aa.innerHTML = b;
+        aa.style.color = c;
+        aa.style.opacity = d;
+        setTimeout(function(){
+            aa.style.opacity = "0";
+        },5000);
+    }
+        
+    function siin(x,y){
+        var email = document.getElementById(x);
+        var pass = document.getElementById(y);
+        if (email.value == "" || pass.value == ""){
+            errordis("error1","All fields required","red","1");
+        }else{
+            var ee = email.value;
+            if (ee.indexOf("@gmail.com") < 0){
+              errordis("error1","Invalid e-mail use @gmail.com","red","1");    
+            }else{
+                if (listofmail.includes(email.value)){ 
+                if (pass.value == listofpass[listofmail.indexOf(email.value)]){
+                    var msg1 = "welcome back " + listofusers[listofmail.indexOf(email.value)];
+                    errordis("error1",msg1,"green","1");
+                    var ee = email.value;
+                    var indexofs = ee.indexOf("@");
+                    adminofpage = ee.substring(0,indexofs);
+                    adminname = listofusers[listofmail.indexOf(ee)];
+                    trfal = true;
+                    localStorage.setItem("ksruser",adminofpage);
+                    localStorage.setItem("ksrname",adminname);
+                    
+                    setTimeout(function(){
+                        var st = document.getElementById("status");
+                        st.style.display = "flex";
+            st.innerHTML = "<h1>signed in as - " + adminname + "</h1>"+"<button onclick='logout()'><i class='fas fa-sign-out-alt'></i> log out </button>"; 
+                    },1200);
+                }else{
+                    errordis("error1","wrong-credits","red","1");
+                    trfal = false;
+                }
+            }else{
+                errordis("error1","wrong credits","red","1");
+                trfal = false;
+            }   
+            }
+        }
+    }
+        
+    function siup(p,q,x,y){
+         var name = document.getElementById(p);
+        var email = document.getElementById(q);
+        var pass = document.getElementById(x);
+        var repass = document.getElementById(y);
+        var error = document.getElementById("error2");
+        if (email.value == "" || pass.value == "" || name.value == "" || repass.value == ""){
+            errordis("error2","All fields required","red","1");
+        }else{
+            if (pass.value == repass.value){
+                var ee = email.value;
+            if (ee.indexOf("@gmail.com") < 0){
+            errordis("error2","Invalid e-mail use @gmail.com","red","1"); 
+            }else{
+                
+            if (listofmail.includes(email.value)){
+                errordis("error2","This email already exists","red","1");
+            }else{
+                 var indexofn = ee.indexOf("@");
+                    var see = ee.substring(0,indexofn);
+                firebase.database().ref("users/"+see).set({
+     nameuser : name.value,
+     emailuser : email.value,
+     passuser : pass.value
+                  });
+        errordis("error2","registration completed, now u can sign in and start shopping ","green","1");
+            }
+               }
+            }else{
+            errordis("error2","password confirmation failed","red","1");
+            }
+        }
+    }
         
         setInterval(function() {
             var ms = document.getElementById("ms");
@@ -1028,6 +1307,24 @@
            }) 
         });
        
+       var listofusers;
+        var listofpass;
+        var listofmail;
+       
+       firebase.database().ref('users/').on('value',function(snapshot){
+             listofusers = [];
+              listofpass = [];
+              listofmail = [];
+        snapshot.forEach(function(ChildSnapShot){
+            let una = ChildSnapShot.val().emailuser;
+            let pas = ChildSnapShot.val().passuser;
+            let unn = ChildSnapShot.val().nameuser;
+            listofusers.push(unn);
+            listofpass.push(pas);
+            listofmail.push(una);
+        })
+           
+       });
        
    </script>
        

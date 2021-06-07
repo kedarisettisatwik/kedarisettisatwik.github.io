@@ -1500,6 +1500,7 @@
             e.preventDefault();
             var signuser = document.getElementById("sign_in_user").value;
             var signpass = document.getElementById("sign_in_pass").value;
+            
             if (listofmail.includes(signuser)){
                 if (signpass == listofpass[listofmail.indexOf(signuser)]){
                     error1("welcome back " + listofnames[listofmail.indexOf(signuser)],"back");
@@ -1519,6 +1520,7 @@
                     document.getElementById("cart_number").innerHTML = 0;
                     document.getElementById("cart_rate").innerHTML = 0+"/-";
                 }
+                
             }else{
                 error1("wrong credits","re-try");
                 trfal = false;
@@ -1553,6 +1555,7 @@
                 error1(sign_up_email+" already exists");
             }else{
                 if (sign_up_pass == sign_up_repass){
+                    
                     var indexofn = sign_up_email.indexOf("@");
                     var see = sign_up_email.substring(0,indexofn);
                 firebase.database().ref("users/"+see).set({
@@ -1564,6 +1567,7 @@
                     localStorage.clear();
                     document.getElementById("cart_number").innerHTML = 0;
                     document.getElementById("cart_rate").innerHTML = 0+"/-";
+                    
                  }else{
                        error1("password  confirmation failed","re-try");
                      localStorage.clear();
