@@ -42,7 +42,7 @@
             height: 100vh;
             overflow: hidden;
         }
-
+        
         #menu {
             list-style: none;
             position: absolute;
@@ -138,8 +138,10 @@
         }
 
         #products {
-            background-color: aquamarine;
+            flex-wrap: wrap;
+            background-color:ghostwhite;
             transform: translate(100%, 0);
+            opacity:0;
         }
 
         #cart {
@@ -164,7 +166,14 @@
         #home.active,#products.active,#cart.active,#profile.active,#reviews.active,#more.active {
             transform: translate(0, 0);
         }
-        
+        #products.active{
+            -webkit-animation:opa 0.5s forwards;
+            -webkit-animation-delay:0.5s;
+        }
+        @keyframes opa{
+            0%{opacity:0}
+            100%{opacity:1}
+        }
         #home,#products,#cart,#profile,#reviews,#more{
             transition:0.5s;
         }
@@ -439,6 +448,135 @@
             overflow-y: auto;
         }
         
+        .main2{
+            margin:20px 0 10px 0;
+            width:100vw;
+            padding:10px;
+            display: flex;
+            justify-content:flex-start;
+            align-items: center;
+        }
+        .main2 .sea{
+            min-width:60px;
+            height:60px;
+            background-color: white;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+            border-radius:30px;
+            cursor:pointer;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            justify-content: center;
+            margin-left:10px;
+        }
+        .main2 .sea i{
+            height:60px;
+            width:60px;
+            font-size:25px;
+            display: flex;
+            justify-content: center;
+            align-items:center;
+        }
+        .box{
+            position:relative;
+            height:100%;
+            width:0px;
+            overflow: hidden;
+            transition:0.5s;
+        }
+        .box2{
+            width:200px;
+        }
+        .box input{
+            width:90%;
+            height:100%;
+            outline:none;
+            border:none;
+            font-size:16px;
+            background:none;
+        }
+        .box input::placeholder{
+            color:black;
+        }
+        #select_list{
+            margin:10px 0 10px 20px;
+            font-size:17px;
+            font-weight:bold;
+            padding:10px 20px;
+        }
+        #products #pro_display{
+            padding:20px;
+            flex-wrap: wrap;
+            flex-direction: row;
+            width:100vw;
+            opacity:1;
+            transition:0.5s;
+        }
+        
+        #products .pro_conn1{
+            flex-direction: column;
+            justify-content: flex-start;
+            width:250px;
+            height:300px;
+            background-color: white;
+            margin:20px;
+            padding:20px;
+            border-radius:0px;
+            overflow-x: hidden;
+            overflow-y:hidden;
+            display:flex;
+            opacity:1;
+            transition:0.5s;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+            border:none;
+        }
+        #products .pro_conn1:hover{
+            overflow-y: auto;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+            border:none;
+        }
+        #products.active .pro_conn1.active{
+            display:none;
+        }
+        
+        #products .pro_conn2{
+            width:100%;
+            height:100%
+        }
+        #products .pro_conn1 h3{
+            font-size:18px;
+            font-weight:500;
+            letter-spacing:1px;
+            margin:10px;
+        }
+        #products .pro_conn4{
+            margin-top:20px;
+        }
+        #products .pro_conn4 label,#products .pro_conn4 button{
+            width:100%;
+            padding:10px 20px;
+        }
+        #products .pro_conn4 label{
+            font-size:17px;
+        }
+        #products .pro_conn4 button{
+            margin-top:10px;
+            font-size:16px;
+            outline:none;
+            border:none;
+            background-color:skyblue;
+        }
+        #products .pro_conn4 button i{
+            margin-right:10px;
+        }
+        #products .ex{
+            margin-top:20px;
+            color:grey;
+        }
+        #products .ex button{
+            background-color:transparent;
+        }
+        
         @media (max-width:400px) {
             #menu {
                 width: 95vw;
@@ -496,7 +634,35 @@
     </section>
     
     <section id="products" class="sec">
-
+    
+            <div class="main2">
+                <div class="sea">
+                    <i class="fas fa-search" onclick="opens()"></i>
+            <div class="box" id="box1" autocomplete="off">
+                <input type="text" placeholder="search box" onkeyup="filter1()" id="fill_search">
+            </div>
+                </div>
+            </div>
+         
+<select id="select_list">
+         <option value="all">all</option>
+        <option value="food">food</option>
+        <option value="ravaa and floor items and pulses items">ravaa and floor items and pulses items </option>
+        <option value="indian spieces">indian spieces</option>
+        <option value="dry fruits">dry fruits</option> 
+        <option value="aurvedic health care food items">aurvedic health care food items</option>
+         <option value="oils">oils</option>   
+        <option value="pooja items">pooja items</option>
+         <option value="soil items">soil items</option>  
+        <option value="cloth wash items">cloth wash items</option>
+        <option value="dish wash">dish wash</option>
+        <option value="body care items">body care items</option>
+        <option value="other fancy">other fancy</option>
+</select>
+         <div id="pro_display" class="flex">
+             
+         </div>
+         
     </section>
 
     <section id="cart" class="sec">
@@ -504,7 +670,7 @@
     </section>
 
     <section id="profile" class="sec">
-
+        
     </section>
 
     <section id="reviews" class="sec flex bg">
@@ -697,8 +863,41 @@
             window.open(loc,"_blank");
         }
         
+        function opens(){
+            var s = document.getElementById("box1");
+            s.classList.toggle("box2");
+        }
         
-        
+        function filter1(){
+            var f = document.getElementById("fill_search");
+            var li_p = document.querySelectorAll(".pro_conn1");
+            var dis = document.getElementById("pro_display");
+            dis.style.opacity = "0";
+            
+            setTimeout(function(){
+                if (f.value.length == 0){
+                for(var i = 0;i<li_p.length;i++){
+                    var el = li_p[i];
+                    el.classList.remove("active");
+                }
+            }else{
+                for(var i = 0;i<li_p.length;i++){
+                    var el = li_p[i];
+                    var n1 = productsname[i];
+                    var n = n1.toLowerCase();
+                    var f1 = f.value.toLowerCase();
+                    
+                    if (n.indexOf(f.value) >= 0){
+                         el.classList.remove("active");
+                    }else{
+                        el.classList.add("active");
+                    }
+                }
+            }
+            dis.style.opacity = "1";
+            },500);
+            console.log(productsname);
+        }
         
         
         setInterval(function() {
@@ -766,10 +965,46 @@
             }
     });
        
+       
+       var productsname = [];
+        var productspara = [];
+        var productscat = [];
+        var productsquantity = [];
+        var productsrate = [];
+        var productsmore = [];
+        var productssub = [];
+        
+        var pro_conn = document.getElementById("pro_display");
+        
+        
+        var inum = 0;
+        
+        firebase.database().ref('products/').once('value',function(snapshot){
+         pro_conn.innerHTML = "";
+           snapshot.forEach(function(ChildSnapshot){
+    let proname = ChildSnapshot.val().proname;
+    let prodes = ChildSnapshot.val().prodes;
+    let proselect = ChildSnapshot.val().proselect;
+    let proquantity = ChildSnapshot.val().proquantity;
+    let prorate = ChildSnapshot.val().prorate;
+    let promore = ChildSnapshot.val().promore;
+    let prosub =  ChildSnapshot.val().prosub;
+               
+               pro_conn.innerHTML += "<div class='pro_conn1'>"+"<div class='pro_conn2'><div class='pro_conn3'><h3>"+proname+"</h3></div><div class='pro_conn4' id='pro"+inum+"'><label>"+proquantity+ " " +proselect+" - "+ prorate +"/- </label><button onclick='add("+inum+")'><i class='fas fa-shopping-bag'></i> Add to Bag</button><p class='ex' >"+prodes+"<button><a target = '_blank' href ='"+promore+"'>view more</a></button></p></div></div></div>";
+               inum += 1;
+                     productsname.push(proname);
+                     productspara.push(prodes);
+                     productscat.push(proselect);
+                     productsquantity.push(proquantity);
+                     productsrate.push(prorate);
+                     productsmore.push(promore);
+                     productssub.push(prosub);
+           }) 
+        });
+       
+       
    </script>
        
-      
-
 
 </body>
 
