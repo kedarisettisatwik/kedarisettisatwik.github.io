@@ -5,6 +5,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <!-- google fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <title>if</title>
     <style>
         *{
@@ -152,9 +153,9 @@
             display:none;
             margin-right:30px;
         }
-        .menu_bar img{
-            filter:invert(1);
-            width:25px;
+        .menu_bar i{
+           font-size:30px;
+           color:white;
         }
         .btns{
             margin:80px;
@@ -265,8 +266,8 @@
             align-items: center;
             flex-direction: column;
         }
-        #small_menu img{
-            filter:invert(1);
+        #small_menu i{
+            color:white;
             position: absolute;
             top:40px;
             left:40px;
@@ -507,9 +508,11 @@
             justify-content:space-between;
             align-items: center;
         }
-        #social div img{
+        #social div img,#social div a i{
             margin:20px;
             width:40px;
+            font-size:30px;
+            color:white;
         }
         #plans{
             display: flex;
@@ -681,7 +684,7 @@
     </head>
     <body>
     <section id="small_menu">
-        <img src="back.png" onclick="menu_close()">
+        <a onclick="menu_close()" style="font-size:30px;color:white;"><i class="fas fa-arrow-left"></i></a>
         <a class="link1 main1" id="home_link1" onclick="go1(0)">HOME</a>
         <a class="link1" id="plans_link1" onclick="go1(1)">GALLERY</a>
         <a class="link1" id="account_link1" onclick="go1(2)">ACCOUNT</a>
@@ -702,7 +705,7 @@
         <a class="link" id="more_link" onclick="go(4)">MORE</a>
         </div> 
         <div class="menu_bar">
-            <img src="menu.png" onclick="menu_display()">
+            <a onclick="menu_display()"><i class="fas fa-bars"></i></a>
         </div>
         </nav>
         <div class="quote">
@@ -781,9 +784,9 @@
         <input type="submit" value="ADD AS REVIEW">    
         </form>
         <div class="add">
-              <div><img src="manager.png"><p>Mr. ABCDEF</p></div>
-              <div><img src="001-phone.png"><p>1234567890</p></div>
-              <div><img src="map.png"><p>Address</p></div>
+              <div><i class="fas fa-user" style="margin:0 10px;"></i>  <p>Mr. ABCDEF</p></div>
+              <div><i class="fas fa-phone-volume" style="margin:0 10px;"></i> <p>1234567890</p></div>
+              <div><i class="fas fa-map-marker-alt" style=" margin:0 10px;"></i> <p>Address</p></div>
         </div>
         
     </section> 
@@ -816,10 +819,11 @@
     <section id="social">
         <p>This website made by me ( satwik ),<br> links for my social media account & my personal website is here</p>
         <div>
-        <a href="https://www.facebook.com/people/Satwik-Kedaresetti/100008718079201/"><img src="001-facebook.png"></a>
-        <a href="https://www.youtube.com/channel/UCpLOopnR9TX9b1fjcDpapsw"><img src="003-youtube.png"></a>
-        <a href="https://www.instagram.com/p/CLMt8zzF4SdQagQQeiqo40zKpOkGtdiH-5fMlY0/?igshid=1ssat0zj5iic5"><img src="002-instagram.png"></a>
+<a href="https://www.facebook.com/people/Satwik-Kedaresetti/100008718079201/"><i class="fab fa-facebook"></i></a>
+<a href="https://www.instagram.com/satwikkedaresetti/"><i class="fab fa-instagram"></i> </a>
+<a href="https://www.youtube.com/channel/UCpLOopnR9TX9b1fjcDpapsw"><i class="fab fa-youtube"></i> </a>
         <a href="https://kedarisettisatwik.github.io/index.html"><img src="p.jpeg"></a>
+        
         </div>
     </section>
         <script>
