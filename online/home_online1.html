@@ -1121,9 +1121,10 @@
                var uu = rr/qq;
                let rateis = cartproquannity;
                var rrrr = uu * rateis;
-        cart_addon.innerHTML += "<div class='cart_pro1'><div class='cart_pro2'><h1> "+ productsname[idpro] +" </h1><p>"+cartproquannity   +" " + productscat[idpro]  + " = "+ rrrr +"/- </p><button onclick='remove_cart("+ idpro +")'>remove from cart</button></div><div class='cart_pro3'><input type='number' placeholder='Quantity' onkeyup='quantity("+ cart_list +")'><button onclick='save_cart()'>save</button> <p>"+ productspara[idpro] +"</p> <a target='_blank' href='"+ productsmore[idpro] +"'>view more</a> </div></div>";
+        cart_addon.innerHTML += "<div class='cart_pro1'><div class='cart_pro2'><h1> "+ productsname[idpro] +" </h1><p><span class='cart_q'>"+cartproquannity   +"</span> " + productscat[idpro]  + " = <span class='cart_r'>"+ rrrr +"</span>/- </p><button onclick='remove_cart("+ idpro +")'>remove from cart</button></div><div class='cart_pro3'><input type='number' class='field' placeholder='Quantity' onkeyup='quantity("+ cart_list +", " + idpro + ")'><button onclick='save_cart()'>save</button> <p>"+ productspara[idpro] +"</p> <a target='_blank' href='"+ productsmore[idpro] +"'>view more</a> </div></div>";
                cart_list += 1;
-               cartrate += rrrr;    
+               cartrate += rrrr;   
+                    cart_list1.push(idpro);
            })        
            var xccc = document.getElementById("num");
             xccc.innerHTML = cart_list;
@@ -1138,13 +1139,14 @@
                for (var j = 0;j<cart_list1.length;j++){
                    
                    var p = cart_list1[j];
-                   
-                   cart_addon.innerHTML += "<div class='cart_pro1'><div class='cart_pro2'><h1> "+ productsname[p] +" </h1><p>"+ productsquantity[p]  +" " + productscat[p]  + " = "+ productsrate[p] +"/- </p><button onclick='remove_cart("+ p +")'>remove from cart</button></div><div class='cart_pro3'><input type='number' placeholder='Quantity' onkeyup='quantity("+ j +")'><button onclick='save_cart()'>save</button> <p>"+ productspara[p] +"</p> <a target='_blank' href='"+ productsmore[p] +"'>view more</a> </div></div>";
                    var rq = productsquantity[p];
                    var rr = productsrate[p];
                    var pq = JSON.parse(rr) / JSON.parse(rq);
                    var ar = pq * cart_list_q[j];
                    cart_to += ar;
+                   
+                   cart_addon.innerHTML += "<div class='cart_pro1'><div class='cart_pro2'><h1> "+ productsname[p] +" </h1><p><span class='cart_q'>"+ cart_list_q[j]  +"</span> " + productscat[p]  + " =  <span class='cart_r'>"+ ar +"</span>/- </p><button onclick='remove_cart("+ p +")'>remove from cart</button></div><div class='cart_pro3'><input type='number' class='field' placeholder='Quantity' onkeyup='quantity("+ j +", " + p +")'><button onclick='save_cart()'>save</button> <p>"+ productspara[p] +"</p> <a target='_blank' href='"+ productsmore[p] +"'>view more</a> </div></div>";
+                   
                }
                var xccc = document.getElementById("num");
                xccc.innerHTML = cart_list1.length;
@@ -1163,7 +1165,7 @@
                 cart_list1.splice(e,1);
                 cart1();
             }
-            navigator.vibrate(75);
+            navigator.vibrate(35);
              var di = document.getElementById("added");
             di.innerHTML = "<span>"+ productsname[a] +" removed</span>";
             di.style.display = "flex";
@@ -1177,6 +1179,7 @@
                     cartproname : productsname[a],
                     cartproquantity:productsquantity[a]
                   });
+                cart_list1.push(a);
                 cart1();
             }{
                 if (cart_list1.includes(a)){
@@ -1187,7 +1190,7 @@
                     cart1();
                 }
             }
-            navigator.vibrate(75);
+            navigator.vibrate(35);
             var di = document.getElementById("added");
             di.innerHTML = "<span>"+ productsname[a] +" added </span>";
             di.style.display = "flex";
@@ -1196,6 +1199,66 @@
             },1100);
         }
        
+       function quantity(a,b){
+           // a = place in cart
+           // b = place in products
+           
+           var in_li = document.querySelectorAll('.field');
+           var qq = in_li[a].value;
+           
+           var in_q = document.querySelectorAll('.cart_q');
+           var in_r = document.querySelectorAll('.cart_r');
+           
+           var in_qq = in_q[a];
+           var in_rr = in_r[a];
+           
+           var one = productsquantity[b];
+            var two = productsrate[b];
+            var pq = JSON.parse(two) / JSON.parse(one);
+            var ar = pq * qq;
+           
+           if (qq != 0 && qq != ""){
+               in_qq.innerHTML = qq;
+                in_rr.innerHTML = ar.toFixed(2);
+           }else{
+               in_qq.innerHTML = one;
+                in_rr.innerHTML = two;
+           }
+       }
+       
+       function save_cart(){
+           var in_li = document.querySelectorAll('.field');
+           
+           for (var a = 0;a<in_li.length;a++){
+                var qq = in_li[a].value;
+           
+                var in_q = document.querySelectorAll('.cart_q');
+                var in_r = document.querySelectorAll('.cart_r');
+           
+                var in_qq = in_q[a].innerHTML;
+                var in_rr = in_r[a].innerHTML;
+               
+               if (trfal){
+                   
+                   var np = productsname[cart_list1[a]];
+                  firebase.database().ref("users/"+adminofpage+"/cart/"+np).update({
+                        cartproquantity:in_qq,
+                   });
+                   
+               }else{
+                   cart_list_q[a] = in_qq;
+               }
+           }
+           
+           var di = document.getElementById("added");
+            di.innerHTML = "<span>calculating & saving data please wait </span>";
+            di.style.display = "flex";
+           
+           setTimeout(function(){
+               di.style.display = "none";
+                   cart1();   
+            },3000);
+       }
        
    </script>
        
@@ -1206,7 +1269,7 @@
         var trfal = false;
         
         document.addEventListener('contextmenu',(e) => {
-                  // e.preventDefault();   
+                   e.preventDefault();   
         });
         
         
@@ -1429,6 +1492,11 @@
         st.innerHTML = "";
         localStorage.clear();
          var cart_addon = document.getElementById("cart_display");
+        var xccc = document.getElementById("num");
+var ccrr = document.getElementById("rat");
+        xccc.innerHTML = "0";
+        ccrr.innerHTML = "0/-";
+        
         cart_addon.innerHTML = "";
     }
         
@@ -1549,5 +1617,6 @@
                     <span>27-03-2021</span>
                     <p>thank you</p>
                </div>
-                  
+              
+                      
 -->
