@@ -1245,12 +1245,7 @@
                         cartproquantity:in_qq,
                    });
                    
-               }else{
-                   cart_list_q[a] = in_qq;
-               }
-           }
-           
-           var di = document.getElementById("added");
+                   var di = document.getElementById("added");
             di.innerHTML = "<span>calculating & saving data please wait </span>";
             di.style.display = "flex";
            
@@ -1258,6 +1253,12 @@
                di.style.display = "none";
                    cart1();   
             },3000);
+                   
+               }else{
+                   cart_list_q[a] = in_qq;
+                    cart1();
+               }
+           }
        }
        
    </script>
