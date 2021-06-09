@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Easy</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+         ::-webkit-scrollbar{
+            width:5px;
+        }
+        ::-webkit-scrollbar-thumb{
+            background-color:black;
+            border-radius:5px;
+            box-shadow:0 0 20px rgb(0,0,0,0.4);
+        }
+        .flex{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        body{
+            width:100vw;
+            height:100vh;
+            overflow: hidden;
+            background-color: white;
+        }
+        .sc{
+            background-color:ghostwhite;
+            position: fixed;
+            top:0;
+            padding:10px 0;
+            width:100%;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            box-shadow:0 0 10px rgb(0,0,0,0.5);
+            z-index:100;
+        }
+        .sc p {
+            font-size:16px;
+            letter-spacing:1px;
+            font-weight:bold;
+            margin:10px;
+            flex-direction: row;
+        }
+        .sc p i{
+            margin-right:6px;
+            font-size:25px;
+        }
+        .game{
+            position: absolute;
+            z-index:10;
+            margin-top:10vh;
+            width:100vw;
+            height:90vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+        .num,.key{
+            position:relative;
+            width:400px;
+            box-shadow: 0 0 10px rgb(0,0,0,0.4);
+            margin:10px 10px 0 10px;
+            background-color:ghostwhite;
+        }
+        .num{
+            height:90%;
+            overflow-y: auto;
+        }
+        .key{
+            padding:10px;
+        }
+        .key table{
+            width:100%;
+            height:100%;
+        }
+        .key table tr td{
+            border:1px solid rgb(0,0,0,0.4);
+            padding:5px;
+            text-align: center;
+            background-color: white;
+            font-size:16px;
+            font-weight:bold;
+            letter-spacing:1px;
+            cursor:pointer;
+        }
+        #setout{
+            width:100vw;
+            height:100vh;
+            background-image:linear-gradient(40deg,rgb(255,255,255,0.5),rgb(255,255,255,0.2));
+            backdrop-filter:blur(2px);
+            z-index:1000;
+            top:0;
+            left:0;
+            position:fixed;
+        }
+        #setout p{
+            padding:20px;
+            background-color:white;
+            box-shadow: 0 0 10px rgb(0,0,0,0.4);
+            font-size:17px;
+            font-weight:bold;
+            letter-spacing:2px;
+        }
+        .type{
+            position:relative;
+            margin-top:7px;
+            left:50%;
+            transform:translate(-50%,0);
+            width:95%;
+            padding:10px;
+            box-shadow:inset 0 0 5px rgb(0,0,0,0.4);
+            background-color:white;
+            flex-direction: row;
+            justify-content:center;
+            font-weight:bold;
+        }
+        .type label{
+            margin:0 10px;
+        }
+        .att{
+            margin-top:10px;
+            width:100%;
+            height: calc(100% - 100px);
+            display: flex;
+            justify-content:flex-start;
+            align-items: center;
+            flex-direction: column;
+            overflow-y:auto;
+        }
+        .att p{
+          margin:5px 0;
+            background-color: white;
+            width:95%;
+            padding:10px;
+            box-shadow:inset 0 0 5px rgb(0,0,0,0.4);
+            padding-left:30px;
+            font-size:17px;
+            letter-spacing:1px;
+        }
+        .att p span{
+            float: right;
+            margin:0 15px;
+            letter-spacing:1px;
+        }
+        @media (max-width:800px){
+            .game{
+                flex-direction: column;
+            }
+            .num,.key{
+                width:95vw;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div id="setout" class="flex">
+     <p>Game starts in <span id="seconds">3</span></p>
+</div>
+<div class="sc flex">
+    <p class="flex">
+        <i class="far fa-clock"></i> 
+        <label id="time1">0 sec</label>
+    </p>
+    <p class="flex">
+        <span style="margin-right:10px;letter-spacing:2px;">Attempts </span>
+        <label id="attempts">0</label>
+    </p>
+</div>
+<div class="game">
+   <div class="num">
+       <div class="type flex">
+        <label class="input_f">_</label><label class="input_f">_</label>
+        <label class="input_f">_</label>
+        <label class="input_f">_</label>
+        <label class="input_f">_</label>
+       </div>
+       <div class="att" id="add_att"> 
+       
+       </div>
+   </div>
+    <div class="key">
+        <table>
+            <tr><td onclick="inser(1)">1</td><td onclick="inser(2)">2</td><td onclick="inser(3)">3</td><td onclick="inser(4)">4</td><td onclick="inser(5)">5</td></tr>
+            <tr><td onclick="inser(6)">6</td><td onclick="inser(7)">7</td><td onclick="inser(8)">8</td><td onclick="inser(9)">9</td><td onclick="inser(0)">0</td></tr>
+            <tr><td colspan="2" onclick="back1()">back</td><td colspan="3" onclick="check1()">check</td></tr>
+        </table>
+    </div>
+</div>
+
+<script>
+    
+     document.addEventListener('contextmenu',(e) => {
+                   e.preventDefault();   
+        });
+    
+    var computer1;
+    var compli = [];
+    
+    function createnum(){
+        var rr = Math.floor(Math.random()*10 + 0);
+        if (rr == 0 && compli.length == 0){
+            createnum();
+        }else{
+            if (compli.length < 5){
+                if (compli.includes(rr)){
+                    createnum();
+                }else{
+                    compli.push(rr);
+                    createnum();
+                }
+            }
+        }
+    }
+    
+    createnum();
+    
+    var t = 3;
+    var start = false;
+    
+    var countdown = setInterval(function(){
+        var ss = document.getElementById("seconds");
+        ss.innerHTML = t;
+        if (t == 0){
+            var se = document.getElementById("setout");
+             se.style.display = "none";
+            start = true;
+            clearInterval(countdown);
+        }
+        t -= 1;
+    },1000);
+    
+    var tt = 0;
+    var timeset = setInterval(function(){
+        if (start){
+            var ti = document.getElementById("time1");
+            ti.innerHTML = tt + " sec ";
+            tt += 1;
+        }
+    },1000);
+    
+    var place  = 0;
+    var list_p = [];
+    var attempt = 0;
+    
+    function inser(a){
+        var fields = document.querySelectorAll('.input_f');
+        if (place < fields.length){
+            if (place == 0 && a == 0){
+                
+            }else{
+                if (list_p.includes(a)){
+                    
+                }else{
+                    fields[place].innerHTML = a;
+                    list_p.push(a);
+                    place += 1;
+                }
+            }
+        }
+    }
+    
+    function back1(){
+        if (place > 0){
+            var fields = document.querySelectorAll('.input_f');
+          place -= 1;
+        var in1 = list_p.length;
+        list_p.splice(in1 - 1,1);
+        fields[place].innerHTML = "_";
+        }
+    }
+    
+    function check1(){
+        var cow = 0;
+        var bull = 0;
+        if (place == 5){
+            for (var i = 0;i<list_p.length;i++){
+                var pp = list_p[i];
+                if (compli.includes(pp)){
+                    if (compli[i] == pp){
+                        bull += 1;
+                    }else{
+                        cow += 1;
+                    }
+                }
+            }
+                place = 0;
+                
+                var fields = document.querySelectorAll('.input_f');
+                for(var j = 0;j<fields.length;j++){
+                    fields[j].innerHTML = "_";
+                }
+            var add_a = document.getElementById("add_att");
+            var pppp = add_a.innerHTML;
+            var nn = "";
+            for (var jj = 0;jj<list_p.length;jj++){
+                nn += (list_p[jj] + " ");
+            }
+            add_a.innerHTML = "<p>" + nn +"<span>- " + bull + " B " + cow + " C " + "</span></p>" + pppp;
+            list_p = [];
+            attempt += 1;
+            var att1 = document.getElementById("attempts");
+            att1.innerHTML = attempt;
+            if (bull == 5){
+                var se = document.getElementById("setout");
+                se.style.display = "flex";
+                se.innerHTML = "<p>You won the game" + "<br>time taken = "+ tt + "seconds <br> attempts = "+ attempt +"</p>";
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
