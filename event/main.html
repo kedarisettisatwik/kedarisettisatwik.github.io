@@ -1,0 +1,416 @@
+<html>
+<head>
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
+    <title>time</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        html{
+            scroll-behavior: smooth;
+        }
+        .flex{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .bg{
+            background-position: center;
+            background-size: cover;
+            background-repeat:no-repeat;
+        }
+        body{
+            width:100vw;
+            min-height:100vh;
+            overflow: hidden;
+            padding:10px;
+            position:relative;
+            background-color:aliceblue;
+        }
+        .section{
+            width:100%;
+            min-height:100vh;
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+        .box1,.box2{
+            position:relative;
+            border-radius:5px;
+            background-color:white;
+            margin:10px;
+            padding:10px;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+            transition:0.5s;
+        }
+        .box1,.box2{
+            width:350px;
+        }
+        .box2{
+            display:none;
+            opacity:0;
+            transform:scale(0);
+            transition:0.3s;
+        }
+        .box2.active{
+            transform: scale(1);
+            opacity:1;
+        }
+        
+        .box1 .table{
+            width:100%;
+        }
+        .table ul{
+            list-style:none;
+            width:100%;
+        }
+        .table ul li{
+            text-align: center;
+        }
+        .days,.dates{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .top{
+            margin:10px;
+            flex-direction: row;
+        }
+        #month-cal,#year-cal{
+            letter-spacing:1px;
+            font-size:18px;
+            margin:0 10px;
+            font-weight:bold;
+            transition:0.3s;
+            cursor:pointer;
+        }
+        .top i{
+            padding:10px;
+            cursor:pointer;
+            background-color:white;
+            transition:0.2s;
+            margin:0 10px;
+            border-radius:1px;
+            transform:scale(1);
+        }
+        .top i:hover{
+            transform:scale(1.2);
+            background-color: aliceblue;
+            box-shadow:0 0 5px rgb(0,0,0,0.2);
+        }
+        .days li{
+            width:calc(100% / 7);
+            color:grey;
+            margin:10px;
+        }
+        .dates li{
+            width:calc(100% / 7);
+            transition:0.2s;
+            cursor:pointer;
+            padding:10px;
+        }
+        .dates li:hover,.dates li.active{
+            background-color:aliceblue;
+            font-weight:bold;
+            box-shadow:0 0 5px rgb(0,0,0,0.3);
+        }
+        .dates li.active{
+            transform:scale(0.8);
+        }
+        #short{
+            position: absolute;  
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background-color: beige;
+            opacity:1;
+            transition:0.3s;
+        }
+       #mode{
+            position: absolute;  
+            bottom:-20px;
+            left:0;
+            transform:translate(0,100%);
+            width:100%;
+            background-color:white;
+           box-shadow: 0 0 10px rgb(0,0,0,0.1);
+        }
+        #mode p{
+            flex-direction: row;
+            justify-content: flex-end;
+        }
+        #mode input{
+            margin:10px;
+            position:relative;
+            width:70px;
+            height:35px;
+            border-radius:35px;
+            -webkit-appearance:none;
+            background-color:rgb(0,0,0,0.2);
+            box-shadow:0 0 2px rgb(0,0,0,0.4);
+             cursor:pointer;
+            transition:0.3s;
+        }
+        #mode input:checked{
+            background-color:skyblue;
+        }
+         #mode input::before{
+            content: '';
+            position:absolute;
+             width:30px;
+             height:30px;
+             border-radius:50%;
+             background-color:white;
+             top:2.5px;
+             left:3px;
+             transition:0.3s;
+        }
+        #mode input:checked[type="checkbox"]:before{
+            content: '';
+            position:absolute;
+             width:30px;
+             height:30px;
+             border-radius:50%;
+             background-color:aliceblue;
+             top:2.5px;
+             left:35px;
+        }
+        #short h2, #short h3, #short h4{
+           font-family: 'Titillium Web', sans-serif;
+        }
+        #short h2{
+            font-size:35px;
+            margin:20px;
+        }
+        #short h3{
+            font-size:17px;
+        }
+        #short h4{
+            margin:10px;
+            font-size:17px;
+        }
+        @media (max-width:400px){
+            
+            .box2.active{
+            transform: scale(1);
+            opacity:1;
+            }
+        }
+    </style>
+    </head>
+<body class="bg flex">
+    <section class="section">
+       
+        <div class="flex box1" id="calender" onclick="add1()">
+        
+        <div class="table" id="full_mode">
+            <ul id="add_cal">
+                <li class="top flex">
+                    <i class="fas fa-chevron-left" onclick="change(-1)"></i>
+                    <span id="month-cal">June</span>
+                    <span id="year-cal">2021</span>
+                    <i class="fas fa-chevron-right" onclick="change(1)"></i>
+                </li>
+                <li>
+                    <ul class="days">
+                        <li>Sun</li>
+                        <li>M</li>
+                        <li>T</li>
+                        <li>W</li>
+                        <li>T</li>
+                        <li>F</li>
+                        <li>S</li>
+                    </ul>
+                </li>
+                
+            </ul>
+        </div>
+        
+        <div id="short" class="flex">
+            <h2 id="time"></h2>
+            <h3 id="day"></h3>
+            <h4 id="day2"></h4>
+        </div>
+        
+        <div id="mode">
+           <p class="flex"><span>Full Mode</span> <input type="checkbox" onchange="mode1()" id="checking"></p>
+        </div>
+        
+        </div>
+        
+        <div class="box2">
+        
+        </div>
+    </section>
+    
+    <script>
+        
+        function add1(){
+
+        }
+        
+        var today_hour = new Date().getHours();
+        var today_min = new Date().getMinutes();
+        var today_sec = new Date().getSeconds();
+        
+         var req_month = new Date().getMonth();
+        var req_year = new Date().getFullYear(); 
+        
+        function draw(){
+            
+        var full_box = document.getElementById("calender");
+        full_box.style.opacity = 0;
+        
+        setTimeout(function(){
+         var today_date = new Date().getDate();
+        var today_day = new Date().getDay();    
+        
+        var today_month = req_month;
+        var today_year = req_year;
+        var start = new Date(today_year,today_month,1);
+        
+        var top_bound = 0;
+            
+            if (today_month == 0 ||today_month == 2 ||today_month == 4 ||today_month == 6 ||today_month == 7 || today_month == 9 || today_month == 11){
+                top_bound = 31;
+            }else{
+                if (today_month == 1){
+                   if (ff % 4 == 0){
+                       top_bound = 29;
+                   }else{
+                       top_bound = 28;
+                   }
+                }else{
+                    top_bound = 30;
+                }
+            }
+            
+            var str1= new Date(today_year,today_month,1);
+            var month_li = ["Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"];
+                
+            var ele = document.getElementById("add_cal");
+            ele.innerHTML = "";
+            ele.innerHTML += "<li class='top flex'><i class='fas fa-chevron-left' onclick='change(-1)'></i>"+"<span id='month-cal' onclick='inp1()'>"+month_li[req_month]+"</span><span id='year-cal' onclick='inp1()'>"+today_year+"</span>" +"<i class='fas fa-chevron-right' onclick='change(1)'></i>" + "</li>";
+            
+            ele.innerHTML += "<li><ul class='days'><li>Sun</li><li>M</li><li>T</li><li>W</li><li>T</li><li>F</li><li>S</li></ul></li>";
+         
+            
+            var count = 0;
+            
+            for (var i = 0;i<6;i++){
+                var li1 = document.createElement("li");
+                var ul1 = document.createElement("ul");
+                ul1.classList.add("dates");
+                ele.appendChild(li1);
+                li1.appendChild(ul1);
+                
+                for (var j = 0;j<7;j++){
+                    var li2 = document.createElement("li");
+                    li2.classList.add("blocks");
+                    ul1.appendChild(li2);
+                    if (count > 0 && count < top_bound){
+                         count += 1;
+                        li2.innerHTML = count;
+                        if (count == today_date){
+                            li2.classList.add("active");
+                        }
+                    }else{
+                        if (i == 0 && j == start.getDay()){
+                            count += 1;
+                            li2.innerHTML = count;
+                        }else{
+                            li2.innerHTML = " ";
+                        }
+                    }
+                }
+            }
+           full_box.style.opacity = 1;  
+        },200); 
+            
+        }
+        
+        draw();
+        
+        function change(a){
+            if (a == 1){
+                if (req_month + a < 12){
+                    req_month += 1;
+                }else{
+                    req_month = 0;
+                    req_year += 1;
+                }
+            }else{
+                 if (req_month + a > -1){
+                    req_month -= 1;
+                }else{
+                    req_month = 11;
+                    req_year -= 1;
+                }
+            }
+            draw();
+        }
+        
+        function mode1(){
+            var ch = document.querySelector("input[type='checkbox']:checked");
+            var short = document.getElementById("short");
+           if (ch){
+               
+              // full mode
+               short.style.opacity = 0;
+               setTimeout(function(){
+                   short.style.display = "none";
+               },200);
+               
+           }else{
+               // apppear
+               short.style.display = "flex";
+               setTimeout(function(){
+                   short.style.opacity = 1;
+               },200);
+           }
+        }
+        
+        setInterval(function(){
+            var time1 = document.getElementById("time");
+            var day1 = document.getElementById("day");
+            var day2 = document.getElementById("day2");
+            var today_hour1 = new Date().getHours();
+        var today_min1 = new Date().getMinutes();
+        var today_sec1 = new Date().getSeconds();
+            var req_month1 = new Date().getMonth();
+            var req_date1 = new Date().getDate();
+        var req_year1 = new Date().getFullYear(); 
+            var req_day11 = new Date().getDay();
+            var day_li = ["Sunday","Monday","Tuesdat","Wednesday","Thursday","Friday","Saturday"];
+            var month_li1 = ["Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"];
+            time1.innerHTML = today_hour1 +" : " + today_min1 + " : "+ today_sec1;
+            day1.innerHTML = req_date1 + " - " + month_li1[req_month1] + " - "+ req_year1;
+            day2.innerHTML = day_li[req_day11];
+        },1000);
+        
+        function inp1(){
+            req_month = new Date().getMonth();
+            req_year = new Date().getFullYear();
+            draw();
+        }
+    </script>
+    
+    </body>
+</html>
+
