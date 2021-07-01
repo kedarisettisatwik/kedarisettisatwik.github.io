@@ -121,16 +121,25 @@
         .dates li{
             width:calc(100% / 7);
             transition:0.2s;
-            cursor:pointer;
             padding:10px;
         }
-        .dates li:hover,.dates li.active{
+        .dates li.block{
+            cursor:pointer;
+        }
+        .dates .block:hover,.dates .block.active{
             background-color:aliceblue;
             font-weight:bold;
-            box-shadow:0 0 5px rgb(0,0,0,0.3);
         }
-        .dates li.active{
+        .dates .block.active{
+            color:white;
+            font-weight:bold;
+            background-color:darkblue;
             transform:scale(0.8);
+        }
+        .dates .block.active1{
+            color:white;
+            font-weight:bold;
+            background-color:black;
         }
         #short{
             position: absolute;  
@@ -321,21 +330,23 @@
                 li1.appendChild(ul1);
                 
                 for (var j = 0;j<7;j++){
-                    var li2 = document.createElement("li");
-                    li2.classList.add("blocks");
-                    ul1.appendChild(li2);
                     if (count > 0 && count < top_bound){
                          count += 1;
-                        li2.innerHTML = count;
                         if (count == today_date){
-                            li2.classList.add("active");
+                            ul1.innerHTML += "<li class='block active' onclick='pop1("+count+")'>"+count+"</li>";
+                        }else{
+                            ul1.innerHTML += "<li class='block' onclick='pop1("+count+")'>"+count+"</li>";
                         }
                     }else{
                         if (i == 0 && j == start.getDay()){
                             count += 1;
-                            li2.innerHTML = count;
+                             if (count == today_date){
+                                 ul1.innerHTML += "<li class='block active' onclick='pop1("+count+")'>"+count+"</li>";
+                             }else{
+                                 ul1.innerHTML += "<li class='block' onclick='pop1("+count+")'>"+count+"</li>";
+                             }
                         }else{
-                            li2.innerHTML = " ";
+                            ul1.innerHTML += "<li>"+ " " +"</li>";
                         }
                     }
                 }
@@ -399,15 +410,39 @@
             var req_day11 = new Date().getDay();
             var day_li = ["Sunday","Monday","Tuesdat","Wednesday","Thursday","Friday","Saturday"];
             var month_li1 = ["Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"];
+            if (today_min1 < 10){
+                today_min1 = "0"+today_min1;
+            }if (today_sec1 < 10){
+                today_sec1 = "0"+today_sec1;
+            }if (req_date1 < 10){
+                req_date1 = "0"+req_date1;
+            }
+            
             time1.innerHTML = today_hour1 +" : " + today_min1 + " : "+ today_sec1;
             day1.innerHTML = req_date1 + " - " + month_li1[req_month1] + " - "+ req_year1;
             day2.innerHTML = day_li[req_day11];
+            
         },1000);
         
         function inp1(){
             req_month = new Date().getMonth();
             req_year = new Date().getFullYear();
             draw();
+        }
+        
+        function pop1(a){
+            var click_date = a;
+            var click_month = document.getElementById("month-cal").innerHTML;
+            var click_year = JSON.parse(document.getElementById("year-cal").innerHTML);
+            var month_list = ["Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"];
+            click_month = JSON.parse(month_list.indexOf(click_month));
+            var list_blocks = document.querySelectorAll(".block");
+            for(var i=0;i<list_blocks.length;i++){
+                list_blocks[i].classList.remove("active1");
+            }
+            list_blocks[a-1].classList.add("active1");
+            
+            console.log(click_date + "/"+click_month+"/"+click_year);
         }
     </script>
     
