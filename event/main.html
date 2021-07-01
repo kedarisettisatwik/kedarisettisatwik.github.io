@@ -313,26 +313,8 @@
         </div> -->
         
     </section>
-    
+
     <script>
-        
-        if (Notification.permission === "granted"){
-            show_notification()
-        }else{
-            if (Notification.permission !== "denied"){
-                Notification.requestPermission().then(permission => {
-                   if (permission === "granted"){
-                       show_notification();
-                   }
-                });
-            }
-        }
-        
-        console.log(Notification.permission);
-        
-        function show_notification(){
-            alert("a");
-        }
         
         var today_hour = new Date().getHours();
         var today_min = new Date().getMinutes();
@@ -484,6 +466,8 @@
             var req_day11 = new Date().getDay();
             var day_li = ["Sunday","Monday","Tuesdat","Wednesday","Thursday","Friday","Saturday"];
             var month_li1 = ["Jan","Feb","Mar","Apr","May","June","July","Aug","Sept","Oct","Nov","Dec"];
+            
+            
             if (today_min1 < 10){
                 today_min1 = "0"+today_min1;
             }if (today_sec1 < 10){
@@ -495,6 +479,7 @@
             time1.innerHTML = today_hour1 +" : " + today_min1 + " : "+ today_sec1;
             day1.innerHTML = req_date1 + " - " + month_li1[req_month1] + " - "+ req_year1;
             day2.innerHTML = day_li[req_day11];
+            
             
         },1000);
         
