@@ -1,3 +1,4 @@
+
 <html>
 <head>
    <meta charset="utf-8">
@@ -36,7 +37,7 @@
         body{
             width:100vw;
             min-height:100vh;
-            overflow: hidden;
+            overflow-x: hidden;
             padding:10px;
             position:relative;
             background-color:aliceblue;
@@ -44,7 +45,7 @@
         .section{
             width:100%;
             min-height:100vh;
-            overflow: hidden;
+            overflow-x: hidden;
             display: flex;
             flex-wrap: wrap;
             justify-content:center;
@@ -53,20 +54,26 @@
         .box1,.box2{
             position:relative;
             border-radius:5px;
-            background-color:white;
-            margin:10px;
+            margin:20px;
             padding:10px;
-            box-shadow:0 0 10px rgb(0,0,0,0.4);
             transition:0.5s;
         }
         .box1,.box2{
             width:350px;
         }
+        .box1{
+            padding:0;
+        }
         .box2{
-            background-color:greenyellow;
+            background-color:white;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
         }
         .box1 .table{
+            position:relative;
             width:100%;
+            padding:10px;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+            background-color: white;
         }
         .table ul{
             list-style:none;
@@ -145,13 +152,11 @@
             transition:0.3s;
         }
        #mode{
-            position: absolute;  
-            bottom:-20px;
-            left:0;
-            transform:translate(0,100%);
+           margin-top:10px;
+            position: relative;
             width:100%;
             background-color:white;
-           box-shadow: 0 0 10px rgb(0,0,0,0.1);
+           box-shadow: 0 0 10px rgb(0,0,0,0.3);
         }
         #mode p{
             flex-direction: row;
@@ -215,7 +220,7 @@
             left:0;
             width:100%;
             height:100%;
-            background-color:skyblue;
+            background-color:white;
             list-style:none;
             padding:10px;
             transition:0.3s;
@@ -266,21 +271,21 @@
             font-size:20px;
             padding:10px 30px;
         }
-        .box2 .btn{
+        .box2 .btn,.box3 .btn{
             position:relative;
             flex-direction: row;
             width:100%;
             justify-content: space-between;
             margin:10px;
         }
-        .box2 .btn i{
+        .box2 .btn i,.box3 .btn i{
             font-size:30px;
-            color:darkolivegreen;
+            color:black;
             cursor:not-allowed;
             padding:10px;
             text-align: center;
             width:calc(100% / 3);
-            opacity:0.5;
+            opacity:0.4;
             transition:0.2s;
         }
         .box2 .set{
@@ -293,9 +298,93 @@
             font-size:30px;
             letter-spacing:1px;
         }
-        .box2 .btn i.active{
+        .box2 .btn i.active,.box3 .btn i.active{
             opacity:1;
             cursor:pointer;
+            color:darkblue;
+        }
+        #timer_hr,#timer_min,#timer_sec{
+            position:relative;
+            text-align: center;
+            padding:0;
+        }
+        #timer_hr span,#timer_min span,#timer_sec span{
+            position:relative;
+            width:100%;
+            text-align: center;
+            font-family: 'Titillium Web', sans-serif;
+        }
+        #timer_hr i,#timer_min i,#timer_sec i{
+            position: absolute;
+            font-size:17px;
+            opacity:0.5;
+            transition:0.2s;
+            left:0;
+            width:100%;
+            text-align: center;
+            cursor:pointer;
+            padding:2px;
+        }
+        #timer_hr i.fa-chevron-down,#timer_min i.fa-chevron-down,#timer_sec i.fa-chevron-down{
+            bottom:-20px
+        }
+        #timer_hr i.fa-chevron-up,#timer_min i.fa-chevron-up,#timer_sec i.fa-chevron-up{
+            top:-20px
+        }
+        #timer_hr i:hover,#timer_min i:hover,#timer_sec i:hover{
+            opacity:0.8;
+            transform:scale(1.2);
+        }
+        .box3{
+            position:relative;
+            width:350px;
+            padding:10px;
+            margin:20px;
+            background-color: white;
+            border-radius:5px;
+            box-shadow:0 0 10px rgb(0,0,0,0.3);
+        }
+        .box3 h3{
+            letter-spacing:1px;
+            font-weight:600;
+            width:100%;
+            font-size:20px;
+            padding:10px 30px;
+        }
+        .box3 .set{
+            width:100%;
+            padding:10px;
+            margin:10px;
+        }
+        .box3 .set .inin{
+            width:100%;
+            padding:5px;
+            position:relative;
+        }
+        .box3 .set .inin input{
+            -webkit-appearance:none;
+            width:100%;
+            height:5px;
+            outline:none;
+            background-color:black;
+            border-radius:4px;
+            margin:15px;
+        }
+        .box3 .set .inin input::-webkit-slider-thumb{
+            -webkit-appearance:none;
+            width:20px;
+            border-radius:50%;
+            height:20px;
+            box-shadow:0 0 5px rgb(0,0,0,0.4);
+            background-color:darkblue;
+            cursor:pointer;
+        }
+        .box3 #timer_time{
+            font-family: 'Titillium Web', sans-serif;
+            font-size:30px;
+            letter-spacing:1px;
+            width:100%;
+            text-align: center;
         }
     </style>
     </head>
@@ -326,9 +415,8 @@
                 </li>
                 
             </ul>
-        </div>
-        
-        <ul id="years" class="flex">
+            
+            <ul id="years" class="flex">
             
         </ul>
         
@@ -342,13 +430,15 @@
             <h4 id="day2"></h4>
         </div>
         
+        </div>
+        
         <div id="mode">
            <p class="flex"><label id="id">2021</label><span>Full Mode</span> <input type="checkbox" onchange="mode1()" id="checking"></p>
         </div>
         
         </div>
         
-        <div class="box2">
+        <div class="flex box2">
         <h3>StopWatch <i class="fas fa-stopwatch"></i></h3>
         <div class="flex set">
             <h2><label id="stop_minutes">00</label> : <label id="stop_sec">00</label>.<label id="stop_milli">00</label></h2>
@@ -357,6 +447,21 @@
             <i class="far fa-play-circle active watch_btn" onclick="start_watch()"></i>
             <i class="far fa-pause-circle watch_btn" onclick="pause_watch()"></i>
             <i class="far fa-stop-circle watch_btn" onclick="stop_watch()"></i>
+        </div>
+        </div> 
+        
+        <div class="box3 flex">
+        <h3>Timer <i class="fas fa-hourglass-half"></i></h3>
+        <div class="flex set">
+            <div class="inin flex"><input type="range" min="0" max="23" value="0" oninput="change_timer()" id="timer_hr1"></div>
+            <div class="inin flex"><input type="range" min="0" max="59" value="0" oninput="change_timer()" id="timer_min1"></div>
+            <div class="inin flex"><input type="range" min="0" max="59" value="0" oninput="change_timer()" id="timer_sec1"></div>
+        </div>
+        <h2 id="timer_time">00 : 00 : 00</h2>
+        <div class="flex btn">
+            <i class="far fa-play-circle timer_btn" onclick="start_timer()"></i>
+            <i class="far fa-pause-circle timer_btn" onclick="pause_timer()"></i>
+            <i class="far fa-stop-circle timer_btn" onclick="stop_timer()"></i>
         </div>
         </div> 
         
@@ -662,6 +767,17 @@
             btns[b].classList.add("active");
         }
         
+        function clear1(a,b,c){
+            var btns = document.querySelectorAll(".timer_btn");
+            for (var i = 0;i<btns.length;i++){
+                btns[i].classList.remove("active");
+            }
+           if (c > 0){
+            btns[a].classList.add("active");
+            btns[b].classList.add("active");
+           }
+        }
+        
         function stop_watch(){
             clear(0,0);
             pause_play = false;
@@ -671,13 +787,54 @@
             document.getElementById("stop_milli").innerHTML = "00";
         }
         
+        var timer_tf = false;
+        
+        var timer_hr1 = document.getElementById("timer_hr1");
+        var timer_min1 = document.getElementById("timer_min1");
+        var timer_sec1 = document.getElementById("timer_sec1");
+        var timer_time = document.getElementById("timer_time");
+        
+        function change_timer(){
+            var li11 = [timer_hr1.value,timer_min1.value,timer_sec1.value];
+            if (li11[0] != 0 || li11[1] != 0 || li11[2] != 0){
+                timer_tf = false;
+                clear1(0,0,1);
+            }else{
+                timer_tf = false;
+                clear1(0,0,0);
+            }
+            var li22 = [li11[0],li11[1],li11[2]]; 
+            for (var i = 0;i<li11.length;i++){
+                if (li11[i] < 10){
+                    li22[i] = "0"+li11[i];
+                }
+            }
+            timer_time.innerHTML = li22[0] + " : " + li22[1] + " : " + li22[2];
+        }
+        
+        function start_timer(){
+            timer_tf = true;
+            clear1(1,1,1);
+        }
+        function pause_timer(){
+            timer_tf = false;
+            clear1(0,2,1);
+        }
+        function stop_timer(){
+            timer_tf = false;
+            clear1(0,0,0);
+            timer_hr1.value = 0;
+            timer_min1.value = 0;
+            timer_sec1.value = 0;
+            timer_time.innerHTML = "00 : 00 : 00";
+        }
+        
     </script>
     
     </body>
 </html>
 
 <!-- 
-<i class="fas fa-hourglass-half"></i>
 <i class="far fa-bell"></i>
 
 
