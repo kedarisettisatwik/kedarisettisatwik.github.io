@@ -62,7 +62,9 @@
         .box1,.box2{
             width:350px;
         }
-        
+        .box2{
+            background-color:greenyellow;
+        }
         .box1 .table{
             width:100%;
         }
@@ -257,6 +259,44 @@
             opacity:0;
             transition:0.3s;
         }
+        .box2 h3{
+            letter-spacing:1px;
+            font-weight:600;
+            width:100%;
+            font-size:20px;
+            padding:10px 30px;
+        }
+        .box2 .btn{
+            position:relative;
+            flex-direction: row;
+            width:100%;
+            justify-content: space-between;
+            margin:10px;
+        }
+        .box2 .btn i{
+            font-size:30px;
+            color:darkolivegreen;
+            cursor:not-allowed;
+            padding:10px;
+            text-align: center;
+            width:calc(100% / 3);
+            opacity:0.5;
+            transition:0.2s;
+        }
+        .box2 .set{
+            width:100%;
+            padding:10px;
+            margin:10px;
+        }
+        .box2 .set h2 label{
+            font-family: 'Titillium Web', sans-serif;
+            font-size:30px;
+            letter-spacing:1px;
+        }
+        .box2 .btn i.active{
+            opacity:1;
+            cursor:pointer;
+        }
     </style>
     </head>
 <body class="bg flex">
@@ -308,9 +348,17 @@
         
         </div>
         
-        <!-- <div class="box2">
-        
-        </div> -->
+        <div class="box2">
+        <h3>StopWatch <i class="fas fa-stopwatch"></i></h3>
+        <div class="flex set">
+            <h2><label id="stop_minutes">00</label> : <label id="stop_sec">00</label>.<label id="stop_milli">00</label></h2>
+        </div>
+        <div class="flex btn">
+            <i class="far fa-play-circle active watch_btn" onclick="start_watch()"></i>
+            <i class="far fa-pause-circle watch_btn" onclick="pause_watch()"></i>
+            <i class="far fa-stop-circle watch_btn" onclick="stop_watch()"></i>
+        </div>
+        </div> 
         
     </section>
 
@@ -553,8 +601,84 @@
             id.style.opacity = 0;
         }
         
+        var stopwatch1;
+        var init1 = 0;
+        var init2 = 0;
+        var init3 = 0;
+        var pause_play = false;
+        var stop_minutes = document.getElementById("stop_minutes");
+        var stop_sec = document.getElementById("stop_sec");
+        var stop_milli = document.getElementById("stop_milli");
+        
+        var stopwatch1 = setInterval(function(){
+                if (pause_play){
+                    
+                if (init1 < 10){
+                stop_milli.innerHTML = "0"+init1;
+                }else{
+                 stop_milli.innerHTML = init1;   
+                }
+                init1 += 1;
+                    
+                if (init1 == 100){
+                     init2 += 1;
+                     if (init2 == 60){
+                         init3 += 1;
+                         if (init3 < 10){
+                         stop_minutes.innerHTML = "0"+init3;
+                         }else{
+                         stop_minutes.innerHTML = init3;   
+                         }
+                         init2 = 0;
+                     }
+                    if (init2 < 10){
+                        stop_sec.innerHTML = "0"+init2;
+                     }else{
+                        stop_sec.innerHTML = init2;   
+                     }
+                     init1 = 0;
+                } 
+            }
+        },10);
+        
+        function start_watch(){
+            clear(1,1);
+            pause_play = true;
+        }
+        
+        function pause_watch(){
+            if (pause_play){
+                clear(0,2);
+                pause_play = false;
+            }
+        }
+        
+        function clear(a,b){
+            var btns = document.querySelectorAll(".watch_btn");
+            for (var i = 0;i<btns.length;i++){
+                btns[i].classList.remove("active");
+            }
+            btns[a].classList.add("active");
+            btns[b].classList.add("active");
+        }
+        
+        function stop_watch(){
+            clear(0,0);
+            pause_play = false;
+            init1 = init2 = init3 = 0;
+            document.getElementById("stop_minutes").innerHTML = "00";
+            document.getElementById("stop_sec").innerHTML = "00";
+            document.getElementById("stop_milli").innerHTML = "00";
+        }
+        
     </script>
     
     </body>
 </html>
 
+<!-- 
+<i class="fas fa-hourglass-half"></i>
+<i class="far fa-bell"></i>
+
+
+-->
