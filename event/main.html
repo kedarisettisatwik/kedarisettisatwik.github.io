@@ -17,6 +17,7 @@
             padding:0;
             box-sizing:border-box;
             font-family: 'Poppins', sans-serif;
+            list-style:none;
         }
         html{
             scroll-behavior: smooth;
@@ -46,8 +47,8 @@
             overflow: hidden;
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
+            justify-content:flex-start;
+            align-items:flex-start;
         }
         .box1,.box2{
             position:relative;
@@ -60,16 +61,6 @@
         }
         .box1,.box2{
             width:350px;
-        }
-        .box2{
-            display:none;
-            opacity:0;
-            transform:scale(0);
-            transition:0.3s;
-        }
-        .box2.active{
-            transform: scale(1);
-            opacity:1;
         }
         
         .box1 .table{
@@ -214,12 +205,57 @@
             margin:10px;
             font-size:17px;
         }
-        @media (max-width:400px){
-            
-            .box2.active{
-            transform: scale(1);
-            opacity:1;
-            }
+        #years,#months{
+            display:none;
+            opacity:0;
+            position:absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background-color:skyblue;
+            list-style:none;
+            padding:10px;
+            transition:0.3s;
+        }
+        #years .list1,#months .list11{
+            flex-direction: row;
+            height:100%;
+        }
+        #years .list1 li,#months .list11 li{
+            width:calc(100% / 3);
+            height:80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor:pointer;
+            transition: 0.3s;
+        }
+        #years .list2,#months .list12{
+            width:100%;
+            height:25%;
+            justify-content: space-around;
+            flex-direction: row;
+        }
+        .list2 i{
+            width:calc(100% / 4);
+            text-align: center;
+            height:75%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor:pointer;
+            font-size:18px;
+        }
+        .list2 i:hover, #years .list1 li:hover,#months .list11 li:hover{
+            box-shadow:0 0 3px rgb(0,0,0,0.1);
+            font-weight:bold;
+            letter-spacing:2px;
+        }
+        #id{
+            margin-right:20px;
+            opacity:0;
+            transition:0.3s;
         }
     </style>
     </head>
@@ -235,6 +271,7 @@
                     <span id="month-cal">June</span>
                     <span id="year-cal">2021</span>
                     <i class="fas fa-chevron-right" onclick="change(1)"></i>
+                    <i class='fas fa-redo-alt' onclick='inp1()'></i>
                 </li>
                 <li>
                     <ul class="days">
@@ -251,6 +288,14 @@
             </ul>
         </div>
         
+        <ul id="years" class="flex">
+            
+        </ul>
+        
+        <ul id="months" class="flex">
+            
+        </ul>
+        
         <div id="short" class="flex">
             <h2 id="time"></h2>
             <h3 id="day"></h3>
@@ -258,7 +303,7 @@
         </div>
         
         <div id="mode">
-           <p class="flex"><span>Full Mode</span> <input type="checkbox" onchange="mode1()" id="checking"></p>
+           <p class="flex"><label id="id">2021</label><span>Full Mode</span> <input type="checkbox" onchange="mode1()" id="checking"></p>
         </div>
         
         </div>
@@ -280,6 +325,9 @@
         
          var req_month = new Date().getMonth();
         var req_year = new Date().getFullYear(); 
+        
+        var sear_year = new Date().getFullYear(); 
+
         
         function draw(){
             
@@ -315,7 +363,7 @@
                 
             var ele = document.getElementById("add_cal");
             ele.innerHTML = "";
-            ele.innerHTML += "<li class='top flex'><i class='fas fa-chevron-left' onclick='change(-1)'></i>"+"<span id='month-cal' onclick='inp1()'>"+month_li[req_month]+"</span><span id='year-cal' onclick='inp1()'>"+today_year+"</span>" +"<i class='fas fa-chevron-right' onclick='change(1)'></i>" + "</li>";
+            ele.innerHTML += "<li class='top flex'><i class='fas fa-chevron-left' onclick='change(-1)'></i>"+"<span id='month-cal' onclick='dis1()'>"+month_li[req_month]+"</span><span id='year-cal' onclick='dis1()'>"+today_year+"</span>" +"<i class='fas fa-chevron-right' onclick='change(1)'></i>" +"<i class='fas fa-redo-alt' onclick='inp1()'></i>"+"</li>";
             
             ele.innerHTML += "<li><ul class='days'><li>Sun</li><li>M</li><li>T</li><li>W</li><li>T</li><li>F</li><li>S</li></ul></li>";
          
@@ -354,9 +402,20 @@
            full_box.style.opacity = 1;  
         },200); 
             
+            year1();
+            
         }
         
         draw();
+        
+        function year1(){
+            var yy = document.getElementById("years");
+            var mm = document.getElementById("months");
+            
+            yy.innerHTML = "<li class='flex list2'><i class='fas fa-arrow-left' onclick='past_p(-1)'></i><i class='fas fa-arrow-right' onclick='past_p(1)'></i><i class='far fa-times-circle' onclick='close1()'></i></li><li class='list2'><ul class='flex list1'><li onclick='year_com("+(sear_year - 4)+")'>"+(sear_year - 4)+"</li><li onclick='year_com("+(sear_year - 3)+")'>"+(sear_year - 3)+"</li><li onclick='year_com("+(sear_year - 2)+")'>"+(sear_year - 2)+"</li></ul></li><li class='list2'><ul class='flex list1'><li onclick='year_com("+(sear_year - 1)+")'>"+(sear_year - 1)+"</li><li onclick='year_com("+(sear_year - 0)+")'>"+(sear_year - 0)+"</li><li onclick='year_com("+(sear_year+1)+")'>"+(sear_year + 1)+"</li></ul></li><li class='list2'><ul class='flex list1'><li onclick='year_com("+(sear_year + 2)+")'>"+(sear_year + 2)+"</li><li onclick='year_com("+(sear_year + 3)+")'>"+(sear_year + 3)+"</li><li onclick='year_com("+(sear_year + 4)+")'>"+(sear_year + 4)+"</li></ul></li>";
+    
+            mm.innerHTML = "<li class='list12'><ul class='flex list11'><li onclick='month_com(0)'>Jan</li><li onclick='month_com(1)'>Feb</li><li onclick='month_com(2)'>Marc</li></ul></li> <li class='list12'><ul class='flex list11'><li onclick='month_com(3)'>Apr</li><li onclick='month_com(4)'>May</li><li onclick='month_com(5)'>June</li></ul></li> <li class='list12'><ul class='flex list11'><li onclick='month_com(6)'>July</li><li onclick='month_com(7)'>Aug</li><li onclick='month_com(8)'>Sept</li></ul></li><li class='list12'><ul class='flex list11'><li onclick='month_com(9)'>Oct</li><li onclick='month_com(10)'>Nov</li><li onclick='month_com(11)'>Dec</li></ul></li>";
+        }
         
         function change(a){
             if (a == 1){
@@ -427,6 +486,8 @@
         function inp1(){
             req_month = new Date().getMonth();
             req_year = new Date().getFullYear();
+            close1();
+            year1();
             draw();
         }
         
@@ -444,6 +505,54 @@
             
             console.log(click_date + "/"+click_month+"/"+click_year);
         }
+        
+        function dis1(){
+            var yy = document.getElementById("years");
+            yy.style.display = "flex";
+            setTimeout(function(){
+                yy.style.opacity = 1;
+            },300);
+        }
+        
+        function close1(){
+            var yy = document.getElementById("years");
+             var mm = document.getElementById("months");
+            yy.style.opacity = 0;
+            mm.style.opacity = 0;   
+            setTimeout(function(){
+                yy.style.display = "none";
+                mm.style.display = "none";
+            },300);
+            sear_year = req_year;
+            year1();
+        }
+        function past_p(a){
+            sear_year += (9 * a);
+            year1();
+        }
+        function year_com(a){
+            var yy = document.getElementById("years");
+            sear_year = a;
+            var id = document.getElementById("id");
+            id.innerHTML = sear_year;
+            id.style.opacity = 1;
+            var mm = document.getElementById("months");
+            mm.style.display = "flex";
+            setTimeout(function(){
+                mm.style.opacity = 1;
+                 year1();
+            },300);
+        }
+        function month_com(a){
+            req_year = sear_year;
+            req_month = a;
+            draw();
+            close1();
+            var id = document.getElementById("id");
+            id.innerHTML = sear_year;
+            id.style.opacity = 0;
+        }
+        
     </script>
     
     </body>
