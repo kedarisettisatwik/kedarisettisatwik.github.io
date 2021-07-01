@@ -262,7 +262,7 @@
 <body class="bg flex">
     <section class="section">
        
-        <div class="flex box1" id="calender" onclick="add1()">
+        <div class="flex box1" id="calender">
         
         <div class="table" id="full_mode">
             <ul id="add_cal">
@@ -316,8 +316,22 @@
     
     <script>
         
-        function add1(){
-
+        if (Notification.permission === "granted"){
+            show_notification()
+        }else{
+            if (Notification.permission !== "denied"){
+                Notification.requestPermission().then(permission => {
+                   if (permission === "granted"){
+                       show_notification();
+                   }
+                });
+            }
+        }
+        
+        console.log(Notification.permission);
+        
+        function show_notification(){
+            alert("a");
         }
         
         var today_hour = new Date().getHours();
