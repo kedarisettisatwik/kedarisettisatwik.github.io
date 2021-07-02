@@ -40,7 +40,7 @@
             overflow-x: hidden;
             padding:10px;
             position:relative;
-            background-color:aliceblue;
+            background-color:skyblue;
         }
         .section{
             width:100%;
@@ -66,13 +66,13 @@
         }
         .box2{
             background-color:white;
-            box-shadow:0 0 10px rgb(0,0,0,0.4);
+            box-shadow:0 0 10px rgb(0,0,0,0.7);
         }
         .box1 .table{
             position:relative;
             width:100%;
             padding:10px;
-            box-shadow:0 0 10px rgb(0,0,0,0.4);
+            box-shadow:0 0 10px rgb(0,0,0,0.7);
             background-color: white;
         }
         .table ul{
@@ -156,7 +156,7 @@
             position: relative;
             width:100%;
             background-color:white;
-           box-shadow: 0 0 10px rgb(0,0,0,0.3);
+           box-shadow: 0 0 10px rgb(0,0,0,0.6);
         }
         #mode p{
             flex-direction: row;
@@ -342,7 +342,7 @@
             margin:20px;
             background-color: white;
             border-radius:5px;
-            box-shadow:0 0 10px rgb(0,0,0,0.3);
+            box-shadow:0 0 10px rgb(0,0,0,0.7);
         }
         .box3 h3{
             letter-spacing:1px;
@@ -368,18 +368,32 @@
             width:100%;
             height:3px;
             outline:none;
-            background-color:black;
+            background-color:rebeccapurple;
             border-radius:4px;
             margin:15px;
+            z-index:10;
         }
         .box3 .set .inin input::-webkit-slider-thumb{
             -webkit-appearance:none;
             width:10px;
             border-radius:10px;
             height:20px;
-            box-shadow:0 0 5px rgb(0,0,0,0.4);
-            background-color:darkblue;
+            background-color:transparent;
             cursor:pointer;
+            z-index:10;
+        }
+        .box3 .set .inin .piece{
+            position:absolute;
+            left:0px;
+            top:50%;
+            transform:translate(0,-50%);
+            width:10px;
+            border-radius:10px;
+            height:20px;
+            background-color:rebeccapurple;
+            cursor:pointer;
+            transition:0.2s;
+            z-index:0;
         }
         .box3 #timer_time{
             font-family: 'Titillium Web', sans-serif;
@@ -455,9 +469,9 @@
         <div class="box3 flex">
         <h3>Timer <i class="fas fa-hourglass-half"></i></h3>
         <div class="flex set" id="full_timer">
-            <div class="inin flex"><input type="range" min="0" max="23" value="0" oninput="change_timer()" id="timer_hr1"></div>
-            <div class="inin flex"><input type="range" min="0" max="59" value="0" oninput="change_timer()" id="timer_min1"></div>
-            <div class="inin flex"><input type="range" min="0" max="59" value="0" oninput="change_timer()" id="timer_sec1"></div>
+            <div class="inin flex"><div class="piece"></div><input type="range" min="0" max="23" value="0" oninput="change_timer()" id="timer_hr1"></div>
+            <div class="inin flex"><div class="piece"></div><input type="range" min="0" max="59" value="0" oninput="change_timer()" id="timer_min1"></div>
+            <div class="inin flex"><div class="piece"></div><input type="range" min="0" max="59" value="0" oninput="change_timer()" id="timer_sec1"></div>
         </div>
         <h2 id="timer_time">00 : 00 : 00</h2>
         <div class="flex btn">
@@ -846,6 +860,16 @@
                 play_tf = false;
                 clear1(0,0,0);
             }
+            var pi = document.querySelectorAll(".piece");
+            var lip = [(timer_hr1.value / 23),(timer_min1.value / 59),(timer_sec1.value / 59)];
+            for (var i =0 ;i<pi.length;i++){
+                if (lip[i] != 0){
+                pi[i].style.width = lip[i] * 100 + "%";
+                }else{
+                pi[i].style.width = "10px";
+                }
+            }
+                
             timer_time_1 = (eval(60 * 60 * li11[0])) + (eval(60 * li11[1])) + (eval(li11[2]));
             
             var li22 = [li11[0],li11[1],li11[2]]; 
@@ -855,6 +879,7 @@
                 }
             }
         
+            
             timer_time.innerHTML = li22[0] + " : " + li22[1] + " : " + li22[2];
         }
         
@@ -880,6 +905,10 @@
         function stop_timer(){
             if (timer_stop){
             timer_tf = false;
+            var pi = document.querySelectorAll(".piece");
+            for (var i =0 ;i<pi.length;i++){
+                pi[i].style.width = "10px";
+            }
             clear1(0,0,0);
             timer_hr1.value = 0;
             timer_min1.value = 0;
