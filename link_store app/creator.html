@@ -405,6 +405,9 @@
    
     <script>
         
+        document.addEventListener('contextmenu',(e) => {
+                   e.preventDefault();   
+        });
         
         function input1(a){
             var one = document.getElementById("sign_in");

@@ -135,17 +135,19 @@
 </script>
    
     <script>    
+        document.addEventListener('contextmenu',(e) => {
+                   e.preventDefault();   
+        });
         
         const myurl = new URL(window.location.href);
         const user_id = myurl.searchParams.get("user_id");
         const password_user = myurl.searchParams.get("password");
         
-        
+        var x = 0;
         firebase.database().ref('users/').once('value',function(snapshot){
         snapshot.forEach(function(ChildSnapShot){
             let user_in = ChildSnapShot.val().user_id;
             let password_in = ChildSnapShot.val().password;
-            var x = 0;
             
             if (user_id == user_in && password_user == password_in){
                x += 1; 
