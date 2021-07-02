@@ -1,0 +1,167 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    
+    <title>creator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .flex{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .bg{
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size:cover;
+        }
+        body{
+            width: 100vw;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding:10px;
+            position: relative;
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: column;
+            align-items: center;
+        }
+        #logo{
+            position:fixed;
+            width:100vw;
+            height:100vh;
+            top:0;
+            left:0;
+            background-color:white;
+            z-index:100;
+            opacity:1;
+            transition:1s;
+            transform-origin: bottom left;
+        }
+        #logo img{
+            width:70px;
+        }
+        .name{
+            position:relative;
+            min-width:90%;
+            flex-direction: row;
+            margin:0px 0 10px 0;
+            padding:10px;
+            padding-bottom:20px;
+            font-weight:300;
+            letter-spacing:2px;
+            font-size:19px;
+            justify-content: space-around;
+            border-bottom:4px solid black;
+        }
+        .name div{
+            -webkit-animation:name1 20s linear infinite;
+        }
+        #profile_logo{
+            cursor:pointer;
+            margin:0 20px;
+            width:40px;
+            height:40px;
+            transition:0.3s;
+        }
+        .name i:hover{
+            transform: scale(1.1);
+        }
+        @keyframes name1{
+            0%{color:rebeccapurple}
+            25%{color:red}
+            50%{color:green}
+            75%{color:black}
+            100%{color:rebeccapurple}
+        }
+        .container{
+            flex-direction: row;
+            flex-wrap: wrap;
+            width:100%;
+            margin-top:10px;
+        }
+        
+        @media (max-width:350px){
+            
+        }
+        
+    </style>
+</head>
+
+<body>
+    
+    <section id="logo" class="flex"><img src="logo.png"></section>
+    
+    
+    <header class="flex name">
+        <div class="flex" style="flex-direction: row;margin:0 10px;">
+            <label>Network</label>
+        </div>
+        <img src="avatars/pp.png" id="profile_logo">
+    </header>
+    <section class="container flex">
+       
+        
+    </section>
+    
+    
+<script src="https://www.gstatic.com/firebasejs/8.7.0/firebase.js"></script>
+
+<script>
+    var firebaseConfig = {
+    apiKey: "AIzaSyAQmT_MttRb7axZvNoX2dR2bW-Y3-W_gGc",
+    authDomain: "network-58a1b.firebaseapp.com",
+    projectId: "network-58a1b",
+    storageBucket: "network-58a1b.appspot.com",
+    messagingSenderId: "467691452772",
+    appId: "1:467691452772:web:6603b645f30f6d0b40a271"
+    };
+    firebase.initializeApp(firebaseConfig);
+</script>
+   
+    <script>    
+        
+        const myurl = new URL(window.location.href);
+        const user_id = myurl.searchParams.get("user_id");
+        const password_user = myurl.searchParams.get("password");
+        
+        
+        firebase.database().ref('users/').once('value',function(snapshot){
+        snapshot.forEach(function(ChildSnapShot){
+            let user_in = ChildSnapShot.val().user_id;
+            let password_in = ChildSnapShot.val().password;
+            
+            if (user_id == user_in && password_user == password_in){
+               x += 1; 
+            }
+            
+        })
+                if (x != 0){
+            var lo = document.getElementById("logo");
+            lo.style.opacity = 0;
+            lo.style.transform = "scale(0)";
+                }else{
+                    window.close();
+                }
+                
+            });
+        
+    </script>
+    
+</body>
+</html>
