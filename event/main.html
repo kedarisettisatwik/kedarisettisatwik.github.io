@@ -366,7 +366,7 @@
         .box3 .set .inin input{
             -webkit-appearance:none;
             width:100%;
-            height:5px;
+            height:3px;
             outline:none;
             background-color:black;
             border-radius:4px;
@@ -374,8 +374,8 @@
         }
         .box3 .set .inin input::-webkit-slider-thumb{
             -webkit-appearance:none;
-            width:20px;
-            border-radius:50%;
+            width:10px;
+            border-radius:10px;
             height:20px;
             box-shadow:0 0 5px rgb(0,0,0,0.4);
             background-color:darkblue;
@@ -470,6 +470,9 @@
     </section>
 
     <script>
+        
+        var aud = new Audio();
+        aud.src = "song.mp3";
         
         var today_hour = new Date().getHours();
         var today_min = new Date().getMinutes();
@@ -798,7 +801,7 @@
         var timer_stop = false;
         var started = false;
         var play_tf = false;
-        var timer_time_1 = 100; // time
+        var timer_time_1 = 0; // time
         var timer_hr1 = document.getElementById("timer_hr1");
         var timer_min1 = document.getElementById("timer_min1");
         var timer_sec1 = document.getElementById("timer_sec1");
@@ -807,8 +810,29 @@
         
         var timertimer1 = setInterval(function(){
             if (timer_tf){
-                timer_time.innerHTML =timer_time_1;
-                timer_time_1 -= 1;
+                if (timer_time_1 > 0){
+                    
+                    timer_time_1 -= 1;
+                var time_hh = Math.floor(timer_time_1 / 3600);
+                var time_mm = Math.floor((timer_time_1 - time_hh * 3600) / 60);
+                var time_ss = Math.floor(timer_time_1 - (time_mm * 60) - (time_hh * 60 * 60));
+                if (time_hh < 10){
+                    time_hh = "0"+time_hh;
+                }if (time_mm < 10){
+                    time_mm = "0"+time_mm;
+                }if (time_ss < 10){
+                    time_ss = "0"+time_ss;
+                }
+                timer_time.innerHTML = time_hh + " : " + time_mm + " : " + time_ss;
+                    
+                }else{
+                    aud.play();
+                    clear1(2,2,1);
+                    play_tf = false;
+                    started = false;
+                    timer_stop = true;
+                    timer_tf = false;
+                }
             }
         },1000);
         
@@ -822,12 +846,15 @@
                 play_tf = false;
                 clear1(0,0,0);
             }
+            timer_time_1 = (eval(60 * 60 * li11[0])) + (eval(60 * li11[1])) + (eval(li11[2]));
+            
             var li22 = [li11[0],li11[1],li11[2]]; 
             for (var i = 0;i<li11.length;i++){
                 if (li11[i] < 10){
                     li22[i] = "0"+li11[i];
                 }
             }
+        
             timer_time.innerHTML = li22[0] + " : " + li22[1] + " : " + li22[2];
         }
         
@@ -838,6 +865,8 @@
             timer_stop = false;
             clear1(1,1,1);
             full_timer.style.display = "none";
+            aud.play();
+            aud.pause();
             }
         }
         
@@ -857,8 +886,8 @@
             timer_sec1.value = 0;
             timer_time.innerHTML = "00 : 00 : 00";
             full_timer.style.display = "flex";
-                
-            timer_time_1 = 100;
+            timer_time_1 = 0;
+            aud.pause();
             }
         }
         
