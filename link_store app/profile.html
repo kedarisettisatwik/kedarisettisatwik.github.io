@@ -112,7 +112,7 @@
         <div class="flex" style="flex-direction: row;margin:0 10px;">
             <label>Network</label>
         </div>
-        <img src="avatars/pp.png" id="profile_logo">
+        <img src="avatars/p8.png" id="profile_logo">
     </header>
     <section class="container flex">
        
@@ -134,14 +134,16 @@
     firebase.initializeApp(firebaseConfig);
 </script>
    
-    <script>    
+    <script>  
+        
         document.addEventListener('contextmenu',(e) => {
-                   e.preventDefault();   
+                   // e.preventDefault();   
         });
         
         const myurl = new URL(window.location.href);
         const user_id = myurl.searchParams.get("user_id");
         const password_user = myurl.searchParams.get("password");
+        
         
         var x = 0;
         firebase.database().ref('users/').once('value',function(snapshot){
@@ -158,11 +160,20 @@
             var lo = document.getElementById("logo");
             lo.style.opacity = 0;
             lo.style.transform = "scale(0)";
+            
                 }else{
                     window.close();
                 }
                 
             });
+        
+        
+        var profile_logo = document.getElementById("profile_logo");
+        
+        firebase.database().ref('users/'+user_id).on('value',function(snapshot){
+            
+        });
+        
         
     </script>
     

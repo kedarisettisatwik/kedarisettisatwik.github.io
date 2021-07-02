@@ -60,24 +60,15 @@
             position:relative;
             min-width:90%;
             flex-direction: row;
-            margin:0px 0 10px 0;
+            margin:10px 0 10px 0;
             padding:10px;
-            padding-bottom:20px;
             font-weight:300;
             letter-spacing:2px;
-            font-size:19px;
+            font-size:25px;
             justify-content: space-around;
-            border-bottom:4px solid black;
         }
         .name div{
             -webkit-animation:name1 20s linear infinite;
-        }
-        #profile_logo{
-            cursor:pointer;
-            margin:0 20px;
-            width:40px;
-            height:40px;
-            transition:0.3s;
         }
         .name i:hover{
             transform: scale(1.1);
@@ -359,7 +350,6 @@
         <div class="flex" style="flex-direction: row;margin:0 10px;">
             <label>Network</label>
         </div>
-        <img src="avatars/pp.png" id="profile_logo">
     </header>
     <section class="container flex">
        
@@ -488,7 +478,8 @@
                     if (up_password == up_re_password){
                         firebase.database().ref("users/"+up_user).set({
                          user_id : up_user,
-                         password:up_password
+                         password:up_password,
+                         dp:"p8",
                         });
                         
                         error_print("error_up","signup process completed succesfully","green"); 
