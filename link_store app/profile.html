@@ -337,7 +337,7 @@
             top:0;
             left:0;
             width:100vw;
-            height:100vh;
+            min-height:100vh;
             background-color:white;
             transform:translate(100%,0);
             transition:0.5s;
@@ -347,6 +347,8 @@
             overflow-x: hidden;
             overflow-y: auto;
             padding-top:70px;
+            padding-bottom:30px;
+            box-sizing: content-box;
         }
         #edit_page.active{
             transform:translate(0%,0);
