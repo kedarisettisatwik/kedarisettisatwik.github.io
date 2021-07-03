@@ -155,7 +155,7 @@
             width:5px;
         }
         ::-webkit-scrollbar-thumb{
-            background-color:blue;
+            background-color:black;
         }
         #box2 h2{
             font-weight:600;
@@ -352,6 +352,7 @@
             transform:translate(0%,0);
         }
         #box11{
+            position:relative;
             margin:20px;
             width:350px;
             padding:20px;
@@ -377,9 +378,18 @@
             margin:5px;
         }
         #box11 div img{
-            width:40px;
-            height:40px;
+            width:60px;
+            height:60px;
+            background-color:white;
+            box-shadow:0 0 10px rgb(0,0,0,0.2);
             margin:10px;
+            position: absolute;
+            top:0;
+            right:10px;
+            padding:7px;
+            box-sizing: content-box;
+            border-radius:50%;
+            transform:translate(0,-50%);
             cursor:pointer;
         }
         .edit_matter{
@@ -419,6 +429,7 @@
             padding-left:20px;
             justify-content: space-around;
             flex-direction: row;
+            letter-spacing:1px;
         }
         #box12 h2 i{
             margin:10px;
@@ -471,6 +482,20 @@
             height:50px;
             width:50px;
         }
+        .para{
+            width:100%;
+            margin-top:10px;
+            max-height:300px;
+            overflow-y: auto;
+            padding-bottom:20px;
+        }
+        .para p{
+            width:100%;
+            padding:10px;
+            margin:10px 0;
+            font-size:16px;
+        }
+        
         @media (max-width:350px){
             .box1,.box2,.box3,.box11{
                 width:100%;
@@ -565,13 +590,16 @@
     <h2 id="hello_color">Hello, I am <br><div class="flex"><span id="hello_user1" style="font-size:20px"></span>
        <img class="profile_logo" onclick="avatar_page()" id="edit_dp"></div></h2>
        
-       <p><span>font-color : </span><input type="color" oninput="add_edit(1)" id="font_color"></p>
-       <p><span>background-color : </span><input type="color" oninput="add_edit(2)" id="bg_color"></p>
+       <p style="color:var(--profile_font_color,white)"><span>font-color : </span><input type="color" oninput="add_edit(1)" id="font_color"></p>
+       <p style="color:var(--profile_font_color,white)"><span>background-color : </span><input type="color" oninput="add_edit(2)" id="bg_color"></p>
        
         </section>
         
              <section id="box12" class="flex">
-         <h2 class="flex"><span>Personal Details</span><i class="far fa-plus-square"></i></h2>
+         <h2 class="flex"><span>Personal Details</span><i class="far fa-plus-square" onclick="add_edit(3)"></i></h2>
+           <div class="para flex" id="add_line">
+    
+           </div> 
              </section>
              
         </section>
@@ -588,6 +616,12 @@
                     <img src="avatars/p6.png" onclick="add_edit(0,'avatars/p6.png')">
                     <img src="avatars/p7.png" onclick="add_edit(0,'avatars/p7.png')">
                     <img src="avatars/p8.png" onclick="add_edit(0,'avatars/p8.png')">
+                    <img src="avatars/p9.png" onclick="add_edit(0,'avatars/p9.png')">
+                    <img src="avatars/p10.png" onclick="add_edit(0,'avatars/p10.png')">
+                    <img src="avatars/p11.png" onclick="add_edit(0,'avatars/p11.png')">
+                    <img src="avatars/p12.png" onclick="add_edit(0,'avatars/p12.png')">
+                    <img src="avatars/p13.png" onclick="add_edit(0,'avatars/p13.png')">
+                    <img src="avatars/p14.png" onclick="add_edit(0,'avatars/p14.png')">
                 </div>
             </div>
         </section>
@@ -759,6 +793,16 @@ document.documentElement.style.setProperty('--profile_bg',snapshot.val().profile
 document.documentElement.style.setProperty('--profile_font_color',snapshot.val().profile_font_color);  
         }); 
             
+    firebase.database().ref('users/'+user_id+"/personal_details/").once('value',function(snapshot){
+        var add_line = document.getElementById("add_line");
+        add_line.innerHTML = "";
+        snapshot.forEach(function(ChildSnapShot){
+            
+            add_line.innerHTML += "<p class='add_line_personal'>"+ChildSnapShot.val().para+"</p>";
+            
+        })  
+            });
+            
         }
         
         var list_edits = {};
@@ -787,6 +831,10 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
                 list_edits["profile_bg"] = bg_color;
                 var box11 = document.getElementById("box11");
                 box11.style.backgroundColor = bg_color;
+            }else if (a == 3){
+                var add_line = document.getElementById("add_line");
+           var line_number = document.querySelectorAll(".line_number");
+        add_line.innerHTML += "<p contenteditable='true' class='add_line_personal'>new line</p>";   
             }
         }
         function avatar_page(){
@@ -809,7 +857,26 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
                  dp : list_edits["dp"],
             });
             }
+            var add_line_personal = document.querySelectorAll(".add_line_personal");
+            if (add_line_personal.length > 0){
+                
+                firebase.database().ref("users/"+user_id+"/personal_details/").remove(); 
+                for (var i = 0;i<add_line_personal.length;i++){
+                    var vv = add_line_personal[i].innerHTML;
+                    if (vv.length > 0){
+                        
+        firebase.database().ref("users/"+user_id+"/personal_details/").push({
+                 para : vv,
+            }); 
+                        
+                    }
+                }
+            }
+            
+            draw_edit();
+            
         }
+        
     </script>
     
 </body>

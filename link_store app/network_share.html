@@ -62,15 +62,16 @@
             width:100vw;
             height:100vh
         }
-        #box1{
+        #box11{
             margin:20px;
             width:350px;
             padding:20px;
             box-shadow:0 0 10px rgb(0,0,0,0.4);
             border-radius:8px;
             background-color:var(--profile_bg,rebeccapurple);
+            position:relative;
         }
-        #box1 h2{
+        #box11 h2{
             font-weight:400;
             letter-spacing:1px;
             margin:10px;
@@ -79,19 +80,58 @@
             font-weight:bold;
             color:var(--profile_font_color,white);
         }
-        #box1 div{
+        #box11 div{
             flex-direction: row;
         }
-        #box1 div img{
-            width:40px;
-            height:40px;
+        #box11 div img{
+            width:60px;
+            height:60px;
+            background-color:white;
+            box-shadow:0 0 10px rgb(0,0,0,0.2);
+            margin:10px;
+            position: absolute;
+            top:0;
+            right:10px;
+            padding:7px;
+            box-sizing: content-box;
+            border-radius:50%;
+            transform:translate(0,-50%);
+        }
+        #box12{
+            width:400px;
+            padding:10px;
+            background-color: beige;
+            font-size:17px;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
             margin:10px;
         }
+        #box12 h2{
+            width:100%;
+            margin:10px;
+            font-size:18px;
+            padding-left:20px;
+            letter-spacing:1px;
+        }
+        .para{
+            width:100%;
+            margin-top:10px;
+            max-height:300px;
+            overflow-y: auto;
+            padding-bottom:20px;
+            justify-content: flex-start;
+        }
+        .para p{
+            width:100%;
+            padding:10px;
+            margin:10px 0;
+            font-size:16px;
+        }
+        
         ::-webkit-scrollbar{
             width:5px;
         }
         ::-webkit-scrollbar-thumb{
-            background-color:blue;
+            background-color:black;
         }
         
         @media (max-width:350px){
@@ -109,10 +149,16 @@
     
     <section class="container flex">
        
-       <section id="box1" class="flex">
+       <section id="box11" class="flex">
             <h2>Hello, I am<br><div class="flex"><span id="hello_user" style="font-size:20px"></span><img src="" class="profile_logo"></div></h2>
         </section>
         
+        <section id="box12" class="flex">
+         <h2>Personal Details</h2>
+         <div class="para flex" id="add_line">
+          
+           </div> 
+        </section>
     </section>
     
     
@@ -156,7 +202,17 @@
               
 document.documentElement.style.setProperty('--profile_bg',snapshot.val().profile_bg);
 document.documentElement.style.setProperty('--profile_font_color',snapshot.val().profile_font_color);  
-        }); 
+        });
+           
+    firebase.database().ref('users/'+user_id+"/personal_details/").on('value',function(snapshot){
+        var add_line = document.getElementById("add_line");
+        add_line.innerHTML = "";
+        snapshot.forEach(function(ChildSnapShot){
+            
+            add_line.innerHTML += "<p class='add_line_personal'>"+ChildSnapShot.val().para+"</p>";
+            
+        })  
+            });
             
         }
         
