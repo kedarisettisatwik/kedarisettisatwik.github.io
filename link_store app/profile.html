@@ -15,6 +15,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
+            list-style:none;
         }
         html {
             scroll-behavior: smooth;
@@ -56,44 +57,190 @@
         #logo img{
             width:70px;
         }
-        .name{
-            position:relative;
-            min-width:90%;
-            flex-direction: row;
-            margin:0px 0 10px 0;
-            padding:10px;
-            padding-bottom:20px;
-            font-weight:300;
-            letter-spacing:2px;
-            font-size:19px;
-            justify-content: space-around;
-            border-bottom:4px solid black;
-        }
-        .name div{
-            -webkit-animation:name1 20s linear infinite;
-        }
-        #profile_logo{
+        #menu{
+            z-index:50;
+            position:fixed;
+            top:20px;
+            right:20px;
+            width:50px;
+            height:50px;
+            background-color:oldlace;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+            font-size:22px;
+            border-radius:50%;
             cursor:pointer;
-            margin:0 20px;
-            width:40px;
-            height:40px;
+            transform:rotateZ(0deg);
             transition:0.3s;
         }
-        .name i:hover{
-            transform: scale(1.1);
+        #menu.active{
+            transform:rotateZ(180deg);
         }
-        @keyframes name1{
-            0%{color:rebeccapurple}
-            25%{color:red}
-            50%{color:green}
-            75%{color:black}
-            100%{color:rebeccapurple}
+        #list{
+            position:fixed;
+            top:50%;
+            left:20px;
+            transition:0.5s;
+            width:250px;
+            background-color: white;
+            padding:10px;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+            transform:translate(calc(-100% - 20px),-50%);
         }
+        #list.active{
+            transform:translate(0,-50%);
+        }
+        #list ul li{
+            width:100%;
+            padding:10px 20px;
+            line-height:50px;
+            cursor:pointer;
+            font-size:18px;
+            font-weight:bold;
+            transition:0.3s;
+            border:1px solid white;
+            letter-spacing:2px;
+            flex-direction: row;
+            justify-content: flex-start;
+        }
+        #list ul li:hover{
+            border:1px solid grey;
+        }
+        #list ul li img,#list ul li i{
+            margin-left:10px;
+        }
+        #list ul li img{
+            width:40px;
+            height:40px;
+        }
+        
         .container{
             flex-direction: row;
             flex-wrap: wrap;
             width:100%;
-            margin-top:10px;
+            margin-top:70px;
+        }
+        
+        #box1{
+            margin:20px;
+            width:350px;
+            padding:20px;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+            border-radius:8px;
+            background-color:rebeccapurple;
+        }
+        #box1 h2{
+            font-weight:400;
+            letter-spacing:1px;
+            margin:10px;
+            width:100%;
+            font-size:22px;
+            color:white;
+        }
+        #box1 button{
+            position:relative;
+            margin:20px;
+            padding:20px;
+            min-width:75%;
+            color:white;
+            background-color:transparent;
+            outline:none;
+            border:none;
+            font-size:19px;
+            letter-spacing:2px;
+            text-transform:uppercase;
+            font-weight:600;
+            overflow: hidden;
+            cursor:pointer;
+            transition:0.6s;
+            box-shadow:0 0 0 rgb(0,0,0,0);
+        }
+        #box1 button:nth-child(2){
+            --i:aqua;
+        }
+        #box1 button:nth-child(3){
+            --i:aquamarine;
+        }
+        #box1 button::before{
+            content: '';
+            position: absolute;
+            top:0;
+            left:0;
+            width:12px;
+            height:12px;
+            border-left:3px solid var(--i);
+            border-top:3px solid var(--i);
+            transition:0.3s;
+        }
+        #box1 button::after{
+            content: '';
+            position: absolute;
+            bottom:0;
+            right:0;
+            width:12px;
+            height:12px;
+            border-right:3px solid var(--i);
+            border-bottom:3px solid var(--i);
+            transition:0.4s;
+        }
+        #box1 button:hover::before,#box1 button:hover::after{
+            width:100%;
+            height:100%
+        }
+        #box1 button:hover{
+            transition-delay:0.4s;
+            color:black;
+            background-color:var(--i);
+            box-shadow:0 0 10px var(--i),0 0 20px var(--i);
+        }
+        #box1 button i{
+            font-size:22px;
+            margin-left:10px;
+        }
+        #box2{
+            width:350px;
+            margin:20px;
+            justify-content: flex-start;
+            padding:20px 10px;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+        }
+        .matter{
+            height:300px;
+            padding-left:10px;
+            overflow-y: auto;
+        }
+        ::-webkit-scrollbar{
+            width:5px;
+        }
+        ::-webkit-scrollbar-thumb{
+            background-color:blue;
+        }
+        #box2 h2{
+            font-weight:600;
+            letter-spacing:2px;
+            margin:10px;
+            padding-left:20px;
+            width:100%;
+            font-size:20px;
+            margin-bottom:10px;
+        }
+        .matter span{
+            font-size:19px;
+            font-weight:600;
+            width:100%;
+        }
+        #box3{
+            width:350px;
+            height:400px;
+            margin:20px;
+            justify-content: flex-start;
+            padding:20px 10px;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+            background-image:linear-gradient(rgb(0, 204, 102),rgb(0, 204, 255)); 
+        }
+        #box3 video{
+            width:100%;
+            height:100%;
+            object-fit:cover;
         }
         
         @media (max-width:350px){
@@ -107,15 +254,44 @@
     
     <section id="logo" class="flex"><img src="logo.png"></section>
     
+    <section id="list">
+        <ul>
+            <li class="flex"> Home <i class="fas fa-home"></i></li>
+            <li class="flex"> profile <img class="profile_logo"></li>
+            <li class="flex"> Edit profile <i class="far fa-edit"></i></li>
+            <li class="flex"> chats <i class="far fa-comment-alt"></i></li>
+        </ul>
+    </section>
     
-    <header class="flex name">
-        <div class="flex" style="flex-direction: row;margin:0 10px;">
-            <label>Network</label>
-        </div>
-        <img src="avatars/p8.png" id="profile_logo">
-    </header>
+    <span id="menu" class="flex" onclick="toogle()">
+            <i class='fas fa-bars'></i>
+    </span>
+        
     <section class="container flex">
        
+       <section id="box1" class="flex">
+            <h2>Hello,<br><span id="hello_user" style="font-size:20px"></span> ! 🖐</h2>
+        </section>
+        
+        <section id="box2" class="flex">
+            <h2> Why, How to use ? </h2>
+            <div class="matter">
+            <br>
+            <span>Step - 1: </span><p>open account and sign in</p><br>
+            <span>Step - 2: </span><p>After sign in, a public web link is provided to you</p><br>
+            <span>Step - 3: </span><p>Fill your basic details and you can add any number of extra details if you want</p><br>
+            <span>Step - 4: </span><p>you can also write notes (any message) and you can keep it in private mode (only you can see) or in public mode (every one can see) </p><br>
+            <span>Step - 5: </span><p>any one can reply to your public notes</p><br>
+            <span>Step - 6: </span><p>follow your friends and chat with them </p><br>
+            <span>Step - 7: </span><p>By sharing the link,every one can see your profile,notes and etc..</p><br>
+            <br><br>
+            </div>
+        </section>
+        
+        <section id="box3">
+            <video src="Presentation1.mp4" controls="" autoplay=""></video>
+        </section>
+        
         
     </section>
     
@@ -160,7 +336,7 @@
             var lo = document.getElementById("logo");
             lo.style.opacity = 0;
             lo.style.transform = "scale(0)";
-            
+                  draw();
                 }else{
                     window.close();
                 }
@@ -168,11 +344,33 @@
             });
         
         
-        var profile_logo = document.getElementById("profile_logo");
+           var profile_logo = document.querySelectorAll(".profile_logo");
+           var hello_user = document.getElementById("hello_user");
+         
+        function draw(){
         
         firebase.database().ref('users/'+user_id).on('value',function(snapshot){
+            for(var i= 0;i<profile_logo.length;i++){
+                profile_logo[i].src = "avatars/" + snapshot.val().dp + ".png";
+            }
+            hello_user.innerHTML = snapshot.val().user_id;
+        }); 
             
-        });
+        }
+        
+        function toogle(){
+            var tt = document.getElementById("list");
+            var mm = document.getElementById("menu");
+            tt.classList.toggle("active");
+            mm.classList.toggle("active");
+            
+            if (mm.classList.contains("active")){
+                mm.innerHTML = "<i class='fas fa-times'></i>";
+            }else{
+                mm.innerHTML = "<i class='fas fa-bars'></i>";
+            }
+            
+        }
         
         
     </script>

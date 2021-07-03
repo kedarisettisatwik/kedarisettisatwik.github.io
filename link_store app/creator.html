@@ -253,6 +253,7 @@
             height:100%;
             padding:10px 10px 10px 20px;
             font-size:16px;
+            text-transform:lowercase;
         }
         #sign_in form input[type="submit"],#sign_up form input[type="submit"]{
             outline:none;
@@ -308,7 +309,7 @@
        <div class="flex" onclick="input1(2)">
            <i class="fas fa-times"></i>
        </div>
-        <form class="flex" id="form_in">
+        <form class="flex" id="form_in" autocomplete="off">
             <fieldset>
             <legend>user_id</legend>
             <input type="text" required id="in_user">
@@ -396,8 +397,9 @@
     <script>
         
         document.addEventListener('contextmenu',(e) => {
-                   e.preventDefault();   
+                  // e.preventDefault();   
         });
+        
         
         function input1(a){
             var one = document.getElementById("sign_in");
@@ -429,8 +431,10 @@
             e.preventDefault();
             
             var x = 0;
-            var in_user = document.getElementById("in_user").value;
-            var in_password = document.getElementById("in_password").value;
+            var in_user = (document.getElementById("in_user").value).toLowerCase();
+            var in_password = (document.getElementById("in_password").value).toLowerCase();
+            
+            console.log(in_user);
             
             firebase.database().ref('users/').once('value',function(snapshot){
         snapshot.forEach(function(ChildSnapShot){
@@ -444,7 +448,9 @@
         })
                 if (x != 0){
                      error_print("error_in","succesfully signed in ","green");
-            var loc = "https://kedarisettisatwik.github.io/"+"link_store%20app/profile.html"+"?user_id="+in_user+"&password="+in_password;
+                    localStorage.setItem("kedar_network_user_id",in_user);
+                    localStorage.setItem("kedar_network_password",in_password);
+            var loc = "file:///C:/Users/kedar/Documents/GitHub/kedarisettisatwik.github.io/"+"link_store%20app/profile.html"+"?user_id="+in_user+"&password="+in_password;
                     window.open(loc);
                     location.reload();
                 }else{
@@ -459,9 +465,9 @@
             e.preventDefault();
             
             var x = 0;
-            var up_user = document.getElementById("up_user").value;
-            var up_password = document.getElementById("up_password").value;
-            var up_re_password = document.getElementById("up_re_password").value;
+            var up_user = (document.getElementById("up_user").value).toLowerCase();
+            var up_password = (document.getElementById("up_password").value).toLowerCase();
+            var up_re_password = (document.getElementById("up_re_password").value).toLowerCase();
             
             firebase.database().ref('users/').once('value',function(snapshot){
         snapshot.forEach(function(ChildSnapShot){
@@ -483,8 +489,9 @@
                         });
                         
                         error_print("error_up","signup process completed succesfully","green"); 
-                        
-            var loc = "https://kedarisettisatwik.github.io/"+"link_store%20app/profile.html"+"?user_id="+up_user+"&password="+up_password;
+                        localStorage.setItem("kedar_network_user_id",up_user);
+                    localStorage.setItem("kedar_network_password",up_password);
+    var loc = "file:///C:/Users/kedar/Documents/GitHub/kedarisettisatwik.github.io/"+"link_store%20app/profile.html"+"?user_id="+up_user+"&password="+up_password;
                 
                     window.open(loc);
                     location.reload();
