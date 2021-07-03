@@ -34,8 +34,8 @@
         }
         body{
             width: 100vw;
-            min-height: 100vh;
-            overflow-x: hidden;
+            height: 100vh;
+            overflow: hidden;
             padding:10px;
             position: relative;
             display: flex;
@@ -119,7 +119,13 @@
             flex-direction: row;
             flex-wrap: wrap;
             width:100%;
-            margin-top:70px;
+            padding-top:70px;
+            min-height:100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+            padding-bottom:70px;
+            box-sizing:content-box;
+            align-items: flex-start
         }
         
         #box1{
@@ -332,27 +338,6 @@
         .frnd_user .btn_fr button:hover{
             letter-spacing:2px;
         }
-        #edit_page{
-            position: fixed;
-            top:0;
-            left:0;
-            width:100vw;
-            min-height:100vh;
-            background-color:white;
-            transform:translate(100%,0);
-            transition:0.5s;
-            padding:10px;
-            flex-direction: row;
-            flex-wrap: wrap;
-            overflow-x: hidden;
-            overflow-y: auto;
-            padding-top:70px;
-            padding-bottom:30px;
-            box-sizing: content-box;
-        }
-        #edit_page.active{
-            transform:translate(0%,0);
-        }
         #box11{
             position:relative;
             margin:20px;
@@ -396,7 +381,9 @@
         }
         .edit_matter{
             padding:10px;
-            width:350px;
+            width:100%;
+            margin:10px;
+            margin-bottom:20px;
             font-size:15px;
             padding:10px;
             border:4px solid black;
@@ -513,10 +500,9 @@
     
     <section id="list">
         <ul>
-    <li class="flex" onclick="page(3)"> Home <i class="fas fa-home"></i></li>
-    <li class="flex" onclick="page(0)"> Edit profile <i class="far fa-edit"></i></li>
-    <li class="flex" onclick="page(1)"> chats <i class="far fa-comment-alt"></i></li>
-    <li class="flex" onclick="page(2)"> friends <i class="fas fa-user-friends"></i> </li>
+    <li class="flex" onclick="page(2)"> Home <i class="fas fa-home"></i></li>
+    <li class="flex" onclick="page(0)"> chats <i class="far fa-comment-alt"></i></li>
+    <li class="flex" onclick="page(1)"> friends <i class="fas fa-user-friends"></i> </li>
     <li class="flex" onclick="go()"> profile <img class="profile_logo"></li>
         </ul>
     </section>
@@ -564,24 +550,6 @@
             <video src="Presentation1.mp4" controls="" autoplay=""></video>
         </section>
         
-        <section id="frnds_page" class="flex">
-            <input type="text" placeholder="Search for others.." class="search" oninput="search_filter()" id="search_box">
-            <section id="frnds_list" class="flex">
-               
-                <div class='frnd_user'> 
-         <h1 class='flex'>
-            <span class='search_name'>name</span><img src='avatars/p2.png'> 
-        </h1>
-                    <div class='btn_fr flex'>
-                        <button>chat</button>
-                        <button><a href=''>see profile</a></button>
-                    </div>
-                </div>
-                
-            </section>
-        </section>
-        
-        <section id="edit_page" class="flex">
             
             <section class="edit_matter">
                 <span>you can edit the elements by clicking on them</span> 
@@ -604,7 +572,24 @@
            </div> 
              </section>
              
+        
+        <section id="frnds_page" class="flex">
+            <input type="text" placeholder="Search for others.." class="search" oninput="search_filter()" id="search_box">
+            <section id="frnds_list" class="flex">
+               
+                <div class='frnd_user'> 
+         <h1 class='flex'>
+            <span class='search_name'>name</span><img src='avatars/p2.png'> 
+        </h1>
+                    <div class='btn_fr flex'>
+                        <button>chat</button>
+                        <button><a href=''>see profile</a></button>
+                    </div>
+                </div>
+                
+            </section>
         </section>
+
         
         <section id="avatar" class="flex"> 
             <div class="ava" class="flex">
@@ -714,7 +699,9 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
             
             if (user_up != user_id){
     var link1 = "network_share.html?user_id="+user_up;
-                elele.innerHTML += "<div class='frnd_user'> <h1 class='flex'><span class='search_name'>"+user_up+"</span></h1><div class='btn_fr flex'><button onclick = 'chat_with("+count1+")'>chat</button><button><a href='"+link1+"'>see profile</a></button></div> </div>";
+        for (var m = 0;m < 20;m++){
+            elele.innerHTML += "<div class='frnd_user'> <h1 class='flex'><span class='search_name'>"+user_up+"</span></h1><div class='btn_fr flex'><button onclick = 'chat_with("+count1+")'>chat</button><button><a href='"+link1+"'>see profile</a></button></div> </div>";
+        }
                 
                 count1 += 1;
             }
@@ -752,13 +739,12 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
         function page(a){
             var a2 = document.getElementById("frnds_page");
             var a1 = document.getElementById("chat_page");
-            var a0 = document.getElementById("edit_page");
-            var li = [a0,a1,a2];
-                for(var i = 0;i<3;i++){
+            var li = [a1,a2];
+                for(var i = 0;i<2;i++){
                 if(li[i]){
                     li[i].classList.remove("active");
                 }
-                    if (a < 3){li[a].classList.add("active");}
+                    if (a < 2){li[a].classList.add("active");}
               }
             toogle();
         }
@@ -800,7 +786,7 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
         add_line.innerHTML = "";
         snapshot.forEach(function(ChildSnapShot){
             
-            add_line.innerHTML += "<p class='add_line_personal'>"+ChildSnapShot.val().para+"</p>";
+         add_line.innerHTML += "<p class='add_line_personal' contenteditable='true'>"+ChildSnapShot.val().para+"</p>";
             
         })  
             });
