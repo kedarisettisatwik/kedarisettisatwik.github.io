@@ -16,6 +16,7 @@
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
             list-style:none;
+            text-decoration:none;
         }
         html {
             scroll-behavior: smooth;
@@ -76,6 +77,7 @@
             transform:rotateZ(180deg);
         }
         #list{
+            z-index: 50;
             position:fixed;
             top:50%;
             left:20px;
@@ -84,7 +86,7 @@
             background-color: white;
             padding:10px;
             box-shadow:0 0 10px rgb(0,0,0,0.4);
-            transform:translate(calc(-100% - 20px),-50%);
+            transform:translate(calc(-100% - 30px),-50%);
         }
         #list.active{
             transform:translate(0,-50%);
@@ -126,7 +128,7 @@
             padding:20px;
             box-shadow:0 0 10px rgb(0,0,0,0.4);
             border-radius:8px;
-            background-color:rebeccapurple;
+            background-color:var(--profile_bg,rebeccapurple);
         }
         #box1 h2{
             font-weight:400;
@@ -134,67 +136,8 @@
             margin:10px;
             width:100%;
             font-size:22px;
-            color:white;
-        }
-        #box1 button{
-            position:relative;
-            margin:20px;
-            padding:20px;
-            min-width:75%;
-            color:white;
-            background-color:transparent;
-            outline:none;
-            border:none;
-            font-size:19px;
-            letter-spacing:2px;
-            text-transform:uppercase;
-            font-weight:600;
-            overflow: hidden;
-            cursor:pointer;
-            transition:0.6s;
-            box-shadow:0 0 0 rgb(0,0,0,0);
-        }
-        #box1 button:nth-child(2){
-            --i:aqua;
-        }
-        #box1 button:nth-child(3){
-            --i:aquamarine;
-        }
-        #box1 button::before{
-            content: '';
-            position: absolute;
-            top:0;
-            left:0;
-            width:12px;
-            height:12px;
-            border-left:3px solid var(--i);
-            border-top:3px solid var(--i);
-            transition:0.3s;
-        }
-        #box1 button::after{
-            content: '';
-            position: absolute;
-            bottom:0;
-            right:0;
-            width:12px;
-            height:12px;
-            border-right:3px solid var(--i);
-            border-bottom:3px solid var(--i);
-            transition:0.4s;
-        }
-        #box1 button:hover::before,#box1 button:hover::after{
-            width:100%;
-            height:100%
-        }
-        #box1 button:hover{
-            transition-delay:0.4s;
-            color:black;
-            background-color:var(--i);
-            box-shadow:0 0 10px var(--i),0 0 20px var(--i);
-        }
-        #box1 button i{
-            font-size:22px;
-            margin-left:10px;
+            font-weight:bold;
+            color:var(--profile_font_color,white);
         }
         #box2{
             width:350px;
@@ -242,9 +185,296 @@
             height:100%;
             object-fit:cover;
         }
+        #kedar_links{
+            border:4px solid black;
+            position:relative;
+            padding:20px;
+            box-shadow:0 0 10px rgb(0,0,0,0.2),inset 0 0 10px rgb(0,0,0,0.2);
+            margin:20px;
+            overflow: hidden;
+        }
+        #kedar_links div{
+            position:relative;
+            margin:10px;
+        }
+        #kedar_links div i{
+            position: absolute;
+            bottom:-10px;
+            right:-10px;
+            background-color:darkblue;
+            color:white;
+            font-size:20px;
+            cursor:pointer;
+            height:40px;
+            width:40px;
+            line-height:40px;
+            text-align: center;
+            border-radius:50%;
+            box-shadow:0 0 10px rgb(0,0,255,0.3);
+        }
+        #kedar_links span{
+            width:100%;
+            margin:10px;
+            letter-spacing:1px;
+            font-size:17px;
+            font-weight:bold;
+        }
+        #kedar_links input{
+            box-shadow:0 0 5px rgb(0,0,0,0.5);
+            background:none;
+            outline:none;
+            border:none;
+            background-color: aliceblue;
+            margin:10px;
+            padding:10px;
+            height:60px;
+            width:100%;
+            font-size:14px;
+            position:relative;
+        }
+        #kedar_links .cover{
+            position: absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background:transparent;
+        }
+        .pages{
+            z-index:20;
+        }
+        #frnds_page{
+            position: fixed;
+            top:0;
+            left:0;
+            width:100vw;
+            height:100vh;
+            background-color:white;
+            transform:translate(100%,0);
+            transition:0.5s;
+            justify-content:flex-start;
+            padding:10px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            padding-top:70px;
+        }
         
+        #frnds_page.active{
+            transform:translate(0%,0);
+        }
+        #frnds_page .search{
+            height:60px;
+            width:250px;
+            background:none;
+            outline:none;
+            border:none;
+            padding:10px;
+            padding-left:20px;
+            font-size:16px;
+            border:3px solid black;
+            background-color:white;
+            border-radius:30px;
+            transition:0.2s;
+        }
+        #frnds_page .search::placeholder{
+            color:black;
+        }
+        #frnds_list{
+            margin-top:30px;
+            padding:10px;
+            width:100vw;
+            flex-wrap: wrap;
+            flex-direction: row;
+        }
+        .frnd_user{
+            margin:10px;
+            box-shadow:0 0 10px rgb(0,0,0,0.2);
+            padding:10px;
+            width:350px;
+            position:relative;
+            background-color:skyblue;
+        }
+        .frnd_user h1{
+            width:100%;
+            justify-content: flex-start;
+            padding-left:20px;
+            margin:10px;
+            font-size:20px;
+            font-weight:400;
+            letter-spacing:2px;
+            font-weight:bold;
+            flex-direction: row;
+            color:black;
+        }
+        .frnd_user .btn_fr{
+            margin-top:20px;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width:100%;
+            justify-content: space-around;
+        }
+        .frnd_user .btn_fr button{
+            font-size:16px;
+            padding:10px;
+            margin:10px;
+            background-color:white;
+            outline:none;
+            border:none;
+            letter-spacing:1px;
+            border:3px solid black;
+            cursor:pointer;
+            transition:0.3s;
+            color:black;
+        }
+        .frnd_user .btn_fr button a{
+            color:black;
+        }
+        .frnd_user .btn_fr button:hover{
+            letter-spacing:2px;
+        }
+        #edit_page{
+            position: fixed;
+            top:0;
+            left:0;
+            width:100vw;
+            height:100vh;
+            background-color:white;
+            transform:translate(100%,0);
+            transition:0.5s;
+            padding:10px;
+            flex-direction: row;
+            flex-wrap: wrap;
+            overflow-x: hidden;
+            overflow-y: auto;
+            padding-top:70px;
+        }
+        #edit_page.active{
+            transform:translate(0%,0);
+        }
+        #box11{
+            margin:20px;
+            width:350px;
+            padding:20px;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+            border-radius:8px;
+            background-color:var(--profile_bg,rebeccapurple);
+        }
+        #box11 h2{
+            font-weight:400;
+            letter-spacing:1px;
+            margin:10px;
+            width:100%;
+            font-weight:bold;
+            font-size:22px;
+            color:var(--profile_font_color,white);
+        }
+        #box11 div{
+            flex-direction: row;
+        }
+        #box11 p{
+            width:100%;
+            padding-left:20px;
+            margin:5px;
+        }
+        #box11 div img{
+            width:40px;
+            height:40px;
+            margin:10px;
+            cursor:pointer;
+        }
+        .edit_matter{
+            padding:10px;
+            width:350px;
+            font-size:15px;
+            padding:10px;
+            border:4px solid black;
+            box-shadow: 0 0 5px rgb(0,0,0,.3),inset 0 0 5px rgb(0,0,0,0.3);
+            display: flex;
+            justify-content:space-around;
+            align-items: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        .edit_matter button{
+            padding:10px;
+            background-color:darkblue;
+            color:white;
+            font-weight:bold;
+            margin:10px;
+            cursor:pointer;
+            font-size:19px;
+        }
+        #box12{
+            width:400px;
+            padding:10px;
+            background-color: beige;
+            font-size:17px;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+            margin:10px;
+        }
+        #box12 h2{
+            width:100%;
+            margin:10px;
+            font-size:18px;
+            padding-left:20px;
+            justify-content: space-around;
+            flex-direction: row;
+        }
+        #box12 h2 i{
+            margin:10px;
+            font-size:22px;
+            cursor:pointer;
+            width:40px;
+            height:40px;
+            transform:rotateZ(deg);
+            transition:0.3s;
+            line-height:40px;
+            text-align: center;
+        }
+        #box12 h2 i:hover{
+            transform:rotateZ(90deg);
+        }
+        #avatar{
+            position:fixed;
+            top:0;
+            left:0;
+            width:100vw;
+            height:100vh;
+            background-color: white;
+            z-index:-10;
+            opacity:0;
+            transition:0.3s;
+        }
+        #avatar.active{
+             z-index:1000;
+             opacity:1;
+        }
+        .ava{
+            position:relative;
+            padding:20px;
+            box-shadow:0 0 10px rgb(0,0,0,0.2);
+            width:95%;
+        }
+        .ava h4{
+            font-size:18px;
+            width:100%;
+            margin:10px;
+            margin-bottom:20px;
+        }
+        .ava div{
+            flex-direction:row;
+            flex-wrap: wrap;
+        }
+        .ava div img{
+            margin:10px;
+            cursor:pointer;
+            height:50px;
+            width:50px;
+        }
         @media (max-width:350px){
-            
+            .box1,.box2,.box3,.box11{
+                width:100%;
+            }
         }
         
     </style>
@@ -256,10 +486,11 @@
     
     <section id="list">
         <ul>
-            <li class="flex"> Home <i class="fas fa-home"></i></li>
-            <li class="flex"> profile <img class="profile_logo"></li>
-            <li class="flex"> Edit profile <i class="far fa-edit"></i></li>
-            <li class="flex"> chats <i class="far fa-comment-alt"></i></li>
+    <li class="flex" onclick="page(3)"> Home <i class="fas fa-home"></i></li>
+    <li class="flex" onclick="page(0)"> Edit profile <i class="far fa-edit"></i></li>
+    <li class="flex" onclick="page(1)"> chats <i class="far fa-comment-alt"></i></li>
+    <li class="flex" onclick="page(2)"> friends <i class="fas fa-user-friends"></i> </li>
+    <li class="flex" onclick="go()"> profile <img class="profile_logo"></li>
         </ul>
     </section>
     
@@ -268,10 +499,24 @@
     </span>
         
     <section class="container flex">
+      
        
        <section id="box1" class="flex">
             <h2>Hello,<br><span id="hello_user" style="font-size:20px"></span> ! 🖐</h2>
         </section>
+        
+        <section id="kedar_links" class="flex">
+           <div class="flex">
+               <span>link to avoid sign in process next time</span>
+               <input id="sign_in_link" class="flex" type="text"> 
+               <i class="far fa-copy" onclick="copy1('sign_in_link')"></i>
+           </div>
+           <div class="flex">
+               <span>link to share your profile to others ..</span>
+               <input id="share_in_link" class="flex" type="text">
+               <i class="far fa-copy" onclick="copy1('share_in_link')"></i>
+           </div>
+       </section>
         
         <section id="box2" class="flex">
             <h2> Why, How to use ? </h2>
@@ -292,6 +537,60 @@
             <video src="Presentation1.mp4" controls="" autoplay=""></video>
         </section>
         
+        <section id="frnds_page" class="flex">
+            <input type="text" placeholder="Search for others.." class="search" oninput="search_filter()" id="search_box">
+            <section id="frnds_list" class="flex">
+               
+                <div class='frnd_user'> 
+         <h1 class='flex'>
+            <span class='search_name'>name</span><img src='avatars/p2.png'> 
+        </h1>
+                    <div class='btn_fr flex'>
+                        <button>chat</button>
+                        <button><a href=''>see profile</a></button>
+                    </div>
+                </div>
+                
+            </section>
+        </section>
+        
+        <section id="edit_page" class="flex">
+            
+            <section class="edit_matter">
+                <span>you can edit the elements by clicking on them</span> 
+                <button onclick="save_data()">save</button>
+            </section>
+            
+             <section id="box11" class="flex">
+    <h2 id="hello_color">Hello, I am <br><div class="flex"><span id="hello_user1" style="font-size:20px"></span>
+       <img class="profile_logo" onclick="avatar_page()" id="edit_dp"></div></h2>
+       
+       <p><span>font-color : </span><input type="color" oninput="add_edit(1)" id="font_color"></p>
+       <p><span>background-color : </span><input type="color" oninput="add_edit(2)" id="bg_color"></p>
+       
+        </section>
+        
+             <section id="box12" class="flex">
+         <h2 class="flex"><span>Personal Details</span><i class="far fa-plus-square"></i></h2>
+             </section>
+             
+        </section>
+        
+        <section id="avatar" class="flex"> 
+            <div class="ava" class="flex">
+                <h4>choose your avatar ? </h4>
+                <div class="flex">
+                    <img src="avatars/p1.png" onclick="add_edit(0,'avatars/p1.png')">
+                    <img src="avatars/p2.png" onclick="add_edit(0,'avatars/p2.png')">
+                    <img src="avatars/p3.png" onclick="add_edit(0,'avatars/p3.png')">
+                    <img src="avatars/p4.png" onclick="add_edit(0,'avatars/p4.png')">
+                    <img src="avatars/p5.png" onclick="add_edit(0,'avatars/p5.png')">
+                    <img src="avatars/p6.png" onclick="add_edit(0,'avatars/p6.png')">
+                    <img src="avatars/p7.png" onclick="add_edit(0,'avatars/p7.png')">
+                    <img src="avatars/p8.png" onclick="add_edit(0,'avatars/p8.png')">
+                </div>
+            </div>
+        </section>
         
     </section>
     
@@ -330,34 +629,66 @@
             if (user_id == user_in && password_user == password_in){
                x += 1; 
             }
-            
         })
                 if (x != 0){
             var lo = document.getElementById("logo");
             lo.style.opacity = 0;
             lo.style.transform = "scale(0)";
                   draw();
+                  draw_edit();
                 }else{
                     window.close();
                 }
-                
             });
         
         
            var profile_logo = document.querySelectorAll(".profile_logo");
            var hello_user = document.getElementById("hello_user");
-         
+           var sign_in_link = document.getElementById("sign_in_link");
+           var share_in_link = document.getElementById("share_in_link");
+        
+        
         function draw(){
         
         firebase.database().ref('users/'+user_id).on('value',function(snapshot){
             for(var i= 0;i<profile_logo.length;i++){
-                profile_logo[i].src = "avatars/" + snapshot.val().dp + ".png";
+                profile_logo[i].src = snapshot.val().dp;
             }
+    sign_in_link.value = "https://kedarisettisatwik.github.io/link_store%20app/profile.html?user_id="+user_id+"&password="+password_user;
+share_in_link.value = "https://kedarisettisatwik.github.io/link_store%20app/"+"network_share.html?user_id="+user_id;
             hello_user.innerHTML = snapshot.val().user_id;
         }); 
             
+          firebase.database().ref('users/'+user_id+"/styles").on('value',function(snapshot){
+              
+            document.documentElement.style.setProperty('--profile_bg',snapshot.val().profile_bg);
+document.documentElement.style.setProperty('--profile_font_color',snapshot.val().profile_font_color);  
+        }); 
+            
+            var count1 = 0;
+            
+             var elele = document.getElementById("frnds_list");
+            elele.innerHTML = "";
+            
+            firebase.database().ref('users/').once('value',function(snapshot){
+        snapshot.forEach(function(ChildSnapShot){
+            
+            let user_up = ChildSnapShot.val().user_id;
+            
+            
+            if (user_up != user_id){
+    var link1 = "network_share.html?user_id="+user_up;
+                elele.innerHTML += "<div class='frnd_user'> <h1 class='flex'><span class='search_name'>"+user_up+"</span></h1><div class='btn_fr flex'><button onclick = 'chat_with("+count1+")'>chat</button><button><a href='"+link1+"'>see profile</a></button></div> </div>";
+                
+                count1 += 1;
+            }
+            
+        })   
+            });
+            
+            
         }
-        
+                                               
         function toogle(){
             var tt = document.getElementById("list");
             var mm = document.getElementById("menu");
@@ -369,10 +700,116 @@
             }else{
                 mm.innerHTML = "<i class='fas fa-bars'></i>";
             }
+        }
+        
+        function go(){
+            location.href = "network_share.html?user_id="+user_id;
+            toogle();
+        }
+        
+        function copy1(a){
+            var ele1 = document.getElementById(a);
+            ele1.select();
+            document.execCommand("copy");
+        }
+        
+        function page(a){
+            var a2 = document.getElementById("frnds_page");
+            var a1 = document.getElementById("chat_page");
+            var a0 = document.getElementById("edit_page");
+            var li = [a0,a1,a2];
+                for(var i = 0;i<3;i++){
+                if(li[i]){
+                    li[i].classList.remove("active");
+                }
+                    if (a < 3){li[a].classList.add("active");}
+              }
+            toogle();
+        }
+        
+        function chat_with(a){
             
         }
         
+        function search_filter(){
+            var val = document.getElementById("search_box").value.toLowerCase();
+            var frnd_user = document.querySelectorAll(".frnd_user");
+            var search_name = document.querySelectorAll(".search_name");
+            for (var i =0;i<search_name.length;i++){
+                if (search_name[i].innerHTML.includes(val)){
+                   frnd_user[i].style.display = "block";
+                }else{
+                   frnd_user[i].style.display = "none";
+                }
+            }
+        }
         
+        function draw_edit(){
+        
+        firebase.database().ref('users/'+user_id).on('value',function(snapshot){
+            for(var i= 0;i<profile_logo.length;i++){
+                profile_logo[i].src = snapshot.val().dp;
+            }
+            hello_user1.innerHTML = snapshot.val().user_id;
+        }); 
+            
+          firebase.database().ref('users/'+user_id+"/styles").once('value',function(snapshot){
+              
+document.documentElement.style.setProperty('--profile_bg',snapshot.val().profile_bg);
+document.documentElement.style.setProperty('--profile_font_color',snapshot.val().profile_font_color);  
+        }); 
+            
+        }
+        
+        var list_edits = {};
+        
+        // a == 0 profile pic
+        // a == 1 font color
+        // a == 2 background color
+        
+        function add_edit(a,b){
+            if (a == 0){
+                var edit_dp = document.getElementById("edit_dp");
+                var avatar1 = document.getElementById("avatar");
+                var edit_dp = document.getElementById("edit_dp");
+                edit_dp.src = b;
+                list_edits["dp"] = b;
+                avatar1.classList.remove("active");
+            }else if (a == 1){
+                var font_color = document.getElementById("font_color").value;
+                list_edits["profile_font_color"] = font_color;
+                var hello_user1 = document.getElementById("hello_color");
+                var box11 = document.getElementById("box11");
+                box11.style.color = font_color;
+                hello_user1.style.color = font_color;
+            }else if (a == 2){
+                var bg_color = document.getElementById("bg_color").value;
+                list_edits["profile_bg"] = bg_color;
+                var box11 = document.getElementById("box11");
+                box11.style.backgroundColor = bg_color;
+            }
+        }
+        function avatar_page(){
+            var avatar1 = document.getElementById("avatar");
+             avatar1.classList.add("active");
+        }
+        function save_data(){
+            if (list_edits["profile_font_color"]){
+            firebase.database().ref("users/"+user_id+"/styles").update({
+                 profile_font_color : list_edits["profile_font_color"],
+            });
+            }
+            if (list_edits["profile_bg"]){
+            firebase.database().ref("users/"+user_id+"/styles").update({
+                 profile_bg : list_edits["profile_bg"],
+            });
+            }
+             if (list_edits["dp"]){
+            firebase.database().ref("users/"+user_id).update({
+                 dp : list_edits["dp"],
+            });
+            }
+        }
     </script>
     
 </body>

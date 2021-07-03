@@ -343,7 +343,7 @@
             </fieldset>
             <input type="submit" value="sign-up">
              <p onclick="input1(0)" class="ch">Already have account ?</p>
-              <p id="error_up">for user id don't use @ # $ ^</p>
+              <p id="error_up">for user id use only alphabets, - ,numbers only</p>
         </form>
     </section>
     
@@ -450,7 +450,7 @@
                      error_print("error_in","succesfully signed in ","green");
                     localStorage.setItem("kedar_network_user_id",in_user);
                     localStorage.setItem("kedar_network_password",in_password);
-            var loc = "file:///C:/Users/kedar/Documents/GitHub/kedarisettisatwik.github.io/"+"link_store%20app/profile.html"+"?user_id="+in_user+"&password="+in_password;
+            var loc = "https://kedarisettisatwik.github.io/"+"link_store%20app/profile.html"+"?user_id="+in_user+"&password="+in_password;
                     window.open(loc);
                     location.reload();
                 }else{
@@ -485,13 +485,11 @@
                         firebase.database().ref("users/"+up_user).set({
                          user_id : up_user,
                          password:up_password,
-                         dp:"p8",
+                         dp:"avatars/p8.png",
                         });
-                        
                         error_print("error_up","signup process completed succesfully","green"); 
-                        localStorage.setItem("kedar_network_user_id",up_user);
-                    localStorage.setItem("kedar_network_password",up_password);
-    var loc = "file:///C:/Users/kedar/Documents/GitHub/kedarisettisatwik.github.io/"+"link_store%20app/profile.html"+"?user_id="+up_user+"&password="+up_password;
+                        
+    var loc = "https://kedarisettisatwik.github.io/"+"link_store%20app/profile.html"+"?user_id="+up_user+"&password="+up_password;
                 
                     window.open(loc);
                     location.reload();
