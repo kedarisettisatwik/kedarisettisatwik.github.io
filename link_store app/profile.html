@@ -1,5 +1,6 @@
 
 
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -293,10 +294,10 @@
             right:20px;
             top:0;
             transform:translateY(-50%);
-            width:50px;
-            height:50px;
+            width:55px;
+            height:55px;
             box-sizing: content-box;
-            padding:7px;
+            padding:5px;
             object-fit: cover;
             background-color:white;
             border-radius:50%;
@@ -594,12 +595,21 @@
             text-align: center;
             cursor:pointer;
         }
-        .book_box p{
+        .book_box textarea{
             padding:10px;
             font-size:17px;
             width:100%;
-            max-height:350px;
+            height:200px;
             overflow-y: auto;
+            margin-top:10px;
+            margin-bottom:20px;
+            white-space: pre-wrap;
+            background-color:transparent;
+            border:none;
+            outline:none;
+        }
+        .book_box textarea::placeholder{
+            color:black;
         }
         @media (max-width:350px){
             .box1,.box2,.box3,.box11{
@@ -939,7 +949,7 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
      add_book.innerHTML = "";
         snapshot.forEach(function(ChildSnapShot){
             
-         add_book.innerHTML += "<section class='book_box' id='book_num_"+book_count+"'><div><span contenteditable='true' class='book_title_t'>"+ChildSnapShot.val().title_book+"</span><i class='far fa-trash-alt' onclick='del_book("+book_count+")'></i></div><select class='mode_check'><option value='0'>public mode </option><option value = '1'>private mode</option></select><p contenteditable='true' class='book_para_p'>"+ChildSnapShot.val().para_book+"</p></section>";
+         add_book.innerHTML += "<section class='book_box' id='book_num_"+book_count+"'><div><span contenteditable='true' class='book_title_t'>"+ChildSnapShot.val().title_book+"</span><i class='far fa-trash-alt' onclick='del_book("+book_count+")'></i></div><select class='mode_check'><option value='0'>public mode </option><option value = '1'>private mode</option></select><textarea class='book_para_p'>"+ChildSnapShot.val().para_book+"</textarea></section>";
              book_count += 1;
         })  
             });        
@@ -1052,9 +1062,9 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
             if (book_list.length > 0){
                 for (var jj = 0;jj<book_list.length;jj++){
                     var ttit = title_list[jj].innerHTML;
-                    var ppip = para_list[jj].innerHTML;
+                    var ppip = para_list[jj].value;
                     var mm = mode_check[jj].value;
-                        if (ppip.length > 0 && ttit.length > 0){
+                        if (ppip.length> 0 && ttit.length > 0){
          firebase.database().ref("users/"+user_id+"/books/").push({
                  title_book : ttit,
                  para_book : ppip, 
@@ -1081,7 +1091,7 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
         function add_book1(){
             var book_container = document.getElementById("book_container");
             
-            book_container.innerHTML += "<section class='book_box' id='book_num_"+book_count+"'><div><span contenteditable='true' class='book_title_t'>"+"title of book"+"</span><i class='far fa-trash-alt' onclick='del_book("+book_count+")'></i></div><select class='mode_check' value = '0'><option value='0'>public mode</option><option value='1'>private mode</option></select><p contenteditable='true' class='book_para_p' >write the content here </p></section>";
+            book_container.innerHTML += "<section class='book_box' id='book_num_"+book_count+"'><div><span contenteditable='true' class='book_title_t'>"+"title of book"+"</span><i class='far fa-trash-alt' onclick='del_book("+book_count+")'></i></div><select class='mode_check' value = '0'><option value='0'>public mode</option><option value='1'>private mode</option></select><textarea class='book_para_p' placeholder='write the content here'></textarea></section>";
             book_count += 1;
             
         }
