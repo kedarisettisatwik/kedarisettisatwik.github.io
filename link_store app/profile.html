@@ -1,3 +1,4 @@
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -361,7 +362,7 @@
             position: absolute;
             top:0;
             right:10px;
-            padding:7px;
+            padding:5px;
             box-sizing: content-box;
             border-radius:50%;
             transform:translate(0,-50%);
@@ -469,8 +470,13 @@
         .ava div img{
             margin:10px;
             cursor:pointer;
-            height:50px;
-            width:50px;
+            height:55px;
+            width:55px;
+            padding:5px;
+            box-sizing:content-box;
+            box-shadow:0 0 10px rgb(0,0,0,0.2);
+            border-radius:50%;
+            object-fit:cover;
         }
         .ava button{
             margin:10px;
@@ -623,6 +629,16 @@
                     <img src="avatars/p12.png" onclick="add_edit(0,'avatars/p12.png')">
                     <img src="avatars/p13.png" onclick="add_edit(0,'avatars/p13.png')">
                     <img src="avatars/p14.png" onclick="add_edit(0,'avatars/p14.png')">
+                    <img src="avatars/p15.png" onclick="add_edit(0,'avatars/p15.png')">
+                    <img src="avatars/p16.jpg" onclick="add_edit(0,'avatars/p16.jpg')">
+                    <img src="avatars/p17.png" onclick="add_edit(0,'avatars/p17.png')">
+                    <img src="avatars/p18.png" onclick="add_edit(0,'avatars/p18.png')">
+                    <img src="avatars/p19.jpg" onclick="add_edit(0,'avatars/p19.jpg')">
+                    <img src="avatars/p20.png" onclick="add_edit(0,'avatars/p20.png')">
+                    <img src="avatars/p21.jpg" onclick="add_edit(0,'avatars/p21.jpg')">
+                    <img src="avatars/p22.jpg" onclick="add_edit(0,'avatars/p22.jpg')">
+                    <img src="avatars/p23.jpg" onclick="add_edit(0,'avatars/p23.jpg')">
+                    <img src="avatars/p24.jpg" onclick="add_edit(0,'avatars/p24.jpg')">
                 </div>
                 <button onclick="online_dp()">upload my own online image</button>
             </div>
@@ -690,7 +706,7 @@
             for(var i= 0;i<profile_logo.length;i++){
                 profile_logo[i].src = snapshot.val().dp;
             }
-    sign_in_link.value = window.location.href;
+    sign_in_link.value = "https://kedarisettisatwik.github.io/link_store%20app/"+"network_share.html?user_id="+user_id+"&password="+password_user;
 share_in_link.value = "https://kedarisettisatwik.github.io/link_store%20app/"+"network_share.html?user_id="+user_id;
             hello_user.innerHTML = snapshot.val().user_id;
         }); 
