@@ -15,6 +15,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
+            text-decoration:none;
         }
         html {
             scroll-behavior: smooth;
@@ -97,7 +98,7 @@
             border-radius:50%;
             transform:translate(0,-50%);
         }
-        #box12{
+        #box12,#box13{
             width:400px;
             padding:10px;
             background-color: beige;
@@ -105,7 +106,7 @@
             box-shadow:0 0 10px rgb(0,0,0,0.4);
             margin:10px;
         }
-        #box12 h2{
+        #box12 h2,#box13 h2{
             width:100%;
             margin:10px;
             font-size:18px;
@@ -125,6 +126,26 @@
             padding:10px;
             margin:10px 0;
             font-size:16px;
+        }
+        #box13{
+            background-color: aliceblue;
+        }
+        #box13 .para{
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        #box13 .para a{
+            margin:10px;
+            border-bottom:2px solid black;
+            color:darkblue;
+            letter-spacing:1px;
+            padding:12px;
+            transition:0.3s;
+            font-size:17px;
+            cursor:pointer;
+        }
+        #box13 .para a:hover{
+            letter-spacing:2px;
         }
         
         ::-webkit-scrollbar{
@@ -159,6 +180,13 @@
           
            </div> 
         </section>
+        
+        <section id="box13" class="flex">
+    <h2 class="flex"><span>Useful Links</span></h2>
+           <div class="para flex" id="add_link">
+                        
+           </div> 
+             </section>
     </section>
     
     
@@ -211,6 +239,16 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
             
             add_line.innerHTML += "<p class='add_line_personal'>"+ChildSnapShot.val().para+"</p>";
             
+        })  
+            });
+            
+        firebase.database().ref('users/'+user_id+"/useful_links/").once('value',function(snapshot){
+        var add_link = document.getElementById("add_link");
+        add_link.innerHTML = "";
+        snapshot.forEach(function(ChildSnapShot){
+            
+         add_link.innerHTML += "<a href='"+ChildSnapShot.val().link_href+"'>"+ChildSnapShot.val().link_title+"</a>"; 
+             
         })  
             });
             

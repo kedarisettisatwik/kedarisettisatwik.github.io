@@ -286,6 +286,20 @@
             flex-direction: row;
             color:black;
         }
+        .frnd_user img{
+            position:absolute;
+            right:20px;
+            top:0;
+            transform:translateY(-50%);
+            width:50px;
+            height:50px;
+            box-sizing: content-box;
+            padding:7px;
+            object-fit: cover;
+            background-color:white;
+            border-radius:50%;
+            box-shadow:0 0 10px rgb(0,0,0,0.2);
+        }
         .frnd_user .btn_fr{
             margin-top:20px;
             flex-direction: row;
@@ -377,7 +391,7 @@
             cursor:pointer;
             font-size:19px;
         }
-        #box12{
+        #box12,#box13{
             width:400px;
             padding:10px;
             background-color: beige;
@@ -385,7 +399,7 @@
             box-shadow:0 0 10px rgb(0,0,0,0.4);
             margin:10px;
         }
-        #box12 h2{
+        #box12 h2,#box13 h2{
             width:100%;
             margin:10px;
             font-size:18px;
@@ -394,7 +408,7 @@
             flex-direction: row;
             letter-spacing:1px;
         }
-        #box12 h2 i{
+        #box12 h2 i,#box13 h2 i{
             margin:10px;
             font-size:22px;
             cursor:pointer;
@@ -405,7 +419,7 @@
             line-height:40px;
             text-align: center;
         }
-        #box12 h2 i:hover{
+        #box12 h2 i:hover,#box13 h2 i:hover{
             transform:rotateZ(90deg);
         }
         #avatar{
@@ -439,11 +453,29 @@
             flex-direction:row;
             flex-wrap: wrap;
         }
+        .ava i{
+            position: absolute;
+            top:10px;
+            right:20px;
+            width:30px;
+            height:30px;
+            background-color:white;
+            border-radius:50%;
+            line-height:30px;
+            padding:10px;
+            font-size:22px;
+            cursor:pointer;
+        }
         .ava div img{
             margin:10px;
             cursor:pointer;
             height:50px;
             width:50px;
+        }
+        .ava button{
+            margin:10px;
+            padding:5px;
+            font-size:15px;
         }
         .para{
             width:100%;
@@ -451,6 +483,7 @@
             max-height:300px;
             overflow-y: auto;
             padding-bottom:20px;
+            justify-content: flex-start;
         }
         .para p{
             width:100%;
@@ -458,7 +491,22 @@
             margin:10px 0;
             font-size:16px;
         }
-        
+        #box13{
+            background-color: aliceblue;
+        }
+        #box13 .para p{
+            position:relative;
+            border:2px solid black;
+        }
+        #box13 .para p span{
+            padding:0 20px;
+        }
+        #box13 .para p input{
+            padding:5px 20px;
+            font-size:15px;
+            outline:none;
+            background-color:white;
+        }
         @media (max-width:350px){
             .box1,.box2,.box3,.box11{
                 width:100%;
@@ -531,7 +579,13 @@
            </div> 
              </section>
              
-        
+             <section id="box13" class="flex">
+    <h2 class="flex"><span>Useful Links</span><i class="far fa-plus-square" onclick="add_edit(4)"></i></h2>
+           <div class="para flex" id="add_link">
+                        
+           </div> 
+             </section>
+             
         <section id="frnds_page" class="flex">
             <input type="text" placeholder="Search for others.." class="search" oninput="search_filter()" id="search_box">
             <section id="frnds_list" class="flex">
@@ -553,6 +607,7 @@
         <section id="avatar" class="flex"> 
             <div class="ava" class="flex">
                 <h4>choose your avatar ? </h4>
+                <i class='fas fa-times' onclick="remove_ava()"></i>
                 <div class="flex">
                     <img src="avatars/p1.png" onclick="add_edit(0,'avatars/p1.png')">
                     <img src="avatars/p2.png" onclick="add_edit(0,'avatars/p2.png')">
@@ -569,6 +624,7 @@
                     <img src="avatars/p13.png" onclick="add_edit(0,'avatars/p13.png')">
                     <img src="avatars/p14.png" onclick="add_edit(0,'avatars/p14.png')">
                 </div>
+                <button onclick="online_dp()">upload my own online image</button>
             </div>
         </section>
         
@@ -654,11 +710,11 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
         snapshot.forEach(function(ChildSnapShot){
             
             let user_up = ChildSnapShot.val().user_id;
-            
+            let user_dp = ChildSnapShot.val().dp;
             
             if (user_up != user_id){
     var link1 = "network_share.html?user_id="+user_up;
-            elele.innerHTML += "<div class='frnd_user'> <h1 class='flex'><span class='search_name'>"+user_up+"</span></h1><div class='btn_fr flex'><button onclick = 'chat_with("+count1+")'>chat</button><button><a href='"+link1+"'>see profile</a></button></div> </div>";
+            elele.innerHTML += "<div class='frnd_user'> <h1 class='flex'><span class='search_name'>"+user_up+"</span></h1><img src='"+user_dp+"'><div class='btn_fr flex'><button onclick = 'chat_with("+count1+")'>chat</button><button><a href='"+link1+"'>see profile</a></button></div> </div>";
                 
                 count1 += 1;
             }
@@ -748,6 +804,16 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
         })  
             });
             
+    firebase.database().ref('users/'+user_id+"/useful_links/").once('value',function(snapshot){
+        var add_link = document.getElementById("add_link");
+        add_link.innerHTML = "";
+        snapshot.forEach(function(ChildSnapShot){
+            
+         add_link.innerHTML += "<p><span class='link_title' contenteditable='true'>"+ChildSnapShot.val().link_title+"</span><br><br><input class='link_href' type='text' placeholder='paste the link here' value='"+ChildSnapShot.val().link_href+"'></p>"; 
+            
+        })  
+            });
+            
         }
         
         var list_edits = {};
@@ -780,11 +846,18 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
                 var add_line = document.getElementById("add_line");
            var line_number = document.querySelectorAll(".line_number");
         add_line.innerHTML += "<p contenteditable='true' class='add_line_personal'>new line</p>";   
+            }else if (a == 4){
+    var add_link = document.getElementById("add_link");
+    add_link.innerHTML += "<p><span class='link_title' contenteditable='true'>title</span><br><br><input class='link_href' type='text' placeholder='paste the link here'></p>";  
             }
         }
         function avatar_page(){
             var avatar1 = document.getElementById("avatar");
              avatar1.classList.add("active");
+        }
+        function remove_ava(){
+             var avatar1 = document.getElementById("avatar");
+             avatar1.classList.remove("active");
         }
         function save_data(){
             if (list_edits["profile_font_color"]){
@@ -818,10 +891,39 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
                 }
             }
             
+            var link_title = document.querySelectorAll(".link_title");
+            var link_href = document.querySelectorAll(".link_href");
+         
+            if (link_title.length > 0){
+                
+                firebase.database().ref("users/"+user_id+"/useful_links/").remove(); 
+                
+                for (var i = 0;i<link_title.length;i++){
+                    var vv = link_title[i].innerHTML;
+                    var ll = link_href[i].value;
+                    if (vv.length > 0){
+                        if (ll.length > 0 && ll.includes("https://")){
+          firebase.database().ref("users/"+user_id+"/useful_links/").push({
+                 link_title : vv,
+                 link_href : ll, 
+            });                   
+                        }
+                    }
+                }
+            }
+            
             draw_edit();
             
         }
         
+        function online_dp(){
+            var url1 = window.prompt("enter url of image ");
+            if (url1.includes("https://")){
+                 add_edit(0,url1)
+            }else{
+                alert("url you entered is invalid or it is not url of online image");
+            }
+        }
     </script>
     
 </body>
