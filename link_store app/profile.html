@@ -144,38 +144,13 @@
             font-weight:bold;
             color:var(--profile_font_color,white);
         }
-        #box2{
-            width:350px;
-            margin:20px;
-            justify-content: flex-start;
-            padding:20px 10px;
-            box-shadow:0 0 10px rgb(0,0,0,0.4);
-        }
-        .matter{
-            height:300px;
-            padding-left:10px;
-            overflow-y: auto;
-        }
         ::-webkit-scrollbar{
             width:5px;
         }
         ::-webkit-scrollbar-thumb{
             background-color:black;
         }
-        #box2 h2{
-            font-weight:600;
-            letter-spacing:2px;
-            margin:10px;
-            padding-left:20px;
-            width:100%;
-            font-size:20px;
-            margin-bottom:10px;
-        }
-        .matter span{
-            font-size:19px;
-            font-weight:600;
-            width:100%;
-        }
+        
         #box3{
             width:350px;
             height:400px;
@@ -530,21 +505,6 @@
            </div>
        </section>
         
-        <section id="box2" class="flex">
-            <h2> Why, How to use ? </h2>
-            <div class="matter">
-            <br>
-            <span>Step - 1: </span><p>open account and sign in</p><br>
-            <span>Step - 2: </span><p>After sign in, a public web link is provided to you</p><br>
-            <span>Step - 3: </span><p>Fill your basic details and you can add any number of extra details if you want</p><br>
-            <span>Step - 4: </span><p>you can also write notes (any message) and you can keep it in private mode (only you can see) or in public mode (every one can see) </p><br>
-            <span>Step - 5: </span><p>any one can reply to your public notes</p><br>
-            <span>Step - 6: </span><p>follow your friends and chat with them </p><br>
-            <span>Step - 7: </span><p>By sharing the link,every one can see your profile,notes and etc..</p><br>
-            <br><br>
-            </div>
-        </section>
-        
         <section id="box3">
             <video src="Presentation1.mp4" controls="" autoplay=""></video>
         </section>
@@ -674,7 +634,7 @@
             for(var i= 0;i<profile_logo.length;i++){
                 profile_logo[i].src = snapshot.val().dp;
             }
-    sign_in_link.value = "https://kedarisettisatwik.github.io/link_store%20app/profile.html?user_id="+user_id+"&password="+password_user;
+    sign_in_link.value = window.location.href;
 share_in_link.value = "https://kedarisettisatwik.github.io/link_store%20app/"+"network_share.html?user_id="+user_id;
             hello_user.innerHTML = snapshot.val().user_id;
         }); 
@@ -688,9 +648,9 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
             var count1 = 0;
             
              var elele = document.getElementById("frnds_list");
-            elele.innerHTML = "";
             
             firebase.database().ref('users/').once('value',function(snapshot){
+            elele.innerHTML = "";
         snapshot.forEach(function(ChildSnapShot){
             
             let user_up = ChildSnapShot.val().user_id;
@@ -698,9 +658,7 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
             
             if (user_up != user_id){
     var link1 = "network_share.html?user_id="+user_up;
-        for (var m = 0;m < 20;m++){
             elele.innerHTML += "<div class='frnd_user'> <h1 class='flex'><span class='search_name'>"+user_up+"</span></h1><div class='btn_fr flex'><button onclick = 'chat_with("+count1+")'>chat</button><button><a href='"+link1+"'>see profile</a></button></div> </div>";
-        }
                 
                 count1 += 1;
             }
