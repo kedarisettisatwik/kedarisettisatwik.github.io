@@ -1,4 +1,5 @@
 
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -513,6 +514,93 @@
             outline:none;
             background-color:white;
         }
+        .add_book_btn{
+            width:250px;
+            font-size:19px;
+            padding:10px;
+            box-sizing:content-box;
+            background-color:white;
+            color:black;
+            outline:none;
+            border:3px solid black;
+            box-shadow:0 0 6px rgb(0,0,0,0.3),inset 0 0 6px rgb(0,0,0,0.3);
+            margin:20px;
+            transition:0.3s; 
+            cursor:pointer;
+        }
+        .add_book_btn:hover{
+            background-color:black;
+            color:white;
+        }
+        #book_container{
+            width:100%;
+            padding:10px;
+            flex-direction:row;
+            flex-wrap: wrap;
+        }
+        .book_box{
+           margin:12px;
+           width:350px;
+           padding:10px;
+           background-color:ghostwhite;
+           box-shadow:0 0 10px rgb(0,0,0,0.3);
+           position:relative;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
+        }
+        .book_box label{
+            width:100%;
+            display:flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: row;
+            font-size:16px;
+            letter-spacing:2px;
+            padding:5px;
+        }
+        .book_box label span,.book_box label input{
+            margin:5px;
+        }
+        .book_box .mode_check{
+            width:100%;
+            padding:5px;
+            font-size:17px;
+            letter-spacing:1px;
+            background:none;
+            border:1px solid black;
+            outline:none;
+        }
+        
+        .book_box div{
+            width:100%;
+            display:flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: row;
+            margin:10px;
+            font-size:18px;
+            font-weight:bold;
+            letter-spacing:2px;
+        }
+        .book_box div span{
+            padding:6px;
+        }
+        .book_box div i{
+            width:40px;
+            height:40px;
+            line-height:40px;
+            text-align: center;
+            cursor:pointer;
+        }
+        .book_box p{
+            padding:10px;
+            font-size:17px;
+            width:100%;
+            max-height:350px;
+            overflow-y: auto;
+        }
         @media (max-width:350px){
             .box1,.box2,.box3,.box11{
                 width:100%;
@@ -592,6 +680,20 @@
            </div> 
              </section>
              
+             <button class="flex add_book_btn" onclick="add_book1()">
+                 + create a new book
+             </button>
+             
+             <section id="book_container" class="flex">
+<!--            
+                 <section class='book_box'>
+             <div><span contenteditable='true'>book 1 </span><i class='far fa-trash-alt'></i></div>
+             <p contenteditable='true'>write the content here </p>
+                 </section>
+-->
+                 
+             </section>
+             
         <section id="frnds_page" class="flex">
             <input type="text" placeholder="Search for others.." class="search" oninput="search_filter()" id="search_box">
             <section id="frnds_list" class="flex">
@@ -662,6 +764,7 @@
 </script>
    
     <script>  
+        var book_count = 0;
         
         document.addEventListener('contextmenu',(e) => {
                    // e.preventDefault();   
@@ -830,6 +933,16 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
         })  
             });
             
+             var add_book = document.getElementById("book_container");
+
+ firebase.database().ref('users/'+user_id+"/books/").once('value',function(snapshot){
+     add_book.innerHTML = "";
+        snapshot.forEach(function(ChildSnapShot){
+            
+         add_book.innerHTML += "<section class='book_box' id='book_num_"+book_count+"'><div><span contenteditable='true' class='book_title_t'>"+ChildSnapShot.val().title_book+"</span><i class='far fa-trash-alt' onclick='del_book("+book_count+")'></i></div><select class='mode_check'><option value='0'>public mode </option><option value = '1'>private mode</option></select><p contenteditable='true' class='book_para_p'>"+ChildSnapShot.val().para_book+"</p></section>";
+             book_count += 1;
+        })  
+            });        
         }
         
         var list_edits = {};
@@ -876,6 +989,9 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
              avatar1.classList.remove("active");
         }
         function save_data(){
+            
+            firebase.database().ref("users/"+user_id+"/books/").remove(); 
+            
             if (list_edits["profile_font_color"]){
             firebase.database().ref("users/"+user_id+"/styles").update({
                  profile_font_color : list_edits["profile_font_color"],
@@ -921,15 +1037,36 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
                         if (ll.length > 0 && ll.includes("https://")){
           firebase.database().ref("users/"+user_id+"/useful_links/").push({
                  link_title : vv,
-                 link_href : ll, 
+                 link_href : ll,
             });                   
                         }
                     }
                 }
             }
             
+            var book_list = document.querySelectorAll(".book_box");
+            var title_list = document.querySelectorAll(".book_title_t");
+            var para_list = document.querySelectorAll(".book_para_p");
+            var mode_check = document.querySelectorAll(".mode_check");
+            
+            if (book_list.length > 0){
+                for (var jj = 0;jj<book_list.length;jj++){
+                    var ttit = title_list[jj].innerHTML;
+                    var ppip = para_list[jj].innerHTML;
+                    var mm = mode_check[jj].value;
+                        if (ppip.length > 0 && ttit.length > 0){
+         firebase.database().ref("users/"+user_id+"/books/").push({
+                 title_book : ttit,
+                 para_book : ppip, 
+                 mode_book : mm,
+            });  
+                }
+            }
+            
             draw_edit();
             
+        }
+        
         }
         
         function online_dp(){
@@ -939,6 +1076,20 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
             }else{
                 alert("url you entered is invalid or it is not url of online image");
             }
+        }
+        
+        function add_book1(){
+            var book_container = document.getElementById("book_container");
+            
+            book_container.innerHTML += "<section class='book_box' id='book_num_"+book_count+"'><div><span contenteditable='true' class='book_title_t'>"+"title of book"+"</span><i class='far fa-trash-alt' onclick='del_book("+book_count+")'></i></div><select class='mode_check' value = '0'><option value='0'>public mode</option><option value='1'>private mode</option></select><p contenteditable='true' class='book_para_p' >write the content here </p></section>";
+            book_count += 1;
+            
+        }
+        function del_book(a){
+            var book_container = document.getElementById("book_container");
+            var del_e = document.getElementById("book_num_"+a);
+            book_container.removeChild(del_e);
+            
         }
     </script>
     

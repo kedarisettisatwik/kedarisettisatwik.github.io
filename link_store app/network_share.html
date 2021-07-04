@@ -1,3 +1,4 @@
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -148,7 +149,45 @@
         #box13 .para a:hover{
             letter-spacing:2px;
         }
-        
+        .book_box{
+           margin:12px;
+           width:350px;
+           padding:10px;
+           background-color:ghostwhite;
+           box-shadow:0 0 10px rgb(0,0,0,0.3);
+           position:relative;
+        }
+        .book_box div{
+            width:100%;
+            display:flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: row;
+            margin:10px;
+            font-size:18px;
+            font-weight:bold;
+            letter-spacing:2px;
+        }
+        .book_box div span{
+            padding:6px;
+        }
+        .book_box p{
+            padding:10px;
+            font-size:17px;
+            width:100%;
+            max-height:350px;
+            overflow-y: auto;
+        }
+        #add_book{
+            margin:20px;
+            padding:20px;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+            max-width:100%;
+        }
         ::-webkit-scrollbar{
             width:5px;
         }
@@ -187,7 +226,14 @@
            <div class="para flex" id="add_link">
                         
            </div> 
-             </section>
+        </section>
+             
+        <section id="add_book">
+           
+            
+             
+        </section>
+                 
     </section>
     
     
@@ -216,24 +262,17 @@
         
         var profile_logo = document.querySelectorAll(".profile_logo");
         var hello_user = document.getElementById("hello_user");
+        var add_book = document.getElementById("add_book");
         
-        
-        function draw(){
-        
-        firebase.database().ref('users/'+user_id).once('value',function(snapshot){
-            for(var i= 0;i<profile_logo.length;i++){
-                profile_logo[i].src = snapshot.val().dp;
-            }
-            hello_user.innerHTML = snapshot.val().user_id;
-        }); 
+        function draw(){ 
             
-          firebase.database().ref('users/'+user_id+"/styles").on('value',function(snapshot){
+          firebase.database().ref('users/'+user_id+"/styles").once('value',function(snapshot){
               
 document.documentElement.style.setProperty('--profile_bg',snapshot.val().profile_bg);
 document.documentElement.style.setProperty('--profile_font_color',snapshot.val().profile_font_color);  
         });
            
-    firebase.database().ref('users/'+user_id+"/personal_details/").on('value',function(snapshot){
+    firebase.database().ref('users/'+user_id+"/personal_details/").once('value',function(snapshot){
         var add_line = document.getElementById("add_line");
         add_line.innerHTML = "";
         snapshot.forEach(function(ChildSnapShot){
@@ -252,6 +291,25 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
              
         })  
             });
+        
+            
+        firebase.database().ref('users/'+user_id+"/books/").once('value',function(snapshot){
+        snapshot.forEach(function(ChildSnapShot){
+            
+            var mode = ChildSnapShot.val().mode_book;
+            if (mode == 0 || mode == "0"){
+                add_book.innerHTML += "<section class='book_box'><div><span>"+ChildSnapShot.val().title_book+"</span></div><p>"+ChildSnapShot.val().para_book+"</p> </section>";
+            } 
+    
+        })  
+            });
+            
+        firebase.database().ref('users/'+user_id).once('value',function(snapshot){
+            for(var i= 0;i < profile_logo.length;i++){
+                profile_logo[i].src = snapshot.val().dp;
+            }
+            hello_user.innerHTML = snapshot.val().user_id;
+        });
             
         }
         
