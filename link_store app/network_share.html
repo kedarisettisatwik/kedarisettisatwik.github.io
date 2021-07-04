@@ -59,6 +59,8 @@
             width:70px;
         }
         .container{
+            padding-top:40px;
+            align-items: flex-start;
             flex-direction: row;
             flex-wrap: wrap;
             width:100vw;
@@ -102,6 +104,7 @@
         }
         #box12,#box13{
             width:400px;
+            height:300px;
             padding:10px;
             background-color: beige;
             font-size:17px;
@@ -118,7 +121,7 @@
         .para{
             width:100%;
             margin-top:10px;
-            max-height:300px;
+            max-height:250px;
             overflow-y: auto;
             padding-bottom:20px;
             justify-content: flex-start;
@@ -135,6 +138,10 @@
         #box13 .para{
             flex-direction: row;
             flex-wrap: wrap;
+            width:100%;
+            max-height:250px;
+            overflow-y: auto;
+            padding-bottom:20px;
         }
         #box13 .para a{
             margin:10px;
@@ -151,11 +158,14 @@
         }
         .book_box{
            margin:12px;
-           width:350px;
+           width:400px;
+           height:300px;
+           overflow-y:auto;
            padding:10px;
            background-color:ghostwhite;
            box-shadow:0 0 10px rgb(0,0,0,0.3);
            position:relative;
+           padding-bottom:20px;
         }
         .book_box div{
             width:100%;
@@ -175,19 +185,159 @@
             padding:10px;
             font-size:17px;
             width:100%;
-            max-height:350px;
-            overflow-y: auto;
+            margin-bottom:20px;
             white-space: pre-wrap;
         }
         #add_book{
-            margin:20px;
-            padding:20px;
+            margin:12px;
             display:flex;
-            justify-content: center;
+            justify-content:center;
             align-items: center;
             flex-direction: row;
             flex-wrap: wrap;
             max-width:100%;
+        }
+        
+        #box15{
+            width:95%;
+            justify-content: flex-start;
+            flex-direction: column;
+            background-color:greenyellow;
+            padding:10px;
+            font-size:17px;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+            margin:10px;
+        }
+        
+        #box15 h2{
+            display: flex;
+            justify-content:space-between;
+            align-items: center;
+            flex-direction: row;
+            width:100%;
+            margin:10px;
+            font-size:18px;
+            padding-left:20px;
+            letter-spacing:1px;
+        }
+        
+        #box15 h2 span,#box15 h2 i{
+            margin:5px;
+        }
+        
+        #box15 h2 i{
+            line-height:40px;
+            text-align:center;
+            width:40px;
+            height:40px;
+            cursor:pointer;
+            transition:0.3s;
+            font-size:22px;
+            transform:rotateZ(0deg);
+        }
+        #box15 h2 i:hover{
+            transform:rotateZ(90deg);
+        }
+        .comments_list{
+            margin-top:10px;
+            width:100%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-wrap: wrap;
+            overflow-x: hidden;
+            overflow-y: auto;
+            height:250px;
+        }
+        .comments_list .com{
+            width:250px;
+            height:95%;
+            overflow-x:hidden;
+            overflow-y: auto;
+            background-color:white;
+            padding:10px;
+            box-shadow:0 0 5px rgb(0,0,0,0.3),inset 0 0 6px rgb(0,0,0,0.4);
+            display:flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
+            margin:10px;
+        }
+        .comments_list .com span{
+            margin:10px 0;
+            font-size:18px;
+            width:100%;
+            padding-left:20px;
+        }
+        .comments_list .com p{
+            margin:5px;
+            font-size:16px;
+        }
+        #form_comment{
+            position: fixed;
+            top:0;
+            left:0;
+            width:100vw;
+            height:100vh;
+            background-color: white;
+            z-index:-100;
+            opacity:0;
+            transition:0.3s;
+        }
+        #form_comment.active{
+            z-index:100;
+            opacity:1;
+        }
+        .fa-times{
+            position: absolute;
+            top:30px;
+            right:40px;
+            width:40px;
+            height:40px;
+            cursor:pointer;
+            font-size:22px;
+        }
+        #comment_form{
+            padding:30px;
+            box-shadow:0 0 6px rgb(0,0,0,0.4),inset 0 0 5px rgb(0,0,0,0.2);
+            background-color:white;
+            border:4px solid black;
+        }
+        #comment_form input[type="text"]{
+            width: 250px;
+            padding:10px;
+            padding-left:25px;
+            font-size:17px;
+            margin:10px;
+            border:2px solid darkblue;
+            outline:none;
+            background:none;
+        }#comment_form input[type="submit"]{
+            width: 250px;
+            padding:10px 20px;
+            font-size:17px;
+            margin:10px;
+            border:none;
+            outline:none;
+            background:none;
+            background-color:darkblue;
+            color:white;
+            cursor:pointer;
+        }
+        #comment_form input[type="text"]::placeholder{
+            color:black;
+        }
+        #comment_form textarea{
+            width:250px;
+            height:200px;
+            resize:none;
+            padding:10px;
+            padding-left:20px;
+            margin:10px;
+            font-size:17px;
+        }
+        #comment_form textarea::placeholder{
+            color:black;
         }
         ::-webkit-scrollbar{
             width:5px;
@@ -228,15 +378,34 @@
                         
            </div> 
         </section>
-             
+         
+          
         <section id="add_book">
            
             
              
         </section>
-                 
+        
+        <section id="box15" class="flex">
+    <h2 class="flex"><span>comments</span><i class="far fa-plus-square" onclick="comment_page(1)"></i></h2>
+           <div class='comments_list' id='add_comm'>
+<!--
+                     <div class='com'>
+                        <span>name : </span>
+        <p>content content content content content content content content  </p>
+                     </div>
+-->
+           </div> 
+        </section>      
     </section>
-    
+    <section class="flex" id="form_comment">
+         <i class='fas fa-times' onclick="comment_page(2)"></i>
+         <form id="comment_form" class="flex" autocomplete="off">
+             <input type="text" required id="name_person" placeholder="your name">
+             <textarea placeholder="write a comment" required id="comment_person"></textarea>
+             <input type="submit" value="submit">
+         </form>
+    </section>
     
 <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase.js"></script>
 
@@ -312,9 +481,40 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
             hello_user.innerHTML = snapshot.val().user_id;
         });
             
+       firebase.database().ref('users/'+user_id+"/comments/").on('value',function(snapshot){
+                        var add_comm = document.getElementById("add_comm");
+           add_comm.innerHTML = "";
+        snapshot.forEach(function(ChildSnapShot){
+            add_comm.innerHTML += "<div class='com'><span>"+ChildSnapShot.val().name_person+"</span><p>"+ChildSnapShot.val().comment_person+"</p></div>";
+        })  
+            });
+
         }
         
         draw();
+        
+        function comment_page(a){
+            var form_comment = document.getElementById("form_comment");
+            if (a == 1){
+                form_comment.classList.add("active");
+            }else{
+                form_comment.classList.remove("active");
+            }
+        }
+        var form_comment = document.getElementById("form_comment");
+        var name_person = document.getElementById("name_person");
+        var comment_person = document.getElementById("comment_person");
+        
+        form_comment.addEventListener('submit',(e) => {
+            e.preventDefault();
+            firebase.database().ref('users/'+user_id+"/comments/").push({
+                name_person:name_person.value,
+                comment_person:comment_person.value,
+            });
+            name_person.value = "";
+            comment_person.value = "";
+            comment_page(2);
+        })
         
         setTimeout(function(){
             var lo = document.getElementById("logo");

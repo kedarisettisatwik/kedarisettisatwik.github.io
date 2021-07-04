@@ -37,8 +37,9 @@
         }
         body{
             width: 100vw;
-            min-height: 100vh;
+            height: 100vh;
             padding:10px;
+            overflow: hidden;
             position: relative;
             display: flex;
             justify-content: flex-start;
@@ -121,8 +122,8 @@
             flex-direction: row;
             flex-wrap: wrap;
             width:100%;
+            height:calc(100vh - 70px);
             padding-top:70px;
-            min-height:100vh;
             overflow-x: hidden;
             overflow-y: auto;
             padding-bottom:70px;
@@ -611,6 +612,101 @@
         .book_box textarea::placeholder{
             color:black;
         }
+       #chat_page{
+            position: fixed;
+            top:0;
+            left:0;
+            width:100vw;
+            min-height:100vh;
+            background-color: white;
+            z-index:20;
+            transform:translate(-100%,0);
+            transition:0.3s;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            padding-top:70px;
+            padding-bottom:20px;
+           overflow-x: hidden;
+           overflow-y: auto; 
+        }
+        #chat_page.active{
+            transform:translate(0%,0);
+        }
+        
+        #box15{
+            width:95%;
+            justify-content: flex-start;
+            flex-direction: column;
+            background-color:greenyellow;
+            padding:10px;
+            font-size:17px;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+            margin:10px;
+        }
+        #box15 h2{
+            display: flex;
+            justify-content:space-between;
+            align-items: center;
+            flex-direction: row;
+            width:100%;
+            margin:10px;
+            font-size:18px;
+            padding-left:20px;
+            letter-spacing:1px;
+        }
+        
+        #box15 h2 span,#box15 h2 i{
+            margin:5px;
+        }
+        
+        #box15 h2 i{
+            line-height:40px;
+            text-align:center;
+            width:40px;
+            height:40px;
+            cursor:pointer;
+            transition:0.3s;
+            font-size:22px;
+            transform:rotateZ(0deg);
+        }
+        #box15 h2 i:hover{
+            transform:rotateZ(90deg);
+        }
+        .comments_list{
+            margin-top:10px;
+            width:100%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-wrap: wrap;
+            overflow-x: hidden;
+            overflow-y: auto;
+            height:250px;
+        }
+        .comments_list .com{
+            width:250px;
+            height:95%;
+            overflow-x:hidden;
+            overflow-y: auto;
+            background-color:white;
+            padding:10px;
+            box-shadow:0 0 5px rgb(0,0,0,0.3),inset 0 0 6px rgb(0,0,0,0.4);
+            display:flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
+            margin:10px;
+        }
+        .comments_list .com span{
+            margin:10px 0;
+            font-size:18px;
+            width:100%;
+            padding-left:20px;
+        }
+        .comments_list .com p{
+            margin:5px;
+            font-size:16px;
+        }
         @media (max-width:350px){
             .box1,.box2,.box3,.box11{
                 width:100%;
@@ -703,8 +799,10 @@
 -->
                  
              </section>
-             
-        <section id="frnds_page" class="flex">
+    
+    </section>
+ 
+<section id="frnds_page" class="flex">
             <input type="text" placeholder="Search for others.." class="search" oninput="search_filter()" id="search_box">
             <section id="frnds_list" class="flex">
                
@@ -719,10 +817,9 @@
                 </div>
                 
             </section>
-        </section>
-
-        
-        <section id="avatar" class="flex"> 
+</section>   
+    
+<section id="avatar" class="flex"> 
             <div class="ava" class="flex">
                 <h4>choose your avatar ? </h4>
                 <i class='fas fa-times' onclick="remove_ava()"></i>
@@ -754,10 +851,23 @@
                 </div>
                 <button onclick="online_dp()">upload my own online image</button>
             </div>
+</section>
+        
+<section id="chat_page" class="flex">
+     
+      <section id="box15" class="flex">
+    <h2 class="flex"><span>comments</span></h2>
+           <div class='comments_list' id='add_comm'>
+<!--
+                     <div class='com'>
+                        <span>name : </span>
+        <p>content content content content content content content content  </p>
+                     </div>
+-->
+           </div> 
         </section>
         
-    </section>
-    
+</section>
     
 <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase.js"></script>
 
@@ -801,6 +911,7 @@
             lo.style.transform = "scale(0)";
                   draw();
                   draw_edit();
+                  draw_chats();
                 }else{
                     window.close();
                 }
@@ -906,6 +1017,18 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
                    frnd_user[i].style.display = "none";
                 }
             }
+        }
+        
+        function draw_chats(){
+            
+            firebase.database().ref('users/'+user_id+"/comments/").on('value',function(snapshot){
+                        var add_comm = document.getElementById("add_comm");
+           add_comm.innerHTML = "";
+        snapshot.forEach(function(ChildSnapShot){
+            add_comm.innerHTML += "<div class='com'><span>"+ChildSnapShot.val().name_person+"</span><p>"+ChildSnapShot.val().comment_person+"</p></div>";
+        })  
+            });
+            
         }
         
         function draw_edit(){
