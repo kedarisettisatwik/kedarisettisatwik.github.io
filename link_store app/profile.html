@@ -1,6 +1,3 @@
-
-
-
 <html>
 <head>
     <meta charset="utf-8">
@@ -226,109 +223,6 @@
         }
         .pages{
             z-index:20;
-        }
-        #frnds_page{
-            position: fixed;
-            top:0;
-            left:0;
-            width:100vw;
-            height:100vh;
-            background-color:white;
-            transform:translate(100%,0);
-            transition:0.5s;
-            justify-content:flex-start;
-            padding:10px;
-            overflow-x: hidden;
-            overflow-y: auto;
-            padding-top:70px;
-        }
-        
-        #frnds_page.active{
-            transform:translate(0%,0);
-        }
-        #frnds_page .search{
-            height:60px;
-            width:250px;
-            background:none;
-            outline:none;
-            border:none;
-            padding:10px;
-            padding-left:20px;
-            font-size:16px;
-            border:3px solid black;
-            background-color:white;
-            border-radius:30px;
-            transition:0.2s;
-        }
-        #frnds_page .search::placeholder{
-            color:black;
-        }
-        #frnds_list{
-            margin-top:30px;
-            padding:10px;
-            width:100vw;
-            flex-wrap: wrap;
-            flex-direction: row;
-        }
-        .frnd_user{
-            margin:10px;
-            box-shadow:0 0 10px rgb(0,0,0,0.2);
-            padding:10px;
-            width:350px;
-            position:relative;
-            background-color:skyblue;
-        }
-        .frnd_user h1{
-            width:100%;
-            justify-content: flex-start;
-            padding-left:20px;
-            margin:10px;
-            font-size:20px;
-            font-weight:400;
-            letter-spacing:2px;
-            font-weight:bold;
-            flex-direction: row;
-            color:black;
-        }
-        .frnd_user img{
-            position:absolute;
-            right:20px;
-            top:0;
-            transform:translateY(-50%);
-            width:55px;
-            height:55px;
-            box-sizing: content-box;
-            padding:5px;
-            object-fit: cover;
-            background-color:white;
-            border-radius:50%;
-            box-shadow:0 0 10px rgb(0,0,0,0.2);
-        }
-        .frnd_user .btn_fr{
-            margin-top:20px;
-            flex-direction: row;
-            flex-wrap: wrap;
-            width:100%;
-            justify-content: space-around;
-        }
-        .frnd_user .btn_fr button{
-            font-size:16px;
-            padding:10px;
-            margin:10px;
-            background-color:white;
-            outline:none;
-            border:none;
-            letter-spacing:1px;
-            border:3px solid black;
-            cursor:pointer;
-            transition:0.3s;
-            color:black;
-        }
-        .frnd_user .btn_fr button a{
-            color:black;
-        }
-        .frnd_user .btn_fr button:hover{
-            letter-spacing:2px;
         }
         #box11{
             position:relative;
@@ -617,17 +511,18 @@
             top:0;
             left:0;
             width:100vw;
-            min-height:100vh;
+            height:100vh;
             background-color: white;
             z-index:20;
             transform:translate(-100%,0);
-            transition:0.3s;
+            transition:0.6s;
             flex-wrap: wrap;
+           flex-direction:row;
             justify-content: flex-start;
             padding-top:70px;
             padding-bottom:20px;
-           overflow-x: hidden;
-           overflow-y: auto; 
+            overflow-x: hidden;
+            overflow-y: auto; 
         }
         #chat_page.active{
             transform:translate(0%,0);
@@ -707,6 +602,71 @@
             margin:5px;
             font-size:16px;
         }
+        .search_box{
+            outline:none;
+            border:none;
+            position:relative;
+            width:300px;
+            margin:20px;
+            padding:10px;
+            height:350px;
+            padding-top:20px;
+            padding-bottom:20px;
+            background-color:cornsilk;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+            overflow: hidden;
+        }
+        #search_filter{
+            outline:none;
+            border:none;
+            width:100%;
+            border-radius:30px;
+            box-shadow:0 0 8px rgb(0,0,0,0.2);
+            height:60px;
+            padding:10px;
+            padding-left:20px;
+            font-size:16px;
+        }
+        #search_filter::placeholder{
+            color:black;
+        }
+        
+        #frnds_list{
+            width:100%;
+            height:290px;
+            overflow-y:auto;
+            overflow-x: hidden;
+            justify-content: flex-start;
+            padding-top:20px;
+            padding-bottom:20px;
+            position:relative;
+        }
+        .frnd_user{
+            position:relative;
+            width:96%;
+            margin:12px;
+            padding:10px;
+            border:2px solid black;
+            cursor:pointer;
+            min-height:60px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        .search_name{
+            font-size:17px;
+        }
+        .frnd_user img{
+            position: absolute;
+            top:50%;
+            right:20px;
+            transform:translateY(-50%);
+            width:45px;
+            height:45px;
+            border-radius:50%;
+            box-shadow:0 0 6px rgb(0,0,0,0.3);
+            object-fit: cover;
+        }
         @media (max-width:350px){
             .box1,.box2,.box3,.box11{
                 width:100%;
@@ -722,9 +682,8 @@
     
     <section id="list">
         <ul>
-    <li class="flex" onclick="page(2)"> Home <i class="fas fa-home"></i></li>
-    <li class="flex" onclick="page(0)"> chats <i class="far fa-comment-alt"></i></li>
-    <li class="flex" onclick="page(1)"> friends <i class="fas fa-user-friends"></i> </li>
+    <li class="flex" onclick="page(0)"> Home <i class="fas fa-home"></i></li>
+    <li class="flex" onclick="page(2)"> More <i class="far fa-comment-alt"></i> <i class="fas fa-user-friends"></i></li>
     <li class="flex" onclick="go()"> profile <img class="profile_logo"></li>
         </ul>
     </section>
@@ -800,24 +759,7 @@
                  
              </section>
     
-    </section>
- 
-<section id="frnds_page" class="flex">
-            <input type="text" placeholder="Search for others.." class="search" oninput="search_filter()" id="search_box">
-            <section id="frnds_list" class="flex">
-               
-                <div class='frnd_user'> 
-         <h1 class='flex'>
-            <span class='search_name'>name</span><img src='avatars/p2.png'> 
-        </h1>
-                    <div class='btn_fr flex'>
-                        <button>chat</button>
-                        <button><a href=''>see profile</a></button>
-                    </div>
-                </div>
-                
-            </section>
-</section>   
+    </section>   
     
 <section id="avatar" class="flex"> 
             <div class="ava" class="flex">
@@ -865,6 +807,18 @@
                      </div>
 -->
            </div> 
+        </section>
+        
+        <section class="search_box">
+            <input type="text" id="search_filter" placeholder="search for other users" oninput="search_filter()">
+            <div id="frnds_list" class="flex">
+<!--
+                <p class="frnd_user">
+                    <span class="search_name">hello</span>
+                    <img src="avatars/p10.png">
+                </p> 
+-->         
+            </div>
         </section>
         
 </section>
@@ -942,7 +896,6 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
         }); 
             
             var count1 = 0;
-            
              var elele = document.getElementById("frnds_list");
             
             firebase.database().ref('users/').once('value',function(snapshot){
@@ -954,14 +907,12 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
             
             if (user_up != user_id){
     var link1 = "network_share.html?user_id="+user_up;
-            elele.innerHTML += "<div class='frnd_user'> <h1 class='flex'><span class='search_name'>"+user_up+"</span></h1><img src='"+user_dp+"'><div class='btn_fr flex'><button onclick = 'chat_with("+count1+")'>chat</button><button><a href='"+link1+"'>see profile</a></button></div> </div>";
-                
-                count1 += 1;
+            elele.innerHTML += " <p class='frnd_user' onclick='open_person("+count1+")'><span class='search_name'>"+user_up+"</span> <img src='"+user_dp+"'></p> "; 
+    count1 += 1;
             }
             
         })   
             });
-            
             
         }
                                                
@@ -990,15 +941,12 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
         }
         
         function page(a){
-            var a2 = document.getElementById("frnds_page");
             var a1 = document.getElementById("chat_page");
-            var li = [a1,a2];
-                for(var i = 0;i<2;i++){
-                if(li[i]){
-                    li[i].classList.remove("active");
-                }
-                    if (a < 2){li[a].classList.add("active");}
-              }
+            if (a == 2){
+                a1.classList.add("active");
+            }else{
+                a1.classList.remove("active");
+            }
             toogle();
         }
         
@@ -1007,12 +955,12 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
         }
         
         function search_filter(){
-            var val = document.getElementById("search_box").value.toLowerCase();
+            var val = document.getElementById("search_filter").value.toLowerCase();
             var frnd_user = document.querySelectorAll(".frnd_user");
             var search_name = document.querySelectorAll(".search_name");
             for (var i =0;i<search_name.length;i++){
                 if (search_name[i].innerHTML.includes(val)){
-                   frnd_user[i].style.display = "block";
+                   frnd_user[i].style.display = "flex";
                 }else{
                    frnd_user[i].style.display = "none";
                 }
@@ -1223,6 +1171,12 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
             var del_e = document.getElementById("book_num_"+a);
             book_container.removeChild(del_e);
             
+        }
+        function open_person(a){
+            var search_name = document.querySelectorAll(".search_name");
+            var to_name = search_name[a].innerHTML;
+            var from_name = user_id;
+            console.log(to_name);
         }
     </script>
     
