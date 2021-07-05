@@ -132,6 +132,12 @@
             margin:10px 0;
             font-size:16px;
         }
+        .para .add_line_personal{
+            width:100%;
+            padding:10px;
+            margin:10px 0;
+            font-size:16px;
+        }
         #box13{
             background-color: aliceblue;
         }
@@ -447,7 +453,7 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
         add_line.innerHTML = "";
         snapshot.forEach(function(ChildSnapShot){
             
-            add_line.innerHTML += "<p class='add_line_personal'>"+ChildSnapShot.val().para+"</p>";
+            add_line.innerHTML += "<div class='add_line_personal'>"+ChildSnapShot.val().para+"</div>";
             
         })  
             });
