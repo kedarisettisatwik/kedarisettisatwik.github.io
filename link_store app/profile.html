@@ -393,6 +393,7 @@
             padding:10px;
             margin:10px 0;
             font-size:16px;
+            white-space: pre-wrap;
         }
        .para p{
             width:100%;
@@ -1257,7 +1258,7 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
         add_line.innerHTML = "";
         snapshot.forEach(function(ChildSnapShot){
             
-         add_line.innerHTML += "<div class='add_line_personal' contenteditable='true'>"+ChildSnapShot.val().para+"</div>";
+         add_line.innerHTML += "<p class='add_line_personal' contenteditable='true'>"+ChildSnapShot.val().para+"</p>";
             
         })  
             });
@@ -1312,7 +1313,7 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
             }else if (a == 3){
                 var add_line = document.getElementById("add_line");
            var line_number = document.querySelectorAll(".line_number");
-        add_line.innerHTML += "<div contenteditable='true' class='add_line_personal'>new line</div>";   
+        add_line.innerHTML += "<p contenteditable='true' class='add_line_personal'>new line</p>";   
             }else if (a == 4){
     var add_link = document.getElementById("add_link");
     add_link.innerHTML += "<p><span class='link_title' contenteditable='true'>title</span><br><br><input class='link_href' type='text' placeholder='paste the link here'></p>";  
