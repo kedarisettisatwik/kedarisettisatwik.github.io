@@ -608,6 +608,21 @@
             margin:5px;
             font-size:16px;
         }
+        .un_seen{
+            width:100%;
+            min-height:40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin:10px;
+            font-size:17px;
+            font-weight:500;
+            letter-spacing:1px;
+        }
+        .un_seen span{
+            font-weight:bold;
+            color:darkblue;
+        }
         .search_box{
             outline:none;
             border:none;
@@ -729,6 +744,7 @@
             align-items: center;
             flex-direction: row;
             margin-top:20px;
+            cursor:pointer;
         }
         #msg_page .chat_area #person_name{
             font-size:17px;
@@ -769,7 +785,7 @@
         #add_msg .full_box.other .msg_con {
             position:relative;
             margin:10px;
-            background-color:white;
+            background-color:aliceblue;
             padding:10px;
             padding-left:15px;
             max-width:60%;
@@ -785,7 +801,7 @@
             transform:translate(-50%,-50%) rotateZ(45deg);
             width:10px;
             height:10px;
-            background-color:white;
+            background-color:aliceblue;
         }
         #add_msg .full_box.me .msg_con {
              position:relative;
@@ -975,18 +991,10 @@
         
 <section id="chat_page" class="flex">
      
-      <section id="box15" class="flex">
-    <h2 class="flex"><span>comments</span></h2>
-           <div class='comments_list' id='add_comm' >
-<!--
-                     <div class='com'>
-                        <span>name : </span>
-        <p>content content content content content content content content  </p>
-                     </div>
--->
-           </div> 
-        </section>
-        
+    <section class="un_seen" id="un_seen">
+        0 unseen messages ..
+    </section>
+       
         <section class="search_box">
             <input type="text" id="search_filter" placeholder="search for other users" oninput="search_filter()">
             <div id="frnds_list" class="flex">
@@ -999,6 +1007,18 @@
             </div>
         </section>
         
+         <section id="box15" class="flex">
+    <h2 class="flex"><span>comments</span></h2>
+           <div class='comments_list' id='add_comm' >
+<!--
+                     <div class='com'>
+                        <span>name : </span>
+        <p>content content content content content content content content  </p>
+                     </div>
+-->
+           </div> 
+        </section>
+        
 </section>
    
 <section id="msg_page" class="flex">
@@ -1006,7 +1026,7 @@
     <i class="far fa-trash-alt" onclick="delete_chat()"></i>
     <section class="flex chat_area">
                
-               <div class="nn"><img id="person_logo"><h2 id="person_name"></h2></div>
+    <div class="nn" onclick="see_profile()"><img id="person_logo"><h2 id="person_name"></h2></div>
                <div id="add_msg" class="flex">
 <!--
                   
@@ -1073,6 +1093,7 @@
                   draw();
                   draw_edit();
                   draw_chats();
+                  un_seen1();
                 }else{
                     window.close();
                 }
@@ -1157,7 +1178,32 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
             toogle();
         }
         
-        function chat_with(a){
+        var list_edits = {};
+        
+        var unseen_names = [];
+        
+        function un_seen1(){
+        var un_seen = document.getElementById("un_seen");
+            un_seen.innerHTML = "";
+    firebase.database().ref('users/'+user_id+"/un_seen_messages/").on('value',function(snapshot){
+        un_seen.innerHTML = "";
+                var uu = "";
+        snapshot.forEach(function(ChildSnapShot){
+            uu = ChildSnapShot.val().name;
+            unseen_names.push(uu);
+        })
+        
+        
+        un_seen.innerHTML = "0 unseen messages ..";
+        
+        if (unseen_names.length > 0){
+            un_seen.innerHTML = "you have unseen messages <br> from <br>";
+            for (var i = 0;i<unseen_names.length;i++){
+            un_seen.innerHTML += " "+unseen_names[i]+" ";
+           }
+        }
+        
+            });
             
         }
         
@@ -1173,6 +1219,7 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
                 }
             }
         }
+        
         
         function draw_chats(){
             
@@ -1233,7 +1280,6 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
             });        
         }
         
-        var list_edits = {};
         
         // a == 0 profile pic
         // a == 1 font color
@@ -1413,6 +1459,10 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
         })  
             });
             
+    firebase.database().ref('users/'+user_id+"/un_seen_messages/"+to_name).remove();
+          
+            var un_seen = document.getElementById("un_seen");
+            un_seen.innerHTML = "0 unseen messages";
         }
         
         function delete_chat(){
@@ -1421,15 +1471,19 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
     firebase.database().ref('users/'+user_id+"/messages/"+to_name).remove();
             }
         }
+        
         function close_chat(){
             var msg_page = document.getElementById("msg_page");
             msg_page.classList.remove("active");
+            var un_seen = document.getElementById("un_seen");
+            un_seen.innerHTML = "0 unseen messages";
         }
+        
         function send_msg1(){
             
             var send_content = document.getElementById("send_content").value;
             if (send_content.length > 0){
-        firebase.database().ref('users/'+ user_id+"/messages/"+to_name).push({
+    firebase.database().ref('users/'+ user_id+"/messages/"+to_name).push({
                sender_name : user_id,
                send_msg : send_content,
         });
@@ -1439,8 +1493,18 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
                send_msg : send_content,
         });
                 
+                
+        firebase.database().ref('users/'+to_name+"/un_seen_messages/"+user_id).set({
+               name:user_id,
+        });
+                
                 document.getElementById("send_content").value = "";
             }
+        }
+        
+        function see_profile(){
+          var loc1 = "https://kedarisettisatwik.github.io/link_store%20app/"+"network_share.html?user_id="+to_name;
+            location.href = loc1;
         }
     </script>
     
