@@ -1348,9 +1348,10 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
             });
             }
             var add_line_personal = document.querySelectorAll(".add_line_personal");
-            if (add_line_personal.length > 0){
+            if (add_line_personal.length >= 0){
                 
-                firebase.database().ref("users/"+user_id+"/personal_details/").remove(); 
+                firebase.database().ref("users/"+user_id+"/personal_details/").remove();
+                
                 for (var i = 0;i<add_line_personal.length;i++){
                     var vv = add_line_personal[i].innerHTML;
                     if (vv.length > 0 && vv != "<br>"){
@@ -1366,7 +1367,7 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
             var link_title = document.querySelectorAll(".link_title");
             var link_href = document.querySelectorAll(".link_href");
          
-            if (link_title.length > 0){
+            if (link_title.length >= 0){
                 
                 firebase.database().ref("users/"+user_id+"/useful_links/").remove(); 
                 
@@ -1389,7 +1390,7 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
             var para_list = document.querySelectorAll(".book_para_p");
             var mode_check = document.querySelectorAll(".mode_check");
             
-            if (book_list.length > 0){
+            if (book_list.length >= 0){
                 for (var jj = 0;jj<book_list.length;jj++){
                     var ttit = title_list[jj].innerHTML;
                     var ppip = para_list[jj].value;
