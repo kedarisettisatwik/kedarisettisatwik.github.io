@@ -1257,8 +1257,9 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
         var add_line = document.getElementById("add_line");
         add_line.innerHTML = "";
         snapshot.forEach(function(ChildSnapShot){
-            
+            if (ChildSnapShot.val().para != "<br>"){
          add_line.innerHTML += "<p class='add_line_personal' contenteditable='true'>"+ChildSnapShot.val().para+"</p>";
+            }
             
         })  
             });
