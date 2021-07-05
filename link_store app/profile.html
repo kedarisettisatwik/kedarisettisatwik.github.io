@@ -1351,7 +1351,7 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
                 firebase.database().ref("users/"+user_id+"/personal_details/").remove(); 
                 for (var i = 0;i<add_line_personal.length;i++){
                     var vv = add_line_personal[i].innerHTML;
-                    if (vv.length > 0){
+                    if (vv.length > 0 && vv != "<br>"){
                         
         firebase.database().ref("users/"+user_id+"/personal_details/").push({
                  para : vv,
