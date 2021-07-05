@@ -1416,7 +1416,10 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
         }
         
         function delete_chat(){
-            
+            var p = confirm("do you want to delete the chat ? ")
+            if (p){
+    firebase.database().ref('users/'+user_id+"/messages/"+to_name).remove();
+            }
         }
         function close_chat(){
             var msg_page = document.getElementById("msg_page");
