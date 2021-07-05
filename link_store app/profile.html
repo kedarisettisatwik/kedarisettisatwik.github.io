@@ -393,7 +393,7 @@
             padding:10px;
             margin:10px 0;
             font-size:16px;
-            white-space: pre-wrap;
+            white-space:pre-line;
         }
        .para p{
             width:100%;
@@ -1240,20 +1240,20 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
         
         function draw_edit(){
         
-        firebase.database().ref('users/'+user_id).on('value',function(snapshot){
+        firebase.database().ref('users/'+user_id).once('value',function(snapshot){
             for(var i= 0;i<profile_logo.length;i++){
                 profile_logo[i].src = snapshot.val().dp;
             }
             hello_user1.innerHTML = snapshot.val().user_id;
         }); 
             
-          firebase.database().ref('users/'+user_id+"/styles").on('value',function(snapshot){
+          firebase.database().ref('users/'+user_id+"/styles").once('value',function(snapshot){
               
 document.documentElement.style.setProperty('--profile_bg',snapshot.val().profile_bg);
 document.documentElement.style.setProperty('--profile_font_color',snapshot.val().profile_font_color);  
         }); 
             
-    firebase.database().ref('users/'+user_id+"/personal_details/").on('value',function(snapshot){
+    firebase.database().ref('users/'+user_id+"/personal_details/").once('value',function(snapshot){
         var add_line = document.getElementById("add_line");
         add_line.innerHTML = "";
         snapshot.forEach(function(ChildSnapShot){
@@ -1264,7 +1264,7 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
         })  
             });
             
-    firebase.database().ref('users/'+user_id+"/useful_links/").on('value',function(snapshot){
+    firebase.database().ref('users/'+user_id+"/useful_links/").once('value',function(snapshot){
         var add_link = document.getElementById("add_link");
         add_link.innerHTML = "";
         snapshot.forEach(function(ChildSnapShot){
@@ -1276,7 +1276,7 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
             
              var add_book = document.getElementById("book_container");
 
- firebase.database().ref('users/'+user_id+"/books/").on('value',function(snapshot){
+ firebase.database().ref('users/'+user_id+"/books/").once('value',function(snapshot){
      add_book.innerHTML = "";
         snapshot.forEach(function(ChildSnapShot){
             
@@ -1390,7 +1390,7 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
             var para_list = document.querySelectorAll(".book_para_p");
             var mode_check = document.querySelectorAll(".mode_check");
             
-            if (book_list.length >= 0){
+            if (book_list.length > 0){
                 for (var jj = 0;jj<book_list.length;jj++){
                     var ttit = title_list[jj].innerHTML;
                     var ppip = para_list[jj].value;
