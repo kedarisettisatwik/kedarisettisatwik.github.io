@@ -1195,7 +1195,7 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
         function un_seen1(){
         var un_seen = document.getElementById("un_seen");
             un_seen.innerHTML = "";
-    firebase.database().ref('users/'+user_id+"/un_seen_messages/").once('value',function(snapshot){
+    firebase.database().ref('users/'+user_id+"/un_seen_messages/").on('value',function(snapshot){
         un_seen.innerHTML = "";
                 var uu = "";
         snapshot.forEach(function(ChildSnapShot){
@@ -1470,9 +1470,6 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
             });
             
     firebase.database().ref('users/'+user_id+"/un_seen_messages/"+to_name).remove();
-          
-            var un_seen = document.getElementById("un_seen");
-            un_seen.innerHTML = "0 unseen messages";
         }
         
         function delete_chat(){
@@ -1485,8 +1482,7 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
         function close_chat(){
             var msg_page = document.getElementById("msg_page");
             msg_page.classList.remove("active");
-            var un_seen = document.getElementById("un_seen");
-            un_seen.innerHTML = "0 unseen messages";
+            firebase.database().ref('users/'+user_id+"/un_seen_messages/"+to_name).remove();
         }
         
         function send_msg1(){
