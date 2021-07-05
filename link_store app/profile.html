@@ -393,7 +393,7 @@
             padding:10px;
             margin:10px 0;
             font-size:16px;
-            white-space:pre-line;
+            white-space:nowrap;
         }
        .para p{
             width:100%;
@@ -1190,7 +1190,7 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
         function un_seen1(){
         var un_seen = document.getElementById("un_seen");
             un_seen.innerHTML = "";
-    firebase.database().ref('users/'+user_id+"/un_seen_messages/").on('value',function(snapshot){
+    firebase.database().ref('users/'+user_id+"/un_seen_messages/").once('value',function(snapshot){
         un_seen.innerHTML = "";
                 var uu = "";
         snapshot.forEach(function(ChildSnapShot){
