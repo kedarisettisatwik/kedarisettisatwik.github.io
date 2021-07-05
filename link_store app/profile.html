@@ -519,7 +519,6 @@
             flex-wrap: wrap;
            flex-direction:row;
             justify-content: flex-start;
-            padding-top:70px;
             padding-bottom:20px;
             overflow-x: hidden;
             overflow-y: auto; 
@@ -570,17 +569,17 @@
         .comments_list{
             margin-top:10px;
             width:100%;
+            max-height:300px;
             display: flex;
             justify-content: flex-start;
             align-items: center;
             flex-wrap: wrap;
             overflow-x: hidden;
             overflow-y: auto;
-            height:250px;
         }
         .comments_list .com{
             width:250px;
-            height:95%;
+            max-height:250px;
             overflow-x:hidden;
             overflow-y: auto;
             background-color:white;
@@ -606,10 +605,10 @@
             outline:none;
             border:none;
             position:relative;
-            width:300px;
+            width:350px;
             margin:20px;
             padding:10px;
-            height:350px;
+            height:400px;
             padding-top:20px;
             padding-bottom:20px;
             background-color:cornsilk;
@@ -633,7 +632,7 @@
         
         #frnds_list{
             width:100%;
-            height:290px;
+            height:340px;
             overflow-y:auto;
             overflow-x: hidden;
             justify-content: flex-start;
@@ -666,6 +665,82 @@
             border-radius:50%;
             box-shadow:0 0 6px rgb(0,0,0,0.3);
             object-fit: cover;
+        }
+        #msg_page{
+            position:fixed;
+            top:0;
+            left:0;
+            width:100vw;
+            height:100vh;
+            padding:10px;
+            background-color:white;
+            z-index:0;
+            opacity:0;
+            flex-wrap: wrap;
+            transition:0.5s;
+        }
+        #msg_page.active{
+            opacity:1;
+            z-index:1000;
+        }
+        #msg_page i{
+            position: absolute;
+            transform:translateY(-50%);
+            height:40px;
+            background-color: white;
+            box-shadow:0 0 7px rgb(0,0,0,0.3);
+            z-index:2000;
+            width:40px;
+            line-height:40px;
+            text-align: center;
+            cursor:pointer;
+        }
+        #msg_page i.fa-times{
+            top:40px;
+            right:20px;
+        }
+        #msg_page i.fa-trash-alt{
+            top:40px;
+            left:20px;
+        }
+        #msg_page .chat_area{
+            position:relative;
+            width:400px;
+            max-width:98%;
+            height:90%;
+            overflow-y: auto;
+            background-color:papayawhip;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+            justify-content: flex-start;
+        }
+        #msg_page .chat_area .nn{
+            width: 100%;
+            padding:5px;
+            padding-bottom:10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: row;
+            margin-top:20px;
+        }
+        #msg_page .chat_area #person_name{
+            font-size:17px;
+            letter-spacing:1px;
+            font-weight:700;
+            margin:10px;
+        }
+        #msg_page .chat_area #person_logo{
+            width:55px;
+            height:55px;
+            background-color:white;
+            padding:5px;
+            box-shadow:0 0 10px rgb(0,0,0,0.3);
+            object-fit: cover;
+            margin:10px;
+            border-radius:50%;
+        }
+        #add_msg{
+            width:100%;
         }
         @media (max-width:350px){
             .box1,.box2,.box3,.box11{
@@ -799,7 +874,7 @@
      
       <section id="box15" class="flex">
     <h2 class="flex"><span>comments</span></h2>
-           <div class='comments_list' id='add_comm'>
+           <div class='comments_list' id='add_comm' >
 <!--
                      <div class='com'>
                         <span>name : </span>
@@ -821,6 +896,18 @@
             </div>
         </section>
         
+</section>
+   
+<section id="msg_page" class="flex">
+   <i class='fas fa-times' onclick="close_chat()"></i>
+    <i class="far fa-trash-alt" onclick="delete_chat()"></i>
+    <section class="flex chat_area">
+               
+               <div class="nn"><img id="person_logo"><h2 id="person_name"></h2></div>
+               <div id="add_msg">
+                   
+               </div>
+    </section>
 </section>
     
 <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase.js"></script>
@@ -1176,7 +1263,30 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
             var search_name = document.querySelectorAll(".search_name");
             var to_name = search_name[a].innerHTML;
             var from_name = user_id;
-            console.log(to_name);
+            var msg_page = document.getElementById("msg_page");
+            msg_page.classList.add("active");
+            var person_name = document.getElementById("person_name");
+            var person_logo = document.getElementById("person_logo");
+            
+            person_name.innerHTML = to_name;
+            
+            firebase.database().ref('users/'+to_name).once('value',function(snapshot){
+          person_logo.src = snapshot.val().dp;
+            }); 
+            
+        firebase.database().ref('users/'+ user_id+"/messages/").on('value',function(snapshot){
+                        
+           add_comm.innerHTML = "";
+        snapshot.forEach(function(ChildSnapShot){
+            add_comm.innerHTML += "<div class='com'><span>"+ChildSnapShot.val().name_person+"</span><p>"+ChildSnapShot.val().comment_person+"</p></div>";
+        })  
+            });
+            
+            
+        }
+        function close_chat(){
+            var msg_page = document.getElementById("msg_page");
+            msg_page.classList.remove("active");
         }
     </script>
     
