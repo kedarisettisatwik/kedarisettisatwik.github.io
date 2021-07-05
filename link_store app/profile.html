@@ -1430,6 +1430,12 @@ document.documentElement.style.setProperty('--profile_font_color',snapshot.val()
                sender_name : user_id,
                send_msg : send_content,
         });
+                
+     firebase.database().ref('users/'+to_name+"/messages/"+user_id).push({
+               sender_name : user_id,
+               send_msg : send_content,
+        });
+                
                 document.getElementById("send_content").value = "";
             }
         }
