@@ -149,7 +149,7 @@
             padding:25px 10px;
             margin:0px;
         }
-        #my_profile .box2 h2,#my_profile .box3 h2{
+        #my_profile .box2 h2, #my_profile .box3 h2{
             min-width:250px;
             width:90%;
             font-size:19px;
@@ -191,16 +191,16 @@
             border-top:2px dashed rgb(0,0,0,0.4);
             position:relative;
         }
-        #my_profile .box3 ul{
-            margin-top:10px;
+        #my_profile .box3 #media_links1{
             width:90%;
+            margin-top:10px;
             min-width:250px;
             flex-direction: row;
             display: flex;
             justify-content: space-around;
             align-items: center;
         }
-        #my_profile .box3 ul li{
+        #my_profile .box3 #media_links1 a{
             width:40px;
             height:40px;
             cursor:pointer;
@@ -208,14 +208,11 @@
             text-align: center;
             font-size:25px;
             margin:10px;
-            display:none;
+            display:flex;
             color:rebeccapurple;
             transition:0.2s;
         }
-        #my_profile .box3 ul li.active{
-            display: flex;
-        }
-        #my_profile .box3 ul li:hover{
+        #my_profile .box3 #media_links1 a:hover{
             color:red;
         }
         #my_profile .other_links{
@@ -237,10 +234,34 @@
         #my_profile .other_links a:hover{
             color:red;
         }
-        #my_profile .book_box{
-            
+        .notes_box{
+            position:relative;
+            width:100%;
+            margin-bottom:20px;
+            padding:10px;
         }
-        
+        .note{
+            margin:10px;
+            padding:10px;
+            width:100%;
+            min-width:300px;
+            border-top:2px dashed rgb(0,0,0,0.4);
+            max-height:50vh;
+            overflow-x: hidden;
+            padding-top:30px;
+            overflow-y: auto;
+        }
+        .note h1{
+            width:95%;
+            font-size:18px;
+            margin-bottom:13px;
+            font-weight:700;
+        }
+        .note p{
+            width:95%;
+            font-size:16px;
+            white-space: pre-wrap;
+        }
         
 /* profile page */
         
@@ -259,44 +280,32 @@
     
     <section class="flex pop_page active" id="my_profile">
          <div class="box1">
-                <img class="profile_img" src="avatars/p1.png">
-                <h2 id="profile_name">kedarisetti sridevi</h2>
+                <img class="profile_img" src="" id="profile_img">
+                <h2 id="profile_name"></h2>
          </div>
          <div class="box3 flex">
             <h2>Media & other links </h2>
-             <ul>
-                 <li class='active'><i class="fab fa-facebook-messenger"></i></li>
-                 <li><i class="fab fa-facebook-square"></i></li>
-                 <li class='active'><i class="fab fa-instagram"></i></li>
-                 <li><i class="fab fa-twitter"></i></li>
-                 <li class="active"><i class="fab fa-youtube"></i></li>
+             <ul id="media_links1">
+               
             </ul>
-            <div class="other_links">
-                <a>link1</a>
-                <a>link2</a>
-                <a>link3</a>
-                <a>link4</a>
+            <div class="other_links" id="other_links">
+                
             </div>
          </div>
          <div class="box2 flex">
              <h2>About me ! </h2>
              <div class="mail">
                  <i class="fas fa-envelope"></i>
-                 <p id="profile_mail">satwik1330@gmail.com</p>
+                 <p id="profile_mail"></p>
              </div>
              <div id="add_details">
-                 <p>hello</p>
-                 <p>how are you ?</p>
-                 <p>stay home stay safe</p>
+                 
              </div>
          </div>
          <div class="book_box flex">
-             <div class="book">
-                 
-             </div>
-            <div class="book">
-                 
-             </div>
+             <div class="notes_box flex" id="notes_box">
+             
+         </div>
          </div>
     </section>
     
@@ -327,8 +336,12 @@
          var  user_key = "";
          var user_name = "";
         
+        const myurl = new URL(window.location.href);
+        let user_id = myurl.searchParams.get("user_name");
+        
          pop1();
-        draw_profile();
+         draw_profile(user_id);
+        console.log(user_id);
         
         function pop1(){
             var lo = document.getElementById("logo");
@@ -348,7 +361,77 @@
                    localStorage.setItem("kedar_network_user_name",user_name);
         });
         
-         function draw_profile(){
+         var   profile_img = document.getElementById("profile_img");
+              var profile_name = document.getElementById("profile_name"); 
+              var media_links1 = document.getElementById("media_links1");
+              var other_links = document.getElementById("other_links");
+              var profile_mail = document.getElementById("profile_mail");
+              var add_details = document.getElementById("add_details");
+              var notes_box = document.getElementById("notes_box");
+        
+         function draw_profile(a){
+             pop1();
+             
+             firebase.database().ref('users/'+a).on('value',function(snapshot){
+               var  draw_user_name = snapshot.val().name;
+               var draw_user_img = snapshot.val().dp;
+                 profile_img.src = draw_user_img;
+                 profile_name.innerHTML = draw_user_name;
+            });
+             
+             firebase.database().ref('users/'+a).on('value',function(snapshot){
+                  var  draw_user_mail = snapshot.val().email;
+               profile_mail.innerHTML = draw_user_mail; 
+            });
+             
+            firebase.database().ref("users/"+a+"/medialinks").on('value',function(snapshot){
+                media_links1.innerHTML = "";
+         snapshot.forEach(function(ChildSnapShot){
+            var title1 = ChildSnapShot.val().title;
+            var href1 = ChildSnapShot.val().link;
+
+            if (title1 == "facebook"){ 
+        media_links1.innerHTML += "<li><a href='"+href1+"'><i class='fab fa-facebook-square'></i></a></li>";
+            }else if (title1 == "instagram"){
+        media_links1.innerHTML += "<a href = '"+href1+"'><li>"+"<i class='fab fa-instagram'></i>"+"<li></a>";
+            }else if (title1 == "twitter"){
+        media_links1.innerHTML += "<a href = '"+href1+"'><li>"+"<i class='fab fa-twitter'></i>"+"<li></a>";
+            }else if (title1 == "youtube"){
+        media_links1.innerHTML += "<a href = '"+href1+"'><li>"+"<i class='fab fa-youtube'></i>"+"<li></a>";
+            }else if (title1 == "ticktok"){
+        media_links1.innerHTML += "<a href = '"+href1+"'><li>"+"<i class='fab fa-tiktok'></i>"+"<li></a>";
+            }
+        });
+            });
+           
+         firebase.database().ref("users/"+a+"/otherlinks").on('value',function(snapshot){
+                other_links.innerHTML = "";
+         snapshot.forEach(function(ChildSnapShot){
+             var link_hr = ChildSnapShot.val().link;
+             var title_hr = ChildSnapShot.val().title;
+             other_links.innerHTML += "<a href='"+link_hr+"'>"+title_hr+"</a>";
+        });
+            });
+             
+        firebase.database().ref("users/"+a+"/details").on('value',function(snapshot){
+                add_details.innerHTML = "";
+            
+         snapshot.forEach(function(ChildSnapShot){
+            var line1 = ChildSnapShot.val().para;
+             add_details.innerHTML += "<p>"+line1+"</p>";
+        });
+            });
+             
+            firebase.database().ref("users/"+a+"/notes").on('value',function(snapshot){
+                notes_box.innerHTML = "";
+            
+         snapshot.forEach(function(ChildSnapShot){
+             var heading = ChildSnapShot.val().title;
+             var content = ChildSnapShot.val().para;
+             notes_box.innerHTML += "<div class='note'><h1>"+heading+"</h1><p>"+content+"</p></div>";
+        });
+            });
+             
              
          }
         

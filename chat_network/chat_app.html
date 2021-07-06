@@ -676,7 +676,7 @@
             border-top:2px dashed rgb(0,0,0,0.4);
             position:relative;
         }
-        #my_profile .box3 ul{
+        #my_profile .box3 #media_links1{
             width:90%;
             margin-top:10px;
             min-width:250px;
@@ -685,7 +685,7 @@
             justify-content: space-around;
             align-items: center;
         }
-        #my_profile .box3 ul li{
+        #my_profile .box3 #media_links1 a{
             width:40px;
             height:40px;
             cursor:pointer;
@@ -693,14 +693,11 @@
             text-align: center;
             font-size:25px;
             margin:10px;
-            display:none;
+            display:flex;
             color:rebeccapurple;
             transition:0.2s;
         }
-        #my_profile .box3 ul li.active{
-            display: flex;
-        }
-        #my_profile .box3 ul li:hover{
+        #my_profile .box3 #media_links1 a:hover{
             color:red;
         }
         #my_profile .other_links{
@@ -722,6 +719,35 @@
         #my_profile .other_links a:hover{
             color:red;
         }
+        .notes_box{
+            position:relative;
+            width:100%;
+            margin-bottom:20px;
+            padding:10px;
+        }
+        .note{
+            margin:10px;
+            padding:10px;
+            width:100%;
+            min-width:300px;
+            border-top:2px dashed rgb(0,0,0,0.4);
+            max-height:50vh;
+            overflow-x: hidden;
+            padding-top:30px;
+            overflow-y: auto;
+        }
+        .note h1{
+            width:95%;
+            font-size:18px;
+            margin-bottom:13px;
+            font-weight:700;
+        }
+        .note p{
+            width:95%;
+            font-size:16px;
+            white-space: pre-wrap;
+        }
+        
 /* profile page */
         
         @media (max-width:400px){
@@ -742,7 +768,6 @@
         <ul>
             <li onclick="form_page(0)"><span>SIGN IN</span> <i class="fas fa-user"></i></li>
             <li onclick="form_page(1)"><span>SIGN UP</span> <i class="fas fa-user-plus"></i></li>
-            <li onclick="google()"><span>Use Google </span> <i class="fab fa-google"></i></li>
             <li><a>Tutorial to know how to use</a> <i class="fab fa-youtube"></i> </li>
         </ul>
         <form id="signin" autocomplete="off">
@@ -765,7 +790,7 @@
     <section class="flex" id="home_page">
         
     <div class="btns flex">
-        <img class="profile_logo" onclick="page_change(0)">
+        <img class="profile_logo" onclick="open_with(-1)">
         <div>
             <i class="fas fa-search" onclick="page_change(3)"></i>
             <i class="far fa-edit" onclick="page_change(1)"></i>
@@ -781,29 +806,22 @@
     <section class="flex pop_page" id="my_profile">
          <div class="box1">
                 <i class="fas fa-long-arrow-alt-left" onclick="close1()"></i>
-                <img class="profile_img" src="avatars/p1.png">
-                <h2 id="profile_name">kedarisetti sridevi</h2>
+                <img id="profile_img" src="">
+                <h2 id="profile_name"></h2>
          </div>
          <div class="box3 flex">
             <h2>Media & other links </h2>
-             <ul>
+             <div id="media_links1">
+<!--
                  <li class='active'><i class="fab fa-facebook-messenger"></i></li>
                  <li><i class="fab fa-facebook-square"></i></li>
                  <li class='active'><i class="fab fa-instagram"></i></li>
                  <li><i class="fab fa-twitter"></i></li>
                  <li class="active"><i class="fab fa-youtube"></i></li>
-            </ul>
-            <div class="other_links">
-                <a>link1</a>
-                <a>link2</a>
-                <a>link3</a>
-                <a>link4</a>
-                <a>link4</a>
-                <a>link4</a>
-                <a>link4</a>
-                <a>link4</a>
-                <a>link4</a>
-                <a>link4</a>
+-->
+            </div>
+            <div class="other_links" id="other_links">
+<!--                <a>link1</a>   -->
             </div>
          </div>
          <div class="box2 flex">
@@ -813,10 +831,11 @@
                  <p id="profile_mail">satwik1330@gmail.com</p>
              </div>
              <div id="add_details">
-                 <p>hello</p>
-                 <p>how are you ?</p>
-                 <p>stay home stay safe</p>
+                 
              </div>
+         </div>
+         <div class="notes_box flex" id="notes_box">
+             
          </div>
     </section>
     
@@ -840,7 +859,7 @@
     
     <ul id="options">
         <li>Delete chat</li>
-        <li>see profile</li>
+        <li onclick="open_with(1)">see profile</li>
     </ul>
     
     <div class="input">
@@ -865,7 +884,6 @@
 </section>
 
 <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
 
 <script>
   var firebaseConfig = {
@@ -888,7 +906,7 @@
          var  user_key = "";
          var user_name = "";
         
-         var my_num = -1;
+         var open_from = "home";
          var other_num = 0;
         
          pop1();
@@ -898,11 +916,16 @@
             user_name = localStorage.getItem("kedar_network_user_name");
              var account = document.getElementById("account");
             var date1 = Date.now();
-            firebase.database().ref('users/'+user_key).update({
-                datein : date1
+            firebase.database().ref('users/'+user_key).once('value',function(snapshot){
+                var cc = snapshot.val().key;
+                if (cc == user_key){
+                          account.classList.remove("active");
+                          firebase.database().ref('users/'+user_key).update({
+                        datein : date1
+                      });
+                       after_sign();
+                }
             });
-            account.classList.remove("active");
-             after_sign();
         }else{
             
         }
@@ -937,6 +960,10 @@
                  pop_page[i].classList.remove("active");
              }
              document.body.classList.remove("active");
+             var  fa_bars = document.querySelector(".fa-bars"); 
+           var options = document.querySelector("#options");
+            fa_bars.classList.remove("active");
+            options.classList.remove("active");
          }
         
         function search_filter(){
@@ -1034,6 +1061,16 @@
                         user_key = user.uid;
      localStorage.setItem("kedar_network_user_key",user_key);
                         
+                firebase.auth().currentUser.sendEmailVerification().then( () => {
+                        console.log("email verify");
+                        
+                    }).catch(function(error){
+                        var ee1 = error.code;
+                        var ee2 = error.message;
+                        alert(ee2);
+                        console.log(ee1);
+                    })
+                        
          var account = document.getElementById("account");
             account.classList.remove("active");               
                         after_sign();
@@ -1043,6 +1080,7 @@
                         var err_msg = error.message;
                         alert(err_msg);
                     })
+                    
                 }else{
                     alert("password confirmation failed");
                 }
@@ -1068,7 +1106,8 @@
             draw_frnds();
         }
         
-        var list_frnds = [];
+        var list_frnds_home = [];
+        var list_frnds_search = [];
         
         function draw_frnds(){
              
@@ -1093,7 +1132,8 @@
      search_f.innerHTML += "<p class='search_user' onclick='open_person2("+count1
                 +")'><img src='"+user_dp+"' class='search_frnd_dp'><span class='search_name'>"+user_up+"</span></p>";
                 
-                list_frnds.push(user_frnd_key);
+                list_frnds_home.push(user_frnd_key);
+                list_frnds_search.push(user_frnd_key);
                 
           count1 += 1; 
                 
@@ -1107,6 +1147,8 @@
              var chat_name = document.getElementById("chat_name");
              
          function open_person1(a){
+             open_from = "home"
+             other_num = a;
              // from home
              page_change(2);
              var img1 = document.querySelectorAll(".home_frnd_dp");
@@ -1119,6 +1161,8 @@
          }
         
          function open_person2(a){
+             open_from = "search"
+             other_num = a;
              // from search
              page_change(2);
              var img1 = document.querySelectorAll(".search_frnd_dp");
@@ -1130,8 +1174,94 @@
              chat_dp.src = link1;
          }
         
-         function draw_profile(){
+        function open_with(a){
+            var draw_key = user_key;
+            if (a == -1){
+                draw_key = user_key;
+            }else{
+                
+                if (open_from == "search"){
+                    draw_key = list_frnds_search[other_num];
+                }else{
+                    draw_key = list_frnds_search[other_num];
+                }
+                
+            }
+            draw_profile(draw_key);
+        }
+        
+              var   profile_img = document.getElementById("profile_img");
+              var profile_name = document.getElementById("profile_name"); 
+              var media_links1 = document.getElementById("media_links1");
+              var other_links = document.getElementById("other_links");
+              var profile_mail = document.getElementById("profile_mail");
+              var add_details = document.getElementById("add_details");
+              var notes_box = document.getElementById("notes_box");
+        
+         function draw_profile(a){
+             pop1();
+             page_change(0);
              
+             firebase.database().ref('users/'+a).once('value',function(snapshot){
+               var  draw_user_name = snapshot.val().name;
+               var draw_user_img = snapshot.val().dp;
+                 profile_img.src = draw_user_img;
+                 profile_name.innerHTML = draw_user_name;
+            });
+             
+             firebase.database().ref('users/'+a).once('value',function(snapshot){
+                  var  draw_user_mail = snapshot.val().email;
+               profile_mail.innerHTML = draw_user_mail; 
+            });
+             
+            firebase.database().ref("users/"+a+"/medialinks").once('value',function(snapshot){
+                media_links1.innerHTML = "";
+         snapshot.forEach(function(ChildSnapShot){
+            var title1 = ChildSnapShot.val().title;
+            var href1 = ChildSnapShot.val().link;
+
+            if (title1 == "facebook"){ 
+        media_links1.innerHTML += "<li><a href='"+href1+"'><i class='fab fa-facebook-square'></i></a></li>";
+            }else if (title1 == "instagram"){
+        media_links1.innerHTML += "<a href = '"+href1+"'><li>"+"<i class='fab fa-instagram'></i>"+"<li></a>";
+            }else if (title1 == "twitter"){
+        media_links1.innerHTML += "<a href = '"+href1+"'><li>"+"<i class='fab fa-twitter'></i>"+"<li></a>";
+            }else if (title1 == "youtube"){
+        media_links1.innerHTML += "<a href = '"+href1+"'><li>"+"<i class='fab fa-youtube'></i>"+"<li></a>";
+            }else if (title1 == "ticktok"){
+        media_links1.innerHTML += "<a href = '"+href1+"'><li>"+"<i class='fab fa-tiktok'></i>"+"<li></a>";
+            }
+        });
+            });
+           
+         firebase.database().ref("users/"+a+"/otherlinks").once('value',function(snapshot){
+                other_links.innerHTML = "";
+         snapshot.forEach(function(ChildSnapShot){
+             var link_hr = ChildSnapShot.val().link;
+             var title_hr = ChildSnapShot.val().title;
+             other_links.innerHTML += "<a href='"+link_hr+"'>"+title_hr+"</a>";
+        });
+            });
+             
+        firebase.database().ref("users/"+a+"/details").once('value',function(snapshot){
+                add_details.innerHTML = "";
+            
+         snapshot.forEach(function(ChildSnapShot){
+            var line1 = ChildSnapShot.val().para;
+             add_details.innerHTML += "<p>"+line1+"</p>";
+        });
+            });
+             
+            firebase.database().ref("users/"+a+"/notes").once('value',function(snapshot){
+                notes_box.innerHTML = "";
+            
+         snapshot.forEach(function(ChildSnapShot){
+             var heading = ChildSnapShot.val().title;
+             var content = ChildSnapShot.val().para;
+             notes_box.innerHTML += "<div class='note'><h1>"+heading+"</h1><p>"+content+"</p></div>";
+        });
+            });
+            
          }
         
          function send_msg1(){
@@ -1143,36 +1273,6 @@
                 add_msg.innerHTML = "<div class='sample "+sender[mat]+"'><div>"+msg_content+"</div></div>"+add_msg.innerHTML;
             }
             document.getElementById("msg_content").value = "";
-        }
-        
-        var provider = new firebase.auth.GoogleAuthProvider();
-        
-    function google(){
-        
-         firebase.auth()
-  .signInWithPopup(provider)
-  .then((result) => {
-    /** @type {firebase.auth.OAuthCredential} */
-    var credential = result.credential;
-
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    var token = credential.accessToken;
-    // The signed-in user info.
-    var user = result.user;
-             console.log(user);
-    // ...
-  }).catch((error) => {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // The email of the user's account used.
-    var email = error.email;
-    // The firebase.auth.AuthCredential type that was used.
-    var credential = error.credential;
-             alert(errorMessage);
-    // ...
-  });
-        
         }
         
     </script>
