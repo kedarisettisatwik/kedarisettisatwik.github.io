@@ -247,6 +247,10 @@
             padding:10px 0 10px 20px;
             margin-left:10px;
             box-shadow:0 0 5px rgb(0,0,0,0.4);
+            transition:0.3s;
+        }
+        .input textarea:focus{
+            transform:translateY(-50%);
         }
         .input textarea::placeholder{
             color:black;
@@ -912,6 +916,9 @@
          pop1();
         
         if (localStorage.getItem("kedar_network_user_key")){
+            var lo = document.getElementById("logo");
+            lo.classList.add("active");
+            
             user_key = localStorage.getItem("kedar_network_user_key");
             user_name = localStorage.getItem("kedar_network_user_name");
              var account = document.getElementById("account");
@@ -923,6 +930,7 @@
                           firebase.database().ref('users/'+user_key).update({
                         datein : date1
                       });
+                     lo.classList.remove("active");
                        after_sign();
                 }
             });
