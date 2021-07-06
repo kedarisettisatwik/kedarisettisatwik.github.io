@@ -1,0 +1,1161 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    
+    <title>network</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            list-style:none;
+            text-decoration:none;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        ::-webkit-scrollbar{
+            width:5px;
+        }
+        ::-webkit-scrollbar-thumb{
+            background-color:black;
+        }
+        .flex{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .bg{
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size:cover;
+        }
+        body{
+            width:100vw;
+            height: 100vh;
+            background-color:white;
+            overflow: hidden;
+            transition:0.3s;
+        }
+        .container{
+            height:90%;
+            position: relative;
+            width:400px;
+            background-color:lavenderblush;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+            justify-content: flex-start;
+           overflow: hidden;
+        }
+        body.active{
+            background-color:lavenderblush;
+        }
+        .profile_logo{
+            width:55px;
+            height:55px;
+            padding:5px;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+            object-fit: cover;
+            background-color:white;
+            border-radius:50%;
+        }
+        
+/*    home page */
+        
+        
+        #home_page{
+            width:100%;
+            height:100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+            justify-content: flex-start;
+        }
+        .btns{
+            width:95%;
+            min-height:60px;
+            margin:10px;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .btns img{
+            cursor:pointer;
+            margin:0 10px;
+        }
+        .btns i{
+            cursor: pointer;
+            margin:0 10px;
+            font-size:22px;
+            width:40px;
+            height:100%;
+            line-height:60px;
+            text-align: center;
+        }
+         #add_frnds{
+            width:100%;
+            padding:10px;
+            margin-top:20px;
+            background-color: white;
+            box-shadow:0 0 10px rgb(0,0,0,0.3);
+        }
+        #add_frnds .frnd_user{
+            position:relative;
+            width:100%;
+            padding:10px;
+            height:60px;
+            overflow: hidden;
+            font-size:17px;
+            display:flex;
+            justify-content:space-between;
+            align-items: center;
+            flex-direction: row;
+            margin:15px 0;
+            padding-bottom:15px;
+            border-bottom:2px solid rgb(0,0,0,0.2);
+            cursor:pointer;
+            background-color:white;
+        }
+        #add_frnds .frnd_user.unseen{
+            background-color:greenyellow;
+        }
+        #add_frnds .frnd_user img{
+            position:relative;
+            margin:0 10px;
+            width:50px;
+            height:50px;
+            padding:5px;
+            box-sizing:content-box;
+            border-radius:50%;
+            object-fit: cover;
+        }
+        #add_frnds .frnd_user span,.header span{
+            letter-spacing:1px;
+            margin:0 15px;
+        }
+        
+        
+/*    home page */
+        
+        .pop_page{
+            position: absolute;
+            z-index:-100;
+            opacity:0;
+            justify-content: flex-start;
+            height:100%;
+            width:100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+            background-color:white;
+            transition:0.4s;
+        }
+        .pop_page.active{
+            z-index:100;
+            opacity:1;
+        }
+        #logo{
+            justify-content: center;
+            align-items: center;
+        }
+        #logo.active{
+            z-index:10000;
+            opacity:1;
+        }
+        #logo img{
+            width:70px;
+        }
+        
+/* chat page */
+        
+        
+        #chat_place{
+            background-image:var(--chat_bg,linear-gradient(45deg,beige,bisque));
+            height:100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        .header{
+            position:absolute;
+            top:10px;
+            width:95%;
+            border-radius:15px;
+            left:50%;
+            transform:translateX(-50%);
+            overflow: hidden;
+            font-size:16px;
+            display:flex;
+            justify-content:space-between;
+            align-items: center;
+            flex-direction: row;
+            box-shadow:0 0 10px rgb(0,0,0,0.2);
+            background-color: white;
+            padding:8px;
+        }
+        .header img{
+            width:40px;
+            margin:0 10px;
+            object-fit: cover;
+            border-radius:50%;
+            height:40px;
+        }
+        .header span{
+            max-width:200px;
+            overflow-x: hidden;
+            margin:0 10px;
+        }
+        .header i{
+            margin:0 10px;
+            width:40px;
+            height:40px;
+            line-height:40px;
+            text-align:center;
+            font-size:22px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+        .header i.fa-bars.active{
+            transform:rotateZ(90deg);
+        }
+        .input{
+        z-index:2;
+         position: absolute;
+         bottom:30px;
+         left:0;
+         width:100%;
+         height:60px;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         flex-direction: row;
+        }
+        .input textarea{
+            width:calc(100% - 50px);
+            height:50px;
+            outline:none;
+            border:none;
+            border-radius:15px;
+            background-color:white;
+            font-size:15px;
+            resize:none;
+            overflow-x: hidden;
+            overflow-y: auto;
+            padding:10px 0 10px 20px;
+            margin-left:10px;
+            box-shadow:0 0 5px rgb(0,0,0,0.4);
+        }
+        .input textarea::placeholder{
+            color:black;
+        }
+        .input i{
+            width:40px;
+            height:40px;
+            line-height:40px;
+            font-size:22px;
+            text-align:center;
+            cursor:pointer;
+            background-color: white;
+            border-radius:50%;
+            padding:5px;
+            margin:0 10px;
+           box-shadow:0 0 5px rgb(0,0,0,0.4);
+        }
+        #options{
+            z-index:4;
+            top:20px;
+            left:20px;
+            transform:scale(0);
+            transition:0.3s;
+            transform-origin:top left;
+           position:absolute;
+           width:200px;
+            padding:10px;
+            background-color: white;
+            font-size:17px;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+        }
+        #options.active{
+            transform:scale(1);
+        }
+        #options li{
+            margin:14px 0;
+            width:100%;
+            padding:5px;
+            cursor:pointer;
+            text-align: center;
+        }
+        #add_msg{
+            z-index:0;
+           position: absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:calc(100% - 100px);
+            overflow-x: hidden;
+            overflow-y: auto;
+            background-color: transparent;
+            padding-bottom:100px;
+            padding-top:50px;
+            transform:rotateZ(180deg);
+        }
+        .sample{
+            transform:rotateZ(180deg);
+            margin-bottom:5px;
+            width:100%;
+        }
+        .sample.me{
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            flex-direction: row;
+        }
+        .sample.other{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: row;
+        }
+        .sample div{
+            position:relative;
+            padding:10px;
+            font-size:16px;
+            background-color: white;
+            border-radius:5px;
+            white-space: pre-wrap;
+        }
+        .sample.me div{
+            margin-right:10px;
+        }
+        .sample.me div::after{
+            content:'';
+            position:absolute;
+            width:12px;
+            height:12px;
+            top:50%;
+            right:0;
+            background-color: white;
+            transform:translate(50%,-50%) rotateZ(45deg);
+        }
+        .sample.other div{
+            margin-left:10px;
+        }
+        .sample.other div::after{
+            content:'';
+            position:absolute;
+            width:12px;
+            height:12px;
+            top:50%;
+            left:0;
+            background-color: white;
+            transform:translate(-50%,-50%) rotateZ(45deg);
+        }
+        
+/* chat page */
+        
+/* edit page */
+        
+        #edit_profile .fa-window-close{
+            position:absolute;
+            top:30px;
+            right:30px;
+            font-size:22px;
+            width:40px;
+            height:40px;
+            cursor:pointer;
+            background-color: white;
+            line-height:40px;
+            text-align: center;
+            box-shadow:0 0 10px rgb(0,0,0,0.3);
+        }
+        
+/* edit page */       
+        
+        
+/* search page */
+        
+        #search_page{
+            background-color:lavenderblush;
+        }
+        #search_page .search{
+            width:100%;
+            padding:10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: row;
+            margin:10px 0;
+        }
+        #search_page .search i{
+            margin:10px;
+            width:40px;
+            height:40px;
+            line-height:40px;
+            background-color: white;
+            border-radius:50%;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+            cursor:pointer;
+            text-align:center;
+        }
+        #search_page .search input{
+            border-radius:15px;
+            width:calc(100% - 50px);
+            padding:10px;
+            padding-left:20px;
+            font-size:16px;
+            border:none;
+            transition:0.4s;
+            outline:none;
+            background-color: white;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+        }
+        #search_page .search input::placeholder{
+            color:black;
+        }
+        #search_f{
+            width:100%;
+            padding:10px;
+            margin-top:20px;
+            background-color: white;
+            box-shadow:0 0 10px rgb(0,0,0,0.3);
+        }
+        #search_f .search_user{
+            position:relative;
+            width:100%;
+            padding:10px;
+            height:60px;
+            overflow: hidden;
+            font-size:17px;
+            display:flex;
+            justify-content:space-between;
+            align-items: center;
+            flex-direction: row;
+            margin:15px 0;
+            padding-bottom:15px;
+            border-bottom:2px solid rgb(0,0,0,0.2);
+            cursor:pointer;
+        }
+        #search_f .search_user img{
+            position:relative;
+            margin:0 10px;
+            width:50px;
+            height:50px;
+            padding:5px;
+            box-sizing:content-box;
+            border-radius:50%;
+            object-fit:cover;
+        }
+        #search_f .search_user span,.header span{
+            letter-spacing:1px;
+            margin:0 15px;
+        }
+        
+/* search page */
+        
+/* account page  */
+        #account{
+            position: absolute;
+            width:100%;
+            height:100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+            background-color:beige;
+            opacity:1;
+            display:flex;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity:0;
+            z-index:-100;
+            transition:0.3s;
+            flex-direction: column;
+        }
+        #account.active{
+            z-index:100;
+            opacity:1;
+        }
+        #account h1{
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            flex-direction:row;
+        }
+        #account h1 img{
+            width:50px;
+            height:50px;
+        }
+        #account h1 span{
+            margin:0 12px;
+            font-size:20px;
+            font-weight:500;
+            letter-spacing:2px;
+        }
+        #account ul{
+            width:95%;
+            padding:10px;
+            margin:10px 0;
+        }
+        #account ul li{
+            border:3px solid black;
+            width:100%;
+            margin:13px;
+            font-size:17px;
+            text-align: center;
+            padding:12px;
+            cursor:pointer;
+        }
+        #account ul li i{
+            margin:0 10px;
+            font-size:22px;
+        }
+        #account form{
+            position: absolute;
+            width:100%;
+            height:100%;
+            background-color: white;
+            transition:0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #signin{
+            top:0;
+            left:0;
+            transform:translate(-100%,0);
+        }
+        #signup{
+            top:0;
+            left:0;
+            transform:translate(100%,0);
+        }
+        #signin.active,#signup.active{
+            transform:translate(0,0);
+        }
+        #account form i{
+            position: absolute;
+            top:30px;
+            right:30px;
+            width:40px;
+            height:40px;
+            line-height:40px;
+            text-align:center;
+            cursor:pointer;
+            font-size:22px;
+        }
+        #account form input{
+            width:250px;
+            padding:10px;
+            font-size:17px;
+            background-color:ghostwhite;
+            border:none;
+            outline:none;
+            margin:12px;
+            border-radius:14px;
+            padding-left:20px;
+            box-shadow:0 0 5px rgb(0,0,0,0.3);
+        }
+        #account form input::placeholder{
+            color:black;
+        }
+        #account form input[type="submit"]{
+            background-color: blue;
+            color:white;
+            font-weight:bold;
+            letter-spacing:2px;
+            font-size:20px;
+        }
+        
+/* account page  */
+        
+        
+/* profile page */
+        #my_profile{
+            width:100%;
+            justify-content: flex-start;
+            padding-top:30px;
+            max-height:100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+            background-color: white;
+        }
+        #my_profile .fa-long-arrow-alt-left,#my_profile .box1 img{
+            position: absolute;
+            top:0;
+            transform:translateY(-50%);
+            width:45px;
+            height:45px;
+            line-height:40px;
+            text-align: center;
+            box-shadow:0 0 5px rgb(0,0,0,0.2);
+            font-size:22px;
+            cursor:pointer;
+            border-radius:50%;
+            color:black;
+            background-color:white;
+        }
+        #my_profile .fa-long-arrow-alt-left{
+            left:10px;
+        }
+        #my_profile .box1 img{
+            right:10px;
+            transform:translate(0,-50%);
+            padding:5px;
+            box-sizing:content-box;
+            object-fit: cover;
+            width:55px;
+            height:55px;
+        }
+        #my_profile .box1{
+            margin-top:20px;
+            position:relative;
+            width:300px;
+            padding:15px 8px;
+            border:2px solid black;
+            box-shadow:0 0 5px rgb(0,0,0,0.4),inset 0 0 4px rgb(0,0,0,0.5);
+            margin-bottom:20px;
+        }
+        #my_profile .box1 h2{
+            width:100%;
+            padding-left:20px;
+            font-size:19px;
+            margin-top:25px;
+            margin-bottom:10px;
+            font-weight:500;
+            letter-spacing:1px;
+        }
+        #my_profile .box2{
+            position:relative;
+            border-top:2px dashed rgb(0,0,0,0.4);
+            width:100%;
+            padding:25px 10px;
+            margin:0px;
+        }
+        #my_profile .box2 h2, #my_profile .box3 h2{
+            min-width:250px;
+            width:90%;
+            font-size:19px;
+            font-weight:500;
+            letter-spacing:1px;
+            margin:5px;
+        }
+        #my_profile .box2 .mail{
+            margin-top:8px;
+            min-width:250px;
+            width:90%;
+            padding:10px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction:row;
+            padding-left:15px;
+            opacity:0.5;
+            font-size:17px;
+        }
+        #my_profile .box2 .mail i{
+            margin-right:10px;
+            font-size:22px;
+        }
+        #my_profile #add_details{
+            padding:10px;
+            width:90%;
+            min-width:250px;
+            margin-bottom:10px 0;
+        }
+        #my_profile #add_details p{
+            margin:10px 0;
+            font-size:16px;
+        }
+        #my_profile .box3{
+            padding:25px 0 10px 0;
+            width:100%;
+            margin:25px 0 10px 0;
+            border-top:2px dashed rgb(0,0,0,0.4);
+            position:relative;
+        }
+        #my_profile .box3 ul{
+            width:90%;
+            margin-top:10px;
+            min-width:250px;
+            flex-direction: row;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        #my_profile .box3 ul li{
+            width:40px;
+            height:40px;
+            cursor:pointer;
+            line-height:40px;
+            text-align: center;
+            font-size:25px;
+            margin:10px;
+            display:none;
+            color:rebeccapurple;
+            transition:0.2s;
+        }
+        #my_profile .box3 ul li.active{
+            display: flex;
+        }
+        #my_profile .box3 ul li:hover{
+            color:red;
+        }
+        #my_profile .other_links{
+            width:90%;
+            min-width:300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        #my_profile .other_links a{
+            margin:10px;
+            cursor:pointer;
+            padding:10px;
+            transition:0.3s;
+            color:rebeccapurple;
+        }
+        #my_profile .other_links a:hover{
+            color:red;
+        }
+/* profile page */
+        
+        @media (max-width:400px){
+            .container{
+                width:100%;
+                height:100%;
+            }
+        }
+    </style>
+</head>
+
+<body class="flex">
+    
+<section class="container flex">
+   
+    <section id="account" class="active">
+        <h1><img src="logo.png"><span>Network</span></h1>
+        <ul>
+            <li onclick="form_page(0)"><span>SIGN IN</span> <i class="fas fa-user"></i></li>
+            <li onclick="form_page(1)"><span>SIGN UP</span> <i class="fas fa-user-plus"></i></li>
+            <li onclick="google()"><span>Use Google </span> <i class="fab fa-google"></i></li>
+            <li><a>Tutorial to know how to use</a> <i class="fab fa-youtube"></i> </li>
+        </ul>
+        <form id="signin" autocomplete="off">
+                <i class="far fa-window-close" onclick="close_form()"></i>
+            <input type="email" id="sign_in_email" required placeholder="email">
+            <input type="password" id="sign_in_password" required placeholder="password">
+            <input type="submit" value="Log in">
+        </form>
+        <form id="signup" autocomplete="off">
+               <i class="far fa-window-close" onclick="close_form()"></i>
+            <input type="text" id="sign_up_name" required placeholder="Name">
+            <input type="email" id="sign_up_email" required placeholder="E-mail">
+            <input type="password" id="sign_up_password" required placeholder="set a password">
+            <input type="text" id="sign_up_repassword" required placeholder="confirm password">
+            <input type="submit" value="Sign up">
+        </form>
+        
+    </section>
+   
+    <section class="flex" id="home_page">
+        
+    <div class="btns flex">
+        <img class="profile_logo" onclick="page_change(0)">
+        <div>
+            <i class="fas fa-search" onclick="page_change(3)"></i>
+            <i class="far fa-edit" onclick="page_change(1)"></i>
+        </div>
+    </div>
+    
+     <div id="add_frnds">
+        
+     </div>
+     
+    </section>
+    
+    <section class="flex pop_page" id="my_profile">
+         <div class="box1">
+                <i class="fas fa-long-arrow-alt-left" onclick="close1()"></i>
+                <img class="profile_img" src="avatars/p1.png">
+                <h2 id="profile_name">kedarisetti sridevi</h2>
+         </div>
+         <div class="box3 flex">
+            <h2>Media & other links </h2>
+             <ul>
+                 <li class='active'><i class="fab fa-facebook-messenger"></i></li>
+                 <li><i class="fab fa-facebook-square"></i></li>
+                 <li class='active'><i class="fab fa-instagram"></i></li>
+                 <li><i class="fab fa-twitter"></i></li>
+                 <li class="active"><i class="fab fa-youtube"></i></li>
+            </ul>
+            <div class="other_links">
+                <a>link1</a>
+                <a>link2</a>
+                <a>link3</a>
+                <a>link4</a>
+                <a>link4</a>
+                <a>link4</a>
+                <a>link4</a>
+                <a>link4</a>
+                <a>link4</a>
+                <a>link4</a>
+            </div>
+         </div>
+         <div class="box2 flex">
+             <h2>About me !</h2>
+             <div class="mail">
+                 <i class="fas fa-envelope"></i>
+                 <p id="profile_mail">satwik1330@gmail.com</p>
+             </div>
+             <div id="add_details">
+                 <p>hello</p>
+                 <p>how are you ?</p>
+                 <p>stay home stay safe</p>
+             </div>
+         </div>
+    </section>
+    
+    <section class="flex pop_page" id="edit_profile">
+    <i class="far fa-window-close" onclick="close1()"></i>
+    
+    </section>
+    
+    
+    <section class="flex pop_page" id="chat_place">
+
+    <div id="add_msg">
+
+    </div>
+    
+    <div class="header">
+    <i class="fas fa-long-arrow-alt-left" onclick="close1()"></i>
+    <img src="" id="chat_dp"><span id="chat_name"></span>
+    <i class="fas fa-bars" onclick="show_options()"></i>
+    </div>
+    
+    <ul id="options">
+        <li>Delete chat</li>
+        <li>see profile</li>
+    </ul>
+    
+    <div class="input">
+        <textarea id="msg_content" placeholder="enter message"></textarea>
+     <i class="fa fa-paper-plane flex" aria-hidden="true" onclick="send_msg1()"></i>
+    </div>
+    
+    </section>
+        
+    <section class="flex pop_page" id="search_page">
+    <div class="search">
+        <input type="text" id="search_box" placeholder="search for friends" oninput="search_filter()">
+        <i class="far fa-window-close" onclick="close1()"></i>
+    </div>
+    <div id="search_f">
+        
+     </div>
+    </section>
+    
+    <section id="logo" class="flex active pop_page"><img src="logo.png"></section>
+    
+</section>
+
+<script src="https://www.gstatic.com/firebasejs/8.7.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-auth.js"></script>
+
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyARQ2BkDwc8ET4ElFTx4tv3huFGTXs75xY",
+    authDomain: "network-c2f65.firebaseapp.com",
+    projectId: "network-c2f65",
+    storageBucket: "network-c2f65.appspot.com",
+    messagingSenderId: "565713313358",
+    appId: "1:565713313358:web:3935560cb111b6b83f6d1f"
+  };
+  firebase.initializeApp(firebaseConfig);
+    
+    const auth = firebase.auth();
+    const base = firebase.database();
+    
+</script>
+    
+    <script>
+    
+         var  user_key = "";
+         var user_name = "";
+        
+         var my_num = -1;
+         var other_num = 0;
+        
+         pop1();
+        
+        if (localStorage.getItem("kedar_network_user_key")){
+            user_key = localStorage.getItem("kedar_network_user_key");
+            user_name = localStorage.getItem("kedar_network_user_name");
+             var account = document.getElementById("account");
+            var date1 = Date.now();
+            firebase.database().ref('users/'+user_key).update({
+                datein : date1
+            });
+            account.classList.remove("active");
+             after_sign();
+        }else{
+            
+        }
+        
+        
+        function pop1(){
+            var lo = document.getElementById("logo");
+            lo.classList.add("active");
+            setTimeout(function(){
+            lo.classList.remove("active");
+            },1000);
+        }
+        
+         function page_change(a){
+             // 0 - my_profile
+             // 1 - edit
+             // 2 - chat 
+             // 3 search
+            var pop_page = document.querySelectorAll(".pop_page");
+             for (var i =0;i<pop_page.length;i++){
+                 pop_page[i].classList.remove("active");
+             }
+             pop_page[a].classList.add("active");
+             if (a == 0){
+                 document.body.classList.add("active");
+             }
+         }
+         
+         function close1(){
+             var pop_page = document.querySelectorAll(".pop_page");
+             for (var i =0;i<pop_page.length;i++){
+                 pop_page[i].classList.remove("active");
+             }
+             document.body.classList.remove("active");
+         }
+        
+        function search_filter(){
+            var search_box = document.getElementById("search_box").value;
+            var names = document.querySelectorAll(".search_name");
+            var search_user = document.querySelectorAll(".search_user");
+             for (var i =0;i<names.length;i++){
+                 var val = search_box.toLowerCase();
+                if (names[i].innerHTML.includes(val)){
+                   search_user[i].style.display = "flex";
+                }else{
+                   search_user[i].style.display = "none";
+                }
+            }
+        }   
+        
+        function show_options(){
+           var  fa_bars = document.querySelector(".fa-bars"); 
+           var options = document.querySelector("#options");
+            fa_bars.classList.toggle("active");
+            options.classList.toggle("active");
+        }
+        
+        var  singin = document.querySelector("#signin");
+         var singup = document.querySelector("#signup");
+        
+        function form_page(a){
+           if (a == 0){
+               signup.classList.remove("active");
+               singin.classList.add("active");
+           }else{
+               signin.classList.remove("active");
+               singup.classList.add("active");
+           }
+        }
+        
+        function close_form(){
+            signup.classList.remove("active");
+            singin.classList.remove("active");
+        }
+        
+        singin.addEventListener('submit', (e) => {
+            e.preventDefault();
+            var sign_in_email = document.getElementById("sign_in_email").value;
+            var sign_in_password = document.getElementById("sign_in_password").value;
+            auth.signInWithEmailAndPassword(sign_in_email,sign_in_password)
+                    .then(function(){
+                        var user = auth.currentUser;
+                        var user_ref = base.ref();
+                        var user_data = {
+                            key:user.uid,
+                            datein : Date.now()
+                        }
+                      firebase.database().ref('users/'+user.uid).update(user_data);
+                
+                        alert("signed in succesfully");
+                        user_key = user.uid;
+                localStorage.setItem("kedar_network_user_key",user_key);
+                var account = document.getElementById("account");
+            account.classList.remove("active");
+                after_sign();
+                    })
+                    .catch(function(error){
+                        var err_code = error.code;
+                        var err_msg = error.message;
+                        alert(err_msg);
+                })
+        })
+        
+        singup.addEventListener('submit', (e) => {
+            e.preventDefault();
+            var sign_up_name = document.getElementById("sign_up_name").value;
+            user_name = sign_up_name;
+            var sign_up_email = document.getElementById("sign_up_email").value;
+            var sign_up_password = document.getElementById("sign_up_password").value;
+            var sign_up_repassword = document.getElementById("sign_up_repassword").value;
+
+            if (sign_up_name.length > 3){
+                if (sign_up_password.length > 6){
+                if (sign_up_password == sign_up_repassword){
+                    auth.createUserWithEmailAndPassword(sign_up_email,sign_up_password)
+                    .then(function(){
+                        var user = auth.currentUser;
+                        var user_ref = base.ref();
+                        var user_data = {
+                            key : user.uid,
+                            email : sign_up_email,
+                            name : sign_up_name,
+                            datein : Date.now(),
+                            dp:"avatars/p8.png",
+                        }
+                        user_name = sign_up_name;
+         firebase.database().ref('users/'+user.uid).set(user_data);
+                        alert("account created succesfully");
+                        user_key = user.uid;
+     localStorage.setItem("kedar_network_user_key",user_key);
+                        
+         var account = document.getElementById("account");
+            account.classList.remove("active");               
+                        after_sign();
+                    })
+                    .catch(function(error){
+                        var err_code = error.code;
+                        var err_msg = error.message;
+                        alert(err_msg);
+                    })
+                }else{
+                    alert("password confirmation failed");
+                }
+            }else{
+                alert("password must be altest 7 characters..")
+            }
+            }else{
+                alert("user name should be atleast of 3 characters");
+            }
+        })
+        
+        function after_sign(){
+            pop1();
+            firebase.database().ref('users/'+user_key).once('value',function(snapshot){
+                user_name = snapshot.val().name;
+                var user_dp = snapshot.val().dp;
+                var profile_logo = document.querySelectorAll(".profile_logo");
+                for(var i = 0;i<profile_logo.length;i++){
+                    profile_logo[i].src = user_dp;
+                }
+                   localStorage.setItem("kedar_network_user_name",user_name);
+            });
+            draw_frnds();
+        }
+        
+        var list_frnds = [];
+        
+        function draw_frnds(){
+             
+             var add_frnds = document.getElementById("add_frnds");
+             var search_f = document.getElementById("search_f");
+             
+             var count1 = 0;
+            
+        firebase.database().ref('users/').once('value',function(snapshot){
+            list_frnds = [];
+           add_frnds.innerHTML = "";
+            search_f.innerHTML = "";
+        snapshot.forEach(function(ChildSnapShot){
+            let user_frnd_key = ChildSnapShot.val().key;
+            let user_up = ChildSnapShot.val().name;
+            let user_dp = ChildSnapShot.val().dp;
+            
+            if (user_up != user_name){
+                
+       add_frnds.innerHTML += "<p class='frnd_user' onclick='open_person1("+count1
+                +")'><img src='"+user_dp+"' class='home_frnd_dp'><span class='home_name'>"+user_up+"</span></p>";
+     search_f.innerHTML += "<p class='search_user' onclick='open_person2("+count1
+                +")'><img src='"+user_dp+"' class='search_frnd_dp'><span class='search_name'>"+user_up+"</span></p>";
+                
+                list_frnds.push(user_frnd_key);
+                
+          count1 += 1; 
+                
+             }
+        })   
+            });
+             
+         }
+        
+             var chat_dp = document.getElementById("chat_dp");
+             var chat_name = document.getElementById("chat_name");
+             
+         function open_person1(a){
+             // from home
+             page_change(2);
+             var img1 = document.querySelectorAll(".home_frnd_dp");
+             var name1 = document.querySelectorAll(".home_name");
+             var particular = img1[a];
+             var name_p = name1[a].innerHTML;
+             var link1 = particular.getAttribute("src");
+             chat_dp.src = link1;
+             chat_name.innerHTML = name_p;
+         }
+        
+         function open_person2(a){
+             // from search
+             page_change(2);
+             var img1 = document.querySelectorAll(".search_frnd_dp");
+             var name1 = document.querySelectorAll(".search_name");
+             var name_p = name1[a].innerHTML;
+             chat_name.innerHTML = name_p;
+             var particular = img1[a];
+             var link1 = particular.getAttribute("src");
+             chat_dp.src = link1;
+         }
+        
+         function draw_profile(){
+             
+         }
+        
+         function send_msg1(){
+            var msg_content = document.getElementById("msg_content").value;
+            var add_msg = document.getElementById("add_msg");
+            var sender = ["me","other"];
+            var mat = Math.floor(Math.random()*2 + 0);
+            if (msg_content.length > 0){
+                add_msg.innerHTML = "<div class='sample "+sender[mat]+"'><div>"+msg_content+"</div></div>"+add_msg.innerHTML;
+            }
+            document.getElementById("msg_content").value = "";
+        }
+        
+        var provider = new firebase.auth.GoogleAuthProvider();
+        
+    function google(){
+         firebase.auth().signInWithPopup(provider).then(res => {
+             console.log(res);
+         }).catch(e => {
+             console.log(e);
+         })
+        }
+        
+    </script>
+    
+</body>
+</html>

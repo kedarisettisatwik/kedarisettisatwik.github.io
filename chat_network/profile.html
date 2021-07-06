@@ -1,0 +1,358 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    
+    <title>network</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            list-style:none;
+            text-decoration:none;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        ::-webkit-scrollbar{
+            width:5px;
+        }
+        ::-webkit-scrollbar-thumb{
+            background-color:black;
+        }
+        .flex{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .bg{
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size:cover;
+        }
+        body{
+            width:100vw;
+            height: 100vh;
+            background-color:lavenderblush;
+            overflow: hidden;
+        }
+        .container{
+            height:90%;
+            position: relative;
+            width:400px;
+            background-color:lavenderblush;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+            justify-content: flex-start;
+           overflow: hidden;
+        }
+        .profile_logo{
+            width:55px;
+            height:55px;
+            padding:5px;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+            object-fit: cover;
+            background-color:white;
+            border-radius:50%;
+        }        
+        .pop_page{
+            position: absolute;
+            z-index:-100;
+            opacity:0;
+            justify-content: flex-start;
+            height:100%;
+            width:100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+            background-color:white;
+            transition:0.4s;
+        }
+        .pop_page.active{
+            z-index:100;
+            opacity:1;
+        }
+        #logo{
+            justify-content: center;
+            align-items: center;
+        }
+        #logo.active{
+            z-index:10000;
+            opacity:1;
+        }
+        #logo img{
+            width:70px;
+        }
+       
+/* profile page */
+        #my_profile{
+            width:100%;
+            justify-content: flex-start;
+            padding-top:30px;
+            max-height:100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+            background-color: white;
+        }
+        #my_profile .box1 img{
+            position: absolute;
+            top:0;
+            transform:translateY(-50%);
+            width:45px;
+            height:45px;
+            line-height:40px;
+            text-align: center;
+            box-shadow:0 0 5px rgb(0,0,0,0.2);
+            font-size:22px;
+            cursor:pointer;
+            border-radius:50%;
+            color:black;
+            background-color:white;
+        }
+        #my_profile .box1 img{
+            right:10px;
+            transform:translate(0,-50%);
+            padding:5px;
+            box-sizing:content-box;
+            object-fit: cover;
+            width:55px;
+            height:55px;
+        }
+        #my_profile .box1{
+            margin-top:20px;
+            position:relative;
+            width:300px;
+            padding:15px 8px;
+            border:2px solid black;
+            box-shadow:0 0 5px rgb(0,0,0,0.4),inset 0 0 4px rgb(0,0,0,0.5);
+            margin-bottom:20px;
+        }
+        #my_profile .box1 h2{
+            width:100%;
+            padding-left:20px;
+            font-size:19px;
+            margin-top:25px;
+            margin-bottom:10px;
+            font-weight:500;
+            letter-spacing:1px;
+        }
+        #my_profile .box2{
+            position:relative;
+            border-top:2px dashed rgb(0,0,0,0.4);
+            width:100%;
+            padding:25px 10px;
+            margin:0px;
+        }
+        #my_profile .box2 h2,#my_profile .box3 h2{
+            min-width:250px;
+            width:90%;
+            font-size:19px;
+            font-weight:500;
+            letter-spacing:1px;
+            margin:5px;
+        }
+        #my_profile .box2 .mail{
+            margin-top:8px;
+            min-width:250px;
+            width:90%;
+            padding:10px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction:row;
+            padding-left:15px;
+            opacity:0.5;
+            font-size:17px;
+        }
+        #my_profile .box2 .mail i{
+            margin-right:10px;
+            font-size:22px;
+        }
+        #my_profile #add_details{
+            padding:10px;
+            width:90%;
+            min-width:250px;
+            margin-bottom:10px 0;
+        }
+        #my_profile #add_details p{
+            margin:10px 0;
+            font-size:16px;
+        }
+        #my_profile .box3{
+            padding:25px 0 10px 0;
+            width:100%;
+            margin:25px 0 10px 0;
+            border-top:2px dashed rgb(0,0,0,0.4);
+            position:relative;
+        }
+        #my_profile .box3 ul{
+            margin-top:10px;
+            width:90%;
+            min-width:250px;
+            flex-direction: row;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        #my_profile .box3 ul li{
+            width:40px;
+            height:40px;
+            cursor:pointer;
+            line-height:40px;
+            text-align: center;
+            font-size:25px;
+            margin:10px;
+            display:none;
+            color:rebeccapurple;
+            transition:0.2s;
+        }
+        #my_profile .box3 ul li.active{
+            display: flex;
+        }
+        #my_profile .box3 ul li:hover{
+            color:red;
+        }
+        #my_profile .other_links{
+            width:90%;
+            min-width:300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        #my_profile .other_links a{
+            margin:10px;
+            cursor:pointer;
+            padding:10px;
+            transition:0.3s;
+            color:rebeccapurple;
+        }
+        #my_profile .other_links a:hover{
+            color:red;
+        }
+        #my_profile .book_box{
+            
+        }
+        
+        
+/* profile page */
+        
+        @media (max-width:400px){
+            .container{
+                width:100%;
+                height:100%;
+            }
+        }
+    </style>
+</head>
+
+<body class="flex">
+    
+<section class="container flex">
+    
+    <section class="flex pop_page active" id="my_profile">
+         <div class="box1">
+                <img class="profile_img" src="avatars/p1.png">
+                <h2 id="profile_name">kedarisetti sridevi</h2>
+         </div>
+         <div class="box3 flex">
+            <h2>Media & other links </h2>
+             <ul>
+                 <li class='active'><i class="fab fa-facebook-messenger"></i></li>
+                 <li><i class="fab fa-facebook-square"></i></li>
+                 <li class='active'><i class="fab fa-instagram"></i></li>
+                 <li><i class="fab fa-twitter"></i></li>
+                 <li class="active"><i class="fab fa-youtube"></i></li>
+            </ul>
+            <div class="other_links">
+                <a>link1</a>
+                <a>link2</a>
+                <a>link3</a>
+                <a>link4</a>
+            </div>
+         </div>
+         <div class="box2 flex">
+             <h2>About me ! </h2>
+             <div class="mail">
+                 <i class="fas fa-envelope"></i>
+                 <p id="profile_mail">satwik1330@gmail.com</p>
+             </div>
+             <div id="add_details">
+                 <p>hello</p>
+                 <p>how are you ?</p>
+                 <p>stay home stay safe</p>
+             </div>
+         </div>
+         <div class="book_box flex">
+             <div class="book">
+                 
+             </div>
+            <div class="book">
+                 
+             </div>
+         </div>
+    </section>
+    
+    <section id="logo" class="flex active pop_page"><img src="logo.png"></section>
+    
+</section>
+
+<script src="https://www.gstatic.com/firebasejs/8.7.0/firebase.js"></script>
+
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyARQ2BkDwc8ET4ElFTx4tv3huFGTXs75xY",
+    authDomain: "network-c2f65.firebaseapp.com",
+    projectId: "network-c2f65",
+    storageBucket: "network-c2f65.appspot.com",
+    messagingSenderId: "565713313358",
+    appId: "1:565713313358:web:3935560cb111b6b83f6d1f"
+  };
+  firebase.initializeApp(firebaseConfig);
+    
+    const auth = firebase.auth();
+    const base = firebase.database();
+    
+</script>
+    
+    <script>
+    
+         var  user_key = "";
+         var user_name = "";
+        
+         pop1();
+        draw_profile();
+        
+        function pop1(){
+            var lo = document.getElementById("logo");
+            lo.classList.add("active");
+            setTimeout(function(){
+            lo.classList.remove("active");
+            },1000);
+        }
+        
+        firebase.database().ref('users/'+user_key).once('value',function(snapshot){
+                user_name = snapshot.val().name;
+                var user_dp = snapshot.val().dp;
+                var profile_logo = document.querySelectorAll(".profile_logo");
+                for(var i = 0;i<profile_logo.length;i++){
+                    profile_logo[i].src = user_dp;
+                }
+                   localStorage.setItem("kedar_network_user_name",user_name);
+        });
+        
+         function draw_profile(){
+             
+         }
+        
+    </script>
+    
+</body>
+</html>
