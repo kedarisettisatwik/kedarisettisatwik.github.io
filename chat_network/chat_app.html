@@ -1152,18 +1152,23 @@
                    });
         }
         
-        if (localStorage.getItem("kedar_network_user_key")){
+        if (localStorage.getItem("kedar_chat_user_key")){
             
             var lo = document.getElementById("logo");
             lo.classList.add("active");
             
-           var  user_key1 = localStorage.getItem("kedar_network_user_key");
-           var  user_name1 = localStorage.getItem("kedar_network_user_name");
+           var  user_key1 = localStorage.getItem("kedar_chat_user_key");
+           var  user_name1 = localStorage.getItem("kedar_chat_user_name");
             
              var account = document.getElementById("account");
             
             firebase.database().ref('users/'+user_key1).once('value',function(snapshot){
-                var cc = snapshot.val().key;
+                var cc1 = snapshot.val();
+                
+                
+                if (cc1){
+                    var cc = cc1.key;
+                
                 if (cc == user_key1){
                     
                          pop1();
@@ -1177,13 +1182,23 @@
                     date_set();
                        after_sign();
                     
-                }
-                 pop1();
-                lo.classList.remove("active");
+                    lo.classList.remove("active");
                 console.log(status);
+                pop1();
+                }else{
+                    pop1();
+                }
+                
+                    
+                }else{
+                   pop1();   
+                }
                 
             });
+            
         }else{
+            
+            localStorage.clear();
             pop1();
         }
         
@@ -1280,7 +1295,7 @@
                 
                         alert("signed in succesfully");
                         user_key = user.uid;
-                localStorage.setItem("kedar_network_user_key",user_key);
+                localStorage.setItem("kedar_chat_user_key",user_key);
                 var account = document.getElementById("account");
                 date_set();
             account.classList.remove("active");
@@ -1320,10 +1335,10 @@
          firebase.database().ref('users/'+user.uid+"/follow").push({
              name : user.uid,
          }); 
-                        date_set();
                         alert("account created succesfully");
                         user_key = user.uid;
-     localStorage.setItem("kedar_network_user_key",user_key);
+     localStorage.setItem("kedar_chat_user_key",user_key);
+                        date_set();
                         status = true;
                 firebase.auth().currentUser.sendEmailVerification().then( () => {
                         console.log("email verify");
@@ -1398,6 +1413,8 @@
             
             let follow1 = ChildSnapShot.val().follow;
             let follow = Object.values(follow1);  
+            
+         //   console.log(follow);
             
             if (user_up != user_name){
                 
