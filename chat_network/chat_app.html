@@ -418,7 +418,7 @@
             transform:rotateZ(180deg);
         }
         .sample{
-             -webkit-animation: memsg 0.8s linear forwards;
+             -webkit-animation: memsg 0.6s linear forwards;
             transform:rotateZ(180deg);
             margin-bottom:5px;
             width:100%;
@@ -454,7 +454,7 @@
             margin-right:10px;
         }
         .sample.me:nth-child(1) div{
-            -webkit-animation:las1 0.8s linear forwards;
+            -webkit-animation:las1 0.6s linear forwards;
         }
         @keyframes las1{
             0%{opacity:0;transform:translateX(15px)}
@@ -486,7 +486,7 @@
             transform:translate(-50%,-50%) rotateZ(45deg);
         }
         .sample.other:nth-child(1) div{
-            -webkit-animation:las2 0.8s linear forwards;
+            -webkit-animation:las2 0.6s linear forwards;
         }
         @keyframes las2{
             0%{opacity:0;transform:translateX(-15px)}
@@ -1027,7 +1027,7 @@
     
     <section class="flex pop_page" id="my_profile">
          <div class="box1">
-                <i class="fas fa-long-arrow-alt-left" onclick="close1()"></i>
+                <i class="fas fa-long-arrow-alt-left" onclick="close1(0)"></i>
                 <img id="profile_img" src="">
                 <h2 id="profile_name"></h2>
          </div>
@@ -1070,7 +1070,7 @@
     </section>
     
     <section class="flex pop_page" id="edit_profile">
-    <i class="far fa-window-close" onclick="close1()"></i>
+    <i class="far fa-window-close" onclick="close1(0)"></i>
     
     </section>
     
@@ -1082,7 +1082,7 @@
     </div>
     
     <div class="header">
-    <i class="fas fa-long-arrow-alt-left" onclick="close1()"></i>
+    <i class="fas fa-long-arrow-alt-left" onclick="close1(1)"></i>
     <img src="" id="chat_dp"><span id="chat_name"></span>
     <i class="fas fa-bars" onclick="show_options()"></i>
     </div>
@@ -1102,7 +1102,7 @@
     <section class="flex pop_page" id="search_page">
     <div class="search">
         <input type="text" id="search_box" placeholder="search for friends" oninput="search_filter()">
-        <i class="far fa-window-close" onclick="close1()"></i>
+        <i class="far fa-window-close" onclick="close1(0)"></i>
     </div>
     <div id="search_f">
         
@@ -1136,6 +1136,9 @@
     
          var  user_key = "";
          var user_name = "";
+        
+        var back_other_key = "";
+        
         var user_dp = "";
          var status = false;
         var status1 = false;
@@ -1239,10 +1242,11 @@
                  link_to_invite.innerHTML = "";
                     link_to_invite.select();
              }
+       
              invite(1);
          }
          
-         function close1(){
+         function close1(a){
              var pop_page = document.querySelectorAll(".pop_page");
              for (var i =0;i<pop_page.length;i++){
                  pop_page[i].classList.remove("active");
@@ -1254,6 +1258,9 @@
             options.classList.remove("active");
              var add_1 = document.getElementById("add_msg");
              add_1.innerHTML = "";
+             if (a == 1){
+                 firebase.database().ref("users/"+back_other_key+"/active/"+user_key).remove();
+             }
          }
         
         function search_filter(){
@@ -1343,9 +1350,16 @@
                         }
                         user_name = sign_up_name;
          firebase.database().ref('users/'+user.uid).set(user_data);
+                        
          firebase.database().ref('users/'+user.uid+"/follow").push({
              name : user.uid,
-         }); 
+         });
+                        
+        firebase.database().ref('users/'+user.uid+"/active").push({
+             key1 : user.uid,
+             unseen1 : "one",
+         });
+                        
                         alert("account created succesfully");
                         user_key = user.uid;
      localStorage.setItem("kedar_chat_user_key",user_key);
@@ -1425,6 +1439,9 @@
             let follow1 = ChildSnapShot.val().follow;
             let follow = Object.values(follow1);  
             
+            let active1 = ChildSnapShot.val().active;
+            let active2 = Object.values(active1);  
+            
          //   console.log(follow);
             
             if (user_up != user_name){
@@ -1434,7 +1451,13 @@
                 var key_follow = follow[ld].name;
                 list_follow.push(key_follow);
             }
-            
+                
+            var list_active = [];
+            for (var ld = 0;ld < active2.length;ld++){
+                var key_active = active2[ld].key1;
+                list_active.push(key_active);
+            }
+                
                 var fl = "frnd_user";
                 
                 if (list_follow.includes(user_key)){
@@ -1445,8 +1468,13 @@
      search_f.innerHTML += "<p class='search_user' onclick='open_person2("+count1
                 +")'><img src='"+user_dp+"' class='search_frnd_dp'><span class='search_name'>"+user_up+"</span><label>"+ user_time +"</label></p>";
             
-    add_frnds.innerHTML += "<p class='"+fl+"' onclick='open_person2("+count1
-                +")'><img src='"+user_dp+"' class='home_frnd_dp'><span class='home_name'>"+user_up+"</span><label>"+ user_time +"</label></p>";
+                if (list_active.includes(user_key)){
+        add_frnds.innerHTML = "<p class=' active "+fl+"' onclick='open_person2("+count1
+                +")'><img src='"+user_dp+"' class='home_frnd_dp'><span class='home_name'>"+user_up+"</span><label>"+ user_time +"</label></p>" + add_frnds.innerHTML;
+                }else{
+        add_frnds.innerHTML += "<p class='"+fl+"' onclick='open_person2("+count1
+                +")'><img src='"+user_dp+"' class='home_frnd_dp'><span class='home_name'>"+user_up+"</span><label>"+ user_time +"</label></p>";  
+                }
                 
                 list_frnds_search.push(user_frnd_key);
                 
@@ -1495,6 +1523,9 @@
              }  
         })   
             }); 
+             
+             back_other_key = key_from;
+    firebase.database().ref("users/"+key_from+"/active/"+user_key).remove();
              
          }
         
@@ -1630,8 +1661,6 @@
              
             if (msg_content.length > 0){
                 
-                  var dd = Date.now();
-                
                 if (list_followers.includes(draw_key)){
                     
                 }else{
@@ -1646,9 +1675,12 @@
                     
                 }
                 
-                firebase.database().ref("users/"+user_key).update({
-                          datein : dd,
+                firebase.database().ref("users/"+user_key+"/active/"+draw_key).update({
+                           key1 : draw_key,
+                          unseen1 : msg_content
                 });
+                
+                date_set();
                 
         firebase.database().ref('users/'+ user_key+"/messages/"+draw_key).push({
                sender_name : user_key,
