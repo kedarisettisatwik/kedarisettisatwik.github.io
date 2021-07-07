@@ -100,6 +100,68 @@
             line-height:60px;
             text-align: center;
         }
+        #invite_box{
+            position: absolute;
+            top:20px;
+            transform:translateY(calc(-100% - 30px));
+            width:95%;
+            padding:10px;
+            background-color: white;
+            z-index:100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            box-shadow:0 0 10px rgb(0,0,0,0.3);
+            transition:0.4s;
+        }
+        #invite_box.active{
+            transform:translateY(0px);
+        }
+        #invite_box .fa-window-close{
+            width:90%;
+            text-align: right;
+            font-size:25px;
+            cursor:pointer;
+            margin-top:12px;
+            margin-bottom:20px;
+        }
+        #invite_box div{
+            width:95%;
+            font-size:17px;
+            position:relative;
+            margin-bottom: 50px;
+        }
+        #invite_box div p{
+            font-size:15px;
+            margin-bottom:10px;
+        }
+        #invite_box div input{
+            margin:10px;
+            width:90%;
+            font-size:14px;
+            margin:10px;
+            outline:none;
+            background:none;
+            border:none;
+            border:2px dashed rgb(0,0,255,0.3);
+            padding:10px;
+        }
+        #invite_box div i{
+            position: absolute;
+            bottom:0px;
+            right:0px;
+            width:40px;
+            height:40px;
+            line-height:40px;
+            text-align:center;
+            font-size:24px;
+            color:white;
+            background-color:darkblue;
+            cursor:pointer;
+            box-shadow:0 0 10px rgb(0,0,0,0.2);
+            border-radius:50%;
+        }
          #add_frnds{
             width:100%;
             padding:10px;
@@ -855,9 +917,20 @@
    
     <section class="flex" id="home_page">
         
+    <div id="invite_box">
+       <i class="far fa-window-close" onclick="invite(1)"></i>
+        <div>
+            <p>Invite your friends & others to join with network chat app,by sharing this link</p>
+        <input type="text" value="https://kedarisettisatwik.github.io/chat_network/chat_app.html" id="link_to_invite">
+             <i class="far fa-copy" onclick="copy2()"></i>
+        </div>
+        
+    </div>
+    
     <div class="btns flex">
         <img class="profile_logo" onclick="open_with(-1)">
         <div>
+            <i class="fas fa-user-plus" onclick="invite(2)"></i>
             <i class="fas fa-search" onclick="page_change(3)"></i>
             <i class="far fa-edit" onclick="page_change(1)"></i>
         </div>
@@ -1049,6 +1122,13 @@
              if (a == 0){
                  document.body.classList.add("active");
              }
+             if (a == 2){
+                  var link_to_invite = document.getElementById("msg_content");
+                 link_to_invite.innerHTML = "";
+                    link_to_invite.select();
+                    document.execCommand("copy");
+             }
+             invite(1);
          }
          
          function close1(){
@@ -1524,6 +1604,21 @@
             localStorage.clear();
             location.reload();
         }
+        
+        function invite(a){
+            var invite_box = document.getElementById("invite_box");
+            if (a == 2){
+                invite_box.classList.add("active");
+            }else{
+                invite_box.classList.remove("active");
+            }
+        }
+        function copy2(){
+            var link_to_invite = document.getElementById("link_to_invite");
+            link_to_invite.select();
+            document.execCommand("copy");
+        }
+
     </script>
     
 </body>
