@@ -253,10 +253,10 @@
             transition:0.3s;
         }
         .input textarea:focus{
-            transform:translateY(-50px);
+            transform:translateY(-25px);
         }
         .input textarea:focus ~ i{
-            transform:translateY(-50px);
+            transform:translateY(-25px);
         }
         .input textarea::placeholder{
             color:black;
@@ -876,7 +876,7 @@
                 <h2 id="profile_name"></h2>
          </div>
          <div id="box4">
-             <button>LOG out</button>
+             <button onclick="logout()">LOG out</button>
              <div class="link_pro">
             <p>you can share you profile to any one who don't have account in network also by sharing this below link</p>
             <input type="text" id="my_pro_link">
@@ -932,7 +932,7 @@
     </div>
     
     <ul id="options">
-        <li>Delete chat</li>
+        <li onclick="delete_chat()">Delete chat</li>
         <li onclick="open_with(1)">see profile</li>
     </ul>
     
@@ -980,6 +980,7 @@
     
          var  user_key = "";
          var user_name = "";
+        var user_dp = "";
          var status = false;
         
          var open_from = "home";
@@ -995,6 +996,7 @@
             
            var  user_key1 = localStorage.getItem("kedar_network_user_key");
            var  user_name1 = localStorage.getItem("kedar_network_user_name");
+            
              var account = document.getElementById("account");
             
             var date1 = Date.now();
@@ -1059,6 +1061,8 @@
            var options = document.querySelector("#options");
             fa_bars.classList.remove("active");
             options.classList.remove("active");
+             var add_1 = document.getElementById("add_msg");
+             add_1.innerHTML = "";
          }
         
         function search_filter(){
@@ -1195,10 +1199,11 @@
             my_pro_link.value = val1;
             firebase.database().ref('users/'+user_key).once('value',function(snapshot){
                 user_name = snapshot.val().name;
-                var user_dp = snapshot.val().dp;
+                var user_dp1 = snapshot.val().dp;
                 var profile_logo = document.querySelectorAll(".profile_logo");
                 for(var i = 0;i<profile_logo.length;i++){
-                    profile_logo[i].src = user_dp;
+                    profile_logo[i].src = user_dp1;
+                    user_dp = user_dp1;
                 }
                    localStorage.setItem("kedar_network_user_name",user_name);
             });
@@ -1212,12 +1217,11 @@
              
              var add_frnds = document.getElementById("add_frnds");
              var search_f = document.getElementById("search_f");
-             
-             var count1 = 0;
             
         firebase.database().ref('users/').once('value',function(snapshot){
-            list_frnds = [];
-           add_frnds.innerHTML = "";
+            list_frnds_search = [];
+           var  count1 = 0;
+            
             search_f.innerHTML = "";
         snapshot.forEach(function(ChildSnapShot){
             let user_frnd_key = ChildSnapShot.val().key;
@@ -1225,13 +1229,10 @@
             let user_dp = ChildSnapShot.val().dp;
             
             if (user_up != user_name){
-                
-       add_frnds.innerHTML += "<p class='frnd_user' onclick='open_person1("+count1
-                +")'><img src='"+user_dp+"' class='home_frnd_dp'><span class='home_name'>"+user_up+"</span></p>";
+            
      search_f.innerHTML += "<p class='search_user' onclick='open_person2("+count1
                 +")'><img src='"+user_dp+"' class='search_frnd_dp'><span class='search_name'>"+user_up+"</span></p>";
                 
-                list_frnds_home.push(user_frnd_key);
                 list_frnds_search.push(user_frnd_key);
                 
           count1 += 1; 
@@ -1239,6 +1240,29 @@
              }
         })   
             });
+            
+         firebase.database().ref('users/'+user_key+"/follow").on('value',function(snapshot){
+             list_frnds_home = [];
+           var  count2 = 0;
+           add_frnds.innerHTML = "";
+        snapshot.forEach(function(ChildSnapShot){
+            let user_frnd_key1 = ChildSnapShot.val().key;
+            let user_up1 = ChildSnapShot.val().name;
+            let user_dp1 = ChildSnapShot.val().dp;
+            
+            if (user_up1 != user_name){
+            
+    add_frnds.innerHTML += "<p class='frnd_user' onclick='open_person1("+count2
+                +")'><img src='"+user_dp1+"' class='home_frnd_dp'><span class='home_name'>"+user_up1+"</span></p>";
+                
+                list_frnds_home.push(user_frnd_key1);
+                
+          count2 += 1; 
+                
+             }
+        })   
+            });   
+            
              
          }
         
@@ -1257,7 +1281,28 @@
              var link1 = particular.getAttribute("src");
              chat_dp.src = link1;
              chat_name.innerHTML = name_p;
+             
+             var key_from = list_frnds_home[other_num];
+             var chat_area = document.getElementById("add_msg");
+             
+             
+    firebase.database().ref('users/'+user_key+"/messages/"+key_from).on('value',function(snapshot){
+          chat_area.innerHTML = "";
+        snapshot.forEach(function(ChildSnapShot){
+             var other_me = ChildSnapShot.val().sender_name;
+             var content_msg = ChildSnapShot.val().send_msg;
+             if (other_me == user_key){
+            chat_area.innerHTML = "<div class='sample me'><div>"+content_msg+"</div></div>"+chat_area.innerHTML;
+             }else{
+               chat_area.innerHTML = "<div class='sample other'><div>"+content_msg+"</div></div>"+chat_area.innerHTML;
+             }
+            
+        })   
+            }); 
+             
+             
          }
+        
         
          function open_person2(a){
              open_from = "search"
@@ -1271,7 +1316,42 @@
              var particular = img1[a];
              var link1 = particular.getAttribute("src");
              chat_dp.src = link1;
+             
+             var key_from = list_frnds_home[other_num];
+             var chat_area = document.getElementById("add_msg");
+             
+    firebase.database().ref('users/'+user_key+"/messages/"+key_from).on('value',function(snapshot){
+          chat_area.innerHTML = "";
+        snapshot.forEach(function(ChildSnapShot){
+             var other_me = ChildSnapShot.val().sender_name;
+             var content_msg = ChildSnapShot.val().send_msg;
+             if (other_me == user_key){
+            chat_area.innerHTML = "<div class='sample me'><div>"+content_msg+"</div></div>"+chat_area.innerHTML;
+             }else{
+               chat_area.innerHTML = "<div class='sample other'><div>"+content_msg+"</div></div>"+chat_area.innerHTML;
+             }  
+        })   
+            }); 
+             
          }
+        
+        function delete_chat(){
+            
+            var del_key = "";
+                if (open_from == "search"){
+                    del_key = list_frnds_search[other_num];
+                }else{
+                    del_key = list_frnds_search[other_num];
+                } 
+            
+           firebase.database().ref('users/'+user_key+"/messages/"+del_key).remove(); 
+            
+            var  fa_bars = document.querySelector(".fa-bars"); 
+           var options = document.querySelector("#options");
+            fa_bars.classList.remove("active");
+            options.classList.remove("active");
+        
+        }
         
         function open_with(a){
             var draw_key = user_key;
@@ -1371,21 +1451,79 @@
          }
         
          function send_msg1(){
+             
+             if (open_from == "search"){
+                    draw_key = list_frnds_search[other_num];
+                }else{
+                    draw_key = list_frnds_search[other_num];
+                }
+             
+             var chatname1 = document.getElementById("chat_name").innerHTML;
+             var chatdp = document.getElementById("chat_dp");
+             var chat_dp1 = chatdp.getAttribute("src");
+             
             var msg_content = document.getElementById("msg_content").value;
             var add_msg = document.getElementById("add_msg");
-            var sender = ["me","other"];
-            var mat = Math.floor(Math.random()*2 + 0);
+            
             if (msg_content.length > 0){
-                add_msg.innerHTML = "<div class='sample "+sender[mat]+"'><div>"+msg_content+"</div></div>"+add_msg.innerHTML;
+                
+                firebase.database().ref("users/"+draw_key+"/follow/"+user_key).update({
+                           key : user_key,
+                           dp : user_dp,
+                           name : user_name,
+                });
+                
+                firebase.database().ref("users/"+user_key+"/follow/"+draw_key).update({
+                           key : draw_key,
+                           dp : chat_dp1,
+                           name : chatname1
+                });
+                
+                 firebase.database().ref('users/'+ user_key+"/messages/"+draw_key).push({
+               sender_name : user_key,
+               send_msg : msg_content,
+                     
+                });
+                
+     firebase.database().ref('users/'+draw_key+"/messages/"+user_key).push({
+               sender_name : user_key,
+               send_msg : msg_content,
+         
+               });
+             
+                var chat_area = document.getElementById("add_msg");
+                
+        firebase.database().ref('users/'+user_key+"/messages/"+draw_key).on('value',function(snapshot){
+          chat_area.innerHTML = "";
+        snapshot.forEach(function(ChildSnapShot){
+             var other_me = ChildSnapShot.val().sender_name;
+             var content_msg = ChildSnapShot.val().send_msg;
+             if (other_me == user_key){
+            chat_area.innerHTML = "<div class='sample me'><div>"+content_msg+"</div></div>"+chat_area.innerHTML;
+             }else{
+               chat_area.innerHTML = "<div class='sample other'><div>"+content_msg+"</div></div>"+chat_area.innerHTML;
+             }
+            
+        })   
+            });
+                
             }
+             
             document.getElementById("msg_content").value = "";
+             
+             
         }
         
         function copy1(){
     var my_pro_link = document.getElementById("my_pro_link");
             my_pro_link.select();
             document.execCommand("copy");
-}
+        }
+        
+        function logout(){
+            localStorage.clear();
+            location.reload();
+        }
     </script>
     
 </body>
