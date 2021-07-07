@@ -179,7 +179,7 @@
         }
          #add_frnds{
             width:100%;
-            padding:10px;
+            padding:10px 0;
             margin-top:20px;
             background-color: white;
             box-shadow:0 0 10px rgb(0,0,0,0.3);
@@ -191,7 +191,6 @@
             height:60px;
             overflow: hidden;
             font-size:17px;
-            display:flex;
             justify-content:space-between;
             align-items: center;
             flex-direction: row;
@@ -200,15 +199,16 @@
             border-bottom:2px solid rgb(0,0,0,0.2);
             cursor:pointer;
             background-color:white;
+            display:none;
         }
-        #add_frnds .frnd_user.unseen{
-            background-color:greenyellow;
+        #add_frnds .frnd_user.follow{
+            display:flex;
         }
         #add_frnds .frnd_user img{
             position:relative;
-            margin:0 10px;
-            width:50px;
-            height:50px;
+            margin:0 5px;
+            width:45px;
+            height:45px;
             padding:5px;
             box-sizing:content-box;
             border-radius:50%;
@@ -218,7 +218,34 @@
             letter-spacing:1px;
             margin:0 15px;
         }
-        
+        #add_frnds .frnd_user span{
+            font-size:17px;
+            position:relative;
+            margin:0px;
+            width:calc(100% - 100px);
+            text-align: left;
+            overflow-x: hidden;
+            height:55px;
+        }
+        #add_frnds .frnd_user.active span::after{
+            content:'';
+            position: absolute;
+            width:10px;
+            height:10px;
+            border-radius:50%;
+            background-color:greenyellow;
+            top:50%;
+            right:10px;
+            transform:translateY(-50%);
+        }
+        #add_frnds .frnd_user label{
+            position: absolute;
+            bottom:0;
+            left:110px;
+            width:calc(100% - 100px);
+            font-size:15px;
+            color: cornflowerblue;
+        }
         
 /*    home page */
         
@@ -542,7 +569,34 @@
             letter-spacing:1px;
             margin:0 15px;
         }
-        
+        #search_f .search_user span{
+            font-size:17px;
+            position:relative;
+            margin:0px;
+            width:calc(100% - 100px);
+            text-align: left;
+            overflow-x: hidden;
+            height:55px;
+        }
+        #search_f .search_user.active span::after{
+            content:'';
+            position: absolute;
+            width:10px;
+            height:10px;
+            border-radius:50%;
+            background-color:greenyellow;
+            top:50%;
+            right:10px;
+            transform:translateY(-50%);
+        }
+        #search_f .search_user label{
+            position: absolute;
+            bottom:0;
+            left:110px;
+            width:calc(100% - 100px);
+            font-size:15px;
+            color: cornflowerblue;
+        }
 /* search page */
         
 /* account page  */
@@ -601,7 +655,7 @@
             margin:0 10px;
             font-size:22px;
         }
-        #account form{
+        #account #signin,#account #signup{
             position: absolute;
             width:100%;
             height:100%;
@@ -625,7 +679,7 @@
         #signin.active,#signup.active{
             transform:translate(0,0);
         }
-        #account form i{
+        #account #signin i, #account #signup i{
             position: absolute;
             top:30px;
             right:30px;
@@ -636,7 +690,7 @@
             cursor:pointer;
             font-size:22px;
         }
-        #account form input{
+        #account #signin input, #account #signup input{
             width:250px;
             padding:10px;
             font-size:17px;
@@ -648,17 +702,16 @@
             padding-left:20px;
             box-shadow:0 0 5px rgb(0,0,0,0.3);
         }
-        #account form input::placeholder{
+        #account #signin input::placeholder, #account #signup input::placeholder{
             color:black;
         }
-        #account form input[type="submit"]{
+        #account #signin input[type="submit"], #account #signup input[type="submit"]{
             background-color: blue;
             color:white;
             font-weight:bold;
             letter-spacing:2px;
             font-size:20px;
         }
-        
 /* account page  */
         
         
@@ -897,6 +950,7 @@
             }
             .container{
                 width:100%;
+                min-width:300px;
             }
         }
     </style>
@@ -1073,12 +1127,30 @@
          var user_name = "";
         var user_dp = "";
          var status = false;
+        var status1 = false;
+        var list_followers = [];
         
          var open_from = "home";
          var other_num = 0;
         
         var lo = document.getElementById("logo");
             lo.classList.add("active");
+        
+        function date_set(){
+            
+            var date1 = new Date().getDate();
+                    var month1 = new Date().getMonth();
+                    var year1 = new Date().getFullYear();
+                    var hour = new Date().getHours();
+                    var minute = new Date().getMinutes();
+                    var sec = new Date().getSeconds();
+                    
+     var dd1 = date1 + " - " + month1 + " - " + year1 + " ; "+hour + " : " +minute+" : " + sec;
+                    
+        firebase.database().ref("users/"+user_key).update({
+                          datein : dd1,
+                   });
+        }
         
         if (localStorage.getItem("kedar_network_user_key")){
             
@@ -1090,29 +1162,26 @@
             
              var account = document.getElementById("account");
             
-            var date1 = Date.now();
             firebase.database().ref('users/'+user_key1).once('value',function(snapshot){
                 var cc = snapshot.val().key;
                 if (cc == user_key1){
-                     pop1();
-                          account.classList.remove("active");
                     
-                firebase.database().ref('users/'+user_key1).update({
-                        status : "true",
-                        datein : date1
-                      });
+                         pop1();
+                          account.classList.remove("active");
                     
                     user_key = user_key1;
                     user_name = user_name1;
                      lo.classList.remove("active");
                     lo.classList.remove("active");
                     status = true;
+                    date_set();
                        after_sign();
                     
                 }
                  pop1();
                 lo.classList.remove("active");
                 console.log(status);
+                
             });
         }else{
             pop1();
@@ -1209,16 +1278,12 @@
                     .then(function(){
                         var user = auth.currentUser;
                         var user_ref = base.ref();
-                        var user_data = {
-                            key:user.uid,
-                            datein : Date.now()
-                        }
-                      firebase.database().ref('users/'+user.uid).update(user_data);
                 
                         alert("signed in succesfully");
                         user_key = user.uid;
                 localStorage.setItem("kedar_network_user_key",user_key);
                 var account = document.getElementById("account");
+                date_set();
             account.classList.remove("active");
                 status = true;
                 after_sign();
@@ -1249,11 +1314,14 @@
                             key : user.uid,
                             email : sign_up_email,
                             name : sign_up_name,
-                            datein : Date.now(),
                             dp:"avatars/p8.png",
                         }
                         user_name = sign_up_name;
          firebase.database().ref('users/'+user.uid).set(user_data);
+         firebase.database().ref('users/'+user.uid+"/follow").push({
+             name : user.uid,
+         }); 
+                        date_set();
                         alert("account created succesfully");
                         user_key = user.uid;
      localStorage.setItem("kedar_network_user_key",user_key);
@@ -1306,8 +1374,7 @@
             });
             draw_frnds();
         }
-        
-        var list_frnds_home = [];
+    
         var list_frnds_search = [];
         
         function draw_frnds(){
@@ -1315,93 +1382,95 @@
              var add_frnds = document.getElementById("add_frnds");
              var search_f = document.getElementById("search_f");
             
-        firebase.database().ref('users/').once('value',function(snapshot){
+        firebase.database().ref('users/').on('value',function(snapshot){
+            list_followers = [];
             list_frnds_search = [];
            var  count1 = 0;
-            
+            add_frnds.innerHTML = "";
             search_f.innerHTML = "";
         snapshot.forEach(function(ChildSnapShot){
             let user_frnd_key = ChildSnapShot.val().key;
             let user_up = ChildSnapShot.val().name;
             let user_dp = ChildSnapShot.val().dp;
             
-            if (user_up != user_name){
+            let user_time = ChildSnapShot.val().datein;
             
+           //  let data_now = Date.now();
+            
+            var year_format =  user_time.split(" ; ");
+            var yy = year_format[0].split(" - ");
+            var df = year_format[1].split(" : ");
+            
+            var date11 = eval(yy[0]);
+            var month11 = eval(yy[1]);
+            var year11 =  eval(yy[2]);
+            var hour11 = eval(df[0]);
+            var mintue11 = eval(df[1]);
+            var sec11 = eval(df[2]);
+            
+            var date12 = new Date().getDate();
+            var month12 = new Date().getMonth();
+            var year12 = new Date().getFullYear();
+            var hour12 = new Date().getHours();
+            var minute12 = new Date().getMinutes();
+            var sec12 = new Date().getSeconds();
+            
+            var diff_hr = Math.abs(hour11 - hour12);
+            var diff_min = Math.abs(mintue11 - minute12);
+            var diff_sec = Math.abs(sec11 - sec12);
+            
+            let follow1 = ChildSnapShot.val().follow;
+            let follow = Object.values(follow1);  
+            
+            if (user_up != user_name){
+                
+                var list_follow = [];
+            for (var ld = 0;ld < follow.length;ld++){
+                var key_follow = follow[ld].name;
+                list_follow.push(key_follow);
+            }
+            
+                var fl = "frnd_user";
+                
+                if (list_follow.includes(user_key)){
+                    fl = "frnd_user follow";
+                    list_followers.push(user_frnd_key);
+                }
+                
+                if (date11 == date12 && month11 == month12 && year11 == year12){
+                    if (diff_hr == 0){
+                        if (diff_min < 2){
+                            user_time = "online";
+                        }
+                    }
+                }
+                
      search_f.innerHTML += "<p class='search_user' onclick='open_person2("+count1
-                +")'><img src='"+user_dp+"' class='search_frnd_dp'><span class='search_name'>"+user_up+"</span></p>";
+                +")'><img src='"+user_dp+"' class='search_frnd_dp'><span class='search_name'>"+user_up+"</span><label>"+ user_time +"</label></p>";
+            
+    add_frnds.innerHTML += "<p class='"+fl+"' onclick='open_person2("+count1
+                +")'><img src='"+user_dp+"' class='home_frnd_dp'><span class='home_name'>"+user_up+"</span><label>"+ user_time +"</label></p>";
                 
                 list_frnds_search.push(user_frnd_key);
                 
+                status1 = true;
           count1 += 1; 
                 
              }
         })   
             });
             
-         firebase.database().ref('users/'+user_key+"/follow").on('value',function(snapshot){
-             list_frnds_home = [];
-           var  count2 = 0;
-           add_frnds.innerHTML = "";
-        snapshot.forEach(function(ChildSnapShot){
-            let user_frnd_key1 = ChildSnapShot.val().key;
-            let user_up1 = ChildSnapShot.val().name;
-            let user_dp1 = ChildSnapShot.val().dp;
             
-            if (user_up1 != user_name){
-            
-    add_frnds.innerHTML += "<p class='frnd_user' onclick='open_person1("+count2
-                +")'><img src='"+user_dp1+"' class='home_frnd_dp'><span class='home_name'>"+user_up1+"</span></p>";
-                
-                list_frnds_home.push(user_frnd_key1);
-                
-          count2 += 1; 
-                
-             }
-        })   
-            });   
             
              
          }
         
              var chat_dp = document.getElementById("chat_dp");
              var chat_name = document.getElementById("chat_name");
-             
-         function open_person1(a){
-             open_from = "home"
-             other_num = a;
-             // from home
-             page_change(2);
-             var img1 = document.querySelectorAll(".home_frnd_dp");
-             var name1 = document.querySelectorAll(".home_name");
-             var particular = img1[a];
-             var name_p = name1[a].innerHTML;
-             var link1 = particular.getAttribute("src");
-             chat_dp.src = link1;
-             chat_name.innerHTML = name_p;
-             
-             var key_from = list_frnds_home[other_num];
-             var chat_area = document.getElementById("add_msg");
-             
-             
-    firebase.database().ref('users/'+user_key+"/messages/"+key_from).on('value',function(snapshot){
-          chat_area.innerHTML = "";
-        snapshot.forEach(function(ChildSnapShot){
-             var other_me = ChildSnapShot.val().sender_name;
-             var content_msg = ChildSnapShot.val().send_msg;
-             if (other_me == user_key){
-            chat_area.innerHTML = "<div class='sample me'><div>"+content_msg+"</div></div>"+chat_area.innerHTML;
-             }else{
-               chat_area.innerHTML = "<div class='sample other'><div>"+content_msg+"</div></div>"+chat_area.innerHTML;
-             }
-            
-        })   
-            }); 
-             
-             
-         }
         
         
          function open_person2(a){
+             
              open_from = "search"
              other_num = a;
              // from search
@@ -1414,7 +1483,7 @@
              var link1 = particular.getAttribute("src");
              chat_dp.src = link1;
              
-             var key_from = list_frnds_home[other_num];
+             var key_from = list_frnds_search[other_num];
              var chat_area = document.getElementById("add_msg");
              
     firebase.database().ref('users/'+user_key+"/messages/"+key_from).on('value',function(snapshot){
@@ -1561,26 +1630,34 @@
              
             var msg_content = document.getElementById("msg_content").value;
             var add_msg = document.getElementById("add_msg");
-            
+             
             if (msg_content.length > 0){
                 
-                firebase.database().ref("users/"+draw_key+"/follow/"+user_key).update({
-                           key : user_key,
-                           dp : user_dp,
-                           name : user_name,
+                  var dd = Date.now();
+                
+                if (list_followers.includes(draw_key)){
+                    
+                }else{
+                    
+                firebase.database().ref("users/"+draw_key+"/follow").push({
+                           name : user_key,
+                });
+                    
+                 firebase.database().ref("users/"+user_key+"/follow").push({
+                           name : draw_key,
+                }); 
+                    
+                }
+                
+                firebase.database().ref("users/"+user_key).update({
+                          datein : dd,
                 });
                 
-                firebase.database().ref("users/"+user_key+"/follow/"+draw_key).update({
-                           key : draw_key,
-                           dp : chat_dp1,
-                           name : chatname1
-                });
-                
-                 firebase.database().ref('users/'+ user_key+"/messages/"+draw_key).push({
+        firebase.database().ref('users/'+ user_key+"/messages/"+draw_key).push({
                sender_name : user_key,
                send_msg : msg_content,
                      
-                });
+            });
                 
      firebase.database().ref('users/'+draw_key+"/messages/"+user_key).push({
                sender_name : user_key,
@@ -1607,7 +1684,6 @@
             }
              
             document.getElementById("msg_content").value = "";
-             
              
         }
         
@@ -1649,6 +1725,22 @@
             }
             
         }
+        
+        
+                
+//        firebase.database().ref("users/"+user_key).update({
+//                          datein : dd1,
+//                });
+                
+  
+        
+            setInterval(function(){
+                
+                if (status1){
+                   date_set();
+                }
+            
+            },40000);
     </script>
     
 </body>
