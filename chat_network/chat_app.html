@@ -1136,57 +1136,58 @@
         var lo = document.getElementById("logo");
             lo.classList.add("active");
         
-        function date_set(){
-            
-            var date1 = new Date().getDate();
-                    var month1 = new Date().getMonth();
-                    var year1 = new Date().getFullYear();
-                    var hour = new Date().getHours();
-                    var minute = new Date().getMinutes();
-                    var sec = new Date().getSeconds();
-                    
-     var dd1 = date1 + " - " + month1 + " - " + year1 + " ; "+hour + " : " +minute+" : " + sec;
-                    
-        firebase.database().ref("users/"+user_key).update({
-                          datein : dd1,
-                   });
-        }
+//        function date_set(){
+//            
+//            var date1 = new Date().getDate();
+//                    var month1 = new Date().getMonth();
+//                    var year1 = new Date().getFullYear();
+//                    var hour = new Date().getHours();
+//                    var minute = new Date().getMinutes();
+//                    var sec = new Date().getSeconds();
+//                    
+//     var dd1 = date1 + " - " + month1 + " - " + year1 + " ; "+hour + " : " +minute+" : " + sec;
+//                    
+//        firebase.database().ref("users/"+user_key).update({
+//                          datein : dd1,
+//                   });
+//        }
+//        
+//        if (localStorage.getItem("kedar_network_user_key")){
+//            
+//            var lo = document.getElementById("logo");
+//            lo.classList.add("active");
+//            
+//           var  user_key1 = localStorage.getItem("kedar_network_user_key");
+//           var  user_name1 = localStorage.getItem("kedar_network_user_name");
+//            
+//             var account = document.getElementById("account");
+//            
+//            firebase.database().ref('users/'+user_key1).once('value',function(snapshot){
+//                var cc = snapshot.val().key;
+//                if (cc == user_key1){
+//                    
+//                         pop1();
+//                          account.classList.remove("active");
+//                    
+//                    user_key = user_key1;
+//                    user_name = user_name1;
+//                     lo.classList.remove("active");
+//                    lo.classList.remove("active");
+//                    status = true;
+//                    date_set();
+//                       after_sign();
+//                    
+//                }
+//                 pop1();
+//                lo.classList.remove("active");
+//                console.log(status);
+//                
+//            });
+//        }else{
+//            pop1();
+//        }
         
-        if (localStorage.getItem("kedar_network_user_key")){
-            
-            var lo = document.getElementById("logo");
-            lo.classList.add("active");
-            
-           var  user_key1 = localStorage.getItem("kedar_network_user_key");
-           var  user_name1 = localStorage.getItem("kedar_network_user_name");
-            
-             var account = document.getElementById("account");
-            
-            firebase.database().ref('users/'+user_key1).once('value',function(snapshot){
-                var cc = snapshot.val().key;
-                if (cc == user_key1){
-                    
-                         pop1();
-                          account.classList.remove("active");
-                    
-                    user_key = user_key1;
-                    user_name = user_name1;
-                     lo.classList.remove("active");
-                    lo.classList.remove("active");
-                    status = true;
-                    date_set();
-                       after_sign();
-                    
-                }
-                 pop1();
-                lo.classList.remove("active");
-                console.log(status);
-                
-            });
-        }else{
-            pop1();
-        }
-        
+        pop1();
         
         function pop1(){
             var lo = document.getElementById("logo");
