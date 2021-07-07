@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
     <!-- google fonts -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-    
     <title>network</title>
     <style>
         * {
@@ -44,6 +43,10 @@
             background-color:white;
             overflow: hidden;
             transition:0.3s;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
         .container{
             height:90%;
@@ -250,12 +253,16 @@
             transition:0.3s;
         }
         .input textarea:focus{
-            transform:translateY(-50%);
+            transform:translateY(-50px);
+        }
+        .input textarea:focus ~ i{
+            transform:translateY(-50px);
         }
         .input textarea::placeholder{
             color:black;
         }
         .input i{
+            transition:0.3s;
             width:40px;
             height:40px;
             line-height:40px;
@@ -330,6 +337,8 @@
             background-color: white;
             border-radius:5px;
             white-space: pre-wrap;
+            max-width:55%;
+            word-wrap: break-word;
         }
         .sample.me div{
             margin-right:10px;
@@ -751,19 +760,72 @@
             font-size:16px;
             white-space: pre-wrap;
         }
-        
+        #box4{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width:100%;
+            padding:0 10px;
+        }
+        #box4 button{
+            margin:10px 0 10px 20px;
+            padding:10px;
+            font-size:17px;
+            background-color:lavender;
+            cursor:pointer;
+            outline:none;
+            border:none;
+            box-shadow:0 0 10px rgb(0,0,0,0.2);
+            color:black;
+        }
+        #box4 div{
+            position:relative;
+            margin-top:14px;
+            min-width:250px;
+            width:95%;
+            font-size:16px;
+        }
+        #box4 div input{
+            position:relative;
+            width:100%;
+            font-size:15px;
+            padding:10px;
+            border:none;
+            outline:none;
+            background-color:lavender;
+            margin-top:14px;
+            box-shadow: 0 0 3px rgb(0,0,0,0.3);
+        }
+        #box4 .fa-copy{
+            position: absolute;
+            bottom:-15px;
+            right:-15px;
+            width:40px;
+            height:40px;
+            font-size:22px;
+            border-radius:50%;
+            background-color:darkblue;
+            color:white;
+            line-height:40px;
+            box-shadow:0 0 5px rgb(0,0,0,0.3);
+            text-align:center;
+            cursor:pointer;
+        }
 /* profile page */
         
         @media (max-width:400px){
+            body{
+                justify-content: flex-start;
+            }
             .container{
                 width:100%;
-                height:100%;
             }
         }
     </style>
 </head>
 
-<body class="flex">
+<body>
     
 <section class="container flex">
    
@@ -812,6 +874,14 @@
                 <i class="fas fa-long-arrow-alt-left" onclick="close1()"></i>
                 <img id="profile_img" src="">
                 <h2 id="profile_name"></h2>
+         </div>
+         <div id="box4">
+             <button>LOG out</button>
+             <div class="link_pro">
+            <p>you can share you profile to any one who don't have account in network also by sharing this below link</p>
+            <input type="text" id="my_pro_link">
+            <i class="far fa-copy" onclick="copy1()"></i>
+             </div>
          </div>
          <div class="box3 flex">
             <h2>Media & other links </h2>
@@ -887,6 +957,7 @@
     
 </section>
 
+
 <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase.js"></script>
 
 <script>
@@ -909,33 +980,49 @@
     
          var  user_key = "";
          var user_name = "";
+         var status = false;
         
          var open_from = "home";
          var other_num = 0;
         
-         pop1();
+        var lo = document.getElementById("logo");
+            lo.classList.add("active");
         
         if (localStorage.getItem("kedar_network_user_key")){
+            
             var lo = document.getElementById("logo");
             lo.classList.add("active");
             
-            user_key = localStorage.getItem("kedar_network_user_key");
-            user_name = localStorage.getItem("kedar_network_user_name");
+           var  user_key1 = localStorage.getItem("kedar_network_user_key");
+           var  user_name1 = localStorage.getItem("kedar_network_user_name");
              var account = document.getElementById("account");
+            
             var date1 = Date.now();
-            firebase.database().ref('users/'+user_key).once('value',function(snapshot){
+            firebase.database().ref('users/'+user_key1).once('value',function(snapshot){
                 var cc = snapshot.val().key;
-                if (cc == user_key){
+                if (cc == user_key1){
+                     pop1();
                           account.classList.remove("active");
-                          firebase.database().ref('users/'+user_key).update({
+                    
+                firebase.database().ref('users/'+user_key1).update({
+                        status : "true",
                         datein : date1
                       });
+                    
+                    user_key = user_key1;
+                    user_name = user_name1;
                      lo.classList.remove("active");
+                    lo.classList.remove("active");
+                    status = true;
                        after_sign();
+                    
                 }
+                 pop1();
+                lo.classList.remove("active");
+                console.log(status);
             });
         }else{
-            
+            pop1();
         }
         
         
@@ -1032,6 +1119,7 @@
                 localStorage.setItem("kedar_network_user_key",user_key);
                 var account = document.getElementById("account");
             account.classList.remove("active");
+                status = true;
                 after_sign();
                     })
                     .catch(function(error){
@@ -1068,7 +1156,7 @@
                         alert("account created succesfully");
                         user_key = user.uid;
      localStorage.setItem("kedar_network_user_key",user_key);
-                        
+                        status = true;
                 firebase.auth().currentUser.sendEmailVerification().then( () => {
                         console.log("email verify");
                         
@@ -1102,6 +1190,9 @@
         
         function after_sign(){
             pop1();
+            var my_pro_link = document.getElementById("my_pro_link");
+            var val1 = "https://kedarisettisatwik.github.io/chat_network/profile.html?user_name="+user_key;
+            my_pro_link.value = val1;
             firebase.database().ref('users/'+user_key).once('value',function(snapshot){
                 user_name = snapshot.val().name;
                 var user_dp = snapshot.val().dp;
@@ -1210,6 +1301,13 @@
              pop1();
              page_change(0);
              
+             var box4 = document.getElementById("box4");
+             if (a == user_key){
+                 box4.style.display = "flex";
+             }else{
+                 box4.style.display = "none";
+             }
+             
              firebase.database().ref('users/'+a).once('value',function(snapshot){
                var  draw_user_name = snapshot.val().name;
                var draw_user_img = snapshot.val().dp;
@@ -1283,6 +1381,11 @@
             document.getElementById("msg_content").value = "";
         }
         
+        function copy1(){
+    var my_pro_link = document.getElementById("my_pro_link");
+            my_pro_link.select();
+            document.execCommand("copy");
+}
     </script>
     
 </body>
