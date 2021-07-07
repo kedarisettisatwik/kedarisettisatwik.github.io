@@ -1152,42 +1152,40 @@
                    });
         }
         
-//        if (localStorage.getItem("kedar_network_user_key")){
-//            
-//            var lo = document.getElementById("logo");
-//            lo.classList.add("active");
-//            
-//           var  user_key1 = localStorage.getItem("kedar_network_user_key");
-//           var  user_name1 = localStorage.getItem("kedar_network_user_name");
-//            
-//             var account = document.getElementById("account");
-//            
-//            firebase.database().ref('users/'+user_key1).once('value',function(snapshot){
-//                var cc = snapshot.val().key;
-//                if (cc == user_key1){
-//                    
-//                         pop1();
-//                          account.classList.remove("active");
-//                    
-//                    user_key = user_key1;
-//                    user_name = user_name1;
-//                     lo.classList.remove("active");
-//                    lo.classList.remove("active");
-//                    status = true;
-//                    date_set();
-//                       after_sign();
-//                    
-//                }
-//                 pop1();
-//                lo.classList.remove("active");
-//                console.log(status);
-//                
-//            });
-//        }else{
-//            pop1();
-//        }
-        
-        pop1();
+        if (localStorage.getItem("kedar_network_user_key")){
+            
+            var lo = document.getElementById("logo");
+            lo.classList.add("active");
+            
+           var  user_key1 = localStorage.getItem("kedar_network_user_key");
+           var  user_name1 = localStorage.getItem("kedar_network_user_name");
+            
+             var account = document.getElementById("account");
+            
+            firebase.database().ref('users/'+user_key1).once('value',function(snapshot){
+                var cc = snapshot.val().key;
+                if (cc == user_key1){
+                    
+                         pop1();
+                          account.classList.remove("active");
+                    
+                    user_key = user_key1;
+                    user_name = user_name1;
+                     lo.classList.remove("active");
+                    lo.classList.remove("active");
+                    status = true;
+                    date_set();
+                       after_sign();
+                    
+                }
+                 pop1();
+                lo.classList.remove("active");
+                console.log(status);
+                
+            });
+        }else{
+            pop1();
+        }
         
         function pop1(){
             var lo = document.getElementById("logo");
@@ -1398,28 +1396,6 @@
             
            //  let data_now = Date.now();
             
-            var year_format =  user_time.split(" ; ");
-            var yy = year_format[0].split(" - ");
-            var df = year_format[1].split(" : ");
-            
-            var date11 = eval(yy[0]);
-            var month11 = eval(yy[1]);
-            var year11 =  eval(yy[2]);
-            var hour11 = eval(df[0]);
-            var mintue11 = eval(df[1]);
-            var sec11 = eval(df[2]);
-            
-            var date12 = new Date().getDate();
-            var month12 = new Date().getMonth();
-            var year12 = new Date().getFullYear();
-            var hour12 = new Date().getHours();
-            var minute12 = new Date().getMinutes();
-            var sec12 = new Date().getSeconds();
-            
-            var diff_hr = Math.abs(hour11 - hour12);
-            var diff_min = Math.abs(mintue11 - minute12);
-            var diff_sec = Math.abs(sec11 - sec12);
-            
             let follow1 = ChildSnapShot.val().follow;
             let follow = Object.values(follow1);  
             
@@ -1436,14 +1412,6 @@
                 if (list_follow.includes(user_key)){
                     fl = "frnd_user follow";
                     list_followers.push(user_frnd_key);
-                }
-                
-                if (date11 == date12 && month11 == month12 && year11 == year12){
-                    if (diff_hr == 0){
-                        if (diff_min < 2){
-                            user_time = "online";
-                        }
-                    }
                 }
                 
      search_f.innerHTML += "<p class='search_user' onclick='open_person2("+count1
