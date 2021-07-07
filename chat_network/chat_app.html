@@ -126,17 +126,17 @@
             margin-top:12px;
             margin-bottom:20px;
         }
-        #invite_box div{
+        #invite_box .link_pro{
             width:95%;
             font-size:17px;
             position:relative;
-            margin-bottom: 50px;
+            margin-bottom:15px;
         }
-        #invite_box div p{
+        #invite_box .link_pro p{
             font-size:15px;
             margin-bottom:10px;
         }
-        #invite_box div input{
+        #invite_box .link_pro input{
             margin:10px;
             width:90%;
             font-size:14px;
@@ -147,7 +147,7 @@
             border:2px dashed rgb(0,0,255,0.3);
             padding:10px;
         }
-        #invite_box div i{
+        #invite_box .link_pro i{
             position: absolute;
             bottom:0px;
             right:0px;
@@ -161,6 +161,21 @@
             cursor:pointer;
             box-shadow:0 0 10px rgb(0,0,0,0.2);
             border-radius:50%;
+        }
+        .share_icons {
+            width:100%;
+            padding:10px;
+            margin:10px 0;
+        }
+        .share_icons img{
+            width:35px;
+            height:35px;
+            margin:12px;
+            transition:0.3s;
+            cursor:pointer;
+        }
+        .share_icons img:hover{
+            transform:scale(1.2);
         }
          #add_frnds{
             width:100%;
@@ -919,12 +934,15 @@
         
     <div id="invite_box">
        <i class="far fa-window-close" onclick="invite(1)"></i>
-        <div>
+        <div class="link_pro">
             <p>Invite your friends & others to join with network chat app,by sharing this link</p>
         <input type="text" value="https://kedarisettisatwik.github.io/chat_network/chat_app.html" id="link_to_invite">
              <i class="far fa-copy" onclick="copy2()"></i>
         </div>
-        
+        <div class="share_icons">
+                 <img src="icons/002-whatsapp.png" onclick='sharevia(1)'>
+                 <img src="icons/004-twitter.png" onclick='sharevia(2)'>
+            </div>
     </div>
     
     <div class="btns flex">
@@ -1126,7 +1144,6 @@
                   var link_to_invite = document.getElementById("msg_content");
                  link_to_invite.innerHTML = "";
                     link_to_invite.select();
-                    document.execCommand("copy");
              }
              invite(1);
          }
@@ -1618,7 +1635,20 @@
             link_to_invite.select();
             document.execCommand("copy");
         }
-
+        
+        function sharevia(a){
+            
+            var linktoshare = encodeURI("https://kedarisettisatwik.github.io/chat_network/chat_app.html");
+            var loc1 = "";
+            if (a == 1){
+                var loc2 = "https://api.whatsapp.com/send?text= Join in network, Chatting with other users avialable and you can create a nice profile page your self and you can share to any via any socail media "+linktoshare+" ";
+                window.open(loc2)
+            }else if (a == 2){
+                var loc2 = "https://twitter.com/share?url=[ "+linktoshare+" ]&text= "+" Join in network, Chatting with other users avialable and you can create a nice profile page your self and you can share to any via any socail media " + " "
+                window.open(loc2);
+            }
+            
+        }
     </script>
     
 </body>
