@@ -1148,7 +1148,8 @@
     
          var  user_key = "";
          var user_name = "";
-        
+         
+        var back_btn = true;
          var chatornot = false;
         
          var sound1 = document.getElementById("sound1");
@@ -1163,7 +1164,6 @@
          var open_from = "home";
          var other_num = 0;
         
-        var prev_un_lenth = 1;
         
         var lo = document.getElementById("logo");
             lo.classList.add("active");
@@ -1277,20 +1277,16 @@
             options.classList.remove("active");
              var add_1 = document.getElementById("add_msg");
              add_1.innerHTML = "";
+             
+             
+             
              if (a == 1){
                  
                  firebase.database().ref("users/"+back_other_key+"/active/"+user_key).remove();
          firebase.database().ref("users/"+user_key+"/unseen/"+back_other_key).remove();
                  
-firebase.database().ref("users/"+user_key).once('value',function(snapshot){
-      var lft = snapshot.val().unseen;
-      var lft1 = Object.values(lft);
-      prev_un_lenth = lft1.length;
-      
- //   console.log(prev_un_lenth);
-      
-  });
-                 chatornot = false;
+                 back_btn = false;
+                chatornot = false;
                  
              }
              
@@ -1534,29 +1530,22 @@ firebase.database().ref("users/"+user_key).once('value',function(snapshot){
             
             
             
-            firebase.database().ref('users/'+user_key).on('value',function(snapshot){
-                
-                var un_list = snapshot.val().unseen;
-                 let un_len = Object.values(un_list);  
-                
-                if (un_len.length > prev_un_lenth){
-                    
-                    if (chatornot){
+            firebase.database().ref('users/'+user_key).on('value',function(snapshot){ 
+            
+                 if (back_btn){
+                     
+                     if (chatornot){
                         sound1.volume = "0.3";
                     }else{
                         sound1.volume = "0.6";
                     }
-                    prev_un_lenth = un_len.length;
+                     
+                 }else{
+                     sound1.volume = "0";
+                 }
+                
                     sound1.play();  
-                    
-                    
-                    
-                }else{
-                    
-                }   
-//                console.log(un_list);
-//                console.log(un_len);
-//                console.log(prev_un_lenth);
+                
             });
             
              
@@ -1601,14 +1590,6 @@ firebase.database().ref("users/"+user_key).once('value',function(snapshot){
              back_other_key = key_from;
     firebase.database().ref("users/"+key_from+"/active/"+user_key).remove();
         firebase.database().ref("users/"+user_key+"/unseen/"+key_from).remove();
-             
-                              
-firebase.database().ref("users/"+user_key).once('value',function(snapshot){
-      var lft = snapshot.val().unseen;
-      var lft1 = Object.values(lft);
-      prev_un_lenth = lft1.length;
-      //  console.log(prev_un_lenth);
-  });
              
              
          }
