@@ -1149,7 +1149,7 @@
          var  user_key = "";
          var user_name = "";
          
-        var back_btn = true;
+        
          var chatornot = false;
         
          var sound1 = document.getElementById("sound1");
@@ -1285,9 +1285,8 @@
             firebase.database().ref("users/"+back_other_key+"/active/"+user_key).remove();
          firebase.database().ref("users/"+user_key+"/unseen1/"+back_other_key).remove();
                  
-                 back_btn = false;
                 chatornot = false;
-                 
+                 sound1.volume = "0";
              }
              
          }
@@ -1530,21 +1529,13 @@
             
             
             firebase.database().ref('users/'+user_key+"/unseen1").on('value',function(snapshot){ 
-            
-                 if (back_btn){
-                     
-                     if (chatornot){
-                        sound1.volume = "0.3";
-                    }else{
-                        sound1.volume = "0.6";
-                    }
-                     
-                 }else{
-                     back_btn = true;
-                     sound1.volume = "0";
+                
+                    sound1.play(); 
+                
+                 if (sound1.volume == "0"){
+                     sound1.volume = "0.4"
                  }
                 
-                    sound1.play();  
                 
             });
             
