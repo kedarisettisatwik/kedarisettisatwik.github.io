@@ -1274,6 +1274,7 @@
              add_1.innerHTML = "";
              if (a == 1){
                  firebase.database().ref("users/"+back_other_key+"/active/"+user_key).remove();
+         firebase.database().ref("users/"+user_key+"/unseen/"+back_other_key).remove();
              }
          }
         
@@ -1446,7 +1447,7 @@
            var  count1 = 0;
             add_frnds.innerHTML = "";
             search_f.innerHTML = "";
-            var xxs = 0;
+            
         snapshot.forEach(function(ChildSnapShot){
             let user_frnd_key = ChildSnapShot.val().key;
             let user_up = ChildSnapShot.val().name;
@@ -1489,7 +1490,7 @@
                 +")'><img src='"+user_dp+"' class='search_frnd_dp'><span class='search_name'>"+user_up+"</span><label>"+ user_time +"</label></p>";
             
                 if (list_active.includes(user_key)){
-                    xxs += 1;
+    
         add_frnds.innerHTML = "<p class=' active "+fl+"' onclick='open_person2("+count1
                 +")'><img src='"+user_dp+"' class='home_frnd_dp'><span class='home_name'>"+user_up+"</span><label>"+ user_time +"</label></p>" + add_frnds.innerHTML;
                 }else{
@@ -1504,13 +1505,14 @@
                 
              }
         })   
-            if (xxs != 0){
-             sound1.play();    
-              }
             
             });
             
+            var prev = 0;
             
+            firebase.database().ref('users/'+user_key+"/unseen").on('value',function(snapshot){
+                    sound1.play();    
+            });
             
              
          }
@@ -1551,6 +1553,7 @@
              
              back_other_key = key_from;
     firebase.database().ref("users/"+key_from+"/active/"+user_key).remove();
+             firebase.database().ref("users/"+user_key+"/unseen/"+key_from).remove();
              
          }
         
@@ -1704,6 +1707,14 @@
                            key1 : draw_key,
                           unseen1 : msg_content
                 });
+                
+                var date_unseen = Date.now();
+                
+                firebase.database().ref("users/"+draw_key+"/unseen/"+user_key).update({
+                           unseen_key : user_key,
+                           date_unseen : date_unseen
+                });
+                
                 
                 date_set();
                 
