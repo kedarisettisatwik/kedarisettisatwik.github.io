@@ -243,7 +243,7 @@
             top:50%;
             right:10px;
             transform:translateY(-50%);
-            box-shadow: 0 0 10px rgb(0,0,0,0.4);
+            box-shadow: 0 0 5px cadetblue;
         }
         #add_frnds .frnd_user label{
             position: absolute;
@@ -451,21 +451,34 @@
             padding:10px;
             font-size:16px;
             border-radius:5px;
-            white-space: pre-wrap;
             max-width:55%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+        }
+        .sample span{
+            white-space: pre-wrap;
             word-wrap: break-word;
         }
+        .sample .time{
+            position: relative;
+            margin-top:5px;
+            padding:5px;
+            font-size:11px;
+        }
+        .sample.me .time{
+            background-color:cornflowerblue; /* here a variable bgme */
+            color:white; /* here a variable colorme */
+        }
+        .sample.other .time{
+            background-color:white; /* here a variable bgother */
+            color:black; /* here a variable colorother */
+        }
         .sample.me div{
-            background-color:cornflowerblue;
-            color:white;
+            background-color:cornflowerblue; /* here a variable bgme */
+            color:white; /* here a variable colorme */
             margin-right:10px;
-        }
-        .sample.me:nth-child(1) div{
-            -webkit-animation:las1 0.6s linear forwards;
-        }
-        @keyframes las1{
-            0%{opacity:0;transform:translateX(15px)}
-            100%{opacity:1;transform:translateX(0px)}
         }
         .sample.me div::after{
             content:'';
@@ -474,12 +487,12 @@
             height:12px;
             top:50%;
             right:0;
-            background-color:cornflowerblue;
+            background-color:cornflowerblue; /* here a variable bgme*/
             transform:translate(50%,-50%) rotateZ(45deg);
         }
         .sample.other div{
-            background-color:white;
-            color:black;
+            background-color:white; /* here a variable bgother */
+            color:black;    /* here a variable colorother */
             margin-left:10px;
         }
         .sample.other div::after{
@@ -489,15 +502,8 @@
             height:12px;
             top:50%;
             left:0;
-            background-color: white;
+            background-color: white; /* here a variable bgoother */
             transform:translate(-50%,-50%) rotateZ(45deg);
-        }
-        .sample.other:nth-child(1) div{
-            -webkit-animation:las2 0.6s linear forwards;
-        }
-        @keyframes las2{
-            0%{opacity:0;transform:translateX(-15px)}
-            100%{opacity:1;transform:translateX(0px)}
         }
 /* chat page */
         
@@ -1175,9 +1181,9 @@
                     var year1 = new Date().getFullYear();
                     var hour = new Date().getHours();
                     var minute = new Date().getMinutes();
-                    var sec = new Date().getSeconds();
                     
-     var dd1 = date1 + " - " + month1 + " - " + year1 + " ; "+hour + " : " +minute+" : " + sec;
+            var mo_li = ["Jan","Feb","Mar","Apr","May","Jun","July","Aug","Sept","Oct","Nov","Dec"];
+     var dd1 = date1 + " " + mo_li[month1] + " " + year1 + " | "+hour + " : " +minute;
                     
         firebase.database().ref("users/"+user_key).update({
                           datein : dd1,
@@ -1387,7 +1393,7 @@
              name : user.uid,
          });
                         
-        firebase.database().ref('users/'+user.uid+"/active"+user.uid).push({
+        firebase.database().ref('users/'+user.uid+"/active/"+user.uid).set({
              key1 : user.uid,
              unseen1 : "one",
          });
@@ -1412,10 +1418,11 @@
                         alert(ee2);
                         console.log(ee1);
                     })
-                        
-         var account = document.getElementById("account");
+                       
+                        var account = document.getElementById("account");
             account.classList.remove("active");               
                         after_sign();
+                        
                     })
                     .catch(function(error){
                         var err_code = error.code;
@@ -1570,10 +1577,11 @@
         snapshot.forEach(function(ChildSnapShot){
              var other_me = ChildSnapShot.val().sender_name;
              var content_msg = ChildSnapShot.val().send_msg;
+             var time_msg = ChildSnapShot.val().send_time;
              if (other_me == user_key){
-            chat_area.innerHTML = "<div class='sample me'><div>"+content_msg+"</div></div>"+chat_area.innerHTML;
+            chat_area.innerHTML = "<div class='sample me'><div><span>"+content_msg+"</span><label class='time'>"+time_msg+"</label>"+"</div></div>" + chat_area.innerHTML;
              }else{
-               chat_area.innerHTML = "<div class='sample other'><div>"+content_msg+"</div></div>"+chat_area.innerHTML;
+        chat_area.innerHTML = "<div class='sample other'><div><span>"+content_msg+"</span><label class='time'>"+time_msg+"</label>"+"</div></div>" + chat_area.innerHTML;
              }  
         })   
             }); 
@@ -1712,6 +1720,15 @@
             var msg_content = document.getElementById("msg_content").value;
             var add_msg = document.getElementById("add_msg");
              
+             var date11 = new Date().getDate();
+                    var month11 = new Date().getMonth();
+                    var year11 = new Date().getFullYear();
+                    var hour1 = new Date().getHours();
+                    var minute1 = new Date().getMinutes();
+                    
+        var mo_li1 = ["Jan","Feb","Mar","Apr","May","Jun","July","Aug","Sept","Oct","Nov","Dec"];
+     var dd11 = date11 + " " + mo_li1[month11] + " " + year11 + " | "+hour1 + " : " +minute1;
+             
             if (msg_content.length > 0){
                 
                 if (list_followers.includes(draw_key)){
@@ -1745,30 +1762,31 @@
         firebase.database().ref('users/'+ user_key+"/messages/"+draw_key).push({
                sender_name : user_key,
                send_msg : msg_content,
-                     
+               send_time : dd11  
             });
                 
      firebase.database().ref('users/'+draw_key+"/messages/"+user_key).push({
                sender_name : user_key,
                send_msg : msg_content,
-         
+               send_time : dd11
                });
              
                 var chat_area = document.getElementById("add_msg");
-                
-        firebase.database().ref('users/'+user_key+"/messages/"+draw_key).on('value',function(snapshot){
+             
+    firebase.database().ref('users/'+user_key+"/messages/"+draw_key).on('value',function(snapshot){
           chat_area.innerHTML = "";
         snapshot.forEach(function(ChildSnapShot){
              var other_me = ChildSnapShot.val().sender_name;
              var content_msg = ChildSnapShot.val().send_msg;
+             var time_msg = ChildSnapShot.val().send_time;
              if (other_me == user_key){
-            chat_area.innerHTML = "<div class='sample me'><div>"+content_msg+"</div></div>"+chat_area.innerHTML;
+            chat_area.innerHTML = "<div class='sample me'><div><span>"+content_msg+"</span><label class='time'>"+time_msg+"</label>"+"</div></div>" + chat_area.innerHTML;
              }else{
-               chat_area.innerHTML = "<div class='sample other'><div>"+content_msg+"</div></div>"+chat_area.innerHTML;
-             }
-            
+        chat_area.innerHTML = "<div class='sample other'><div><span>"+content_msg+"</span><label class='time'>"+time_msg+"</label>"+"</div></div>" + chat_area.innerHTML;
+             }  
         })   
-            });
+            }); 
+                
                 
             }
              
