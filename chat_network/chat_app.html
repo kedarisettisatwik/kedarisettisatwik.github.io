@@ -1302,8 +1302,11 @@
             var names = document.querySelectorAll(".search_name");
             var search_user = document.querySelectorAll(".search_user");
              for (var i =0;i<names.length;i++){
-                 var val = search_box.toLowerCase();
-                if (names[i].innerHTML.includes(val)){
+                 
+                 var inner1 = names[i].innerHTML.toLowerCase();
+                 var val1 = search_box.toLowerCase();
+                 
+                if (inner1.includes(val1)){
                    search_user[i].style.display = "flex";
                 }else{
                    search_user[i].style.display = "none";
