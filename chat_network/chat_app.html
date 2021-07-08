@@ -48,6 +48,12 @@
             align-items: center;
             flex-direction: column;
         }
+        audio{
+            position: absolute;
+            top:0;
+            left:0;
+            display:none;
+        }
         .container{
             height:90%;
             position: relative;
@@ -93,9 +99,9 @@
         }
         .btns i{
             cursor: pointer;
-            margin:0 10px;
+            margin:0 5px;
             font-size:22px;
-            width:40px;
+            width:30px;
             height:100%;
             line-height:60px;
             text-align: center;
@@ -230,13 +236,14 @@
         #add_frnds .frnd_user.active span::after{
             content:'';
             position: absolute;
-            width:10px;
-            height:10px;
+            width:18px;
+            height:18px;
             border-radius:50%;
             background-color:greenyellow;
             top:50%;
             right:10px;
             transform:translateY(-50%);
+            box-shadow: 0 0 10px rgb(0,0,0,0.4);
         }
         #add_frnds .frnd_user label{
             position: absolute;
@@ -1014,10 +1021,15 @@
         <img class="profile_logo" onclick="open_with(-1)">
         <div>
             <i class="fas fa-user-plus" onclick="invite(2)"></i>
+            <i class="fas fa-volume-up" onclick="test_s()"></i>
             <i class="fas fa-search" onclick="page_change(3)"></i>
             <i class="far fa-edit" onclick="page_change(1)"></i>
         </div>
     </div>
+    
+    <audio controls id="sound1">
+        <source src="sound.mp3" type="audio/mp3">
+    </audio>
     
      <div id="add_frnds">
         
@@ -1137,6 +1149,7 @@
          var  user_key = "";
          var user_name = "";
         
+         var sound1 = document.getElementById("sound1");
         var back_other_key = "";
         
         var user_dp = "";
@@ -1198,6 +1211,7 @@
                     
                     lo.classList.remove("active");
                 console.log(status);
+                   
                 pop1();
                 }else{
                     pop1();
@@ -1319,6 +1333,10 @@
             account.classList.remove("active");
                 status = true;
                 after_sign();
+            
+                    sound1.play();
+               //     sound11.pause();
+                
                     })
                     .catch(function(error){
                         var err_code = error.code;
@@ -1365,6 +1383,7 @@
      localStorage.setItem("kedar_chat_user_key",user_key);
                         date_set();
                         status = true;
+                        sound1.play();
                 firebase.auth().currentUser.sendEmailVerification().then( () => {
                         console.log("email verify");
                         
@@ -1427,6 +1446,7 @@
            var  count1 = 0;
             add_frnds.innerHTML = "";
             search_f.innerHTML = "";
+            var xxs = 0;
         snapshot.forEach(function(ChildSnapShot){
             let user_frnd_key = ChildSnapShot.val().key;
             let user_up = ChildSnapShot.val().name;
@@ -1469,6 +1489,7 @@
                 +")'><img src='"+user_dp+"' class='search_frnd_dp'><span class='search_name'>"+user_up+"</span><label>"+ user_time +"</label></p>";
             
                 if (list_active.includes(user_key)){
+                    xxs += 1;
         add_frnds.innerHTML = "<p class=' active "+fl+"' onclick='open_person2("+count1
                 +")'><img src='"+user_dp+"' class='home_frnd_dp'><span class='home_name'>"+user_up+"</span><label>"+ user_time +"</label></p>" + add_frnds.innerHTML;
                 }else{
@@ -1483,6 +1504,10 @@
                 
              }
         })   
+            if (xxs != 0){
+             sound1.play();    
+              }
+            
             });
             
             
@@ -1755,7 +1780,9 @@
             
         }
         
-        
+        function test_s(){
+            sound1.play();
+        }
                 
 //        firebase.database().ref("users/"+user_key).update({
 //                          datein : dd1,
