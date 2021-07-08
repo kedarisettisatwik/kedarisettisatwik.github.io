@@ -1283,7 +1283,7 @@
              if (a == 1){
                  
             firebase.database().ref("users/"+back_other_key+"/active/"+user_key).remove();
-         firebase.database().ref("users/"+user_key+"/unseen/"+back_other_key).remove();
+         firebase.database().ref("users/"+user_key+"/unseen1/"+back_other_key).remove();
                  
                  back_btn = false;
                 chatornot = false;
@@ -1393,8 +1393,7 @@
              unseen1 : "one",
          });
             
-        firebase.database().ref('users/'+user.uid+"/unseen/"+user.uid).set({
-             valun : user.uid,
+        firebase.database().ref('users/'+user.uid+"/unseen1/"+user.uid).set({
             dateun : Date.now(),
          });
                         
@@ -1530,7 +1529,7 @@
             
             
             
-            firebase.database().ref('users/'+user_key).on('value',function(snapshot){ 
+            firebase.database().ref('users/'+user_key+"/unseen1").on('value',function(snapshot){ 
             
                  if (back_btn){
                      
@@ -1745,8 +1744,7 @@
                 
                 var date_unseen = Date.now();
                 
-                firebase.database().ref("users/"+draw_key+"/unseen/"+user_key).update({
-                           valun : user_key,
+                firebase.database().ref("users/"+draw_key+"/unseen1/"+user_key).update({
                            dateun : date_unseen
                 });
                 
