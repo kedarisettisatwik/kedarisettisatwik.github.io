@@ -1282,7 +1282,7 @@
              
              if (a == 1){
                  
-                 firebase.database().ref("users/"+back_other_key+"/active/"+user_key).remove();
+            firebase.database().ref("users/"+back_other_key+"/active/"+user_key).remove();
          firebase.database().ref("users/"+user_key+"/unseen/"+back_other_key).remove();
                  
                  back_btn = false;
@@ -1589,9 +1589,6 @@
             }); 
              
              back_other_key = key_from;
-    firebase.database().ref("users/"+key_from+"/active/"+user_key).remove();
-        firebase.database().ref("users/"+user_key+"/unseen/"+key_from).remove();
-             
              
          }
         
