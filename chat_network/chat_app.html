@@ -1160,6 +1160,8 @@
          var open_from = "home";
          var other_num = 0;
         
+        var prev_un_lenth = 1;
+        
         var lo = document.getElementById("logo");
             lo.classList.add("active");
         
@@ -1273,9 +1275,22 @@
              var add_1 = document.getElementById("add_msg");
              add_1.innerHTML = "";
              if (a == 1){
+                 
                  firebase.database().ref("users/"+back_other_key+"/active/"+user_key).remove();
          firebase.database().ref("users/"+user_key+"/unseen/"+back_other_key).remove();
+                 
+firebase.database().ref("users/"+user_key).once('value',function(snapshot){
+      var lft = snapshot.val().unseen;
+      var lft1 = Object.values(lft);
+      prev_un_lenth = lft1.length;
+      
+ //   console.log(prev_un_lenth);
+      
+  });
+                 
+                 
              }
+             
          }
         
         function search_filter(){
@@ -1374,9 +1389,14 @@
              name : user.uid,
          });
                         
-        firebase.database().ref('users/'+user.uid+"/active").push({
+        firebase.database().ref('users/'+user.uid+"/active"+user.uid).push({
              key1 : user.uid,
              unseen1 : "one",
+         });
+            
+        firebase.database().ref('users/'+user.uid+"/unseen/"+user.uid).set({
+             valun : user.uid,
+            dateun : Date.now(),
          });
                         
                         alert("account created succesfully");
@@ -1508,10 +1528,25 @@
             
             });
             
-            var prev = 0;
             
-            firebase.database().ref('users/'+user_key+"/unseen").on('value',function(snapshot){
-                    sound1.play();    
+            
+            firebase.database().ref('users/'+user_key).on('value',function(snapshot){
+                
+                var un_list = snapshot.val().unseen;
+                 let un_len = Object.values(un_list);  
+                
+                if (un_len.length > prev_un_lenth){
+                    
+                    prev_un_lenth = un_len.length;
+                    sound1.play();  
+                    
+                    
+                }else{
+                    
+                }   
+//                console.log(un_list);
+//                console.log(un_len);
+//                console.log(prev_un_lenth);
             });
             
              
@@ -1553,7 +1588,16 @@
              
              back_other_key = key_from;
     firebase.database().ref("users/"+key_from+"/active/"+user_key).remove();
-             firebase.database().ref("users/"+user_key+"/unseen/"+key_from).remove();
+        firebase.database().ref("users/"+user_key+"/unseen/"+key_from).remove();
+             
+                              
+firebase.database().ref("users/"+user_key).once('value',function(snapshot){
+      var lft = snapshot.val().unseen;
+      var lft1 = Object.values(lft);
+      prev_un_lenth = lft1.length;
+      //  console.log(prev_un_lenth);
+  });
+             
              
          }
         
@@ -1711,8 +1755,8 @@
                 var date_unseen = Date.now();
                 
                 firebase.database().ref("users/"+draw_key+"/unseen/"+user_key).update({
-                           unseen_key : user_key,
-                           date_unseen : date_unseen
+                           valun : user_key,
+                           dateun : date_unseen
                 });
                 
                 
