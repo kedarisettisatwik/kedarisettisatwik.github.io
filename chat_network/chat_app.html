@@ -1284,9 +1284,8 @@
         }
         #avatar .images img{
             margin:15px;
-            width:60px;
-            height:60px;
-            border-radius:50%;
+            width:100px;
+            height:100px;
             object-fit: cover;
             cursor:pointer;
         }
@@ -1311,10 +1310,9 @@
         }
         #prev_img{
             margin:10px;
-            width:200px;
-            height:200px;
+            width:250px;
+            max-height:400px;
             object-fit: cover;
-            border-radius:50%;
         }
 /*edit page */
         
@@ -1565,7 +1563,7 @@
     <h1><span>Choose your avatar </span> <i class='fas fa-times' onclick="remove_ava()"></i></h1>
        <div class="own_img">
            <button onclick="online_img()">Upload a online image </button>
-           <input type="file" id="off_img_bt" onchange="offline_img()">
+           <input type="file" id="off_img_bt" onchange="offline_img()" accept="image/*">
        </div>
        
        <div id="own_file">
@@ -1574,8 +1572,8 @@
        </div>
        
         <div class="flex images">
-                    <img src="avatars/p1.png" onclick="add_edit_img(0,'avatars/p1.png')">
-                    <img src="avatars/p11.png" onclick="add_edit_img(0,'avatars/p11.png')">
+                    <img src="avatars/dp1.jpg" onclick="add_edit_img(0,'avatars/dp1.jpg')">
+                    <img src="avatars/dp3.jpg" onclick="add_edit_img(0,'avatars/dp3.jpg')">
                     <img src="avatars/p14.png" onclick="add_edit_img(0,'avatars/p14.png')">
                     <img src="avatars/p15.png" onclick="add_edit_img(0,'avatars/p15.png')">
                     <img src="avatars/p16.jpg" onclick="add_edit_img(0,'avatars/p16.jpg')">
@@ -1586,7 +1584,6 @@
                     <img src="avatars/p21.jpg" onclick="add_edit_img(0,'avatars/p21.jpg')">
                     <img src="avatars/p22.jpg" onclick="add_edit_img(0,'avatars/p22.jpg')">
                     <img src="avatars/p23.jpg" onclick="add_edit_img(0,'avatars/p23.jpg')">
-                    <img src="avatars/p24.jpg" onclick="add_edit_img(0,'avatars/p24.jpg')">
                 </div>
                 
     </section>
@@ -1853,7 +1850,7 @@
                             key : user.uid,
                             email : sign_up_email,
                             name : sign_up_name,
-                            dp:"avatars/p11.png",
+                            dp:"avatars/p14.png",
                         }
                         user_name = sign_up_name;
          firebase.database().ref('users/'+user.uid).set(user_data);
@@ -2585,6 +2582,10 @@ edit_notes_box.innerHTML = "<div class='note'><input type='text' placeholder='ti
                 }
             
             },40000);
+        
+        window.addEventListener("contextmenu", (e) => {
+           // e.preventDefault();
+        })
     </script>
     
 </body>
