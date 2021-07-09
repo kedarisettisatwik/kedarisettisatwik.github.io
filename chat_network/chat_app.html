@@ -1029,24 +1029,6 @@
             font-weight:500;
             letter-spacing:1px;
         }
-        #edit_profile .theme_box{
-            width:100%;
-            padding:0 20px;
-            margin:10px;
-            display: flex;
-            justify-content: flex-start;
-            align-items:center;
-            flex-direction: row;
-            font-size:15px;
-        }
-        #edit_profile .theme_box p {
-            margin:0 10px;
-            font-size:17px;
-        }
-        #edit_profile .theme_box button{
-            cursor:pointer;
-            letter-spacing:1px;
-        }
         #edit_profile .box2{
             position:relative;
             border-top:2px dashed rgb(0,0,0,0.4);
@@ -1314,6 +1296,7 @@
             max-height:400px;
             object-fit: cover;
         }
+        
 /*edit page */
         
         @media (max-width:400px){
@@ -1447,10 +1430,6 @@
                 
         <input type="text" placeholder="Name" id="edit_profile_name">
         
-         </div>
-         <div class="theme_box">
-             <p>Theme - 1</p>
-             <button>Change theme</button>
          </div>
          <div class="box3 flex">
             <h2>Media & other links <i class="far fa-plus-square" onclick="add_edit_link()"></i> </h2>
@@ -2574,7 +2553,6 @@ edit_notes_box.innerHTML = "<div class='note'><input type='text' placeholder='ti
             remove_ava();
             
         }
-
             setInterval(function(){
                 
                 if (status1){
@@ -2584,7 +2562,7 @@ edit_notes_box.innerHTML = "<div class='note'><input type='text' placeholder='ti
             },40000);
         
         window.addEventListener("contextmenu", (e) => {
-           // e.preventDefault();
+           e.preventDefault();
         })
     </script>
     
