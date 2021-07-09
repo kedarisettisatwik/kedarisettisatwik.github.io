@@ -94,53 +94,35 @@
         #my_profile{
             width:100%;
             justify-content: flex-start;
-            padding-top:30px;
             max-height:100%;
             overflow-x: hidden;
             overflow-y: auto;
             background-color: white;
         }
-        #my_profile .box1 img{
-            position: absolute;
-            top:0;
-            transform:translateY(-50%);
-            width:45px;
-            height:45px;
-            line-height:40px;
-            text-align: center;
-            box-shadow:0 0 5px rgb(0,0,0,0.2);
-            font-size:22px;
-            cursor:pointer;
-            border-radius:50%;
-            color:black;
-            background-color:white;
-        }
-        #my_profile .box1 img{
-            right:10px;
-            transform:translate(0,-50%);
-            padding:5px;
-            box-sizing:content-box;
-            object-fit: cover;
-            width:55px;
-            height:55px;
-        }
         #my_profile .box1{
-            margin-top:20px;
+            background-color: white;
             position:relative;
-            width:300px;
-            padding:15px 8px;
-            border:2px solid black;
-            box-shadow:0 0 5px rgb(0,0,0,0.4),inset 0 0 4px rgb(0,0,0,0.5);
+            width:100%;
             margin-bottom:20px;
         }
-        #my_profile .box1 h2{
+        #my_profile .box1 img{
+            background-color:white;
             width:100%;
+            max-height:400px;
+            object-fit: cover;
+            border-radius:0;
+        }
+        #my_profile .box1 h2{
+            padding:13px;
+            position: absolute;
             padding-left:20px;
             font-size:19px;
-            margin-top:25px;
-            margin-bottom:10px;
+            color:white;
+            background-image:linear-gradient(rgb(0,0,0,0.7),rgb(0,0,0,0.8));
             font-weight:500;
             letter-spacing:1px;
+            bottom:10px;
+            left:10px;
         }
         #my_profile .box2{
             position:relative;
@@ -393,18 +375,17 @@
          snapshot.forEach(function(ChildSnapShot){
             var title1 = ChildSnapShot.val().title;
             var href1 = ChildSnapShot.val().link;
-
-            if (title1 == "facebook"){ 
+             
+             if (title1 == "facebook"){ 
         media_links1.innerHTML += "<li><a href='"+href1+"'><i class='fab fa-facebook-square'></i></a></li>";
             }else if (title1 == "instagram"){
-        media_links1.innerHTML += "<a href = '"+href1+"'><li>"+"<i class='fab fa-instagram'></i>"+"<li></a>";
+        media_links1.innerHTML += "<li><a href = '"+href1+"'>"+"<i class='fab fa-instagram'></i>"+"</a></li>";
             }else if (title1 == "twitter"){
-        media_links1.innerHTML += "<a href = '"+href1+"'><li>"+"<i class='fab fa-twitter'></i>"+"<li></a>";
+        media_links1.innerHTML += "<li><a href = '"+href1+"'>"+"<i class='fab fa-twitter'></i>"+"</a></li>";
             }else if (title1 == "youtube"){
-        media_links1.innerHTML += "<a href = '"+href1+"'><li>"+"<i class='fab fa-youtube'></i>"+"<li></a>";
-            }else if (title1 == "ticktok"){
-        media_links1.innerHTML += "<a href = '"+href1+"'><li>"+"<i class='fab fa-tiktok'></i>"+"<li></a>";
+        media_links1.innerHTML += "<li><a href = '"+href1+"'>"+"<i class='fab fa-youtube'></i>"+"</a></li>";
             }
+             
         });
             });
            
