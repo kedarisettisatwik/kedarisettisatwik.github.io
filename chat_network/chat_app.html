@@ -286,10 +286,13 @@
         
         
         #chat_place{
-            background-image:var(--chat_bg,linear-gradient(45deg,beige,bisque));
+            background-image:var(--chat_bg);
             height:100%;
             overflow-y: auto;
             overflow-x: hidden;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
         .header{
             position:absolute;
@@ -408,6 +411,11 @@
             cursor:pointer;
             text-align: center;
         }
+        #options select{
+            padding:10px;
+            cursor:pointer;
+            font-size:16px;
+        }
         #add_msg{
             z-index:0;
            position: absolute;
@@ -500,7 +508,7 @@
             height:12px;
             top:50%;
             left:0;
-            background-color: white; /* here a variable bgoother */
+            background-color:white; /* here a variable bgoother */
             transform:translate(-50%,-50%) rotateZ(45deg);
         }
 /* chat page */
@@ -1518,6 +1526,21 @@
     <ul id="options">
         <li onclick="delete_chat()">Delete chat</li>
         <li onclick="open_with(1)">see profile</li>
+        
+        <select onchange="edit_bg()" id="wallpaper">
+            <optgroup label="solids">
+                <option value="light green">green</option>
+                <option value="Sky blue">Sky blue</option>
+                <option value="violet">purple</option>
+            </optgroup>
+            
+            <optgroup label="images">
+                <option value="Image 1">Image 1 </option>
+                <option value="Image 2">Image 2</option>
+                <option value="Image 3">Image 3 </option>
+            </optgroup>
+            
+        </select>
     </ul>
     
     <div class="input">
@@ -1891,6 +1914,7 @@
             var my_pro_link = document.getElementById("my_pro_link");
             var val1 = "https://kedarisettisatwik.github.io/chat_network/profile.html?user_name="+user_key;
             my_pro_link.value = val1;
+            
             firebase.database().ref('users/'+user_key).once('value',function(snapshot){
                 user_name = snapshot.val().name;
                 var user_dp1 = snapshot.val().dp;
@@ -1901,6 +1925,18 @@
                 }
                    localStorage.setItem("kedar_network_user_name",user_name);
             });
+            
+            firebase.database().ref('users/'+user_key).on('value',function(snapshot){
+                var chat_bg1 = snapshot.val().chat_bg;
+                
+                if (chat_bg1){  
+document.documentElement.style.setProperty('--chat_bg',chat_bg1); 
+                }else{
+document.documentElement.style.setProperty('--chat_bg',"url(green.png)");  
+                }
+
+            })
+            
             draw_frnds();
         }
     
@@ -2561,9 +2597,38 @@ edit_notes_box.innerHTML = "<div class='note'><input type='text' placeholder='ti
             
             },40000);
         
+        
+        function edit_bg(){
+            var wallpaper = document.getElementById("wallpaper").value;
+            
+            var chatbg11 = "";
+            
+            if (wallpaper == "Sky blue"){
+                chatbg11 = "url(blue.png)";
+            }if (wallpaper == "light green"){
+                chatbg11 = "url(green.png)";
+            }if (wallpaper == "violet"){
+                chatbg11 = "url(purple.png)";
+            }if (wallpaper == "Image 1"){
+                chatbg11 = "url(image1.png)";
+            }if (wallpaper == "Image 2"){
+                chatbg11 = "url(image2.jpg)";
+            }if (wallpaper == "Image 3"){
+                chatbg11 = "url(image3.jpg)";
+            }
+            
+            firebase.database().ref("users/"+user_key).update({
+                chat_bg : chatbg11
+            })
+            
+            
+            
+        }
+        
         window.addEventListener("contextmenu", (e) => {
-           e.preventDefault();
+         //  e.preventDefault();
         })
+        
     </script>
     
 </body>
