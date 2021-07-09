@@ -1222,7 +1222,13 @@
             word-wrap: break-word;
             padding:6px;
         }
-        
+        .note select{
+            width:90%;
+            padding:5px;
+            margin:5px;
+            font-size:14px;
+            letter-spacing:1px;
+        }
         #avatar{
             position: absolute;
             z-index:1000;
@@ -2178,7 +2184,14 @@ document.documentElement.style.setProperty('--chat_bg',"url(green.png)");
          snapshot.forEach(function(ChildSnapShot){
              var heading = ChildSnapShot.val().title;
              var content = ChildSnapShot.val().para;
-             notes_box.innerHTML += "<div class='note'><h1>"+heading+"</h1><p>"+content+"</p></div>";
+             var mo11 = ChildSnapShot.val().mode;
+             if (a != user_key){
+                 if (mo11 == "0" || mo11 == 0){
+                 notes_box.innerHTML += "<div class='note'><h1>"+heading+"</h1><p>"+content+"</p></div>";
+                }
+             }else{
+                 notes_box.innerHTML += "<div class='note'><h1>"+heading+"</h1><p>"+content+"</p></div>";
+             }
         });
             });
             
@@ -2397,7 +2410,7 @@ document.documentElement.style.setProperty('--chat_bg',"url(green.png)");
          snapshot.forEach(function(ChildSnapShot){
              var heading = ChildSnapShot.val().title;
              var content = ChildSnapShot.val().para;
-             edit_notes_box.innerHTML += "<div class='note'><input type='text' placeholder='title' class='edit_book_titles' value='"+heading+"'><div class='edit_notes_value' contenteditable='true'>"+ content +"</div></div>"
+             edit_notes_box.innerHTML += "<div class='note'><select class='edit_mode'><option value='0'>Public</option><option value='1'>Private</option></select><input type='text' placeholder='title' class='edit_book_titles' value='"+heading+"'><div class='edit_notes_value' contenteditable='true'>"+ content +"</div></div>"
         });
             });
             
@@ -2417,7 +2430,7 @@ document.documentElement.style.setProperty('--chat_bg',"url(green.png)");
         function add_book_edit(){
             var edit_notes_box = document.getElementById("edit_notes_box");
             
-edit_notes_box.innerHTML = "<div class='note'><input type='text' placeholder='title' class='edit_book_titles'><div class='edit_notes_value' contenteditable='true'>"+ "your new note" +"</div></div>" + edit_notes_box.innerHTML;
+edit_notes_box.innerHTML = "<div class='note'><select class='edit_mode'><option value='0'>Public</option><option value='1'>Private</option></select><input type='text' placeholder='title' class='edit_book_titles'><div class='edit_notes_value' contenteditable='true'>"+ "your new note" +"</div></div>" + edit_notes_box.innerHTML;
             
         }
         
@@ -2510,17 +2523,21 @@ edit_notes_box.innerHTML = "<div class='note'><input type='text' placeholder='ti
             
             var save_book_titles  = document.querySelectorAll(".edit_book_titles");
             var save_notes_value = document.querySelectorAll(".edit_notes_value");
+            var save_notes_mode = document.querySelectorAll(".edit_mode");
             
              firebase.database().ref("users/"+user_key+"/notes").remove();
             
             for (var k = 0;k<save_book_titles.length;k++){
                 var bt1 = save_book_titles[k].value;
                 var bn1 = save_notes_value[k].innerHTML;
+                var mode1 = save_notes_mode[k].value;
+                
                 if (bt1.length > 0){
                     if (bn1.length > 0){
                         firebase.database().ref("users/"+user_key+"/notes").push({
                             title : bt1,
-                            para : bn1
+                            para : bn1,
+                            mode : mode1
                         })
                     }
                 }
