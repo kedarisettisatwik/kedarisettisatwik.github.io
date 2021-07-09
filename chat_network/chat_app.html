@@ -67,9 +67,8 @@
             background-color:lavenderblush;
         }
         .profile_logo{
-            width:55px;
-            height:55px;
-            padding:5px;
+            width:65px;
+            height:65px;
             box-shadow:0 0 10px rgb(0,0,0,0.4);
             object-fit: cover;
             background-color:white;
@@ -213,9 +212,8 @@
         #add_frnds .frnd_user img{
             position:relative;
             margin:0 5px;
-            width:45px;
-            height:45px;
-            padding:5px;
+            width:50px;
+            height:50px;
             box-sizing:content-box;
             border-radius:50%;
             object-fit: cover;
@@ -751,11 +749,10 @@
         #my_profile .box1 img{
             right:10px;
             transform:translate(0,-50%);
-            padding:5px;
             box-sizing:content-box;
             object-fit: cover;
-            width:55px;
-            height:55px;
+            width:65px;
+            height:65px;
         }
         #my_profile .box1{
             margin-top:20px;
@@ -1011,11 +1008,10 @@
         #edit_profile .box1 img{
             right:10px;
             transform:translate(0,-50%);
-            padding:5px;
             box-sizing:content-box;
             object-fit: cover;
-            width:55px;
-            height:55px;
+            width:65px;
+            height:65px;
         }
         #edit_profile .box1{
             margin-top:20px;
@@ -1207,10 +1203,6 @@
         #edit_profile #edit_other_links1 .link_title input::placeholder{
             color:black;
         }
-        
-/*        */
-        
-        
         #edit_profile .notes_box{
             position:relative;
             width:100%;
@@ -1246,6 +1238,89 @@
             padding:6px;
         }
         
+        #avatar{
+            position: absolute;
+            z-index:1000;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+            background-color:white;
+            transform:translateX(100%);
+            transition:0.4s;
+            justify-content: flex-start;
+            padding-top:30px;
+        }
+        #avatar.active{
+            transform:translateX(0);
+        }
+        #avatar h1{
+            margin:10px;
+            width:100%;
+            padding:0 15px;
+            font-size:19px;
+            font-weight:500;
+        }
+        #avatar i{
+            float: right;
+            font-size:22px;
+            cursor:pointer;
+            transition:0.3s;
+            margin:10px;
+        }
+        #avatar i:hover{
+            transform:rotateZ(90deg);
+        }
+        #avatar .images{
+            width:100%;
+            padding:10px;
+            margin:10px 0;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        #avatar button,#avatar input{
+            margin:10px;
+            cursor:pointer;
+            font-size:15px;
+            padding:5px;
+        }
+        #avatar .images img{
+            margin:15px;
+            width:60px;
+            height:60px;
+            border-radius:50%;
+            object-fit: cover;
+            cursor:pointer;
+        }
+        #own_file{
+            width:100%;
+            margin:10px;
+            padding:10px;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #own_file button{
+            padding:7px;
+            background-color: darkblue;
+            color:white;
+            font-size:19px;
+            border-radius:20px;
+            cursor:pointer;
+            border:none;
+            outline:none;
+        }
+        #prev_img{
+            margin:10px;
+            width:200px;
+            height:200px;
+            object-fit: cover;
+            border-radius:50%;
+        }
 /*edit page */
         
         @media (max-width:400px){
@@ -1375,7 +1450,7 @@
         <div class="box1">
                 <i class="fas fa-long-arrow-alt-left" onclick="close1(0)"></i>
                 
-                <img id="edit_profile_img" src="">
+                <img id="edit_profile_img" src="" onclick="remove_ava()">
                 
         <input type="text" placeholder="Name" id="edit_profile_name">
         
@@ -1455,8 +1530,7 @@
          </div>
          
     </section>
-    
-    
+         
     <section class="flex pop_page" id="chat_place">
 
     <div id="add_msg">
@@ -1489,6 +1563,48 @@
     <div id="search_f">
         
      </div>
+    </section>
+    
+    <section id="avatar" class="flex">
+    
+    <h1><span>Choose your avatar </span> <i class='fas fa-times' onclick="remove_ava()"></i></h1>
+       <div class="own_img">
+           <button onclick="online_img()">Upload a online image </button>
+           <input type="file" id="off_img_bt" onchange="offline_img()">
+       </div>
+       
+       <div id="own_file">
+           <img src="avatars/p1.png" id="prev_img">
+           <button onclick="img_fire()">Upload</button>
+       </div>
+       
+        <div class="flex images">
+                    <img src="avatars/p1.png" onclick="add_edit_img(0,'avatars/p1.png')">
+                    <img src="avatars/p2.png" onclick="add_edit_img(0,'avatars/p2.png')">
+                    <img src="avatars/p3.png" onclick="add_edit_img(0,'avatars/p3.png')">
+                    <img src="avatars/p4.png" onclick="add_edit_img(0,'avatars/p4.png')">
+                    <img src="avatars/p5.png" onclick="add_edit_img(0,'avatars/p5.png')">
+                    <img src="avatars/p6.png" onclick="add_edit_img(0,'avatars/p6.png')">
+                    <img src="avatars/p7.png" onclick="add_edit_img(0,'avatars/p7.png')">
+                    <img src="avatars/p8.png" onclick="add_edit_img(0,'avatars/p8.png')">
+                    <img src="avatars/p9.png" onclick="add_edit_img(0,'avatars/p9.png')">
+                    <img src="avatars/p10.png" onclick="add_edit_img(0,'avatars/p10.png')">
+                    <img src="avatars/p11.png" onclick="add_edit_img(0,'avatars/p11.png')">
+                    <img src="avatars/p12.png" onclick="add_edit_img(0,'avatars/p12.png')">
+                    <img src="avatars/p13.png" onclick="add_edit_img(0,'avatars/p13.png')">
+                    <img src="avatars/p14.png" onclick="add_edit_img(0,'avatars/p14.png')">
+                    <img src="avatars/p15.png" onclick="add_edit_img(0,'avatars/p15.png')">
+                    <img src="avatars/p16.jpg" onclick="add_edit_img(0,'avatars/p16.jpg')">
+                    <img src="avatars/p17.png" onclick="add_edit_img(0,'avatars/p17.png')">
+                    <img src="avatars/p18.png" onclick="add_edit_img(0,'avatars/p18.png')">
+                    <img src="avatars/p19.jpg" onclick="add_edit_img(0,'avatars/p19.jpg')">
+                    <img src="avatars/p20.png" onclick="add_edit_img(0,'avatars/p20.png')">
+                    <img src="avatars/p21.jpg" onclick="add_edit_img(0,'avatars/p21.jpg')">
+                    <img src="avatars/p22.jpg" onclick="add_edit_img(0,'avatars/p22.jpg')">
+                    <img src="avatars/p23.jpg" onclick="add_edit_img(0,'avatars/p23.jpg')">
+                    <img src="avatars/p24.jpg" onclick="add_edit_img(0,'avatars/p24.jpg')">
+                </div>
+                
     </section>
     
     <section id="logo" class="flex active pop_page"><img src="logo.png"></section>
@@ -2310,6 +2426,7 @@ edit_notes_box.innerHTML = "<div class='note'><input type='text' placeholder='ti
         }
         
         function save_data(){
+            
             var  save_profile_img = document.getElementById("edit_profile_img");
             var save_profile_img_src = save_profile_img.getAttribute("src");
            var save_profile_name = document.getElementById("edit_profile_name").value;
@@ -2317,6 +2434,11 @@ edit_notes_box.innerHTML = "<div class='note'><input type='text' placeholder='ti
             firebase.database().ref("users/"+user_key).update({
                 dp : save_profile_img_src
             })
+            
+            var dp11 = document.querySelectorAll(".profile_logo");
+            for (var mn = 0;mn < dp11.length;mn++){
+                dp11[mn].src = save_profile_img_src;
+            }
             
             if (save_profile_name.length > 0){
                 
@@ -2412,6 +2534,66 @@ edit_notes_box.innerHTML = "<div class='note'><input type='text' placeholder='ti
             
         }
         
+        function add_edit_img(a,b){
+           var  edit_profile_img = document.getElementById("edit_profile_img");
+            edit_profile_img.src = b;
+            remove_ava();
+        }
+        
+        function online_img(){
+            var pp = prompt("enter URL / Link of image : ");
+            if (pp){
+                if (pp.includes("https")){
+                    var  edit_profile_img = document.getElementById("edit_profile_img");
+                     edit_profile_img.src = pp;
+                       remove_ava();
+                }else{
+                    alert("Invalid url / link");
+                }
+            }
+        }
+        
+        function offline_img(){
+            var own_file = document.getElementById("own_file");
+            var img_b = document.getElementById("prev_img");
+            var off_img_bt = document.getElementById("off_img_bt");
+            const file = off_img_bt.files[0];
+            if (file){
+                const reader = new FileReader();
+                reader.onload = function(){
+                    const result = reader.result;
+                    own_file.style.display = "flex";
+                    img_b.src = result;
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        function remove_ava(){
+           var avatar = document.getElementById("avatar");
+            avatar.classList.toggle("active");
+            var own_file = document.getElementById("own_file");
+            own_file.style.display = "none";
+            
+        }
+        
+        function img_fire(){
+            
+            var img_b = document.getElementById("prev_img").getAttribute("src");
+            firebase.database().ref("users/"+user_key).update({
+                        dp : img_b
+            })
+            
+            var dp11 = document.querySelectorAll(".profile_logo");
+            for (var mn = 0;mn < dp11.length;mn++){
+                dp11[mn].src = img_b;
+            }
+            
+            draw_edit();
+            remove_ava();
+            
+        }
+
             setInterval(function(){
                 
                 if (status1){
