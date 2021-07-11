@@ -1751,13 +1751,15 @@
         function search_filter(){
             var search_box = document.getElementById("search_box").value;
             var names = document.querySelectorAll(".search_name");
+            var mails = document.querySelectorAll(".mail_search");
             var search_user = document.querySelectorAll(".search_user");
              for (var i =0;i<names.length;i++){
                  
                  var inner1 = names[i].innerHTML.toLowerCase();
+                 var mails1 = mails[i].innerHTML.toLowerCase();
                  var val1 = search_box.toLowerCase();
                  
-                if (inner1.includes(val1)){
+                if (inner1.includes(val1) || mails1.includes(val1)){
                    search_user[i].style.display = "flex";
                 }else{
                    search_user[i].style.display = "none";
@@ -1933,6 +1935,7 @@
             let user_frnd_key = ChildSnapShot.val().key;
             let user_up = ChildSnapShot.val().name;
             let user_dp = ChildSnapShot.val().dp;
+            let user_mail = ChildSnapShot.val().email;
             
             let user_time = ChildSnapShot.val().datein;
             
@@ -1968,7 +1971,7 @@
                 }
                 
      search_f.innerHTML += "<p class='search_user' onclick='open_person2("+count1
-                +")'><img src='"+user_dp+"' class='search_frnd_dp'><span class='search_name'>"+user_up+"</span><label>"+ user_time +"</label></p>";
+                +")'><img src='"+user_dp+"' class='search_frnd_dp'><span class='search_name'>"+user_up+"</span><label class='mail_search'>"+ user_mail+"</label></p>";
             
                 if (list_active.includes(user_key)){
     
