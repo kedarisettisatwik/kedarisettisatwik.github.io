@@ -64,15 +64,19 @@
         #footer{
             position: absolute;
             width:100%;
-            height:500px;
+            height:calc(100% - 70px);
             background-color:paleturquoise;
-            bottom:-430px;
+            bottom:0;
+            transform:translateY(calc(100% - 70px));
             left:0;
             border-top-left-radius:30px;
             border-top-right-radius:30px;
             justify-content: flex-start;
             flex-direction: column;
             transition:0.5s;
+        }
+        #footer.active{
+            transform:translateY(0);
         }
         #footer #arrow{
            width:100%;
@@ -81,8 +85,12 @@
             background:none;
             cursor:grab;
         }
-        #arrow_up{
+        #footer #arrow_up{
+            transform:rotateZ(0deg);
             transition:0.5s;
+        }
+        #footer.active #arrow_up{
+            transform:rotateZ(180deg);
         }
         
         @media (max-width:400px){
@@ -110,7 +118,7 @@
        
        <footer class="flex" id="footer">
            
-           <div id="arrow" onmouseenter="start_point(event)" onmouseout="exit_point(event)" onmousedown="pass(1)" onmouseup="pass(-1)" class="flex">
+           <div id="arrow" onclick="move_up_down()" class="flex">
               
                <ion-icon name="chevron-up-outline" id="arrow_up"></ion-icon>
                
@@ -128,44 +136,9 @@
     
     <script>
        
-        var exit_y;
-        var start_x;
-        var exit_x;
-        var pass1 = false;
-        
-        var footer1 = document.getElementById("footer"); 
-        
-        function start_point(e){
-            start_x = e.offsetX;
-        }
-        
-        function pass(a){
-            if (a == 1){
-                pass1 = true;
-            }else{
-                pass1 = false;
-            }
-        }
-        
-        function exit_point(e){
-            exit_y = e.offsetY;
-            exit_x = e.offsetX;
-            var x_c = Math.abs(start_x - exit_x);
-            
-            if (pass1){
-                var arrow_up = document.getElementById("arrow_up");
-                if (x_c < 20){
-                if (exit_y < 35){
-                    footer1.style.bottom = "0px";
-                    arrow_up.style.transform = "rotateZ(180deg)";
-                }else{
-                    footer1.style.bottom = "-430px";
-                    arrow_up.style.transform = "rotateZ(0deg)";
-                }
-                    pass1 = false;
-               }        
-            }
-            
+        function move_up_down(){
+            var footer1 = document.getElementById("footer"); 
+            footer1.classList.toggle("active");
         }
         
     </script>
