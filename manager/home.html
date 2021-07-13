@@ -49,7 +49,19 @@
             justify-content: flex-start;
             flex-direction: column;
         }
-        #account img{
+        #account div{
+            position:absolute;
+            width:500px;
+            height:500px;
+            border-radius:50%;
+            transform:translate(-50%,-50%);
+        }
+        #account .circle1{
+            top:0;
+            background-color:beige;
+            left:0;
+        }
+        #account .homeimg{
             position: relative;
             top:0;
             width:300px;
@@ -85,15 +97,12 @@
             cursor:pointer;
             box-shadow:0 0 5px rgb(0,0,0,0.2);
         } 
-        #account button:nth-child(3){
+        #account button:nth-child(4){
             color:black;
             background-color:pink;
-            border-top-left-radius:0px;
-            border-top-right-radius:20px;
-            border-bottom-right-radius:0px;
-            border-bottom-left-radius:20px;
+            border-radius:20px;
         }
-        #account button:nth-child(4){
+        #account button:nth-child(5){
             color:white;
             background-color:cornflowerblue;
             border-top-left-radius:20px;
@@ -101,13 +110,52 @@
             border-bottom-right-radius:20px;
             border-bottom-left-radius:0px;
         }
-        #account button:nth-child(5){
+        #account button:nth-child(6){
             color:black;
             background-color:palegoldenrod;
             border-top-left-radius:0px;
-            border-top-right-radius:20px;
+            border-top-right-radius:0px;
             border-bottom-right-radius:0px;
-            border-bottom-left-radius:20px;
+            border-bottom-left-radius:0px;
+        }
+        #account form{
+            position: absolute;
+            width:100%;
+            height:100%;
+            background-color:white;
+            top:0;
+            left:0;
+            transition:0.4s;
+            justify-content: flex-start;
+            transform:translateY(100%);
+            flex-direction: column;
+        }
+        #account form.active{
+            transform:translateY(0);
+        }
+        #account form ion-icon{
+            position:absolute;
+            top:20px;
+            right:30px;
+            font-size:30px;
+            cursor:pointer;
+        }
+        #account form input{
+            width:90%;
+            margin:10px;
+            padding:10px 15px;
+            font-size:17px;
+            border:none;
+            outline:none;
+            border-bottom:3px solid black;
+            letter-spacing:1px;
+        }
+        #account form input::placeholder{
+            color:black;
+        }
+        #account form img{
+            width:200px;
+            margin:10px 0 20px 0;
         }
         
 /*       account      */
@@ -219,12 +267,30 @@
       
       <section id="account" class="flex">
          
-          <img src="accountbg.png">
+         <div class="circle1"></div>
+         
+          <img src="accountbg.png" class="homeimg">
           
           <h2>EvenT</h2>
-          <button>Sign In</button>
-          <button>Sign Up</button>
+          <button onclick='form_toggle(0)'>Sign In</button>
+          <button onclick='form_toggle(1)'>Sign Up</button>
           <button>Tutorial ? </button>
+          
+          <form autocomplete="off" id="signin" class="flex">
+             <img src="signup.png">
+              <ion-icon name="close-circle-outline" onclick='form_toggle(0)'></ion-icon>
+              <input type="email" placeholder="email - @gmail.com">
+              <input type="password" placeholder="password ****">
+          </form>
+          
+          <form autocomplete="off" id="signup" class="flex">
+             <img src="signup.png">
+              <ion-icon name="close-circle-outline" onclick='form_toggle(1)'></ion-icon>
+              <input type="text" placeholder="name">
+              <input type="email" placeholder="email - @gmail.com">
+              <input type="password" placeholder="password ****">
+              <input type="text" placeholder="confirm password">
+          </form>
           
       </section>
       
@@ -282,6 +348,16 @@
         function move_up_down(){
             var footer1 = document.getElementById("footer"); 
             footer1.classList.toggle("active");
+        }
+        
+        function form_toggle(a){
+            var one = document.getElementById("signin");
+            var two = document.getElementById("signup");
+            if (a == 0){
+                one.classList.toggle("active");
+            }else{
+                two.classList.toggle("active");
+            }
         }
         
         setInterval(function(){
