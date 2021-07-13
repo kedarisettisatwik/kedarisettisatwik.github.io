@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/d867b74fd4.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <title>manager</title>
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        .flex{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+        body{
+            width:100vw;
+            height:100vh;
+            overflow: hidden;
+            background-color: aliceblue;
+            justify-content: flex-start;
+        }
+        .main{
+            position:relative;
+            width:400px;
+            height:95%; 
+            background-color: white;
+            box-shadow:0 0 10px rgb(0,0,0,0.3);
+            overflow: hidden;
+        }
+/*       account      */
+        
+        #account{
+            width:100%;
+            height:100%;
+            display: flex;
+            position:relative;
+            background-color: white;
+            justify-content: flex-start;
+            flex-direction: column;
+        }
+        #account img{
+            position: relative;
+            top:0;
+            width:300px;
+            filter:hue-rotate(0deg);
+            -webkit-animation:hue1 14s linear infinite;
+            margin-bottom:15px;
+        }
+        @keyframes hue1{
+            0%{filter:hue-rotate(0deg)}
+            50%{filter:hue-rotate(180deg)}
+            100%{filter:hue-rotate(360deg)}
+        }
+        #account h2{
+            width:100%;
+            padding-left:50px;
+            font-size:28px;
+            font-weight:500;
+            letter-spacing:1px;
+            margin:10px;
+            margin-bottom:30px;
+        }
+        #account button{
+            background:none;
+            outline:none;
+            border:none;
+            width:90%;
+            padding:12px;
+            margin:15px;
+            font-size:20px;
+            text-transform:uppercase;
+            letter-spacing:2px;
+            font-weight:bold;
+            cursor:pointer;
+            box-shadow:0 0 5px rgb(0,0,0,0.2);
+        } 
+        #account button:nth-child(3){
+            color:black;
+            background-color:pink;
+            border-top-left-radius:0px;
+            border-top-right-radius:20px;
+            border-bottom-right-radius:0px;
+            border-bottom-left-radius:20px;
+        }
+        #account button:nth-child(4){
+            color:white;
+            background-color:cornflowerblue;
+            border-top-left-radius:20px;
+            border-top-right-radius:0px;
+            border-bottom-right-radius:20px;
+            border-bottom-left-radius:0px;
+        }
+        #account button:nth-child(5){
+            color:black;
+            background-color:palegoldenrod;
+            border-top-left-radius:0px;
+            border-top-right-radius:20px;
+            border-bottom-right-radius:0px;
+            border-bottom-left-radius:20px;
+        }
+        
+/*       account      */
+        
+        
+/*       Home         */
+        
+        #home{
+            position:relative;
+            width:100%;
+            height:100%;
+            display:none;
+        }
+        
+        /*        nav    */
+        .nav{
+            position: absolute;
+            width:100%;
+            height:60px;
+            justify-content: space-around;
+            top:0px;
+            left:0;
+            flex-direction: row;
+            z-index:100;
+        }
+        .nav ion-icon {
+            font-size:23px;
+            opacity:0.3;
+            margin:0 10px;
+            width:30px;
+            height:60px;
+            text-align:center;
+            line-height:60px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+        .nav ion-icon:hover{
+            opacity: 1
+        }
+        .nav ion-icon.active{
+            opacity:1;
+        }
+        .nav label{
+            font-size:20px;
+            line-height:60px;
+            text-align: center;
+            font-weight:bold;
+            letter-spacing:1px;
+            color:darkblue;
+        }
+        /*        nav    */
+        
+        /*      footer    */
+        #footer{
+            position: absolute;
+            width:100%;
+            height:calc(100% - 70px);
+            background-color:paleturquoise;
+            bottom:0;
+            transform:translateY(calc(100% - 70px));
+            left:0;
+            border-top-left-radius:30px;
+            border-top-right-radius:30px;
+            justify-content: flex-start;
+            flex-direction: column;
+            transition:0.5s;
+            box-shadow:0 -7px 10px rgb(0,0,0,0.2);
+        }
+        #footer.active{
+            transform:translateY(0);
+            box-shadow:0 0px 10px rgb(0,0,0,0.2);
+        }
+        #footer #arrow{
+            position:relative;
+           width:90%;
+            margin-top:10px;
+            height:40px;
+            font-size:25px;
+            background:none;
+            cursor:grab;
+            opacity:0.6;
+            border-bottom:3px solid rgb(0,0,0,0.6);
+        }
+        #footer #arrow_up{
+            transform:rotateZ(0deg);
+            transition:0.5s;
+        }
+        #footer.active #arrow_up{
+            transform:rotateZ(180deg);
+        }
+        /*      footer    */
+        
+        
+/*       Home         */
+        
+        @media (max-width:400px){
+            .main{
+                width:100%;
+                height:100%; 
+            }
+        }
+        
+    </style>
+</head>
+
+<body class="flex">
+  
+   <section class="main">
+      
+      <section id="account" class="flex">
+         
+          <img src="accountbg.png">
+          
+          <h2>EvenT</h2>
+          <button>Sign In</button>
+          <button>Sign Up</button>
+          <button>Tutorial ? </button>
+          
+      </section>
+      
+       <section id="home" class="flex">
+          
+           <nav class="flex nav">
+        
+       <ion-icon name="home-outline" class='active icon1'></ion-icon>
+       <ion-icon name="bar-chart-outline" class='icon1'></ion-icon>
+       <label id="time_short" class='icon1'>05 : 01</label>
+       <ion-icon name="bag-handle-outline" class='icon1'></ion-icon>
+       <ion-icon name="settings-outline" class='icon1'></ion-icon>
+       
+          </nav>
+       
+       
+       
+          <footer class="flex" id="footer">
+           
+             <div id="arrow" onclick="move_up_down()" class="flex">
+              
+                <ion-icon name="caret-up-outline" id="arrow_up"></ion-icon>
+               
+             </div>
+           
+          </footer>
+       
+       </section>
+        
+   </section>
+    
+    
+    
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    
+    <script>
+       
+        function draw_time(){
+             var time_short = document.getElementById("time_short");
+            var t1 = new Date().getHours();
+            var t2 = new Date().getMinutes();
+            
+            if (t1 < 12){
+                t1 = "0" + t1;
+            }
+            if (t2 < 10){
+                t2 = "0"+ t2;
+            }
+            
+            time_short.innerHTML = t1 + " : " + t2;
+         }
+        
+        draw_time();
+        
+        function move_up_down(){
+            var footer1 = document.getElementById("footer"); 
+            footer1.classList.toggle("active");
+        }
+        
+        setInterval(function(){
+            
+            draw_time();
+            
+        },1000);
+        
+    </script>
+    
+</body>
+
+</html>
+
+
+
+
+<!--
+
+       <ion-icon name="add-circle-outline"></ion-icon>
+       <ion-icon name="calendar-outline"></ion-icon>
+       <ion-icon name="grid-outline"></ion-icon>
+       <ion-icon name="menu-outline"></ion-icon>
+
+var ele1 = document.getElementById("in"+selected);
+        ele1.select();
+        document.execCommand("copy");
+
+-->
