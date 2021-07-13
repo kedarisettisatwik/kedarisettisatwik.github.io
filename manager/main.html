@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/d867b74fd4.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <title>manager</title>
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        .flex{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+        body{
+            width:100vw;
+            height:100vh;
+            overflow-x: hidden;
+            background-color: aliceblue;
+            justify-content: flex-start;
+        }
+        .main{
+            position:relative;
+            width:400px;
+            height:95%; 
+            background-color: white;
+            box-shadow:0 0 10px rgb(0,0,0,0.3);
+            overflow: hidden;
+        }
+        .nav{
+            position: absolute;
+            width:100%;
+            height:60px;
+            justify-content: space-around;
+            top:0px;
+            left:0;
+            flex-direction: row;
+        }
+        .nav ion-icon {
+            font-size:27px;
+            opacity:0.5;
+            margin:0 10px;
+            width:30px;
+            height:60px;
+            text-align:center;
+            line-height:60px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+        .nav ion-icon:hover{
+            opacity: 1
+        }
+        #footer{
+            position: absolute;
+            width:100%;
+            height:500px;
+            background-color:paleturquoise;
+            bottom:-430px;
+            left:0;
+            border-top-left-radius:30px;
+            border-top-right-radius:30px;
+            justify-content: flex-start;
+            flex-direction: column;
+            transition:0.5s;
+        }
+        #footer #arrow{
+           width:100%;
+            height:50px;
+            font-size:23px;
+            background:none;
+            cursor:grab;
+        }
+        #arrow_up{
+            transition:0.5s;
+        }
+        
+        @media (max-width:400px){
+            .main{
+                width:100%;
+                height:100%; 
+            }
+        }
+        
+    </style>
+</head>
+
+<body class="flex">
+  
+   <section class="main">
+       
+       <nav class="flex nav">
+        
+       <ion-icon name="alarm-outline"></ion-icon>
+       <ion-icon name="bar-chart-outline"></ion-icon>
+       <ion-icon name="bag-handle-outline"></ion-icon>
+       <ion-icon name="settings-outline"></ion-icon>
+       
+       </nav>
+       
+       <footer class="flex" id="footer">
+           
+           <div id="arrow" onmouseenter="start_point(event)" onmouseout="exit_point(event)" onmousedown="pass(1)" onmouseup="pass(-1)" class="flex">
+              
+               <ion-icon name="chevron-up-outline" id="arrow_up"></ion-icon>
+               
+           </div>
+           
+       </footer>
+       
+       
+       
+   </section>
+    
+    
+    
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    
+    <script>
+       
+        var start_y;
+        var exit_y;
+        var start_x;
+        var exit_x;
+        var pass1 = false;
+        
+        var footer1 = document.getElementById("footer"); 
+        
+        function start_point(e){
+            start_y = e.offsetY;
+            start_x = e.offsetX;
+        }
+        
+        function pass(a){
+            if (a == 1){
+                pass1 = true;
+            }else{
+                pass1 = false;
+            }
+        }
+        
+        function exit_point(e){
+            exit_y = e.offsetY;
+            exit_x = e.offsetX;
+            var x_c = Math.abs(start_x - exit_x);
+            var y_c = Math.abs(start_y - exit_y);
+            if (pass1){
+                var arrow_up = document.getElementById("arrow_up");
+                if (x_c < 20){
+                if (start_y > exit_y){
+                    footer1.style.bottom = "0px";
+                    arrow_up.style.transform = "rotateZ(180deg)";
+                }else{
+                    footer1.style.bottom = "-430px";
+                    arrow_up.style.transform = "rotateZ(0deg)";
+                }
+                    pass1 = false;
+                  setTimeout(function(){
+                      pass1 = true;
+                  },1000);
+               }        
+            }
+        }
+        
+    </script>
+    
+</body>
+
+</html>
+
+
+
+
+<!--
+
+       <ion-icon name="add-circle-outline"></ion-icon>
+       <ion-icon name="calendar-outline"></ion-icon>
+       <ion-icon name="grid-outline"></ion-icon>
+       <ion-icon name="menu-outline"></ion-icon>
+
+var ele1 = document.getElementById("in"+selected);
+        ele1.select();
+        document.execCommand("copy");
+
+-->
