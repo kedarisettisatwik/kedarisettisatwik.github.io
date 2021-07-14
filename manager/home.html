@@ -200,6 +200,14 @@
             border-right:none;
             border-bottom:none;
         }
+        #account ion-icon{
+            position: absolute;
+            top:30px;
+            right:20px;
+            color:white;
+            font-size:30px;
+            cursor:pointer;
+        }
 /*       account      */
         
         
@@ -312,6 +320,7 @@
           <form autocomplete="off" id="signin" class="flex active">
              <img src="logo.jpg" class="logo">
              <img src="accountbg.png" class="img1">
+             <ion-icon name="help-circle-sharp" onclick="help1()"></ion-icon>
              <h2>EvenT</h2>
              <div class="inp">
                  <div class="icon"><i class="far fa-envelope"></i></div>
@@ -330,6 +339,7 @@
           <form autocomplete="off" id="signup" class="flex">
              <img src="logo.jpg" class="logo">
              <img src="signup.png" class="img2">
+             <ion-icon name="help-circle-sharp" onclick="help1()"></ion-icon>
              <div class="inp">
                  <div class="icon"><i class="fas fa-user"></i></div>
                  <input type="text" placeholder="Name" required>
@@ -438,6 +448,10 @@
         
         // time 
         
+    
+        function help1(){
+            // you tube link
+        }
         
         function move_up_down(){
             var footer1 = document.getElementById("footer"); 
