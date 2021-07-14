@@ -80,7 +80,7 @@
         #account #signup{
             background-image:linear-gradient(rgb(255, 51, 153),rgb(255, 0, 102));
         }
-        #account form img{
+        #account form .logo{
             width:100px;
             height:100px;
             padding:5px;
@@ -156,9 +156,14 @@
             color:chocolate;
         }
         #account form p{
+            padding:10px;
+            color:black;
+            background-color: white;
+            border-radius:20px;
             margin:10px;
             cursor:pointer;
-            color:white;
+            font-size:15px;
+            box-shadow: 0 0 10px rgb(0,0,0);
             font-weight:bold;
             letter-spacing:1px;
             margin-bottom:30px;
@@ -174,7 +179,27 @@
             padding:10px;
             border:2px solid white;
         }
-        
+        #account form .img1, #account form .img2{
+            position: absolute;
+            width:200px;
+            background-image:linear-gradient(rgb(255,255,255,0.4),rgb(255,255,255,0.5));
+            padding:10px;
+            border:2px solid white;
+        }
+        #account form .img1{
+            bottom:0;
+            left:0;
+            border-top-right-radius:100px;
+            border-bottom:none;
+            border-left:none;
+        }
+        #account form .img2{
+            border-top-left-radius:100px;
+            bottom:0;
+            right:0;
+            border-right:none;
+            border-bottom:none;
+        }
 /*       account      */
         
         
@@ -285,7 +310,8 @@
       <section id="account" class="flex">
           
           <form autocomplete="off" id="signin" class="flex active">
-             <img src="logo.jpg">
+             <img src="logo.jpg" class="logo">
+             <img src="accountbg.png" class="img1">
              <h2>EvenT</h2>
              <div class="inp">
                  <div class="icon"><i class="far fa-envelope"></i></div>
@@ -302,7 +328,8 @@
           </form>
           
           <form autocomplete="off" id="signup" class="flex">
-             <img src="logo.jpg">
+             <img src="logo.jpg" class="logo">
+             <img src="signup.png" class="img2">
              <div class="inp">
                  <div class="icon"><i class="fas fa-user"></i></div>
                  <input type="text" placeholder="Name" required>
