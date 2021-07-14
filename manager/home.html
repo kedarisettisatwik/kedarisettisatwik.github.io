@@ -360,12 +360,35 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     
     <script>
+    
+        // pages 
+        
+        var account_p = document.getElementById("account");
+        var home_p = document.getElementById("home");
+    
+    </script>
+    
+    <script>
        
         function form_toggle(){
             var two = document.getElementById("signup");
             two.classList.toggle("active");
         }
+
+        var signin = document.getElementById("signin");
+        var signup = document.getElementById("signup");
         
+        signin.addEventListener("submit", (e) => {
+            e.preventDefault();
+            account_p.style.display = "none";
+            home_p.style.display = "flex";
+        });
+        
+        signup.addEventListener("submit", (e) => {
+            e.preventDefault();
+            account_p.style.display = "none";
+            home_p.style.display = "flex";
+        });
         
         // time 
         
