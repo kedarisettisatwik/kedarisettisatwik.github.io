@@ -18,6 +18,12 @@
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
+        ::-webkit-scrollbar{
+            width:5px;
+        }
+        ::-webkit-scrollbar-thumb{
+            background-color:blue;
+        }
         .flex{
             display:flex;
             justify-content: center;
@@ -38,85 +44,18 @@
             box-shadow:0 0 10px rgb(0,0,0,0.3);
             overflow: hidden;
         }
+        
 /*       account      */
         
         #account{
+            overflow-x: hidden;
+            overflow-y: auto;
             width:100%;
             height:100%;
             display: flex;
             position:relative;
             background-color: white;
-            justify-content: flex-start;
             flex-direction: column;
-        }
-        #account div{
-            position:absolute;
-            width:500px;
-            height:500px;
-            border-radius:50%;
-            transform:translate(-50%,-50%);
-        }
-        #account .circle1{
-            top:0;
-            background-color:beige;
-            left:0;
-        }
-        #account .homeimg{
-            position: relative;
-            top:0;
-            width:300px;
-            filter:hue-rotate(0deg);
-            -webkit-animation:hue1 14s linear infinite;
-            margin-bottom:15px;
-        }
-        @keyframes hue1{
-            0%{filter:hue-rotate(0deg)}
-            50%{filter:hue-rotate(180deg)}
-            100%{filter:hue-rotate(360deg)}
-        }
-        #account h2{
-            width:100%;
-            padding-left:50px;
-            font-size:28px;
-            font-weight:500;
-            letter-spacing:1px;
-            margin:10px;
-            margin-bottom:30px;
-        }
-        #account button{
-            background:none;
-            outline:none;
-            border:none;
-            width:90%;
-            padding:12px;
-            margin:15px;
-            font-size:20px;
-            text-transform:uppercase;
-            letter-spacing:2px;
-            font-weight:bold;
-            cursor:pointer;
-            box-shadow:0 0 5px rgb(0,0,0,0.2);
-        } 
-        #account button:nth-child(4){
-            color:black;
-            background-color:pink;
-            border-radius:20px;
-        }
-        #account button:nth-child(5){
-            color:white;
-            background-color:cornflowerblue;
-            border-top-left-radius:20px;
-            border-top-right-radius:0px;
-            border-bottom-right-radius:20px;
-            border-bottom-left-radius:0px;
-        }
-        #account button:nth-child(6){
-            color:black;
-            background-color:palegoldenrod;
-            border-top-left-radius:0px;
-            border-top-right-radius:0px;
-            border-bottom-right-radius:0px;
-            border-bottom-left-radius:0px;
         }
         #account form{
             position: absolute;
@@ -126,36 +65,114 @@
             top:0;
             left:0;
             transition:0.4s;
+            transform:translateX(100%);
             justify-content: flex-start;
-            transform:translateY(100%);
             flex-direction: column;
+            overflow-x: hidden;
+            overflow-y: auto;
         }
         #account form.active{
-            transform:translateY(0);
+            transform:translateX(0);
         }
-        #account form ion-icon{
-            position:absolute;
-            top:20px;
-            right:30px;
-            font-size:30px;
-            cursor:pointer;
+        #account #signin{
+            background-image:linear-gradient(rgb(204, 0, 255),rgb(153, 51, 255));
         }
-        #account form input{
-            width:90%;
-            margin:10px;
-            padding:10px 15px;
-            font-size:17px;
-            border:none;
-            outline:none;
-            border-bottom:3px solid black;
-            letter-spacing:1px;
-        }
-        #account form input::placeholder{
-            color:black;
+        #account #signup{
+            background-image:linear-gradient(rgb(255, 51, 153),rgb(255, 0, 102));
         }
         #account form img{
-            width:200px;
-            margin:10px 0 20px 0;
+            width:100px;
+            height:100px;
+            padding:5px;
+            border-radius:50%;
+            border:2px solid white;
+            margin:10px;
+            margin-bottom:25px;
+            margin-top:15px;
+        }
+        #account form .inp{
+            width:93%;
+            min-width:300px;
+            background-image:linear-gradient(to left,rgb(255,255,255,0.4),rgb(255,255,255,0.5));
+            height:50px;
+            border-radius:25px;
+            margin:10px;
+            box-shadow:0 0 5px rgb(0,0,0,0.4);
+            position:relative;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: row;
+        }
+        #account form .inp input{
+            width:calc(100% - 60px);
+            height:100%;
+            background-color:transparent;
+            outline:none;
+            border:none;
+            font-size:16px;
+            padding:10px;
+            padding-left:20px;
+            color:white;
+            letter-spacing:1px;
+        }
+        #account form .inp input::placeholder{
+            color:white;
+        }
+        #account form .inp input[type="submit"]{
+            height:100%;
+            background-color:white;
+            outline:none;
+            border:none;
+            font-size:19px;
+            border-radius:25px;
+            letter-spacing:1px;
+            padding:0;
+            width:100%;
+            font-weight:bold;
+            letter-spacing:1px;
+            cursor:pointer;
+        }
+        #account #signin .inp input[type="submit"]{
+            color:darkviolet;
+        }
+        #account #signup .inp input[type="submit"]{
+            color:chocolate;
+        }
+        #account form .inp .icon{
+            width:45px;
+            height:45px;
+            border-radius:50%;
+            background-color: white;
+            font-size:19px;
+            margin-left:2.5px;
+            line-height:45px;
+            text-align: center;
+        }
+        #account #signin .inp .icon,#account #signin .inp .icon1{
+            color:purple;
+        }
+        #account #signup .inp .icon, #account #signup .inp .icon1{
+            color:chocolate;
+        }
+        #account form p{
+            margin:10px;
+            cursor:pointer;
+            color:white;
+            font-weight:bold;
+            letter-spacing:1px;
+            margin-bottom:30px;
+        }
+        #account form h2{
+            margin:10px;
+            margin-bottom:20px;
+            font-size:20px;
+            font-weight:bold;
+            letter-spacing:1px;
+            color:white;
+            width:80%;
+            padding:10px;
+            border:2px solid white;
         }
         
 /*       account      */
@@ -266,30 +283,46 @@
    <section class="main">
       
       <section id="account" class="flex">
-         
-         <div class="circle1"></div>
-         
-          <img src="accountbg.png" class="homeimg">
           
-          <h2>EvenT</h2>
-          <button onclick='form_toggle(0)'>Sign In</button>
-          <button onclick='form_toggle(1)'>Sign Up</button>
-          <button>Tutorial ? </button>
-          
-          <form autocomplete="off" id="signin" class="flex">
-             <img src="signup.png">
-              <ion-icon name="close-circle-outline" onclick='form_toggle(0)'></ion-icon>
-              <input type="email" placeholder="email - @gmail.com">
-              <input type="password" placeholder="password ****">
+          <form autocomplete="off" id="signin" class="flex active">
+             <img src="logo.jpg">
+             <h2>EvenT</h2>
+             <div class="inp">
+                 <div class="icon"><i class="far fa-envelope"></i></div>
+                 <input type="email" placeholder="E-mail @gmail.com" required>
+             </div>
+             <div class="inp">
+                 <div class="icon"><i class="fas fa-key"></i></div>
+                 <input type="password" placeholder="password ****" required>
+             </div>
+             <div class="inp">
+                    <input type="submit" value="SIGN IN">
+             </div>
+             <p onclick="form_toggle()">New User ? </p>
           </form>
           
           <form autocomplete="off" id="signup" class="flex">
-             <img src="signup.png">
-              <ion-icon name="close-circle-outline" onclick='form_toggle(1)'></ion-icon>
-              <input type="text" placeholder="name">
-              <input type="email" placeholder="email - @gmail.com">
-              <input type="password" placeholder="password ****">
-              <input type="text" placeholder="confirm password">
+             <img src="logo.jpg">
+             <div class="inp">
+                 <div class="icon"><i class="fas fa-user"></i></div>
+                 <input type="text" placeholder="Name" required>
+             </div>
+             <div class="inp">
+                 <div class="icon"><i class="far fa-envelope"></i></div>
+                 <input type="email" placeholder="E-mail @gmail.com" required>
+             </div>
+             <div class="inp">
+                 <div class="icon"><i class="fas fa-lock"></i></div>
+                 <input type="password" placeholder="password ****" required>
+             </div>
+            <div class="inp">
+                <div class="icon"><i class="fas fa-key"></i></div>
+                 <input type="text" placeholder="confirm - password" required>
+             </div>
+             <div class="inp">
+                 <input type="submit" value="SIGN IN">
+             </div>
+             <p onclick="form_toggle()">Already Have Account !</p>
           </form>
           
       </section>
@@ -328,6 +361,14 @@
     
     <script>
        
+        function form_toggle(){
+            var two = document.getElementById("signup");
+            two.classList.toggle("active");
+        }
+        
+        
+        // time 
+        
         function draw_time(){
              var time_short = document.getElementById("time_short");
             var t1 = new Date().getHours();
@@ -345,19 +386,12 @@
         
         draw_time();
         
+        // time 
+        
+        
         function move_up_down(){
             var footer1 = document.getElementById("footer"); 
             footer1.classList.toggle("active");
-        }
-        
-        function form_toggle(a){
-            var one = document.getElementById("signin");
-            var two = document.getElementById("signup");
-            if (a == 0){
-                one.classList.toggle("active");
-            }else{
-                two.classList.toggle("active");
-            }
         }
         
         setInterval(function(){
