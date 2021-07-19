@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/d867b74fd4.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="logo.png" type="image">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+
+    <title>manager</title>
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            border: none;
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: blue;
+        }
+
+        .flex {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        body {
+            width:calc(100vw - 5px);
+            height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-direction: column;
+            padding-bottom:20px;
+        }
+        .pro{
+            width:100%;
+            margin:10px 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: row;
+        }
+        .pro img{
+            width:70px;
+            height:70px;
+            object-fit: cover;
+            margin:0 5px;
+            margin-left:10px;
+            border-radius:7px;
+            box-shadow:0 0 5px rgb(0,0,0,0.3);
+            cursor:pointer;
+        }
+        .pro .name{
+            width:calc(100% - 80px);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: column;
+        }
+        .pro .name h1,.pro .name h2{
+            width:100%;
+            padding-right:30px;
+            margin:5px;
+            text-align: right;
+            font-weight:700;
+            font-size:18px;
+        }
+        .pro .name h1{
+            padding-right:0;
+            padding-left:20px;
+            font-weight:500;
+            letter-spacing:2px;
+            font-size:20px;
+            text-align: left;
+        }
+        .nav{
+            width:100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: row;
+        }
+        .nav i{
+            width:25%;
+            margin:10px;
+            text-align:center;
+            line-height:50px;
+            border-bottom:2px dashed rgb(0,0,0,0.3);
+            color:rgb(0,0,0,0.5);
+            transition:0.6s;
+            cursor:pointer;
+            font-size:20px;
+        }
+        .nav i.active{
+            color:blue;
+            border-bottom:2px solid darkblue;
+        }
+        
+    </style>
+</head>
+
+<body>
+
+   <div class="pro">
+       <img src="" id="dp_img">
+       <div class="name">
+           <h1 id="user_name"></h1>
+           <h2 id="time1"></h2>
+       </div>
+   </div>
+   <div class="nav">
+       <i class="fas fa-home" onclick="icon1(0)"></i>
+       <i class="far fa-calendar-alt" onclick="icon1(1)"></i>
+       <i class="fas fa-comment-alt active" onclick="icon1(2)"></i>
+       <i class="fas fa-user-friends" onclick="icon1(3)"></i>
+   </div>
+    
+    <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase.js"></script>
+    
+    
+    <script>
+    var firebaseConfig = {
+    apiKey: "AIzaSyARQ2BkDwc8ET4ElFTx4tv3huFGTXs75xY",
+    authDomain: "network-c2f65.firebaseapp.com",
+    projectId: "network-c2f65",
+    storageBucket: "network-c2f65.appspot.com",
+    messagingSenderId: "565713313358",
+    appId: "1:565713313358:web:3935560cb111b6b83f6d1f"
+    };
+    firebase.initializeApp(firebaseConfig);
+    
+    const auth = firebase.auth();
+    const base = firebase.database();
+    
+    </script>
+    
+    <script>
+        
+        var user_key = sessionStorage.getItem("kedar_chat_user_key");
+        
+        user_key = "P1A4UgzkoXaD9bMnObDFQoiNydg1";
+        
+        firebase.database().ref('users/'+user_key).once('value',function(snapshot){
+                var user_name = snapshot.val().name;
+                var user_dp1 = snapshot.val().dp;
+                var dp_img = document.getElementById('dp_img');
+                var user_name1 = document.getElementById('user_name');
+               dp_img.src = user_dp1;
+               user_name1.innerHTML = user_name;
+        });
+        
+        function icon1(a){
+            var linksli = ["tasks.html","calender.html","followers.html","friends.html"];
+            window.location.replace(linksli[a]);
+        }
+        
+        setInterval(function(){
+            var time1 = document.getElementById("time1");
+            var hr = new Date().getHours();
+            var mn = new Date().getMinutes();
+            var dat = new Date().getDate();
+            var day = new Date().getDay();
+            var mo = new Date().getMonth();
+            
+            var mnli = ["Jan","Feb","Mar","Apr","May","Jun","July","Aug","Sept","Oct","Nov","Dec"];
+            var dali = ["Sun","Mon","Tues","Wed","Thur","Fri","Sat"];
+            
+            var do1 = dali[day];
+            var mo1 = mnli[mo];
+            
+            if (hr < 10){
+                hr = "0"+hr;
+            }
+            if (mn < 10){
+                mn = "0"+mn;
+            }
+            time1.innerHTML = dat + ", "+ mo1 + ", "+ do1 + " - "+ hr + " : " + mn;
+            
+        },1000);
+        
+        
+    </script>
+    
+</body>
+
+</html>
