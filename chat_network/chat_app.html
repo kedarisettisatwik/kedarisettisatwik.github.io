@@ -1796,6 +1796,7 @@
             e.preventDefault();
             var sign_in_email = document.getElementById("sign_in_email").value;
             var sign_in_password = document.getElementById("sign_in_password").value;
+            
             auth.signInWithEmailAndPassword(sign_in_email,sign_in_password)
                     .then(function(){
                         var user = auth.currentUser;
