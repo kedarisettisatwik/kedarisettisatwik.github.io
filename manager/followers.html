@@ -78,7 +78,7 @@
             padding-right:30px;
             margin:5px;
             text-align: right;
-            font-weight:700;
+            font-weight:500;
             font-size:18px;
         }
         .pro .name h1{
@@ -111,6 +111,56 @@
             color:blue;
             border-bottom:2px solid darkblue;
         }
+        #follow_friends{
+            position:relative;
+            width: calc(100% - 10px);
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
+        }
+        .box1{
+            width:100%;
+            margin:10px 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: row;
+            padding-bottom:8px;
+            border-bottom:2px solid rgb(0,0,0,0.1);
+            cursor:pointer;
+            transition:0.4s;
+            transform-origin:top left;
+        }
+        .box1 img{
+            width:60px;
+            height:60px;
+            object-fit: cover;
+            margin:0 5px;
+            margin-left:10px;
+            border-radius:7px;
+            box-shadow:0 0 5px rgb(0,0,0,0.3);
+            cursor:pointer;
+        }
+        .box1 .name{
+            width:calc(100% - 75px);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: column;
+        }
+        .box1 .name h1,.box1 .name h2{
+            width:100%;
+            padding-left:20px;
+            margin:5px;
+            text-align: left;
+            font-weight:500;
+            font-size:15px;
+            letter-spacing:1px;
+        }
+        .box1 .name h1{
+            font-size:18px;
+        }
         
     </style>
 </head>
@@ -130,6 +180,20 @@
        <i class="fas fa-comment-alt active" onclick="icon1(2)"></i>
        <i class="fas fa-user-friends" onclick="icon1(3)"></i>
    </div>
+   <div id="follow_friends">
+      
+<!--
+       <div class='box1' onclick='select1(count)'>
+           <img src='avatars/p15.png'>
+           <div class='name'>
+           <h1 class='search_name'>sridevi</h1>
+           <h2 class='search_mail'>sridevi3322@gmail.com</h2>
+           </div>
+       </div>  
+-->
+         
+   </div>
+    
     
     <script src="https://www.gstatic.com/firebasejs/8.7.0/firebase.js"></script>
     
@@ -145,9 +209,6 @@
     };
     firebase.initializeApp(firebaseConfig);
     
-    const auth = firebase.auth();
-    const base = firebase.database();
-    
     </script>
     
     <script>
@@ -155,6 +216,8 @@
         var user_key = sessionStorage.getItem("kedar_chat_user_key");
         
         user_key = "P1A4UgzkoXaD9bMnObDFQoiNydg1";
+        
+        var  list_frnds_search = [];
         
         firebase.database().ref('users/'+user_key).once('value',function(snapshot){
                 var user_name = snapshot.val().name;
@@ -169,6 +232,55 @@
             var linksli = ["tasks.html","calender.html","followers.html","friends.html"];
             window.location.replace(linksli[a]);
         }
+        
+        function draw_f(){
+            
+            firebase.database().ref('users/').on('value',function(snapshot){
+        
+            list_frnds_search = [];
+            var  count1 = 0;
+                
+            var search_f = document.getElementById("follow_friends");
+                
+            search_f.innerHTML = "";
+            
+        snapshot.forEach(function(ChildSnapShot){
+            let user_frnd_key = ChildSnapShot.val().key;
+            let user_up = ChildSnapShot.val().name;
+            let user_dp = ChildSnapShot.val().dp;
+            let user_date = ChildSnapShot.val().datein;
+            
+            let follow1 = ChildSnapShot.val().follow;
+            let follow = Object.values(follow1); 
+            var list_follow = [];
+            
+            for (var ld = 0;ld < follow.length;ld++){
+                var key_follow = follow[ld].name;
+                list_follow.push(key_follow);
+            }
+            
+                if (user_frnd_key != user_key){
+                    
+                    if (list_follow.includes(user_key)){
+                        search_f.innerHTML += " <div class='box1' onclick='select1("+ count1 +")'><img src='"+user_dp+"'><div class='name'><h1 class='search_name'>"+ user_up +"</h1><h2 class='search_mail'>"+user_date+"</h2></div></div>";
+                    }
+                }
+                
+                list_frnds_search.push(user_frnd_key);
+                
+          count1 += 1;  
+            
+                  });
+            });
+       }
+        
+       draw_f();
+    
+     function select1(a){
+         var key_s = list_frnds_search[a];
+         console.log(key_s);
+     }
+        
         
         setInterval(function(){
             var time1 = document.getElementById("time1");

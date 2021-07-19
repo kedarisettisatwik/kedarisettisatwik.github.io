@@ -45,7 +45,7 @@
             ele.innerHTML = "";
             ele.innerHTML += "<li class='top flex'><i class='fas fa-chevron-left' onclick='change(-1)'></i>"+"<span id='month-cal' onclick='dis1()'>"+month_li[req_month]+"</span><span id='year-cal' onclick='dis1()'>"+today_year+"</span>" +"<i class='fas fa-chevron-right' onclick='change(1)'></i>" +"<i class='fas fa-redo-alt' onclick='inp1()'></i>"+"</li>";
             
-            ele.innerHTML += "<li><ul class='days'><li>Sun</li><li>M</li><li>T</li><li>W</li><li>T</li><li>F</li><li>S</li></ul></li>";
+            ele.innerHTML += "<li><ul class='days'><li style='color:red'>S</li><li>M</li><li>T</li><li>W</li><li>T</li><li>F</li><li>S</li></ul></li>";
          
             
             var count = 0;
