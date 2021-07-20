@@ -334,22 +334,7 @@
         var  key_t = "";
         
         sessionStorage.clear();
-        
-        function show_n(){
-            const nn = new Notification("!! Network !!",{
-                body : "you have new messages"
-            });
-        }
-        
-        if (Notification.permission === "granted"){
-            show_n();
-        }else if (Notification.permission !== "denied"){
-            Notification.requestPermission().then(permission => {
-                if (permission === "granted"){
-                    show_n();
-                }
-            })
-        }
+    
         
         signin.addEventListener("submit", (e) => {
               e.preventDefault();
@@ -374,10 +359,11 @@
                 date_s = true;
                 key_t = user_key;
                 sound1.play();
+                
     firebase.database().ref('users/'+user_key+"/unseen1").on("child_added",function(snapshot){ 
                     sound1.play();     
-        show_n();
         });
+                
                     })
                     .catch(function(error){
                         var err_code = error.code;
