@@ -155,7 +155,8 @@
     
     <script>
         
-        var user_key = sessionStorage.getItem("kedar_chat_user_key");
+       const myurl = new URL(window.location.href);
+        let user_key = myurl.searchParams.get("user_name");
         
         firebase.database().ref('users/'+user_key).once('value',function(snapshot){
                 var user_name = snapshot.val().name;
@@ -167,8 +168,12 @@
         });
         
         function icon1(a){
+            var li0 = "tasks.html?user_name="+user_key;
+            var li1 = "calender.html?user_name="+user_key;
+            var li2 = "followers.html?user_name="+user_key;
+            var li3 = "friends.html?user_name="+user_key;
             var li4 = "profile.html?user_name="+user_key+"&other="+user_key;
-           var linksli = ["tasks.html","calender.html","followers.html","friends.html",li4];
+           var linksli = [li0,li1,li2,li3,li4];
             if (a == 4){
                 location.href = linksli[4];
             }else{

@@ -1,0 +1,828 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    
+    <title>network</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            list-style:none;
+            text-decoration:none;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        ::-webkit-scrollbar{
+            width:5px;
+        }
+        ::-webkit-scrollbar-thumb{
+            background-color:black;
+        }
+        .flex{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .bg{
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size:cover;
+        }
+        body{
+            width:100vw;
+            height: 100vh;
+            background-color:lavenderblush;
+            overflow: hidden;
+        }
+        /*edit page */
+        
+        #edit_profile{
+            position:relative;
+            width:100vw;
+            height:100vh;
+            justify-content: flex-start;
+            padding-top:15px;
+            max-height:100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+            background-color: white;
+        }
+        #edit_profile .save_p{
+            width:100%;
+            padding:10px;
+            margin:10px;
+            font-size:16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction:column;
+        }
+        #edit_profile .save_p p{
+            margin:0 10px;
+        }
+        #edit_profile .save_p button{
+            width:200px;
+            padding:10px;
+            margin:10px;
+            background-color:darkblue;
+            color:white;
+            font-size:17px;
+            font-weight:bold;
+            letter-spacing:1px;
+            text-transform: uppercase;
+            border:none;
+            outline:none;
+            cursor:pointer;
+        }
+        #edit_profile .fa-long-arrow-alt-left,#edit_profile .box1 img{
+            position: absolute;
+            top:0;
+            transform:translateY(-50%);
+            width:45px;
+            height:45px;
+            line-height:40px;
+            text-align: center;
+            box-shadow:0 0 5px rgb(0,0,0,0.2);
+            font-size:22px;
+            cursor:pointer;
+            border-radius:50%;
+            color:black;
+            background-color:white;
+        }
+        #edit_profile .fa-long-arrow-alt-left{
+            left:10px;
+        }
+        #edit_profile .box1 img{
+            right:10px;
+            transform:translate(0,-50%);
+            box-sizing:content-box;
+            object-fit: cover;
+            width:65px;
+            height:65px;
+        }
+        #edit_profile .box1{
+            margin-top:20px;
+            position:relative;
+            width:300px;
+            padding:15px 8px;
+            border:2px solid black;
+            box-shadow:0 0 5px rgb(0,0,0,0.4),inset 0 0 4px rgb(0,0,0,0.5);
+            margin-bottom:20px;
+        }
+        #edit_profile .box1 input{
+            width:100%;
+            padding-left:20px;
+            font-size:19px;
+            background-color:none;
+            outline:none;
+            border:none;
+            margin-top:25px;
+            margin-bottom:10px;
+            font-weight:500;
+            letter-spacing:1px;
+        }
+        #edit_profile .box2{
+            position:relative;
+            border-top:2px dashed rgb(0,0,0,0.4);
+            border-bottom:2px dashed rgb(0,0,0,0.4);
+            width:100%;
+            padding:25px 10px;
+            margin:0px;
+        }
+        #edit_profile .box2 h2, #edit_profile .box3 h2{
+            min-width:250px;
+            width:90%;
+            font-size:19px;
+            font-weight:500;
+            letter-spacing:1px;
+            margin:5px;
+        }
+        #edit_profile .note_head_add{
+            width:90%;
+            font-size:19px;
+            font-weight:500;
+            margin-top:20px;
+        }
+        #edit_profile .note_head_add i{
+            font-size:22px;
+            transition:0.5s;
+            float: right;
+            cursor:pointer;
+        }
+        #edit_profile .note_head_add i:hover{
+            transform:rotateZ(90deg);
+        }
+        #edit_profile .box2 h2 i, #edit_profile .box3 h2 i{
+            font-size:22px;
+            float:right;
+            cursor:pointer;
+            transition:0.5s;
+        }
+        #edit_profile .box2 h2 i:hover, #edit_profile .box3 h2 i:hover{
+            transform:rotateZ(90deg);
+        }
+        #edit_profile #edit_notes_box{
+            width:100%;
+        }
+        
+        #edit_profile .box2 .mail{
+            margin-top:8px;
+            min-width:250px;
+            width:90%;
+            padding:10px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction:row;
+            padding-left:15px;
+            font-size:17px;
+        }
+        #edit_profile .box2 .mail i{
+            margin-right:10px;
+            font-size:22px;
+        }
+        #edit_profile #edit_add_details{
+            padding:10px;
+            position:relative;
+            width:90%;
+            min-width:250px;
+            margin-bottom:10px 0;
+            display: flex;
+            justify-content: flex-start;
+            align-content: center;
+            flex-direction: column;
+        }
+        #edit_profile #edit_add_details .edit_line{
+            margin:7px;
+            font-size:16px;
+            width:100%;
+            border:none;
+            padding:7px;
+        }
+        #edit_profile .box3{
+            position:relative;
+            padding:25px 0 10px 0;
+            width:100%;
+            margin:25px 0 10px 0;
+            border-top:2px dashed rgb(0,0,0,0.4);
+            position:relative;
+        }
+        #edit_profile .box3 #edit_media_links1{
+            width:90%;
+            margin-top:10px;
+            min-width:250px;
+            flex-direction:column;
+            display: flex;
+            justify-content:center;
+            align-items: center;
+        }
+        #edit_profile .box3 #edit_media_links1 ul{
+            margin:10px;
+            width:100%;
+        }
+        #edit_profile .box3 #edit_media_links1 ul li{
+            width:100%;
+            margin:10px 0;
+            display: flex;
+            justify-content:space-between;
+            align-items: center;
+            flex-direction: row;
+        }
+        #edit_profile .box3 #edit_media_links1 ul li i{
+            margin:0 10px;
+            cursor:pointer;
+            font-size:23px;
+        }
+        #edit_profile .box3 #edit_media_links1 ul li input{
+            padding:10px;
+            font-size:16px;
+            background-color:aliceblue;
+            outline:none;
+            border:none;
+        }
+        #edit_profile .box3 #edit_media_links1 ul li input::placeholder{
+            color:black;
+        }
+        #edit_profile #edit_other_links1{
+            margin:10px;
+            width:100%;
+            min-width:300px;
+            position:relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction:column;
+        }
+        #edit_profile #edit_other_links1 .link_title{
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: row;
+        }
+        #edit_profile #edit_other_links1 .link_title input{
+            width:45%;
+            margin:10px;
+            background-color: aliceblue;
+            padding:5px;
+            border:none;
+            font-size:16px;
+            padding-left:15px;
+        }
+        #edit_profile #edit_other_links1 .link_title input::placeholder{
+            color:black;
+        }
+        #edit_profile .notes_box{
+            position:relative;
+            width:100%;
+            margin-bottom:20px;
+            padding:10px;
+        }
+        #edit_profile .note{
+            margin:10px;
+            padding:10px;
+            width:100%;
+            min-width:300px;
+            border-top:2px dashed rgb(0,0,0,0.4);
+            max-height:50vh;
+            overflow-x: hidden;
+            padding-top:30px;
+            overflow-y: auto;
+        }
+        #edit_notes_box .note input{
+            width:90%;
+            padding:8px;
+            font-size:17px;
+            background-color: aliceblue;
+            border:none;
+            outline:none;
+        }
+        #edit_notes_box .note input::placeholder{
+            color:black;
+        }
+        #edit_notes_box .note .edit_notes_value{
+            margin-top:10px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            padding:6px;
+        }
+        .note select{
+            width:90%;
+            padding:5px;
+            margin:5px;
+            font-size:14px;
+            letter-spacing:1px;
+        }
+        #avatar{
+            position: absolute;
+            z-index:1000;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+            background-color:white;
+            transform:translateX(100%);
+            transition:0.4s;
+            justify-content: flex-start;
+            padding-top:30px;
+        }
+        #avatar.active{
+            transform:translateX(0);
+        }
+        #avatar h1{
+            margin:10px;
+            width:100%;
+            padding:0 15px;
+            font-size:19px;
+            font-weight:500;
+        }
+        #avatar i{
+            float: right;
+            font-size:22px;
+            cursor:pointer;
+            transition:0.3s;
+            margin:10px;
+        }
+        #avatar i:hover{
+            transform:rotateZ(90deg);
+        }
+        #avatar .images{
+            width:100%;
+            padding:10px;
+            margin:10px 0;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        #avatar button,#avatar input{
+            margin:10px;
+            cursor:pointer;
+            font-size:15px;
+            padding:5px;
+        }
+        #avatar .images img{
+            margin:15px;
+            width:100px;
+            height:100px;
+            object-fit: cover;
+            cursor:pointer;
+        }
+        #own_file{
+            width:100%;
+            margin:10px;
+            padding:10px;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #own_file button{
+            padding:7px;
+            background-color: darkblue;
+            color:white;
+            font-size:19px;
+            border-radius:20px;
+            cursor:pointer;
+            border:none;
+            outline:none;
+        }
+        #prev_img{
+            margin:10px;
+            width:250px;
+            max-height:400px;
+            object-fit: cover;
+        }
+        
+/*edit page */
+    </style>
+</head>
+
+<body class="flex">
+    
+    <section class="flex pop_page" id="edit_profile">
+        <div class="save_p">
+            <p>You can edit profile and don't forget to click save ! </p>
+            <button onclick="save_data()">save</button>
+        </div>
+        <div class="box1">
+                <i class="fas fa-long-arrow-alt-left" onclick="close1()"></i>
+                
+                <img id="edit_profile_img" src="" onclick="remove_ava()" class="profile_logo">
+                
+        <input type="text" placeholder="Name" id="edit_profile_name">
+        
+         </div>
+         <div class="box3 flex">
+            <h2>Media & other links <i class="far fa-plus-square" onclick="add_edit_link()"></i> </h2>
+            <div id="edit_media_links1">
+            
+             <ul>
+        <li><i class="fab fa-facebook-square"></i><input type="text" placeholder="facebook" id="edit_facebook"></li>
+         <li><i class="fab fa-instagram"></i><input type="text" placeholder="instagram" id="edit_instagram"></li>
+         <li><i class="fab fa-twitter"></i><input type="text" placeholder="twitter" id="edit_twitter"></li>
+        <li><i class="fab fa-youtube"></i><input type="text" placeholder="youtube" id="edit_youtube"></li>
+             </ul>
+             <div id="edit_other_links1">
+             
+<!--
+               
+                <div class="link_title">
+                    <input type="text" placeholder="title" class="edit_link_title_add">
+                    <input type="text" placeholder="link" class="edit_link_link_add">
+                </div>
+                
+-->
+             </div>
+            </div>
+         </div>
+         <div class="box2 flex">
+             <h2>About me ! <i class="far fa-plus-square" onclick="add_edit_line()"></i> </h2>
+             <div class="mail">
+                 <i class="fas fa-envelope"></i>
+                 <p id="edit_profile_mail">satwik1330@gmail.com</p>
+             </div>
+             
+             <div id="edit_add_details">
+             
+<!--
+               
+                <input type="text" placeholder="new line" class="edit_line">
+                <input type="text" placeholder="new line" class="edit_line">
+                
+-->
+             </div>
+             
+         </div>
+         
+         <h2 class="note_head_add">
+                 Notes <i class="far fa-plus-square" onclick="add_book_edit()"></i> 
+        </h2>
+             
+         <div class="notes_box flex" id="edit_notes_box">
+             
+             
+             
+<!--
+             
+             <div class="note">
+                
+                 <input type="text" placeholder="title" class="edit_book_titles">
+                 <div class="edit_notes_value" contenteditable="true">hello</div>
+                 
+             </div>
+             
+             <div class="note">
+                
+                 <input type="text" placeholder="title" class="edit_book_titles">
+                 <div class="edit_notes_value" contenteditable="true">hi</div>
+                 
+             </div>
+             
+-->
+        
+         </div>
+         
+    </section>
+    
+     <section id="avatar" class="flex">
+    
+    <h1><span>Choose your avatar </span> <i class='fas fa-times' onclick="remove_ava()"></i></h1>
+       <div class="own_img">
+           <button onclick="online_img()">Upload a online image </button>
+           <input type="file" id="off_img_bt" onchange="offline_img()" accept="image/*">
+       </div>
+       
+       <div id="own_file">
+           <img src="" id="prev_img">
+           <button onclick="img_fire()">Upload</button>
+       </div>
+       
+        <div class="flex images">
+                    <img src="avatars/p14.png" onclick="add_edit_img(0,'avatars/p14.png')">
+                    <img src="avatars/p15.png" onclick="add_edit_img(0,'avatars/p15.png')">
+                    <img src="avatars/p16.jpg" onclick="add_edit_img(0,'avatars/p16.jpg')">
+                    <img src="avatars/p17.png" onclick="add_edit_img(0,'avatars/p17.png')">
+                    <img src="avatars/p18.png" onclick="add_edit_img(0,'avatars/p18.png')">
+                    <img src="avatars/p19.jpg" onclick="add_edit_img(0,'avatars/p19.jpg')">
+                    <img src="avatars/p20.png" onclick="add_edit_img(0,'avatars/p20.png')">
+                    <img src="avatars/p21.jpg" onclick="add_edit_img(0,'avatars/p21.jpg')">
+                    <img src="avatars/p22.jpg" onclick="add_edit_img(0,'avatars/p22.jpg')">
+                    <img src="avatars/p23.jpg" onclick="add_edit_img(0,'avatars/p23.jpg')">
+                </div>
+                
+    </section>
+
+<script src="https://www.gstatic.com/firebasejs/8.7.0/firebase.js"></script>
+
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyARQ2BkDwc8ET4ElFTx4tv3huFGTXs75xY",
+    authDomain: "network-c2f65.firebaseapp.com",
+    projectId: "network-c2f65",
+    storageBucket: "network-c2f65.appspot.com",
+    messagingSenderId: "565713313358",
+    appId: "1:565713313358:web:3935560cb111b6b83f6d1f"
+  };
+  firebase.initializeApp(firebaseConfig);
+    
+    const auth = firebase.auth();
+    const base = firebase.database();
+    
+</script>
+    
+    <script>
+        
+        const myurl = new URL(window.location.href);
+        let user_key = myurl.searchParams.get("user_name");
+
+        function draw_edit(){
+            
+           var  edit_profile_img = document.getElementById("edit_profile_img");
+           var edit_profile_name = document.getElementById("edit_profile_name");
+            var edit_profile_mail = document.getElementById("edit_profile_mail");
+            
+            firebase.database().ref('users/'+user_key).once('value',function(snapshot){
+               var  draw_user_name = snapshot.val().name;
+               var draw_user_img = snapshot.val().dp;
+                 edit_profile_img.src = draw_user_img;
+                 edit_profile_name.value = draw_user_name;
+            });
+             
+             firebase.database().ref('users/'+user_key).once('value',function(snapshot){
+                  var  draw_user_mail = snapshot.val().email;
+                  edit_profile_mail.innerHTML = draw_user_mail;
+            });
+            
+            var edit_facebook = document.getElementById("edit_facebook");
+            var edit_instagram = document.getElementById("edit_instagram");
+            var edit_twitter = document.getElementById("edit_twitter");
+            var edit_youtube = document.getElementById("edit_youtube");
+            
+    firebase.database().ref("users/"+user_key+"/medialinks").once('value',function(snapshot){
+                
+         snapshot.forEach(function(ChildSnapShot){
+             
+            var title1 = ChildSnapShot.val().title;
+            var href1 = ChildSnapShot.val().link;
+
+            if (title1 == "facebook"){ 
+                edit_facebook.value = href1;
+            }else if (title1 == "instagram"){
+                edit_instagram.value = href1;
+            }else if (title1 == "twitter"){
+                edit_twitter.value = href1;
+            }else if (title1 == "youtube"){
+                edit_youtube.value = href1;
+            }
+             
+        });
+            });
+            
+        var edit_other_links1 = document.getElementById("edit_other_links1");
+            
+         firebase.database().ref("users/"+user_key+"/otherlinks").once('value',function(snapshot){
+             edit_other_links1.innerHTML = "";
+             
+         snapshot.forEach(function(ChildSnapShot){
+             
+             var link_hr = ChildSnapShot.val().link;
+             var title_hr = ChildSnapShot.val().title;
+             
+            edit_other_links1.innerHTML += "<div class='link_title'><input type='text' placeholder='title' class='edit_link_title_add' value='"+title_hr+"'><input type='text' placeholder='link' class='edit_link_link_add' value='"+link_hr+"'></div>";
+             
+        });
+            });
+            
+           var  edit_add_details = document.getElementById("edit_add_details");
+            
+            firebase.database().ref("users/"+user_key+"/details").once('value',function(snapshot){
+                edit_add_details.innerHTML = "";
+            
+         snapshot.forEach(function(ChildSnapShot){
+            var line1 = ChildSnapShot.val().para;
+             
+             edit_add_details.innerHTML += "<input type='text' placeholder='new line' class='edit_line' value='"+line1+"'>";
+             
+        });
+            });
+            
+            var edit_notes_box = document.getElementById("edit_notes_box");
+            
+            firebase.database().ref("users/"+user_key+"/notes").once('value',function(snapshot){
+                edit_notes_box.innerHTML = "";
+            
+         snapshot.forEach(function(ChildSnapShot){
+             var heading = ChildSnapShot.val().title;
+             var content = ChildSnapShot.val().para;
+             edit_notes_box.innerHTML += "<div class='note'><select class='edit_mode'><option value='0'>Public</option><option value='1'>Private</option></select><input type='text' placeholder='title' class='edit_book_titles' value='"+heading+"'><div class='edit_notes_value' contenteditable='true'>"+ content +"</div></div>"
+        });
+            });
+            
+            
+        }
+        
+        draw_edit();
+        
+        function add_edit_link(){
+            var edit_other_links1 = document.getElementById("edit_other_links1");
+            edit_other_links1.innerHTML += "<div class='link_title'><input type='text' placeholder='title' class='edit_link_title_add'><input type='text' placeholder='link' class='edit_link_link_add'></div>";
+        }
+        
+        function add_edit_line(){
+            var  edit_add_details = document.getElementById("edit_add_details");
+           edit_add_details.innerHTML += "<input type='text' placeholder='new line' class='edit_line'>";
+        }
+        
+        function add_book_edit(){
+            var edit_notes_box = document.getElementById("edit_notes_box");
+            
+edit_notes_box.innerHTML = "<div class='note'><select class='edit_mode'><option value='0'>Public</option><option value='1'>Private</option></select><input type='text' placeholder='title' class='edit_book_titles'><div class='edit_notes_value' contenteditable='true'>"+ "your new note" +"</div></div>" + edit_notes_box.innerHTML;
+            
+        }
+        
+        function save_data(){
+            
+           var save_profile_name = document.getElementById("edit_profile_name").value;
+            
+            if (save_profile_name.length > 0){
+                
+                firebase.database().ref("users/"+user_key).update({
+                   name : save_profile_name
+                })
+                
+            }
+            
+             var save_facebook = document.getElementById("edit_facebook").value;
+            var save_instagram = document.getElementById("edit_instagram").value;
+            var save_twitter = document.getElementById("edit_twitter").value;
+            var save_youtube = document.getElementById("edit_youtube").value;
+            
+            firebase.database().ref("users/"+user_key+"/medialinks").remove();
+            
+            if (save_facebook.length > 0){
+                    firebase.database().ref("users/"+user_key+"/medialinks").push({
+                    title : "facebook",
+                    link : save_facebook
+                    })
+            }
+            
+            if (save_instagram.length > 0){
+                    firebase.database().ref("users/"+user_key+"/medialinks").push({
+                    title : "instagram",
+                    link : save_instagram
+                })
+            }
+            if (save_twitter.length > 0){
+                    firebase.database().ref("users/"+user_key+"/medialinks").push({
+                    title : "twitter",
+                    link : save_twitter
+                })
+            }
+            if (save_youtube.length > 0){
+                    firebase.database().ref("users/"+user_key+"/medialinks").push({
+                    title : "youtube",
+                    link : save_youtube
+                })
+            }
+            
+            var save_link_title_add = document.querySelectorAll(".edit_link_title_add");
+            var save_link_link_add = document.querySelectorAll(".edit_link_link_add");
+            
+             firebase.database().ref("users/"+user_key+"/otherlinks").remove();
+            
+            for (var j = 0;j<save_link_link_add.length;j++){
+                var linktitle1 = save_link_title_add[j].value;
+                var linklink1 = save_link_link_add[j].value;
+                if (linktitle1.length > 0){
+                    if (linklink1.length > 0){
+                        firebase.database().ref("users/"+user_key+"/otherlinks").push({
+                            link : linklink1,
+                            title : linktitle1
+                        })
+                    }
+                }
+            }
+            
+            var line_li = document.querySelectorAll(".edit_line");
+            
+            firebase.database().ref("users/"+user_key+"/details").remove();
+            
+            for (var i=0;i<line_li.length;i++){
+                var l1 = line_li[i].value;
+                if (l1.length > 0){
+                    firebase.database().ref("users/"+user_key+"/details").push({
+                        para : l1
+                    })
+                }
+            }
+            
+            var save_book_titles  = document.querySelectorAll(".edit_book_titles");
+            var save_notes_value = document.querySelectorAll(".edit_notes_value");
+            var save_notes_mode = document.querySelectorAll(".edit_mode");
+            
+             firebase.database().ref("users/"+user_key+"/notes").remove();
+            
+            for (var k = 0;k<save_book_titles.length;k++){
+                var bt1 = save_book_titles[k].value;
+                var bn1 = save_notes_value[k].innerHTML;
+                var mode1 = save_notes_mode[k].value;
+                
+                if (bt1.length > 0){
+                    if (bn1.length > 0){
+                        firebase.database().ref("users/"+user_key+"/notes").push({
+                            title : bt1,
+                            para : bn1,
+                            mode : mode1
+                        })
+                    }
+                }
+            }
+            
+            draw_edit();
+            
+        }
+        
+        function add_edit_img(a,b){
+           var  edit_profile_img = document.getElementById("edit_profile_img");
+            edit_profile_img.src = b;
+            firebase.database().ref("users/"+user_key).update({
+                        dp : b
+            })
+            draw_edit();
+            remove_ava();
+        }
+        
+        function online_img(){
+            var pp = prompt("enter URL / Link of image : ");
+            if (pp){
+                if (pp.includes("https")){
+                    var  edit_profile_img = document.getElementById("edit_profile_img");
+                     edit_profile_img.src = pp;
+                       remove_ava();
+                }else{
+                    alert("Invalid url / link");
+                }
+            }
+        }
+        
+        function offline_img(){
+            var own_file = document.getElementById("own_file");
+            var img_b = document.getElementById("prev_img");
+            var off_img_bt = document.getElementById("off_img_bt");
+            const file = off_img_bt.files[0];
+            if (file){
+                const reader = new FileReader();
+                reader.onload = function(){
+                    const result = reader.result;
+                    own_file.style.display = "flex";
+                    img_b.src = result;
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        function remove_ava(){
+           var avatar = document.getElementById("avatar");
+            avatar.classList.toggle("active");
+            var own_file = document.getElementById("own_file");
+            own_file.style.display = "none";
+            
+        }
+        
+        function img_fire(){
+            
+            var img_b = document.getElementById("prev_img").getAttribute("src");
+            
+            firebase.database().ref("users/"+user_key).update({
+                        dp : img_b
+            })
+            
+            draw_edit();
+            remove_ava();
+            
+        }
+        
+        function close1(){
+            window.history.go(-1);
+        }
+        
+        window.addEventListener("contextmenu", (e) => {
+          //  e.preventDefault();
+        })
+        
+    </script>
+    
+</body>
+</html>

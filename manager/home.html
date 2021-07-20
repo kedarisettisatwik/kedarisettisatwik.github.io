@@ -348,10 +348,12 @@
                 
                         alert("signed in succesfully");
                         user_key = user.uid;
-                sessionStorage.setItem("kedar_chat_user_key",user_key);
+                
+                localStorage.setItem("kedar_chat_user_key",user_key);
+                
                 account_p.style.display = "none";
                 home_p.style.display = "flex";
-                frame_i.src = "tasks.html";
+                frame_i.src = "tasks.html?user_name="+user_key;
                 
                 date_s = true;
                 key_t = user_key;
@@ -415,14 +417,14 @@
                     sound1.play();                
         });
                         
-     sessionStorage.setItem("kedar_chat_user_key",user_key);
+     localStorage.setItem("kedar_chat_user_key",user_key);
                      
                 firebase.auth().currentUser.sendEmailVerification().then( () => {
                         console.log("email verify");
                         
                     account_p.style.display = "none";
                     home_p.style.display = "flex";
-                    frame_i.src = "tasks.html";
+                    frame_i.src = "tasks.html?user_name="+user_key;
                     
                         
                     }).catch(function(error){

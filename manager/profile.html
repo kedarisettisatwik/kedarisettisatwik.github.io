@@ -337,7 +337,7 @@
                  <input type="text" id="link_share">
                  <i class="far fa-copy" onclick="copy2()"></i>
              </div>
-             <button>Edit my page</button>
+             <button onclick="edit_p()">Edit my page</button>
          </div>
          <div class="box3 flex">
             <h2>Media & other links </h2>
@@ -439,13 +439,13 @@
             var href1 = ChildSnapShot.val().link;
              
              if (title1 == "facebook"){ 
-        media_links1.innerHTML += "<li><a href='"+href1+"'><i class='fab fa-facebook-square'></i></a></li>";
+        media_links1.innerHTML += "<li><a target='_blank' href='"+href1+"'><i class='fab fa-facebook-square'></i></a></li>";
             }else if (title1 == "instagram"){
-        media_links1.innerHTML += "<li><a href = '"+href1+"'>"+"<i class='fab fa-instagram'></i>"+"</a></li>";
+        media_links1.innerHTML += "<li><a target='_blank' href = '"+href1+"'>"+"<i class='fab fa-instagram'></i>"+"</a></li>";
             }else if (title1 == "twitter"){
-        media_links1.innerHTML += "<li><a href = '"+href1+"'>"+"<i class='fab fa-twitter'></i>"+"</a></li>";
+        media_links1.innerHTML += "<li><a target='_blank' href = '"+href1+"'>"+"<i class='fab fa-twitter'></i>"+"</a></li>";
             }else if (title1 == "youtube"){
-        media_links1.innerHTML += "<li><a href = '"+href1+"'>"+"<i class='fab fa-youtube'></i>"+"</a></li>";
+        media_links1.innerHTML += "<li><a target='_blank' href = '"+href1+"'>"+"<i class='fab fa-youtube'></i>"+"</a></li>";
             }
              
         });
@@ -456,7 +456,7 @@
          snapshot.forEach(function(ChildSnapShot){
              var link_hr = ChildSnapShot.val().link;
              var title_hr = ChildSnapShot.val().title;
-             other_links.innerHTML += "<a href='"+link_hr+"'>"+title_hr+"</a>";
+             other_links.innerHTML += "<a target='_blank' href='"+link_hr+"'>"+title_hr+"</a>";
         });
             });
              
@@ -493,6 +493,18 @@
         function back1(){
             window.history.go(-1);
         }
+        
+        function copy2(){
+            var link_to_invite = document.getElementById("link_share");
+            link_to_invite.select();
+            document.execCommand("copy");
+        }
+        
+        function edit_p(){
+            var lip = "edit.html?user_name="+user_id;
+            location.href = lip;
+        }
+
         window.addEventListener("contextmenu", (e) => {
          //  e.preventDefault();
         })
