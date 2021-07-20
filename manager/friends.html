@@ -345,6 +345,9 @@
          var link1 = "chat.html?user_name="+user_key+"&other="+key_s;
          location.href = link1;
      }
+        window.addEventListener("contextmenu", (e) => {
+            e.preventDefault();
+        })
         
         setInterval(function(){
             var time1 = document.getElementById("time1");

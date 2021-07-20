@@ -473,6 +473,10 @@
                    });
         }
         
+        window.addEventListener("contextmenu", (e) => {
+            e.preventDefault();
+        })
+        
         setInterval(function(){
            if(date_s){
                date_set(key_t);

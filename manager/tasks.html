@@ -181,6 +181,10 @@
             }
         }
         
+        window.addEventListener("contextmenu", (e) => {
+            e.preventDefault();
+        })
+        
         setInterval(function(){
             var time1 = document.getElementById("time1");
             var hr = new Date().getHours();
