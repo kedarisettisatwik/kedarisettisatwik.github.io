@@ -143,11 +143,24 @@
             cursor:pointer;
         }
         .box1 .name{
+            position:relative;
             width:calc(100% - 75px);
             display: flex;
             justify-content: space-around;
             align-items: center;
             flex-direction: column;
+        }
+        .box1 .name.active::before{
+            content:'';
+            position:absolute;
+            width:15px;
+            height:15px;
+            background-color:greenyellow;
+            box-shadow:0 0 4px rgb(0,0,0,0.4);
+            top: 50%;
+            right: 25px;
+            transform: translateY(-50%);
+            border-radius: 50%;
         }
         .box1 .name h1,.box1 .name h2{
             width:100%;
@@ -168,7 +181,7 @@
 <body>
 
    <div class="pro">
-       <img src="" id="dp_img">
+       <img src="" id="dp_img" onclick="icon1(4)">
        <div class="name">
            <h1 id="user_name"></h1>
            <h2 id="time1"></h2>
@@ -215,8 +228,6 @@
         
         var user_key = sessionStorage.getItem("kedar_chat_user_key");
         
-        user_key = "P1A4UgzkoXaD9bMnObDFQoiNydg1";
-        
         var  list_frnds_search = [];
         
         firebase.database().ref('users/'+user_key).once('value',function(snapshot){
@@ -229,8 +240,13 @@
         });
         
         function icon1(a){
-            var linksli = ["tasks.html","calender.html","followers.html","friends.html"];
-            window.location.replace(linksli[a]);
+             var li4 = "profile.html?user_name="+user_key+"&other="+user_key;
+           var linksli = ["tasks.html","calender.html","followers.html","friends.html",li4];
+            if (a == 4){
+                location.href = linksli[4];
+            }else{
+                 window.location.replace(linksli[a]);
+            }
         }
         
         function draw_f(){
@@ -259,10 +275,19 @@
                 list_follow.push(key_follow);
             }
             
+            let active1 = ChildSnapShot.val().active;
+            let active = Object.keys(active1); 
+            
                 if (user_frnd_key != user_key){
                     
-                    if (list_follow.includes(user_key)){
+                    if (active.includes(user_key)){
+                        if (list_follow.includes(user_key)){
+                        search_f.innerHTML += " <div class='box1' onclick='select1("+ count1 +")'><img src='"+user_dp+"'><div class='name active'><h1 class='search_name'>"+ user_up +"</h1><h2 class='search_mail'>"+user_date+"</h2></div></div>";
+                       }
+                    }else{
+                       if (list_follow.includes(user_key)){
                         search_f.innerHTML += " <div class='box1' onclick='select1("+ count1 +")'><img src='"+user_dp+"'><div class='name'><h1 class='search_name'>"+ user_up +"</h1><h2 class='search_mail'>"+user_date+"</h2></div></div>";
+                       } 
                     }
                 }
                 
@@ -278,7 +303,10 @@
     
      function select1(a){
          var key_s = list_frnds_search[a];
-         console.log(key_s);
+         
+         var link1 = "chat.html?user_name="+user_key+"&other="+key_s;
+         location.href = link1;
+         
      }
         
         

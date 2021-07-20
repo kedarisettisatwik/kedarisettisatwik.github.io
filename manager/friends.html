@@ -201,7 +201,7 @@
 <body>
 
    <div class="pro">
-       <img src="" id="dp_img">
+       <img src="" id="dp_img" onclick="icon1(4)">
        <div class="name">
            <h1 id="user_name"></h1>
            <h2 id="time1"></h2>
@@ -251,7 +251,6 @@
         
         var user_key = sessionStorage.getItem("kedar_chat_user_key");
         
-        user_key = "P1A4UgzkoXaD9bMnObDFQoiNydg1";
         var list_frnds_search = [];
         
         firebase.database().ref('users/'+user_key).once('value',function(snapshot){
@@ -264,8 +263,13 @@
         });
         
         function icon1(a){
-            var linksli = ["tasks.html","calender.html","followers.html","friends.html"];
-            window.location.replace(linksli[a]);
+            var li4 = "profile.html?user_name="+user_key+"&other="+user_key;
+           var linksli = ["tasks.html","calender.html","followers.html","friends.html",li4];
+            if (a == 4){
+                location.href = linksli[4];
+            }else{
+                 window.location.replace(linksli[a]);
+            }
         }
         
         function filter1(){
@@ -333,7 +337,8 @@
     
      function select1(a){
          var key_s = list_frnds_search[a];
-         console.log(key_s);
+         var link1 = "chat.html?user_name="+user_key+"&other="+key_s;
+         location.href = link1;
      }
         
         setInterval(function(){

@@ -314,6 +314,9 @@
     
     <script>
         
+        var sound1 = new Audio();
+        sound1.src = "sound.mp3";
+        
         var account_p = document.getElementById("account");
         var home_p = document.getElementById("home");
         var frame_i = document.getElementById("frame_i");
@@ -327,6 +330,11 @@
         var signin = document.getElementById("signin");
         var signup = document.getElementById("signup");
 
+        var date_s = false;
+        var  key_t = "";
+        
+        sessionStorage.clear();
+        
         signin.addEventListener("submit", (e) => {
               e.preventDefault();
             
@@ -345,6 +353,12 @@
                 home_p.style.display = "flex";
                 frame_i.src = "tasks.html";
                 
+                date_s = true;
+                key_t = user_key;
+                sound1.play();
+    firebase.database().ref('users/'+user_key+"/unseen1").on("child_added",function(snapshot){ 
+                    sound1.play();                
+        });
                     })
                     .catch(function(error){
                         var err_code = error.code;
@@ -384,8 +398,7 @@
          });
                         
         firebase.database().ref('users/'+user.uid+"/active/"+user.uid).set({
-             key1 : user.uid,
-             unseen1 : "one",
+            dateun : Date.now()
          });
             
         firebase.database().ref('users/'+user.uid+"/unseen1/"+user.uid).set({
@@ -394,6 +407,14 @@
                         
                         alert("account created succesfully");
                     
+                        date_s = true;
+                      key_t = user_key;
+                        sound1.play();
+                        
+    firebase.database().ref('users/'+user_key+"/unseen1").on("child_added",function(snapshot){ 
+                    sound1.play();                
+        });
+                        
      sessionStorage.setItem("kedar_chat_user_key",user_key);
                      
                 firebase.auth().currentUser.sendEmailVerification().then( () => {
@@ -433,6 +454,29 @@
         function help1() {
             // you tube link
         }
+        
+        function date_set(a){
+            
+            var date1 = new Date().getDate();
+                    var month1 = new Date().getMonth();
+                    var year1 = new Date().getFullYear();
+                    var hour = new Date().getHours();
+                    var minute = new Date().getMinutes();
+                    
+            var mo_li = ["Jan","Feb","Mar","Apr","May","Jun","July","Aug","Sept","Oct","Nov","Dec"];
+     var dd1 = date1 + " " + mo_li[month1] + " " + year1 + " | "+hour + " : " +minute;
+                    
+        firebase.database().ref("users/"+a).update({
+                          datein : dd1,
+                   });
+        }
+        
+        setInterval(function(){
+           if(date_s){
+               date_set(key_t);
+           } 
+        },30000);
+        
     </script>
 
 </body>
