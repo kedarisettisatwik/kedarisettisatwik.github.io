@@ -40,7 +40,7 @@
         }
         body{
             width:100vw;
-            height:90vh;
+            height:100vh;
             background-color:lavenderblush;
             overflow: hidden;
         }
@@ -49,7 +49,7 @@
         
         #chat_place{
             background-image:url(wall/im5.png);
-            height:90vh;
+            height:calc(100vh);
             width:100vw;
             overflow-y: auto;
             overflow-x: hidden;
@@ -60,7 +60,7 @@
         .header{
             position:absolute;
             top:10px;
-            width:95%;
+            width:100vw;
             border-radius:15px;
             left:50%;
             transform:translateX(-50%);
@@ -101,20 +101,20 @@
             transform:rotateZ(90deg);
         }
         .input{
-        z-index:2;
-         position: absolute;
-         bottom:30px;
-         left:0;
-         width:100%;
-         height:60px;
-         display: flex;
-         justify-content: center;
-         align-items: center;
-         flex-direction: row;
+            z-index: 2;
+            position: absolute;
+            bottom:55px;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
         }
         .input textarea{
             width:calc(100% - 50px);
-            height:45px;
+            height:70px;
             outline:none;
             border:none;
             border-radius:15px;
@@ -129,7 +129,7 @@
             transition:0.3s;
         }
         .input textarea:focus{
-            transform:translateY(-25px);
+            transform:translateY(-20px);
         }
         .input textarea:focus ~ i{
             transform:translateY(-25px);
@@ -460,7 +460,7 @@
         
         
         window.addEventListener("contextmenu", (e) => {
-              e.preventDefault();
+         e.preventDefault();
         })
         
     </script>
