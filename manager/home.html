@@ -277,7 +277,7 @@
                     <input type="text" placeholder="confirm - password" required id="up_repass">
                 </div>
                 <div class="inp">
-                    <input type="submit" value="SIGN IN">
+                    <input type="submit" value="SIGN UP">
                 </div>
                 <p onclick="form_toggle()">Already Have Account !</p>
             </form>
@@ -377,7 +377,7 @@
             
             
             var sign_up_name = document.getElementById("up_name").value;
-            var sign_up_email = document.getElementById("up_email").value;
+            var sign_up_email = document.getElementById("up_mail").value;
             var sign_up_password = document.getElementById("up_pass").value;
             var sign_up_repassword = document.getElementById("up_repass").value;
 
@@ -413,14 +413,14 @@
                         alert("account created succesfully");
                     
                         date_s = true;
-                      key_t = user_key;
+                      key_t = user.uid;
                         sound1.play();
                         
-    firebase.database().ref('users/'+user_key+"/unseen1").on("child_added",function(snapshot){ 
+    firebase.database().ref('users/'+key_t+"/unseen1").on("child_added",function(snapshot){ 
                     sound1.play();                
         });
                         
-     localStorage.setItem("kedar_chat_user_key",user_key);
+     localStorage.setItem("kedar_chat_user_key",key_t);
                      
                 firebase.auth().currentUser.sendEmailVerification().then( () => {
                         console.log("email verify");
