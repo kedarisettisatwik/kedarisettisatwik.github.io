@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <title>menu3</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            list-style:none;
+        }
+        html{
+            scroll-behavior:smooth;
+        }
+        body{
+            width:100vw;
+            overflow-x: hidden;
+            min-height:100vh;
+            background-color:#383F51;
+        }
+        #container2{
+            position: absolute;
+            top:50%;
+            left:20px;
+            transform:translateY(-50%);
+            background-color:aqua;
+            padding:10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border-radius:10px;
+            box-shadow: 0 0 30px aqua;
+            overflow: hidden;
+        }
+        #container2 li{
+            width:55px;
+            height:55px;
+            position:relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor:pointer;
+        }
+        #container2 li .btn{
+            width:23px;
+            height:23px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition:0.3s;
+            color:#383F51;
+        }
+        #container2 li .tag{
+            width:0;
+            height:0;
+            border-radius: 50%;
+            position: absolute;
+            top:50%;
+            left:0%;
+            transform:translate(-90%,-50%);
+            background-color:#383F51;
+            transition-delay:0.3s;
+            transition:0.3s;
+        }
+        #container2 li .btn.active ~ .tag{
+            width:10px;
+            height:10px;
+            transform:translate(-0%,-50%);
+        }
+        #container2 li .btn.active{
+            transform:translateX(10px);
+        }
+        
+    </style>
+</head>
+
+<body>
+               
+    <ul id="container2">
+        <li onclick="gob(0)"><ion-icon name="home-outline" class="btn active"></ion-icon><label class="tag"></label></li>
+        
+        <li onclick="gob(1)"><ion-icon name="bag-outline" class="btn"></ion-icon><label class="tag"></label></li>
+            
+        <li onclick="gob(2)"><ion-icon name="chatbox-ellipses-outline" class="btn"></ion-icon><label class="tag"></label></li>
+        
+        <li onclick="gob(3)"><ion-icon name="finger-print-outline" class="btn"></ion-icon><label class="tag"></label></li>
+        
+        <li onclick="gob(4)"><ion-icon name="settings-outline" class="btn"></ion-icon><label class="tag"></label></li>
+        
+    </ul>
+        
+    
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    
+   <script>
+       function gob(a){
+           var bb = document.querySelectorAll(".btn");
+           for (var i = 0;i<bb.length;i++){
+               var ee = bb[i];
+               ee.classList.remove("active");
+           }
+           bb[a].classList.add("active");
+       }
+   </script>
+ 
+</body>
+</html>
