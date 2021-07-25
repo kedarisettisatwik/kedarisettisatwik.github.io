@@ -112,7 +112,39 @@
             position:relative;
             height:40px;
             line-height:40px;
+            text-align: center;
+            overflow: hidden;
         }
+        .card ul li span .star{
+            position:relative;
+            top:0%;
+            left:0%;
+            height:40px;
+            line-height:40px;
+            text-align: center;
+            transition:0.35s;
+            opacity:1;
+        }
+        .card ul li span .label{
+            position:absolute;
+            top:100%;
+            left:50%;
+            transform:translate(-50%,0);
+            height:40px;
+            line-height:40px;
+            text-align: center;
+            transition:0.35s;
+            opacity:0;
+        }
+        .card ul li span.active .star{
+            top:-100%;
+            opacity:0;
+        }
+        .card ul li span.active .label{
+            opacity:1;
+            transform:translate(-50%,-100%);
+        }
+        
         .card .details{
             color: white;
             display: flex;
@@ -263,28 +295,28 @@
             </div> 
             <ul id="snum">
                 <li>
-                <span class="stars">#</span>
-                <span class="stars">#</span>
-                <span class="stars">#</span>
-                <span class="stars">#</span>
+                <span class="stars1"><label class="star">#</label><label class="label">1</label></span>
+                <span class="stars1"><label class="star">#</label><label class="label">1</label></span>
+                <span class="stars1"><label class="star">#</label><label class="label">1</label></span>
+                <span class="stars1"><label class="star">#</label><label class="label">1</label></span>
                 </li>
                 <li>
-                <span class="stars">#</span>
-                <span class="stars">#</span>
-                <span class="stars">#</span>
-                <span class="stars">#</span>
+                <span class="stars1"><label class="star">#</label><label class="label">1</label></span>
+                <span class="stars1"><label class="star">#</label><label class="label">1</label></span>
+                <span class="stars1"><label class="star">#</label><label class="label">1</label></span>
+                <span class="stars1"><label class="star">#</label><label class="label">1</label></span>
                 </li>
                 <li>
-                <span class="stars">#</span>
-                <span class="stars">#</span>
-                <span class="stars">#</span>
-                <span class="stars">#</span>
+                <span class="stars1"><label class="star">#</label><label class="label">1</label></span>
+                <span class="stars1"><label class="star">#</label><label class="label">1</label></span>
+                <span class="stars1"><label class="star">#</label><label class="label">1</label></span>
+                <span class="stars1"><label class="star">#</label><label class="label">1</label></span>
                 </li>
                 <li>
-                <span class="stars">#</span>
-                <span class="stars">#</span>
-                <span class="stars">#</span>
-                <span class="stars">#</span>
+                <span class="stars1"><label class="star">#</label><label class="label">1</label></span>
+                <span class="stars1"><label class="star">#</label><label class="label">1</label></span>
+                <span class="stars1"><label class="star">#</label><label class="label">1</label></span>
+                <span class="stars1"><label class="star">#</label><label class="label">1</label></span>
                 </li>
             </ul>
             <div class="details">
@@ -319,7 +351,7 @@
         
           <div class="inin">
           
-           <input type="text" autocomplete="off" required pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}" size="20" placeholder="Card Number" oninput="write1(0,this)" onclick="write1(0,this)">
+           <input type="number" autocomplete="off" placeholder="Card Number" oninput="write1(0,this)" onclick="write1(0,this)" max="9999999999999999">
             
            <input type="text" autocomplete="off" required pattern="[A-Z\sa-z]+" placeholder="Holder Name" oninput="write1(1,this)" onclick="write1(1,this)">
            
@@ -405,6 +437,33 @@
                 var card = document.getElementById('card');
                  card.classList.remove("active");
                 target1(mli[a],"pointer");
+                
+                if (a == 0){
+                    star1(b);
+                }
+                
+            }
+        }
+        
+        function star1(b){
+            var st1 = document.querySelectorAll(".label");
+            var stfull = document.querySelectorAll(".stars1");
+            var sb = b.value;
+            
+            if (sb.length <= 16){
+            
+            for(var j = 0;j<st1.length;j++){
+                st1[j].innerHTML = "#";
+                stfull[j].classList.remove("active");
+              }
+                
+             for(var i = 0;i<sb.length;i++){
+                st1[i].innerHTML = sb[i];
+                stfull[i].classList.add("active");
+              }
+                
+            }else{
+                b.value = sb.substring(0,16);
             }
         }
         
