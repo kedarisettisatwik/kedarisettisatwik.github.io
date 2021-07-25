@@ -24,10 +24,18 @@
             align-items: center;
         }
         body{
+            padding-top:80px;
             width:100vw;
             height: 100vh;
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: auto;
             background-image:linear-gradient(45deg,deepskyblue,white);
+        }
+        ::-webkit-scrollbar{
+            width:0px;
+        }
+        ::-webkit-scrollbar-thumb{
+            
         }
         .main {
             position:relative;
@@ -40,7 +48,7 @@
         }
         .card{
             position:relative;
-            width:90%;
+            width:98%;
             min-width:300px;
             box-shadow: 0 0 30px rgb(0,0,0,0.4);
             padding:10px;
@@ -55,6 +63,7 @@
             align-items: center;
             flex-direction: column;
             transition:1s;
+            margin-bottom:-35px;
         }
         .card1{
             position:relative;
@@ -75,18 +84,32 @@
             flex-direction: row;
         }
         .card ul{
+            position:relative;
             width:100%;
             list-style:none;
             display: flex;
-            justify-content: space-around;
+            justify-content:center;
             align-items: center;
             flex-direction: row;
-            margin-bottom:25px;
+            padding:7px 0;
+            margin-bottom:20px;
+            flex-wrap: wrap;
         }
         .card ul li {
-            margin:5px;
-            font-size:20px;
+            position:relative;
+            padding:0 2px;
+            width:90px;
+            font-size:17px;
             color:white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .card ul li span{
+            margin:0 2px;
+            position:relative;
+            height:40px;
+            line-height:40px;
         }
         .card .details{
             color: white;
@@ -109,6 +132,7 @@
             justify-content:flex-start;
             align-items: flex-start;
             flex-direction: column;
+            padding:10px;
         }
         .card .details div{
             letter-spacing:1px;
@@ -162,7 +186,44 @@
         .card.active .card1{
             opacity:0;
         }
-        
+        form{
+            padding:10px;
+            width:100%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+        }
+        form input,form select{
+            padding:8px;
+            margin:8px;
+            outline:none;
+            border:none;
+            background:none;
+            transition:0.4s;
+            font-size:17px;
+            letter-spacing:1px;
+            border:2px solid grey;
+            border-radius:10px;
+        }
+        form input:focus{
+            border:2px solid deepskyblue;
+            box-shadow:0 0 8px rgb(0,0,0,0.4);
+            transform:scale(1.01);
+        }
+        form input::placeholder{
+            color:black;
+        }
+        form input[type="submit"]{
+            margin:12px;
+            background-color:deepskyblue;
+            font-weight:bold;
+            letter-spacing:2px;
+            outline:none;
+            border:none;
+            box-shadow:0 0 8px rgb(0,0,0,0.4);
+            cursor:pointer;
+        }
         @media (max-width:550px){
             .main{
                width:100vw;
@@ -179,8 +240,8 @@
            
             <section class="card1">
                 <div class="imgs">
-                 <img src="chip.png" width="60px"> 
-                 <img src="visa.png" width="90px">
+                 <img src="chip.png" width="50px"> 
+                 <img src="visa.png" width="70px">
             </div> 
             <ul>
                 <li>
@@ -236,6 +297,45 @@
             
         </section>
         
+        <form>
+        
+          <div class="inin">
+          
+           <input type="text" autocomplete="off" required pattern="[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}" size="20" placeholder="Card Number" oninput="write1(0,this)">
+            
+           <input type="text" autocomplete="off" required pattern="[A-Z\sa-z]+" placeholder="Holder Name" oninput="write1(1,this)">
+           
+            </div>
+            
+           <div class="in">
+           
+           <input list="months" required pattern="[0-9][0-2]" style="width:100px" placeholder="MM" maxlength="2" oninput="write1(2,this)">
+           
+            <datalist id="months">
+                 <option value="01">
+                 <option value="02">
+                 <option value="03">
+                 <option value="04">
+                 <option value="05">
+                 <option value="06">
+                 <option value="07">
+                 <option value="08">
+                 <option value="09">
+                 <option value="10">
+                 <option value="11">
+                 <option value="12">
+             </datalist>
+             
+             <input type="text" autocomplete="off" required pattern="20+[0-9]{2}" placeholder="YY" style="width:100px" oninput="write1(3,this)"> 
+             
+             <input type="password" autocomplete="off" required pattern="[0-9]{3}" maxlength="3" placeholder="CVV" style="width:100px" oninput="write1(4,this)">
+             
+           </div>
+             
+            <input type="submit" value="+ Add card">
+            
+        </form>
+        
     </section>
     
     <script>
@@ -243,6 +343,11 @@
             var card = document.getElementById('card');
             card.classList.toggle("active");
         }
+        function write1(a,b){
+            var ab = b.value;
+            console.log(ab);
+        }
+        
     </script>
  
 </body>
