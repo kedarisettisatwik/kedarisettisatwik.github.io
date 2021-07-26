@@ -201,6 +201,9 @@
             text-align:center;
             transform:translateY(100%);
         }
+        .card .date .my #yy_set .yy{
+            margin-left:10px;
+        }
         .card .date .my #mm_set .mm,.card .date .my #yy_set .mm{
             position: absolute;
             top:0%;
@@ -377,7 +380,7 @@
                     <span>Expires</span>
                     <div class="my">
                         <label id="mm_set"><div class="mm">MM</div><div class="yy" id="cha_m">01</div></label>
-                        <label id="yy_set"><div class="mm">- YY</div><div class="yy" id="cha_y">- 2030</div></label>
+                        <label id="yy_set"><div class="mm">YY</div><div class="yy" id="cha_y">2030</div></label>
                     </div>
                 </div>
             </div>
@@ -399,7 +402,7 @@
           
            <input type="number" autocomplete="off" placeholder="Card Number" oninput="write1(0,this)" onclick="write1(0,this)" max="9999999999999999">
             
-           <input type="text" autocomplete="off" required pattern="[A-Z\sa-z]+" placeholder="Holder Name" oninput="write1(1,this)" onclick="write1(1,this)">
+           <input type="text" autocomplete="off" required pattern="[A-Z\sa-z]+" placeholder="Holder Name" oninput="write1(1,this)" onclick="write1(1,this)" maxlength="20">
            
             </div>
             
@@ -468,7 +471,7 @@
                 
                 if (a == "sdate"){
                     ab.style.left = left1 - cl - 10 + "px";
-                    ab.style.width = right1 + 10 + "px";
+                    ab.style.width = right1 + 15 + "px";
                 }
                 
             },500);
@@ -549,18 +552,22 @@
             
             if (mm > 2021){
                 mm_set.classList.add("active");
-                mm_cha.innerHTML = "- ";
-                mm_cha.innerHTML += mm;
+                mm_cha.innerHTML = mm;
             }else{
                 mm_set.classList.remove("active");
-                mm_cha.innerHTML = "- 2021";
+                mm_cha.innerHTML = "2021";
             }
             
         }
         
         function full_n(b){
             var f_name = b.value;
-            
+            var cha_name = document.getElementById("cha_name");
+            if (f_name.length > 0){
+                cha_name.innerHTML = "<label>"+f_name+"</label>";
+            }else{
+                cha_name.innerHTML = "<label>FULL NAME</label>";
+            }
         }
     </script>
  
