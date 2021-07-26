@@ -425,7 +425,7 @@
                  <option value="12">
              </datalist>
              
-             <input type="text" autocomplete="off" required pattern="20+[0-9]{2}" placeholder="YY" style="width:100px" oninput="write1(3,this)" onclick="write1(3,this)"> 
+             <input type="number" autocomplete="off" required pattern="20+[0-9]{2}" placeholder="YY" style="width:100px" oninput="write1(3,this)" onclick="write1(3,this)" min="2021"> 
              
              <input type="password" autocomplete="off" required pattern="[0-9]{3}" maxlength="3" placeholder="CVV" style="width:100px" oninput="write1(4,this)" onclick="write1(4,this)">
              
@@ -550,7 +550,7 @@
             var mm_set = document.getElementById("yy_set");
             var mm_cha = document.getElementById("cha_y");
             
-            if (mm > 2021){
+            if (mm > 2021 && mm < 3000){
                 mm_set.classList.add("active");
                 mm_cha.innerHTML = mm;
             }else{
