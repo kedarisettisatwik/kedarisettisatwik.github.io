@@ -176,6 +176,53 @@
             margin-bottom:8px;
             opacity:0.7;
         }
+        .card .date .my{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: row;
+            overflow-y: hidden;
+        }
+        .card .date .my #mm_set,.card .date .my #yy_set{
+            line-height:40px;
+            position:relative;
+        }
+        .card .date .my #mm_set{
+            margin-right:3px;
+        }
+        .card .date .my #yy_set{
+            margin-left:3px;
+        }
+        .card .date .my #mm_set .yy,.card .date .my #yy_set .yy{
+            position: relative;
+            transition:0.3s;
+            height:40px;
+            line-height:40px;
+            text-align:center;
+            transform:translateY(100%);
+        }
+        .card .date .my #mm_set .mm,.card .date .my #yy_set .mm{
+            position: absolute;
+            top:0%;
+            left:0%;
+            width:100%;
+            height:100%;
+            line-height:40px;
+            text-align:center;
+            transition:0.3s;
+        }
+        .card .date .my #mm_set.active .mm{
+            top:-100%;
+        }
+        .card .date .my #yy_set.active .mm{
+            top:-100%;
+        }
+        .card .date .my #mm_set.active .yy{
+            transform:translateY(0%);
+        }
+        .card .date .my #yy_set.active .yy{
+            transform:translateY(0%);
+        }
         .card .full label{
             margin-left:5px;
         }
@@ -284,7 +331,7 @@
 <body class="flex">
     <section class="main flex">
        
-        <section class="card" id="card" onclick="toggle1()">
+        <section class="card" id="card">
           
            <section id="pointer"></section>
            
@@ -329,9 +376,8 @@
                 <div class="date" id="sdate">
                     <span>Expires</span>
                     <div class="my">
-                        <label>MM</label>
-                        <label>/</label>
-                        <label>YY</label>
+                        <label id="mm_set"><div class="mm">MM</div><div class="yy" id="cha_m">01</div></label>
+                        <label id="yy_set"><div class="mm">- YY</div><div class="yy" id="cha_y">- 2030</div></label>
                     </div>
                 </div>
             </div>
@@ -376,9 +422,9 @@
                  <option value="12">
              </datalist>
              
-             <input type="text" autocomplete="off" required pattern="20+[0-9]{2}" placeholder="YY" style="width:100px" oninput="write1(2,this)" onclick="write1(2,this)"> 
+             <input type="text" autocomplete="off" required pattern="20+[0-9]{2}" placeholder="YY" style="width:100px" oninput="write1(3,this)" onclick="write1(3,this)"> 
              
-             <input type="password" autocomplete="off" required pattern="[0-9]{3}" maxlength="3" placeholder="CVV" style="width:100px" oninput="write1(3,this)" onclick="write1(3,this)">
+             <input type="password" autocomplete="off" required pattern="[0-9]{3}" maxlength="3" placeholder="CVV" style="width:100px" oninput="write1(4,this)" onclick="write1(4,this)">
              
            </div>
              
@@ -420,15 +466,20 @@
             ab.style.width = right1 + "px";
             ab.style.height = bottom1 + "px";
                 
+                if (a == "sdate"){
+                    ab.style.left = left1 - cl - 10 + "px";
+                    ab.style.width = right1 + 10 + "px";
+                }
+                
             },500);
             
         }
         
         function write1(a,b){
-            var mli = ["snum","sname","sdate","scvv"]
+            var mli = ["snum","sname","sdate","sdate","scvv"]
             var ab = b.value;
             
-            if (a == 3){
+            if (a == 4){
                var card = document.getElementById('card');
                card.classList.add("active");
                 var ll = document.getElementById("pointer");
@@ -441,7 +492,15 @@
                 if (a == 0){
                     star1(b);
                 }
-                
+                if (a == 1){
+                    full_n(b);
+                }
+                if (a == 2){
+                    add_m(b);
+                }
+                if (a == 3){
+                    add_y(b);
+                }
             }
         }
         
@@ -467,6 +526,42 @@
             }
         }
         
+        function add_m(b){
+            var mm = parseInt(b.value);
+            var mm_set = document.getElementById("mm_set");
+            var mm_cha = document.getElementById("cha_m");
+            if (mm > 0 && mm < 13){
+                mm_set.classList.add("active");
+                if (mm < 10){
+                    mm = "0"+mm;
+                }
+                 mm_cha.innerHTML = mm;
+            }else{
+                mm_set.classList.remove("active");
+                 mm_cha.innerHTML = "01";
+            }
+        }
+        
+        function add_y(b){
+            var mm = parseInt(b.value);
+            var mm_set = document.getElementById("yy_set");
+            var mm_cha = document.getElementById("cha_y");
+            
+            if (mm > 2021){
+                mm_set.classList.add("active");
+                mm_cha.innerHTML = "- ";
+                mm_cha.innerHTML += mm;
+            }else{
+                mm_set.classList.remove("active");
+                mm_cha.innerHTML = "- 2021";
+            }
+            
+        }
+        
+        function full_n(b){
+            var f_name = b.value;
+            
+        }
     </script>
  
 </body>
