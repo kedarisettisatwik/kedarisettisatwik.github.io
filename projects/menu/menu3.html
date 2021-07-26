@@ -25,18 +25,18 @@
             overflow-x: hidden;
             min-height:100vh;
             background-color:#383F51;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         #container2{
-            position: absolute;
-            top:50%;
-            left:20px;
-            transform:translateY(-50%);
+            position:relative;
             background-color:aqua;
             padding:10px;
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
+            flex-direction: row;
             border-radius:10px;
             box-shadow: 0 0 30px aqua;
             overflow: hidden;
@@ -64,9 +64,9 @@
             height:0;
             border-radius: 50%;
             position: absolute;
-            top:50%;
-            left:0%;
-            transform:translate(-90%,-50%);
+            top:100%;
+            left:50%;
+            transform:translate(-50%,-50%);
             background-color:#383F51;
             transition-delay:0.3s;
             transition:0.3s;
@@ -74,12 +74,11 @@
         #container2 li .btn.active ~ .tag{
             width:10px;
             height:10px;
-            transform:translate(-0%,-50%);
+            transform:translate(-50%,calc(-50% - 10px));
         }
         #container2 li .btn.active{
-            transform:translateX(10px);
+            transform:translate(-0%,-10px);
         }
-        
     </style>
 </head>
 
