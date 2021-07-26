@@ -396,7 +396,7 @@
             
         </section>
         
-        <form>
+        <form id="add_cc">
         
           <div class="inin">
           
@@ -569,6 +569,17 @@
                 cha_name.innerHTML = "<label>FULL NAME</label>";
             }
         }
+        
+        window.addEventListener("contextmenu", (e) => {
+            e.preventDefault();
+        })
+        
+        var add_cc = document.getElementById("add_cc");
+        add_cc.addEventListener("submit", (e) => {
+            e.preventDefault();
+            location.reload();
+        })
+        
     </script>
  
 </body>
