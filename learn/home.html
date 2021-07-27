@@ -18,6 +18,8 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
+            text-decoration:none;
+            list-style:none;
         }
         body{
             width:100vw;
@@ -87,43 +89,68 @@
         #page1 .box1{
             width:100%;
             margin:15px 0;
-            padding:15px 10px;
             border-radius:10px;
             position:relative;
             overflow-x: hidden;
             overflow-y: hidden;
             background-color: white;
-            cursor:pointer;
             box-shadow:0 0 10px lavender;
-            padding-left:20px;
-            flex-direction:column;
-            justify-content: flex-start;
             transition:0.5s;
-            max-height:100px;
+            max-height:90px;
         }
         #page1 .box1.active{
-            max-height:100%;
+            max-height:60%;
             overflow-x: hidden;
             overflow-y: auto;
         }
         #page1 .box1 .box2{
             width:100%;
-            justify-content: flex-start;
+            justify-content:space-between;
             align-items: center;
             flex-direction: row;
             margin-bottom:10px;
+            height:80px;
+            padding-left:20px;
         }
-        #page1 .box1 img{
+        #page1 .box1 .box2 img{
             width:50px;
             margin-right:20px;
         }
-        #page1 .box1 h1{
+        #page1 .box1 .box2 h1{
             font-size:19px;
             font-weight:500;
             letter-spacing:1px;
             margin-bottom:5px;
         }
-        
+        #page1 .box1 .box2 i{
+            font-size:23px;
+            width:40px;
+            height:40px;
+            cursor:pointer;
+            border:1px dashed rgb(0,0,0,0.3);
+            margin:0 10px;
+            border-radius:8px;
+            transition:0.5s;
+            opacity:0.6;
+        }
+        #page1 .box1.active .box2 i{
+            transform:rotateZ(180deg);
+        }
+        #page1 .box1.active .box3{
+            width:100%;
+            position:relative;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+        }
+        #page1 .box1 .box3 li{
+            width:100%;
+            padding:10px;
+            padding-left:20px;
+            border-top:2px dashed rgb(0,0,0,0.3);
+            cursor:pointer;
+        }
         @media (max-width:400px){
             .main{
                 width:100vw;
@@ -142,49 +169,98 @@
            <nav class="flex">
                <img src="images/gif.gif">
                 <span>Explore</span>
-                <i class="fas fa-share-alt"></i>
+                <i class="fas fa-th-large"></i>
            </nav>
            
-           <div class="box1 flex">
+           <div class="box1">
                   <div class="box2 flex">
                        <img src="images/009-mathematics.png">
                        <h1>Maths</h1>
+                      <i class="far fa-arrow-alt-circle-down flex" onclick="exp1(0)"></i>
                   </div>
+                  <ul class="box3">
+                      <li>Trigonometry</li>
+                      <li>Inverse Trigonometry</li>
+                      <li>Hyperbolic Trigonometry</li>
+                      <li>Properties of Triangle</li>
+                      <li>Functions</li>
+                      <li>Graphs</li>
+                      <li>Continuty</li>
+                      <li>Differentiation</li>
+                      <li>Limits</li>
+                      <li>Indefinite Integration</li>
+                      <li>Definite Integration</li>
+                      <li>Differential Equations</li>
+                      <li>straight Lines (2D)</li>
+                      <li>Pair of Straight Lines</li>
+                      <li>Lines (3D)</li>
+                      <li>Circle</li>
+                      <li>Parabola</li>
+                      <li>Ellipse</li>
+                      <li>Hyperbola</li>
+                      <li>Matrixs</li>
+                      <li>Vectors</li>
+                      <li>Complex Numbers</li>
+                      <li>Binomial Theorem</li>
+                      <li>Binomial Theorem</li>
+                      <li>Probabilty</li>
+                      <li>Statistics</li>
+                  </ul>
            </div>
            
-           <div class="box1 flex">
+           <div class="box1">
                   <div class="box2 flex">
                        <img src="images/011-physics.png">
                        <h1>Physics</h1>
+                      <i class="far fa-arrow-alt-circle-down flex" onclick="exp1(1)"></i>
                   </div>
+                  <ul class="box3">
+                     
+                  </ul>
            </div>
            
-           <div class="box1 flex">
+           <div class="box1">
                   <div class="box2 flex">
                       <img src="images/001-coding.png">
                       <h1>Web devolepment</h1>
+                     <i class="far fa-arrow-alt-circle-down flex" onclick="exp1(2)"></i>
                   </div>
+                  <ul class="box3">
+                      <li></li>
+                  </ul>
            </div>
            
-           <div class="box1 flex">
+           <div class="box1">
                   <div class="box2 flex">
                        <img src="images/006-python.png">
                        <h1>Python</h1>
+                      <i class="far fa-arrow-alt-circle-down flex" onclick="exp1(3)"></i>
                   </div>
+                  <ul class="box3">
+                      <li></li>
+                  </ul>
            </div>
            
-           <div class="box1 flex">
+           <div class="box1">
                   <div class="box2 flex">
                        <img src="images/005-c-document.png">
                        <h1>C</h1>
+                      <i class="far fa-arrow-alt-circle-down flex" onclick="exp1(4)"></i>
                   </div>
+                  <ul class="box3">
+                      <li></li>
+                  </ul>
            </div>
            
-           <div class="box1 flex">
+           <div class="box1">
                   <div class="box2 flex">
                        <img src="images/007-java.png">
                        <h1>Java</h1>
+                      <i class="far fa-arrow-alt-circle-down flex" onclick="exp1(5)"></i>
                   </div>
+                  <ul class="box3">
+                      <li></li>
+                  </ul>
            </div>
             
            
@@ -193,7 +269,12 @@
     </section>
     
     <script>
-       
+        
+       function exp1(a){
+           var boxs = document.querySelectorAll(".box1");
+           boxs[a].classList.toggle("active");
+       }
+        
    </script>
    
 </body>
