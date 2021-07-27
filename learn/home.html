@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="images/010-lightbulb.png" type="image">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <title>Learn</title>
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body{
+            width:100vw;
+            height:100vh;
+            background-color:lavender;
+            display: flex;
+            justify-content:center;
+            align-items: center;
+        }
+        .flex{
+            display: flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items: center;
+        }
+        .main {
+            position:relative;
+            width:400px;
+            height: 90vh;
+            overflow: hidden;
+            background-color:white;
+            box-shadow: 0 0 25px rgb(0,0,0,0.2);
+            border-radius:10px;
+        }
+        ::-webkit-scrollbar{
+            width:5px;
+        }
+        #page1{
+            width:100%;
+            height:100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+            justify-content: flex-start;
+            background-color:white;
+            padding:0 10px;
+            position:relative;
+        }
+        #page1 nav{
+            position:relative;
+            width:100%;
+            margin:10px 0 20px 0;
+            border-bottom:2px solid grey;
+            justify-content:space-between;
+            flex-direction: row;
+            padding-bottom:10px;
+        }
+        #page1 nav img{
+           height:60px;
+            margin:0 10px;
+        }
+        #page1 nav span{
+            font-size:20px;
+            font-weight:600;
+            letter-spacing:3px;
+            margin:0 10px;
+        }
+        #page1 nav i{
+            margin:0 10px;
+            font-size:22px;
+            opacity:0.5;
+            transition:0.5s;
+            cursor:pointer;
+        }
+        #page1 nav i:hover{
+            opacity:1;
+        }
+        #page1 .box1{
+            width:100%;
+            margin:15px 0;
+            padding:15px 10px;
+            border-radius:10px;
+            position:relative;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            background-color: white;
+            cursor:pointer;
+            box-shadow:0 0 10px lavender;
+            padding-left:20px;
+            flex-direction:column;
+            justify-content: flex-start;
+            transition:0.5s;
+            max-height:100px;
+        }
+        #page1 .box1.active{
+            max-height:100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        #page1 .box1 .box2{
+            width:100%;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: row;
+            margin-bottom:10px;
+        }
+        #page1 .box1 img{
+            width:50px;
+            margin-right:20px;
+        }
+        #page1 .box1 h1{
+            font-size:19px;
+            font-weight:500;
+            letter-spacing:1px;
+            margin-bottom:5px;
+        }
+        
+        @media (max-width:400px){
+            .main{
+                width:100vw;
+                height:100vh;
+            }
+        }
+        
+    </style>
+</head>
+
+<body>
+   
+    <section class="main">
+        <section id="page1">
+          
+           <nav class="flex">
+               <img src="images/gif.gif">
+                <span>Explore</span>
+                <i class="fas fa-share-alt"></i>
+           </nav>
+           
+           <div class="box1 flex">
+                  <div class="box2 flex">
+                       <img src="images/009-mathematics.png">
+                       <h1>Maths</h1>
+                  </div>
+           </div>
+           
+           <div class="box1 flex">
+                  <div class="box2 flex">
+                       <img src="images/011-physics.png">
+                       <h1>Physics</h1>
+                  </div>
+           </div>
+           
+           <div class="box1 flex">
+                  <div class="box2 flex">
+                      <img src="images/001-coding.png">
+                      <h1>Web devolepment</h1>
+                  </div>
+           </div>
+           
+           <div class="box1 flex">
+                  <div class="box2 flex">
+                       <img src="images/006-python.png">
+                       <h1>Python</h1>
+                  </div>
+           </div>
+           
+           <div class="box1 flex">
+                  <div class="box2 flex">
+                       <img src="images/005-c-document.png">
+                       <h1>C</h1>
+                  </div>
+           </div>
+           
+           <div class="box1 flex">
+                  <div class="box2 flex">
+                       <img src="images/007-java.png">
+                       <h1>Java</h1>
+                  </div>
+           </div>
+            
+           
+           
+        </section>
+    </section>
+    
+    <script>
+       
+   </script>
+   
+</body>
+</html>
