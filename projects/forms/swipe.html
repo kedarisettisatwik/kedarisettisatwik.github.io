@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <!-- google fonts -->
+    <title>font-awesome</title>
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        ::-webkit-scrollbar{
+            width:0px;
+        }
+        body{
+            width:100vw;
+            height:100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content:center;
+            align-items: center;
+        }
+        .flex{
+            display: flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items: center;
+            background-position: bottom;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .main {
+            position:relative;
+            width:400px;
+            height:90vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+            background-image: url(bgad.jpg);
+            border-radius:10px;
+            box-shadow:0 0 30px rgb(0,0,0,0.2);
+            justify-content:space-between;
+        }
+        .main .para{
+            margin-top:40px;
+            padding:10px;
+            max-width:95%;
+            background-image:linear-gradient(rgb(255,255,255,0.8),rgb(255,255,255,0.8));
+            border-radius:5px;
+            box-shadow:0 0 5px rgb(0,0,0,0.5);
+        }
+        .main .para h2{
+            font-size:23px;
+            font-weight:600;
+            letter-spacing:2px;
+            margin:10px 0 15px 10px;
+        }
+        .main .para p{
+            font-size:15px;
+        }
+        .main .bt{
+            margin-bottom:40px;
+            width:95%;
+            padding:10px;
+            position:relative;
+        }
+        .main .bt button{
+            position:relative;
+            width:100%;
+            padding:10px;
+            border-radius:10px;
+            margin:10px 0;
+            font-size:16px;
+            letter-spacing:2px;
+            font-weight:bold;
+            background:none;
+            border:none;
+            outline:none;
+            box-shadow:0 0 5px rgb(0,0,0,0.5);
+            overflow: hidden;
+        }
+        .main .bt button:nth-child(1){
+            background-image:linear-gradient(rgb(0,0,0,0.5),rgb(0,0,0,0.5));
+            color:white;
+        }
+        .main .bt button:nth-child(2){
+            background-image:linear-gradient(rgb(255,255,255,0.8),rgb(255,255,255,0.8));
+        }
+        .main .bt button:nth-child(2) p{
+            width:100%;
+            height:100%;
+        }
+        .main .bt button:nth-child(2) #two{
+            position: absolute;
+            top:0;
+            left:0;
+            background-color:greenyellow;
+            color:black;
+            clip-path: inset(0 80% 0 0);
+            transition:0.3s
+        }
+        .main .bt button:nth-child(2) #swipe{
+            position: absolute;
+            width:100%;
+            height:100%;
+            top:0;
+            left:0;
+        }
+        #swipe{
+            -webkit-appearance:none;
+            outline:none;
+            background-color:transparent;
+        }
+        #swipe::-webkit-slider-thumb{
+            -webkit-appearance:none;
+            width:20%;
+            height:60px;
+            background-color: transparent;
+            cursor:pointer;
+        }
+        
+        @media (max-width:400px){
+            .main{
+                width:100vw;
+                height:100vh;
+            } 
+        }
+        
+    </style>
+</head>
+
+<body>
+    <section class="main flex">
+        <div class="para">
+            <h2>Explore</h2>
+            <p>Remember that <br> Happiness is a way of travel, <br> NOT A way of destination .</p>
+        </div>
+        <div class="bt flex">
+            <button>LOG IN</button>
+            <button>
+            <p class="one flex">swipe to SIGN UP..</p>
+            <p id="two" class="flex">swipe to SIGN UP..</p>
+            <input type="range" min="0" max="100" value="0" id="swipe" oninput="swipe1()" onmouseup="swipeclear()" onmousedown="prr()" onclick="prr1()">
+            </button>
+        </div>
+    </section>
+    
+    <script>
+        
+        var press = false;
+        
+        function swipe1(){
+            var swipe = document.getElementById("swipe");
+            var ele = document.getElementById("two");
+            
+            if (swipe.value > 20 && press){
+                ele.style.clipPath = "inset(0 "+ (100 - swipe.value)+ "%" +" 0 0)";
+            }else{
+                ele.style.clipPath = "inset(0 80% 0 0)";
+                swipe.value = 0;
+            }
+        }
+
+        function prr(){
+            press = true;
+        }
+        
+        function prr1(){
+            press = false;
+        }
+        
+        function swipeclear(){
+            press = false;
+            var swipe = document.getElementById("swipe");
+            var ele = document.getElementById("two");
+            
+            if (swipe.value > 85){
+                ele.style.clipPath = "inset(0 0% 0 0)";
+            }else{
+                ele.style.clipPath = "inset(0 80% 0 0)";
+            }
+            
+            swipe.value = 0;
+        }
+   </script>
+ 
+</body>
+</html>
