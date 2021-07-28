@@ -24,7 +24,7 @@
         body{
             width:100vw;
             height:100vh;
-            background-color:lavender;
+            background-color:lavenderblush;
             display: flex;
             justify-content:center;
             align-items: center;
@@ -45,7 +45,7 @@
             border-radius:10px;
         }
         ::-webkit-scrollbar{
-            width:5px;
+            width:0px;
         }
         #page1{
             width:100%;
@@ -94,7 +94,7 @@
             overflow-x: hidden;
             overflow-y: hidden;
             background-color: white;
-            box-shadow:0 0 10px lavender;
+            box-shadow:0 0 15px lavender,0 0 5px rgb(0,0,0,0.2);
             transition:0.5s;
             max-height:90px;
         }
@@ -146,10 +146,12 @@
         }
         #page1 .box1 .box3 li{
             width:100%;
-            padding:10px;
-            padding-left:20px;
-            border-top:2px dashed rgb(0,0,0,0.3);
+            padding:20px;
             cursor:pointer;
+            transition:0.3s;
+        }
+        #page1 .box1 .box3 li:hover{
+            padding-left:40px;
         }
         @media (max-width:400px){
             .main{
@@ -221,23 +223,56 @@
            
            <div class="box1">
                   <div class="box2 flex">
-                      <img src="images/001-coding.png">
-                      <h1>Web devolepment</h1>
-                     <i class="far fa-arrow-alt-circle-down flex" onclick="exp1(2)"></i>
+                       <img src="images/006-python.png">
+                       <h1>Python</h1>
+                      <i class="far fa-arrow-alt-circle-down flex" onclick="exp1(2)"></i>
                   </div>
                   <ul class="box3">
-                      <li></li>
+                    
                   </ul>
            </div>
            
            <div class="box1">
                   <div class="box2 flex">
-                       <img src="images/006-python.png">
-                       <h1>Python</h1>
-                      <i class="far fa-arrow-alt-circle-down flex" onclick="exp1(3)"></i>
+                      <img src="images/002-html.png">
+                      <h1>HTML</h1>
+                     <i class="far fa-arrow-alt-circle-down flex" onclick="exp1(3)"></i>
                   </div>
                   <ul class="box3">
-                      <li></li>
+           
+                  </ul>
+           </div>
+                
+          <div class="box1">
+                  <div class="box2 flex">
+                      <img src="images/003-css.png">
+                      <h1>CSS</h1>
+                     <i class="far fa-arrow-alt-circle-down flex" onclick="exp1(4)"></i>
+                  </div>
+                  <ul class="box3">
+                    
+                  </ul>
+           </div>
+           
+           <div class="box1">
+                  <div class="box2 flex">
+                      <img src="images/004-file.png">
+                      <h1>JS</h1>
+                     <i class="far fa-arrow-alt-circle-down flex" onclick="exp1(5)"></i>
+                  </div>
+                  <ul class="box3">
+                   
+                  </ul>
+           </div>
+           
+           <div class="box1">
+                  <div class="box2 flex">
+                      <img src="images/008-cloud-database.png">
+                      <h1>Fire Base</h1>
+                     <i class="far fa-arrow-alt-circle-down flex" onclick="exp1(6)"></i>
+                  </div>
+                  <ul class="box3">
+                   
                   </ul>
            </div>
            
@@ -245,10 +280,10 @@
                   <div class="box2 flex">
                        <img src="images/005-c-document.png">
                        <h1>C</h1>
-                      <i class="far fa-arrow-alt-circle-down flex" onclick="exp1(4)"></i>
+                      <i class="far fa-arrow-alt-circle-down flex" onclick="exp1(7)"></i>
                   </div>
                   <ul class="box3">
-                      <li></li>
+                
                   </ul>
            </div>
            
@@ -256,10 +291,10 @@
                   <div class="box2 flex">
                        <img src="images/007-java.png">
                        <h1>Java</h1>
-                      <i class="far fa-arrow-alt-circle-down flex" onclick="exp1(5)"></i>
+                      <i class="far fa-arrow-alt-circle-down flex" onclick="exp1(8)"></i>
                   </div>
                   <ul class="box3">
-                      <li></li>
+           
                   </ul>
            </div>
             
