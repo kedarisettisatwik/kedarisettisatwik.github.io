@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/logo.png" type="image">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+
+    <title>Network</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .flex {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        ::-webkit-scrollbar {
+            width: 0px;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            background-color: lavender;
+        }
+
+        #page1 {
+            position: relative;
+            width: 400px;
+            height: 90vh;
+            box-shadow: 0 0 20px rgb(0, 0, 0, 0.2);
+            background-color: white;
+            overflow-x: hidden;
+            overflow-y: auto;
+            -webkit-animation:del 2s linear forwards;
+        }
+        #page1 img{
+            position:relative;
+            min-width:250px;
+            width:80%;
+            object-fit: cover;
+            left:50%;
+            transform:translateX(-50%);
+        }
+        @keyframes del {
+            0%{opacity:0}
+            100%{opacity:1}
+        }
+        #page1 h2{
+            width:100%;
+            padding-left:20px;
+            font-size:23px;
+            margin:20px 0;
+            font-weight:bold;
+        }
+        #page1 h6{
+            width:100%;
+            padding-left:20px;
+            font-size:17px;
+            margin:10px;
+            font-family: monospace;
+            opacity:0.6;
+            cursor:pointer;
+        }
+        #page1 h2 span{
+            font-family: 'Caveat', sans-serif;
+            letter-spacing:3px;
+        }
+        #page1 h2 label{
+            margin-left:10px;
+            font-family:'Dancing Script',sans-serif;
+            letter-spacing:3px;
+        }
+        #page1 div a{
+            width:50px;
+            height:50px;
+            position:relative;
+            margin:10px;
+            font-size:30px;
+        }
+        #page1 div a i{
+            width:100%;
+            height:100%;
+            line-height:50px;
+            text-align: center;
+        }
+        #page1 p{
+            width:100%;
+            padding-left:10px;
+            margin:10px;
+            font-size:18px;
+            letter-spacing:2px;
+            font-family:monospace;
+        }
+        
+        @media screen and (max-width:400px) {
+            #page1 {
+                width: 100vw;
+                height: 100vh;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body class="flex">
+
+    <section id="page1">
+        
+        <h6 onclick="window.history.go(-1)">Back To Home</h6>
+        
+        <img src="images/me.png" max-width="100%">
+        <h2><span>SATWIK</span><label>Kedar</label></h2>
+        
+        <div class="flex" style="width:100%;justify-content: space-between;flex-direction: row;">
+           
+            <a href="https://www.facebook.com/people/Satwik-Kedaresetti/100008718079201/"><i class="fab fa-facebook"></i></a>
+            
+            <a href="https://www.instagram.com/satwikkedaresetti/"><i class="fab fa-instagram"></i></a>
+            
+            <a href="https://www.youtube.com/channel/UCpLOopnR9TX9b1fjcDpapsw"><i class="fab fa-youtube"></i> </a>
+
+        </div>
+        
+         <p>satwik1330@gmail.com</p>
+         
+    </section>
+
+    <script>
+        
+        
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+         
+      
+
+          
