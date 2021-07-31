@@ -67,6 +67,7 @@
             justify-content: space-between;
             padding:0 10px;
             margin-top:10px;
+            min-width:250px;
         }
         nav i{
             height:50px;
@@ -74,7 +75,6 @@
             font-size:18px;
             text-align: center;
             z-index:10;
-            margin:0 10px;
             transition:0.3s;
             color:darkblue;
             cursor:pointer;
@@ -89,11 +89,9 @@
             background-color:darkblue;
             border-radius:10px;
             bottom:0px;
-            left:20px;
+            left:10px;
             box-shadow:0 0 5px rgb(0,0,0,0.3);
             z-index:0;
-            transform-origin: bottom;
-/*            transition:0.3s;  */
         }
         #win{
             position: absolute;
@@ -117,7 +115,7 @@
                
         <nav>
             <span id="circle"></span>
-            <i class="fas fa-bell flex icon active" onclick="goto(0)"></i>
+            <i class="fas fa-home flex icon active" onclick="goto(0)"></i>
             <i class="fas fa-search flex icon" onclick="goto(1)"></i>
             <i class="fas fa-heart flex icon" onclick="goto(2)"></i>
             <i class="fas fa-user flex icon" onclick="goto(3)"></i>
