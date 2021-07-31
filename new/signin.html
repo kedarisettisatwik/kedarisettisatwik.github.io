@@ -49,6 +49,11 @@
             box-shadow: 0 0 20px rgb(0, 0, 0, 0.2);
             background-color: white;
             overflow: hidden;
+           -webkit-animation:del 1s linear forwards;
+        }
+        @keyframes del {
+            0%{opacity:0}
+            100%{opacity:1}
         }
         #page2{
             width:100%;
@@ -177,7 +182,8 @@
                 <img src="images/accountbg.png" width="200px" height="150px" style="object-fit: cover">
             </div>
             <h3>SIGN IN</h3>
-            <form autocomplete="off" class="flex">
+            
+            <form autocomplete="off" class="flex" id="signin">
                 <div class="in flex">
                     <i class="far fa-envelope"></i>
                     <input type="email" placeholder="E-mail @gmail.com" required id="in_email">
@@ -196,12 +202,14 @@
 
         </section>
 
-        <iframe width="100%" height="100%" src="support.html" frameborder="0" name="win" id="win"></iframe>
-
     </section>
 
     <script>
-        
+      var signin = document.getElementById("signin");
+        signin.addEventListener('submit', (e) => {
+            e.preventDefault();
+            location.href = "container.html";
+        });
         
     </script>
 

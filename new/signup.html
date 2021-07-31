@@ -67,8 +67,8 @@
             overflow-y: auto;
         }
         .page1{
-            padding:0px;
-            padding:100px 10px;
+            padding:10px;
+            padding-top:80px;
             justify-content: flex-start;
         }
         .page1 nav{
@@ -135,8 +135,7 @@
             color:black;
         }
         .page1 .btn{
-            position:absolute;
-            bottom:30px;
+            margin-top:30px;
             background:none;
             outline:none;
             border:none;
@@ -202,6 +201,7 @@
               </div>
               <p style="margin:10px;width:100%;padding:0 10px;">End with @gmail.com </p>
               <input type="submit" value="submit" class="btn">
+              <img src="images/signup.png" width="200px" style="margin:15px 0 10px 0">
           </form>
           
           <form id="pass_page" class="page flex page1" style="--l:1">
@@ -210,6 +210,10 @@
               <span onclick="prev()">Prev step</span>
               </nav>
               <h1>Security</h1>
+              <div class="in flex">
+                  <i class="fas fa-user"></i>
+                  <input type="text" placeholder="Name" required oninput="pass1()" id="up_name" autocomplete="off" minlength="3">
+              </div>
               <div class="in flex">
                   <i class="fas fa-lock"></i>
                   <input type="text" placeholder="Password" required oninput="pass1()" id="up_pass" autocomplete="off" minlength="7">
@@ -221,23 +225,7 @@
               <input type="submit" value="submit" class="btn">
           </form>
           
-          <form id="age_page" class="page flex page1" style="--l:2">
-              <nav class="flex">
-              <span onclick="window.history.go(-1)">Back To Home</span>
-              <span onclick="prev()">Prev step</span>
-              </nav>
-              <h1>Details</h1>
-              <div class="in flex">
-                  <i class="fas fa-user"></i>
-                  <input type="text" placeholder="Name" required oninput="name1()" id="up_name" autocomplete="off" minlength="3">
-              </div>
-              <div class="in flex">
-                  <input type="date" required id="up_age" autocomplete="off">
-              </div>
-              <input type="submit" value="submit" class="btn">
-          </form>
-          
-          <div id="load_page" class="page flex" style="--l:3">
+          <div id="load_page" class="page flex" style="--l:2">
               <img src="images/load.gif">
               <h2>We are on the way ..</h2>
           </div>
@@ -255,27 +243,7 @@
         var up_pass = document.getElementById("up_pass");
         var up_repass = document.getElementById("up_repass");
         var up_name = document.getElementById("up_name");
-        var up_age = document.getElementById("up_age");
         
-        var page_c = 0;
-        
-        function min_max(){
-            var da_y = new Date().getFullYear();
-            var da_m = String((new Date().getMonth() + 1));
-            var da_d = String((new Date().getDate()));      
-            if (da_m.length < 2){
-                da_m = "0"+da_m;
-            }
-            if (da_d.length < 2){
-                da_d = "0"+da_d;
-            }
-            var min1 = (da_y - 100) + "-" + da_m + "-" + da_d;
-            var max1 = (da_y - 9) + "-" + da_m + "-" + da_d;
-            up_age.setAttribute("min",min1);
-            up_age.setAttribute("max",max1);
-        }
-        
-        min_max();
         
         function gmail(){
             var p = up_mail.value;
@@ -290,15 +258,15 @@
         }
         
         function prev(){
-            page_c -= 1;
-            var x = page_c * -100 + "%"; 
+            var x = 0 + "%"; 
             page_1.style.transform = "translateX(" + x + ")";
         }
         
         function pass1(){
             var l = up_pass.value;
             var l1 = up_repass.value;
-            if (l.length > 6){
+            var l2 = up_name.value;
+            if (l.length > 6 && l2.length > 2){
                 if (l == l1){
                     btn[1].classList.add("active");
                 }else{
@@ -307,22 +275,12 @@
             }
         }
         
-        function name1(){
-            var ln = up_name.value;
-            if (ln.length > 2){
-                btn[2].classList.add("active");
-            }else{
-                btn[2].classList.remove("active");
-            }
-        }
-        
         var mail_page = document.getElementById("mail_page");
         mail_page.addEventListener("submit", (e) => {
             e.preventDefault();
             var e_b = btn[0];
             if (e_b.classList.contains("active")){
-                page_c +=1;
-                var x = page_c * -100 + "%"; 
+                var x = -100 + "%"; 
                 page_1.style.transform = "translateX(" + x + ")";
             }
         });
@@ -332,20 +290,11 @@
             e.preventDefault();
             var e_b = btn[1];
             if (e_b.classList.contains("active")){
-                page_c += 1;
-                var x = page_c * -100 + "%"; 
+                var x = -200 + "%"; 
                 page_1.style.transform = "translateX(" + x + ")";
-            }
-        });
-        
-        var age_page = document.getElementById("age_page");
-        age_page.addEventListener("submit", (e) => {
-            e.preventDefault();
-            var e_b = btn[2];
-            if (e_b.classList.contains("active")){
-                page_c += 1;
-                var x = page_c * -100 + "%"; 
-                page_1.style.transform = "translateX(" + x + ")";
+                setTimeout(function(){
+                   location.replace("container.html"); 
+                },5000);
             }
         });
         

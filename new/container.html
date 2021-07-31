@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/logo.png" type="image">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <!-- fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    
+    <title>Network</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .flex {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        ::-webkit-scrollbar {
+            width: 0px;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            background-color: lavender;
+        }
+
+        #page1 {
+            position: relative;
+            width: 400px;
+            height: 90vh;
+            box-shadow: 0 0 20px rgb(0, 0, 0, 0.2);
+            background-color: white;
+            overflow: hidden;
+           -webkit-animation:del 1s linear forwards;
+        }
+        @keyframes del {
+            0%{opacity:0}
+            100%{opacity:1}
+        }
+        nav{
+            position: relative;
+            top:0;
+            width:100%;
+            height:50px;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            justify-content: space-between;
+            padding:0 10px;
+            margin-top:10px;
+        }
+        nav i{
+            height:50px;
+            width:50px;
+            font-size:18px;
+            text-align: center;
+            z-index:10;
+            margin:0 10px;
+            transition:0.3s;
+            color:darkblue;
+            cursor:pointer;
+        }
+        nav i.active{
+            color:white;
+        }
+        #circle{
+            position: absolute;
+            height:50px;
+            width:50px;
+            background-color:darkblue;
+            border-radius:10px;
+            bottom:0px;
+            left:20px;
+            box-shadow:0 0 5px rgb(0,0,0,0.3);
+            z-index:0;
+            transform-origin: bottom;
+/*            transition:0.3s;  */
+        }
+        #win{
+            position: absolute;
+            top:0;
+        }
+        
+        @media screen and (max-width:400px) {
+            #page1 {
+                width: 100vw;
+                height: 100vh;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body class="flex">
+
+    <section id="page1">
+               
+        <nav>
+            <span id="circle"></span>
+            <i class="fas fa-bell flex icon active" onclick="goto(0)"></i>
+            <i class="fas fa-search flex icon" onclick="goto(1)"></i>
+            <i class="fas fa-heart flex icon" onclick="goto(2)"></i>
+            <i class="fas fa-user flex icon" onclick="goto(3)"></i>
+        </nav>
+        
+        <iframe src=""  height="100%" width="100%" frameborder="0" id="win" name="win"></iframe>
+               
+    </section>
+
+    <script>
+        
+        function goto(a){
+            var ic = document.querySelectorAll(".icon");
+            var circle = $("#circle");
+            for(var i = 0;i<ic.length;i++){
+                ic[i].classList.remove("active");
+            }
+            var icl = ic[a].offsetLeft;
+            circle.animate({height:"5px"},200);
+            circle.animate({left:icl + "px"},400);
+            circle.animate({height:"50px"},200);
+            setTimeout(function(){
+                ic[a].classList.add("active");
+            },600);
+        }
+        
+    </script>
+
+</body>
+
+</html>
