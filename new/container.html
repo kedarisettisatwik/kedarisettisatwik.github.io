@@ -68,6 +68,7 @@
             padding:0 10px;
             margin-top:10px;
             min-width:250px;
+            z-index:50;
         }
         nav i{
             height:50px;
@@ -96,6 +97,9 @@
         #win{
             position: absolute;
             top:0;
+            padding-top:65px;
+            background-color:white;
+            z-index:10;
         }
         
         @media screen and (max-width:400px) {
@@ -127,6 +131,8 @@
 
     <script>
         
+        var child = window.open("home.html","win");
+        
         function goto(a){
             var ic = document.querySelectorAll(".icon");
             var circle = $("#circle");
@@ -137,6 +143,12 @@
             circle.animate({height:"5px"},200);
             circle.animate({left:icl + "px"},400);
             circle.animate({height:"50px"},200);
+            
+            var fr = document.getElementById("win");
+            var lili = ["home.html","search.html","follow.html","profile.html"];
+            
+            child.location.replace(lili[a]);
+            
             setTimeout(function(){
                 ic[a].classList.add("active");
             },600);
