@@ -36,36 +36,38 @@
         body {
             width: 100vw;
             height: 100vh;
-            background-color: white;
            -webkit-animation:del 1s linear forwards;
             padding:10px;
-            padding-top:0px;
+            padding-top:60px;
+            padding-bottom:30px;
             display: flex;
             justify-content: flex-start;
             align-items: center;
             flex-direction: column;
             overflow-x: hidden;
             overflow-y: auto;
+            background-color:rgb(0,0,0,0.02);
         }
         @keyframes del {
             0%{opacity:0}
             100%{opacity:1}
         }
         .search{
-            margin:10px 0;
-            width:100%;
+            position:fixed;
+            top:10px;
+            width:calc(100% - 20px);
             flex-direction: row;
             justify-content:flex-start;
             height:50px;
             box-shadow:0 0 5px rgb(0,0,0,0.2);
             border-radius:10px;
-            position:relative;
-            background-color:rgb(0,0,0,0.03);
+            background-color: white;
+            z-index:1000;
         }
         .search i{
-            width:40px;
-            height:40px;
-            line-height:40px;
+            width:50px;
+            height:50px;
+            line-height:50px;
             text-align:center;
             font-size:19px;
         }
@@ -82,17 +84,20 @@
             letter-spacing:1px;
             padding:0 10px;
             height:100%;
-            line-height:40px;
+            line-height:50px;
         }
         .search input::placeholder{
             color:black;
         }
         .search i:nth-child(3){
             margin:0 5px;
-            font-size:19px;
+            font-size:18px;
             cursor:pointer;
             border-radius:6px;
-            background-color:white;
+            background-color:lavenderblush;
+            height:40px;
+            width:40px;
+            line-height:40px;
         }
         #full{
             width:100%;
@@ -103,11 +108,12 @@
             width:100%;
             position:relative;
             box-shadow:0 0 5px rgb(0,0,0,0.2);
-            margin:10px 0;
+            margin:5px 0;
             height:80px;
-            max-height:100px;
             border-radius:8px;
             overflow: hidden;
+            background-color:white;
+            transition:0.7s;
         }
         #full .box1 .bg{
             position:absolute;
@@ -115,11 +121,31 @@
             height:70px;
             top:5px;
             left:5px;
-            background-image: url(avatars/p20.png);
+            background-image: var(--i);
             background-position:top;
             background-repeat: no-repeat;
             background-size: cover;
             border-radius:10px;
+            transition:width 0.5s,height 0.5s,opacity 0s;
+        }
+        #full .box1 .bg img{
+            max-width:100%;
+            max-height:100%;
+            object-fit: cover;
+            transition:0.7s;
+            border-radius:8px;
+            opacity:0;
+        }
+        #full .box1 .exp{
+            position: absolute;
+            bottom:10px;
+            right:20px;
+            padding:8px;
+            font-size:20px;
+            cursor:pointer;
+            display:flex;
+            background-color: white;
+            border-radius:2px;
         }
         #full .box1 .text{
             position: absolute;
@@ -128,12 +154,14 @@
             top:5px;
             right:0;
             height:70px;
+            transition:0.7s;
         }
         #full .box1 .text .name,#full .box1 .text .email{
             width:100%;
             height:35px;
             line-height:35px;
             overflow: hidden;
+            transition:0.7s;
         }
         #full .box1 .text .name{
             font-size:16px;
@@ -144,6 +172,74 @@
             font-size:15px;
             opacity:0.7;
         }
+        #full .box1 .btns{
+            position: absolute;
+            width:100%;
+            bottom:0%;
+            right:0;
+            transform:translateY(100%);
+            opacity:0;
+            height:60px;
+            flex-direction: row;
+            justify-content: space-around;
+            transition:0.7s;
+        }
+        #full .box1 .btns span{
+            width:60px;
+            height:60px;
+            cursor:pointer;
+            line-height:60px;
+            text-align:center;
+        }
+        #full .box1 .btns span.clo{
+            font-size:18px;
+            opacity:0.6;
+        }
+        #full .box1 .btns span.add{
+            font-size:22px;
+        }
+        #full .box1 .btns span.heart{
+            transform:scale(1.1);
+            color:darkblue;
+            text-shadow:0 0 10px rgb(0,0,0,0.3);
+        }
+    
+        #full .box1.active{
+            height:400px;
+        }
+        #full .box1.active .bg{
+            position:absolute;
+            width:calc(100% - 10px);
+            height:250px;
+            background-image:linear-gradient(rgb(255,255,255),rgb(255,255,255));
+            -webkit-animation:opa 1s linear forwards;
+        }
+        @keyframes opa{
+            0%{opacity:0}
+            100%{opacity:1}
+        }
+        #full .box1.active .bg img{
+            opacity:1;
+        }
+        #full .box1.active .text{
+            width:calc(100%);
+            height:auto;
+            padding-top:10px;
+            top:260px;
+        }
+        #full .box1.active .text .name{
+            font-size:20px;
+            font-weight:bold;
+            letter-spacing:2px;
+        }
+        #full .box1.active .btns{
+            transition-delay:0.9s;
+            opacity: 1;
+            transform:translateY(0%);
+        }
+        #full .box1.active .exp{
+            display:none;
+        }
         
     </style>
 
@@ -153,25 +249,86 @@
    
    <div class="search flex">
        <i class="fas fa-search flex icon"></i>
-       <input type="text" placeholder="Search">
+       <input type="text" placeholder="Search" oninput="filter1()" id="search_inp">
        <i class="fas fa-stream"></i>
    </div>
    <div id="full" class="flex">
       
        <div class="box1">
-           <div class="bg"></div>
+           <div class="bg flex" style="--i:url(avatars/p20.png)"><img src="avatars/p20.png"></div>
            <div class="text">
                <p class="name">Kedar Satwik </p>
                <p class="email">satwik1330@gmail.com</p>
            </div>
-           <div class="btns">
-               
+           <div class="btns flex">
+               <span class="clo" onclick="close1(0)"><i class="far fa-window-close"></i></span>
+               <span class="add heart"><i class="fas fa-heart"></i> + </span>
+               <span class="add"><i class="far fa-comment-alt"></i></span>
            </div>
+           <i class="fas fa-expand-alt exp" onclick="open1(0)"></i>
+       </div>
+       
+       <div class="box1">
+           <div class="bg flex" style="--i:url(avatars/p19.png)"><img src="avatars/p19.png"></div>
+           <div class="text">
+               <p class="name">Sridevi 3322</p>
+               <p class="email">sridevi3322@gmail.com</p>
+           </div>
+           <div class="btns flex">
+               <span class="clo" onclick="close1(1)"><i class="far fa-window-close"></i></span>
+               <span class="add heart"><i class="fas fa-heart"></i> + </span>
+               <span class="add"><i class="far fa-comment-alt"></i></span>
+           </div>
+           <i class="fas fa-expand-alt exp" onclick="open1(1)"></i>
+       </div>
+       
+       <div class="box1">
+           <div class="bg flex" style="--i:url(avatars/p21.png)"><img src="avatars/p21.png"></div>
+           <div class="text">
+               <p class="name">Han! 30</p>
+               <p class="email">hanishkadakuditi@gmail.com</p>
+           </div>
+           <div class="btns flex">
+               <span class="clo" onclick="close1(2)"><i class="far fa-window-close"></i></span>
+               <span class="add heart"><i class="fas fa-heart"></i> + </span>
+               <span class="add"><i class="far fa-comment-alt"></i></span>
+           </div>
+           <i class="fas fa-expand-alt exp" onclick="open1(2)"></i>
        </div>
        
    </div>
     
     <script> 
+        
+        var boxs = document.querySelectorAll(".box1");
+        
+        function open1(a){
+            boxs[a].classList.add("active");
+        }
+        
+        function close1(a){
+            boxs[a].classList.remove("active");
+            var bg = $(".box1 .bg").eq(a);
+            bg.animate({opacity:0},0);
+            setTimeout(function(){
+                bg.animate({opacity:1},300);
+            },700);
+        }
+        
+        function filter1(){
+            var search_inp = document.getElementById("search_inp").value.toLowerCase();
+            var names = document.querySelectorAll("name");
+            var emails = document.querySelectorAll("email");
+            for (var i = 0;i<names.length;i++){
+                var name = names[i].innerHTML.toLowerCase();
+                var email = emails[i].innerHTML.toLowerCase();
+                if (name.includes(search_inp) || email.includes(search_inp)){
+                    boxs[i].style.display = "none";
+                }else{
+                    boxs[i].style.display = "flex";
+                }
+            }
+        }
         
     </script>
 
