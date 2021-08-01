@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,64 +48,25 @@
             overflow-x: hidden;
             overflow-y: auto;
             -webkit-animation:del 1s linear forwards;
+            padding:10px;
         }
-        #page1 img{
+        .img{
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .card{
+            margin-top:20px;
+            width:100%;
+            min-width:300px;
+            border-radius:10px;
+            box-shadow:0 0 5px rgb(0,0,0,0.2);
+            transition:0.4s;
+            background-image:linear-gradient(rgb(255,255,255,0.2),rgb(255,255,255,0.1)),url(images/bg.jpg);
             position:relative;
-            min-width:250px;
-            width:80%;
-            object-fit: cover;
-            left:50%;
-            transform:translateX(-50%);
-        }
-        @keyframes del {
-            0%{opacity:0}
-            100%{opacity:1}
-        }
-        #page1 h2{
-            width:100%;
-            padding-left:20px;
-            font-size:23px;
-            margin:20px 0;
-            font-weight:bold;
-        }
-        #page1 h6{
-            width:100%;
-            padding-left:20px;
-            font-size:17px;
-            margin:10px;
-            font-family: monospace;
-            opacity:0.6;
-            cursor:pointer;
-        }
-        #page1 h2 span{
-            font-family: 'Caveat', sans-serif;
-            letter-spacing:3px;
-        }
-        #page1 h2 label{
-            margin-left:10px;
-            font-family:'Dancing Script',sans-serif;
-            letter-spacing:3px;
-        }
-        #page1 div a{
-            width:50px;
-            height:50px;
-            position:relative;
-            margin:10px;
-            font-size:30px;
-        }
-        #page1 div a i{
-            width:100%;
-            height:100%;
-            line-height:50px;
-            text-align: center;
-        }
-        #page1 p{
-            width:100%;
-            padding-left:10px;
-            margin:10px;
-            font-size:18px;
-            letter-spacing:2px;
-            font-family:monospace;
+            overflow: hidden;
+            min-height:200px;
+            margin-bottom:20px;
         }
         
         @media screen and (max-width:400px) {
@@ -121,29 +83,15 @@
 <body class="flex">
 
     <section id="page1">
-        
-        <h6 onclick="window.history.go(-1)">Back To Home</h6>
-        
-        <img src="images/me.png" max-width="100%">
-        <h2><span>SATWIK</span><label>Kedar</label></h2>
-        
-        <div class="flex" style="width:100%;justify-content: space-between;flex-direction: row;">
+         <section class="card flex img">
+       <div class="pro">
            
-            <a href="https://www.facebook.com/people/Satwik-Kedaresetti/100008718079201/"><i class="fab fa-facebook"></i></a>
-            
-            <a href="https://www.instagram.com/satwikkedaresetti/"><i class="fab fa-instagram"></i></a>
-            
-            <a href="https://www.youtube.com/channel/UCpLOopnR9TX9b1fjcDpapsw"><i class="fab fa-youtube"></i> </a>
-
-        </div>
-        
-         <p>satwik1330@gmail.com</p>
-         
+       </div>
+         </section>
     </section>
 
     <script>
-        
-        
+    
     </script>
 
 </body>

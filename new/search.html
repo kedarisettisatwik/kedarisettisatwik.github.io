@@ -316,18 +316,29 @@
         }
         
         function filter1(){
-            var search_inp = document.getElementById("search_inp").value.toLowerCase();
-            var names = document.querySelectorAll("name");
-            var emails = document.querySelectorAll("email");
-            for (var i = 0;i<names.length;i++){
-                var name = names[i].innerHTML.toLowerCase();
-                var email = emails[i].innerHTML.toLowerCase();
-                if (name.includes(search_inp) || email.includes(search_inp)){
-                    boxs[i].style.display = "none";
+            var search_inp = document.getElementById("search_inp").value;
+            var names = document.querySelectorAll(".name");
+            var emails = document.querySelectorAll(".email");
+            if (search_inp.length > 0){
+                for (var i = 0;i<names.length;i++){
+                var name = names[i].innerHTML;
+                var email = emails[i].innerHTML;
+                
+                var n1 = name.toLowerCase();
+                var n2 = email.toLowerCase();
+                var ss = search_inp.toLowerCase();
+    
+                if (n1.includes(ss) || n2.includes(ss)){
+                    boxs[i].style.display = "block";
                 }else{
-                    boxs[i].style.display = "flex";
+                     boxs[i].style.display = "none";
                 }
-            }
+              }
+            }else{
+                for (var i = 0;i<names.length;i++){
+                    boxs[i].style.display = "block";
+                }
+              }
         }
         
     </script>
