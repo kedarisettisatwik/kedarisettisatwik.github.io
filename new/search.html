@@ -9,10 +9,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
     <!-- google fonts -->
-    <!-- fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-    <!-- fonts -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
     
@@ -43,6 +39,7 @@
             background-color: white;
            -webkit-animation:del 1s linear forwards;
             padding:10px;
+            padding-top:0px;
             display: flex;
             justify-content: flex-start;
             align-items: center;
@@ -54,13 +51,125 @@
             0%{opacity:0}
             100%{opacity:1}
         }
+        .search{
+            margin:10px 0;
+            width:100%;
+            flex-direction: row;
+            justify-content:flex-start;
+            height:50px;
+            box-shadow:0 0 5px rgb(0,0,0,0.2);
+            border-radius:10px;
+            position:relative;
+            background-color:rgb(0,0,0,0.03);
+        }
+        .search i{
+            width:40px;
+            height:40px;
+            line-height:40px;
+            text-align:center;
+            font-size:19px;
+        }
+        .search i:nth-child(1){
+            opacity:0.6;
+            margin-right:5px;
+        }
+        .search input{
+            width:calc(100% - 100px);
+            background:none;
+            outline:none;
+            border:none;
+            font-size:14px;
+            letter-spacing:1px;
+            padding:0 10px;
+            height:100%;
+            line-height:40px;
+        }
+        .search input::placeholder{
+            color:black;
+        }
+        .search i:nth-child(3){
+            margin:0 5px;
+            font-size:19px;
+            cursor:pointer;
+            border-radius:6px;
+            background-color:white;
+        }
+        #full{
+            width:100%;
+            padding-top:10px;
+            justify-content: flex-start;
+        }
+        #full .box1{
+            width:100%;
+            position:relative;
+            box-shadow:0 0 5px rgb(0,0,0,0.2);
+            margin:10px 0;
+            height:80px;
+            max-height:100px;
+            border-radius:8px;
+            overflow: hidden;
+        }
+        #full .box1 .bg{
+            position:absolute;
+            width:70px;
+            height:70px;
+            top:5px;
+            left:5px;
+            background-image: url(avatars/p20.png);
+            background-position:top;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius:10px;
+        }
+        #full .box1 .text{
+            position: absolute;
+            width:calc(100% - 80px);
+            padding:0 10px;
+            top:5px;
+            right:0;
+            height:70px;
+        }
+        #full .box1 .text .name,#full .box1 .text .email{
+            width:100%;
+            height:35px;
+            line-height:35px;
+            overflow: hidden;
+        }
+        #full .box1 .text .name{
+            font-size:16px;
+            font-weight:500;
+            letter-spacing:1px;
+        }
+        #full .box1 .text .email{
+            font-size:15px;
+            opacity:0.7;
+        }
+        
     </style>
 
 </head>
 
 <body>
    
-    <h2>Search</h2>
+   <div class="search flex">
+       <i class="fas fa-search flex icon"></i>
+       <input type="text" placeholder="Search">
+       <i class="fas fa-stream"></i>
+   </div>
+   <div id="full" class="flex">
+      
+       <div class="box1">
+           <div class="bg"></div>
+           <div class="text">
+               <p class="name">Kedar Satwik </p>
+               <p class="email">satwik1330@gmail.com</p>
+           </div>
+           <div class="btns">
+               
+           </div>
+       </div>
+       
+   </div>
     
     <script> 
         
