@@ -63,7 +63,7 @@
             border-radius:10px;
             box-shadow:0 0 5px rgb(0,0,0,0.2);
             transition:0.4s;
-            background-image:linear-gradient(rgb(255,255,255,0.2),rgb(255,255,255,0.1)),url(images/bg.jpg);
+            background-image:url(images/bg.jpg);
             position:relative;
             overflow: hidden;
             min-height:200px;
@@ -86,6 +86,7 @@
             object-fit: cover;
             border-radius:8px;
             box-shadow:0 0 10px rgb(255,255,255,0.4);
+            background-image: linear-gradient(rgb(255,255,255,0.4),rgb(255,255,255,0.4));
         }
         .card .pro .img2{
             width:100px;
@@ -93,6 +94,8 @@
             object-fit: cover;
             border-radius:8px;
             box-shadow:0 0 10px rgb(255,255,255,0.4);
+            padding:10px;
+            background-color: white;
         }
         .card .text{
             width:100%;
@@ -164,10 +167,10 @@
        Share your profile using QR code or using given link
    </p>
    
-   <section class="card flex">
+   <section class="card flex" id="d_card">
        <div class="pro flex">
            <img src="images/me.png" class="img1">
-           <img src="images/qr.png" class="img2">
+           <img src="images/qr.png" class="img2" id="qrimg">
        </div>
        <div class="text">
                <h2>Satwik Kedar</h2>
@@ -185,16 +188,47 @@
     
     <script> 
         
+        function generate(){
+            let url = "http://api.qrserver.com/v1/create-qr-code/?data=https://kedarisettisatwik.github.io/new/support.html&size=1000x1000";
+            var imq = document.getElementById("qrimg");
+            imq.setAttribute("src",url);
+        }
+        
+        generate();
+        
         function copy1(){
             var in1 = document.getElementById("link");
             in1.select();
             document.execCommand("copy");
         }
         
-        function download1(){
-            
-        }
-        
+        function download1() {
+
+        var node = document.getElementById('d_card');
+
+        domtoimage.toPng(node)
+            .then(function (dataUrl) {
+                var img = new Image();
+                img.src = dataUrl;
+                downloadURI(dataUrl, "records.png")
+            })
+            .catch(function (error) {
+                console.error('oops, something went wrong!', error);
+            });
+
+       }
+
+
+
+    function downloadURI(uri, name) {
+        var link = document.createElement("a");
+        link.download = name;
+        link.href = uri;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        delete link;
+    }
     </script>
 
 </body>
