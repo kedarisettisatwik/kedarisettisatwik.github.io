@@ -9,10 +9,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
     <!-- google fonts -->
-    <!-- fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-    <!-- fonts -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
     
@@ -56,15 +52,9 @@
             0%{opacity:0}
             100%{opacity:1}
         }
-        .img{
-            background-position: center;
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
         .card{
             margin-top:20px;
             width:100%;
-            min-width:300px;
             border-radius:10px;
             box-shadow:0 0 5px rgb(0,0,0,0.2);
             transition:0.4s;
@@ -73,6 +63,77 @@
             overflow: hidden;
             min-height:200px;
             margin-bottom:20px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .card .pro{
+            width:100%;
+            margin:10px 0;
+            padding:0 10px;
+            flex-direction: row;
+            justify-content: space-between;
+            position:relative;
+        }
+        .card .pro img{
+            max-width:calc(50% - 10px);
+            max-height:calc(130px);
+            object-fit: cover;
+            border-radius:8px;
+            box-shadow:0 0 10px rgb(255,255,255,0.4);
+        }
+        .card .pro .media{
+            width:calc(50% - 20px);
+            min-height:100%;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .card .pro .media a{
+            cursor:pointer;
+            margin:6px;
+            cursor:pointer;
+        }
+        .card .pro .media a i{
+            width:40px;
+            height:40px;
+            line-height:40px;
+            text-align: center;
+            color:white;
+            font-size:23px;
+        }
+        .card .text{
+            width:100%;
+            padding:10px;
+            color:white;
+            margin:10px 0;
+        }
+        .card .text h2{
+            font-size:20px;
+            font-weight:bold;
+            letter-spacing:2px;
+        }
+        .card .text p{
+            font-size:16px;
+            text-align: right;
+            letter-spacing:1px;
+        }
+        .share{
+            width:90%;
+            padding:10px;
+            font-size:17px;
+            background-image:linear-gradient(rgb(255,255,255,0.2),rgb(255,255,255,0.1)),url(images/bg.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            color:white;
+            font-weight:bold;
+            letter-spacing:2px;
+            border-radius:8px;
+            box-shadow:0 0 10px rgb(0,0,0,0.3);
+            cursor:pointer;
+            text-align: center;
+            text-decoration:none;
         }
         
     </style>
@@ -81,11 +142,26 @@
 
 <body>
    
-   <section class="card flex img">
-       <div class="pro">
-           
+   <section class="card flex">
+       <div class="pro flex">
+           <img src="images/me.png">
+           <div class="media flex">
+           <a target='_blank'><i class='fab fa-facebook-square'></i></a>
+           <a target='_blank'><i class='fab fa-instagram'></i></a>
+           <a target='_blank'><i class='fab fa-youtube'></i></a>
+           <a target='_blank'><i class="fab fa-github"></i></a>
+           <a target='_blank'><i class="fab fa-linkedin-in"></i></a>
+           <a target='_blank'><i class="fab fa-twitter"></i></a>
+           </div>
        </div>
+       <div class="text">
+               <h2>Satwik Kedar</h2>
+               <p>7386484905</p>
+               <p>satwik1330@gmail.com</p>
+        </div>
    </section>
+    
+    <a class="share" href="blank.html" target="_top">Share Profile</a>
     
     <script> 
         

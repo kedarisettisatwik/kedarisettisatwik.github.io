@@ -46,7 +46,7 @@
             flex-direction: column;
             overflow-x: hidden;
             overflow-y: auto;
-            background-color:lavenderblush;
+            background-color:white;
         }
         @keyframes del {
             0%{opacity:0}
@@ -60,7 +60,6 @@
         .card{
             margin-top:20px;
             width:100%;
-            min-width:300px;
             border-radius:10px;
             box-shadow:0 0 5px rgb(0,0,0,0.2);
             transition:0.4s;
@@ -69,22 +68,132 @@
             overflow: hidden;
             min-height:200px;
             margin-bottom:20px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
-        
+        .card .pro{
+            width:100%;
+            margin:10px 0;
+            padding:0 10px;
+            flex-direction: row;
+            justify-content: space-between;
+            position:relative;
+        }
+        .card .pro .img1{
+            max-width:calc(50% - 10px);
+            max-height:calc(130px);
+            object-fit: cover;
+            border-radius:8px;
+            box-shadow:0 0 10px rgb(255,255,255,0.4);
+        }
+        .card .pro .img2{
+            width:100px;
+            max-height:150px;
+            object-fit: cover;
+            border-radius:8px;
+            box-shadow:0 0 10px rgb(255,255,255,0.4);
+        }
+        .card .text{
+            width:100%;
+            padding:10px;
+            color:white;
+            margin:10px 0;
+        }
+        .card .text h2{
+            font-size:20px;
+            font-weight:bold;
+            letter-spacing:2px;
+        }
+        .card .text p{
+            font-size:16px;
+            text-align: right;
+            letter-spacing:1px;
+        } 
+        .inp input{
+            width:95%;
+            padding:15px;
+            font-size:14px;
+            background-color:lavenderblush;
+            border:none;
+            outline:none;
+            box-shadow:0 0 5px rgb(0,0,0,0.2);
+            border-radius:8px;
+        }
+        .inp i{
+            position: absolute;
+            top:50%;
+            right:0;
+            transform:translate(-15px,-50%);
+            font-size:20px;
+            color:white;
+            background-color:darkblue;
+            height:40px;
+            width:40px;
+            line-height:40px;
+            text-align: center;
+            cursor:pointer;
+            box-shadow:0 0 5px rgb(0,0,0,0.2);
+            border-radius:6px;
+        }
+        .down{
+            width:90%;
+            padding:10px;
+            background-image:linear-gradient(rgb(255,255,255,0.2),rgb(255,255,255,0.1)),url(images/bg.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            color:white;
+            font-size:20px;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+            cursor:pointer;
+            border-radius:10px;
+            margin:15px 0;
+        }
     </style>
 
 </head>
 
 <body>
    
-   <section class="card flex img">
-       <div class="pro">
-           
+   <div style="width:95%;height:50px;justify-content: flex-start;flex-direction: row;letter-spacing:1px;color:white;background-color:darkblue;margin:10px 0;border-radius:8px;box-shadow: 0 0 5px rgb(0,0,0,0.3);font-weight:bold;cursor:pointer;" class="flex" onclick="window.history.go(-1)">
+      <i class="fas fa-long-arrow-alt-left" style="margin:0 10px 0 10px;font-size:22px;height:100%;width:50px;line-height:50px;text-align:center;"></i> Back
+   </div>
+   
+   <p style="margin:10px 0;font-size:15px;width:100%;padding:0 10px">
+       Share your profile using QR code or using given link
+   </p>
+   
+   <section class="card flex">
+       <div class="pro flex">
+           <img src="images/me.png" class="img1">
+           <img src="images/qr.png" class="img2">
        </div>
+       <div class="text">
+               <h2>Satwik Kedar</h2>
+               <p>7386484905</p>
+               <p>satwik1330@gmail.com</p>
+        </div>
    </section>
+    
+    <div class="flex inp" style="width:100%;position:relative;">
+        <input type="text" value="https://kedarisettisatwik.github.io/new/support.html" id="link">
+        <i class="fas fa-copy" onclick="copy1()"></i>
+    </div>
+    
+    <button class="down" onclick="download1()">Download card</button>
     
     <script> 
         
+        function copy1(){
+            var in1 = document.getElementById("link");
+            in1.select();
+            document.execCommand("copy");
+        }
+        
+        function download1(){
+            
+        }
         
     </script>
 

@@ -56,53 +56,9 @@
             0%{opacity:0}
             100%{opacity:1}
         }
-        nav{
-            position: relative;
-            top:0;
-            width:100%;
-            height:50px;
-            display: flex;
-            align-items: center;
-            flex-direction: row;
-            justify-content: space-between;
-            padding:0 10px;
-            margin-top:10px;
-            min-width:250px;
-            z-index:50;
-            border-bottom:1px solid rgb(0,0,0,0.1);
-        }
-        nav i{
-            height:50px;
-            width:50px;
-            font-size:18px;
-            text-align: center;
-            z-index:10;
-            transition:0.3s;
-            color:black;
-            cursor:pointer;
-            display:block;
-        }
-        nav.active i{
-            display:none;
-        }
-        nav i.active{
-            color:white;
-        }
-        #circle{
-            position: absolute;
-            height:50px;
-            width:50px;
-            background-color:darkblue;
-            border-radius:10px;
-            bottom:0px;
-            left:10px;
-            box-shadow:0 0 5px rgb(0,0,0,0.3);
-            z-index:0;
-        }
         #win{
             position: absolute;
             top:0;
-            padding-top:65px;
             background-color:white;
             z-index:10;
         }
@@ -121,14 +77,6 @@
 <body class="flex">
 
     <section id="page1">
-               
-        <nav id="navigator">
-            <span id="circle"></span>
-            <i class="fas fa-home flex icon active" onclick="goto(0)"></i>
-            <i class="fas fa-search flex icon" onclick="goto(1)"></i>
-            <i class="fas fa-heart flex icon" onclick="goto(2)"></i>
-            <i class="fas fa-user flex icon" onclick="goto(3)"></i>
-        </nav>
         
         <iframe src=""  height="100%" width="100%" frameborder="0" id="win" name="win"></iframe>
                
@@ -136,28 +84,7 @@
 
     <script>
         
-        var child = window.open("home.html","win");
-        
-        function goto(a){
-            var ic = document.querySelectorAll(".icon");
-            var circle = $("#circle");
-            for(var i = 0;i<ic.length;i++){
-                ic[i].classList.remove("active");
-            }
-            var icl = ic[a].offsetLeft;
-            circle.animate({height:"5px"},200);
-            circle.animate({left:icl + "px"},400);
-            circle.animate({height:"50px"},200);
-            
-            var fr = document.getElementById("win");
-            var lili = ["home.html","search.html","follow.html","profile.html"];
-            
-            child.location.replace(lili[a]);
-            
-            setTimeout(function(){
-                ic[a].classList.add("active");
-            },600);
-        }
+        var child = window.open("card.html","win");
         
     </script>
 
