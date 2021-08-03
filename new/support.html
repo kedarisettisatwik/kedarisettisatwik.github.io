@@ -37,8 +37,12 @@
             width: 100vw;
             height: 100vh;
             background-color: lavender;
+           -webkit-animation:del 1s linear forwards;    
         }
-
+        @keyframes del {
+            0%{opacity:0}
+            100%{opacity:1}
+        }
         #page1 {
             position: relative;
             width: 400px;
@@ -51,7 +55,7 @@
             padding:10px;
         }
         .card{
-            margin-top:20px;
+            margin:10px 0;
             width:100%;
             border-radius:10px;
             box-shadow:0 0 5px rgb(0,0,0,0.2);
@@ -117,7 +121,110 @@
             text-align: right;
             letter-spacing:1px;
         }
-        
+        #share{
+            width:90%;
+            padding:10px;
+            font-size:17px;
+            background-image:linear-gradient(rgb(255,255,255,0.2),rgb(255,255,255,0.1)),url(images/bg.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            color:white;
+            font-weight:bold;
+            letter-spacing:2px;
+            border-radius:8px;
+            box-shadow:0 0 10px rgb(0,0,0,0.3);
+            cursor:pointer;
+            text-align: center;
+            margin-top:10px;
+            text-decoration:none;
+        }
+        .det{
+            width:100%;
+            margin:10px 0;
+            position:relative;
+        }
+        .det .btn{
+            width:100%;
+            position:relative;
+            flex-direction: row;
+            justify-content:space-between;
+            padding:10px;
+            margin:12px 0;
+            border-radius:8px;
+        }  
+        .det .btn img{
+            margin-right:10px;
+            width:40px;
+            height:40px;
+        }
+        .det .btn label{
+            cursor:pointer;
+            margin:0 5px;
+            font-size:17px;
+            font-weight:bold;
+            letter-spacing:2px;
+        }
+        .det .btn label span{
+            margin:0 5px;
+        }
+        form{
+            position:relative;
+            width:100%;
+        }
+        form h2{
+            width:100%;
+            margin:10px;
+            padding-left:15px;
+            font-size:20px;
+            font-weight:500;
+            letter-spacing:2px;
+            min-width:250px;
+        }
+        form input{
+            width:calc(100% - 10px);
+            padding-left:20px;
+            height:50px;
+            margin:5px;
+            color:darkblue;
+            font-size:16px;
+            letter-spacing:1px;
+            border:none;
+            outline:none;
+            border-bottom:2px solid darkblue;
+            background:none;
+        }
+        form input::placeholder,form textarea::placeholder{
+            color:black;
+        }
+        form textarea{
+            width:calc(100% - 10px);
+            height:150px;
+            padding-left:20px;
+            margin:15px 0 10px 0;
+            color:darkblue;
+            font-size:16px;
+            letter-spacing:1px;
+            border:none;
+            outline:none;
+            border-bottom:2px solid darkblue;
+            background:none;
+        }
+        form input[type="submit"]{
+            width:200px;
+            height:auto;
+            margin:20px 0;
+            background-color:lavender;
+            font-size:17px;
+            cursor:pointer;
+            box-shadow:0 0 5px rgb(0,0,0,0.4);
+            border:none;
+            outline:none;
+            padding:0;
+            padding:10px;
+            border-radius:6px;
+            resize:none;
+        }
         @media screen and (max-width:400px) {
             #page1 {
                 width: 100vw;
@@ -131,19 +238,22 @@
 
 <body class="flex">
     
-    <seection id="page1">
+    <section id="page1">
+       
+    <div style="width:95%;height:50px;justify-content: flex-start;flex-direction: row;letter-spacing:1px;color:white;background-color:darkblue;margin:10px 0;border-radius:8px;box-shadow: 0 0 5px rgb(0,0,0,0.3);font-weight:bold;cursor:pointer;" class="flex back_btn" onclick="window.history.go(-1)">
+      <i class="fas fa-long-arrow-alt-left" style="margin:0 10px 0 10px;font-size:22px;height:100%;width:50px;line-height:50px;text-align:center;"></i> Back
+   </div>
+       
         <section class="card flex">
        <div class="pro flex">
            <img src="images/me.png">
            <div class="media flex">
-           <a target='_blank' href="https://www.facebook.com/people/Satwik-Kedaresetti/100008718079201/"><i class='fab fa-facebook-square'></i></a>
-           <a target='_blank' href="https://www.instagram.com/satwikkedaresetti/"><i class='fab fa-instagram'></i></a>
-           <a target='_blank' href="https://www.youtube.com/channel/UCpLOopnR9TX9b1fjcDpapsw"><i class='fab fa-youtube'></i></a>
-           <a target='_blank' href="https://github.com/kedarisettisatwik/kedarisettisatwik.github.io"><i class="fab fa-github"></i></a>
-<!--
+           <a target='_blank'><i class='fab fa-facebook-square'></i></a>
+           <a target='_blank'><i class='fab fa-instagram'></i></a>
+           <a target='_blank'><i class='fab fa-youtube'></i></a>
+           <a target='_blank'><i class="fab fa-github"></i></a>
            <a target='_blank'><i class="fab fa-linkedin-in"></i></a>
            <a target='_blank'><i class="fab fa-twitter"></i></a>
--->
            </div>
        </div>
        <div class="text">
@@ -152,10 +262,51 @@
                <p>satwik1330@gmail.com</p>
         </div>
    </section>
-    </seection>
+   
+   <section class="det">
+   
+   <div class="btn flex"><img src="images/likes.png"><label>Followers <span>23</span></label></div>
+   <div class="btn flex"><img src="images/following.png"><label>Following <span>20</span></label></div>
+   <div class="btn flex"><img src="images/comments.png"><label>Reviews <span>15</span> <i class="fas fa-arrow-right"></i></label></div>
+
+   <div class="btn flex"><img src="images/gallery.png"><label>Gallery <span>23</span> <i class="fas fa-arrow-right"></i></label></div>
+   <div class="btn flex"><img src="images/notes.png"><label>Notes <span>20</span> <i class="fas fa-arrow-right"></i></label></div>
+   
+   </section>
+   
+   <form autocomplete="off" id="review" class="flex">
+      <h2> Write a Review</h2>
+       <input type="text" minlength="3" placeholder="Name !" required autocomplete="off" id="name">
+       <input type="email" minlength="3" placeholder="E-mail @gmail.com" autocomplete="off" id="email">
+       <textarea placeholder="Write Message Here !" required id="message"></textarea>
+       <input type="submit" value="post">
+   </form>
+   
+    </section>
    
     <script>
     
+        function cate(){
+            const myurl = new URL(window.location.href);
+            let user_status = myurl.searchParams.get("user_status");
+            if (user_status != null){
+                
+            }else{
+                var cat = document.querySelector(".back_btn");
+                cat.style.display = "none";
+            }
+        }
+        
+        cate();
+        
+        var review = document.getElementById("review");
+        review.addEventListener("submit", (e) => {
+            e.preventDefault();
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var msg = document.getElementById("msg").value;
+        });
+        
     </script>
 
 </body>

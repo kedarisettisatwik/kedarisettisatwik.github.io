@@ -212,7 +212,8 @@
             const myurl = new URL(window.location.href);
             let user_key = myurl.searchParams.get("user_key");
             if (user_key != null){
-                
+                var cat = document.querySelector(".cat");
+                cat.style.display = "none";
             }else{
                 
             }
