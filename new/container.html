@@ -105,6 +105,12 @@
             border-radius:6px;
             opacity:0.6;
         }
+        nav i.active{
+            color:rgb(51, 153, 255);
+            text-shadow:0 0 6px rgb(51, 153, 255,0.3) ;
+            font-size:22px;
+            opacity:1;
+        }
         nav i.noti{
             color:rgb(255, 153, 51);
             text-shadow:0 0 6px rgb(255, 153, 51,0.3);
@@ -112,12 +118,14 @@
             opacity:1;
             -webkit-animation:noti1 2s linear infinite;
         }
-        nav i.active{
+        nav i.noti.active{
             color:rgb(51, 153, 255);
             text-shadow:0 0 6px rgb(51, 153, 255,0.3) ;
             font-size:22px;
             opacity:1;
+            -webkit-animation:noti1 2s linear infinite;
         }
+        
         @keyframes noti1{
             0%{transform:scale(1)}
             25%{transform:scale(0.8)}
@@ -144,7 +152,7 @@
         
    <nav id="navigator">
             <i class="fas fa-home flex icon active" onclick="goto(0)"></i>
-            <i class="fas fa-comment-alt flex icon" onclick="goto(1)"></i>
+            <i class="fas fa-comment-alt flex icon noti" onclick="goto(1)"></i>
             <i class="fas fa-search flex icon" onclick="goto(2)"></i>
             <i class="fas fa-bell flex icon noti" onclick="goto(3)"></i>
             <i class="fas fa-user flex icon" onclick="goto(4)"></i>
@@ -168,7 +176,6 @@
             var lili = ["home.html","chats.html","search.html","updates.html","profile.html"];
             
             child.location.replace(lili[a]);
-            ic[a].classList.remove("noti");
             ic[a].classList.add("active"); 
         }
         
