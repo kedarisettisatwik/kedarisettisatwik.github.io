@@ -52,41 +52,75 @@
             0%{opacity:0}
             100%{opacity:1}
         }
+        #page1 p{
+            position:relative;
+            width:100%;
+            padding:10px 5px;
+            border-bottom:1px solid rgb(0,0,0,0.1);
+            border-top:1px solid rgb(0,0,0,0.1);
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: row;
+            min-height:50px;
+        }
+        #page1 p:nth-child(1){
+            border-top:none;
+        }
+        #page1 p:nth-last-child(1){
+            border-bottom:none;
+        }
+        #page1 p img{
+            width:50px;
+            height:50px;
+            object-fit:scale-down;
+            margin-right:10px;
+            border-radius:5px;
+        }
+        #page1 p strong{
+            margin-right:9px;
+            cursor:pointer;
+            color:black;
+            transition:0.3s;
+        }
+        #page1 p strong:hover{
+            color:skyblue;
+        }
+        #page1 p span label{
+            cursor:pointer;
+            color:red;
+        }
     </style>
 
 </head>
 
 <body>
    
-   <div class="liked_profile">
-       
-   </div>
+   
+  <section id="page1" style="width: 100%;position:relative;overflow-x: hidden;">
+      
+       <p class="liked_profile"><img src="avatars/p20.png"><strong>han! 30</strong> <span>started following you </span> </p>
  
-   <div class="liked_pic">
-       
-   </div>
+       <p class="liked_pic"><img src="avatars/p20.png"><span><strong>han! 30</strong> liked your <label>Post </label> </span></p>
    
-   <div class="comment_pic">
-       
-   </div>
+       <p class="liked_notes"><img src="avatars/p20.png"><span><strong>han! 30</strong> liked your <label>Notes </label> </span></p>
    
-   <div class="comment_profile">
+       <p class="comment_pic"><img src="avatars/p20.png"><span><strong>han! 30</strong> wrote comment to your <label>Post</label> </span></p>
+
+      <p class="comment_notes"><img src="avatars/p20.png"><span><strong>han! 30</strong> wrote comment to your <label>Notes</label></span></p>
+ 
+       <p class="comment_profile"><img src="avatars/p20.png"><span><strong>han! 30</strong> wrote a <label> review </label>to your profile </span></p>
        
-   </div>
-   
-   <div class="changed_dp">
-       
-   </div>
+       <p class="changed_dp"><img src="avatars/p18.png"><span><strong>sridevi 3322</strong> changed profile pic </span></p>
     
-   <div class="added_pic">
-       
-   </div>
+       <p class="added_pic"><img src="avatars/p18.png"><span><strong>sridevi 3322</strong> posted <label>new pic</label></span></p>
    
-   <div class="added_link">
-       
-   </div>
-   
-   
+       <p class="added_pic"><img src="avatars/p18.png"><span><strong>sridevi 3322</strong> posted <label>new notes</label></span></p>
+
+       <p class="added_link"><img src="avatars/p18.png"><span><strong>sridevi 3322</strong> added some details to their profile</span></p>
+      
+  </section>
+  
    
     <script> 
         
