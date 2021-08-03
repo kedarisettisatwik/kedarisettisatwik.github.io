@@ -137,7 +137,35 @@
             margin-top:10px;
             text-decoration:none;
         }
-        
+        .det{
+            width:100%;
+            margin:10px 0;
+            position:relative;
+        }
+        .det .btn{
+            width:100%;
+            position:relative;
+            flex-direction: row;
+            justify-content:space-between;
+            padding:10px;
+            margin:12px 0;
+            border-radius:8px;
+        }  
+        .det .btn img{
+            margin-right:10px;
+            width:40px;
+            height:40px;
+        }
+        .det .btn label{
+            cursor:pointer;
+            margin:0 5px;
+            font-size:17px;
+            font-weight:bold;
+            letter-spacing:2px;
+        }
+        .det .btn label span{
+            margin:0 5px;
+        }
     </style>
 
 </head>
@@ -165,6 +193,17 @@
         </div>
    </section>
    
+   <section class="det">
+   
+   <div class="btn flex"><img src="images/likes.png"><label>Followers <span>23</span> <i class="fas fa-arrow-right"></i></label></div>
+   <div class="btn flex"><img src="images/following.png"><label>Following <span>20</span> <i class="fas fa-arrow-right"></i></label></div>
+   <div class="btn flex"><img src="images/comments.png"><label>Comments <span>15</span> <i class="fas fa-arrow-right"></i></label></div>
+
+   <div class="btn flex"><img src="images/gallery.png"><label>Gallery <span>23</span> <i class="fas fa-arrow-right"></i></label></div>
+   <div class="btn flex"><img src="images/notes.png"><label>Notes <span>20</span> <i class="fas fa-arrow-right"></i></label></div>
+   
+   </section>
+      
     <script> 
         
         

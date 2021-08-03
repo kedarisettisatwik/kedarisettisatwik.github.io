@@ -55,22 +55,208 @@
             width:100%;
             justify-content: flex-start;
         }
+        #full .box1{
+            position:relative;
+            width:100%;
+            box-shadow:0 0 5px rgb(0,0,0,0.2);
+            justify-content:flex-start;
+            overflow: hidden;
+            padding:10px 5px;
+            margin-bottom:12px;
+            padding-bottom:0px;
+        }
+        #full .box1 .own{
+            width:100%;
+            justify-content:flex-start;
+            padding:10px;
+            flex-direction: row;
+            cursor:pointer;
+        }
+        #full .box1 .own img{
+            width:45px;
+            height:45px;
+            margin-right:15px;
+            border-radius:5px;
+            object-fit:contain;
+        }
+        #full .box1 .own label{
+            font-size:15px;
+            font-weight:bold;
+            letter-spacing:2px;
+        }
+        #full .box1 .content{
+            max-width:100%;
+            max-height:300px;
+            object-fit: cover;
+            border-radius:6px;
+        }
+        #full .box1 .btns{
+            width:100%;
+            flex-direction: row;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        #full .box1 .btns span{
+            margin:6px;
+            min-height:50px;
+            flex-direction: row;
+            cursor:pointer;
+        }
+        #full .box1 .btns span i{
+            margin-right:8px;
+            transition:0.4s;
+        }
+        #full .box1 .btns span i{
+            font-size:20px;
+        }
+        #full .box1 .btns span label{
+            font-size:15px;
+            letter-spacing:1px;
+        }
+        #full .box1 .btns span.active{
+            color:rgb(51, 153, 255);
+            text-shadow:0 0 5px rgb(51, 153, 255,0.2);
+        }
+        
     </style>
 
 </head>
 
 <body>
      
-   <div id="full" class="flex">
+     <div class="cat flex" style="width:100%;min-height:40px;background-color:lavenderblush;border-radius:7px;box-shadow:0 0 5px rgb(0,0,0,0.3);flex-direction: row;justify-content: flex-start;padding:5px;font-size:14px;letter-spacing:3px;font-weight:bold;">
+         <input type="checkbox" style="margin:0 10px;transform:scale(1.2)"><label style="margin: 0 10px">View All</label>
+     </div>
+     
+   <div id="full" class="flex" style="width:100%;margin-top:20px;">
       
-       <div class="box1">
-           
+       <div class="box1 flex">
+           <div class="own flex" onclick="see_pro(0)">
+               <img src="avatars/p15.png">
+               <label>sridevi 3322</label>
+           </div>
+            <img src="posts/bg.jpeg" class="content">
+           <div class="btns flex">
+              <span class="flex like" onclick="add_l(0)"><i class="far fa-thumbs-up"></i><label>21</label></span>
+              <span class="flex dislike" onclick="remove_l(0)"><i class="far fa-thumbs-down"></i><label>3</label></span>
+              <span class="flex" onclick="add_c(0)"><i class="far fa-comment-alt"></i><label>6</label></span>
+              <span class="flex" onclick="share_p(0)"><i class="fas fa-share-alt"></i></span>
+           </div>
+       </div>
+       
+       <div class="box1 flex">
+           <div class="own flex" onclick="see_pro(1)">
+               <img src="avatars/p15.png">
+               <label>sridevi 3322</label>
+           </div>
+            <img src="posts/pet-dogs.jpg" class="content">
+           <div class="btns flex">
+              <span class="flex like" onclick="add_l(1)"><i class="far fa-thumbs-up"></i><label>21</label></span>
+              <span class="flex dislike" onclick="remove_l(1)"><i class="far fa-thumbs-down"></i><label>3</label></span>
+              <span class="flex" onclick="add_c(1)"><i class="far fa-comment-alt"></i><label>6</label></span>
+              <span class="flex" onclick="share_p(1)"><i class="fas fa-share-alt"></i></span>
+           </div>
+       </div>
+       
+       <div class="box1 flex">
+           <div class="own flex" onclick="see_pro(2)">
+               <img src="avatars/p22.png">
+               <label>Han! 30</label>
+           </div>
+            <img src="posts/sun%20temple.png" class="content">
+           <div class="btns flex">
+              <span class="flex like" onclick="add_l(2)"><i class="far fa-thumbs-up"></i><label>21</label></span>
+              <span class="flex dislike" onclick="remove_l(2)"><i class="far fa-thumbs-down"></i><label>3</label></span>
+              <span class="flex" onclick="add_c(2)"><i class="far fa-comment-alt"></i><label>6</label></span>
+              <span class="flex" onclick="share_p(2)"><i class="fas fa-share-alt"></i></span>
+           </div>
+       </div>
+       
+       <div class="box1 flex">
+           <div class="own flex" onclick="see_pro(3)">
+               <img src="avatars/p22.png">
+               <label>Han! 30</label>
+           </div>
+            <img src="posts/tortise%20pet.jpg" class="content">
+           <div class="btns flex">
+              <span class="flex like" onclick="add_l(3)"><i class="far fa-thumbs-up"></i><label>21</label></span>
+              <span class="flex dislike" onclick="remove_l(3)"><i class="far fa-thumbs-down"></i><label>3</label></span>
+              <span class="flex" onclick="add_c(3)"><i class="far fa-comment-alt"></i><label>6</label></span>
+              <span class="flex" onclick="share_p(3)"><i class="fas fa-share-alt"></i></span>
+           </div>
+       </div>
+       
+       <div class="box1 flex">
+           <div class="own flex" onclick="see_pro(4)">
+               <img src="avatars/p15.png">
+               <label>sridevi 3322</label>
+           </div>
+            <img src="posts/taj%20mahal.jpg" class="content">
+           <div class="btns flex">
+              <span class="flex like" onclick="add_l(4)"><i class="far fa-thumbs-up"></i><label>21</label></span>
+              <span class="flex dislike" onclick="remove_l(4)"><i class="far fa-thumbs-down"></i><label>3</label></span>
+              <span class="flex" onclick="add_c(4)"><i class="far fa-comment-alt"></i><label>6</label></span>
+              <span class="flex" onclick="share_p(4)"><i class="fas fa-share-alt"></i></span>
+           </div>
        </div>
        
    </div>
    
     <script> 
         
+        // take url of location 
+        // if it contains value as key then show only posts of that person, display none to select box and display back button
+        // other wise show posts of all 
+        
+        function cate(){
+            const myurl = new URL(window.location.href);
+            let user_key = myurl.searchParams.get("user_key");
+            if (user_key != null){
+                
+            }else{
+                
+            }
+        }
+        
+        function see_pro(a){
+            alert("see_pro");
+        }
+        
+        function add_l(a){
+            var likes = document.querySelectorAll(".like");
+            var dislikes = document.querySelectorAll(".dislike");
+            
+             var likes_i = document.querySelectorAll(".like i");
+            var dislikes_i = document.querySelectorAll(".dislike i");
+            
+            dislikes_i[a].className = "far fa-thumbs-down";
+            dislikes[a].classList.remove("active");
+
+            likes_i[a].className = "fas fa-thumbs-up";
+            likes[a].classList.add("active");
+        }
+        
+        function remove_l(a){
+            var likes = document.querySelectorAll(".like");
+            var dislikes = document.querySelectorAll(".dislike");
+            
+            var likes_i = document.querySelectorAll(".like i");
+            var dislikes_i = document.querySelectorAll(".dislike i");
+            
+            likes_i[a].className = "far fa-thumbs-up";
+            likes[a].classList.remove("active");
+
+            dislikes_i[a].className = "fas fa-thumbs-down";
+            dislikes[a].classList.add("active");
+        }
+        
+        function add_c(a){
+            alert("comment");
+        }
+        
+        function share_p(a){
+            alert("share");
+        }
         
     </script>
 
