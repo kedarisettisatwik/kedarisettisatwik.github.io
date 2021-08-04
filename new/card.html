@@ -171,7 +171,10 @@
     <script> 
         
         function generate(){
-            let url = "http://api.qrserver.com/v1/create-qr-code/?data=https://kedarisettisatwik.github.io/new/support.html&size=1000x1000";
+            
+            var data ="https://kedarisettisatwik.github.io/new/support.html?user_key=satwik";
+            
+            let url = "http://api.qrserver.com/v1/create-qr-code/?data="+data+"&size=1000x1000";
             var imq = document.getElementById("qrimg");
             imq.setAttribute("src",url);
         }

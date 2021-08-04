@@ -36,20 +36,27 @@
         body {
             width: 100vw;
             min-height: 100vh;
-            background-color: white;
+            background-color: lavender;
            -webkit-animation:del 1s linear forwards;
-            padding:10px;
-            padding-bottom:30px;
             display: flex;
-            justify-content: flex-start;
+            justify-content: center;
             align-items: center;
             flex-direction: column;
-            overflow-x: hidden;
-            overflow-y: auto;
+            overflow: hidden;
         }
         @keyframes del {
             0%{opacity:0}
             100%{opacity:1}
+        }
+        #page1{
+            width:400px;
+            height:90vh;
+            background-color:white;
+            overflow-x: hidden;
+            overflow-y: auto;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+            padding:10px;
+            position:relative;
         }
         .card{
             margin:10px 0;
@@ -119,6 +126,7 @@
             letter-spacing:1px;
         }
         #share,.edit{
+            position:relative;
             width:90%;
             padding:10px;
             font-size:17px;
@@ -135,6 +143,8 @@
             text-align: center;
             margin-top:10px;
             text-decoration:none;
+            left:50%;
+            transform:translate(-50%,0);
         }
         .bio{
             margin:10px;
@@ -145,14 +155,23 @@
             width:100%;
             margin:10px 0;
         }
+        
+        @media (max-width:400px){
+            #page1{
+                width:100vw;
+                height:100vh;
+            }
+        }
     </style>
 
 </head>
 
 <body>
-        
-   <a id="share" href="card.html">Edit profile</a>
-   <a class="edit" href="">Share Profile</a>
+      
+      <section id="page1">
+            
+   <div id="share" onclick="share1()">Share profile</div>
+   <div class="edit" onclick="edit1()">Edit Profile</div>
    
    <section class="card flex">
        <div class="pro flex">
@@ -167,7 +186,7 @@
            </div>
        </div>
        <div class="text">
-               <h2>Satwik Kedar</h2>
+               <h2 id="name">Satwik Kedar</h2>
                <p>7386484905</p>
                <p>satwik1330@gmail.com</p>
         </div>
@@ -181,9 +200,22 @@
           intrested in physics, maths, logics
        </li>
    </ul>
+     
+      </section>
       
     <script> 
         
+         const myurl = new URL(window.location.href);
+        let user_key = myurl.searchParams.get("user_key")
+        document.getElementById("name").innerHTML = user_key;
+
+        function edit1(){
+            
+        }
+        
+        function share1(){
+            location.href = "card.html";
+        }
         
     </script>
 

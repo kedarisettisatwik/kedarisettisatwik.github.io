@@ -121,81 +121,6 @@
             text-align: right;
             letter-spacing:1px;
         }
-        #share{
-            width:90%;
-            padding:10px;
-            font-size:17px;
-            background-image:linear-gradient(rgb(255,255,255,0.2),rgb(255,255,255,0.1)),url(images/bg.jpg);
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            color:white;
-            font-weight:bold;
-            letter-spacing:2px;
-            border-radius:8px;
-            box-shadow:0 0 10px rgb(0,0,0,0.3);
-            cursor:pointer;
-            text-align: center;
-            margin-top:10px;
-            text-decoration:none;
-        }
-        form{
-            position:relative;
-            width:100%;
-        }
-        form h2{
-            width:100%;
-            margin:10px;
-            padding-left:15px;
-            font-size:20px;
-            font-weight:500;
-            letter-spacing:2px;
-            min-width:250px;
-        }
-        form input{
-            width:calc(100% - 10px);
-            padding-left:20px;
-            height:50px;
-            margin:5px;
-            color:darkblue;
-            font-size:16px;
-            letter-spacing:1px;
-            border:none;
-            outline:none;
-            border-bottom:2px solid darkblue;
-            background:none;
-        }
-        form input::placeholder,form textarea::placeholder{
-            color:black;
-        }
-        form textarea{
-            width:calc(100% - 10px);
-            height:150px;
-            padding-left:20px;
-            margin:15px 0 10px 0;
-            color:darkblue;
-            font-size:16px;
-            letter-spacing:1px;
-            border:none;
-            outline:none;
-            border-bottom:2px solid darkblue;
-            background:none;
-        }
-        form input[type="submit"]{
-            width:200px;
-            height:auto;
-            margin:20px 0;
-            background-color:lavender;
-            font-size:17px;
-            cursor:pointer;
-            box-shadow:0 0 5px rgb(0,0,0,0.4);
-            border:none;
-            outline:none;
-            padding:0;
-            padding:10px;
-            border-radius:6px;
-            resize:none;
-        }
         .bio{
             margin:10px;
             width:100%;
@@ -233,7 +158,7 @@
            </div>
        </div>
        <div class="text">
-               <h2>Satwik Kedar</h2>
+               <h2 id="name">Satwik Kedar</h2>
                <p>7386484905</p>
                <p>satwik1330@gmail.com</p>
         </div>
@@ -252,6 +177,10 @@
    
     <script>
        
+         const myurl = new URL(window.location.href);
+        let user_key = myurl.searchParams.get("user_key")
+        document.getElementById("name").innerHTML = user_key;
+        
     </script>
 
 </body>
