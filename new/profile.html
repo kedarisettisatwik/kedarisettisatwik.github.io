@@ -39,7 +39,6 @@
             background-color: white;
            -webkit-animation:del 1s linear forwards;
             padding:10px;
-            padding-top:0px;
             padding-bottom:30px;
             display: flex;
             justify-content: flex-start;
@@ -119,7 +118,7 @@
             text-align: right;
             letter-spacing:1px;
         }
-        #share{
+        #share,.edit{
             width:90%;
             padding:10px;
             font-size:17px;
@@ -137,35 +136,6 @@
             margin-top:10px;
             text-decoration:none;
         }
-        .det{
-            width:100%;
-            margin:10px 0;
-            position:relative;
-        }
-        .det .btn{
-            width:100%;
-            position:relative;
-            flex-direction: row;
-            justify-content:space-between;
-            padding:10px;
-            margin:12px 0;
-            border-radius:8px;
-        }  
-        .det .btn img{
-            margin-right:10px;
-            width:40px;
-            height:40px;
-        }
-        .det .btn label{
-            cursor:pointer;
-            margin:0 5px;
-            font-size:17px;
-            font-weight:bold;
-            letter-spacing:2px;
-        }
-        .det .btn label span{
-            margin:0 5px;
-        }
         .bio{
             margin:10px;
             width:100%;
@@ -181,7 +151,8 @@
 
 <body>
         
-   <a id="share" href="card.html">Share Profile</a>
+   <a id="share" href="card.html">Edit profile</a>
+   <a class="edit" href="">Share Profile</a>
    
    <section class="card flex">
        <div class="pro flex">
@@ -210,30 +181,9 @@
           intrested in physics, maths, logics
        </li>
    </ul>
-   
-   <section class="det">
-   
-   <div class="btn flex"><img src="images/likes.png"><label onclick="followers(0)">Followers <span>23</span> <i class="fas fa-arrow-right"></i></label></div>
-   <div class="btn flex"><img src="images/following.png"><label onclick="followers(1)">Following <span>20</span> <i class="fas fa-arrow-right"></i></label></div>
-   <div class="btn flex"><img src="images/comments.png"><label>Reviews <span>15</span> <i class="fas fa-arrow-right"></i></label></div>
-
-   <div class="btn flex"><img src="images/gallery.png"><label onclick="gallery1()">Gallery <span>23</span> <i class="fas fa-arrow-right"></i></label></div>
-   
-   </section>
       
     <script> 
         
-        function gallery1(){
-            location.href = "home.html?user_key=satwik&user_status=true";
-        }
-        
-        function followers(a){
-            if (a == 0){
-                location.href = "followers.html?cat=followers";
-            }else{
-                location.href = "followers.html?cat=following";
-            }
-        }
         
     </script>
 

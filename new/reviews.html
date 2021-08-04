@@ -39,35 +39,13 @@
 
         body {
             width: 100vw;
-            height: 100vh;
+            min-height: 100vh;
             background-color: lavender;
-        }
-
-        #page1 {
-            position: relative;
-            width: 400px;
-            height: 90vh;
-            box-shadow: 0 0 20px rgb(0, 0, 0, 0.2);
-            background-color: white;
-            overflow: hidden;
            -webkit-animation:del 1s linear forwards;
         }
         @keyframes del {
             0%{opacity:0}
             100%{opacity:1}
-        }
-        #win{
-            position: absolute;
-            top:0;
-            background-color:white;
-            z-index:10;
-        }
-        
-        @media screen and (max-width:400px) {
-            #page1 {
-                width: 100vw;
-                height: 100vh;
-            }
         }
 
     </style>
@@ -76,15 +54,9 @@
 
 <body class="flex">
 
-    <section id="page1">
-        
-        <iframe src=""  height="100%" width="100%" frameborder="0" id="win" name="win"></iframe>
-               
-    </section>
+    
 
     <script>
-        
-        var child = window.open("chatting.html","win");
         
     </script>
 

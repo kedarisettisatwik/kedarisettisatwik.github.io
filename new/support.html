@@ -139,35 +139,6 @@
             margin-top:10px;
             text-decoration:none;
         }
-        .det{
-            width:100%;
-            margin:10px 0;
-            position:relative;
-        }
-        .det .btn{
-            width:100%;
-            position:relative;
-            flex-direction: row;
-            justify-content:space-between;
-            padding:10px;
-            margin:12px 0;
-            border-radius:8px;
-        }  
-        .det .btn img{
-            margin-right:10px;
-            width:40px;
-            height:40px;
-        }
-        .det .btn label{
-            cursor:pointer;
-            margin:0 5px;
-            font-size:17px;
-            font-weight:bold;
-            letter-spacing:2px;
-        }
-        .det .btn label span{
-            margin:0 5px;
-        }
         form{
             position:relative;
             width:100%;
@@ -249,10 +220,6 @@
     
     <section id="page1">
        
-    <div style="width:95%;height:50px;justify-content: flex-start;flex-direction: row;letter-spacing:1px;color:white;background-color:darkblue;margin:10px 0;border-radius:8px;box-shadow: 0 0 5px rgb(0,0,0,0.3);font-weight:bold;cursor:pointer;" class="flex back_btn" onclick="window.history.go(-1)">
-      <i class="fas fa-long-arrow-alt-left" style="margin:0 10px 0 10px;font-size:22px;height:100%;width:50px;line-height:50px;text-align:center;"></i> Back
-   </div>
-       
     <section class="card flex">
        <div class="pro flex">
            <img src="images/me.png">
@@ -281,53 +248,10 @@
        </li>
    </ul>
    
-   <section class="det">
-   
-   <div class="btn flex"><img src="images/likes.png"><label>Followers <span>23</span></label></div>
-   <div class="btn flex"><img src="images/following.png"><label>Following <span>20</span></label></div>
-   <div class="btn flex"><img src="images/comments.png"><label>Reviews <span>15</span> <i class="fas fa-arrow-right"></i></label></div>
-
-   <div class="btn flex"><img src="images/gallery.png"><label onclick="gallery1()">Gallery <span>23</span> <i class="fas fa-arrow-right"></i></label></div>
-   
-   </section>
-   
-   <form autocomplete="off" id="review" class="flex">
-      <h2> Write a Review</h2>
-       <input type="text" minlength="3" placeholder="Name !" required autocomplete="off" id="name">
-       <input type="email" minlength="3" placeholder="E-mail @gmail.com" autocomplete="off" id="email">
-       <textarea placeholder="Write Message Here !" required id="message"></textarea>
-       <input type="submit" value="post">
-   </form>
-   
     </section>
    
     <script>
-    
-        function cate(){
-            const myurl = new URL(window.location.href);
-            let user_status = myurl.searchParams.get("user_status");
-            if (user_status != null){
-                
-            }else{
-                var cat = document.querySelector(".back_btn");
-                cat.style.display = "none";
-            }
-        }
-        
-        cate();
-        
-        var review = document.getElementById("review");
-        review.addEventListener("submit", (e) => {
-            e.preventDefault();
-            var name = document.getElementById("name").value;
-            var email = document.getElementById("email").value;
-            var msg = document.getElementById("msg").value;
-        });
-        
-        function gallery1(){
-            location.href = "home.html?user_key=satwik&user_status=false";
-        }
-        
+       
     </script>
 
 </body>
