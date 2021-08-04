@@ -135,6 +135,10 @@
       <i class="fas fa-long-arrow-alt-left" style="margin:0 10px 0 10px;font-size:22px;height:100%;width:50px;line-height:50px;text-align:center;"></i> Back
    </div>
      
+     <div style="width:95%;height:50px;justify-content: flex-start;flex-direction: row;letter-spacing:1px;background-color:deepskyblue;margin:10px 0;border-radius:8px;box-shadow: 0 0 5px rgb(0,0,0,0.3);font-weight:bold;cursor:pointer;padding:0 10px" class="flex add_btn" onclick="add_post()">
+      Upload New post
+   </div>
+    
      <div class="cat flex" style="width:100%;min-height:40px;background-color:lavender;border-radius:7px;box-shadow:0 0 5px rgb(0,0,0,0.3);flex-direction: row;justify-content: flex-start;padding:5px;font-size:14px;letter-spacing:3px;font-weight:bold;">
          <input type="checkbox" style="margin:0 10px;transform:scale(1.2)"><label style="margin: 0 10px">View All</label>
      </div>
@@ -153,7 +157,6 @@
            <div class="btns flex">
               <span class="flex like" onclick="add_l(0)"><i class="far fa-thumbs-up"></i><label>21</label></span>
               <span class="flex dislike" onclick="remove_l(0)"><i class="far fa-thumbs-down"></i><label>3</label></span>
-              <span class="flex" onclick="add_c(0)"><i class="far fa-comment-alt"></i><label>6</label></span>
               <span class="flex" onclick="share_p(0)"><i class="fas fa-share-alt"></i></span>
            </div>
        </div>
@@ -167,7 +170,6 @@
            <div class="btns flex">
               <span class="flex like" onclick="add_l(1)"><i class="far fa-thumbs-up"></i><label>21</label></span>
               <span class="flex dislike" onclick="remove_l(1)"><i class="far fa-thumbs-down"></i><label>3</label></span>
-              <span class="flex" onclick="add_c(1)"><i class="far fa-comment-alt"></i><label>6</label></span>
               <span class="flex" onclick="share_p(1)"><i class="fas fa-share-alt"></i></span>
            </div>
        </div>
@@ -181,7 +183,6 @@
            <div class="btns flex">
               <span class="flex like" onclick="add_l(2)"><i class="far fa-thumbs-up"></i><label>21</label></span>
               <span class="flex dislike" onclick="remove_l(2)"><i class="far fa-thumbs-down"></i><label>3</label></span>
-              <span class="flex" onclick="add_c(2)"><i class="far fa-comment-alt"></i><label>6</label></span>
               <span class="flex" onclick="share_p(2)"><i class="fas fa-share-alt"></i></span>
            </div>
        </div>
@@ -195,7 +196,6 @@
            <div class="btns flex">
               <span class="flex like" onclick="add_l(3)"><i class="far fa-thumbs-up"></i><label>21</label></span>
               <span class="flex dislike" onclick="remove_l(3)"><i class="far fa-thumbs-down"></i><label>3</label></span>
-              <span class="flex" onclick="add_c(3)"><i class="far fa-comment-alt"></i><label>6</label></span>
               <span class="flex" onclick="share_p(3)"><i class="fas fa-share-alt"></i></span>
            </div>
        </div>
@@ -209,7 +209,6 @@
            <div class="btns flex">
               <span class="flex like" onclick="add_l(4)"><i class="far fa-thumbs-up"></i><label>21</label></span>
               <span class="flex dislike" onclick="remove_l(4)"><i class="far fa-thumbs-down"></i><label>3</label></span>
-              <span class="flex" onclick="add_c(4)"><i class="far fa-comment-alt"></i><label>6</label></span>
               <span class="flex" onclick="share_p(4)"><i class="fas fa-share-alt"></i></span>
            </div>
        </div>
@@ -225,14 +224,23 @@
         function cate(){
             const myurl = new URL(window.location.href);
             let user_key = myurl.searchParams.get("user_key");
+            let user_status = myurl.searchParams.get("user_status");
+            
+            var add_btn = document.querySelector(".add_btn");
+            var back_btn = document.querySelector(".back_btn");
+            var cat = document.querySelector(".cat");
+            
             if (user_key != null){
-                var cat = document.querySelector(".cat");
                 cat.style.display = "none";
-                var back_btn = document.querySelector(".back_btn");
                 back_btn.style.display = "flex";
             }else{
-                var back_btn = document.querySelector(".back_btn");
                 back_btn.style.display = "none";
+                cat.style.display = "flex";
+            }
+            if (user_status == "true"){
+                    add_btn.style.display = "flex";
+            }else{
+                    add_btn.style.display = "none";
             }
         }
         
@@ -284,10 +292,6 @@
                 dislikes_i[a].className = "fas fa-thumbs-down";
                 dislikes[a].classList.add("active");
             }
-        }
-        
-        function add_c(a){
-            alert("comment");
         }
         
         function share_p(a){
