@@ -130,7 +130,7 @@
      
    <div id="full" class="flex">
       
-      <div class="box1 flex">
+      <div class="box1 flex" onclick="open_chat()">
            <div class="bg" style="--i:url(avatars/p20.png)"></div>
            <div class="text flex">
                <p class="name">Kedar Satwik </p>
@@ -139,7 +139,7 @@
            <div class="dot"></div>
        </div>
        
-       <div class="box1 active flex">
+       <div class="box1 active flex" onclick="open_chat()">
            <div class="bg" style="--i:url(avatars/p18.png)"></div>
            <div class="text flex">
                <p class="name">Sridevi 3322</p>
@@ -148,7 +148,7 @@
            <div class="dot"></div>
        </div>
        
-       <div class="box1 flex">
+       <div class="box1 flex" onclick="open_chat()">
            <div class="bg flex" style="--i:url(avatars/p21.png)"></div>
            <div class="text">
                <p class="name">Han! 30</p>
@@ -161,6 +161,10 @@
 
    
     <script> 
+        
+        function open_chat(){
+            window.open("blank.html","_blank");
+        }
         
     </script>
     

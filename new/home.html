@@ -36,7 +36,7 @@
         body {
             width: 100vw;
             min-height: 100vh;
-            background-color: white;
+            background-color:lavenderblush;
            -webkit-animation:del 1s linear forwards;
             padding:10px;
             padding-bottom:30px;
@@ -64,6 +64,7 @@
             padding:10px 5px;
             margin-bottom:12px;
             padding-bottom:0px;
+            background-color:white;
         }
         #full .box1 .own{
             width:100%;
@@ -71,6 +72,12 @@
             padding:10px;
             flex-direction: row;
             cursor:pointer;
+        }
+        #full .box1 .line{
+            width:100%;
+            padding:0 10px;
+            margin:10px 0;
+            font-size:14px;
         }
         #full .box1 .own img{
             width:45px;
@@ -124,7 +131,11 @@
 
 <body>
      
-     <div class="cat flex" style="width:100%;min-height:40px;background-color:lavenderblush;border-radius:7px;box-shadow:0 0 5px rgb(0,0,0,0.3);flex-direction: row;justify-content: flex-start;padding:5px;font-size:14px;letter-spacing:3px;font-weight:bold;">
+     <div style="width:95%;height:50px;justify-content: flex-start;flex-direction: row;letter-spacing:1px;color:white;background-color:darkblue;margin:10px 0;border-radius:8px;box-shadow: 0 0 5px rgb(0,0,0,0.3);font-weight:bold;cursor:pointer;" class="flex back_btn" onclick="window.history.go(-1)">
+      <i class="fas fa-long-arrow-alt-left" style="margin:0 10px 0 10px;font-size:22px;height:100%;width:50px;line-height:50px;text-align:center;"></i> Back
+   </div>
+     
+     <div class="cat flex" style="width:100%;min-height:40px;background-color:lavender;border-radius:7px;box-shadow:0 0 5px rgb(0,0,0,0.3);flex-direction: row;justify-content: flex-start;padding:5px;font-size:14px;letter-spacing:3px;font-weight:bold;">
          <input type="checkbox" style="margin:0 10px;transform:scale(1.2)"><label style="margin: 0 10px">View All</label>
      </div>
      
@@ -135,7 +146,10 @@
                <img src="avatars/p15.png">
                <label>sridevi 3322</label>
            </div>
-            <img src="posts/bg.jpeg" class="content">
+           <div class="line">
+               hello how are you ?
+           </div>
+            <img src="avatars/p19.png" class="content">
            <div class="btns flex">
               <span class="flex like" onclick="add_l(0)"><i class="far fa-thumbs-up"></i><label>21</label></span>
               <span class="flex dislike" onclick="remove_l(0)"><i class="far fa-thumbs-down"></i><label>3</label></span>
@@ -214,10 +228,15 @@
             if (user_key != null){
                 var cat = document.querySelector(".cat");
                 cat.style.display = "none";
+                var back_btn = document.querySelector(".back_btn");
+                back_btn.style.display = "flex";
             }else{
-                
+                var back_btn = document.querySelector(".back_btn");
+                back_btn.style.display = "none";
             }
         }
+        
+        cate();
         
         function see_pro(a){
             alert("see_pro");
@@ -230,11 +249,19 @@
              var likes_i = document.querySelectorAll(".like i");
             var dislikes_i = document.querySelectorAll(".dislike i");
             
-            dislikes_i[a].className = "far fa-thumbs-down";
-            dislikes[a].classList.remove("active");
+            if (likes[a].classList.contains("active")){
+                 dislikes_i[a].className = "far fa-thumbs-down";
+                 dislikes[a].classList.remove("active");
 
-            likes_i[a].className = "fas fa-thumbs-up";
-            likes[a].classList.add("active");
+                 likes_i[a].className = "far fa-thumbs-up";
+                 likes[a].classList.remove("active");
+            }else{
+                dislikes_i[a].className = "far fa-thumbs-down";
+                dislikes[a].classList.remove("active");
+
+                likes_i[a].className = "fas fa-thumbs-up";
+                likes[a].classList.add("active");
+            }
         }
         
         function remove_l(a){
@@ -244,11 +271,19 @@
             var likes_i = document.querySelectorAll(".like i");
             var dislikes_i = document.querySelectorAll(".dislike i");
             
-            likes_i[a].className = "far fa-thumbs-up";
-            likes[a].classList.remove("active");
+            if (dislikes[a].classList.contains("active")){
+                 likes_i[a].className = "far fa-thumbs-up";
+                 likes[a].classList.remove("active");
 
-            dislikes_i[a].className = "fas fa-thumbs-down";
-            dislikes[a].classList.add("active");
+                 dislikes_i[a].className = "far fa-thumbs-down";
+                 dislikes[a].classList.remove("active");
+            }else{
+                likes_i[a].className = "far fa-thumbs-up";
+                likes[a].classList.remove("active");
+
+                dislikes_i[a].className = "fas fa-thumbs-down";
+                dislikes[a].classList.add("active");
+            }
         }
         
         function add_c(a){

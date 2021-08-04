@@ -166,6 +166,15 @@
         .det .btn label span{
             margin:0 5px;
         }
+        .bio{
+            margin:10px;
+            width:100%;
+            padding:0 10px;
+        }
+        .bio .line{
+            width:100%;
+            margin:10px 0;
+        }
     </style>
 
 </head>
@@ -193,19 +202,39 @@
         </div>
    </section>
    
+    <ul class="bio">
+       <li class="line">
+           hello i am satwik, studying EEE NITK SURATHKAL
+       </li>
+       <li class="line">
+          intrested in physics, maths, logics
+       </li>
+   </ul>
+   
    <section class="det">
    
-   <div class="btn flex"><img src="images/likes.png"><label>Followers <span>23</span> <i class="fas fa-arrow-right"></i></label></div>
-   <div class="btn flex"><img src="images/following.png"><label>Following <span>20</span> <i class="fas fa-arrow-right"></i></label></div>
+   <div class="btn flex"><img src="images/likes.png"><label onclick="followers(0)">Followers <span>23</span> <i class="fas fa-arrow-right"></i></label></div>
+   <div class="btn flex"><img src="images/following.png"><label onclick="followers(1)">Following <span>20</span> <i class="fas fa-arrow-right"></i></label></div>
    <div class="btn flex"><img src="images/comments.png"><label>Reviews <span>15</span> <i class="fas fa-arrow-right"></i></label></div>
 
-   <div class="btn flex"><img src="images/gallery.png"><label>Gallery <span>23</span> <i class="fas fa-arrow-right"></i></label></div>
+   <div class="btn flex"><img src="images/gallery.png"><label onclick="gallery1()">Gallery <span>23</span> <i class="fas fa-arrow-right"></i></label></div>
    <div class="btn flex"><img src="images/notes.png"><label>Notes <span>20</span> <i class="fas fa-arrow-right"></i></label></div>
    
    </section>
       
     <script> 
         
+        function gallery1(){
+            location.href = "home.html?user_key=satwik";
+        }
+        
+        function followers(a){
+            if (a == 0){
+                location.href = "followers.html?cat=followers";
+            }else{
+                location.href = "followers.html?cat=following";
+            }
+        }
         
     </script>
 

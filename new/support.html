@@ -225,6 +225,15 @@
             border-radius:6px;
             resize:none;
         }
+        .bio{
+            margin:10px;
+            width:100%;
+            padding:0 10px;
+        }
+        .bio .line{
+            width:100%;
+            margin:10px 0;
+        }
         @media screen and (max-width:400px) {
             #page1 {
                 width: 100vw;
@@ -244,7 +253,7 @@
       <i class="fas fa-long-arrow-alt-left" style="margin:0 10px 0 10px;font-size:22px;height:100%;width:50px;line-height:50px;text-align:center;"></i> Back
    </div>
        
-        <section class="card flex">
+    <section class="card flex">
        <div class="pro flex">
            <img src="images/me.png">
            <div class="media flex">
@@ -263,13 +272,22 @@
         </div>
    </section>
    
+   <ul class="bio">
+       <li class="line">
+           hello i am satwik, studying EEE NITK SURATHKAL
+       </li>
+       <li class="line">
+          intrested in physics, maths, logics
+       </li>
+   </ul>
+   
    <section class="det">
    
    <div class="btn flex"><img src="images/likes.png"><label>Followers <span>23</span></label></div>
    <div class="btn flex"><img src="images/following.png"><label>Following <span>20</span></label></div>
    <div class="btn flex"><img src="images/comments.png"><label>Reviews <span>15</span> <i class="fas fa-arrow-right"></i></label></div>
 
-   <div class="btn flex"><img src="images/gallery.png"><label>Gallery <span>23</span> <i class="fas fa-arrow-right"></i></label></div>
+   <div class="btn flex"><img src="images/gallery.png"><label onclick="gallery1()">Gallery <span>23</span> <i class="fas fa-arrow-right"></i></label></div>
    <div class="btn flex"><img src="images/notes.png"><label>Notes <span>20</span> <i class="fas fa-arrow-right"></i></label></div>
    
    </section>
@@ -306,6 +324,10 @@
             var email = document.getElementById("email").value;
             var msg = document.getElementById("msg").value;
         });
+        
+        function gallery1(){
+            location.href = "home.html?user_key=satwik";
+        }
         
     </script>
 
