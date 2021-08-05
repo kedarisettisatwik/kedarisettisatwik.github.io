@@ -36,15 +36,13 @@
             width: 100vw;
             min-height: 100vh;
            -webkit-animation:del 1s linear forwards;
-            padding:10px;
-            padding-bottom:30px;
             display: flex;
-            justify-content: flex-start;
+            justify-content:center;
             align-items: center;
             flex-direction: column;
             overflow-x: hidden;
             overflow-y: auto;
-            background-color:white;
+            background-color:lavender;
         }
         @keyframes del {
             0%{opacity:0}
@@ -137,13 +135,28 @@
             box-shadow:0 0 5px rgb(0,0,0,0.2);
             border-radius:6px;
         }
+        #page1{
+            width:400px;
+            height:90vh;
+            padding:10px;
+            background-color:white;
+            box-shadow:0 0 10px rgb(0,0,0,0.5);
+        }
+        @media (max-width:400px){
+            #page1{
+                width:100vw;
+                height:100vh;
+            }
+        }
     </style>
 
 </head>
 
 <body>
    
-   <div style="width:95%;height:50px;justify-content: flex-start;flex-direction: row;letter-spacing:1px;color:white;background-color:darkblue;margin:10px 0;border-radius:8px;box-shadow: 0 0 5px rgb(0,0,0,0.3);font-weight:bold;cursor:pointer;" class="flex" onclick="window.history.go(-1)">
+   <section id="page1">
+      
+       <div style="width:95%;height:50px;justify-content: flex-start;flex-direction: row;letter-spacing:1px;color:white;background-color:darkblue;margin:10px 0;border-radius:8px;box-shadow: 0 0 5px rgb(0,0,0,0.3);font-weight:bold;cursor:pointer;" class="flex" onclick="window.history.go(-1)">
       <i class="fas fa-long-arrow-alt-left" style="margin:0 10px 0 10px;font-size:22px;height:100%;width:50px;line-height:50px;text-align:center;"></i> Back
    </div>
    
@@ -167,6 +180,8 @@
         <input type="text" value="https://kedarisettisatwik.github.io/new/support.html" id="link">
         <i class="fas fa-copy" onclick="copy1()"></i>
     </div>
+    
+   </section>
     
     <script> 
         

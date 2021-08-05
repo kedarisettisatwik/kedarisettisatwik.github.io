@@ -71,37 +71,20 @@
         }
         .card .pro{
             width:100%;
-            margin:10px 0;
             padding:0 10px;
             flex-direction: row;
             justify-content: space-between;
+            flex-wrap: wrap;
             position:relative;
         }
-        .card .pro img{
-            max-width:calc(50% - 10px);
-            max-height:calc(130px);
-            object-fit: cover;
-            border-radius:8px;
-            box-shadow:0 0 10px rgb(255,255,255,0.4);
-            background-image: linear-gradient(rgb(255,255,255,0.4),rgb(255,255,255,0.4));
-        }
-        .card .pro .media{
-            width:calc(50% - 20px);
-            min-height:100%;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: space-around;
-        }
-        .card .pro .media a{
+        .card .pro a{
+            width:50px;
+            height:50px;
+            line-height:50px;
+            text-align: center;
             cursor:pointer;
             margin:6px;
             cursor:pointer;
-        }
-        .card .pro .media a i{
-            width:40px;
-            height:40px;
-            line-height:40px;
-            text-align: center;
             color:white;
             font-size:23px;
         }
@@ -115,6 +98,7 @@
             font-size:20px;
             font-weight:bold;
             letter-spacing:2px;
+            padding-left:20px;
         }
         .card .text p{
             font-size:16px;
@@ -144,24 +128,25 @@
 <body class="flex">
     
     <section id="page1">
-       
-    <section class="card flex">
+    
+    <img src="images/me.png" width="100%" id="pro_img" style="margin:10px 0;position:relative;">
+   
+   <section class="card flex">
+      <div class="text">
+               <h2 id="name">Satwik Kedar</h2>
+               <p>7386484905</p>
+               <p>satwik1330@gmail.com</p>
+      </div>  
        <div class="pro flex">
-           <img src="images/me.png">
-           <div class="media flex">
            <a target='_blank'><i class='fab fa-facebook-square'></i></a>
            <a target='_blank'><i class='fab fa-instagram'></i></a>
            <a target='_blank'><i class='fab fa-youtube'></i></a>
            <a target='_blank'><i class="fab fa-github"></i></a>
            <a target='_blank'><i class="fab fa-linkedin-in"></i></a>
            <a target='_blank'><i class="fab fa-twitter"></i></a>
-           </div>
+           <a target='_blank'><i class="fas fa-map-marker-alt"></i></a>
+           <a target='_blank'><i class="fab fa-snapchat-ghost"></i></a>
        </div>
-       <div class="text">
-               <h2 id="name">Satwik Kedar</h2>
-               <p>7386484905</p>
-               <p>satwik1330@gmail.com</p>
-        </div>
    </section>
    
    <ul class="bio">
