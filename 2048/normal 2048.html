@@ -100,7 +100,7 @@
             margin:1.25px;
             background-color:lavender;
             border-radius:5px;
-            transition:0.12s,color 0s;
+            transition:0.11s,color 0s;
         }
         .btn{
             width:100%;
@@ -319,19 +319,27 @@
                 var g_l = [];
                 click_c = false;
                 var inter = setInterval(function(){
-                              var g = sample_down1();
-                              g_l.push(g);
-                               if (t > 2){
-                                   click_c = true;
-                                if (g_l.includes(1)) {
-                                    generate();
-                                    clearInterval(inter);
-                                }else{
-                                    clearInterval(inter);
-                                } 
-                               }
-                               t += 1;
-                               },150);
+                              
+                    
+                    if (t < 4){
+                        var g = sample_down1(0);
+                        g_l.push(g);
+                    }else if (t == 4){
+                        var g = sample_down1(1);
+                        g_l.push(g);
+                         var g = sample_down1(0);
+                         g_l.push(g);
+                    }else if (t > 4){
+                        click_c = true;
+                        if (g_l.includes(1)) {
+                            generate();
+                            clearInterval(inter);
+                        }else{
+                            clearInterval(inter);
+                        }
+                    }
+                    t += 1;
+                 },100);
             }
         }
         
@@ -341,19 +349,27 @@
                 var g_l = [];
                 click_c = false;
                 var inter = setInterval(function(){
-                              var g = sample_up1();
-                              g_l.push(g);
-                               if (t > 2){
-                                     click_c = true;
-                                if (g_l.includes(1)) {
-                                    generate();
-                                    clearInterval(inter);      
-                                }else{
-                                    clearInterval(inter);  
-                                } 
-                               }
-                               t += 1;
-                               },150);
+                              
+                    
+                    if (t < 4){
+                        var g = sample_up1(0);
+                        g_l.push(g);
+                    }else if (t == 4){
+                        var g = sample_up1(1);
+                        g_l.push(g);
+                        var g = sample_up1(0);
+                        g_l.push(g);
+                    }else if (t > 4){
+                        click_c = true;
+                        if (g_l.includes(1)) {
+                            generate();
+                            clearInterval(inter);
+                        }else{
+                            clearInterval(inter);
+                        }
+                    }
+                    t += 1;
+                 },100);
             }
         }
         
@@ -363,19 +379,27 @@
                 var g_l = [];
                 click_c = false;
                 var inter = setInterval(function(){
-                              var g = sample_left1();
-                              g_l.push(g);
-                               if (t > 2){
-                                     click_c = true;
-                                if (g_l.includes(1)) {
-                                    generate();
-                                    clearInterval(inter);      
-                                }else{
-                                    clearInterval(inter);  
-                                } 
-                               }
-                               t += 1;
-                               },150);
+                              
+                    
+                    if (t < 4){
+                        var g = sample_left1(0);
+                        g_l.push(g);
+                    }else if (t == 4){
+                        var g = sample_left1(1);
+                        g_l.push(g);
+                        var g = sample_left1(0);
+                        g_l.push(g);
+                    }else if (t > 4){
+                        click_c = true;
+                        if (g_l.includes(1)) {
+                            generate();
+                            clearInterval(inter);
+                        }else{
+                            clearInterval(inter);
+                        }
+                    }
+                    t += 1;
+                 },100);
             }
         }
         
@@ -385,23 +409,31 @@
                 var g_l = [];
                 click_c = false;
                 var inter = setInterval(function(){
-                              var g = sample_right1();
-                              g_l.push(g);
-                               if (t > 2){
-                                     click_c = true;
-                                if (g_l.includes(1)) {
-                                    generate();
-                                    clearInterval(inter);      
-                                }else{
-                                    clearInterval(inter);  
-                                } 
-                               }
-                               t += 1;
-                               },150);
+                              
+                    
+                    if (t < 4){
+                        var g = sample_right1(0);
+                        g_l.push(g);
+                    }else if (t == 4){
+                        var g = sample_right1(1);
+                        g_l.push(g);
+                        var g = sample_right1(0);
+                        g_l.push(g);
+                    }else if (t > 4){
+                        click_c = true;
+                        if (g_l.includes(1)) {
+                            generate();
+                            clearInterval(inter);
+                        }else{
+                            clearInterval(inter);
+                        }
+                    }
+                    t += 1;
+                 },100);
             }
         }
         
-        function sample_down1(){
+        function sample_down1(a){
             
             var mu = 0;
             
@@ -413,21 +445,30 @@
                     var ele2 = document.querySelector(".block"+bno1);
                     if (ele1 != null && ele2 != null){
                         if (ele1.innerHTML != "0" || ele1.innerHTML != 0){
-            if (ele2.innerHTML == "0" || ele2.innerHTML == 0){
+                            
+                          if (a == 0){
+                              
+                if (ele2.innerHTML == "0" || ele2.innerHTML == 0){
                 ele1.style.opacity = "0";
                 ele2.style.opacity = "1";
                         ele2.innerHTML = ele1.innerHTML;
                         ele1.innerHTML = "0";
                      mu += 1; 
-                       }else if (ele2.innerHTML == ele1.innerHTML){
+                       }
+                              
+                          }else{
+                              
+            if (ele2.innerHTML == ele1.innerHTML && ele1.innerHTML != "0" && ele1.innerHTML != 0){
                            ele1.style.opacity = "0";
                            ele2.style.opacity = "1";
                           var p1 = 2*eval(ele2.innerHTML);
                            ele2.innerHTML = String(p1);
                            ele1.innerHTML = "0";
                      mu += 1; 
-                 }  
-                           // draw();
+                 }                   
+                              
+                          }   
+                            
                }
              }
             }
@@ -440,7 +481,7 @@
             }
         }
         
-        function sample_up1(){
+        function sample_up1(a){
     
                 var mu = 0;
             
@@ -452,21 +493,29 @@
                     var ele2 = document.querySelector(".block"+bno1);
                     if (ele1 != null && ele2 != null){
                         if (ele1.innerHTML != "0" || ele1.innerHTML != 0){
-            if (ele2.innerHTML == "0" || ele2.innerHTML == 0){
+           
+                            if (a == 0){
+                              
+                if (ele2.innerHTML == "0" || ele2.innerHTML == 0){
                 ele1.style.opacity = "0";
                 ele2.style.opacity = "1";
                         ele2.innerHTML = ele1.innerHTML;
                         ele1.innerHTML = "0";
-                
                      mu += 1; 
-                       }else if (ele2.innerHTML == ele1.innerHTML){
+                       }
+                              
+                          }else{
+                              
+            if (ele2.innerHTML == ele1.innerHTML && ele1.innerHTML != "0" && ele1.innerHTML != 0){
                            ele1.style.opacity = "0";
-                ele2.style.opacity = "1";
+                           ele2.style.opacity = "1";
                           var p1 = 2*eval(ele2.innerHTML);
                            ele2.innerHTML = String(p1);
                            ele1.innerHTML = "0";
                      mu += 1; 
-                 } 
+                 }                   
+                              
+                          }
                             
                }
              }
@@ -482,7 +531,7 @@
         }
         
         
-        function sample_left1(){
+        function sample_left1(a){
     
                 var mu = 0;
             
@@ -494,21 +543,30 @@
                     var ele2 = document.querySelector(".block"+bno1);
                     if (ele1 != null && ele2 != null){
                         if (ele1.innerHTML != "0" || ele1.innerHTML != 0){
-            if (ele2.innerHTML == "0" || ele2.innerHTML == 0){
+                            
+                            if (a == 0){
+                              
+                if (ele2.innerHTML == "0" || ele2.innerHTML == 0){
                 ele1.style.opacity = "0";
                 ele2.style.opacity = "1";
                         ele2.innerHTML = ele1.innerHTML;
                         ele1.innerHTML = "0";
                      mu += 1; 
-                       }else if (ele2.innerHTML == ele1.innerHTML){
+                       }
+                              
+                          }else{
+                              
+            if (ele2.innerHTML == ele1.innerHTML && ele1.innerHTML != "0" && ele1.innerHTML != 0){
                            ele1.style.opacity = "0";
-                ele2.style.opacity = "1";
+                           ele2.style.opacity = "1";
                           var p1 = 2*eval(ele2.innerHTML);
                            ele2.innerHTML = String(p1);
                            ele1.innerHTML = "0";
                      mu += 1; 
-                 } 
-                          
+                 }                   
+                              
+                          }
+                            
                }
              }
             }
@@ -522,7 +580,7 @@
    
         }
         
-        function sample_right1(){
+        function sample_right1(a){
     
                 var mu = 0;
             
@@ -534,21 +592,29 @@
                     var ele2 = document.querySelector(".block"+bno1);
                     if (ele1 != null && ele2 != null){
                         if (ele1.innerHTML != "0" || ele1.innerHTML != 0){
-            if (ele2.innerHTML == "0" || ele2.innerHTML == 0){
+                            
+                            if (a == 0){
+                              
+                if (ele2.innerHTML == "0" || ele2.innerHTML == 0){
                 ele1.style.opacity = "0";
                 ele2.style.opacity = "1";
                         ele2.innerHTML = ele1.innerHTML;
                         ele1.innerHTML = "0";
                      mu += 1; 
-                       }else if (ele2.innerHTML == ele1.innerHTML){
+                       }
+                              
+                          }else{
+                              
+            if (ele2.innerHTML == ele1.innerHTML && ele1.innerHTML != "0" && ele1.innerHTML != 0){
                            ele1.style.opacity = "0";
-                ele2.style.opacity = "1";
+                           ele2.style.opacity = "1";
                           var p1 = 2*eval(ele2.innerHTML);
                            ele2.innerHTML = String(p1);
                            ele1.innerHTML = "0";
                      mu += 1; 
-                 } 
-                            
+                 }                   
+                              
+                          }
                }
              }
             }
