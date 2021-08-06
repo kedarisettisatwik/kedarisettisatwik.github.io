@@ -9,9 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
     <!-- google fonts -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-
+    
     <title>classic . 2048</title>
-
+<!--    <script src="https://code.jquery.com/jquery-3.1.1.js"></script> -->
+    
     <style>
         * {
             margin: 0;
@@ -61,6 +62,7 @@
         .nav h2,.nav button{
             margin:0 7px;
             letter-spacing:2px;
+            width:100px;
         }
         .nav h2{
             font-size:18px;
@@ -80,10 +82,40 @@
             margin:10px;
         }
         .table{
-            width:250px;
-            height:250px;
+            width:350px;
+            height:350px;
             margin:10px;
+            transition:0.3s;
+        }
+        .table ul{
+            width:100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+        .table ul li{
+            width:85px;
+            height:85px;
+            margin:1.25px;
+            background-color:lavender;
+            border-radius:5px;
+            transition:0.4s;
+        }
+        .btn{
+            width:100%;
+            padding:10px;
+            margin:10px;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+        .btn i{
+            width:40px;
+            height:40px;
+            cursor:pointer;
+            font-size:20px;
             background-color:lavenderblush;
+            box-shadow:0 0 5px rgb(0,0,0,0.2);
         }
         
         @media (max-width:400px){
@@ -91,6 +123,29 @@
                 width:100vw;
             }
         }
+        @media (max-width:370px){
+            .table{
+                width:300px;
+                height:300px;
+            }
+            .table ul li{
+            width:72.5px;
+            height:72.5px;
+            margin:1.25px;
+            }
+        }
+        @media (max-width:320px){
+            .table{
+                width:250px;
+                height:250px;
+            }
+            .table ul li{
+            width:60px;
+            height:60px;
+            margin:1.25px;
+            }
+        }
+        
     </style>
 
 </head>
@@ -99,42 +154,138 @@
 
     <section id="page1" class="flex">
 
-       <nav class="nav flex"><h2>2048</h2><button>start</button></nav>
+       <nav class="nav flex"><h2>2048</h2><button onclick="start1()" class="btn">start</button></nav>
        <p><label>score :</label> <span>0</span></p> 
        
        <div class="table">
            <ul>
-               <li class="block11"></li>
-               <li class="block12"></li>
-               <li class="block13"></li>
-               <li class="block14"></li>
+               <li class="block11 flex block">0</li>
+               <li class="block12 flex block">0</li>
+               <li class="block13 flex block">0</li>
+               <li class="block14 flex block">0</li>
            </ul>
            <ul>
-               <li class="block21"></li>
-               <li class="block22"></li>
-               <li class="block23"></li>
-               <li class="block24"></li>
+               <li class="block21 flex block">0</li>
+               <li class="block22 flex block">0</li>
+               <li class="block23 flex block">0</li>
+               <li class="block24 flex block">0</li>
            </ul>
            <ul>
-               <li class="block31"></li>
-               <li class="block32"></li>
-               <li class="block33"></li>
-               <li class="block34"></li>
+               <li class="block31 flex block">0</li>
+               <li class="block32 flex block">0</li>
+               <li class="block33 flex block">0</li>
+               <li class="block34 flex block">0</li>
            </ul>
            <ul>
-               <li class="block41"></li>
-               <li class="block42"></li>
-               <li class="block43"></li>
-               <li class="block44"></li>
+               <li class="block41 flex block">0</li>
+               <li class="block42 flex block">0</li>
+               <li class="block43 flex block">0</li>
+               <li class="block44 flex block">0</li>
            </ul>
        </div>
-   
+       
+       <div class="btn flex">
+           <i class="fas fa-long-arrow-alt-left flex"></i>
+           <i class="fas fa-long-arrow-alt-up flex"></i>
+           <i class="fas fa-long-arrow-alt-down flex"></i>
+           <i class="fas fa-long-arrow-alt-right flex"></i>     
+       </div>
+       
     </section>
 
  
    
     <script>
       
+        function draw(){
+            var block = document.querySelectorAll(".block");
+            var block_l = document.querySelectorAll(".block").length;
+            var choices = [];
+            for(var i=0;i<block_l;i++){
+                var ele = block[i];
+                if (ele.innerHTML == "0" || ele.innerHTML == 0){
+                    ele.style.backgroundColor = "rgb(0,0,0,0.2)";
+                    ele.style.color = "transparent";
+                    ele.style.border = "1px solid rgb(0,0,0,0.2)";
+                }else if (ele.innerHTML != 0 || ele.innerHTML != "0"){
+                    ele.style.border = "0px solid rgb(0,0,0,0.2)";
+                }else if (ele.innerHTML == "2" || ele.innerHTML == 2){
+                   ele.style.backgroundColor = "skyblue";
+                    ele.style.color = "black"; 
+                    ele.style.fontSize = "26px";
+                }else if (ele.innerHTML == "4" || ele.innerHTML == 4){
+                   ele.style.backgroundColor = "rgb(255, 255, 204)";
+                    ele.style.color = "black"; 
+                    ele.style.fontSize = "26px"; 
+                }else if (ele.innerHTML == "8" || ele.innerHTML == 8){
+                   ele.style.backgroundColor = "green";
+                    ele.style.color = "white";  
+                    ele.style.fontSize = "26px";
+                }else if (ele.innerHTML == "16" || ele.innerHTML == 16){
+                   ele.style.backgroundColor = "rgb(255, 153, 51)";
+                    ele.style.color = "white";  
+                    ele.style.fontSize = "22px";
+                }else if (ele.innerHTML == "32" || ele.innerHTML == 32){
+                   ele.style.backgroundColor = "rgb(255, 153, 204)";
+                    ele.style.color = "black";  
+                    ele.style.fontSize = "22px";
+                }else if (ele.innerHTML == "64" || ele.innerHTML == 64){
+                   ele.style.backgroundColor = "rgb(153, 204, 255)";
+                    ele.style.color = "black";  
+                    ele.style.fontSize = "22px";
+                }else if (ele.innerHTML == "128" || ele.innerHTML == 128){
+                   ele.style.backgroundColor = "rgb(255, 102, 102)";
+                    ele.style.color = "white";  
+                    ele.style.fontSize = "20px";
+                }else if (ele.innerHTML == "256" || ele.innerHTML == 256){
+                    ele.style.backgroundColor = "rgb(153, 255, 102)";
+                    ele.style.color = "black";
+                    ele.style.fontSize = "20px"; 
+                }else if (ele.innerHTML == "512" || ele.innerHTML == 512){
+                    ele.style.backgroundColor = "rgb(255, 255, 102)";
+                    ele.style.color = "black";
+                    ele.style.fontSize = "20px";
+                }else if (ele.innerHTML == "1024" || ele.innerHTML == 1024){
+                    ele.style.backgroundColor = "rgb(102, 0, 255)";
+                    ele.style.color = "white";
+                    ele.style.fontSize = "17px";
+                }else if (ele.innerHTML == "2048" || ele.innerHTML == 2048){
+                    ele.style.backgroundColor = "rgb(255, 255, 204)";
+                    ele.style.color = "black";
+                    ele.style.fontSize = "17px";
+                }else{
+                    ele.style.backgroundColor = "lavender";
+                    ele.style.color = "black";
+                    ele.style.fontSize = "15px";
+                }
+                
+            }
+        }
+        
+        function start1(){
+            
+            generate();
+            generate();
+            var btn = document.querySelector(".btn");
+            btn.style.display = "none";
+        }
+        
+        function generate(){
+            var block = document.querySelectorAll(".block");
+            var block_l = document.querySelectorAll(".block").length;
+            var choices = [];
+            for(var i=0;i<block_l;i++){
+                var ele = block[i];
+                if (ele.innerHTML == "0" || ele.innerHTML == 0){
+                    choices.push(ele);
+                }
+            } 
+            if (choices.length > 0){
+                var rand = Math.floor(Math.random()*(choices.length));
+                choices[rand].innerHTML = "2048";
+            }
+            draw();
+        }
         
     </script>
 
