@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -100,7 +101,7 @@
             margin:1.25px;
             background-color:lavender;
             border-radius:5px;
-            transition:0.4s;
+            transition:0.125s;
         }
         .btn{
             width:100%;
@@ -154,8 +155,8 @@
 
     <section id="page1" class="flex">
 
-       <nav class="nav flex"><h2>2048</h2><button onclick="start1()" class="btn">start</button></nav>
-       <p><label>score :</label> <span>0</span></p> 
+       <nav class="nav flex"><h2>2048</h2><button onclick="start1(),tru1()" class="btn">start</button></nav>
+       <p style="font-size:16px;"><label>score :</label> <span id="score" style="margin-left:10px">0</span></p> 
        
        <div class="table">
            <ul>
@@ -185,10 +186,10 @@
        </div>
        
        <div class="btn flex">
-           <i class="fas fa-long-arrow-alt-left flex"></i>
-           <i class="fas fa-long-arrow-alt-up flex"></i>
-           <i class="fas fa-long-arrow-alt-down flex"></i>
-           <i class="fas fa-long-arrow-alt-right flex"></i>     
+           <i class="fas fa-long-arrow-alt-left flex" onclick="left1()"></i>
+           <i class="fas fa-long-arrow-alt-up flex" onclick="up1()"></i>
+           <i class="fas fa-long-arrow-alt-down flex" onclick="down1()"></i>
+           <i class="fas fa-long-arrow-alt-right flex" onclick="right1()"></i>     
        </div>
        
     </section>
@@ -197,17 +198,38 @@
    
     <script>
       
+        var click_c = false;
+        var score = 0;
+        
+        function tru1(){
+            click_c = true;
+        }
+        
+        window.addEventListener('keyup',(e) => {
+        if (e.keyCode == 37){
+            left1();
+        }
+        if (e.keyCode == 38){
+            up1();
+        }
+        if (e.keyCode == 39){
+            right1();
+        }
+        if (e.keyCode == 40){
+            down1();
+        }
+        })
+        
         function draw(){
             var block = document.querySelectorAll(".block");
             var block_l = document.querySelectorAll(".block").length;
             var choices = [];
             for(var i=0;i<block_l;i++){
                 var ele = block[i];
+                ele.style.opacity = "1";
                 if (ele.innerHTML == "0" || ele.innerHTML == 0){
-                    ele.style.backgroundColor = "rgb(0,0,0,0.2)";
+                    ele.style.backgroundColor = "rgb(0,0,0,0.1)";
                     ele.style.color = "transparent";
-                    ele.style.border = "1px solid rgb(0,0,0,0.2)";
-                }else if (ele.innerHTML != 0 || ele.innerHTML != "0"){
                     ele.style.border = "0px solid rgb(0,0,0,0.2)";
                 }else if (ele.innerHTML == "2" || ele.innerHTML == 2){
                    ele.style.backgroundColor = "skyblue";
@@ -230,8 +252,8 @@
                     ele.style.color = "black";  
                     ele.style.fontSize = "22px";
                 }else if (ele.innerHTML == "64" || ele.innerHTML == 64){
-                   ele.style.backgroundColor = "rgb(153, 204, 255)";
-                    ele.style.color = "black";  
+                   ele.style.backgroundColor = "darkblue";
+                    ele.style.color = "white";  
                     ele.style.fontSize = "22px";
                 }else if (ele.innerHTML == "128" || ele.innerHTML == 128){
                    ele.style.backgroundColor = "rgb(255, 102, 102)";
@@ -263,12 +285,13 @@
         }
         
         function start1(){
-            
             generate();
             generate();
             var btn = document.querySelector(".btn");
             btn.style.display = "none";
         }
+        
+         var list = ["2"];
         
         function generate(){
             var block = document.querySelectorAll(".block");
@@ -280,12 +303,267 @@
                     choices.push(ele);
                 }
             } 
+            
             if (choices.length > 0){
-                var rand = Math.floor(Math.random()*(choices.length));
-                choices[rand].innerHTML = "2048";
+                var rand1 = Math.floor(Math.random()*(choices.length));
+                var rand2 = Math.floor(Math.random()*(list.length));
+                choices[rand1].innerHTML = list[rand2];
             }
             draw();
         }
+        
+        
+        
+        function down1(){
+            if (click_c){
+                var t = 0;
+                var g_l = [];
+                click_c = false;
+                var inter = setInterval(function(){
+                              var g = sample_down1();
+                              g_l.push(g);
+                               if (t > 2){
+                                   click_c = true;
+                                if (g_l.includes(1)) {
+                                    generate();
+                                    clearInterval(inter);
+                                }else{
+                                    clearInterval(inter);
+                                } 
+                               }
+                               t += 1;
+                               },250);
+            }
+        }
+        
+        function up1(){
+            if (click_c){
+                var t = 0;
+                var g_l = [];
+                click_c = false;
+                var inter = setInterval(function(){
+                              var g = sample_up1();
+                              g_l.push(g);
+                               if (t > 2){
+                                     click_c = true;
+                                if (g_l.includes(1)) {
+                                    generate();
+                                    clearInterval(inter);      
+                                }else{
+                                    clearInterval(inter);  
+                                } 
+                               }
+                               t += 1;
+                               },250);
+            }
+        }
+        
+        function left1(){
+            if (click_c){
+                var t = 0;
+                var g_l = [];
+                click_c = false;
+                var inter = setInterval(function(){
+                              var g = sample_left1();
+                              g_l.push(g);
+                               if (t > 2){
+                                     click_c = true;
+                                if (g_l.includes(1)) {
+                                    generate();
+                                    clearInterval(inter);      
+                                }else{
+                                    clearInterval(inter);  
+                                } 
+                               }
+                               t += 1;
+                               },250);
+            }
+        }
+        
+        function right1(){
+            if (click_c){
+                var t = 0;
+                var g_l = [];
+                click_c = false;
+                var inter = setInterval(function(){
+                              var g = sample_right1();
+                              g_l.push(g);
+                               if (t > 2){
+                                     click_c = true;
+                                if (g_l.includes(1)) {
+                                    generate();
+                                    clearInterval(inter);      
+                                }else{
+                                    clearInterval(inter);  
+                                } 
+                               }
+                               t += 1;
+                               },250);
+            }
+        }
+        
+        function sample_down1(){
+            
+            var mu = 0;
+            
+            for(var i = 1;i<5;i+=1){
+                for(var j = 30;j>0;j-=10){
+                    var bno = j+i;
+                    var ele1 = document.querySelector(".block"+bno);
+                    var bno1 = j+10+i;
+                    var ele2 = document.querySelector(".block"+bno1);
+                    if (ele1 != null && ele2 != null){
+                        if (ele1.innerHTML != "0" || ele1.innerHTML != 0){
+            if (ele2.innerHTML == "0" || ele2.innerHTML == 0){
+                ele1.style.opacity = "0";
+                ele2.style.opacity = "1";
+                        ele2.innerHTML = ele1.innerHTML;
+                        ele1.innerHTML = "0";
+                     mu += 1; 
+                       }else if (ele2.innerHTML == ele1.innerHTML){
+                           ele1.style.opacity = "0";
+                           ele2.style.opacity = "1";
+                          var p1 = 2*eval(ele2.innerHTML);
+                           ele2.innerHTML = String(p1);
+                           ele1.innerHTML = "0";
+                     mu += 1; 
+                 }  
+                           // draw();
+               }
+             }
+            }
+          }
+           draw();
+            if (mu > 0){
+                return 1;
+            }else{
+                return -1;
+            }
+        }
+        
+        function sample_up1(){
+    
+                var mu = 0;
+            
+            for(var i = 1;i<5;i+=1){
+                for(var j = 20;j<50;j+=10){
+                    var bno = j+i;
+                    var ele1 = document.querySelector(".block"+bno);
+                    var bno1 = j-10+i;
+                    var ele2 = document.querySelector(".block"+bno1);
+                    if (ele1 != null && ele2 != null){
+                        if (ele1.innerHTML != "0" || ele1.innerHTML != 0){
+            if (ele2.innerHTML == "0" || ele2.innerHTML == 0){
+                ele1.style.opacity = "0";
+                ele2.style.opacity = "1";
+                        ele2.innerHTML = ele1.innerHTML;
+                        ele1.innerHTML = "0";
+                
+                     mu += 1; 
+                       }else if (ele2.innerHTML == ele1.innerHTML){
+                           ele1.style.opacity = "0";
+                ele2.style.opacity = "1";
+                          var p1 = 2*eval(ele2.innerHTML);
+                           ele2.innerHTML = String(p1);
+                           ele1.innerHTML = "0";
+                     mu += 1; 
+                 } 
+                            
+               }
+             }
+            }
+          }
+            draw();
+            if (mu > 0){
+                return 1;
+            }else{
+                return -1;
+            }
+   
+        }
+        
+        
+        function sample_left1(){
+    
+                var mu = 0;
+            
+            for(var i = 10;i<50;i+=10){
+                for(var j = 2;j<5;j++){
+                    var bno = j+i;
+                    var ele1 = document.querySelector(".block"+bno);
+                    var bno1 = j-1+i;
+                    var ele2 = document.querySelector(".block"+bno1);
+                    if (ele1 != null && ele2 != null){
+                        if (ele1.innerHTML != "0" || ele1.innerHTML != 0){
+            if (ele2.innerHTML == "0" || ele2.innerHTML == 0){
+                ele1.style.opacity = "0";
+                ele2.style.opacity = "1";
+                        ele2.innerHTML = ele1.innerHTML;
+                        ele1.innerHTML = "0";
+                     mu += 1; 
+                       }else if (ele2.innerHTML == ele1.innerHTML){
+                           ele1.style.opacity = "0";
+                ele2.style.opacity = "1";
+                          var p1 = 2*eval(ele2.innerHTML);
+                           ele2.innerHTML = String(p1);
+                           ele1.innerHTML = "0";
+                     mu += 1; 
+                 } 
+                          
+               }
+             }
+            }
+          }
+            draw();
+            if (mu > 0){
+                return 1;
+            }else{
+                return -1;
+            }
+   
+        }
+        
+        function sample_right1(){
+    
+                var mu = 0;
+            
+            for(var i = 10;i<50;i+=10){
+                for(var j = 3;j>0;j-=1){
+                    var bno = j+i;
+                    var ele1 = document.querySelector(".block"+bno);
+                    var bno1 = j+1+i;
+                    var ele2 = document.querySelector(".block"+bno1);
+                    if (ele1 != null && ele2 != null){
+                        if (ele1.innerHTML != "0" || ele1.innerHTML != 0){
+            if (ele2.innerHTML == "0" || ele2.innerHTML == 0){
+                ele1.style.opacity = "0";
+                ele2.style.opacity = "1";
+                        ele2.innerHTML = ele1.innerHTML;
+                        ele1.innerHTML = "0";
+                     mu += 1; 
+                       }else if (ele2.innerHTML == ele1.innerHTML){
+                           ele1.style.opacity = "0";
+                ele2.style.opacity = "1";
+                          var p1 = 2*eval(ele2.innerHTML);
+                           ele2.innerHTML = String(p1);
+                           ele1.innerHTML = "0";
+                     mu += 1; 
+                 } 
+                            
+               }
+             }
+            }
+          }
+           draw(); 
+            if (mu > 0){
+                return 1;
+            }else{
+                return -1;
+            }
+   
+        }
+        
+        
         
     </script>
 
