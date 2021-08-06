@@ -102,6 +102,13 @@
             border-radius:5px;
             transition:0.11s,color 0s;
         }
+        .table ul li.active{
+            -webkit-animation:pop 0.25s linear forwards;
+        }
+        @keyframes pop{
+            0%{transform:scale(0)}
+            100%{transform:scale(1)}
+        }
         .btn{
             width:100%;
             padding:10px;
@@ -199,6 +206,7 @@
       
         var click_c = false;
         var score = 0;
+        var score_ele = document.getElementById("score");
         
         function tru1(){
             click_c = true;
@@ -218,6 +226,21 @@
             down1();
         }
         })
+        
+        function check1(){
+            var block = document.querySelectorAll(".block");
+            var high = 0;
+            for (var i = 0;i<block.length;i++){
+                var elw = eval(block[i].innerHTML);
+                if (elw > high){
+                    high = elw;
+                }
+                block[i].classList.remove("active");
+            }
+            if (high > 64){
+                list.push("4");
+            }
+        }
         
         function draw(){
             var block = document.querySelectorAll(".block");
@@ -293,6 +316,7 @@
          var list = ["2"];
         
         function generate(){
+            check1();
             var block = document.querySelectorAll(".block");
             var block_l = document.querySelectorAll(".block").length;
             var choices = [];
@@ -307,6 +331,7 @@
                 var rand1 = Math.floor(Math.random()*(choices.length));
                 var rand2 = Math.floor(Math.random()*(list.length));
                 choices[rand1].innerHTML = list[rand2];
+                choices[rand1].classList.add("active");
             }
             draw();
         }
@@ -465,6 +490,8 @@
                            ele2.innerHTML = String(p1);
                            ele1.innerHTML = "0";
                      mu += 1; 
+                score += 1;
+                score_ele.innerHTML = score;
                  }                   
                               
                           }   
@@ -513,6 +540,8 @@
                            ele2.innerHTML = String(p1);
                            ele1.innerHTML = "0";
                      mu += 1; 
+                score += 1;
+                score_ele.innerHTML = score;
                  }                   
                               
                           }
@@ -563,6 +592,8 @@
                            ele2.innerHTML = String(p1);
                            ele1.innerHTML = "0";
                      mu += 1; 
+                score += 1;
+                score_ele.innerHTML = score;
                  }                   
                               
                           }
@@ -612,6 +643,8 @@
                            ele2.innerHTML = String(p1);
                            ele1.innerHTML = "0";
                      mu += 1; 
+                score += 1;
+                score_ele.innerHTML = score;
                  }                   
                               
                           }
