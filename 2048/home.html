@@ -58,27 +58,32 @@
             justify-content: flex-start;
             padding:10px;
         }
-        #page1 div{
+        #page1 .box1{
             margin:10px;
             width:100%;
             position:relative;
-            padding-left:10px;
+            padding:10px;
             margin-bottom:20px;
+            background-color:lavenderblush;
+            position:relative;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
         }
-        #page1 div h2{
+        #page1 .box1 h2{
             width:100%;
             padding-left:10px;
-            margin:5px 0;
+            margin:10px;
             font-size:19px;
             font-weight:500;
             letter-spacing:2px;
+            margin-bottom:20px;
         }
-        #page1 div p{
-            margin:5px 0;
-        }
-        #page1 div button{
+        #page1 .box1 button{
             padding:10px;
-            background-color:lavenderblush;
+            width: 100%;
+            background-color:white;
             outline:none;
             border:none;
             box-shadow: 0 0 5px rgb(0,0,0,0.2);
@@ -86,6 +91,7 @@
             margin:10px;
             letter-spacing:2px;
             cursor:pointer;
+            font-weight:bold;
         }
         #page1 div button a{
             color:black;
@@ -107,18 +113,16 @@
 
     <section id="page1" class="flex">
 
-       <div>
+       <div class="box1">
            <h2>Normal 2048</h2>
-           <p> <span>2</span> <span>2</span> <span>4</span> <span>0</span></p>
-           <p>if you swipe left 2 + 2 will combine 4 and you get <br> <span>0</span> <span>0</span> <span>4</span> <span>4</span> </p>
            <button><a href="normal%202048.html">play</a></button>
+           <a href="noramal.mp4">How to play ? </a>
        </div>
        
-       <div>
+       <div class="box1">
            <h2>Special 2048</h2>
-           <p> <span>2</span> <span>2</span> <span>4</span> <span>0</span></p>
-           <p>if you swipe left 2 + 2 will combine 4 after thar new 4 + 4 will combine 8 and you get <br> <span>0</span> <span>0</span> <span>0</span> <span>8</span> </p>
            <button><a href="classic%202048.html">play</a></button>
+           <a href="special.mp4">How to play ? </a>
        </div>
        
     </section>
