@@ -10,7 +10,7 @@
     <!-- google fonts -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     
-    <title>classic . 2048</title>
+    <title>reverse . 2048</title>
 <!--    <script src="https://code.jquery.com/jquery-3.1.1.js"></script> -->
     
     <style>
@@ -100,7 +100,7 @@
             margin:1.25px;
             background-color:lavender;
             border-radius:5px;
-            transition:0.1s,color 0s;
+            transition:0.2s,color 0s;
         }
         .table ul li.active{
             -webkit-animation:pop 0.25s linear forwards;
@@ -166,28 +166,28 @@
        
        <div class="table">
            <ul>
-               <li class="block11 flex block">0</li>
-               <li class="block12 flex block">0</li>
-               <li class="block13 flex block">0</li>
-               <li class="block14 flex block">0</li>
+               <li class="block11 flex block">1</li>
+               <li class="block12 flex block">1</li>
+               <li class="block13 flex block">1</li>
+               <li class="block14 flex block">1</li>
            </ul>
            <ul>
-               <li class="block21 flex block">0</li>
-               <li class="block22 flex block">0</li>
-               <li class="block23 flex block">0</li>
-               <li class="block24 flex block">0</li>
+               <li class="block21 flex block">1</li>
+               <li class="block22 flex block">1</li>
+               <li class="block23 flex block">1</li>
+               <li class="block24 flex block">1</li>
            </ul>
            <ul>
-               <li class="block31 flex block">0</li>
-               <li class="block32 flex block">0</li>
-               <li class="block33 flex block">0</li>
-               <li class="block34 flex block">0</li>
+               <li class="block31 flex block">1</li>
+               <li class="block32 flex block">1</li>
+               <li class="block33 flex block">1</li>
+               <li class="block34 flex block">1</li>
            </ul>
            <ul>
-               <li class="block41 flex block">0</li>
-               <li class="block42 flex block">0</li>
-               <li class="block43 flex block">0</li>
-               <li class="block44 flex block">0</li>
+               <li class="block41 flex block">1</li>
+               <li class="block42 flex block">1</li>
+               <li class="block43 flex block">1</li>
+               <li class="block44 flex block">1</li>
            </ul>
        </div>
        
@@ -227,20 +227,6 @@
         }
         })
         
-        function check1(){
-            var block = document.querySelectorAll(".block");
-            var high = 0;
-            for (var i = 0;i<block.length;i++){
-                var elw = eval(block[i].innerHTML);
-                if (elw > high){
-                    high = elw;
-                }
-                block[i].classList.remove("active");
-            }
-            if (high > 64){
-                list.push("4");
-            }
-        }
         
         function draw(){
             var block = document.querySelectorAll(".block");
@@ -249,7 +235,7 @@
             for(var i=0;i<block_l;i++){
                 var ele = block[i];
                 ele.style.opacity = "1";
-                if (ele.innerHTML == "0" || ele.innerHTML == 0){
+                if (ele.innerHTML == "1" || ele.innerHTML == 1){
                     ele.style.backgroundColor = "rgb(0,0,0,0.1)";
                     ele.style.color = "transparent";
                     ele.style.border = "0px solid rgb(0,0,0,0.2)";
@@ -268,11 +254,11 @@
                 }else if (ele.innerHTML == "16" || ele.innerHTML == 16){
                    ele.style.backgroundColor = "rgb(255, 153, 51)";
                     ele.style.color = "white";  
-                    ele.style.fontSize = "22px";
+                    ele.style.fontSize = "24px";
                 }else if (ele.innerHTML == "32" || ele.innerHTML == 32){
                    ele.style.backgroundColor = "rgb(255, 153, 204)";
                     ele.style.color = "black";  
-                    ele.style.fontSize = "22px";
+                    ele.style.fontSize = "24px";
                 }else if (ele.innerHTML == "64" || ele.innerHTML == 64){
                    ele.style.backgroundColor = "darkblue";
                     ele.style.color = "white";  
@@ -313,16 +299,15 @@
             btn.style.display = "none";
         }
         
-         var list = ["2"];
+         var list = ["2048"];
         
         function generate(){
-            check1();
             var block = document.querySelectorAll(".block");
             var block_l = document.querySelectorAll(".block").length;
             var choices = [];
             for(var i=0;i<block_l;i++){
                 var ele = block[i];
-                if (ele.innerHTML == "0" || ele.innerHTML == 0){
+                if (ele.innerHTML == "1" || ele.innerHTML == 1){
                     choices.push(ele);
                 }
             } 
@@ -341,14 +326,127 @@
         function down1(){
             if (click_c){
                 var t = 0;
+                var g_l = [];
                 click_c = false;
-                
-                var pu = [];
-                
-             var inp = setInterval(function(){
+                var inter = setInterval(function(){
+                              
+                    
+                    if (t < 4){
+                        var g = sample_down1(0);
+                        g_l.push(g);
+                    }else if (t == 4){
+                        var g = sample_down1(1);
+                        g_l.push(g);
+                         var g = sample_down1(0);
+                         g_l.push(g);
+                    }else if (t > 4){
+                        click_c = true;
+                        if (g_l.includes(1)) {
+                            generate();
+                            clearInterval(inter);
+                        }else{
+                            clearInterval(inter);
+                        }
+                    }
+                    t += 1;
+                 },70);
+            }
+        }
+        
+        function up1(){
+            if (click_c){
+                var t = 0;
+                var g_l = [];
+                click_c = false;
+                var inter = setInterval(function(){
+                              
+                    
+                    if (t < 4){
+                        var g = sample_up1(0);
+                        g_l.push(g);
+                    }else if (t == 4){
+                        var g = sample_up1(1);
+                        g_l.push(g);
+                        var g = sample_up1(0);
+                        g_l.push(g);
+                    }else if (t > 4){
+                        click_c = true;
+                        if (g_l.includes(1)) {
+                            generate();
+                            clearInterval(inter);
+                        }else{
+                            clearInterval(inter);
+                        }
+                    }
+                    t += 1;
+                 },70);
+            }
+        }
+        
+        function left1(){
+            if (click_c){
+                var t = 0;
+                var g_l = [];
+                click_c = false;
+                var inter = setInterval(function(){
+                              
+                    
+                    if (t < 4){
+                        var g = sample_left1(0);
+                        g_l.push(g);
+                    }else if (t == 4){
+                        var g = sample_left1(1);
+                        g_l.push(g);
+                        var g = sample_left1(0);
+                        g_l.push(g);
+                    }else if (t > 4){
+                        click_c = true;
+                        if (g_l.includes(1)) {
+                            generate();
+                            clearInterval(inter);
+                        }else{
+                            clearInterval(inter);
+                        }
+                    }
+                    t += 1;
+                 },70);
+            }
+        }
+        
+        function right1(){
+            if (click_c){
+                var t = 0;
+                var g_l = [];
+                click_c = false;
+                var inter = setInterval(function(){
+                              
+                    
+                    if (t < 4){
+                        var g = sample_right1(0);
+                        g_l.push(g);
+                    }else if (t == 4){
+                        var g = sample_right1(1);
+                        g_l.push(g);
+                        var g = sample_right1(0);
+                        g_l.push(g);
+                    }else if (t > 4){
+                        click_c = true;
+                        if (g_l.includes(1)) {
+                            generate();
+                            clearInterval(inter);
+                        }else{
+                            clearInterval(inter);
+                        }
+                    }
+                    t += 1;
+                 },70);
+            }
+        }
+        
+        function sample_down1(a){
             
-                 
-                 
+            var mu = 0;
+            
             for(var i = 1;i<5;i+=1){
                 for(var j = 30;j>0;j-=10){
                     var bno = j+i;
@@ -356,59 +454,48 @@
                     var bno1 = j+10+i;
                     var ele2 = document.querySelector(".block"+bno1);
                     if (ele1 != null && ele2 != null){
-                        if (ele1.innerHTML != "0" || ele1.innerHTML != 0){
-            if (ele2.innerHTML == "0" || ele2.innerHTML == 0){
+                        if (ele1.innerHTML != "1" || ele1.innerHTML != 1){
+                            
+                          if (a == 0){
+                              
+                if (ele2.innerHTML == "1" || ele2.innerHTML == 1){
                 ele1.style.opacity = "0";
                 ele2.style.opacity = "1";
                         ele2.innerHTML = ele1.innerHTML;
-                        ele1.innerHTML = "0";
-                     pu.push(1);
-                
-                       }else if (ele2.innerHTML == ele1.innerHTML){
+                        ele1.innerHTML = "1";
+                     mu += 1; 
+                       }
+                              
+                          }else{
+                              
+            if (ele2.innerHTML == ele1.innerHTML && ele1.innerHTML != "1" && ele1.innerHTML != 1){
                            ele1.style.opacity = "0";
                            ele2.style.opacity = "1";
-                          var p1 = 2*eval(ele2.innerHTML);
+                          var p1 = eval(ele2.innerHTML) / 2;
                            ele2.innerHTML = String(p1);
-                           ele1.innerHTML = "0";
-                     pu.push[1];
-                           
-                           score += 1;
-                           score_ele.innerHTML = score;
-                 }  
-                   
+                           ele1.innerHTML = "1";
+                     mu += 1; 
+                score += 1;
+                score_ele.innerHTML = score;
+                 }                   
+                              
+                          }   
+                            
                }
              }
             }
           }
-           draw();          
-                 
-                    if (t > 4){
-                        if (pu.includes(1)){
-                            generate();
-                            click_c  = true;
-                            clearInterval(inp);
-                        }else{
-                            click_c = true;
-                            clearInterval(inp);
-                        }
-                    }
-                    
-                    t += 1;
-                    
-                },100);
-                
+           draw();
+            if (mu > 0){
+                return 1;
+            }else{
+                return -1;
             }
         }
         
-        function up1(){
-            if (click_c){
-                var t = 0;
-                click_c = false;
-                
-                
-                 var pu = [];
-                
-             var inp = setInterval(function(){
+        function sample_up1(a){
+    
+                var mu = 0;
             
             for(var i = 1;i<5;i+=1){
                 for(var j = 20;j<50;j+=10){
@@ -417,61 +504,51 @@
                     var bno1 = j-10+i;
                     var ele2 = document.querySelector(".block"+bno1);
                     if (ele1 != null && ele2 != null){
-                        if (ele1.innerHTML != "0" || ele1.innerHTML != 0){
-            if (ele2.innerHTML == "0" || ele2.innerHTML == 0){
+                        if (ele1.innerHTML != "1" || ele1.innerHTML != 1){
+           
+                            if (a == 0){
+                              
+                if (ele2.innerHTML == "1" || ele2.innerHTML == 1){
                 ele1.style.opacity = "0";
                 ele2.style.opacity = "1";
                         ele2.innerHTML = ele1.innerHTML;
-                        ele1.innerHTML = "0";
-                     pu.push(1);
-                
-                       }else if (ele2.innerHTML == ele1.innerHTML){
+                        ele1.innerHTML = "1";
+                     mu += 1; 
+                       }
+                              
+                          }else{
+                              
+            if (ele2.innerHTML == ele1.innerHTML && ele1.innerHTML != "1" && ele1.innerHTML != 1){
                            ele1.style.opacity = "0";
                            ele2.style.opacity = "1";
-                          var p1 = 2*eval(ele2.innerHTML);
+                          var p1 = eval(ele2.innerHTML) / 2;
                            ele2.innerHTML = String(p1);
-                           ele1.innerHTML = "0";
-                     pu.push[1];
-                           
-                           score += 1;
-                           score_ele.innerHTML = score;
-                 }  
-                   
+                           ele1.innerHTML = "1";
+                     mu += 1; 
+                score += 1;
+                score_ele.innerHTML = score;
+                 }                   
+                              
+                          }
+                            
                }
              }
             }
           }
-           draw();          
-                 
-                    if (t > 4){
-                        if (pu.includes(1)){
-                            generate();
-                            click_c  = true;
-                            clearInterval(inp);
-                        }else{
-                            click_c = true;
-                            clearInterval(inp);
-                        }
-                    }
-                    
-                    t += 1;
-                    
-                },100);
-                
+            draw();
+            if (mu > 0){
+                return 1;
+            }else{
+                return -1;
             }
+   
         }
         
-        function left1(){
-            if (click_c){
-                var t = 0;
-                click_c = false;
-                
-                
-                var pu = [];
-                
-             var inp = setInterval(function(){
-                 
-                 
+        
+        function sample_left1(a){
+    
+                var mu = 0;
+            
             for(var i = 10;i<50;i+=10){
                 for(var j = 2;j<5;j++){
                     var bno = j+i;
@@ -479,59 +556,49 @@
                     var bno1 = j-1+i;
                     var ele2 = document.querySelector(".block"+bno1);
                     if (ele1 != null && ele2 != null){
-                        if (ele1.innerHTML != "0" || ele1.innerHTML != 0){
-            if (ele2.innerHTML == "0" || ele2.innerHTML == 0){
+                        if (ele1.innerHTML != "1" || ele1.innerHTML != 1){
+                            
+                            if (a == 0){
+                              
+                if (ele2.innerHTML == "1" || ele2.innerHTML == 1){
                 ele1.style.opacity = "0";
                 ele2.style.opacity = "1";
                         ele2.innerHTML = ele1.innerHTML;
-                        ele1.innerHTML = "0";
-                     pu.push(1);
-                
-                       }else if (ele2.innerHTML == ele1.innerHTML){
+                        ele1.innerHTML = "1";
+                     mu += 1; 
+                       }
+                              
+                          }else{
+                              
+            if (ele2.innerHTML == ele1.innerHTML && ele1.innerHTML != "1" && ele1.innerHTML != 1){
                            ele1.style.opacity = "0";
                            ele2.style.opacity = "1";
-                          var p1 = 2*eval(ele2.innerHTML);
+                          var p1 = eval(ele2.innerHTML) / 2;
                            ele2.innerHTML = String(p1);
-                           ele1.innerHTML = "0";
-                     pu.push[1];
-                           
-                           score += 1;
-                           score_ele.innerHTML = score;
-                 }  
-                   
+                           ele1.innerHTML = "1";
+                     mu += 1; 
+                score += 1;
+                score_ele.innerHTML = score;
+                 }                   
+                              
+                          }
+                            
                }
              }
             }
           }
-           draw();          
-                 
-                    if (t > 4){
-                        if (pu.includes(1)){
-                            generate();
-                            click_c  = true;
-                            clearInterval(inp);
-                        }else{
-                            click_c = true;
-                            clearInterval(inp);
-                        }
-                    }
-                    
-                    t += 1;
-                    
-                },100);
-                
+            draw();
+            if (mu > 0){
+                return 1;
+            }else{
+                return -1;
             }
+   
         }
         
-        function right1(){
-            if (click_c){
-                var t = 0;
-                click_c = false;
-                
-                
-                var pu = [];
-                
-             var inp = setInterval(function(){
+        function sample_right1(a){
+    
+                var mu = 0;
             
             for(var i = 10;i<50;i+=10){
                 for(var j = 3;j>0;j-=1){
@@ -540,49 +607,45 @@
                     var bno1 = j+1+i;
                     var ele2 = document.querySelector(".block"+bno1);
                     if (ele1 != null && ele2 != null){
-                        if (ele1.innerHTML != "0" || ele1.innerHTML != 0){
-            if (ele2.innerHTML == "0" || ele2.innerHTML == 0){
+                        if (ele1.innerHTML != "1" || ele1.innerHTML != 1){
+                            
+                            if (a == 0){
+                              
+                if (ele2.innerHTML == "1" || ele2.innerHTML == 1){
                 ele1.style.opacity = "0";
                 ele2.style.opacity = "1";
                         ele2.innerHTML = ele1.innerHTML;
-                        ele1.innerHTML = "0";
-                     pu.push(1);
-                
-                       }else if (ele2.innerHTML == ele1.innerHTML){
+                        ele1.innerHTML = "1";
+                     mu += 1; 
+                       }
+                              
+                          }else{
+                              
+            if (ele2.innerHTML == ele1.innerHTML && ele1.innerHTML != "1" && ele1.innerHTML != 1){
                            ele1.style.opacity = "0";
                            ele2.style.opacity = "1";
-                          var p1 = 2*eval(ele2.innerHTML);
+                          var p1 = eval(ele2.innerHTML) / 2;
                            ele2.innerHTML = String(p1);
-                           ele1.innerHTML = "0";
-                     pu.push[1];
-                           
-                           score += 1;
-                           score_ele.innerHTML = score;
-                 }  
-                   
+                           ele1.innerHTML = "1";
+                     mu += 1; 
+                score += 1;
+                score_ele.innerHTML = score;
+                 }                   
+                              
+                          }
                }
              }
             }
           }
-           draw();          
-                 
-                     if (t > 4){
-                        if (pu.includes(1)){
-                            generate();
-                            clearInterval(inp);
-                            click_c  = true;
-                        }else{
-                            clearInterval(inp);
-                            click_c = true;
-                        }
-                    }
-                    
-                    t += 1;
-                    
-                },100);
-                
+           draw(); 
+            if (mu > 0){
+                return 1;
+            }else{
+                return -1;
             }
+   
         }
+        
         
         draw();
         
