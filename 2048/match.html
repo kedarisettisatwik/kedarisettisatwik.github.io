@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    
+    <title>normal . 2048</title>
+<!--    <script src="https://code.jquery.com/jquery-3.1.1.js"></script> -->
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            list-style:none;
+        }
+
+        .flex {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        ::-webkit-scrollbar {
+            width: 0px;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            background-color: lavender;
+           -webkit-animation:del 1s linear forwards;
+        }
+        
+        @keyframes del {
+            0%{opacity:0}
+            100%{opacity:1}
+        }
+        
+        #page1 {
+            position: relative;
+            width:400px;
+            box-shadow: 0 0 20px rgb(0, 0, 0, 0.2);
+            background-color: white;
+            overflow: hidden;
+            border-radius:10px;
+        }
+        .nav{
+            width:100%;
+            padding:10px;
+            flex-direction:row;
+            justify-content: space-between;
+        }
+        .nav h2,.nav button{
+            margin:0 7px;
+            letter-spacing:2px;
+            width:100px;
+        }
+        .nav h2{
+            font-size:18px;
+        }
+        .nav button{
+            font-weight:bold;
+            font-size:17px;
+            color:blue;
+            cursor:pointer;
+            background:none;
+            outline:none;
+            border:none;
+        }
+        p{
+            width:100%;
+            padding-left:20px;
+            margin:10px;
+        }
+        .table{
+            width:350px;
+            height:350px;
+            margin:10px;
+            transition:0.3s;
+        }
+        .table ul{
+            width:100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+        .table ul li{
+            width:85px;
+            height:85px;
+            margin:1.25px;
+            background-color:lavender;
+            border-radius:5px;
+            transition:0.6s;
+            position:relative;
+            cursor:pointer;
+            overflow: hidden;
+        }
+        .table ul li::after{
+            content: '';
+            position: absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background-color:gainsboro;
+            transition:0.6s;
+            transform-origin: bottom;
+            border-radius:5px;
+        }
+        .table ul li.active::after{
+            content: '';
+            transform:translateY(100%);
+        }
+        .table ul li.comp{
+            transform:scale(0.8);
+            opacity:0.5;
+        }
+        .table ul li.comp::after{
+            content: '';
+            transform:translateY(100%);
+        }
+        .btn{
+            width:100%;
+            padding:10px;
+            margin:10px;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+        .btn i{
+            width:40px;
+            height:40px;
+            cursor:pointer;
+            font-size:20px;
+            background-color:lavenderblush;
+            box-shadow:0 0 5px rgb(0,0,0,0.2);
+        }
+        
+        @media (max-width:400px){
+            #page1{
+                width:100vw;
+            }
+        }
+        @media (max-width:370px){
+            .table{
+                width:300px;
+                height:300px;
+            }
+            .table ul li{
+            width:72.5px;
+            height:72.5px;
+            margin:1.25px;
+            }
+        }
+        @media (max-width:320px){
+            .table{
+                width:250px;
+                height:250px;
+            }
+            .table ul li{
+            width:60px;
+            height:60px;
+            margin:1.25px;
+            }
+        }
+        
+    </style>
+
+</head>
+
+<body class="flex">
+
+    <section id="page1" class="flex">
+
+       <nav class="nav flex"><h2>2048</h2></nav>
+       <p style="font-size:16px;"><label>score :</label> <span id="score" style="margin-left:10px">0</span></p> 
+       
+       <div class="table">
+           <ul>
+               <li class="block11 flex block" onclick="toggle1(0)">0</li>
+               <li class="block12 flex block" onclick="toggle1(1)">0</li>
+               <li class="block13 flex block" onclick="toggle1(2)">0</li>
+               <li class="block14 flex block" onclick="toggle1(3)">0</li>
+           </ul>
+           <ul>
+               <li class="block21 flex block" onclick="toggle1(4)">0</li>
+               <li class="block22 flex block" onclick="toggle1(5)">0</li>
+               <li class="block23 flex block" onclick="toggle1(6)">0</li>
+               <li class="block24 flex block" onclick="toggle1(7)">0</li>
+           </ul>
+           <ul>
+               <li class="block31 flex block" onclick="toggle1(8)">0</li>
+               <li class="block32 flex block" onclick="toggle1(9)">0</li>
+               <li class="block33 flex block" onclick="toggle1(10)">0</li>
+               <li class="block34 flex block" onclick="toggle1(11)">0</li>
+           </ul>
+           <ul>
+               <li class="block41 flex block" onclick="toggle1(12)">0</li>
+               <li class="block42 flex block" onclick="toggle1(13)">0</li>
+               <li class="block43 flex block" onclick="toggle1(14)">0</li>
+               <li class="block44 flex block" onclick="toggle1(15)">0</li>
+           </ul>
+       </div>
+       
+    </section>
+
+ 
+   
+    <script>
+      
+        var click_c = true;
+        var score = 0;
+        var score_ele = document.getElementById("score");
+        var block = document.querySelectorAll(".block");
+        
+        var numbers = [];
+        
+        function rand1(a){
+            var rand11 = Math.floor(Math.random()*16);
+            var rand22 = Math.floor(Math.random()*16);
+            if (rand11 == rand22 || numbers.includes(rand11) || numbers.includes(rand22)){
+                rand1(a);
+            }else{
+                numbers.push(rand11);
+                numbers.push(rand22);
+                block[rand11].innerHTML = a
+                block[rand22].innerHTML = a;
+                draw();
+            }
+        }
+        
+        var list1 = ["2","4","8","16","32","64","128","256","512","1024","2048"];
+        var list2 = [];
+        
+        function list_c(){
+            
+            var ra1;
+            
+            while (1 == 1){
+                ra1 = Math.floor(Math.random()*(list1.length));
+                if (list2.length < 8){
+                    if (list2.includes(list1[ra1])){
+                        
+                    }else{
+                        list2.push(list1[ra1]);
+                    }
+                }else{
+                    break;
+                }
+            }
+                    generate1();
+        }
+        
+        
+        function generate1(){
+            
+            for (var i = 0;i<8;i++){
+                var rand_li = rand1(list2[i]);
+            }
+        }
+        
+        list_c();
+        
+        function draw(){
+            var block_l = document.querySelectorAll(".block").length;
+            var choices = [];
+            for(var i=0;i<block_l;i++){
+                var ele = block[i];
+                if (ele.innerHTML == "0" || ele.innerHTML == 0){
+                    ele.style.backgroundColor = "rgb(0,0,0,0.1)";
+                    ele.style.color = "transparent";
+                    ele.style.border = "0px solid rgb(0,0,0,0.2)";
+                }else if (ele.innerHTML == "2" || ele.innerHTML == 2){
+                   ele.style.backgroundColor = "skyblue";
+                    ele.style.color = "black"; 
+                    ele.style.fontSize = "26px";
+                }else if (ele.innerHTML == "4" || ele.innerHTML == 4){
+                   ele.style.backgroundColor = "rgb(255, 255, 204)";
+                    ele.style.color = "black"; 
+                    ele.style.fontSize = "26px"; 
+                }else if (ele.innerHTML == "8" || ele.innerHTML == 8){
+                   ele.style.backgroundColor = "green";
+                    ele.style.color = "white";  
+                    ele.style.fontSize = "26px";
+                }else if (ele.innerHTML == "16" || ele.innerHTML == 16){
+                   ele.style.backgroundColor = "rgb(255, 153, 51)";
+                    ele.style.color = "white";  
+                    ele.style.fontSize = "24px";
+                }else if (ele.innerHTML == "32" || ele.innerHTML == 32){
+                   ele.style.backgroundColor = "rgb(255, 153, 204)";
+                    ele.style.color = "black";  
+                    ele.style.fontSize = "24px";
+                }else if (ele.innerHTML == "64" || ele.innerHTML == 64){
+                   ele.style.backgroundColor = "darkblue";
+                    ele.style.color = "white";  
+                    ele.style.fontSize = "22px";
+                }else if (ele.innerHTML == "128" || ele.innerHTML == 128){
+                   ele.style.backgroundColor = "rgb(255, 102, 102)";
+                    ele.style.color = "white";  
+                    ele.style.fontSize = "20px";
+                }else if (ele.innerHTML == "256" || ele.innerHTML == 256){
+                    ele.style.backgroundColor = "rgb(153, 255, 102)";
+                    ele.style.color = "black";
+                    ele.style.fontSize = "20px"; 
+                }else if (ele.innerHTML == "512" || ele.innerHTML == 512){
+                    ele.style.backgroundColor = "rgb(255, 255, 102)";
+                    ele.style.color = "black";
+                    ele.style.fontSize = "20px";
+                }else if (ele.innerHTML == "1024" || ele.innerHTML == 1024){
+                    ele.style.backgroundColor = "rgb(102, 0, 255)";
+                    ele.style.color = "white";
+                    ele.style.fontSize = "17px";
+                }else if (ele.innerHTML == "2048" || ele.innerHTML == 2048){
+                    ele.style.backgroundColor = "rgb(255, 255, 204)";
+                    ele.style.color = "black";
+                    ele.style.fontSize = "17px";
+                }else{
+                    ele.style.backgroundColor = "lavender";
+                    ele.style.color = "black";
+                    ele.style.fontSize = "15px";
+                }
+                
+            }
+        }
+        
+        draw();
+        
+        function toggle1(a){
+            
+            var ee = block[a];
+            
+           if (click_c){
+               if (ee.classList.contains("comp")){
+                   
+               }else{
+                   
+                   click_c = false;
+                   
+                   var which1 = a;
+                   var count = 0;
+                   for (var i = 0;i<block.length;i++){
+                       if (block[i].classList.contains("active")){
+                           count += 1;
+                           which1 = i;
+                       }
+                   }
+                   
+                   if (count == 0){
+                       block[a].classList.add("active");
+                       click_c = true;
+                   }else{
+                      if (which1 == a){
+                         block[a].classList.remove("active"); 
+                          click_c = true;
+                      }else{
+                           var met = block[a].innerHTML;
+                           var ott = block[which1].innerHTML;
+                          
+                          block[a].classList.add("active");
+                           block[which1].classList.add("active");
+                          
+                          setTimeout(function(){
+                              
+                              if (met == ott){
+                           block[a].classList.remove("active");
+                           block[which1].classList.remove("active");
+                           block[a].classList.add("comp");
+                           block[which1].classList.add("comp");
+                               click_c = true;
+                                  score += 1;
+                                  score_ele.innerHTML = score;
+                           }else{
+                           block[a].classList.remove("active");
+                           block[which1].classList.remove("active");
+                               click_c = true;
+                           }
+                              
+                          },900);
+                      }
+                   }
+               }
+           }
+        }
+        
+    </script>
+
+</body>
+
+</html>
