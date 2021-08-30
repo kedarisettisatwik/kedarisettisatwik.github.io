@@ -38,13 +38,13 @@
         
         body {
             width: 100vw;
-            height:100vh;
-            overflow: hidden;
+            min-height:100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
         }
         #main{
             width:100vw;
-            height:100vh;
-            overflow: hidden;
+            position:relative;
         }
         #content{
             position:relative;
@@ -53,9 +53,7 @@
             overflow-x: hidden;
             transition:0.5s;
             width:100vw;
-            height:100vh;
             overflow-x: hidden;
-            overflow-y: auto;
         }
         #menu{
             left:0vw;
