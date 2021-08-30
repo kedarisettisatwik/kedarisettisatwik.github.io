@@ -41,6 +41,12 @@
             min-height:100vh;
             overflow-x: hidden;
             overflow-y: auto;
+/*            background-image: url(bg.png); */
+            background-color:#6699ff;
+            background-position: bottom;
+            background-size: cover;
+            background-repeat:no-repeat;
+            background-attachment:fixed;
         }
         #main{
             width:100vw;
@@ -55,111 +61,20 @@
             width:100vw;
             overflow-x: hidden;
         }
-        #menu{
-            left:0vw;
-            top:0;
-            position:absolute;
-            transform:translateX(-100vw);
-            background-color:white;
-            flex-direction: column;
-            justify-content: flex-start;
-            padding:20px 10px;
-            transition:0.5s;
-            width:100vw;
-            height:100vh;
-            overflow-x: hidden;
-            overflow-y: auto;
-        }
-        #menu img{
-            max-width:100%;
-            object-fit: scale-down;
-            padding:10px;
-            border:2px solid rgb(0,0,0,0.3);
-            border-radius:8px;
-        }
-        #menu p{
-            margin:10px 0px;
-            width:100%;
-            padding-left:10px;
-            color:rebeccapurple;
-            letter-spacing:2px;
-            font-size:18px;
-            font-weight:bold;
-        }
-        #menu .box{
-            width:100%;
-            margin:8px 0;
-            box-shadow:0 0 4px rgb(0,0,0,0.15);
-            border-radius:5px;
-        }
-        #menu .box .box1{
-            width:100%;
-            padding:10px;
-            background-color:rgb(0,0,0,0.03);
-            flex-direction: row;
-            display: flex;
-            justify-content:flex-start;
-            align-items: center;
-        }
-        #menu .box .box1 i{
-            font-size:20px;
-            margin:0 10px;
-        }
-        #menu .box .box1 .fa-chevron-down{
-            transition:0.3s;
-            font-size:15px;
-        }
-        #menu .box.active .box1 .fa-chevron-down{
-            transform:rotateZ(180deg);
-        }
-        #menu .box .box2{
-            width:100%;
-            margin:10px 0;
-            justify-content:flex-start;
-            align-items: center;
-            flex-direction: column;
-            display:none;
-        }
-        #menu .box.active .box2{
-            display:flex;
-        }
-        #menu .box .box2 h2{
-            width:100%;
-            margin-top:20px;
-            padding:20px 5px 5px 20px;
-            font-size:17px;
-            color:rebeccapurple;
-            letter-spacing:1px;
-            border-top:2px solid rgb(0,0,0,0.3);
-        }
-        #menu .box .box2 h2:nth-child(1){
-            margin-top:10px;
-            padding-top:5px;
-            border:none;
-        }
-        #menu .box .box2 label{
-            width:100%;
-            padding-left:40px;
-            margin:5px;
-            cursor:pointer;
-        }
-        #menu.active{
-            transform:translateX(0vw);
-        }
-        #content.active{
-            opacity:0;
-        }
         .navigation{
-            padding:10px;
-            width:100%;
+            width:calc(100% - 20px);
             flex-direction: row;
             flex-wrap: wrap;
-            justify-content:space-evenly;
+            justify-content:space-between;
             position:relative;
-            background-color: white;
+            background-color:rgb(255,255,255,0.8);
+            padding:10px;
+            margin-left:10px;
+            margin-top:10px;
+            border-radius:10px;
         }
-        .navigation .menu,.navigation input,.navigation .name{
-            margin:10px;
+        .navigation .menu,.navigation .name{
+            margin:0 10px;
         }
         .navigation .menu{
             color:rebeccapurple;
@@ -179,41 +94,24 @@
             letter-spacing:1px;
             font-weight:200;
         }
-        .navigation input{
-            width:200px;
-            padding:10px 15px;
-            border:2px solid rebeccapurple;
-            border-radius:5px;
-            font-size:14px;
-            letter-spacing:1px;
-            outline:none;
-            background:none;
-            transition:0.3s;
-        }
-        .navigation input::placeholder{
-            color:black;
-        }
-        .navigation input:focus{
-            border:3px solid rebeccapurple;
-        }
         .navigation .big{
             flex-direction: row;
             display:none;
         }
-        .navigation .big span{
-            margin:10px 20px;
+        .navigation .big button{
+            margin:0 10px;
+            padding:8px 15px;
             font-size:19px;
-            opacity:0.5;
             cursor:pointer;
             color:black;
             transition:0.5s;
             position:relative;
+            border-radius:8px;
+            background-color:transparent;
+            outline:none;
+            border:none;
         }
-        .navigation .big span:hover{
-            opacity:1;
-            color:black;
-        }
-        .navigation .big span::before{
+        .navigation .big button::before{
            content:'';
             position:absolute;
             width:50%;
@@ -226,19 +124,19 @@
             transform:translateX(-50%) scaleX(0);
             border-radius:4px;
         }
-        .navigation .big span:hover::before,.navigation .big span.active::before{
+        .navigation .big button:hover::before,.navigation .big button.active::before{
             transform:translateX(-50%) scaleX(1);
             opacity:1;
         }
-        .navigation .big span.active{
-            opacity:1;
-            color:rebeccapurple;
+        .navigation .big button.active{
+            background-color:rebeccapurple;
+            color:white;
         }
-        .navigation .big span i{
+        .navigation .big button i{
             margin:0 7px;
             cursor:pointer;
         }
-        .navigation .big span label{
+        .navigation .big button label{
             font-size:16px;
             cursor:pointer;
         }
@@ -306,7 +204,7 @@
             text-align:center;
         }
         
-        @media (min-width:570px){
+        @media (min-width:710px){
             .navigation .big{
                 display: flex;
             }
@@ -328,212 +226,16 @@
            <nav class="navigation flex">
                 <i class="fas fa-stream menu" onclick="toggle1()"></i>
                 <label class="name">IRIS</label>
-                <input type="search" placeholder="search for" id="search_f"> 
+                
                 <div class="big flex">
-                    <span onclick="click1(0,0)" class="cat"><i class="fas fa-university"></i><label>Institute</label></span>
-                    <span onclick="click1(1,0)" class="cat"><i class="fas fa-graduation-cap"></i><label>Academics</label></span>
-                    <span onclick="click1(2,0)" class="cat"><i class="far fa-building"></i><label>Campus</label> </span>
-                    <span onclick="click1(3,0)" class="cat"><i class="far fa-user" style="font-size:22px"></i></span>
+                    <button onclick="click1(0,0)" class="cat"><i class="fas fa-university"></i><label>Institute</label></button>
+                    <button onclick="click1(1,0)" class="cat"><i class="fas fa-graduation-cap"></i><label>Academics</label></button>
+                    <button onclick="click1(2,0)" class="cat"><i class="far fa-building"></i><label>Campus</label> </button>
+                    <button onclick="click1(3,0)" class="cat"><i class="far fa-user" style="font-size:22px"></i></button>
                 </div>
-        </nav>
-        
-        <section class="analysis flex">
-           
-            <div class="flex">
-                <i class="fab fa-bitcoin" style="color:hotpink"></i>
-                <p>
-                    <span>45</span>
-                    <label>Credits</label>
-                </p>
-            </div>
-            
-            <div class="flex">
-                <i class="far fa-chart-bar" style="color:darkcyan"></i>
-                <p>
-                    <span>8.5</span>
-                    <label>CGPA</label>
-                </p>
-            </div>
-            
-            <div class="flex">
-                <i class="fas fa-sort-numeric-down" style="color:red"></i>
-                <p>
-                    <span>3rd</span>
-                    <label>semester</label>
-                </p>
-            </div>
-        </section>
-        
-        <section id="courses" class="flex">
-            
-        <div class="course">
-            <div class="flex">
-                <span>8 : 15 </span>
-                <i class="fas fa-user-friends"></i>
-            </div>
-            <h3>
-                MA 111
-            </h3>
-            <p>
-                Engineering Mathmetics
-            </p>
-        </div>
-        
-        <div class="course">
-            <div class="flex">
-                <span>11 : 15 </span>
-                <i class="fas fa-user-friends"></i>
-            </div>
-            <h3>
-                PH 110
-            </h3>
-            <p>
-                Physics
-            </p>
-        </div>
-        
-        <div class="course">
-            <div class="flex">
-                <span>1 : 45 </span>
-                <i class="fas fa-user-friends"></i>
-            </div>
-            <h3>
-                ME 111
-            </h3>
-            <p>
-                Engineering Graphics
-            </p>
-        </div>
-        
-        <div class="course">
-            <div class="flex">
-                <span>---</span>
-                <i class="fas fa-user-friends"></i>
-            </div>
-            <h3>
-                ME 110
-            </h3>
-            <p>
-                Mechanical
-            </p>
-        </div>
-           
-        <div class="course">
-            <div class="flex">
-                <span>10 : 30 </span>
-                <i class="fas fa-user-friends"></i>
-            </div>
-            <h3>
-                CS 111
-            </h3>
-            <p>
-                Computer Programming
-            </p>
-        </div>
-           
-        <div class="course">
-            <div class="flex">
-                <span>2 : 15</span>
-                <i class="fas fa-user-friends"></i>
-            </div>
-            <h3>
-                EE 143
-            </h3>
-            <p>
-                Electrical
-            </p>
-        </div>
-        
-        <div class="course">
-            <div class="flex">
-                <span>---</span>
-                <i class="fas fa-user-friends"></i>
-            </div>
-            <h3>
-                PH 111
-            </h3>
-            <p>
-                Physics Lab
-            </p>
-        </div>
-        
-        </section>
+          </nav>
         
        </section>
-        
-        
-        <section id="menu" class="flex">
-        
-        <button style="width:90%;background:none;outline:none;border:2px dashed rgb(0,0,0,0.3);padding:10px;font-size:17px;margin:5px 0 10px 0" onclick="toggle1()">Back</button>
-        
-        <img src="me.png" width="200px">
-        
-        <p>kedarisetti satwik</p>
-        
-        <div class="box">
-            <div class="box1">
-                <i class="far fa-user"></i>
-                <label>My account</label>
-            </div>
-        </div>
-        
-        <div class="box">
-            <div class="box1" onclick="exp1(1)">
-                <i class="fas fa-university"></i>
-                <label>Institute</label>
-                <i class="fas fa-chevron-down"></i>  
-            </div>
-            <div class="box2">
-                <h2>Main building</h2>
-                <label>No Dues</label>
-                <label>Branch change</label>
-                <h2>Administration</h2>
-                <label>Fees payment</label>
-                <h2>Others</h2>
-                <label>Donation</label>
-                <label>Tell IRIS</label>
-                <label>Announcments</label>
-            </div>
-        </div>
-        
-        <div class="box">
-            <div class="box1" onclick="exp1(2)">
-                <i class="fas fa-graduation-cap"></i>
-                <label>Academics</label>  
-                <i class="fas fa-chevron-down"></i>
-            </div> 
-            <div class="box2">
-                <h2>Courses</h2>
-                <label>Course Registration</label>
-                <label>View Feeback Forms</label>
-                <label>My Courses and Exam Grades</label>
-                <h2>Others</h2>
-                <label>My provisional Degree</label>
-                <label>My Grade card</label>
-                <label>My Attendence Card</label>
-                <label>Gyan</label>
-            </div>
-        </div>
-        
-        <div class="box">
-            <div class="box1" onclick="exp1(3)">
-                <i class="far fa-building"></i>
-                <label>Campus</label>  
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="box2">
-                <h2>Campus</h2>
-                <label>Groups</label>
-                <label>Infrastructure booking</label>
-                <label>Sports Module</label>
-                <label>Smrithi</label>
-                <h2>Resedential</h2>
-                <label>Hostel Dashboard</label>
-                <label>Hostel Complaints</label>
-            </div>
-        </div>
-        
-    </section>
         
     </section>
     
@@ -542,10 +244,7 @@
     <script>
         
         function toggle1(){
-            var content = document.getElementById("content");
-            var menu = document.getElementById("menu");
-            content.classList.toggle("active");
-            menu.classList.toggle("active");
+            
         }
         
         function click1(a,b){
