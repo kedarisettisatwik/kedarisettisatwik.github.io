@@ -38,29 +38,31 @@
         
         body {
             width: 100vw;
-            height:100vh;
+            min-height:100vh;
             overflow: hidden;
         }
-        #content,#menu{
-            position:absolute;
-            height:100vh;
-            top:0;
-            transition:0.5s;
-            overflow-x: hidden;
-            overflow-y:auto;
-            opacity:1;
+        #main{
+            width:100vw;
         }
         #content{
-            width:100vw;
+            position:relative;
             left:0;
+            top:0;
+            overflow-x: hidden;
+            transition:0.5s;
+            width:100vw;
         }
         #menu{
-            left:-100vw;
-            width:100vw;
+            left:0vw;
+            top:0;
+            position:absolute;
+            transform:translateX(-100vw);
             background-color:white;
             flex-direction: column;
             justify-content: flex-start;
             padding:20px 10px;
+            transition:0.5s;
+            width:100vw;
         }
         #menu img{
             max-width:100%;
@@ -81,7 +83,6 @@
         #menu .box{
             width:100%;
             margin:8px 0;
-            position:relative;
             box-shadow:0 0 4px rgb(0,0,0,0.15);
             border-radius:5px;
         }
@@ -136,8 +137,8 @@
             margin:5px;
             cursor:pointer;
         }
-        #menu.active,#content.active{
-            transform:translateX(100vw);
+        #menu.active{
+            transform:translateX(0vw);
         }
         #content.active{
             opacity:0;
@@ -275,9 +276,11 @@
 
 <body>
     
-    <section id="content">
+    <section id="main">
        
-        <nav class="navigation flex">
+       <section id="content">
+          
+           <nav class="navigation flex">
                 <i class="fas fa-stream menu" onclick="toggle1()"></i>
                 <label class="name">IRIS</label>
                 <input type="search" placeholder="search for" id="search_f"> 
@@ -316,10 +319,10 @@
             </div>
         </section>
         
+       </section>
         
-    </section>
-    
-    <section id="menu" class="flex">
+        
+        <section id="menu" class="flex">
         
         <button style="width:90%;background:none;outline:none;border:2px dashed rgb(0,0,0,0.3);padding:10px;font-size:17px;margin:5px 0 10px 0" onclick="toggle1()">Back</button>
         
@@ -391,6 +394,10 @@
         </div>
         
     </section>
+        
+    </section>
+    
+    
     
     <script>
         
