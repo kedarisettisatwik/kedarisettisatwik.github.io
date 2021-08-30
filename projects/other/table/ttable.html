@@ -103,17 +103,17 @@
             left:50%;
             transform:translate(-50%,-50%) rotateZ(180deg);
         }
-        #tables .table .img:nth-child(2){
+        #tables .table .img:nth-child(3){
             left:0px;
             top:50%;
             transform:translate(-50%,-50%) rotateZ(90deg);
         }
-        #tables .table .img:nth-child(3){
+        #tables .table .img:nth-child(4){
             top:50%;
             left:100%;
             transform:translate(-50%,-50%) rotateZ(-90deg);
         }
-        #tables .table .img:nth-child(4){
+        #tables .table .img:nth-child(2){
             top:100%;
             left:50%;
             transform:translate(-50%,-50%) rotateZ(0deg);
@@ -222,30 +222,13 @@
             var table = document.querySelector(".table");
             var img1 = document.querySelectorAll(".img");
             
-            if (val_count == 1){
-                table.style.transform = "rotateZ(0deg)";
-                img1[0].classList.add("active");
-                img1[1].classList.remove("active");
-                img1[2].classList.remove("active");
-                img1[3].classList.remove("active");
-            }else if (val_count == 2){
-                table.style.transform = "rotateZ(-90deg)";
-                img1[0].classList.add("active");
-                img1[1].classList.remove("active");
-                img1[2].classList.add("active");
-                img1[3].classList.remove("active");
-            }else if (val_count == 3){
-                table.style.transform = "rotateZ(-180deg)";
-                img1[0].classList.add("active");
-                img1[1].classList.add("active");
-                img1[2].classList.add("active");
-                img1[3].classList.remove("active");
-            }else{
-                table.style.transform = "rotateZ(-270deg)";
-                img1[0].classList.add("active");
-                img1[1].classList.add("active");
-                img1[2].classList.add("active");
-                img1[3].classList.add("active");
+            for (var i = 0;i<4;i++){
+                if (i < val_count){
+                    img1[i].classList.add("active");
+                }else{
+                    img1[i].classList.remove("active");
+                } 
+                table.style.transform = "rotateZ("+ eval( (val_count - 1) * -90 ) +"deg)"
             }
             
         }
