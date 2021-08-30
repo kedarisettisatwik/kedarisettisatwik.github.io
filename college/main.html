@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    
+    <title>Dash Board</title>
+    
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .flex {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        ::-webkit-scrollbar {
+            width: 0px;
+        }
+
+        html{
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            width: 100vw;
+            height:100vh;
+            overflow: hidden;
+        }
+        #content,#menu{
+            position:absolute;
+            height:100vh;
+            top:0;
+            transition:0.5s;
+            overflow-x: hidden;
+            overflow-y:auto;
+            opacity:1;
+        }
+        #content{
+            width:100vw;
+            left:0;
+        }
+        #menu{
+            left:-100vw;
+            width:100vw;
+            background-color:white;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding:20px 10px;
+        }
+        #menu img{
+            max-width:100%;
+            object-fit: scale-down;
+            padding:10px;
+            border:2px solid rgb(0,0,0,0.3);
+            border-radius:8px;
+        }
+        #menu p{
+            margin:10px 0px;
+            width:100%;
+            padding-left:10px;
+            color:rebeccapurple;
+            letter-spacing:2px;
+            font-size:18px;
+            font-weight:bold;
+        }
+        #menu .box{
+            width:100%;
+            margin:8px 0;
+            position:relative;
+            box-shadow:0 0 4px rgb(0,0,0,0.15);
+            border-radius:5px;
+        }
+        #menu .box .box1{
+            width:100%;
+            padding:10px;
+            background-color:rgb(0,0,0,0.03);
+            flex-direction: row;
+            display: flex;
+            justify-content:flex-start;
+            align-items: center;
+        }
+        #menu .box .box1 i{
+            font-size:20px;
+            margin:0 10px;
+        }
+        #menu .box .box1 .fa-chevron-down{
+            transition:0.3s;
+            font-size:15px;
+        }
+        #menu .box.active .box1 .fa-chevron-down{
+            transform:rotateZ(180deg);
+        }
+        #menu .box .box2{
+            width:100%;
+            margin:10px 0;
+            justify-content:flex-start;
+            align-items: center;
+            flex-direction: column;
+            display:none;
+        }
+        #menu .box.active .box2{
+            display:flex;
+        }
+        #menu .box .box2 h2{
+            width:100%;
+            margin-top:20px;
+            padding:20px 5px 5px 20px;
+            font-size:17px;
+            color:rebeccapurple;
+            letter-spacing:1px;
+            border-top:2px solid rgb(0,0,0,0.3);
+        }
+        #menu .box .box2 h2:nth-child(1){
+            margin-top:10px;
+            padding-top:5px;
+            border:none;
+        }
+        #menu .box .box2 label{
+            width:100%;
+            padding-left:40px;
+            margin:5px;
+            cursor:pointer;
+        }
+        #menu.active,#content.active{
+            transform:translateX(100vw);
+        }
+        #content.active{
+            opacity:0;
+        }
+        .navigation{
+            padding:10px;
+            width:100%;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content:space-evenly;
+            position:relative;
+        }
+        .navigation .menu,.navigation input,.navigation .name{
+            margin:10px;
+        }
+        .navigation .menu{
+            color:rebeccapurple;
+            display:block;
+        }
+        .navigation .menu,.navigation .name{
+            font-size:23px;
+            cursor:pointer;
+            margin-left:15px;
+        }
+        .navigation .name{
+            padding:8px 15px;
+            border-radius:5px;
+            box-shadow:0 0 5px rgb(0,0,0,0.4);
+            background-color:rebeccapurple;
+            color:white;
+            letter-spacing:1px;
+            font-weight:200;
+        }
+        .navigation input{
+            width:200px;
+            padding:10px 15px;
+            border:2px solid rebeccapurple;
+            border-radius:5px;
+            font-size:14px;
+            letter-spacing:1px;
+            outline:none;
+            background:none;
+            transition:0.3s;
+        }
+        .navigation input::placeholder{
+            color:black;
+        }
+        .navigation input:focus{
+            border:3px solid rebeccapurple;
+        }
+        .navigation .big{
+            flex-direction: row;
+            display:none;
+        }
+        .navigation .big span{
+            margin:10px 20px;
+            font-size:19px;
+            opacity:0.5;
+            cursor:pointer;
+            color:black;
+            transition:0.5s;
+            position:relative;
+        }
+        .navigation .big span:hover{
+            opacity:1;
+            color:black;
+        }
+        .navigation .big span::before{
+           content:'';
+            position:absolute;
+            width:50%;
+            height:4px;
+            left:50%;
+            bottom:-10px;
+            background-color:rebeccapurple;
+            transition:0.5s;
+            opacity:0;
+            transform:translateX(-50%) scaleX(0);
+            border-radius:4px;
+        }
+        .navigation .big span:hover::before,.navigation .big span.active::before{
+            transform:translateX(-50%) scaleX(1);
+            opacity:1;
+        }
+        .navigation .big span.active{
+            opacity:1;
+            color:rebeccapurple;
+        }
+        .navigation .big span i{
+            margin:0 7px;
+            cursor:pointer;
+        }
+        .navigation .big span label{
+            font-size:16px;
+            cursor:pointer;
+        }
+        .analysis{
+            margin-top:10px;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .analysis div{
+            min-width:250px;
+            padding:15px 10px;
+            border:2px solid rgb(0,0,0,0.3);
+            border-radius:5px;
+            flex-direction: row;
+            margin:5px;
+            justify-content: flex-start;
+        }
+        .analysis div i{
+            font-size:30px;
+            margin:0 10px;
+        }
+        .analysis div span{
+            font-size:28px;
+            font-weight:bold;
+            letter-spacing:2px;
+            margin:5px;
+        }
+        
+        @media (min-width:570px){
+            .navigation .big{
+                display: flex;
+            }
+            .navigation .menu{
+                display:none;
+            }
+        }
+        
+    </style>
+        
+</head>
+
+<body>
+    
+    <section id="content">
+       
+        <nav class="navigation flex">
+                <i class="fas fa-stream menu" onclick="toggle1()"></i>
+                <label class="name">IRIS</label>
+                <input type="search" placeholder="search for" id="search_f"> 
+                <div class="big flex">
+                    <span onclick="click1(0,0)" class="cat"><i class="fas fa-university"></i><label>Institute</label></span>
+                    <span onclick="click1(1,0)" class="cat"><i class="fas fa-graduation-cap"></i><label>Academics</label></span>
+                    <span onclick="click1(2,0)" class="cat"><i class="far fa-building"></i><label>Campus</label> </span>
+                    <span onclick="click1(3,0)" class="cat"><i class="far fa-user" style="font-size:22px"></i></span>
+                </div>
+        </nav>
+        
+        <section class="analysis flex">
+           
+            <div class="flex">
+                <i class="fab fa-bitcoin" style="color:hotpink"></i>
+                <p>
+                    <span>45</span>
+                    <label>Credits</label>
+                </p>
+            </div>
+            
+            <div class="flex">
+                <i class="far fa-chart-bar" style="color:darkcyan"></i>
+                <p>
+                    <span>8.5</span>
+                    <label>CGPA</label>
+                </p>
+            </div>
+            
+            <div class="flex">
+                <i class="fas fa-sort-numeric-down" style="color:red"></i>
+                <p>
+                    <span>3rd</span>
+                    <label>semester</label>
+                </p>
+            </div>
+        </section>
+        
+        
+    </section>
+    
+    <section id="menu" class="flex">
+        
+        <button style="width:90%;background:none;outline:none;border:2px dashed rgb(0,0,0,0.3);padding:10px;font-size:17px;margin:5px 0 10px 0" onclick="toggle1()">Back</button>
+        
+        <img src="me.png" width="200px">
+        
+        <p>kedarisetti satwik</p>
+        
+        <div class="box">
+            <div class="box1">
+                <i class="far fa-user"></i>
+                <label>My account</label>
+            </div>
+        </div>
+        
+        <div class="box">
+            <div class="box1" onclick="exp1(1)">
+                <i class="fas fa-university"></i>
+                <label>Institute</label>
+                <i class="fas fa-chevron-down"></i>  
+            </div>
+            <div class="box2">
+                <h2>Main building</h2>
+                <label>No Dues</label>
+                <label>Branch change</label>
+                <h2>Administration</h2>
+                <label>Fees payment</label>
+                <h2>Others</h2>
+                <label>Donation</label>
+                <label>Tell IRIS</label>
+                <label>Announcments</label>
+            </div>
+        </div>
+        
+        <div class="box">
+            <div class="box1" onclick="exp1(2)">
+                <i class="fas fa-graduation-cap"></i>
+                <label>Academics</label>  
+                <i class="fas fa-chevron-down"></i>
+            </div> 
+            <div class="box2">
+                <h2>Courses</h2>
+                <label>Course Registration</label>
+                <label>View Feeback Forms</label>
+                <label>My Courses and Exam Grades</label>
+                <h2>Others</h2>
+                <label>My provisional Degree</label>
+                <label>My Grade card</label>
+                <label>My Attendence Card</label>
+                <label>Gyan</label>
+            </div>
+        </div>
+        
+        <div class="box">
+            <div class="box1" onclick="exp1(3)">
+                <i class="far fa-building"></i>
+                <label>Campus</label>  
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="box2">
+                <h2>Campus</h2>
+                <label>Groups</label>
+                <label>Infrastructure booking</label>
+                <label>Sports Module</label>
+                <label>Smrithi</label>
+                <h2>Resedential</h2>
+                <label>Hostel Dashboard</label>
+                <label>Hostel Complaints</label>
+            </div>
+        </div>
+        
+    </section>
+    
+    <script>
+        
+        function toggle1(){
+            var content = document.getElementById("content");
+            var menu = document.getElementById("menu");
+            content.classList.toggle("active");
+            menu.classList.toggle("active");
+        }
+        
+        function click1(a,b){
+            var cat = document.querySelectorAll(".cat");
+            if (b == 0){
+                for (var i = 0;i<cat.length;i++){
+                if (i != a){
+                    cat[i].classList.remove("active");
+                }
+                }
+                cat[a].classList.toggle("active");
+                
+            }else{
+                for (var i = 0;i<cat.length;i++){
+                    cat[i].classList.remove("active");
+                }   
+            }
+        }
+        
+        function exp1(a){
+            var box = document.querySelectorAll(".box");
+            for (var i = 0;i<box.length;i++){
+                if (i != a){
+                    box[i].classList.remove("active");
+                  }
+                }
+            box[a].classList.toggle('active');
+        }
+        
+    </script>
+    
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
