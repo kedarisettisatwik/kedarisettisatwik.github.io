@@ -48,8 +48,6 @@
             width:100%;
             position:relative;
             background-color:transparent;
-            flex-wrap: wrap;
-            flex-direction: row;
         }
         .navigation{
             width:100%;
@@ -131,20 +129,13 @@
             cursor:pointer;
         }
         .pro{
-            flex-direction: row;
-            flex-wrap: wrap;
             padding:10px;
             background-color:#000066;
             margin:10px;
             margin-top:20px;
             box-shadow:0 0 5px rgb(0,0,0,0.4);
             border-radius:10px;
-        }
-        .pro img{
-            max-width:200px;
-            max-height:300px;
-            object-fit: scale-down;
-            margin:10px;
+            position:relative;
         }
         .pro h3{
             margin:10px;
@@ -153,63 +144,66 @@
             color:white;
             font-size:19px;
         }
-        .pro .details{
+        .pro h3 span,.pro h3 label{
             margin:10px;
-            background-color:white;
-            padding:10px;
-            border-radius:5px;
         }
-        .pro .details p{
+        .pro div{
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        .pro div p{
             margin:15px;
             padding-bottom:10px;
-            border-bottom:2px dashed rgb(0,0,0,0.3);
+            border-bottom:2px dashed rgb(255,255,255,0.8);
+            color:white;
         }
-        .pro .details p i{
-            font-size:25px;
+        .pro div p i{
+            font-size:24px;
             margin-right:10px;
+            padding:5px;
+            background-color:white;
+            border-radius:10px;
         }
-        .pro .details p span{
+        .pro div p span{
             font-size:30px;
             font-weight:bold;
             letter-spacing:1px;
             margin-right:5px;
         }
-        .pro .details p label{
+        .pro div p label{
             font-size:17px;
             letter-spacing:1px;
         }
-        .more{
+        .courses{
             flex-direction: row;
             flex-wrap: wrap;
             justify-content: space-around;
         }
-        .more .course{
+        .courses .course{
             margin:10px;
             padding:15px;
             width:300px;
             border:2px solid rgb(0,0,0,0.2);
             transition:0.3s;
-            background-color:white;
-            border-radius:4px;
+            background-color:beige;
+            border-radius:10px;
+            box-shadow:0 0 5px rgb(0,0,0,0.4);
         }
-        .more .course p{
+        .courses .course p{
             width:100%;
         }
-        .more .course p i{
+        .courses .course p i{
             font-size:20px;
             color:rebeccapurple;
             cursor:pointer;
             float: right;
         }
-        .more .course:hover{
-            box-shadow:0 0 5px rgb(0,0,0,0.4);
-        }
-        .more .course h2{
+        .courses .course h2{
             font-size:21px;
             font-weight:500;
             letter-spacing:1px;
         }
-        .more .course h3{
+        .courses .course h3{
             margin:5px 0;
             font-size:15px;
             font-weight:400;
@@ -240,24 +234,26 @@
                     <button onclick="click1(0,0)" class="cat"><i class="fas fa-university"></i><label>Institute</label></button>
                     <button onclick="click1(1,0)" class="cat"><i class="fas fa-graduation-cap"></i><label>Academics</label></button>
                     <button onclick="click1(2,0)" class="cat"><i class="far fa-building"></i><label>Campus</label></button>
+                    <button onclick="click1(3,0)" class="cat"><i class="far fa-user"></i></button>
                 </div>
         </nav>
         
-        <section class="more flex">
-           
-           <section class="pro flex">
-            <div>
-                <img src="me.png">
-                <h3>Kedarisetti satwik</h3>
-            </div>
-            <div class="details">
+        <section class="pro">
+        
+        <h3><span>Kedarisetti satwik</span><label>201EE129</label></h3>
+         
+         <div class="flex">
+             
     <p><i class="fab fa-bitcoin" style="color:hotpink"></i><span>45</span><label>Credits</label></p>
     <p><i class="far fa-chart-bar" style="color:green"></i><span>8.4</span><label>CGPA</label></p>
     <p><i class="fas fa-sort-numeric-down" style="color: blue"></i><span>3<sup>rd</sup></span><label>semester</label></p>
-    <a href="#">More details</a>
-            </div>
-          </section>
-              
+        
+         </div>
+         
+        </section>
+          
+        <section class="courses flex">
+    
             <div class="course">
                 <p>
                     <i class="fas fa-user-friends"></i>
