@@ -41,37 +41,27 @@
             min-height:100vh;
             overflow-x: hidden;
             overflow-y: auto;
-/*            background-image: url(bg.png); */
-            background-color:#6699ff;
-            background-position: bottom;
-            background-size: cover;
-            background-repeat:no-repeat;
-            background-attachment:fixed;
+            background-color:ghostwhite;
+            padding:10px;
         }
         #main{
-            width:100vw;
+            width:100%;
             position:relative;
-        }
-        #content{
-            position:relative;
-            left:0;
-            top:0;
-            overflow-x: hidden;
-            transition:0.5s;
-            width:100vw;
-            overflow-x: hidden;
+            background-color:transparent;
+            flex-wrap: wrap;
+            flex-direction: row;
         }
         .navigation{
-            width:calc(100% - 20px);
+            width:100%;
             flex-direction: row;
             flex-wrap: wrap;
             justify-content:space-between;
-            position:relative;
-            background-color:rgb(255,255,255,0.8);
+            position:sticky;
+            top:0;
+            background-color:white;
             padding:10px;
-            margin-left:10px;
-            margin-top:10px;
             border-radius:10px;
+            box-shadow:0 0 5px rgb(0,0,0,0.4);
         }
         .navigation .menu,.navigation .name{
             margin:0 10px;
@@ -89,7 +79,7 @@
             padding:8px 15px;
             border-radius:5px;
             box-shadow:0 0 5px rgb(0,0,0,0.4);
-            background-color:rebeccapurple;
+            background-color:rgb(102, 102, 153);
             color:white;
             letter-spacing:1px;
             font-weight:200;
@@ -118,7 +108,7 @@
             height:4px;
             left:50%;
             bottom:-10px;
-            background-color:rebeccapurple;
+            background-color:rgb(102, 102, 153);
             transition:0.5s;
             opacity:0;
             transform:translateX(-50%) scaleX(0);
@@ -129,7 +119,7 @@
             opacity:1;
         }
         .navigation .big button.active{
-            background-color:rebeccapurple;
+            background-color:rgb(102, 102, 153);
             color:white;
         }
         .navigation .big button i{
@@ -140,71 +130,91 @@
             font-size:16px;
             cursor:pointer;
         }
-        .analysis{
-            margin-top:10px;
+        .pro{
+            flex-direction: row;
+            flex-wrap: wrap;
+            padding:10px;
+            background-color:#000066;
+            margin:10px;
+            margin-top:20px;
+            box-shadow:0 0 5px rgb(0,0,0,0.4);
+            border-radius:10px;
+        }
+        .pro img{
+            max-width:200px;
+            max-height:300px;
+            object-fit: scale-down;
+            margin:10px;
+        }
+        .pro h3{
+            margin:10px;
+            letter-spacing:1px;
+            font-weight:200;
+            color:white;
+            font-size:19px;
+        }
+        .pro .details{
+            margin:10px;
+            background-color:white;
+            padding:10px;
+            border-radius:5px;
+        }
+        .pro .details p{
+            margin:15px;
+            padding-bottom:10px;
+            border-bottom:2px dashed rgb(0,0,0,0.3);
+        }
+        .pro .details p i{
+            font-size:25px;
+            margin-right:10px;
+        }
+        .pro .details p span{
+            font-size:30px;
+            font-weight:bold;
+            letter-spacing:1px;
+            margin-right:5px;
+        }
+        .pro .details p label{
+            font-size:17px;
+            letter-spacing:1px;
+        }
+        .more{
             flex-direction: row;
             flex-wrap: wrap;
             justify-content: space-around;
         }
-        .analysis div{
-            width:350px;
-            padding:15px 10px;
-            border:2px solid rgb(0,0,0,0.3);
-            border-radius:5px;
-            flex-direction: row;
-            margin:5px;
-            justify-content: flex-start;
-        }
-        .analysis div i{
-            font-size:30px;
-            margin:0 10px;
-        }
-        .analysis div span{
-            font-size:28px;
-            font-weight:bold;
-            letter-spacing:2px;
-            margin:5px;
-        }
-        #courses{
-            flex-direction:row;
-            flex-wrap: wrap;
-            justify-content:space-around;
-            margin:10px 0;
-            width:100%;
-        }
-        #courses .course{
+        .more .course{
             margin:10px;
             padding:15px;
+            width:300px;
             border:2px solid rgb(0,0,0,0.2);
-            width:350px;
-            position:relative;
-            transition:0.4s;
+            transition:0.3s;
+            background-color:white;
+            border-radius:4px;
         }
-        #courses .course:hover{
-            box-shadow: 0px 5px 7px rgb(0,0,0,0.3);
-        }
-        #courses .course div{
+        .more .course p{
             width:100%;
-            justify-content:space-between;
-            flex-direction: row;
         }
-        #courses .course div span{
-            margin:0 5px;
-            color:red;
-            font-weight:bold;
-            letter-spacing:2px;
-        }
-        #courses .course div i{
-            width:40px;
-            height:40px;
-            cursor:pointer;
-            font-size:17px;
+        .more .course p i{
+            font-size:20px;
             color:rebeccapurple;
-            line-height:40px;
-            text-align:center;
+            cursor:pointer;
+            float: right;
         }
-        
-        @media (min-width:710px){
+        .more .course:hover{
+            box-shadow:0 0 5px rgb(0,0,0,0.4);
+        }
+        .more .course h2{
+            font-size:21px;
+            font-weight:500;
+            letter-spacing:1px;
+        }
+        .more .course h3{
+            margin:5px 0;
+            font-size:15px;
+            font-weight:400;
+        }
+        @media (min-width:650px){
             .navigation .big{
                 display: flex;
             }
@@ -213,29 +223,99 @@
             }
         }
         
+        
     </style>
         
 </head>
 
 <body>
     
-    <section id="main">
+    <section id="main" class="flex">
        
-       <section id="content">
-          
-           <nav class="navigation flex">
+       <nav class="navigation flex">
                 <i class="fas fa-stream menu" onclick="toggle1()"></i>
                 <label class="name">IRIS</label>
                 
                 <div class="big flex">
                     <button onclick="click1(0,0)" class="cat"><i class="fas fa-university"></i><label>Institute</label></button>
                     <button onclick="click1(1,0)" class="cat"><i class="fas fa-graduation-cap"></i><label>Academics</label></button>
-                    <button onclick="click1(2,0)" class="cat"><i class="far fa-building"></i><label>Campus</label> </button>
-                    <button onclick="click1(3,0)" class="cat"><i class="far fa-user" style="font-size:22px"></i></button>
+                    <button onclick="click1(2,0)" class="cat"><i class="far fa-building"></i><label>Campus</label></button>
                 </div>
-          </nav>
+        </nav>
         
-       </section>
+        <section class="more flex">
+           
+           <section class="pro flex">
+            <div>
+                <img src="me.png">
+                <h3>Kedarisetti satwik</h3>
+            </div>
+            <div class="details">
+    <p><i class="fab fa-bitcoin" style="color:hotpink"></i><span>45</span><label>Credits</label></p>
+    <p><i class="far fa-chart-bar" style="color:green"></i><span>8.4</span><label>CGPA</label></p>
+    <p><i class="fas fa-sort-numeric-down" style="color: blue"></i><span>3<sup>rd</sup></span><label>semester</label></p>
+    <a href="#">More details</a>
+            </div>
+          </section>
+              
+            <div class="course">
+                <p>
+                    <i class="fas fa-user-friends"></i>
+                </p>
+                <h2>MA 111</h2>
+                <h3>Engineering Mathmetics</h3>
+            </div>
+            <div class="course">
+                <p>
+                    <i class="fas fa-user-friends"></i>
+                </p>
+                <h2>ME 110</h2>
+                <h3>Mechanical</h3>
+            </div>
+            <div class="course">
+                <p>
+                    <i class="fas fa-user-friends"></i>
+                </p>
+                <h2>ME 111</h2>
+                <h3>Engineering Graphics</h3>
+            </div>
+            <div class="course">
+                <p>
+                    <i class="fas fa-user-friends"></i>
+                </p>
+                <h2>CY 111</h2>
+                <h3>Chemistry Lab</h3>
+            </div>
+            <div class="course">
+                <p>
+                    <i class="fas fa-user-friends"></i>
+                </p>
+                <h2>PH 110</h2>
+                <h3>Physics</h3>
+            </div>
+            <div class="course">
+                <p>
+                    <i class="fas fa-user-friends"></i>
+                </p>
+                <h2>PH 111</h2>
+                <h3>physics Lab</h3>
+            </div>
+            <div class="course">
+                <p>
+                    <i class="fas fa-user-friends"></i>
+                </p>
+                <h2>CS 111</h2>
+                <h3>Computer programming</h3>
+            </div>
+            <div class="course">
+                <p>
+                    <i class="fas fa-user-friends"></i>
+                </p>
+                <h2>EE 143</h2>
+                <h3>Electrical electronics</h3>
+            </div>
+            
+        </section>
         
     </section>
     
