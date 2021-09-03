@@ -61,7 +61,6 @@
         }
         #one{
             flex-direction:row;
-            justify-content: flex-start;
             width:100%;
         }
         .form{
@@ -81,6 +80,8 @@
         .inp{
             width:100%;
             position:relative;
+            flex-direction: row;
+            flex-wrap: wrap;
         }
         .box{
             margin:10px 5px;
@@ -223,7 +224,7 @@
            
            <h4 style="margin:10px 0;letter-spacing:1px;width:100%;border-bottom:1px solid rgb(0,0,0,0.3);padding-bottom:15px;">Welcome to IRIS,<br>Please Login</h4>
            
-           <section class="inp" >
+           <section class="inp flex">
                 <div class="box">
                <label>Roll No. / E-mail</label>
                <input type="text" placeholder="UserName / E-mail">
@@ -237,8 +238,8 @@
            </section>
            
            <div class="buttons">
-              <button style="background-color:darkblue;color:white;"><i class="fas fa-sign-in-alt"></i> Login to IRIS</button>
-              <button style="background-color: black;color:white;">Recover Password</button>
+              <button style="background-color:darkblue;color:white;font-size:15px;"><i class="fas fa-sign-in-alt"></i> Login to IRIS</button>
+              <button style="background-color: black;color:white;font-size:15px;">Recover Password</button>
            </div>
            
            <span class="flex" style="margin:10px 0;background-color:white;border-radius:10px;padding:7px;align-items: flex-start;"><p>You can also sign in with :</p><label style="margin:5px;font-size:22px;"><i class="fab fa-google ho" style="cursor: pointer;margin:"></i> <i class="fab fa-windows ho" style="cursor: pointer; margin:0 10px;"></i> </label></span>
