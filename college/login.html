@@ -85,7 +85,7 @@
             flex-wrap: wrap;
         }
         .box{
-            margin:10px 5px;
+            margin:5px;
             background-color:white;
             border-radius:8px;
             padding:5px;
@@ -117,6 +117,7 @@
             margin-bottom:8px;
             background-color:whitesmoke;
             border-radius:5px;
+            letter-spacing:1px;
         }
         .box i{
             position:absolute;
@@ -224,21 +225,23 @@
            
            <h4 style="margin:10px 0;letter-spacing:1px;width:100%;border-bottom:1px solid rgb(0,0,0,0.3);padding-bottom:15px;">Welcome to IRIS,<br>Please Login</h4>
            
+           <h5 id="error1" style="color:red;letter-spacing:2px;width:100%;padding-left:15px;opacity:0;transition:0.4s;">Invalid Login</h5>
+           
            <section class="inp flex">
                 <div class="box">
                <label>Roll No. / E-mail</label>
-               <input type="text" placeholder="UserName / E-mail">
+               <input type="text" placeholder="UserName / E-mail" id="email" autocomplete="off">
                 </div>
                 <div class="box">
                <label>Password</label>
-               <input type="password" placeholder="password ** ">
-               <i class="far fa-eye-slash"></i>
-               <i class="far fa-eye"></i>
+               <input type="password" placeholder="password ** " id="password" autocomplete="off">
+               <i class="eye far fa-eye" style="display:none;" onclick="togg(0)"></i>
+               <i class="eye far fa-eye-slash" style="display:block;" onclick="togg(1)"></i>
                 </div>
            </section>
            
            <div class="buttons">
-              <button style="background-color:darkblue;color:white;font-size:14px;"><i class="fas fa-sign-in-alt"></i> Login to IRIS</button>
+              <button style="background-color:darkblue;color:white;font-size:14px;" onclick="form1()"><i class="fas fa-sign-in-alt"></i> Login to IRIS</button>
               <button style="background-color: black;color:white;font-size:14px;">Recover Password</button>
            </div>
            
@@ -261,6 +264,28 @@
 
     <script>
         
+        function form1(){
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            if (email.length == 0 || password.length == 0){
+                var err = document.getElementById("error1");
+                err.style.opacity = "1";
+            }
+        }
+        
+        function togg(a){
+            var password = document.getElementById("password");
+            var eye = document.querySelectorAll(".eye");
+            if (a == 1){
+                eye[1].style.display = "none";
+                eye[0].style.display = "block";
+                password.setAttribute("type","text");
+            }else{
+                eye[0].style.display = "none";
+                eye[1].style.display = "block";
+                password.setAttribute("type","password");
+            }
+        }
         
     </script>
     
