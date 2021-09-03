@@ -54,12 +54,9 @@
             max-width:calc(100% - 20px);
             flex-direction:column;
             justify-content:flex-start;
-            background: rgba( 255, 255, 255, 0.35 );
-            box-shadow: 0 0 30px rgb(0,0,0,0.35);
-            backdrop-filter: blur( 4.0px );
-            -webkit-backdrop-filter: blur( 4.0px );
+            background-color:white;
+            box-shadow: 0 0 20px rgb(0,0,0,0.4);
             border-radius: 10px;
-            border: 1px solid rgba( 255, 255, 255, 0.18 );
             padding:5px;
         }
         #one{
@@ -95,6 +92,11 @@
             display: inline-flex;
             align-items: flex-start;
             flex-direction: column;
+            transition:0.5s;
+            border:1px solid rgb(0,0,0,0);
+        }
+        .box:hover{
+            border:1px solid rgb(0,0,0,0.4);
         }
         .box label{
             width:100%;
@@ -106,7 +108,7 @@
         }
         .box input{
             width:100%;
-            padding:8px 5px 8px 10px;
+            padding:12px 5px 12px 10px;
             outline:none;
             border:none;
             background:none;
@@ -117,7 +119,7 @@
         .box i{
             position:absolute;
             right:18px;
-            bottom:20px;
+            bottom:24px;
             opacity:0.6;
             cursor:pointer;
         }
@@ -165,6 +167,7 @@
             border-radius:5px;
             cursor:pointer;
             transition:0.4s;
+            border:2px dashed rgb(0,0,0,0.4);
         }
         .links a:hover{
             color:white;
@@ -218,7 +221,7 @@
            
            <p style="margin:0 10px;font-size:15px;">National Institue of Technology,<br> karnataka surathkal</p>
            
-           <h4 style="margin:10px 0;letter-spacing:1px;width:100%;">Welcome to IRIS,<br>Please Login</h4>
+           <h4 style="margin:10px 0;letter-spacing:1px;width:100%;border-bottom:1px solid rgb(0,0,0,0.3);padding-bottom:15px;">Welcome to IRIS,<br>Please Login</h4>
            
            <section class="inp" >
                 <div class="box">
