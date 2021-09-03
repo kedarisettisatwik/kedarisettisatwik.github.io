@@ -93,6 +93,7 @@
             outline:none;
             border:none;
             transition:0.3s;
+            margin-right:20px;
         }
         #main .logo h3{
             font-weight:100;
@@ -101,6 +102,57 @@
         #main .logo i{
             margin:0 10px;
             font-weight:bold;
+        }
+        #main nav{
+            width:100%;
+            flex-direction:row;
+            justify-content:space-between;
+            position:sticky;
+            top:0;
+            margin-bottom:10px;
+        }
+        #main nav ul{
+            flex-direction: row;
+            margin-right:5px;
+        }
+        #main nav .bt1{
+            padding:8px;
+            margin:0 10px;
+            display:flex;
+            flex-direction: row;
+            transition:0.5s;
+            color:rgb(0,0,0,0.5);
+            font-weight:bold;
+            letter-spacing:1px;
+            justify-content: flex-start;
+            font-size:15px;
+            position:relative;
+            cursor:pointer;
+        }
+        .body.active #main nav .bt1{
+                display:none;
+        }
+        #main nav .bt1:hover,#main nav .bt1.active{
+            color:rebeccapurple;
+        }
+        #main nav .bt1 i{
+            margin:0 10px;
+            font-size:19px;
+        }
+        #main nav .bt1::before{
+            content:'';
+            position: absolute;
+            width:calc(100%);
+            height:4px;
+            border-radius:3px;
+            background-color:rebeccapurple;
+            bottom:0;
+            left:0%;
+            transform:scaleX(0);
+            transition:0.5s;
+        }
+        #main nav .bt1.active::before{
+            transform:scaleX(1);
         }
         #menu button{
             margin:5px 0;
@@ -191,6 +243,13 @@
             margin:3px 0;
             cursor:pointer;
         }
+        
+        @media (max-width:650px){
+            #main nav .bt1{
+                display:none;
+            }
+        }
+    
     </style>
         
 </head>
@@ -224,7 +283,7 @@
                <li>Login to Moodle</li>
            </div>
            
-           <button class="bt flex" onclick="add_ac(3)"><i class="far fa-building"></i> Camopus </button> 
+           <button class="bt flex" onclick="add_ac(3)"><i class="far fa-building"></i> Campus </button> 
               
             <div class="sub flex">
                 <li>Calender - Events</li>
@@ -243,10 +302,17 @@
        
     <section id="main" class="flex" onclick="add_ac(1,0)">
       
-      <button class="logo flex" onclick="togg1(1)">
-          <i class="fas fa-stream"></i>
-          <h3>IRIS</h3>
-      </button>
+      <nav class="flex">
+          <div class="logo flex" onclick="togg1(1)">
+              <i class="fas fa-stream"></i>
+              <h3>IRIS</h3>
+          </div>
+          <ul class="flex">
+              <a class="bt1 flex" onclick="add_ac1(0)"><i class="fas fa-university"></i> Institute</a>
+              <a class="bt1 flex" onclick="add_ac1(1)"><i class="fas fa-graduation-cap"></i> Academics </a>
+              <a class="bt1 flex" onclick="add_ac1(2)"><i class="far fa-building"></i> Campus </a>
+          </ul> 
+      </nav>
        
     </section>
         
@@ -255,15 +321,14 @@
         var bd = document.querySelector(".body");
         
         var width1 = window.innerWidth;
-        if (width1 > 720){
-            bd.classList.add("active");
-        }
         
         function togg1(a){
             if (a == 1){
                 bd.classList.add("active");
+                add_ac1(1,0);
             }else{
                 bd.classList.remove("active");
+                add_ac(1,0);
             }
         }
         
@@ -285,14 +350,25 @@
             }
         }
         
+        function add_ac1(a,b){
+            var bt = document.querySelectorAll(".bt1");
+            for (var i = 0;i<bt.length;i++){
+                if (i == a){
+                    bt[i].classList.toggle("active");
+                }else{
+                    bt[i].classList.remove("active");
+                }
+            }
+            if (b == 0){
+                    bt[a].classList.remove("active");
+            }
+        }
+        
     </script>
     
 </body>
 
 </html>
-
-
-
 
 
 
