@@ -67,9 +67,6 @@
             position:relative;
             transition:0.4s;
             background-color: white;
-            justify-content:flex-start;
-            align-items: flex-start;
-            flex-direction: column;
         }
         .body.active #menu{
             width:250px;
@@ -214,6 +211,7 @@
             cursor:pointer;
             width:100%;
             padding-left:10px;
+            display: block;
         }
         #menu p{
             margin:15px 0 10px 0;
@@ -256,7 +254,7 @@
 
 <body class="body">
     
-    <section id="menu" class="flex">
+    <section id="menu">
           
            <button onclick="togg1(0)" style="background-color:#003366;color:white;font-size:15px;padding:10px;">close <i class="fas fa-times" style="margin:0 10px;"></i></button>
            
@@ -300,7 +298,7 @@
                <p> <label>Moudle Designer</label> <br> <span>Kedarisetti Satwik</span> </p>
     </section>
        
-    <section id="main" class="flex" onclick="add_ac(1,0)">
+    <section id="main" onclick="add_ac(1,0)">
       
       <nav class="flex">
           <div class="logo flex" onclick="togg1(1)">
