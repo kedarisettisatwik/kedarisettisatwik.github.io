@@ -10,7 +10,7 @@
     <!-- google fonts -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
     
-    <title>Dash Board</title>
+    <title>Dash Board | IRIS</title>
     
     <style>
         
@@ -38,183 +38,147 @@
         
         body {
             width: 100vw;
-            min-height:100vh;
-            overflow-x: hidden;
-            overflow-y: auto;
-            background-color:ghostwhite;
-            padding:10px;
+            height:100vh;
+            overflow: hidden;
+            background-color:#66ffcc;
+            display: flex;
+            justify-content:flex-start;
+            align-items: center;
+            flex-direction: row;
+            padding:5px;
+        }
+        #menu{
+/*            background-color:#003366; */
+            width:0px;
+            opacity:0;
+            padding:0;
+            border-radius:10px;
+            background-color: white;
+            justify-content: space-between;
         }
         #main{
             width:100%;
-            position:relative;
-            background-color:transparent;
-        }
-        .navigation{
-            width:100%;
+            background-color: white;
             flex-direction: row;
-            flex-wrap: wrap;
-            justify-content:space-between;
-            position:sticky;
-            top:0;
-            background-color:white;
-            padding:10px;
-            border-radius:10px;
-            box-shadow:0 0 5px rgb(0,0,0,0.4);
-        }
-        .navigation .menu,.navigation .name{
-            margin:0 10px;
-        }
-        .navigation .menu{
-            color:rebeccapurple;
-            display:block;
-        }
-        .navigation .menu,.navigation .name{
-            font-size:23px;
-            cursor:pointer;
-            margin-left:15px;
-        }
-        .navigation .name{
-            padding:8px 15px;
+            justify-content:flex-start;
+            margin-left:0px;
+            padding:5px;
             border-radius:5px;
-            box-shadow:0 0 5px rgb(0,0,0,0.4);
-            background-color:rgb(102, 102, 153);
-            color:white;
-            letter-spacing:1px;
-            font-weight:200;
         }
-        .navigation .big{
-            flex-direction: row;
-            display:none;
-        }
-        .navigation .big button{
-            margin:0 10px;
-            padding:8px 15px;
-            font-size:19px;
-            cursor:pointer;
-            color:black;
-            transition:0.5s;
+        #menu,#main{
+            height:100%;
+            overflow-x: hidden;
+            overflow-y: auto;
             position:relative;
-            border-radius:8px;
-            background-color:transparent;
+            transition:0.4s;
+            align-items: flex-start;
+            flex-direction: column;
+        }
+        .body.active #menu{
+            width:250px;
+            opacity:1;
+            padding:5px;
+        }
+        .body.active #main{
+            width:calc(100% - 260px);
+            margin-left:5px;
+        }
+        #main .logo{
+            flex-direction: row;
+        }
+        #main .logo{
+            font-size:20px;
+            background-color:#003366;
+            color:white;
+            cursor:pointer;
+            padding:8px;
+            border-radius:5px;
             outline:none;
             border:none;
+            transition:0.3s;
         }
-        .navigation .big button::before{
-           content:'';
-            position:absolute;
-            width:50%;
-            height:4px;
-            left:50%;
-            bottom:-10px;
-            background-color:rgb(102, 102, 153);
+        #main .logo h3{
+            font-weight:100;
+            letter-spacing:2px;
+        }
+        #main .logo i{
+            margin:0 10px;
+            font-weight:bold;
+        }
+        #menu button{
+            margin:5px 0;
+            padding:12px 5px;
+            border:none;
+            outline:none;
+            cursor:pointer;
+            border-radius:5px;
+            background:none;
+        }
+        #menu input{
+            width:100%;
+            border-radius:5px;
+            border:2px solid #003366;
+            padding:10px 5px 10px 10px;
+            outline:none;
+            background:none;
+            margin:10px 0;
+            font-size:14px;
+        }
+        .bt{
+            width:100%;
             transition:0.5s;
-            opacity:0;
-            transform:translateX(-50%) scaleX(0);
-            border-radius:4px;
-        }
-        .navigation .big button:hover::before,.navigation .big button.active::before{
-            transform:translateX(-50%) scaleX(1);
-            opacity:1;
-        }
-        .navigation .big button.active{
-            background-color:rgb(102, 102, 153);
-            color:white;
-        }
-        .navigation .big button i{
-            margin:0 7px;
-            cursor:pointer;
-        }
-        .navigation .big button label{
-            font-size:16px;
-            cursor:pointer;
-        }
-        .pro{
-            padding:10px;
-            background-color:#000066;
-            margin:10px;
-            margin-top:20px;
-            box-shadow:0 0 5px rgb(0,0,0,0.4);
-            border-radius:10px;
-            position:relative;
-        }
-        .pro h3{
-            margin:10px;
-            letter-spacing:1px;
-            font-weight:200;
-            color:white;
-            font-size:19px;
-        }
-        .pro h3 span,.pro h3 label{
-            margin:10px;
-        }
-        .pro div{
-            flex-direction: row;
-            flex-wrap: wrap;
-        }
-        .pro div p{
-            margin:15px;
-            padding-bottom:10px;
-            border-bottom:2px dashed rgb(255,255,255,0.8);
-            color:white;
-        }
-        .pro div p i{
-            font-size:24px;
-            margin-right:10px;
-            padding:5px;
-            background-color:white;
-            border-radius:10px;
-        }
-        .pro div p span{
-            font-size:30px;
+            color:rgb(0,0,0,0.5);
             font-weight:bold;
             letter-spacing:1px;
-            margin-right:5px;
-        }
-        .pro div p label{
-            font-size:17px;
-            letter-spacing:1px;
-        }
-        .courses{
+            margin:8px 0;
             flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: space-around;
+            justify-content: flex-start;
+            font-size:15px;
+            position:relative;
         }
-        .courses .course{
-            margin:10px;
-            padding:15px;
-            width:300px;
-            border:2px solid rgb(0,0,0,0.2);
-            transition:0.3s;
-            background-color:beige;
-            border-radius:10px;
-            box-shadow:0 0 5px rgb(0,0,0,0.4);
-        }
-        .courses .course p{
-            width:100%;
-        }
-        .courses .course p i{
-            font-size:20px;
+        .bt:hover{
             color:rebeccapurple;
-            cursor:pointer;
-            float: right;
         }
-        .courses .course h2{
-            font-size:21px;
-            font-weight:500;
-            letter-spacing:1px;
+        .bt i{
+            margin:0 10px;
+            font-size:19px;
         }
-        .courses .course h3{
+        .bt::before{
+            content:'';
+            position: absolute;
+            width:100%;
+            height:4px;
+            border-radius:3px;
+            background-color:rebeccapurple;
+            bottom:0;
+            left:0;
+            transform:scaleX(0);
+            transition:0.6s;
+        }
+        .bt.active::before{
+            transform:scaleX(1);
+        }
+        #menu a{
             margin:5px 0;
             font-size:15px;
-            font-weight:400;
+            cursor:pointer;
+            width:100%;
+            padding-left:10px;
         }
-        @media (min-width:650px){
-            .navigation .big{
-                display: flex;
-            }
-            .navigation .menu{
-                display:none;
-            }
+        #menu p{
+            margin:10px 0 5px 0;
+            width:100%;
+            font-size:16px;
+            padding:10px;
+            background-color:#003366;
+            color:white;
+            border-radius:5px;
+            letter-spacing:1px;
+        }
+        #menu p span{
+            font-weight:bold;
+            letter-spacing:2px;
+            font-size:15px;
         }
         
         
@@ -222,71 +186,47 @@
         
 </head>
 
-<body>
+<body class="body">
     
-    <section id="main" class="flex">
-       
-       <nav class="navigation flex">
-                <i class="fas fa-stream menu" onclick="toggle1()"></i>
-                <label class="name">IRIS</label>
-                
-                <div class="big flex">
-                    <button onclick="click1(0,0)" class="cat"><i class="fas fa-university"></i><label>Institute</label></button>
-                    <button onclick="click1(1,0)" class="cat"><i class="fas fa-graduation-cap"></i><label>Academics</label></button>
-                    <button onclick="click1(2,0)" class="cat"><i class="far fa-building"></i><label>Campus</label></button>
-                    <button onclick="click1(3,0)" class="cat"><i class="far fa-user"></i></button>
-                </div>
-        </nav>
-        
-        <section class="pro">
-        
-        <h3><span>Kedarisetti satwik</span><label>201EE129</label></h3>
-         
-         <div class="flex">
-             
-    <p><i class="fab fa-bitcoin" style="color:hotpink"></i><span>45</span><label>Credits</label></p>
-    <p><i class="far fa-chart-bar" style="color:green"></i><span>8.4</span><label>CGPA</label></p>
-    <p><i class="fas fa-sort-numeric-down" style="color: blue"></i><span>3<sup>rd</sup></span><label>semester</label></p>
-        
-         </div>
-         
-        </section>
-         
+    <section id="menu" class="flex">
+           <button onclick="togg1(0)" style="background-color:#003366;color:white;font-size:15px;padding:10px;">close <i class="fas fa-times" style="margin:0 10px;"></i></button>
+           <input type="search" placeholder="search for">
+           <button class="bt flex"><i class="fas fa-comment-alt"></i> Tell IRIS</button>
+           <button class="bt flex"><i class="fas fa-university"></i> Institute</button>
+           <button class="bt flex"><i class="fas fa-graduation-cap"></i> Academics </button>
+           <button class="bt flex"><i class="far fa-building"></i> Camopus </button> 
+               <a>About IRIS</a>
+               <a>IRIS Blog</a>
+               <a>NITK Website</a>
+               <a>Terms of Service</a>
+               <a>Login to Moodle</a>
+               <p> <label>Moudle Designer</label> <br> <span>Kedarisetti Satwik</span> </p>
     </section>
-    
-    
-    
-    <script>
+       
+    <section id="main" class="flex">
+      
+      <button class="logo flex" onclick="togg1(1)">
+          <i class="fas fa-stream"></i>
+          <h3>IRIS</h3>
+      </button>
+       
+    </section>
         
-        function toggle1(){
-            
+    <script>        
+        
+        var bd = document.querySelector(".body");
+        
+        var width1 = window.innerWidth;
+        if (width1 > 720){
+            bd.classList.add("active");
         }
         
-        function click1(a,b){
-            var cat = document.querySelectorAll(".cat");
-            if (b == 0){
-                for (var i = 0;i<cat.length;i++){
-                if (i != a){
-                    cat[i].classList.remove("active");
-                }
-                }
-                cat[a].classList.toggle("active");
-                
+        function togg1(a){
+            if (a == 1){
+                bd.classList.add("active");
             }else{
-                for (var i = 0;i<cat.length;i++){
-                    cat[i].classList.remove("active");
-                }   
+                bd.classList.remove("active");
             }
-        }
-        
-        function exp1(a){
-            var box = document.querySelectorAll(".box");
-            for (var i = 0;i<box.length;i++){
-                if (i != a){
-                    box[i].classList.remove("active");
-                  }
-                }
-            box[a].classList.toggle('active');
         }
         
     </script>
