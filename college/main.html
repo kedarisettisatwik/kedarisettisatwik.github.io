@@ -53,14 +53,9 @@
             opacity:0;
             padding:0;
             border-radius:10px;
-            background-color: white;
-            justify-content: space-between;
         }
         #main{
             width:100%;
-            background-color: white;
-            flex-direction: row;
-            justify-content:flex-start;
             margin-left:0px;
             padding:5px;
             border-radius:5px;
@@ -71,6 +66,8 @@
             overflow-y: auto;
             position:relative;
             transition:0.4s;
+            background-color: white;
+            justify-content:flex-start;
             align-items: flex-start;
             flex-direction: column;
         }
@@ -136,7 +133,7 @@
             font-size:15px;
             position:relative;
         }
-        .bt:hover{
+        .bt:hover,.bt.active{
             color:rebeccapurple;
         }
         .bt i{
@@ -146,17 +143,18 @@
         .bt::before{
             content:'';
             position: absolute;
-            width:100%;
+            width:calc(100% - 20px);
             height:4px;
             border-radius:3px;
             background-color:rebeccapurple;
             bottom:0;
-            left:0;
-            transform:scaleX(0);
-            transition:0.6s;
+            left:50%;
+            transform:scaleX(0) translateX(-50%);
+            transition:0.5s;
+            transform-origin:left;
         }
         .bt.active::before{
-            transform:scaleX(1);
+            transform:scaleX(1) translateX(-50%);
         }
         #menu a{
             margin:5px 0;
@@ -166,7 +164,7 @@
             padding-left:10px;
         }
         #menu p{
-            margin:10px 0 5px 0;
+            margin:15px 0 10px 0;
             width:100%;
             font-size:16px;
             padding:10px;
@@ -180,8 +178,19 @@
             letter-spacing:2px;
             font-size:15px;
         }
-        
-        
+        .sub{
+            width:100%;
+            display: none;
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+        .sub.active{
+            display: flex;
+        }
+        .sub li{
+            margin:3px 0;
+            cursor:pointer;
+        }
     </style>
         
 </head>
@@ -189,13 +198,42 @@
 <body class="body">
     
     <section id="menu" class="flex">
+          
            <button onclick="togg1(0)" style="background-color:#003366;color:white;font-size:15px;padding:10px;">close <i class="fas fa-times" style="margin:0 10px;"></i></button>
+           
            <input type="search" placeholder="search for">
+           
            <button class="bt flex"><i class="fas fa-comment-alt"></i> Tell IRIS</button>
-           <button class="bt flex"><i class="fas fa-university"></i> Institute</button>
-           <button class="bt flex"><i class="fas fa-graduation-cap"></i> Academics </button>
-           <button class="bt flex"><i class="far fa-building"></i> Camopus </button> 
-               <a>About IRIS</a>
+
+           <button class="bt flex" onclick="add_ac(1)"><i class="fas fa-university"></i> Institute</button>
+           
+           <div class="sub flex">
+               <li>No Dues</li>
+               <li>Branch Change</li>
+               <li>Fees Payment</li>
+               <li>Donation</li>
+           </div>
+           
+           <button class="bt flex" onclick="add_ac(2)"><i class="fas fa-graduation-cap"></i> Academics </button>
+           
+           <div class="sub flex">
+               <li>Course Registration</li>
+               <li>Minors Application</li>
+               <li>View Feedback Forms</li>
+               <li>My Courses & Grades</li>
+               <li>Login to Moodle</li>
+           </div>
+           
+           <button class="bt flex" onclick="add_ac(3)"><i class="far fa-building"></i> Camopus </button> 
+              
+            <div class="sub flex">
+                <li>Calender - Events</li>
+                <li>Groups</li>
+                <li>Sports Module</li>
+                <li>Hotel Dashboard</li>
+            </div>
+              
+               <a style="margin-top:20px;">About IRIS</a>
                <a>IRIS Blog</a>
                <a>NITK Website</a>
                <a>Terms of Service</a>
@@ -203,7 +241,7 @@
                <p> <label>Moudle Designer</label> <br> <span>Kedarisetti Satwik</span> </p>
     </section>
        
-    <section id="main" class="flex">
+    <section id="main" class="flex" onclick="add_ac(1,0)">
       
       <button class="logo flex" onclick="togg1(1)">
           <i class="fas fa-stream"></i>
@@ -226,6 +264,24 @@
                 bd.classList.add("active");
             }else{
                 bd.classList.remove("active");
+            }
+        }
+        
+        function add_ac(a,b){
+            var bt = document.querySelectorAll(".bt");
+            var sub = document.querySelectorAll(".sub");
+            for (var i = 1;i<bt.length;i++){
+                if (i == a){
+                    bt[i].classList.toggle("active");
+                    sub[i-1].classList.toggle("active");
+                }else{
+                    bt[i].classList.remove("active");
+                    sub[i-1].classList.remove("active");
+                }
+            }
+            if (b == 0){
+                    bt[a].classList.remove("active");
+                    sub[a-1].classList.remove("active");
             }
         }
         
