@@ -53,12 +53,12 @@
             opacity:0;
             padding:0;
             border-radius:10px;
+            background-color: white;
+            border-radius:5px;
         }
         #main{
             width:100%;
             margin-left:0px;
-            padding:5px;
-            border-radius:5px;
         }
         #menu,#main{
             height:100%;
@@ -66,7 +66,6 @@
             overflow-y: auto;
             position:relative;
             transition:0.4s;
-            background-color: white;
         }
         .body.active #menu{
             width:250px;
@@ -86,11 +85,11 @@
             color:white;
             cursor:pointer;
             padding:8px;
-            border-radius:5px;
             outline:none;
             border:none;
             transition:0.3s;
             margin-right:20px;
+            border-radius:5px;
         }
         #main .logo h3{
             font-weight:100;
@@ -106,9 +105,10 @@
             justify-content:space-between;
             position:sticky;
             top:0;
-            margin-bottom:10px;
             z-index:100;
             background-color: white;
+            padding:5px;
+            border-radius:5px;
         }
         #main nav ul{
             flex-direction: row;
@@ -267,8 +267,13 @@
             margin:10px 0;
             flex-direction: row;
             justify-content: space-around;
-            margin-top:20px;
+            margin-top:5px;
             background-color: white;
+            border-radius:5px;
+            padding:15px 10px;
+            background-color:#003366;
+            overflow: hidden;
+            position:relative;
         }
         #main .grades .one{
             width:300px;
@@ -281,8 +286,8 @@
             position:relative;
             height:90px;
             transition:0.3s;
-            border:2px solid rgb(0,0,0,0.7);
-            background-color: white;
+            background-color: ghostwhite;
+            box-shadow:0 0 15px rgb(0,0,0,0.2);
         }
         #main .grades .one i{
             margin:0 10px;
@@ -303,6 +308,29 @@
             font-size:14px;
             margin-top:7px;
             letter-spacing:1px;
+        }
+        #main .grades .wave{
+            width:400px;
+            height:400px;
+            bottom:0;
+            right:0;
+            transform:translate(50%,50%);
+            border-radius:50%;
+            background-color: white;
+            z-index:0;
+            opacity:0.8;
+            -webkit-animation:move1 6s linear infinite forwards;
+        }
+        @keyframes move1{
+            0%{
+                transform:translate(50%,50%) scale(1);
+            }
+            50%{
+                transform:translate(50%,50%) scale(2);
+            }
+            100%{
+                transform:translate(50%,50%) scale(1);
+            }
         }
         #main .grades .one .circle{
             position: absolute;
@@ -417,6 +445,8 @@
       </nav>
        
        <div class="grades flex">
+           
+           <div class="wave" style="position: absolute;"></div>
            
            <div class="one flex">
                <span class="circle" style="background-color:darkcyan;box-shadow:0 0 5px darkcyan"></span>
