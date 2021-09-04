@@ -330,6 +330,52 @@
             opacity:0.7;
             z-index:0;
         }
+        #main .courses{
+            width:100%;
+            padding:15px 5px;
+            border-radius:5px;
+            flex-direction: row;
+            background-color: ghostwhite;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+        #main .courses .course{
+            width:250px;
+            height:150px; 
+            margin:12px;
+            padding:7px;
+            box-shadow:0 0 10px rgb(0,0,0,0.2);
+            position:relative;
+            border-radius:5px;
+            z-index: 1;
+            overflow: hidden;
+            background-color:white;
+        }
+        #main .courses .course .wave{
+            width:100%;
+            position: absolute;
+            bottom:0;
+            left:0;
+            z-index:0;
+        }
+        #main .courses .course h1{
+            width:100%;
+            margin:6px 0;
+            padding:0 10px;
+            font-size:20px;
+            font-weight:400;
+            letter-spacing:2px;
+        }
+        #main .courses .course p{
+            width:100%;
+            margin:6px 0;
+            padding:0 10px;
+            font-size:15px;
+            color:rgb(0,0,0,0.6);
+            letter-spacing:1px;
+        }
+        
         @media (max-width:670px){
             #main nav .bt1{
                 display:none;
@@ -454,6 +500,58 @@
            </div>
            
        </div>
+       
+       <section class="courses flex">
+           
+           <div class="course">
+               <h1>MA111</h1>
+               <p>Mathmetical Engineering</p>
+               <img class="wave" src="waves/wave1.png">
+           </div>
+           
+           <div class="course">
+               <h1>ME110</h1>
+               <p>Mechanical Engineering</p>
+               <img src="waves/wave2.png" class="wave">
+           </div>
+           
+           <div class="course">
+               <h1>ME111</h1>
+               <p>Engineering Drawings</p>
+               <img src="waves/wave3.png" class="wave">
+           </div>
+           
+           <div class="course">
+               <h1>PH111</h1>
+               <p>Physics Lab</p>
+               <img src="waves/wave4.png" class="wave">
+           </div>
+           
+           <div class="course">
+               <h1>CY111</h1>
+               <p>Chemistry Lab</p>
+               <img class="wave" src="waves/wave3.png">
+           </div>
+           
+           <div class="course">
+               <h1>PH110</h1>
+               <p>Physics</p>
+               <img src="waves/wave4.png" class="wave">
+           </div>
+           
+           <div class="course">
+               <h1>EE143</h1>
+               <p>Electrical Engineering</p>
+               <img src="waves/wave2.png" class="wave">
+           </div>
+           
+           <div class="course">
+               <h1>CS111</h1>
+               <p>Computer Programming</p>
+               <img src="waves/wave1.png" class="wave">
+           </div>
+           
+       </section>
        
     </section>
         
