@@ -271,7 +271,6 @@
             background-color: white;
             border-radius:5px;
             padding:15px 10px;
-            background-color:#003366;
             overflow: hidden;
             position:relative;
         }
@@ -316,10 +315,9 @@
             right:0;
             transform:translate(50%,50%);
             border-radius:50%;
-            background-color: white;
             z-index:0;
             opacity:0.8;
-            -webkit-animation:move1 6s linear infinite forwards;
+            -webkit-animation:move1 6s linear infinite forwards,color1 60s linear infinite forwards;
         }
         @keyframes move1{
             0%{
@@ -330,6 +328,29 @@
             }
             100%{
                 transform:translate(50%,50%) scale(1);
+            }
+        }
+        @keyframes color1{
+            0%{
+                background-color:darkcyan;
+            }
+            33%{
+                background-color:darkcyan;
+            }
+            34%{
+                background-color:red;
+            }
+            66%{
+                background-color:red;
+            }
+            67%{
+                background-color:blue;
+            }
+            99%{
+                background-color:blue;
+            }
+            100%{
+                background-color:darkcyan;
             }
         }
         #main .grades .one .circle{
