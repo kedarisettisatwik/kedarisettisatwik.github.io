@@ -268,7 +268,7 @@
             flex-direction: row;
             justify-content: space-around;
             margin-top:5px;
-            background-color: white;
+            background-color:ghostwhite;
             border-radius:5px;
             padding:15px 10px;
             overflow: hidden;
@@ -285,7 +285,7 @@
             position:relative;
             height:90px;
             transition:0.3s;
-            background-color: ghostwhite;
+            background-color: white;
             box-shadow:0 0 15px rgb(0,0,0,0.2);
         }
         #main .grades .one i{
@@ -293,7 +293,7 @@
             padding:12px;
             font-size:24px;
             border-radius:10px;
-            background-color: white;
+            background-color:white;
             z-index: 1;
         }
         #main .grades .one h2{
@@ -318,16 +318,20 @@
             z-index:0;
             background-color:#66ffcc;
             -webkit-animation:move1 6s linear infinite forwards;
+            box-shadow:0 0 10px darkcyan;
         }
         @keyframes move1{
             0%{
                 transform:translate(50%,50%) scale(1);
+                opacity:1;
             }
             50%{
                 transform:translate(50%,50%) scale(2);
+                opacity:0.4;
             }
             100%{
                 transform:translate(50%,50%) scale(1);
+                opacity:1;
             }
         }
         #main .grades .one .circle{
