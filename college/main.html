@@ -273,13 +273,14 @@
             flex-direction: row;
             padding:12px;
             margin:3px;
-            background-color:aliceblue;
             border-radius:5px;
             justify-content:flex-start;
             overflow: hidden;
             position:relative;
             z-index:0;
             height:90px;
+            transition:0.3s;
+            border:2px solid rgb(0,0,0,0.7);
         }
         #main .grades .one i{
             margin:0 10px;
@@ -416,19 +417,19 @@
        
        <div class="grades flex">
            
-           <div class="one flex" style="border:2px solid darkcyan">
+           <div class="one flex">
                <span class="circle" style="background-color:darkcyan;box-shadow:0 0 5px darkcyan"></span>
                <i class="fab fa-bitcoin" style="color:darkcyan;border:2px solid darkcyan;box-shadow:0 0 2px darkcyan"></i>
                <h2 class='flex'>42 <span>Credits</span></h2>
            </div>
            
-            <div class="one flex" style="border:2px solid red">
+            <div class="one flex">
              <span class="circle" style="background-color:red;box-shadow:0 0 5px red"></span>
               <i class="far fa-chart-bar" style="color:red;border:2px solid red;box-shadow:0 0 2px red"></i>
                <h2 class='flex'>7.35 <span>CGPA</span></h2>
            </div>
            
-            <div class="one flex" style="border:2px solid blue">
+            <div class="one flex">
               <span class="circle" style="background-color:blue;box-shadow:0 0 5px blue"></span>
                <i class="fas fa-sort-numeric-down" style="color:blue;border:2px solid blue;box-shadow:0 0 2px blue"></i>
                <h2 class='flex'><label>3<sup>rd</sup></label> <span>Semester</span></h2>
