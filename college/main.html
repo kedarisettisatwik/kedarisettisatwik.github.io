@@ -159,6 +159,7 @@
             padding:15px;
             box-shadow:0 0 20px rgb(0,0,0,0.3);
             border-radius:10px;
+            background-color: white;
         }
         #main nav .exp.active{
             display:block;
@@ -280,13 +281,69 @@
             width:100%;
             padding-left:10px;
         }
+        #main .grades{
+            width:100%;
+            margin:10px 0;
+            flex-direction: row;
+            justify-content: space-around;
+            margin-top:20px;
+        }
+        #main .grades .one{
+            width:300px;
+            flex-direction: row;
+            padding:12px;
+            margin:10px;
+            background-color:ghostwhite;
+            border-radius:10px;
+            border:1px solid rgb(0,0,0,0.3);
+            justify-content:flex-start;
+        }
+        #main .grades .one i{
+            margin:0 10px;
+            padding:12px;
+            font-size:24px;
+            border-radius:10px;
+        }
+        #main .grades .one h2{
+            font-size:23px;
+            font-weight:bolder;
+            letter-spacing:1px;
+            margin-left:10px;
+        }
+        #main .grades .one h2 span{
+            font-size:15px;
+            margin:5px;
+        }
         
         @media (max-width:670px){
             #main nav .bt1{
                 display:none;
             }
+            .body #main .grades{
+                flex-direction: column;
+            }
+            .body #main .grades .one{
+                width:100%;
+                max-width:400px;
+            }
         }
     
+        @media (max-width:550px){
+            .body.active #main{
+                opacity:0;
+            }
+        }
+        
+         @media (max-width:950px){
+            .body.active #main .grades{
+                flex-direction: column;
+            }
+            .body.active #main .grades .one{
+                width:100%;
+                max-width:400px;
+            }
+        }
+        
     </style>
         
 </head>
@@ -392,6 +449,25 @@
               
           </ul> 
       </nav>
+       
+       <div class="grades flex">
+           
+           <div class="one flex">
+               <i class="fab fa-bitcoin" style="color:darkcyan;border:2px solid darkcyan;box-shadow:0 0 2px darkcyan"></i>
+               <h2>42 <span>Credits</span></h2>
+           </div>
+           
+            <div class="one flex">
+              <i class="far fa-chart-bar" style="color:red;border:2px solid red;box-shadow:0 0 2px red"></i>
+               <h2>7.35 <span>CGPA</span></h2>
+           </div>
+           
+            <div class="one flex">
+               <i class="fas fa-sort-numeric-down" style="color:blue;border:2px solid blue;box-shadow:0 0 2px blue"></i>
+               <h2>3<sup>rd</sup> <span>Semester</span></h2>
+           </div>
+           
+       </div>
        
     </section>
         
