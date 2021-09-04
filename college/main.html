@@ -151,6 +151,26 @@
         #main nav .bt1.active::before{
             transform:scaleX(1);
         }
+        #main nav .exp{
+            position: absolute;
+            top:calc(100% + 30px);
+            left:10%;
+            display:none;
+            padding:15px;
+            box-shadow:0 0 20px rgb(0,0,0,0.3);
+            border-radius:10px;
+        }
+        #main nav .exp.active{
+            display:block;
+        }            
+        #main nav .exp li{
+            list-style: none;
+            margin:10px;
+            width:200px;
+        }
+        #main nav .exp img{
+            width:250px;
+        }
         #menu button{
             margin:5px 0;
             padding:12px 5px;
@@ -260,7 +280,8 @@
             width:100%;
             padding-left:10px;
         }
-        @media (max-width:650px){
+        
+        @media (max-width:670px){
             #main nav .bt1{
                 display:none;
             }
@@ -331,9 +352,44 @@
               <h3>IRIS</h3>
           </div>
           <ul class="flex">
-              <a class="bt1 flex" onclick="add_ac1(0)"><i class="fas fa-university"></i> Institute</a>
-              <a class="bt1 flex" onclick="add_ac1(1)"><i class="fas fa-graduation-cap"></i> Academics </a>
-              <a class="bt1 flex" onclick="add_ac1(2)"><i class="far fa-building"></i> Campus </a>
+              <div class="bt1 flex" onclick="add_ac1(0)"><i class="fas fa-university"></i> Institute 
+              <div class="exp">
+                  <li>No Dues</li>
+                  <li>Branch Change</li>
+                  <li>Fees Payment</li>
+                  <li>Donation</li>
+                  <li>Tell IRIS</li>
+              </div> 
+              </div>
+              <div class="bt1 flex" onclick="add_ac1(1)"><i class="fas fa-graduation-cap"></i> Academics 
+              <div class="exp">
+                  <li>Course Registration</li>
+                  <li>Minors Application</li>
+                  <li>View Feedback Forms</li>
+                  <li>My Courses & Grades</li>
+                  <li>Login to Moodle</li>
+              </div>
+              </div>
+              <div class="bt1 flex" onclick="add_ac1(2)"><i class="far fa-building"></i> Campus 
+              <div class="exp" style="transform:translateX(-50%)">
+                  <li>Calender - Events</li>
+                  <li>Groups</li>
+                  <li>Sports Module</li>
+                  <li>Hotel Dashboard</li>
+              </div>
+              </div>
+              
+              <div class="bt1 flex" onclick="add_ac1(3)"><i class="fas fa-user"></i>
+              
+              <div class="exp" style="transform:translateX(-100%)">
+                  <img src="me.png">
+                   <h2 style="font-weight:300;color:darkblue;">Kedarisetti Satwik</h2>
+                   <a style="margin:10px;color:green;">open profile</a>
+                   <p style="color:red;margin:10px;"> Log Out</p>
+              </div>
+              
+              </div>
+              
           </ul> 
       </nav>
        
@@ -375,15 +431,19 @@
         
         function add_ac1(a,b){
             var bt = document.querySelectorAll(".bt1");
+            var exp = document.querySelectorAll(".exp");
             for (var i = 0;i<bt.length;i++){
                 if (i == a){
                     bt[i].classList.toggle("active");
+                    exp[i].classList.toggle("active");
                 }else{
                     bt[i].classList.remove("active");
+                    exp[i].classList.remove("active");
                 }
             }
             if (b == 0){
                     bt[a].classList.remove("active");
+                    exp[a].classList.remove("active");
             }
         }
         
