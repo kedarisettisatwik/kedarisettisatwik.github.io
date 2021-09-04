@@ -131,27 +131,12 @@
         .body.active #main nav .bt1{
                 display:none;
         }
-        #main nav .bt1:hover,#main nav .bt1.active{
+        #main nav .bt1:hover{
             color:rebeccapurple;
         }
         #main nav .bt1 i{
             margin:0 10px;
             font-size:19px;
-        }
-        #main nav .bt1::before{
-            content:'';
-            position: absolute;
-            width:calc(100%);
-            height:4px;
-            border-radius:4px;
-            background-color:rebeccapurple;
-            bottom:0;
-            left:0%;
-            transform:scaleX(0);
-            transition:0.5s;
-        }
-        #main nav .bt1.active::before{
-            transform:scaleX(1);
         }
         #menu button{
             margin:5px 0;
@@ -431,7 +416,7 @@
                <p> <label>Moudle Designer</label> <br> <span>Kedarisetti Satwik</span> </p>
     </section>
        
-    <section id="main" onclick="add_ac(1,0)">
+    <section id="main">
       
       <nav class="flex">
           <div class="logo flex" onclick="togg1(1)">
@@ -439,14 +424,14 @@
               <h3>IRIS</h3>
           </div>
           <ul class="flex">
-              <div class="bt1 flex" onclick="add_ac1(0)"><i class="fas fa-university"></i> Institute</div>
-              <div class="bt1 flex" onclick="add_ac1(1)"><i class="fas fa-graduation-cap"></i> Academics </div>
-              <div class="bt1 flex" onclick="add_ac1(2)"><i class="far fa-building"></i> Campus </div>
-              <div class="bt1 flex" onclick="add_ac1(3)"><i class="fas fa-user"></i></div>
+              <div class="bt1 flex" onclick="add_ac1(1)"><i class="fas fa-university"></i> Institute</div>
+              <div class="bt1 flex" onclick="add_ac1(2)"><i class="fas fa-graduation-cap"></i> Academics </div>
+              <div class="bt1 flex" onclick="add_ac1(3)"><i class="far fa-building"></i> Campus </div>
+              <div class="bt1 flex" onclick="togg1(1)"><i class="fas fa-user"></i></div>
           </ul> 
       </nav>
        
-       <div class="grades flex">
+       <div class="grades flex"  onclick="add_ac(1,0)">
            
            <div class="wave" style="position: absolute;"></div>
            
@@ -478,10 +463,13 @@
         
         var width1 = window.innerWidth;
         
+        if (width1 > 720){
+            bd.classList.add("active");
+        }
+        
         function togg1(a){
             if (a == 1){
                 bd.classList.add("active");
-                add_ac1(1,0);
             }else{
                 bd.classList.remove("active");
                 add_ac(1,0);
@@ -506,17 +494,20 @@
             }
         }
         
-        function add_ac1(a,b){
-            var bt = document.querySelectorAll(".bt1");
-            for (var i = 0;i<bt.length;i++){
+        function add_ac1(a){
+            var bt = document.querySelectorAll(".bt");
+            var sub = document.querySelectorAll(".sub");
+            bd.classList.add("active");
+            for (var i = 1;i<bt.length;i++){
                 if (i == a){
-                    bt[i].classList.toggle("active");
+                    bt[i].classList.add("active");
+                    sub[i - 1].classList.add("active");
+                    console.log(i);
                 }else{
                     bt[i].classList.remove("active");
+                    sub[i - 1].classList.remove("active");
+                    console.log(i);
                 }
-            }
-            if (b == 0){
-                    bt[a].classList.remove("active");
             }
         }
         
