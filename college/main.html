@@ -59,6 +59,7 @@
         #main{
             width:100%;
             margin-left:0px;
+            padding-bottom:100px;
         }
         #menu,#main{
             height:100%;
@@ -375,7 +376,27 @@
             color:rgb(0,0,0,0.6);
             letter-spacing:1px;
         }
-        
+        #main .announce{
+            width:100%;
+            padding:6px;
+            background-color:ghostwhite;
+            border-radius:5px;
+            margin:10px 0;
+        }
+        #main .announce p{
+            width:100%;
+            text-align: left;
+            padding:10px;
+            margin:5px 0;
+            font-size:16px;
+            cursor:pointer;
+        }
+        #main .announce span{
+            margin-right:10px;
+            font-size:14px;
+            padding-right:10px;
+            border-right:2px solid blue;
+        }
         @media (max-width:670px){
             #main nav .bt1{
                 display:none;
@@ -573,6 +594,14 @@
                <img src="waves/wave8.png" class="wave">
            </div>
            
+       </section>
+       
+       <section class="flex announce">
+           <header style="width: 100%;padding-left:15px;margin:15px 0px;font-size:20px;letter-spacing:2px;text-shadow:0 0 1px red;color:red;">Announcements</header>
+           <p><span>03/Sep/21</span>3<sup>rd</sup> year Academic Calender</p>
+           <p><span>01/Sep/21</span>Instructions for Fee payment</p>
+           <p><span>31/Aug/21</span>Fill your vaccination status</p>
+           <p><span>29/Aug/21</span>Time Line for Branch Change</p>
        </section>
        
     </section>
