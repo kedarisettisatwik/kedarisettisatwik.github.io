@@ -1,0 +1,283 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    text-decoration: none;
+}
+.body1{
+    margin: 0 auto;
+    background-color: black;
+    width:100vw;
+    min-height:100vh;
+    overflow-x: hidden;
+}
+
+.container1{
+    width: auto;
+    height: auto;
+    background-color:black;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0%;
+}
+
+.main-menu{
+    background-color: black;
+}
+
+.main-menu > ul{
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    width:100%;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.main-menu > ul > li{
+    display: inline-block;
+    margin:5px;
+}
+
+.main-menu > ul > li > a{
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-right: 35px;
+    padding-left: 35px;
+    background-color: black;
+    font-family: sans-serif;
+    margin-bottom: 3px;
+}
+
+.main-menu > ul > li > a:hover{
+    background-color: cornflowerblue;
+}
+
+.logo{
+    padding-left: 75px;
+}
+
+.banner{
+    width:100vw;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner img{
+    max-width: 100%;
+    object-fit: scale-down;
+}
+
+.content-holder{
+    background-color: black;
+}
+
+.content{
+    width:100vw;
+    height: auto;
+    padding: 25px;
+    color: white;
+    background-color: black;
+    font-size: 20px;
+}
+
+.content h1{
+    font-size: 40px;
+    padding-left: 30px;
+    font-style: oblique;
+    font: bold;
+    font-family: sans-serif;
+}
+
+.content h2{
+    font-size: 30px;
+    font-style: italic;
+    font-family: sans-serif;
+    padding-left: 600px;
+}
+
+.content p{
+    font-size: 20px;
+    font-family: sans-serif;
+    padding-left: 460px;
+}
+.big{
+    width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap:wrap;
+}
+.big .box{
+    background-color:white;
+    padding:10px;
+    margin:10px;
+}
+
+.big .box img{
+    max-width: 417.4px;
+    max-height: 414.4px;
+    object-fit: scale-down;
+}
+.big .box h2 {
+    width:100%;
+    text-align: center;
+    margin:5px;
+}
+
+.bigbox {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.bigbox .smallbox{
+    background-color: rgb(67, 77, 88);
+    width: 100%;
+    height: 350px;
+    padding: 10px;
+}
+
+.copyright{
+    width: 100%;
+    height: 250px;
+    background: rgb(51, 48, 48);
+}
+.copyright .copyfull{
+    display: flex;
+    
+    flex-wrap:wrap ;
+    flex-direction: row;
+}
+.copyfull{
+    margin-bottom: 2rem;
+}
+
+.image{
+    padding-left: 20px;
+    width: 120px;
+    height: 100px;
+}
+.short .navigation{
+    position: relative;
+    display: flex;
+
+}
+.short .navigation li{
+    list-style: none;
+    margin-left: 20px
+
+}
+.short .navigation li a{
+    text-decoration: none;
+    color: #fff;
+    font-weight: 300;
+}
+
+.short .navigation li a:hover{ 
+    color: #209bd4;
+}
+.copy1  {
+    width: 60%;
+}
+.copy2{
+    width: 30%;
+      
+}
+.copyfull {
+    max-height: 2rem;
+}
+.copy1 ,
+.copy2{
+    padding-top: 50px;
+    display: flex;
+    justify-content:space-around;
+    flex-wrap:wrap ;
+    flex-direction:row ;   
+}
+.club{
+    color: rgb(148, 144, 144);
+    padding-left: 60px;
+}
+.club h4{
+    margin-bottom: 1rem;
+}
+.social {
+    
+    padding-top: 4px;
+    color: #fff;
+    display: flex;
+  
+    
+    font-size: 24px;
+}
+.social a{
+    color: aliceblue;
+    padding-left: 0.5rem;
+}
+.last{
+    padding-top: 40px;
+    text-align: center;
+    color:rgb(148, 144, 144) ;
+}
+.eventheader{
+    padding-top: 40px;
+    background:#eee ;
+   
+}
+.eventheader h2{
+    color: #209bd4;
+    font-weight: 700;
+    font-size: 2.5em;
+    text-align: center;
+   
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+.menu .content{
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+.menu .content .box{
+    width: 340px;
+    margin: 20px;
+    border: 15px solid #fff;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+}
+.menu .content .box .imgBx{
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+.menu .content .box .imgBx img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.contact{
+    background: url(con4.jpg);
+    background-size: cover;
+}
