@@ -1,0 +1,316 @@
+html{
+    scroll-behavior: smooth;
+}
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+body{
+    padding: 5px;
+    width: 100vw;
+    background-color: aliceblue;
+    position:relative;
+    overflow-x: hidden;
+}
+.container{
+    width: 100%;
+    height: auto;
+}
+header{
+    width: 100%;
+    background-color:midnightblue;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+header > .logo{
+    height: 100px;
+    margin: 0px 10px;
+}
+header> nav{
+    display: flex;
+    position: relative;
+}
+header nav ul{
+    list-style:none;
+    margin: 0px 10px 0px 0px;
+}
+header nav ul li{
+    display: inline-block;
+}
+header nav ul li a{
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 20px;
+    font-family:'Poppins', sans-serif;
+    font-size: large;
+    font-weight: 500;
+}
+header nav ul li a:hover{
+background-color: rgba(255, 255, 255, 0.11);
+}
+.about{
+    padding: 70px; 
+    width: 100%;
+    margin: 0px auto;
+}
+.about .row{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.about .row .col{
+    position: relative;
+    width: 58%;
+}
+.about .row .col h2{
+    color: #111;
+    font-size: 2em;
+    font-weight: 300;
+}
+.about .row .col h2 span{
+    color:darkcyan;
+    font-weight: 700;
+    font-size: 1.5em;
+}
+.about .row .col p{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: Poppins, sans-serif;
+    line-height: 1.6em;
+    font-size:large;
+}
+.about .row .col{
+    position: relative;
+    width:48%;
+}
+.eventheader{
+    padding: 20px;
+}
+.eventheader h2{
+    color: darkcyan;
+    font-weight: 700;
+    font-size: 2.5em;
+    text-align: center;
+}
+.big{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.big .box{
+    background-color: white;
+    padding: 10px;
+    margin: 10px;
+}
+.big .box img{
+    max-width: 332.6px;
+    max-height: 280.3px;
+    object-fit: scale-down;
+}
+.big .box h2{
+    width: 100%;
+    text-align: center;
+    margin: 5px;
+}
+.big .box h2 a{
+    color: darkblue;
+    text-decoration:none;
+    display: block;
+    font-family: 'popins' , sans-serif;
+}
+.bigbox{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.bigbox .smallbox{
+    background-color:rgba(67, 77, 88);
+    width: 100%;
+    height: 350px;
+    padding: 10px;
+}
+.menu{
+    background-size: cover;
+}
+.menu .title{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.menu .title .titleTexT{
+    color: #111;
+    font-size: 2em;
+    font-weight: 300;
+}
+.menu .title .titleTexT span{
+    color: darkcyan;
+    font-weight: 700;
+    font-size: 1.5em;
+}
+.menu .pictures{
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+.menu .pictures .box2{
+    width: 500px;
+    margin: 20px;
+    border: 15px solid #fff;
+}
+.menu .pictures .box2 .img4{
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+.menu .pictures .box2 .img4 img{
+position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.contact{
+    background-color:rgb(17, 17, 17);
+}
+.contact .heading{
+    color: #fff;
+}
+.contact .heading h2{
+    padding: 40px;
+    color: deepskyblue;
+    font-weight: 700;
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+.contact .box3{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.contact .box3 .info{
+    width: 40%;
+}
+.contact .box3 .info h3{
+    margin-left: 20px;
+    font-size: 1.8em;
+    font-weight: 500;
+    color: deepskyblue;
+    padding: 20px 0px 10px 20px;
+}
+.contact .box3 .info .address p{
+    margin-left: 40px;
+    font-size: 1.2em;
+    font-weight: 100;
+    color: white;
+    font-family: 'popins' , sans-serif;
+}
+.contact iframe{
+    padding:10px 0px 0px 50px;
+}
+.contact .mail{
+    position: relative;
+}
+.contact .mail h3{
+    margin-left: 20px;
+    font-size: 1.8em;
+    font-weight: 500;
+    color: deepskyblue;
+    padding: 20px 0px 10px 20px;
+}
+.contact .mail p{
+    margin-left: 20px;
+    padding: 0px 20px 10px 20px;
+}
+.contact .mail p a{
+    text-decoration: none;
+    color: white;
+    font-size: 1.2em;
+    font-weight: 100;
+    font-family:'popins' , sans-serif;
+}
+.contact .box3 .contact-form{
+    width: 50%;
+    padding: 0px 40px;
+}
+.contact .contact-form form{
+    display: flex;
+    flex-direction: column;
+}
+.contact .contact-form form h3{
+    color: deepskyblue;
+    font-size: 1.8em;
+    font-weight: 500;
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+}
+.contact .contact-form form 
+input[type="text"]{
+    margin-bottom: 20px;
+    font-size: large;
+    padding: 15px;
+    border: none;
+    background: rgb(34, 34, 34);
+    color: rgb(255, 255, 255);
+    resize: none;
+    font-family: 'popins',sans-serif;
+}
+.contact .contact-form form 
+input[type="email"]{
+    margin-bottom: 20px;
+    font-size: large;
+    padding: 15px;
+    border: none;
+    background: rgb(34, 34, 34);
+    color: rgb(255, 255, 255);
+    resize: none;
+    font-family: 'popins',sans-serif;
+}
+.contact .contact-form form textarea{
+    margin-bottom: 20px;
+    font-size: large;
+    padding: 15px;
+    border: none;
+    background: rgb(34, 34, 34);
+    color: rgb(255, 255, 255);
+    resize: none;
+    font-family: 'popins',sans-serif;
+}
+.contact .contact-form form
+input[type="submit"]{
+    max-width: 100px;
+    background: rgb(33, 150, 243);
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: large;
+    padding: 8px;
+    color:white;
+}
+.copy{
+    font-family: 'popins' sans-serif;
+    text-align: center;
+}
