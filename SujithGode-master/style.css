@@ -54,44 +54,40 @@ header nav ul li a:hover{
 background-color: rgba(255, 255, 255, 0.11);
 }
 .about{
-    padding: 70px; 
+    padding:15px 10px; 
     width: 100%;
     margin: 0px auto;
-}
-.about .row{
-    position: relative;
-    width: 100%;
     display: flex;
-    justify-content: space-between;
-    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    flex-direction: row;
 }
-.about .row .col{
-    position: relative;
-    width: 58%;
+.about main,.about img{
+    margin:12px;
 }
-.about .row .col h2{
-    color: #111;
-    font-size: 2em;
-    font-weight: 300;
+.about main{
+    font-size:20px;
 }
-.about .row .col h2 span{
-    color:darkcyan;
-    font-weight: 700;
-    font-size: 1.5em;
+.about main p{
+    margin:10px;
 }
-.about .row .col p{
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    font-family: Poppins, sans-serif;
-    line-height: 1.6em;
-    font-size:large;
+@media (max-width:800px){
+    .about img{
+        width:300px;
+    }
 }
-.about .row .col{
-    position: relative;
-    width:48%;
+@media (max-width:800px){
+    .about img{
+        width:100%;
+        margin:12px 0;
+    }
+    .about{
+        flex-direction: column;
+    }
+}
+.about img{
+    width:450px;
+    max-width:100%;
 }
 .eventheader{
     padding: 20px;
@@ -172,24 +168,12 @@ background-color: rgba(255, 255, 255, 0.11);
     flex-direction: row-reverse;
     flex-wrap: wrap;
     margin-top: 40px;
+    position:relative;
 }
-.menu .pictures .box2{
-    width: 500px;
-    margin: 20px;
-    border: 15px solid #fff;
-}
-.menu .pictures .box2 .img4{
-    position: relative;
-    width: 100%;
-    height: 300px;
-}
-.menu .pictures .box2 .img4 img{
-position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.menu .pictures img{
+    width:350px;
+    max-width:100%;
+    margin:15px;
 }
 .contact{
     background-color:rgb(17, 17, 17);
