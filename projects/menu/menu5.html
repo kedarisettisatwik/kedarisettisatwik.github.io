@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -86,7 +87,7 @@
         #box1 .black{
             position:absolute;
             top:0;
-            left:40%;
+            left:0;
             width:calc(20%);
             height:100%;
             background:none;
@@ -154,7 +155,7 @@
             position: absolute;
             top:0;
             transition:0.3s,left 0.4s;
-            left:40%;
+            left:0;
         }
         .red{
             position: absolute;
@@ -190,11 +191,11 @@
             </div>
         </section>
         
-        <li onclick="gob(0)" class="box2 flex"><i class="fas fa-home"></i></li>
+        <li onclick="gob(0)" class="box2 flex active"><i class="fas fa-home"></i></li>
         
         <li onclick="gob(1)" class="box2 flex"><i class="fas fa-search"></i></li>
         
-        <li onclick="gob(2)" class="box2 flex active"><i class="fas fa-plus"></i></li>
+        <li onclick="gob(2)" class="box2 flex"><i class="fas fa-plus"></i></li>
         
         <li onclick="gob(3)" class="box2 flex"><i class="fas fa-heart"></i></li>
         
@@ -205,7 +206,9 @@
     
    <script>
        
-       var actives = 2;
+       var actives = 0;
+       
+       
        
        var tf = true;
        var box2 = document.querySelectorAll(".box2");
@@ -248,6 +251,7 @@
            }
        }
        
+       gob(0);
        
    </script>
  
