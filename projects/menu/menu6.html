@@ -61,7 +61,6 @@
         .box2{
             width:100%;
             height:calc(100% / 5);
-            cursor:pointer;
             z-index:10;
         }
         .box2 i{
@@ -75,6 +74,8 @@
             opacity:0.7;
             transition:0.3s;
             transition-delay:0.1s;
+            cursor:pointer;
+            text-shadow:0 0 4px rgb(0,0,0,0.4);
         }
         .box2.active i{
             color:rgb(255,255,255,1);
@@ -108,15 +109,15 @@
         
         <div class="circle"></div>
         
-        <li onclick="gob(0)" class="box2 flex active"><i class="fas fa-home"></i></li>
+        <li class="box2 flex active"><i class="fas fa-home" onclick="gob(0)" ></i></li>
         
-        <li onclick="gob(1)" class="box2 flex"><i class="fas fa-search"></i></li>
+        <li class="box2 flex"><i  onclick="gob(1)" class="fas fa-search"></i></li>
         
-        <li onclick="gob(2)" class="box2 flex"><i class="fas fa-plus"></i></li>
+        <li class="box2 flex"><i  onclick="gob(2)" class="fas fa-plus"></i></li>
         
-        <li onclick="gob(3)" class="box2 flex"><i class="fas fa-heart"></i></li>
+        <li class="box2 flex"><i  onclick="gob(3)" class="fas fa-heart"></i></li>
         
-        <li onclick="gob(4)" class="box2 flex"><i class="fas fa-user"></i></li>
+        <li class="box2 flex"><i  onclick="gob(4)" class="fas fa-user"></i></li>
          
        </ul>
     
