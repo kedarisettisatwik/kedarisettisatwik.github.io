@@ -34,15 +34,13 @@
             flex-direction: column;
         }
         .main{
-            --main : #383F51;
-            --phone : ghostwhite;
-            --s1 : 0 0 10px rgb(255,255,255,0.6);
+            --main : ghostwhite;
+            --phone : white;
             --font: black;
         }
         .main.dark{
             --main : ghostwhite;
             --phone : #383F51;
-            --s1 : 0 0 10px rgb(0,0,0,0.4);
             --font: white;
         }
         .main{
@@ -63,7 +61,7 @@
             border-radius:10px;
             position:relative;
             overflow: hidden;
-            box-shadow:var(--s1);
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
         }
         #phone h2{
             font-family:'Dancing Script','Poppins',sans-serif;
@@ -81,9 +79,12 @@
             width:160px;
             height:160px;
             border-bottom-left-radius:50%;
-            background-color:var(--main);
             cursor:pointer;
+            background-color:#383F51;
             transform:translate(50%,-50%);
+        }
+        .main.dark .circle{
+            background-color:ghostwhite;
         }
         #phone .moon,#phone .sun{
             position: absolute;
