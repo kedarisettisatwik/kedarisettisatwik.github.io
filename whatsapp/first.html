@@ -39,7 +39,7 @@
             --font: black;
         }
         .main.dark{
-            --main : ghostwhite;
+            --main : black;
             --phone : #383F51;
             --font: white;
         }
@@ -62,53 +62,57 @@
             position:relative;
             overflow: hidden;
             box-shadow:0 0 10px rgb(0,0,0,0.4);
+            justify-content: flex-start;
         }
         #phone h2{
             font-family:'Dancing Script','Poppins',sans-serif;
             color:var(--font);
-            margin:60px 0 10px 0;
+            margin:10px 0 10px 0;
             padding-left:30px;
             width:100%;
             letter-spacing:3px;
             position:relative;
         }
-        .circle{
-            position: absolute;
-            top:0;
-            right:0;
-            width:160px;
-            height:160px;
-            border-bottom-left-radius:50%;
+        .box{
+            position: relative;
+            border-radius:20px;
             cursor:pointer;
+            display:block;
+            width:100%;
+            margin:10px 0;
+        }
+        .togg{
+            float:right;
+            width:90px;
+            height:40px;
+            border-radius:20px;
+            margin-right:20px;
+            cursor:pointer;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+        .main .togg{
             background-color:#383F51;
-            transform:translate(50%,-50%);
+            color:white;
         }
-        .main.dark .circle{
+        .main.dark .togg{
             background-color:ghostwhite;
-        }
-        #phone .moon,#phone .sun{
-            position: absolute;
-            cursor:pointer;
-            font-size:21px;
-            top:50%;
-            left:50%;
-            transform:translate(-40px,25px);
-        }
-        .main #phone .moon{
-            display: block;
-            color:white;
-        }
-        .main #phone .sun{
-            display: none;
             color:black;
         }
-        .main.dark #phone .moon{
-            display: none;
-            color:white;
+        .togg i{
+            font-size:18px;
         }
-        .main.dark #phone .sun{
-            display: block;
-            color:black;
+        .main .togg .sun{
+            opacity:1;
+        }
+        .main .togg .moon{
+            opacity:0.5;
+        }
+        .main.dark .togg .sun{
+            opacity:0.5;
+        }
+        .main.dark .togg .moon{
+            opacity:1;
         }
         
     </style>
@@ -116,10 +120,12 @@
 
 <body data-theme="light" class="main dark">
                
-    <section id="phone">
+    <section id="phone" class="flex">
         
-        <div class="circle flex" onclick="togg1()">
-            <i class="fas fa-sun sun"></i> <i class="fas fa-moon moon"></i> 
+        <div class="box">
+            <div class="togg flex" onclick="togg1()">
+                <i class="fas fa-sun sun"></i> <i class="fas fa-moon moon"></i> 
+            </div>
         </div>
         
         <h2>What's App</h2>
