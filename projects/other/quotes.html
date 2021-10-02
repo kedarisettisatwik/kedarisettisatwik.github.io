@@ -56,7 +56,7 @@
             min-height:200px;
             position:relative;
             background-color:#212121;
-            padding-bottom:20px;
+            padding:15px 0 25px 0;
         }
         #quote{
             width:100%;
@@ -137,7 +137,7 @@
         var author = document.getElementById("author");
         
         function new_one(){
-            fetch("http://api.quotable.io/random")
+            fetch("https://api.quotable.io/random")
             .then((res) =>{
                 return res.json();
             } )
