@@ -362,18 +362,18 @@
             
             var projects_top = document.querySelector(".projects").getBoundingClientRect().top;
             
-            if (projects_top < 300){
-                wave[0].style.clipPath = "polygon(0 0%, 100% 0%, 100% 50%, 0% 50%)";
-            }else{
+           if (projects_top < 300){
+               wave[0].style.clipPath = "polygon(0 0%, 100% 0%, 100% 50%, 0% 50%)";
+           }else{
                 wave[0].style.clipPath = "polygon(0 0%, 100% 0%, 100% 30%, 0% 100%)";
-            }
+           }
             
             var name_box = document.querySelector(".name");
             var img_box = document.querySelector(".img");
             
             if (scroll_yy > 60){
                  name_box.style.transform = "translate( "+ -0.4*scroll_yy+"px" +",0%)";
-                img_box.style.transform = "translate( "+ 0.4*scroll_yy+"px" +",0%)";
+                 img_box.style.transform = "translate( "+ 0.4*scroll_yy+"px" +",0%)";
             }else{
                 name_box.style.transform = "translate(0%,0%)";
                 img_box.style.transform = "translate(0%,0%)";
