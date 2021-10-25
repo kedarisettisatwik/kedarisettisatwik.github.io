@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
     <!-- google fonts -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
     <title>satwik _ kedar</title>
     
     <style>
@@ -17,7 +19,6 @@
             padding:0;
             box-sizing:border-box;
             font-family: 'Poppins', sans-serif;
-            cursor:pointer;
 /*          font-family: 'Caveat', cursive; */
         }
         html{
@@ -62,6 +63,7 @@
         }
         body .nav ul{
             list-style: none;
+            margin-right:20px;
         }
         body .nav ul .tab{
             margin:0 10px;
@@ -231,30 +233,6 @@
             height:calc(100vh - 70px);
             background-color:white;
         }
-        .cursor{
-            display: block;
-            position: fixed;
-            z-index:1000;
-            width:20px;
-            height:20px;
-            border-radius:50%;
-            background:#2696E8;
-            box-shadow:0 0 20px #2696E8,0 0 60px #2696E8,0 0 100px #2696E8;
-            top:50%;
-            left:50%;
-            transform:translate(-50%,-50%);
-            transition:0.0s;
-            -webkit-animation:cursor1 5s linear infinite;
-        }
-        @keyframes cursor1{
-            0%{
-                filter:hue-rotate(0deg);
-            }
-            100%{
-                filter:hue-rotate(360deg);
-            }
-        }
-        
         
         @media (max-width:700px){
             body .nav ul{
@@ -311,7 +289,7 @@
           </ul>
     </nav>
    
-   <section class="main">
+   <section class="main water">
        
        <div class="name">
            <h3>Hello, I'm</h3>
@@ -343,15 +321,17 @@
        
    </section>
    
-   <div class="cursor">
-       
-   </div>
    
+   <script src="jquery.ripples-min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $(".water").ripples();
+    })
+    </script> 
+    
     <script>
         
         name();
-        
-        var cursor = document.querySelector(".cursor");
         
         function name(){
             var name1 = document.querySelectorAll(".name1");
@@ -373,11 +353,6 @@
                 }
                 
             },150);
-            
-            var bw = window.innerWidth;
-            if (bw < 700){
-                cursor.style.display = "none";
-            }
         }
         
         function navi(a){
@@ -393,7 +368,7 @@
         
         var body_width = window.innerWidth;
         
-        window.addEventListener("scroll",() => {
+        window.addEventListener("scroll",(e) => {
             
             var scroll_yy = window.scrollY;
             
@@ -422,11 +397,6 @@
                 navi(0);
             }
             
-        });
-        
-        window.addEventListener("mousemove",(e) => {
-            cursor.style.left = e.pageX + "px";
-            cursor.style.top = e.pageY + "px";
         });
         
     </script>
