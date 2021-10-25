@@ -81,13 +81,23 @@
             height:calc(100vh - 70px);
             min-height:calc(555px - 70px);;
             overflow-x: hidden;
-            background-color:#282828;
+            background-color:aliceblue;
             position:relative;
         }
         body .main .img{
             position:absolute;
             bottom:0px;
             right:5px;
+            clip-path: inset(100% 0 0 0);
+            -webkit-animation:img1 1.5s linear forwards;
+        }
+        @keyframes img1{
+            0%{
+                clip-path: inset(100% 0 0 0);
+            }
+            100%{
+                clip-path: inset(0 0 0 0);
+            }
         }
         body .main .img img{
             width:300px;
@@ -117,14 +127,15 @@
             transition:0.3s;
         }
         body .main .name h3{
-            color:white;
+            color:#282828;
             margin:10px 0;
             letter-spacing:2px;
             font-size:17px;
         }
         body .main .name h2{
             font-size:63px;
-            color:white;
+            color:#000066;
+            text-shadow:0 0 4px rgb(0,0,0,0.7);
         }
         body .main .name h2 .name1{
             font-family: 'Caveat', sans-serif;
@@ -133,21 +144,21 @@
             margin-top:25px;
         }
         body .main .name .follow i{
-            color:white;
+            color:black;
             margin:0 10px;
             cursor:pointer;
-            font-size:20px;
+            font-size:22px;
             transition:0.3s;
         }
         body .main .name .follow i:hover{
-            color:#cc0000;
+            color:#000066;
         }
         body .main .name .down{
             margin-top:40px;
             height:50px;
             line-height:50px;
             padding:0 10px;
-            background-color:#cc0000;
+            background-color:#000066;
             color:white;
             transition:0.3s;
             cursor:pointer;
@@ -160,7 +171,7 @@
         }
         body .main .name .down:hover{
             background-color:white;
-            color:#cc0000;
+            color:#000066;
         }
         body .main .name .down i{
             -webkit-animation:arrow 1.5s linear infinite forwards;
@@ -181,12 +192,15 @@
             body .nav ul{
                 display:none;
             }
+            body .nav{
+                position:relative;
+            }
             body .main .img img{
                 width:250px;
             }
         }
         
-        @media (max-width:500px){
+        @media (max-width:510px){
             body .main .name{
                 top:10px;
                 transform:translate(0,0);
@@ -211,7 +225,7 @@
         
         @media (max-width:340px){
             body .main{
-                min-height:calc(620px - 70px);
+                min-height:calc(660px - 70px);
             }
         }
         
