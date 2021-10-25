@@ -17,6 +17,7 @@
             padding:0;
             box-sizing:border-box;
             font-family: 'Poppins', sans-serif;
+            cursor:pointer;
 /*          font-family: 'Caveat', cursive; */
         }
         html{
@@ -194,6 +195,7 @@
         }
         body .main .name .down i{
             -webkit-animation:arrow 2s linear infinite forwards;
+            cursor:pointer;
         }
         @keyframes arrow{
             0%{
@@ -221,7 +223,7 @@
             height:100%;
             clip-path: polygon(0 0%, 100% 0%, 100% 30%, 0% 100%);
             background-color:var(--i);
-            transition:0.5s;
+            transition:1s;
         }
         body .projects{
             width:100vw;
@@ -229,6 +231,30 @@
             height:calc(100vh - 70px);
             background-color:white;
         }
+        .cursor{
+            display: block;
+            position: fixed;
+            z-index:1000;
+            width:20px;
+            height:20px;
+            border-radius:50%;
+            background:#2696E8;
+            box-shadow:0 0 20px #2696E8,0 0 60px #2696E8,0 0 100px #2696E8;
+            top:50%;
+            left:50%;
+            transform:translate(-50%,-50%);
+            transition:0.0s;
+            -webkit-animation:cursor1 5s linear infinite;
+        }
+        @keyframes cursor1{
+            0%{
+                filter:hue-rotate(0deg);
+            }
+            100%{
+                filter:hue-rotate(360deg);
+            }
+        }
+        
         
         @media (max-width:700px){
             body .nav ul{
@@ -298,7 +324,7 @@
            </div>
            <div class="down flex">
                <i class="fas fa-long-arrow-alt-down"></i>
-               <label>see more..</label>
+               <label style="cursor:pointer">see more..</label>
            </div>
        </div>
        
@@ -317,9 +343,15 @@
        
    </section>
    
+   <div class="cursor">
+       
+   </div>
+   
     <script>
         
         name();
+        
+        var cursor = document.querySelector(".cursor");
         
         function name(){
             var name1 = document.querySelectorAll(".name1");
@@ -341,6 +373,11 @@
                 }
                 
             },150);
+            
+            var bw = window.innerWidth;
+            if (bw < 700){
+                cursor.style.display = "none";
+            }
         }
         
         function navi(a){
@@ -379,12 +416,17 @@
                 img_box.style.transform = "translate(0%,0%)";
             }
                 
-            if (projects_top < 400){
+            if (projects_top < 300){
                 navi(1);
             }else{
                 navi(0);
             }
             
+        });
+        
+        window.addEventListener("mousemove",(e) => {
+            cursor.style.left = e.pageX + "px";
+            cursor.style.top = e.pageY + "px";
         });
         
     </script>
