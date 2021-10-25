@@ -29,9 +29,6 @@
             overflow-x: hidden;
             position:relative;
         }
-        ::-webkit-scrollbar {
-            width: 0px;
-        }
         .flex{
             display: flex;
             justify-content: center;
@@ -44,6 +41,9 @@
             height:70px;
             justify-content: space-between;
             background-color:#282828;
+            top:0;
+            z-index:100;
+            padding:0 10px;
         }
         body .nav h2,body .nav ul{
             margin:0 5px;
@@ -90,7 +90,8 @@
             bottom:0px;
             right:5px;
             clip-path: inset(100% 0 0 0);
-            -webkit-animation:img1 1.5s linear forwards;
+            -webkit-animation:img1 2s linear forwards;
+            transition:0.2s;
         }
         @keyframes img1{
             0%{
@@ -123,10 +124,10 @@
         }
         body .main .name{
             position: absolute;
-            top:40%;
-            left:20px;
-            transform:translate(0,-50%);
-            transition:0.3s;
+            top:50px;
+            left:35px;
+            transform:translate(0,0%);
+            transition:0.2s;
         }
         body .main .name h3{
             color:white;
@@ -210,6 +211,7 @@
             height:100px;
             position:relative;
             background-color:var(--j);
+            background-color:white;
         }
         body .border .wave{
             position:absolute;
@@ -219,8 +221,14 @@
             height:100%;
             clip-path: polygon(0 0%, 100% 0%, 100% 30%, 0% 100%);
             background-color:var(--i);
+            transition:0.5s;
         }
-        
+        body .projects{
+            width:100vw;
+            min-height:500px;
+            height:calc(100vh - 70px);
+            background-color:white;
+        }
         
         @media (max-width:700px){
             body .nav ul{
@@ -237,7 +245,6 @@
         @media (max-width:510px){
             body .main .name{
                 top:10px;
-                transform:translate(0,0);
             }
             body .main .img img{
                 width:calc(100vw - 15px);
@@ -272,9 +279,8 @@
           <h2><span>Project</span><label>store</label></h2>
           <ul class="flex">
              <li class="tab active">Home</li>
-             <li class="tab">About</li>
              <li class="tab">Projects</li>
-             <li class="tab">Skills</li>
+             <li class="tab">About</li>
              <li class="tab">Contact</li>
           </ul>
     </nav>
@@ -307,6 +313,9 @@
        <div class="wave" style="--i:#282828"></div>
    </section>
    
+   <section class="projects">
+       
+   </section>
    
     <script>
         
@@ -333,6 +342,50 @@
                 
             },150);
         }
+        
+        function navi(a){
+            var tab = document.querySelectorAll(".tab");
+            for (var i = 0;i<tab.length;i++){
+                var b = tab[i];
+                b.classList.remove("active");
+            }
+            tab[a].classList.add("active");
+        }
+        
+        var wave = document.querySelectorAll(".wave");
+        
+        var body_width = window.innerWidth;
+        
+        window.addEventListener("scroll",() => {
+            
+            var scroll_yy = window.scrollY;
+            
+            var projects_top = document.querySelector(".projects").getBoundingClientRect().top;
+            
+            if (projects_top < 300){
+                wave[0].style.clipPath = "polygon(0 0%, 100% 0%, 100% 50%, 0% 50%)";
+            }else{
+                wave[0].style.clipPath = "polygon(0 0%, 100% 0%, 100% 30%, 0% 100%)";
+            }
+            
+            var name_box = document.querySelector(".name");
+            var img_box = document.querySelector(".img");
+            
+            if (scroll_yy > 60){
+                 name_box.style.transform = "translate( "+ -0.4*scroll_yy+"px" +",0%)";
+                img_box.style.transform = "translate( "+ 0.4*scroll_yy+"px" +",0%)";
+            }else{
+                name_box.style.transform = "translate(0%,0%)";
+                img_box.style.transform = "translate(0%,0%)";
+            }
+                
+            if (projects_top < 400){
+                navi(1);
+            }else{
+                navi(0);
+            }
+            
+        });
         
     </script>
     
