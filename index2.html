@@ -37,12 +37,18 @@
             align-items: center;
             flex-direction: row;
         }
+        body .home{
+            position:relative;
+            width:100vw;
+            overflow-x: hidden;
+            background-color:#282828; 
+        }
         body .nav{
             position:sticky;
             width:100%;
             height:70px;
             justify-content: space-between;
-            background-color:#282828;
+            background-color:transparent;
             top:0;
             z-index:100;
             padding:0 10px;
@@ -84,7 +90,7 @@
             height:calc(570px - 70px);
             min-height:calc(555px - 70px);;
             overflow-x: hidden;
-            background-color:#282828;
+            background-color:transparent;
             position:relative;
             transition:0.3s,width 0s;
         }
@@ -212,18 +218,17 @@
         }
         body .border{
             width:100vw;
-            height:100px;
+            height:60px;
             position:relative;
-            background-color:var(--j);
-            background-color:white;
+            background-color:transparent;
         }
         body .border .wave{
             position:absolute;
-            top:0;
+            top:2px;
             left:0;
             width:100%;
             height:100%;
-            clip-path: polygon(0 0%, 100% 0%, 100% 30%, 0% 100%);
+            clip-path: polygon(0 70%, 100% 0%, 100% 100%, 0% 100%);
             background-color:var(--i);
             transition:1s;
         }
@@ -279,7 +284,9 @@
     </head>
 <body>
    
-   <nav class="nav flex">
+   <section class="home water">
+      
+       <nav class="nav flex">
           <h2><span>Project</span><label>store</label></h2>
           <ul class="flex">
              <li class="tab active">Home</li>
@@ -289,7 +296,7 @@
           </ul>
     </nav>
    
-   <section class="main water">
+   <section class="main">
        
        <div class="name">
            <h3>Hello, I'm</h3>
@@ -313,8 +320,10 @@
        
    </section>
    
-   <section class="border" style="--j:#fff" >
-       <div class="wave" style="--i:#282828"></div>
+   <section class="border">
+       <div class="wave" style="--i:#fff"></div>
+   </section>
+   
    </section>
    
    <section class="projects">
@@ -375,9 +384,9 @@
             var projects_top = document.querySelector(".projects").getBoundingClientRect().top;
             
            if (projects_top < 300){
-               wave[0].style.clipPath = "polygon(0 0%, 100% 0%, 100% 50%, 0% 50%)";
+               wave[0].style.clipPath = "polygon(0 50%, 100% 50%, 100% 100%, 0% 100%)";
            }else{
-                wave[0].style.clipPath = "polygon(0 0%, 100% 0%, 100% 30%, 0% 100%)";
+               wave[0].style.clipPath =  "polygon(0 70%, 100% 0%, 100% 100%, 0% 100%)";
            }
             
             var name_box = document.querySelector(".name");
