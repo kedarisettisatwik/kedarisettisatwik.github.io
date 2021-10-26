@@ -45,7 +45,7 @@
             overflow: hidden;
         }
         body .nav{
-            position:sticky;
+            position:relative;
             width:100%;
             height:70px;
             justify-content: space-between;
@@ -54,7 +54,7 @@
             z-index:100;
             padding:0 10px;
         }
-        body .nav h2,body .nav ul{
+        body .nav h2{
             margin:0 5px;
         }
         body .nav h2{
@@ -67,24 +67,6 @@
         }
         body .nav h2 label{
             color:#cc0000;
-        }
-        body .nav ul{
-            list-style: none;
-            margin-right:20px;
-        }
-        body .nav ul .tab{
-            margin:0 10px;
-            transition:0.3s;
-            cursor:pointer;
-            color:white;
-            font-weight:500;
-            letter-spacing:1px;
-            font-size:16px;
-        }
-        body .nav ul .tab.active{
-            color:#cc0000;
-            font-weight:700;
-            letter-spacing:2px;
         }
         body .main{
             width:100vw;
@@ -238,23 +220,48 @@
             min-height:500px;
             height:calc(100vh - 70px);
             background-color:white;
+            transition:0.5s;
+            opacity:0;
         }
         body .projects .pro_head{
             margin:20px;
             letter-spacing:2px;
             font-size:23px;
             transform:translateX(-100px);
-            opacity:0;
             transition:0.6s;
+        }
+        body .projects .box{
+            width:100%;
+            margin-top:5px;
+            position:relative;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: row;
+            flex-wrap: wrap;
+            transition:0.4s;
+            padding:0 20px;
+        }
+        body .projects .box a{
+            cursor:pointer;
+            padding:15px;
+            margin:7px;
+            box-shadow:0 0 3px rgb(0,0,0,0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            height:70px;
+            text-decoration:none;
+            color:black;
+            border-radius:5px;
+        }
+        body .projects .box a img{
+            height:50px;
+            margin:0 8px;
         }
         
         @media (max-width:700px){
-            body .nav ul{
-                display:none;
-            }
-            body .nav{
-                position:relative;
-            }
             body .main .img img{
                 width:250px;
             }
@@ -297,12 +304,6 @@
       
        <nav class="nav flex">
           <h2><span>Project</span><label>store</label></h2>
-          <ul class="flex">
-             <li class="tab active">Home</li>
-             <li class="tab">Projects</li>
-             <li class="tab">About</li>
-             <li class="tab">Contact</li>
-          </ul>
     </nav>
    
    <section class="main">
@@ -337,6 +338,71 @@
    
    <section class="projects">
        <h2 class="pro_head">Projects</h2>
+       
+       <div class="box">
+       
+    <a href = "2048/home.html" target="_blank" class="link"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJXeqb0tKY7cMLInjbLm0le-sDB9Da-U_slZEQ1kPBIdRKK4vlziXHNEnhAd8CnmHx5ag&usqp=CAU">2048</a>
+    <a href ="super/super.html" target="_blank" 
+    class="link" id="super"><img src="index%20icons/super%20calculator.png">SUPER <br> CALCULATOR</a>
+    <a href ="cb/cow1.html" target="_blank" class="link"><img src="index%20icons/cows%20and%20bulls.png">COW'S & BULL'S GAME</a>
+    <a href = "projects/other/quotes.html" target="_blank" class="link">Quote</a> 
+    <a href ="event/main.html" target="_blank" class="link"><img src="index%20icons/digital%20clock.png"> Digital Clock</a> 
+    <a href ="len/len.html" target="_blank" class="link"><img src="len/e-learning.png">character counter</a>
+    <a href = "chess/chess.html" target="_blank" class="link"><img src="index%20icons/chess.png">CHESS GAME</a>
+    <a href = "rain.html" target="_blank" class="link">RAIN..</a> 
+    
+       </div>
+    
+    <div class="box">
+        <a href = "college/login.html" target="_blank" class="link">college</a>
+        <a href = "online/home_online1.html" target="_blank" class="link"><img src="index%20icons/kedar%20is%20online.png">KSR <br> online shopping ..</a> 
+        <a href ="tr/travel_home.html" target="_blank" class="link"><img src="index%20icons/ace%20tourism.png">ACE TOURISIM</a>
+        <a href = "food/web1.html" target="_blank" class="link">food!e 😋</a>
+        <a href = "manager/home.html" target="_blank" class="link"><img src="manager/logo.png"> NETWORK chat app</a>
+    </div>
+    
+    <div class="box">
+    <a href = "projects/buttons/p1.html" target="_blank" class="link">button-1</a>
+    <a href = "projects/buttons/p2.html" target="_blank" class="link">button-2</a>
+    <a href = "projects/buttons/p3.html" target="_blank" class="link">button-3</a>
+    <a href = "projects/buttons/p4.html" target="_blank" class="link">add to cart</a>
+    <a href = "projects/buttons/p5.html" target="_blank" class="link">order now 1</a>
+    <a href = "projects/buttons/p6.html" target="_blank" class="link">order now 2</a>
+    <a href = "projects/other/table/ttable.html" target="_blank" class="link">Book a table</a>
+    <a href = "projects/buttons/ballon.html" target="_blank" class="link">slider - 1</a>
+    <a href = "projects/menu/loading-1.html" target="_blank" class="link">loading-1</a>
+    <a href = "projects/menu/loading-2.html" target="_blank" class="link">loading-2</a>
+    <a href = "projects/menu/icons1.html" target="_blank" class="link">icons-1</a>
+    </div>
+    
+    <div class="box">
+    <a href = "projects/forms/form1.html" target="_blank" class="link">form-1</a>
+    <a href = "projects/forms/form2.html" target="_blank" class="link">form-2</a>
+    <a href = "projects/forms/form3.html" target="_blank" class="link">form-3</a>
+    <a href = "projects/forms/form4.html" target="_blank" class="link">form-4</a>
+    <a href = "projects/forms/password.html" target="_blank" class="link">password - 1</a>    
+    <a href = "projects/forms/password%20-%202.html" target="_blank" class="link">password - 2</a>   
+    <a href = "projects/forms/atmcard.html" target="_blank" class="link">ATM card</a> 
+    <a href = "projects/other/bio.html" target="_blank" class="link">profile - 1</a>
+    <a href = "projects/buttons/pro-1.html" target="_blank" class="link">products - 1</a>
+    </div>
+    
+    <div class="box">
+    <a href = "projects/menu/menu1.html" target="_blank" class="link">menu - 1</a>
+    <a href = "projects/menu/menu2.html" target="_blank" class="link">menu - 2</a>
+    <a href = "projects/menu/menu3.html" target="_blank" class="link">menu - 3</a>   
+    <a href = "projects/menu/menu4.html" target="_blank" class="link">menu - 4</a> 
+    <a href = "projects/menu/menu5.html" target="_blank" class="link">menu - 5</a> 
+    <a href = "projects/menu/menu6.html" target="_blank" class="link">menu - 6</a>   
+    <a href = "projects/forms/search1.html" target="_blank" class="link">search bar 1</a>
+    <a href = "projects/other/para%201.html" target="_blank" class="link">Invisible para</a>
+    </div>
+    
+    <div class="box" style="opacity:0">
+        <a href="https://www.hitwebcounter.com" target="_blank" class="c">
+        <img src="https://hitwebcounter.com/counter/counter.php?page=7711238&style=0001&nbdigits=6&type=ip&initCount=0"     title="Total Website Hits" Alt="Web Hits"   border="0" /></a>
+    </div>
+    
    </section>
    
    
@@ -377,15 +443,6 @@
             
         }
         
-        function navi(a){
-            var tab = document.querySelectorAll(".tab");
-            for (var i = 0;i<tab.length;i++){
-                var b = tab[i];
-                b.classList.remove("active");
-            }
-            tab[a].classList.add("active");
-        }
-        
         var wave = document.querySelectorAll(".wave");
         
         var body_width = window.innerWidth;
@@ -397,15 +454,16 @@
             var projects_top = document.querySelector(".projects").getBoundingClientRect().top;
             
             var pro_head = document.querySelector(".pro_head");
+            var pro_box = document.querySelector(".projects");
             
            if (projects_top < 300){
                wave[0].style.clipPath = "polygon(0 50%, 100% 50%, 100% 100%, 0% 100%)";
                pro_head.style.transform = "translateX(0px)";
-               pro_head.style.opacity = "1";
+               pro_box.style.opacity = "1";
            }else{
                wave[0].style.clipPath =  "polygon(0 70%, 100% 0%, 100% 100%, 0% 100%)";
                pro_head.style.transform = "translateX(-100px)";
-               pro_head.style.opacity = "0";
+               pro_box.style.opacity = "0";
            }
             
             var name_box = document.querySelector(".name");
@@ -419,13 +477,6 @@
                 img_box.style.transform = "translate(0%,0%)";
             }
                 
-            if (projects_top < 300){
-                navi(1);
-            }else{
-                navi(0);
-            }
-            
-            
         });
         
     </script>
