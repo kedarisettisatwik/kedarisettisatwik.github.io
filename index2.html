@@ -42,6 +42,7 @@
             width:100vw;
             overflow-x: hidden;
             background-color:#282828; 
+            overflow: hidden;
         }
         body .nav{
             position:sticky;
@@ -238,6 +239,14 @@
             height:calc(100vh - 70px);
             background-color:white;
         }
+        body .projects .pro_head{
+            margin:20px;
+            letter-spacing:2px;
+            font-size:23px;
+            transform:translateX(-100px);
+            opacity:0;
+            transition:0.6s;
+        }
         
         @media (max-width:700px){
             body .nav ul{
@@ -327,7 +336,7 @@
    </section>
    
    <section class="projects">
-       
+       <h2 class="pro_head">Projects</h2>
    </section>
    
    
@@ -338,7 +347,7 @@
             dropRadius : 30,
             perturbance : 0
         });
-    })
+    });
     </script> 
     
     <script>
@@ -365,6 +374,7 @@
                 }
                 
             },150);
+            
         }
         
         function navi(a){
@@ -386,10 +396,16 @@
             
             var projects_top = document.querySelector(".projects").getBoundingClientRect().top;
             
+            var pro_head = document.querySelector(".pro_head");
+            
            if (projects_top < 300){
                wave[0].style.clipPath = "polygon(0 50%, 100% 50%, 100% 100%, 0% 100%)";
+               pro_head.style.transform = "translateX(0px)";
+               pro_head.style.opacity = "1";
            }else{
                wave[0].style.clipPath =  "polygon(0 70%, 100% 0%, 100% 100%, 0% 100%)";
+               pro_head.style.transform = "translateX(-100px)";
+               pro_head.style.opacity = "0";
            }
             
             var name_box = document.querySelector(".name");
@@ -408,6 +424,7 @@
             }else{
                 navi(0);
             }
+            
             
         });
         
