@@ -224,7 +224,7 @@
         }
         body .border .wave{
             position:absolute;
-            top:2px;
+            top:10px;
             left:0;
             width:100%;
             height:100%;
@@ -334,7 +334,10 @@
    <script src="jquery.ripples-min.js"></script>
     <script>
     $(document).ready(function(){
-        $(".water").ripples();
+        $(".water").ripples({
+            dropRadius : 30,
+            perturbance : 0
+        });
     })
     </script> 
     
