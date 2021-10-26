@@ -4,17 +4,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="shortcut icon" href="index%20icons/technology.png" type="image">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="technology.png" type="image">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
     <!-- google fonts -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-    <title>project store </title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <title>satwik _ kedar</title>
+    
     <style>
         *{
             margin:0;
             padding:0;
             box-sizing:border-box;
             font-family: 'Poppins', sans-serif;
+/*          font-family: 'Caveat', cursive; */
         }
         html{
             scroll-behavior: smooth;
@@ -22,249 +27,370 @@
         body{
             width:100vw;
             min-height:100vh;
-            background-color:snow;
-            overflow-x: hidden;
-            padding:20px;
-            position:relative;
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            padding-bottom:100vh;
-        }
-        header{
-            width:90%;
-            box-shadow:0 0 10px rgb(0,0,0,0.1);
-            padding:10px;
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            background-color: white;
-        }
-        header label{
-            width:100%;
-            padding-left:30px;
-            font-size:30px;
-            font-weight:lighter
-        }
-        header .two{
-            display: flex;
-            width:100%;
-            padding:10px;
-            flex-wrap: wrap;
-            margin-top:30px;
-        }
-        header .two li{
-            cursor:pointer;
-            list-style:none;
-            margin:10px;
-            border-radius:5px;
-            padding:10px 20px;
-            box-shadow:0 0 10px rgb(0,0,0,0.2);
-        }
-        header .two li:nth-child(1){
-            background-color:skyblue;
-        }
-        header .two li:nth-child(2){
-            background-color:cornsilk
-        }
-        header .two li:nth-child(3){
-            background-color: darkturquoise
-        }
-        header .two li:nth-child(4){
-            background-color:antiquewhite
-        }
-        .visit{
-            width:90%;
-            margin-bottom:20px;
-        }
-        section{
-            width:90%;
-            box-shadow:0 0 10px rgb(0,0,0,0.2);
-            padding:10px;
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            margin:20px;
-            border-radius:5px;
-        }
-        
-        #my_projects span,#my_skills span,#my_intrests span,#contact span{
-            width:100%;
-            margin-top:10px;
-            padding-left:30px;
-            font-size:18px;
-            font-weight:bold;
-            letter-spacing:1.5px;
-        }
-        #my_projects ul,#my_skills ul,#contact ul{
-            display: flex;
-            width:100%;
-            padding:10px;
-            flex-wrap: wrap;
-        }
-        #my_projects{
-          background-color:skyblue;
-        }
-        #my_projects ul a{
-            text-decoration:none;
-            color:black;
-        }
-        .link{
-            border-radius:5px;
             background-color:white;
+            overflow-x: hidden;
+            position:relative;
+        }
+        .flex{
             display: flex;
             justify-content: center;
             align-items: center;
-            padding:10px;
-            margin:10px;
-            box-shadow:0 0 10px rgb(0,0,0,0.2);
+            flex-direction: row;
         }
-        .link img{
-            width:30px;
-            height:auto;
-            margin-right:10px;
-        }
-        #my_skills{
-            background-color:cornsilk
-        }
-        #my_skills ul{
-            list-style:none;
-            width:100%;
-        }
-        #my_skills ul li{
+        body .home{
             position:relative;
-            padding:10px;
-            margin:10px;
-            display:flex;
-            align-items: center;
-            justify-content:space-around;
-            flex-direction:row;
-            background-color:white;
-            box-shadow:0 0 10px rgb(0,0,0,0.2);
-            border-radius:5px;
-            width:250px;
+            width:100vw;
+            overflow-x: hidden;
+            background-color:#282828; 
+            overflow: hidden;
         }
-        .name{
-            font-size:18px;
-            font-weight:600;
+        body .nav{
+            position:relative;
+            width:100%;
+            height:70px;
+            justify-content: space-between;
+            background-color:transparent;
+            top:0;
+            z-index:100;
+            padding:0 10px;
+        }
+        body .nav h2{
+            margin:0 5px;
+        }
+        body .nav h2{
             letter-spacing:1px;
-            margin:5px;
+            font-size:24px;
         }
-        .value{
-            font-size:17px;
-            font-weight:600;
-            letter-spacing:1px;
+        body .nav h2 span{
+            margin:0 6px;
+            color:white;
         }
-        #my_intrests{
-            background-color: darkturquoise
+        body .nav h2 label{
+            color:#cc0000;
         }
-        #my_intrests p{
-            margin-top:10px;
-            padding:10px;
-            width:100%;
+        body .main{
+            width:100vw;
+            height:calc(570px - 70px);
+            min-height:calc(555px - 70px);;
+            overflow-x: hidden;
+            background-color:transparent;
+            position:relative;
+            transition:0.3s,width 0s;
         }
-        #my_intrests a{
-            padding:10px 20px;
-            margin:10px;
-            background-color:white;
-            background-color:white;
-            box-shadow:0 0 10px rgb(0,0,0,0.2);
-            border-radius:5px;
-            color:black;
-            text-decoration:none;
+        body .main .img{
+            position:absolute;
+            bottom:0px;
+            right:5px;
+            clip-path: inset(100% 0 0 0);
+            -webkit-animation:img1 2s linear forwards;
+            transition:0.2s;
         }
-        #contact{
-             background-color:antiquewhite
-        }
-        #contact ul{
-            width:100%;
-        }
-        #contact ul li{
-            position: relative;
-         list-style:none;
-         padding:10px;
-        margin:10px;
-        background-color:white;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-direction: row;
-            box-shadow:0 0 10px rgb(0,0,0,0.2);
-            border-radius:5px;
-            min-width:250px;
-        }
-        #contact ul li a{
-            color:black;
-            text-decoration:none;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-direction: row;
-            width:100%;
-        }
-        #contact ul li a i{
-            font-size:30px;
-            margin:5px 10px;
-            color:darkblue;
-        }
-        @media (max-width:600px){
-            header{
-                flex-direction:column;
+        @keyframes img1{
+            0%{
+                clip-path: inset(100% 0 0 0);
             }
-            header label{
+            100%{
+                clip-path: inset(0 0 0 0);
+            }
+        }
+        body .main .img img{
+            width:300px;
+            filter: drop-shadow(0px 0px 3px rgb(0,0,0,0.5));
+            transition:0.3s;
+        }
+        body .main .img span{
+            position: absolute;
+            bottom:15px;
+            left:0;
+            height:60px;
+            width:60px;
+            transform:translateX(50%);
+            background-color:snow;
+            font-weight:bold;
+            font-size:18px;
+            line-height:65px;
+            text-align: center;
+            border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+            transition:0.3s;
+            box-shadow:0 0 8px rgb(0,0,0,0.6);
+        }
+        body .main .name{
+            position: absolute;
+            top:50px;
+            left:35px;
+            transform:translate(0,0%);
+            transition:0.2s;
+        }
+        body .main .name h3{
+            color:white;
+            margin:10px 0;
+            letter-spacing:2px;
+            font-size:17px;
+        }
+        body .main .name h2{
+            font-size:63px;
+            color:white;
+        }
+        body .main .name h2 .name1{
+            font-family: 'Caveat', sans-serif;
+            text-shadow:0 0 0px aqua;
+            transition:0.3s;
+        }
+        body .main .name h2 .name1.active{
+            -webkit-animation:light1 1s linear forwards infinite;
+            letter-spacing:1px;
+        }
+        @keyframes light1{
+            0%{
+                text-shadow:0 0 0px aqua;
+            }
+            40%,60%{
+                text-shadow:0 0 9px aqua;
+            }
+            100%{
+                text-shadow:0 0 0px aqua;
+            }
+        }
+        body .main .name .follow{
+            margin-top:25px;
+        }
+        body .main .name .follow i{
+            color:antiquewhite;
+            margin:0 10px;
+            cursor:pointer;
+            font-size:22px;
+            transition:0.3s;
+        }
+        body .main .name .follow i:hover{
+            color:#cc0000;
+        }
+        body .main .name .down{
+            margin-top:40px;
+            height:50px;
+            line-height:50px;
+            padding:0 10px;
+            background-color:#cc0000;
+            color:white;
+            transition:0.3s;
+            cursor:pointer;
+            width:170px;
+            border-radius:8px;
+            justify-content: space-around;
+            font-weight:bold;
+            letter-spacing:1px;
+            font-size:15px;
+        }
+        body .main .name .down:hover{
+            background-color:#fff;
+            color:#cc0000;
+        }
+        body .main .name .down i{
+            -webkit-animation:arrow 2s linear infinite forwards;
+            cursor:pointer;
+        }
+        @keyframes arrow{
+            0%{
+                font-size:15px;
+            }
+            50%{
                 font-size:20px;
             }
-            #my_skills ul li{
-                width:85%;
-            }
-            #contact ul li{
-                width:100%;
-                flex-wrap: wrap;
-            }
-            #contact ul{
-                align-items: center;
-                flex-wrap:nowrap;
-                justify-content: center;
-                flex-direction: column;
+            100%{
+                font-size:15px;
             }
         }
+        body .border{
+            width:100vw;
+            height:60px;
+            position:relative;
+            background-color:transparent;
+        }
+        body .border .wave{
+            position:absolute;
+            top:10px;
+            left:0;
+            width:100%;
+            height:100%;
+            clip-path: polygon(0 70%, 100% 0%, 100% 100%, 0% 100%);
+            background-color:var(--i);
+            transition:1s;
+        }
+        body .projects{
+            width:100vw;
+            min-height:500px;
+            height:calc(100vh - 70px);
+            background-color:white;
+            transition:0.5s;
+            opacity:0;
+        }
+        body .projects .pro_head{
+            margin:20px;
+            letter-spacing:2px;
+            font-size:23px;
+            transform:translateX(-100px);
+            transition:0.6s;
+        }
+        body .projects .box{
+            width:100%;
+            margin-top:5px;
+            position:relative;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: row;
+            flex-wrap: wrap;
+            transition:0.4s;
+            padding:0 20px;
+        }
+        body .projects .box a{
+            cursor:pointer;
+            padding:15px;
+            margin:7px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            height:70px;
+            text-decoration:none;
+            color:black;
+            border-radius:5px;
+            transition:0.3s;
+        }
+        body .projects .box a:hover{
+            color:darkblue;
+        }
+        body .projects .box a img{
+            height:50px;
+            margin:0 8px;
+        }
+        
+        @media (max-width:700px){
+            body .main .img img{
+                width:250px;
+            }
+        }
+        
+        @media (max-width:510px){
+            body .main .name{
+                top:10px;
+            }
+            body .main .img img{
+                width:calc(100vw - 15px);
+                max-width:200px;
+            }
+            body .main .img span{
+                width:40px;
+                height:40px;
+                line-height:40px;
+                font-size:16px;
+            }
+        }
+        
+        @media (max-width:420px){
+            body .main .name h2{
+                font-size:40px;
+            }
+        }
+        
+        @media (max-width:340px){
+            body .main{
+                min-height:calc(660px - 70px);
+            }
+        }
+        
     </style>
+    
     </head>
 <body>
-   <nav class="visit">
-       <img src="https://hitwebcounter.com/counter/counter.php?page=7711238&style=0001&nbdigits=6&type=ip&initCount=0" title="Total Website Hits" Alt="Web Hits"   border="0" />
-   </nav>
-    <header>
-        <label>Project Store</label>
-        <ul class="two">
-        <li onclick="move('my_projects')">My Projects </li>
-        <li onclick="move('my_skills')">My Skills</li>
-        <li onclick="move('my_intrests')">My Intrests & More</li>
-        <li onclick="move('contact')">Contact Me</li>
-        </ul>
-    </header>
-    
-    <section id="my_projects">
-       <span>My Projects</span>
-        <ul>
-    <a href = "projects/other/quotes.html" target="_blank" class="link">Quote</a> 
-    <a href = "college/login.html" target="_blank" class="link">college</a> 
-    <a href = "manager/home.html" target="_blank" class="link"><img src="manager/logo.png"> NETWORK chat app</a>
-    <a href = "online/home_online1.html" target="_blank" class="link"><img src="index%20icons/kedar%20is%20online.png">KSR <br> online shopping ..</a> 
-    <a href ="tr/travel_home.html" target="_blank" 
-    class="link"><img src="index%20icons/ace%20tourism.png">ACE TOURISIM</a>
-    <a href = "chess/chess.html" target="_blank" class="link"><img src="index%20icons/chess.png">CHESS GAME</a>
-    <a href = "2048/home.html" target="_blank" class="link"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJXeqb0tKY7cMLInjbLm0le-sDB9Da-U_slZEQ1kPBIdRKK4vlziXHNEnhAd8CnmHx5ag&usqp=CAU">2048</a>
+   
+   <section class="home water">
+      
+       <nav class="nav flex">
+          <h2><span>Project</span><label>store</label></h2>
+    </nav>
+   
+   <section class="main">
+       
+       <div class="name">
+           <h3>Hello, I'm</h3>
+           <h2><span class="name1"></span><label class="name1"></label></h2>
+           <div class="follow">
+               <a href="tel:+917386484905" target="_blank"><i class="fas fa-phone-alt"></i></a>
+               <a href="mailto:satwik1330@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+               <a href="https://www.instagram.com/satwikkedaresetti/" target="_blank"><i class="fab fa-instagram"></i></a>
+               <a href="https://www.youtube.com/channel/UCpLOopnR9TX9b1fjcDpapsw" target="_blank"><i class="fab fa-youtube"></i></a>
+           </div>
+           <div class="down flex">
+               <i class="fas fa-long-arrow-alt-down"></i>
+               <label style="cursor:pointer">see more..</label>
+           </div>
+       </div>
+       
+       <div class="img">
+           <img src="mine.png">
+           <span>18</span>
+       </div>
+       
+   </section>
+   
+   <section class="border">
+       <div class="wave" style="--i:#fff"></div>
+   </section>
+   
+   </section>
+   
+   <section class="projects">
+       <h2 class="pro_head">Projects</h2>
+       
+       <div class="box">
+       
+    <a href = "2048/home.html" target="_blank" class="link">2048 Game</a>
     <a href ="super/super.html" target="_blank" 
-    class="link" id="super"><img src="index%20icons/super%20calculator.png">SUPER <br> CALCULATOR</a>
-    <a href ="event/main.html" target="_blank" class="link"><img src="index%20icons/digital%20clock.png"> Digital Clock</a>  
-    <a href ="cb/cow1.html" target="_blank" class="link"><img src="index%20icons/cows%20and%20bulls.png">COW'S & BULL'S GAME</a>
-    <a href ="len/len.html" target="_blank" class="link"><img src="len/e-learning.png">character counter</a>      
+    class="link" id="super">SUPER <br> CALCULATOR</a>
+    <a href ="cb/cow1.html" target="_blank" class="link">COW'S & BULL'S GAME</a>
+    <a href = "projects/other/quotes.html" target="_blank" class="link">Quote</a> 
+    <a href ="event/main.html" target="_blank" class="link"> Digital Clock</a> 
+    <a href ="len/len.html" target="_blank" class="link">character counter</a>
+    <a href = "chess/chess.html" target="_blank" class="link">CHESS GAME</a>
     <a href = "rain.html" target="_blank" class="link">RAIN..</a> 
-     <a href = "projects/buttons/p1.html" target="_blank" class="link">button-1</a>
+    
+       </div>
+    
+    <div class="box">
+        <a href = "college/login.html" target="_blank" class="link">college</a>
+        <a href = "online/home_online1.html" target="_blank" class="link">KSR <br> online shopping ..</a> 
+        <a href ="tr/travel_home.html" target="_blank" class="link">ACE TOURISIM</a>
+        <a href = "food/web1.html" target="_blank" class="link">food!e 😋</a>
+        <a href = "manager/home.html" target="_blank" class="link"> NETWORK chat app</a>
+    </div>
+    
+    <div class="box">
+    <a href = "projects/buttons/p1.html" target="_blank" class="link">button-1</a>
     <a href = "projects/buttons/p2.html" target="_blank" class="link">button-2</a>
     <a href = "projects/buttons/p3.html" target="_blank" class="link">button-3</a>
+    <a href = "projects/buttons/p4.html" target="_blank" class="link">add to cart</a>
+    <a href = "projects/buttons/p5.html" target="_blank" class="link">order now 1</a>
+    <a href = "projects/buttons/p6.html" target="_blank" class="link">order now 2</a>
+    <a href = "projects/other/table/ttable.html" target="_blank" class="link">Book a table</a>
+    <a href = "projects/buttons/ballon.html" target="_blank" class="link">slider - 1</a>
+    <a href = "projects/menu/loading-1.html" target="_blank" class="link">loading-1</a>
+    <a href = "projects/menu/loading-2.html" target="_blank" class="link">loading-2</a>
+    <a href = "projects/menu/icons1.html" target="_blank" class="link">icons-1</a>
+    </div>
+    
+    <div class="box">
     <a href = "projects/forms/form1.html" target="_blank" class="link">form-1</a>
+    <a href = "projects/forms/form2.html" target="_blank" class="link">form-2</a>
+    <a href = "projects/forms/form3.html" target="_blank" class="link">form-3</a>
+    <a href = "projects/forms/form4.html" target="_blank" class="link">form-4</a>
+    <a href = "projects/forms/password.html" target="_blank" class="link">password - 1</a>    
+    <a href = "projects/forms/password%20-%202.html" target="_blank" class="link">password - 2</a>   
+    <a href = "projects/forms/atmcard.html" target="_blank" class="link">ATM card</a> 
+    <a href = "projects/other/bio.html" target="_blank" class="link">profile - 1</a>
+    <a href = "projects/buttons/pro-1.html" target="_blank" class="link">products - 1</a>
+    </div>
+    
+    <div class="box">
     <a href = "projects/menu/menu1.html" target="_blank" class="link">menu - 1</a>
     <a href = "projects/menu/menu2.html" target="_blank" class="link">menu - 2</a>
     <a href = "projects/menu/menu3.html" target="_blank" class="link">menu - 3</a>   
@@ -273,75 +399,91 @@
     <a href = "projects/menu/menu6.html" target="_blank" class="link">menu - 6</a>   
     <a href = "projects/forms/search1.html" target="_blank" class="link">search bar 1</a>
     <a href = "projects/other/para%201.html" target="_blank" class="link">Invisible para</a>
-    <a href = "projects/forms/form2.html" target="_blank" class="link">form-2</a>
-    <a href = "projects/forms/form3.html" target="_blank" class="link">form-3</a>
-    <a href = "projects/menu/icons1.html" target="_blank" class="link">icons-1</a>
-    <a href = "projects/menu/loading-1.html" target="_blank" class="link">loading-1</a>
-    <a href = "projects/menu/loading-2.html" target="_blank" class="link">loading-2</a>
-    <a href = "projects/forms/form4.html" target="_blank" class="link">form-4</a>
-    <a href = "projects/buttons/p4.html" target="_blank" class="link">add to cart</a>
-    <a href = "projects/buttons/p5.html" target="_blank" class="link">order now 1</a>
-    <a href = "projects/buttons/p6.html" target="_blank" class="link">order now 2</a>
-    <a href = "projects/other/bio.html" target="_blank" class="link">profile - 1</a>
-    <a href = "projects/buttons/pro-1.html" target="_blank" class="link">products - 1</a>
-    <a href = "food/web1.html" target="_blank" class="link">food!e 😋</a>
-    <a href = "projects/buttons/ballon.html" target="_blank" class="link">slider - 1</a>
-    <a href = "projects/forms/password.html" target="_blank" class="link">password - 1</a>    
-    <a href = "projects/forms/password%20-%202.html" target="_blank" class="link">password - 2</a>   
-    <a href = "projects/forms/atmcard.html" target="_blank" class="link">ATM card</a> 
-    <a href = "projects/other/search.html" target="_blank" class="link">Search Users</a> 
-    <a href = "projects/other/table/ttable.html" target="_blank" class="link">Book a table</a>
-    <a href="projects/other/swipe.html" target="_blank" class="link">swipe</a>
-    <a href="random.html" target="_blank" class="link">random</a>
-    </ul>
+    </div>
     
-    </section>
+    <div class="box" style="opacity:0">
+        <a href="https://www.hitwebcounter.com" target="_blank" class="c">
+        <img src="https://hitwebcounter.com/counter/counter.php?page=7711238&style=0001&nbdigits=6&type=ip&initCount=0"     title="Total Website Hits" Alt="Web Hits"   border="0" /></a>
+    </div>
     
-    <section id="my_skills">
-        <span>My Skills</span>
-        <ul>
-    <li><label class="name">HTML</label><label class="value">90%</label></li>
-    <li><label class="name">CSS</label><label class="value">85%</label></li> 
-    <li><label class="name">JS</label><label class="value">70%</label></li>
-    <li><label class="name">firebase</label><label class="value">50%</label></li>
-    <li><label class="name">Java</label><label class="value">80%</label></li>  
-    <li><label class="name">Python</label><label class="value">90%</label></li>
-     <li><label class="name">C</label><label class="value">85%</label></li>  
-     <li><label class="name">C++</label><label class="value">70%</label></li> 
-     <li><label class="name">blender</label><label class="value">50%</label></li> 
-     <li><label class="name">sketh up</label><label class="value">20%</label></li> 
-    <li><label class="name">PHP</label><label class="value">5%</label></li>           
-        </ul>
-    </section>
-    
-    <section id="my_intrests">
-        <span>My Intrests & More</span>
-        <p>I am kedarisetti satwik (kedar), can you help me in exploring the world
-let's start our journey today
-I am intrested in computers, historical scientific reasons and theories, what about u ?
-this is a completely free website aim of this site is just to
-spread knowledge and ideas, thank you for visiting this site ..</p>
-   <a href="https://kedarisettisatwik.github.io/courses/subjects.html">start journey</a>
-    </section>
-    
-    <section id="contact">
-        <span>Contact Me</span>
-        <ul>
-            <li><a href="https://www.facebook.com/people/Satwik-Kedaresetti/100008718079201/"><i class="fab fa-facebook"></i> <label>Facebook</label></a></li>
-            <li><a href="https://www.instagram.com/satwikkedaresetti/"><i class="fab fa-instagram"></i> <label>Instagram</label></a></li>
-            <li><a href="https://www.youtube.com/channel/UCpLOopnR9TX9b1fjcDpapsw"><i class="fab fa-youtube"></i> <label>Youtube</label></a></li>
-            <li><a><label style="margin-left:20px;"><i class="far fa-envelope"></i>satwik1330@gmail.com</label></a></li>
-        </ul>
-    </section>
+   </section>
+   
+   
+   <script src="jquery.ripples-min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $(".water").ripples({
+            dropRadius : 30,
+            perturbance : 0
+        });
+    });
+    </script> 
     
     <script>
         
-        function move(a){
-            var aa = document.getElementById(a);
-            var at = aa.getBoundingClientRect().top;
-            window.scrollBy(0,at);
+        name();
+        
+        function name(){
+            var name1 = document.querySelectorAll(".name1");
+            var st1_name = "Satwik - kedar";
+            var t = 0;
+            var write1 = setInterval(function(){
+                
+                if (t < 14){
+                    if (t < 6){
+                        name1[0].innerHTML += st1_name[t];
+                    }else{
+                        name1[1].innerHTML += st1_name[t];
+                    }
+                    t +=1;
+                }else{
+                    name1[0].classList.add("active");
+                    name1[1].classList.add("active");
+                    clearInterval(write1);
+                }
+                
+            },150);
+            
         }
+        
+        var wave = document.querySelectorAll(".wave");
+        
+        var body_width = window.innerWidth;
+        
+        window.addEventListener("scroll",(e) => {
+            
+            var scroll_yy = window.scrollY;
+            
+            var projects_top = document.querySelector(".projects").getBoundingClientRect().top;
+            
+            var pro_head = document.querySelector(".pro_head");
+            var pro_box = document.querySelector(".projects");
+            
+           if (projects_top < 300){
+               wave[0].style.clipPath = "polygon(0 50%, 100% 50%, 100% 100%, 0% 100%)";
+               pro_head.style.transform = "translateX(0px)";
+               pro_box.style.opacity = "1";
+           }else{
+               wave[0].style.clipPath =  "polygon(0 70%, 100% 0%, 100% 100%, 0% 100%)";
+               pro_head.style.transform = "translateX(-100px)";
+               pro_box.style.opacity = "0";
+           }
+            
+            var name_box = document.querySelector(".name");
+            var img_box = document.querySelector(".img");
+            
+            if (scroll_yy > 60){
+                 name_box.style.transform = "translate( "+ -0.4*scroll_yy+"px" +",0%)";
+                 img_box.style.transform = "translate( "+ 0.4*scroll_yy+"px" +",0%)";
+            }else{
+                name_box.style.transform = "translate(0%,0%)";
+                img_box.style.transform = "translate(0%,0%)";
+            }
+                
+        });
+        
     </script>
+    
     </body>
 </html>
 
