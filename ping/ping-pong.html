@@ -174,7 +174,7 @@
       var ball = document.getElementById("ball");
       
       var ball_x = -3;
-      var ball_y = -1;
+      var ball_y = Math.random()*3 - 2;
       
       var frame_rate = 50;
       var time_frame = 0;
@@ -214,7 +214,7 @@
           ball.style.top = 200 - 10 + "px";
           ball.style.left = 300 - 10 + "px";
           ball_x = a;
-          ball_y = 0;
+          ball_y = Math.random()*3 - 2;;
           frame_rate = 50;
           setTimeout(function(){
               game_bool = true;
@@ -238,10 +238,14 @@
           var com_down = 100 + com_top;
           var com_right = 20 + com_left;
           
-          if (ball_top > user_top && ball_down < user_down && ball_left < user_right){
-              return true;
-          }else if (ball_top > com_top && ball_down < com_down && ball_right > com_left ){
-              return true;
+          if (ball_left < user_right){
+              if (ball_down > user_top && ball_top < user_down){
+                  return true;
+              }
+          }else if (ball_right > com_left){
+              if (ball_down > com_top && ball_top < com_down){
+                  return true;
+              }
           }else{
               return false;
           }
@@ -325,10 +329,10 @@
               
             if (ball_offleft < 0 || ball_offleft > 600){
               if (ball_offleft < 0){
-                  reset_game(2);
+                  reset_game(3);
                   cs += 1;
               }else{
-                  reset_game(-2);
+                  reset_game(-3);
                   us += 1;
               }
               user_score.innerHTML = us;
