@@ -1,0 +1,374 @@
+<html>
+<head>
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <title>ping - pong</title>
+    
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        html{
+            scroll-behavior: smooth;
+        }
+        body{
+            width:100vw;
+            min-height:100vh;
+            background-color:white;
+            overflow-x: hidden;
+            position:relative;
+        }
+        .flex{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .score_board{
+            width: 600px;
+            margin:10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: row;
+            margin-bottom:30px;
+            font-family: 'Caveat', cursive; 
+        }
+        .score_board label{
+            font-size:20px;
+        }
+        .score_board label span{
+            margin:0 10px;
+            font-family: 'Caveat', cursive;
+            font-size:18px;
+        }
+        .score_board h3{
+            font-family: 'Caveat', cursive;
+            font-size:20px;
+            letter-spacing:2px;
+            position:relative;
+        }
+        #game{
+            width:600px;
+            height:400px;
+            background-color:whitesmoke;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+            border-radius:4px;
+            overflow: hidden;
+            position:relative;
+        }
+        #ball{
+            position:absolute;
+            top:calc(200px - 10px);
+            left:calc(300px - 10px);
+            background-color:#282828;
+            border-radius:50%;
+            width:20px;
+            height:20px;
+            box-shadow:0 0 6px rgb(0,0,0,0.4);
+        }
+        #net{
+            position: absolute;
+            width:2px;
+            height:100%;
+            left:50%;
+            top:50%;
+            transform:translate(-50%,-50%);
+        }
+        #net p{
+            position: absolute;
+            width:2px;
+            height:10px;
+            left: -1px;
+            background-color:#282828;
+            opacity:0.4;
+        }
+        #user{
+            width:20px;
+            height:100px;
+            position: absolute;
+            top:150px;
+            left:5px;
+            background-color:#282828;
+            border-radius:5px;
+        }
+        #com{
+            width:20px;
+            height:100px;
+            position: absolute;
+            top:150px;
+            right:5px;
+            background-color:#282828;
+            opacity:0.5;
+            border-radius:5px;
+        }
+        
+    </style>
+    
+    </head>
+<body class="flex">
+ 
+ <div class="score_board">
+     <label> 😀 <span id="user_score">0</span> </label>
+     <h3>Ping - Pong</h3>
+     <i class="far fa-pause-circle pause" style="font-size:24px;display:none;cursor:pointer" onclick="pause1()"></i>
+     <i class="far fa-play-circle play" style="font-size:24px;display: inline;cursor:pointer" onclick="play1()"></i>
+     <label> <span id="com_score">0</span> 🤖 </label>
+ </div>
+ 
+ <section id="game">
+     
+     <div id="net"></div>
+     <div id="ball"></div>
+     <div id="user"></div>
+     <div id="com"></div>
+     
+ </section>
+
+ <section style="margin-top:20px;">Use numpad - 8 , numpad - 2 for moving stricker up and down</section>
+  
+  <script>
+      
+      function draw_net(){
+          var net1 = document.getElementById('net');
+          var height1 = net1.getBoundingClientRect().bottom - net1.getBoundingClientRect().top;
+          for (var i = 0;i < height1;i+=15){
+              var p1 = document.createElement("p");
+              p1.style.top = i + "px";
+              net1.appendChild(p1);
+          }
+          
+          var bodw = window.innerWidth;
+          var bodh = window.innerHeight;
+          
+          if (bodw < 600 || bodh < 600){
+              alert("sorry, this game is good to play in large screens ");
+          }
+          
+      }
+      
+      draw_net();
+      
+      var pause_btn = document.querySelector(".pause");
+      var play_btn = document.querySelector(".play");
+      
+      var user = document.getElementById("user");
+      var com = document.getElementById("com");
+      
+      var user_score = document.getElementById("user_score");
+      var com_score = document.getElementById("com_score");
+      
+      var us = 0;
+      var cs = 0;
+      
+      var ball = document.getElementById("ball");
+      
+      var ball_x = -3;
+      var ball_y = -1;
+      
+      var frame_rate = 50;
+      var time_frame = 0;
+      
+      var game_bool = false;
+      
+      var render = setInterval(function(){
+         if (game_bool){
+               update();
+          }
+       },1000/frame_rate);
+      
+      window.addEventListener("keydown", (e) => {
+          // down = 98
+          // up = 104
+          
+          var user_off = user.offsetTop;
+          
+          if (e.keyCode == 98){
+              
+              if (user_off + 10  <= 300){
+                  user.style.top = user_off + 10 + "px";
+              }
+              
+          }else if (e.keyCode == 104){
+              
+              if (user_off - 10 >= 0){
+                  user.style.top = user_off - 10 + "px";
+              }
+              
+          }
+          
+      });
+      
+      function reset_game(a){
+          game_bool = false;
+          ball.style.top = 200 - 10 + "px";
+          ball.style.left = 300 - 10 + "px";
+          ball_x = a;
+          ball_y = 0;
+          frame_rate = 50;
+          setTimeout(function(){
+              game_bool = true;
+          },300);
+      }
+      
+      function collide(){
+          
+          var ball_top = ball.offsetTop;
+          var ball_left = ball.offsetLeft;
+          var ball_down = 20 + ball_top;
+          var ball_right = 20 + ball_left;
+          
+          var user_top = user.offsetTop;
+          var user_left = user.offsetLeft;
+          var user_down = 100 + user_top;
+          var user_right = 20 + user_left;
+          
+          var com_top = com.offsetTop;
+          var com_left = com.offsetLeft;
+          var com_down = 100 + com_top;
+          var com_right = 20 + com_left;
+          
+          if (ball_top > user_top && ball_down < user_down && ball_left < user_right){
+              return true;
+          }else if (ball_top > com_top && ball_down < com_down && ball_right > com_left ){
+              return true;
+          }else{
+              return false;
+          }
+          
+      }
+      
+      function update(){
+          var ball_offtop = ball.offsetTop;
+          var ball_offleft = ball.offsetLeft;
+          
+          if (ball_offtop + ball_y > 0 && ball_offtop + ball_y < 400 - 20){
+              ball.style.top = ball_offtop + ball_y + "px";
+          }else{
+              ball_y *= -1;
+              if (ball_y < 0){
+                  ball_y -= 0.2;
+              }else{
+                  ball_y += 0.2;
+              }
+          }
+          
+          ball.style.left = ball_offleft + ball_x + "px";
+          
+          var cy = com.offsetTop;
+          
+          var by = ball.offsetTop;
+          
+          if (cy + ( by - cy - 50 )*0.09 > 0 && cy + ( by - cy - 50 )*0.09 < 300){
+              com.style.top = cy + ( by - cy - 50 )*0.05;
+          }
+          
+          var collison = collide();
+          
+          if (collison){
+              
+              var ball_speed = Math.sqrt(ball_x*ball_x + ball_y*ball_y);
+              
+              if (ball_offleft + ball_x > 200){
+                  // com
+                  var com_tp = com.offsetTop;
+                  var ball_tp = ball.offsetTop;
+                  var col = ( ball_tp - (com_tp + 50) )/ 50;
+                  var ang = col * Math.PI / 4;
+                  if (ball_speed*Math.cos(ang) > 0){
+                      ball_x = -1 * ball_speed*Math.cos(ang);
+                      ball_x -= 0.2;
+                  }else{
+                      ball_x = ball_speed*Math.cos(ang);
+                      ball_x -= 0.2;
+                  }
+                  ball_y = ball_speed*Math.sin(ang);
+                  if (ball_y > 0){
+                      ball_y += 0.2;
+                  }else{
+                      ball_y -= 0.2;
+                  }
+              }else{
+                  // user
+                  var user_tp = user.offsetTop;
+                  var ball_tp = ball.offsetTop;
+                  var col = (ball_tp - (user_tp + 50) )/ 50;
+                  var ang = col * Math.PI / 4;
+                  if (ball_speed*Math.cos(ang) < 0){
+                      ball_x = -1 * ball_speed*Math.cos(ang);
+                      ball_x += 0.2;
+                  }else{
+                      ball_x = ball_speed*Math.cos(ang);
+                      ball_x + 0.2;
+                  }
+                  ball_y = ball_speed*Math.sin(ang);
+                  if (ball_y > 0){
+                      ball_y += 0.2;
+                  }else{
+                      ball_y -= 0.2;
+                  }
+              }
+              
+              frame_rate += 0.5;
+              
+          }else{
+              
+            if (ball_offleft < 0 || ball_offleft > 600){
+              if (ball_offleft < 0){
+                  reset_game(2);
+                  cs += 1;
+              }else{
+                  reset_game(-2);
+                  us += 1;
+              }
+              user_score.innerHTML = us;
+              com_score.innerHTML = cs;
+            }
+              
+          }
+          
+      }
+      
+      function play1(){
+          pause_btn.style.display = "inline";
+          play_btn.style.display = "none";
+          alert("game starts after 3 sec");
+          setTimeout(function(){
+              game_bool = true;
+          },2000);
+      }
+      
+      function pause1(){
+          play_btn.style.display = "inline";
+          pause_btn.style.display = "none";
+          game_bool = false;
+      }
+      
+    
+    </script>
+  
+    </body>
+</html>
+
+
+
+
+<!--
+
+<a href="https://www.hitwebcounter.com" target="_blank" class="c">
+<img src="https://hitwebcounter.com/counter/counter.php?page=7711238&style=0001&nbdigits=6&type=ip&initCount=0" title="Total Website Hits" Alt="Web Hits"   border="0" /></a>
+
+22,001
+
+
+-->
