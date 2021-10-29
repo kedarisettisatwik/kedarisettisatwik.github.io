@@ -181,6 +181,7 @@
       var time_frame = 0;
       
       var game_bool = false;
+      var play_bool = true;
       
       var render = setInterval(function(){
          if (game_bool){
@@ -194,7 +195,9 @@
           // space = 32
           var user_off = user.offsetTop;
           
-          if (e.keyCode == 98){
+          if (game_bool || play_bool){
+              
+              if (e.keyCode == 98){
               
               if (user_off + 10  <= 295){
                   user.style.top = user_off + 10 + "px";
@@ -209,6 +212,8 @@
               }else{
                   user.style.top = "5px";
               }
+              
+          }
               
           }
           
@@ -362,6 +367,7 @@
           alert("game starts after 3 sec");
           setTimeout(function(){
               game_bool = true;
+              play_bool = false;
           },2000);
       }
       
