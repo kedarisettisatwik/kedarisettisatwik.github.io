@@ -136,6 +136,7 @@
  </section>
 
  <section style="margin-top:20px;">Use numpad - 8 , numpad - 2 for moving stricker up and down</section>
+ <section style="margin-top:20px;">Use space bar for play and pause game</section>
   
   <script>
       
@@ -190,21 +191,33 @@
       window.addEventListener("keydown", (e) => {
           // down = 98
           // up = 104
-          
+          // space = 32
           var user_off = user.offsetTop;
           
           if (e.keyCode == 98){
               
-              if (user_off + 10  <= 300){
+              if (user_off + 10  <= 295){
                   user.style.top = user_off + 10 + "px";
+              }else{
+                  user.style.top = "295px";
               }
               
           }else if (e.keyCode == 104){
               
-              if (user_off - 10 >= 0){
+              if (user_off - 10 >= 5){
                   user.style.top = user_off - 10 + "px";
+              }else{
+                  user.style.top = "5px";
               }
               
+          }
+          
+          if (e.keyCode == 32){
+              if (game_bool){
+                  pause1();
+              }else{
+                  play1();
+              }
           }
           
       });
@@ -273,7 +286,7 @@
           
           var by = ball.offsetTop;
           
-          if (cy + ( by - cy - 50 )*0.09 > 0 && cy + ( by - cy - 50 )*0.09 < 300){
+          if (cy + ( by - cy - 50 )*0.09 > 5 && cy + ( by - cy - 50 )*0.09 < 295){
               com.style.top = cy + ( by - cy - 50 )*0.05;
           }
           
@@ -357,7 +370,6 @@
           pause_btn.style.display = "none";
           game_bool = false;
       }
-      
     
     </script>
   
