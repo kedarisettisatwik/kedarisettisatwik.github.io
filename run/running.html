@@ -1,0 +1,250 @@
+<html>
+<head>
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <title>run</title>
+    
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        html{
+            scroll-behavior: smooth;
+        }
+        body{
+            width:100vw;
+            min-height:100vh;
+            background-color:whitesmoke;
+            overflow-x: hidden;
+            position:relative;
+        }
+        .flex{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .score_board{
+            width: 600px;
+            margin:10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: row;
+            margin-bottom:30px;
+            font-family: 'Caveat', cursive; 
+        }
+        .score_board label{
+            font-size:20px;
+        }
+        .score_board label span{
+            margin:0 10px;
+            font-family: 'Caveat', cursive;
+            font-size:18px;
+        }
+        .score_board h3{
+            font-family: 'Caveat', cursive;
+            font-size:20px;
+            letter-spacing:2px;
+            position:relative;
+        }
+        #game{
+            width:600px;
+            height:400px;
+            background-color:aliceblue;
+            box-shadow:0 0 10px rgb(0,0,0,0.4);
+            border-radius:4px;
+            overflow: hidden;
+            position:relative;
+        }
+        .player{
+            position: absolute;
+            bottom:100px;
+            left:30px;
+            height:100px;
+            width:100px;
+            overflow: hidden;
+            background-image:url(player.png);
+        }
+        .player.jump{
+            -webkit-animation:jump 1s linear forwards;
+        }
+        @keyframes jump{
+            0%{
+                transform:translateY(0px);
+            }
+            45%,55%{
+                transform:translateY(-150px);
+            }
+            100%{
+                transform:translateY(0px);
+            }
+        }
+        .ground{
+            width:100%;
+            position:absolute;
+            height:100px;
+            background-color: #006600;
+            bottom:0;
+        }
+        .line{
+            position: absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:15px;
+            background-color:#00cc99;
+        }
+        .clouds{
+            position: absolute;
+            bottom:100px;
+            height:300px;
+        }
+        .clouds img{
+            position:relative;
+            opacity:0.5;
+        }
+    </style>
+    
+    </head>
+<body class="flex">
+ 
+ <div class="score_board">
+     <label> 💗 <span id="user_lives">5</span> </label>
+     <h3>Just Run</h3>
+     <label> 💲 <span id="user_lives">0</span> </label>
+ </div>
+ 
+ <section id="game">
+     
+     <div class="ground">
+         <div class="line"></div>
+     </div>
+     <div class="clouds">
+     
+     </div>
+     <div class="player"> </div>
+     
+ </section>
+  
+ <p style="margin:20px 0">
+     use space bar to start and pause the game <br> 
+     use up arrow in key board to jump
+ </p>
+  
+  <script>
+      
+      var game_run = false;
+      var cloud_run = false;
+      
+      var frame_rate_player = 8;
+      var frame_rate_clouds = 60;
+      
+      var player = document.querySelector(".player");
+      
+      window.addEventListener("keydown", (e) => {
+          // jump = 38
+          // space = 32
+          if (e.keyCode == 32){
+              if (game_run){
+                  game_run = false;
+                  cloud_run = false;
+                  player.style.backgroundPosition = "0px";
+              }else{
+                  if (!game_run && !cloud_run){
+                      alert("Game starts in 3 seconds");
+                      setTimeout(function(){
+                         game_run = true;
+                         cloud_run = true;
+                      },2000);
+                  }
+              }
+          }
+          if (e.keyCode == 38){
+              game_run = false;
+              player.style.backgroundPosition = 300 + "px";
+              player.classList.add("jump");
+              setTimeout(function(){
+               game_run = true;
+               player.classList.remove("jump");
+              },950);
+          }
+      });
+      
+      var things = document.querySelector(".clouds");
+      
+      var tw = 0;
+      
+      function draw(){
+          var imgs = ["cloud.png","cloud1.png","cloud2.png"];
+          var in_left = 0;
+          for (var i = 0;i<40;i++){
+              var img1 = document.createElement("img");
+              var rand = Math.floor(Math.random()*3);
+              img1.setAttribute("src",imgs[rand]);
+              img1.setAttribute("class","cloud");
+              var tp1 = Math.floor(Math.random()*80 + 30);
+              img1.style.top = tp1 + "px";
+              var wd1 = Math.floor(Math.random()*30 + 40);
+              img1.style.width = wd1 + "px";
+              var lt1 = Math.floor(Math.random()*100 + 100);
+              img1.style.left = lt1 + in_left + "px";
+              tw = lt1 + in_left + wd1;
+              in_left = in_left + lt1;
+              things.appendChild(img1);
+          }
+      }
+      
+      draw();
+      
+      var pos = 0;
+      var ini = 0;
+      
+      setInterval(function(){
+          if (game_run){
+              pos -= 100;
+              player.style.backgroundPosition = pos + "px";
+              if (pos == -600){
+                  pos = 0;
+              }
+          }
+      },1000/frame_rate_player);
+      
+      setInterval(function(){
+          if (cloud_run){
+              things.style.left = ini + "px";
+              ini -= 1;
+              if (ini < -1*tw){
+                  things.style.left = "0px";
+                  ini = 0;
+              }
+          }
+      },1000/frame_rate_clouds);
+      
+  </script>
+  
+    </body>
+</html>
+
+
+
+
+<!--
+
+<a href="https://www.hitwebcounter.com" target="_blank" class="c">
+<img src="https://hitwebcounter.com/counter/counter.php?page=7711238&style=0001&nbdigits=6&type=ip&initCount=0" title="Total Website Hits" Alt="Web Hits"   border="0" /></a>
+
+22,001
+
+
+-->
