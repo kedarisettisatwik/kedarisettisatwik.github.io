@@ -45,14 +45,6 @@
             font-family: 'Caveat', 'Poppins',sans-serif;
             position:relative;
         }
-        .score_board label{
-            font-size:20px;
-        }
-        .score_board label span{
-            margin:0 10px;
-            font-family: 'Caveat', 'Poppins',sans-serif;
-            font-size:18px;
-        }
         .score_board h3{
             font-family: 'Caveat', 'Poppins',sans-serif;
             font-size:20px;
@@ -85,7 +77,7 @@
                 bottom:80px;
             }
             45%,55%{
-                bottom: calc(80px + 150px);
+                bottom: calc(80px + 200px);
             }
             100%{
                 bottom:80px;
@@ -167,11 +159,9 @@
 <body class="flex">
  
  <div class="score_board">
-     <label> 💗 <span id="user_lives">5</span> </label>
      <h3>Just Run</h3>
      <i class="far fa-pause-circle pause" style="font-size:24px;display:none;cursor:pointer" onclick="pause1()"></i>
      <i class="far fa-play-circle play" style="font-size:24px;display: inline;cursor:pointer" onclick="play1()"></i>
-     <label> 💲 <span id="user_lives">0</span> </label>
  </div>
  
  <section id="game" onclick="click_up()">
