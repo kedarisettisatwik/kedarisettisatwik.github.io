@@ -23,9 +23,9 @@
         }
         body{
             width:100vw;
-            min-height:100vh;
+            height:100vh;
             background-color:whitesmoke;
-            overflow-x: hidden;
+            overflow: hidden;
             position:relative;
         }
         .flex{
@@ -42,18 +42,19 @@
             align-items: center;
             flex-direction: row;
             margin-bottom:30px;
-            font-family: 'Caveat', cursive; 
+            font-family: 'Caveat', 'Poppins',sans-serif;
+            position:relative;
         }
         .score_board label{
             font-size:20px;
         }
         .score_board label span{
             margin:0 10px;
-            font-family: 'Caveat', cursive;
+            font-family: 'Caveat', 'Poppins',sans-serif;
             font-size:18px;
         }
         .score_board h3{
-            font-family: 'Caveat', cursive;
+            font-family: 'Caveat', 'Poppins',sans-serif;
             font-size:20px;
             letter-spacing:2px;
             position:relative;
@@ -69,7 +70,7 @@
         }
         .player{
             position: absolute;
-            bottom:100px;
+            bottom:80px;
             left:30px;
             height:100px;
             width:100px;
@@ -81,19 +82,19 @@
         }
         @keyframes jump{
             0%{
-                transform:translateY(0px);
+                bottom:80px;
             }
             45%,55%{
-                transform:translateY(-150px);
+                bottom: calc(80px + 150px);
             }
             100%{
-                transform:translateY(0px);
+                bottom:80px;
             }
         }
         .ground{
             width:100%;
             position:absolute;
-            height:100px;
+            height:80px;
             background-color: #006600;
             bottom:0;
         }
@@ -107,13 +108,38 @@
         }
         .clouds{
             position: absolute;
-            bottom:100px;
+            top:0px;
             height:300px;
         }
         .clouds img{
             position:relative;
             opacity:0.5;
         }
+        .note{
+            display:block;
+        }
+        
+        @media (max-width:630px){
+            #game{
+                width:100vw;
+                height:100vh;
+            }
+            .note{
+                display:none;
+            }
+            .score_board{
+                position: absolute;
+                top:0;
+                left:0;
+                width:100%;
+                z-index:100;
+                padding:0 30px;
+                background-color: white;
+                margin:0;
+                height:60px;
+            }
+        }
+        
     </style>
     
     </head>
@@ -122,10 +148,12 @@
  <div class="score_board">
      <label> 💗 <span id="user_lives">5</span> </label>
      <h3>Just Run</h3>
+     <i class="far fa-pause-circle pause" style="font-size:24px;display:none;cursor:pointer" onclick="pause1()"></i>
+     <i class="far fa-play-circle play" style="font-size:24px;display: inline;cursor:pointer" onclick="play1()"></i>
      <label> 💲 <span id="user_lives">0</span> </label>
  </div>
  
- <section id="game">
+ <section id="game" onclick="click_up()">
      
      <div class="ground">
          <div class="line"></div>
@@ -137,12 +165,14 @@
      
  </section>
   
- <p style="margin:20px 0">
+ <p style="margin:20px 0" class="note">
      use space bar to start and pause the game <br> 
      use up arrow in key board to jump
  </p>
   
   <script>
+      
+      var window_w = window.innerWidth;
       
       var game_run = false;
       var cloud_run = false;
@@ -153,8 +183,9 @@
       var player = document.querySelector(".player");
       
       window.addEventListener("keydown", (e) => {
-          // jump = 38
-          // space = 32
+          if (window_w >= 630){
+              // jump = 38
+              // space = 32
           if (e.keyCode == 32){
               if (game_run){
                   game_run = false;
@@ -179,7 +210,23 @@
                player.classList.remove("jump");
               },950);
           }
+          }
       });
+      
+      
+      function click_up(){
+          if (window_w < 630){
+              if (game_run){
+                  game_run = false;
+                  player.style.backgroundPosition = 300 + "px";
+                  player.classList.add("jump");
+                  setTimeout(function(){
+                    game_run = true;
+                    player.classList.remove("jump");
+                 },950);
+              }
+          }
+      }
       
       var things = document.querySelector(".clouds");
       
@@ -197,7 +244,7 @@
               img1.style.top = tp1 + "px";
               var wd1 = Math.floor(Math.random()*30 + 40);
               img1.style.width = wd1 + "px";
-              var lt1 = Math.floor(Math.random()*100 + 100);
+              var lt1 = Math.floor(Math.random()*200 + 150);
               img1.style.left = lt1 + in_left + "px";
               tw = lt1 + in_left + wd1;
               in_left = in_left + lt1;
@@ -230,6 +277,27 @@
               }
           }
       },1000/frame_rate_clouds);
+      
+      
+      var pause_btn = document.querySelector(".pause");
+      var play_btn = document.querySelector(".play");
+      
+      function play1(){
+          pause_btn.style.display = "inline";
+          play_btn.style.display = "none";
+          alert("game starts after 3 sec");
+          setTimeout(function(){
+              game_run = true;
+              cloud_run = true;
+          },2000);
+      }
+      
+      function pause1(){
+          play_btn.style.display = "inline";
+          pause_btn.style.display = "none";
+          game_run = false;
+          cloud_run = false;
+      }
       
   </script>
   
