@@ -5,6 +5,7 @@
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
     <!-- google fonts -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -44,10 +45,11 @@
             margin-bottom:30px;
             font-family: 'Caveat', 'Poppins',sans-serif;
             position:relative;
+            padding:0 30px 0 30px;
         }
         .score_board h3{
             font-family: 'Caveat', 'Poppins',sans-serif;
-            font-size:20px;
+            font-size:25px;
             letter-spacing:2px;
             position:relative;
         }
@@ -110,7 +112,16 @@
         .note{
             display:block;
         }
-        
+        .obstacles{
+            position: absolute;
+            width:100%;
+            bottom:70px;
+            height:calc(100% - 80px);
+        }
+        .obstacles img{
+            position:absolute;
+            bottom:0px;
+        }
         @media (max-width:630px){
             #game{
                 width:100vw;
@@ -160,6 +171,7 @@
  
  <div class="score_board">
      <h3>Just Run</h3>
+     <p id="meters">0 m</p>
      <i class="far fa-pause-circle pause" style="font-size:24px;display:none;cursor:pointer" onclick="pause1()"></i>
      <i class="far fa-play-circle play" style="font-size:24px;display: inline;cursor:pointer" onclick="play1()"></i>
  </div>
@@ -173,12 +185,14 @@
      
      </div>
      <div class="player"> </div>
+     <div class="obstacles">
+         
+     </div>
      
  </section>
   
  <p style="margin:20px 0" class="note">
-     use space bar to start and pause the game <br> 
-     use up arrow in key board to jump
+     click on game box to jump
  </p>
   
   <script>
@@ -194,40 +208,8 @@
       
       var player = document.querySelector(".player");
       
-      window.addEventListener("keydown", (e) => {
-          if (window_w >= 630 && window_h >= 600){
-              // jump = 38
-              // space = 32
-          if (e.keyCode == 32){
-              if (game_run){
-                  game_run = false;
-                  cloud_run = false;
-                  player.style.backgroundPosition = "0px";
-              }else{
-                  if (!game_run && !cloud_run){
-                      alert("Game starts in 3 seconds");
-                      setTimeout(function(){
-                         game_run = true;
-                         cloud_run = true;
-                      },2000);
-                  }
-              }
-          }
-          if (e.keyCode == 38){
-              game_run = false;
-              player.style.backgroundPosition = 300 + "px";
-              player.classList.add("jump");
-              setTimeout(function(){
-               game_run = true;
-               player.classList.remove("jump");
-              },950);
-          }
-          }
-      });
-      
       
       function click_up(){
-          if (window_w < 630 || window_h < 600){
               if (game_run){
                   game_run = false;
                   player.style.backgroundPosition = 300 + "px";
@@ -237,7 +219,6 @@
                     player.classList.remove("jump");
                  },950);
               }
-          }
       }
       
       var things = document.querySelector(".clouds");
@@ -264,10 +245,12 @@
           }
       }
       
+      
       draw();
       
       var pos = 0;
       var ini = 0;
+      var ele1 = 0;
       
       setInterval(function(){
           if (game_run){
@@ -279,6 +262,9 @@
           }
       },1000/frame_rate_player);
       
+      var meters = 0;
+      var me = document.getElementById("meters");
+      
       setInterval(function(){
           if (cloud_run){
               things.style.left = ini + "px";
@@ -287,6 +273,15 @@
                   things.style.left = "0px";
                   ini = 0;
               }
+              obstacles.style.left = ele1 + "px";
+              ele1 -= 7;
+              if (ele1 < -1*total_items){
+                  obstacles.style.left = "0px";
+                  ele1 = 0;
+              }
+              meters += 0.1;
+              me.innerHTML = Math.floor(meters) + " m ";
+              update();
           }
       },1000/frame_rate_clouds);
       
@@ -311,6 +306,66 @@
           cloud_run = false;
       }
       
+      var obstacles = document.querySelector(".obstacles");
+      
+      var total_items = 0;
+      
+      function render(){
+          var items = ["fence.png","waste-bin.png","cactus.png"];
+          var in_left = 200;
+          for (var i = 0;i<40;i++){
+              var img1 = document.createElement("img");
+              var rand = Math.floor(Math.random()*2);
+              img1.setAttribute("src",items[rand]);
+              img1.setAttribute("class","item");
+              var rand_w = Math.floor(Math.random()*40 + 70);
+              img1.style.width = rand_w + "px";
+              var lt1 = Math.floor(Math.random()*300 + 400);
+              img1.style.left = lt1 + in_left + "px";
+              total_items = lt1 + in_left + rand_w;
+              in_left = in_left + lt1 + rand_w;
+              obstacles.appendChild(img1);
+          }
+      }
+      
+      render();
+      
+      var check_item = 0;
+      
+      function update(){
+          var item_all = document.querySelectorAll(".item");
+          var item1 = item_all[check_item];
+          var left1 = item1.getBoundingClientRect().left;
+          var game_b = document.getElementById("game");
+          var left2 = game_b.getBoundingClientRect().left;
+          var ll = left1 - left2;
+          var width1 = item1.offsetWidth;
+          if (ll > 50 - width1 && ll < 80){
+              var player_b = player.offsetTop + player.offsetHeight;
+              var item_b = item1.offsetTop;
+              if (player_b > item_b + 20){
+                  pause1();
+                  player.style.filter = "grayscale(1)";
+                  alert("game over");
+                  location.reload();
+              }
+          }
+              
+          if (ll < 30 - width1){
+              if (check_item < item_all.length - 1){
+                  check_item += 1;
+              }else{
+                  check_item = 0;
+              }
+          }
+         // console.log("item = " + check_item);
+         //  console.log("left = " + ll);
+          
+      }
+      
+      window.addEventListener("contextmenu", (e) => {
+          e.preventDefault();
+      })
   </script>
   
     </body>
