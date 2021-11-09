@@ -98,6 +98,14 @@
             opacity:1;
             transform:scale(0.9);
         }
+        .table ul li.fruit{
+            border:3px solid red;
+            opacity:1;
+            transform:scale(0.9);
+        }
+        .table ul li.fruit:after{
+            background-color:red;
+        }
         
     </style>
 
@@ -123,7 +131,9 @@
       
         var game_bool = false;
         var direction = "R";
+        var score = 0;
         var blocks = [82,83,84,85];
+        var points = document.querySelector("#score");
         
         function draw(){
          var table = document.querySelector(".table");
@@ -134,6 +144,7 @@
                  var li1 = document.createElement("li");
                  var cl = "box" + id_n;
                  li1.classList.add(cl);
+                 li1.classList.add("block");
                  ul1.appendChild(li1);
                  id_n += 1;
              }
@@ -144,10 +155,31 @@
              var ele1 = document.querySelector(".box"+z);
              ele1.classList.add("active");
          }
+         
+            generate();
+         
      }
         
     draw();
+    
+        var fruitplace = 0;
+        var lh = 0;
         
+        function generate(){
+            var available = [];
+            for (var x = 0;x<400;x++){
+                var x1 = document.querySelector(".box"+x);
+                if (x1.classList.contains("active")){
+
+                }else{
+                    available.push(x);
+                }
+            }
+            var ran = Math.floor(Math.random()*available.length);
+            document.querySelector(".box"+available[ran]).classList.add("fruit");
+            fruitplace = eval(available[ran]);
+            console.log(fruitplace);
+        }
         
         window.addEventListener("keydown", (e) => {
           // space = 32
@@ -213,14 +245,10 @@
                     var ele11 = document.querySelector(s1);
                     ele11.classList.add("active");
                 }
-                var s2 = ".box" + blocks[0];
-                var ele22 = document.querySelector(s2);
-                ele22.classList.remove("active");   
-                blocks.splice(0,1);
                     
                 }
                 
-                if (direction == "L"){
+                else if (direction == "L"){
                     
                 var head = blocks[blocks.length - 1];
                 var row1 = Math.floor((head - (head % 10)) / 20);
@@ -236,18 +264,14 @@
                     var ele11 = document.querySelector(s1);
                     ele11.classList.add("active");
                 }
-                var s2 = ".box" + blocks[0];
-                var ele22 = document.querySelector(s2);
-                ele22.classList.remove("active");   
-                blocks.splice(0,1);
                     
                 }
                 
-                if (direction == "U"){
+                else if (direction == "U"){
                     
                 var head = blocks[blocks.length - 1];
                 var col1 = head%20;
-                var col_end = col1 + 380
+                var col_end = col1 + 380;
                 if (head - 20 > 0){
                     blocks.push(head - 20);
                     var s1 = ".box" + eval(head - 20);
@@ -259,14 +283,10 @@
                     var ele11 = document.querySelector(s1);
                     ele11.classList.add("active");
                 }
-                var s2 = ".box" + blocks[0];
-                var ele22 = document.querySelector(s2);
-                ele22.classList.remove("active");   
-                blocks.splice(0,1);
                     
                 }
                 
-                if (direction == "D"){
+                else if (direction == "D"){
                     
                 var head = blocks[blocks.length - 1];
                 var col1 = head%20;
@@ -282,13 +302,25 @@
                     var ele11 = document.querySelector(s1);
                     ele11.classList.add("active");
                 }
-                var s2 = ".box" + blocks[0];
-                var ele22 = document.querySelector(s2);
-                ele22.classList.remove("active");   
-                blocks.splice(0,1);
                     
                 }
                 
+                console.log(blocks);
+                
+                if (blocks.includes(fruitplace)){
+                 //   score += 1;
+                  //  points.innerHTML = score;
+                  //  var fp = document.querySelector(".box"+fruit_place);
+                   // fp.classList.remove("fruit");
+                   // generate();
+                    console.log("a");
+                }
+                else{
+                    var s2 = ".box" + blocks[0];
+                    var ele22 = document.querySelector(s2);
+                    ele22.classList.remove("active");   
+                    blocks.splice(0,1);
+                }
                 
             }
             
