@@ -220,24 +220,28 @@
             if (direction == "R" || direction == "L"){
                 direction = "D";
             }
+            game_bool = true;
         }
         
         function up1(){
             if (direction == "R" || direction == "L"){
                 direction = "U";
             }
+            game_bool = true;
         }
         
         function right1(){
             if (direction == "U" || direction == "D"){
                 direction = "R";
             }
+            game_bool = true;
         }
         
         function left1(){
             if (direction == "U" || direction == "D"){
                 direction = "L";
             }
+            game_bool = true;
         }
         
         window.addEventListener("keydown", (e) => {
@@ -418,7 +422,7 @@
                 
             }
             
-        },400);
+        },300);
         
     </script>
 
