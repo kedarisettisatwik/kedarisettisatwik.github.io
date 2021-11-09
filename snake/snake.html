@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    
+    <title>snake</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            list-style:none;
+            font-family: 'Caveat', cursive;
+        }
+
+        .flex {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        ::-webkit-scrollbar {
+            width: 0px;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            background-color: white;
+        }
+        
+        #page1 {
+            position: relative;
+            width:450px;
+            box-shadow: 0 0 20px rgb(0, 0, 0, 0.2);
+            background-color:whitesmoke;
+            overflow: hidden;
+            border-radius:10px;
+        }
+        .nav{
+            width:400px;
+            padding:10px;
+            flex-direction:row;
+            justify-content: space-between;
+        }
+        .nav h3{
+            font-size:30px;
+            font-weight:500;
+            letter-spacing:2px;
+        }
+        #score{
+            margin-right:15px;
+            font-size:30px;
+            font-weight:600;
+        }
+        .table{
+            width:400px;
+            margin:10px 0;
+            position:relative;
+        }
+        .table ul{
+            width:100%;
+            display:flex;
+            flex-direction: row;
+            justify-content: space-around;
+            padding:0 2px;
+            margin:2px 0;
+        }
+        .table ul li{
+            width:19px;
+            height:19px;
+            border:3px solid #282828;
+            opacity:0.1;
+            position:relative;
+            transition:0.1s;
+        }
+        .table ul li:after{
+            content:'';
+            position: absolute;
+            top:50%;
+            left:50%;
+            width:8px;
+            height:8px;
+            transform:translate(-50%,-50%);
+            background-color:#282828;
+        }
+        .table ul li.active{
+            opacity:1;
+            transform:scale(0.9);
+        }
+        
+    </style>
+
+</head>
+
+<body class="flex">
+
+    <section id="page1" class="flex">
+
+       <nav class="nav flex"><h3>snake</h3><span id="score">0</span></nav>
+       
+       <div class="table">
+           
+       </div>
+       
+       <p style="width:100%;padding:0 10px;font-size:14px;letter-spacing:1px;font-family: 'Poppins', sans-serif;margin-bottom:15px;"> use space bar to start and stop <br> use arrows to change direction</p>
+       
+    </section>
+
+ 
+   
+    <script>
+      
+        var game_bool = false;
+        var direction = "R";
+        var blocks = [81,82,83,84,85];
+        
+        function draw(){
+         var table = document.querySelector(".table");
+         var id_n = 0;
+         for (var i = 0;i<20;i++){
+             var ul1 = document.createElement("ul");
+             for (var j = 0;j<20;j++){
+                 var li1 = document.createElement("li");
+                 var cl = "box" + id_n;
+                 li1.classList.add(cl);
+                 ul1.appendChild(li1);
+                 id_n += 1;
+             }
+             table.appendChild(ul1);
+         }
+    
+         for (var z = 82;z<86;z++){
+             var ele1 = document.querySelector(".box"+z);
+             ele1.classList.add("active");
+         }
+     }
+        
+    draw();
+        
+        
+        window.addEventListener("keydown", (e) => {
+          // space = 32
+            
+          if (e.keyCode == 32){
+              if (game_bool){
+                  game_bool = false;
+              }else{
+                  alert("game starts in 3 sec ");
+                  setTimeout(function(){
+                      game_bool = true;
+                  },2000);
+              }
+          }
+            
+          // left = 37
+          // up = 38
+          // right = 39
+          // down = 40
+            
+    if (game_bool){
+             
+         if (e.keyCode == 37){
+            if (direction == "U" || direction == "D"){
+                direction = "L";
+            }
+         }else if (e.keyCode == 38){
+            if (direction == "R" || direction == "L"){
+                direction = "U";
+            } 
+         }else if (e.keyCode == 39){
+            if (direction == "U" || direction == "D"){
+                direction = "R";
+            } 
+         }else if (e.keyCode == 40){
+            if (direction == "R" || direction == "L"){
+                direction = "D";
+            } 
+         }
+  
+    }
+                
+      });
+        
+        
+        setInterval(function(){
+            
+            if (game_bool){
+                
+                if (direction == "R"){
+                    
+                var head = blocks[blocks.length - 1];
+                var row1 = Math.floor((head - (head % 10)) / 20);
+                var row_end = row1*20 + 20;
+                if (head + 1 < row_end){
+                    blocks.push(head + 1);
+                    var s1 = ".box" + eval(head + 1);
+                    var ele11 = document.querySelector(s1);
+                    ele11.classList.add("active");
+                }else{
+                    blocks.push(row1*20);
+                    var s1 = ".box" + eval(row1*20);
+                    var ele11 = document.querySelector(s1);
+                    ele11.classList.add("active");
+                }
+                var s2 = ".box" + blocks[0];
+                var ele22 = document.querySelector(s2);
+                ele22.classList.remove("active");   
+                blocks.splice(0,1);
+                    
+                }
+                
+                if (direction == "L"){
+                    
+                var head = blocks[blocks.length - 1];
+                var row1 = Math.floor((head - (head % 10)) / 20);
+                var row_end = row1*20 + 19;
+                if (head > row1*20){
+                    blocks.push(head - 1);
+                    var s1 = ".box" + eval(head - 1);
+                    var ele11 = document.querySelector(s1);
+                    ele11.classList.add("active");
+                }else{
+                    blocks.push(row_end);
+                    var s1 = ".box" + eval(row_end);
+                    var ele11 = document.querySelector(s1);
+                    ele11.classList.add("active");
+                }
+                var s2 = ".box" + blocks[0];
+                var ele22 = document.querySelector(s2);
+                ele22.classList.remove("active");   
+                blocks.splice(0,1);
+                    
+                }
+                
+                if (direction == "U"){
+                    
+                var head = blocks[blocks.length - 1];
+                var col1 = head%20;
+                var col_end = col1 + 380
+                if (head - 20 > 0){
+                    blocks.push(head - 20);
+                    var s1 = ".box" + eval(head - 20);
+                    var ele11 = document.querySelector(s1);
+                    ele11.classList.add("active");
+                }else{
+                    blocks.push(col_end);
+                    var s1 = ".box" + col_end;
+                    var ele11 = document.querySelector(s1);
+                    ele11.classList.add("active");
+                }
+                var s2 = ".box" + blocks[0];
+                var ele22 = document.querySelector(s2);
+                ele22.classList.remove("active");   
+                blocks.splice(0,1);
+                    
+                }
+                
+                if (direction == "D"){
+                    
+                var head = blocks[blocks.length - 1];
+                var col1 = head%20;
+                var col_end = col1 + 400;
+                if (head + 20 < col_end){
+                    blocks.push(head + 20);
+                    var s1 = ".box" + eval(head + 20);
+                    var ele11 = document.querySelector(s1);
+                    ele11.classList.add("active");
+                }else{
+                    blocks.push(col1);
+                    var s1 = ".box" + col1;
+                    var ele11 = document.querySelector(s1);
+                    ele11.classList.add("active");
+                }
+                var s2 = ".box" + blocks[0];
+                var ele22 = document.querySelector(s2);
+                ele22.classList.remove("active");   
+                blocks.splice(0,1);
+                    
+                }
+                
+                
+            }
+            
+        },400);
+        
+    </script>
+
+</body>
+
+</html>
