@@ -32,7 +32,10 @@
         ::-webkit-scrollbar {
             width: 0px;
         }
-
+        :root{
+            --width:19px;
+        }
+        
         body {
             width: 100vw;
             height: 100vh;
@@ -42,13 +45,11 @@
         #page1 {
             position: relative;
             width:450px;
-            box-shadow: 0 0 10px rgb(0, 0, 0, 0.2);
-            background-color:whitesmoke;
             overflow: hidden;
             border-radius:10px;
         }
         .nav{
-            width:400px;
+            width:100%;
             padding:10px;
             flex-direction:row;
             justify-content: space-between;
@@ -64,7 +65,7 @@
             font-weight:600;
         }
         .table{
-            width:400px;
+            width:100%;
             margin:10px 0;
             position:relative;
         }
@@ -77,8 +78,8 @@
             margin:2px 0;
         }
         .table ul li{
-            width:19px;
-            height:19px;
+            width:var(--width);
+            height:var(--width);
             border:3px solid #282828;
             opacity:0.1;
             position:relative;
@@ -89,8 +90,9 @@
             position: absolute;
             top:50%;
             left:50%;
-            width:8px;
-            height:8px;
+            width:calc(50%);
+            height:calc(50%);
+            border-radius:50%;
             transform:translate(-50%,-50%);
             background-color:#282828;
         }
@@ -105,6 +107,24 @@
         }
         .table ul li.fruit:after{
             background-color:red;
+        }
+        .buttons{
+            width:100%;
+            position:relative;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .buttons i{
+            height:40px;
+            width:40px;
+            cursor:pointer;
+            margin:2px;
+            font-size:20px;
+        }
+        @media (max-width:500px){
+            #page1 {
+                width:calc(100vw - 10px);
+            }
         }
         
     </style>
@@ -121,7 +141,14 @@
            
        </div>
        
-       <p style="width:100%;padding:0 10px;font-size:14px;letter-spacing:1px;font-family: 'Poppins', sans-serif;margin-bottom:15px;"> use space bar to start and stop <br> use arrows to change direction</p>
+       <div class="buttons flex">
+           <i class="fas fa-long-arrow-alt-left flex" onclick="left1()"></i>
+           <i class="fas fa-long-arrow-alt-up flex" onclick="up1()"></i>
+           <i class="fas fa-long-arrow-alt-down flex" onclick="down1()"></i>
+           <i class="fas fa-long-arrow-alt-right flex" onclick="right1()"></i> 
+       </div>   
+           
+       <p style="width:100%;padding:0 10px;font-size:13px;letter-spacing:1px;font-family: 'Poppins', sans-serif;margin-bottom:15px;"> use space bar to start and stop <br> use arrows to change direction</p>
        
     </section>
 
@@ -133,9 +160,18 @@
         var direction = "R";
         var score = 0;
         var blocks = [82,83,84,85];
+        var fruitplace = 0;
+        
         var points = document.querySelector("#score");
         
         function draw(){
+            
+            var bodyw = window.innerWidth;
+            if (bodyw < 500){
+                var wi = (bodyw - 13 )/23 + "px";
+                document.documentElement.style.setProperty("--width",wi);
+            }
+            
          var table = document.querySelector(".table");
          var id_n = 0;
          for (var i = 0;i<20;i++){
@@ -162,8 +198,7 @@
         
     draw();
     
-        var fruitplace = 0;
-        var lh = 0;
+        
         
         function generate(){
             var available = [];
@@ -177,8 +212,32 @@
             }
             var ran = Math.floor(Math.random()*available.length);
             document.querySelector(".box"+available[ran]).classList.add("fruit");
-            fruitplace = eval(available[ran]);
-            console.log(fruitplace);
+            fruitplace = available[ran];
+            // console.log(fruitplace);
+        }
+        
+        function down1(){
+            if (direction == "R" || direction == "L"){
+                direction = "D";
+            }
+        }
+        
+        function up1(){
+            if (direction == "R" || direction == "L"){
+                direction = "U";
+            }
+        }
+        
+        function right1(){
+            if (direction == "U" || direction == "D"){
+                direction = "R";
+            }
+        }
+        
+        function left1(){
+            if (direction == "U" || direction == "D"){
+                direction = "L";
+            }
         }
         
         window.addEventListener("keydown", (e) => {
@@ -224,10 +283,45 @@
                 
       });
         
+        function check(){
+            
+            var in1 = blocks.indexOf(fruitplace);
+           // console.log(in1);
+            
+                if (in1 > -1){
+                   score += 1;
+                   points.innerHTML = score;
+                   var fp = document.querySelector(".box"+fruitplace);
+                   fp.classList.remove("fruit");
+                   generate();
+                 //   console.log("a");
+                }
+                else{
+                    var s2 = ".box" + blocks[0];
+                    var ele22 = document.querySelector(s2);
+                    ele22.classList.remove("active");   
+                    blocks.splice(0,1);
+                }
+            
+        }
+        
+        function coll(a){
+            check();
+            var inn = blocks.indexOf(a);
+            if (inn > -1){
+                game_bool = false;
+                alert("game over");
+                setTimeout(function(){
+                    location.reload();
+                },1000);
+            }
+        }
         
         setInterval(function(){
             
             if (game_bool){
+                
+                var cb = 0;
                 
                 if (direction == "R"){
                     
@@ -235,11 +329,16 @@
                 var row1 = Math.floor((head - (head % 10)) / 20);
                 var row_end = row1*20 + 20;
                 if (head + 1 < row_end){
+                    cb = head + 1;
+                    coll(cb);
                     blocks.push(head + 1);
                     var s1 = ".box" + eval(head + 1);
                     var ele11 = document.querySelector(s1);
                     ele11.classList.add("active");
+                    
                 }else{
+                    cb = row1*20;
+                    coll(cb);
                     blocks.push(row1*20);
                     var s1 = ".box" + eval(row1*20);
                     var ele11 = document.querySelector(s1);
@@ -254,11 +353,15 @@
                 var row1 = Math.floor((head - (head % 10)) / 20);
                 var row_end = row1*20 + 19;
                 if (head > row1*20){
+                    cb = head - 1;
+                    coll(cb);
                     blocks.push(head - 1);
                     var s1 = ".box" + eval(head - 1);
                     var ele11 = document.querySelector(s1);
                     ele11.classList.add("active");
                 }else{
+                    cb = row_end;
+                    coll(cb);
                     blocks.push(row_end);
                     var s1 = ".box" + eval(row_end);
                     var ele11 = document.querySelector(s1);
@@ -273,11 +376,15 @@
                 var col1 = head%20;
                 var col_end = col1 + 380;
                 if (head - 20 > 0){
+                    cb = head - 20;
+                    coll(cb);
                     blocks.push(head - 20);
                     var s1 = ".box" + eval(head - 20);
                     var ele11 = document.querySelector(s1);
                     ele11.classList.add("active");
                 }else{
+                    cb = col_end;
+                    coll(cb);
                     blocks.push(col_end);
                     var s1 = ".box" + col_end;
                     var ele11 = document.querySelector(s1);
@@ -292,34 +399,21 @@
                 var col1 = head%20;
                 var col_end = col1 + 400;
                 if (head + 20 < col_end){
+                    cb = head + 20;
+                    coll(cb);
                     blocks.push(head + 20);
                     var s1 = ".box" + eval(head + 20);
                     var ele11 = document.querySelector(s1);
                     ele11.classList.add("active");
                 }else{
+                    cb = col1;
+                    coll(cb);
                     blocks.push(col1);
                     var s1 = ".box" + col1;
                     var ele11 = document.querySelector(s1);
                     ele11.classList.add("active");
                 }
                     
-                }
-                
-                console.log(blocks);
-                
-                if (blocks.includes(fruitplace)){
-                 //   score += 1;
-                  //  points.innerHTML = score;
-                  //  var fp = document.querySelector(".box"+fruit_place);
-                   // fp.classList.remove("fruit");
-                   // generate();
-                    console.log("a");
-                }
-                else{
-                    var s2 = ".box" + blocks[0];
-                    var ele22 = document.querySelector(s2);
-                    ele22.classList.remove("active");   
-                    blocks.splice(0,1);
                 }
                 
             }
