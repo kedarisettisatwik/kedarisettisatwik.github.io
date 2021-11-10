@@ -95,10 +95,6 @@
             transform:translate(-50%,-50%);
             background-color:#282828;
         }
-        .table ul li.active{
-            opacity:1;
-            transform:scale(0.9);
-        }
         .table ul li.fruit{
             border:3px solid red;
             opacity:1;
@@ -106,6 +102,14 @@
         }
         .table ul li.fruit:after{
             background-color:red;
+        }
+        .table ul li.active:after{
+            background-color:#282828;
+        }
+        .table ul li.active{
+            opacity:1;
+            transform:scale(0.9);
+            border:3px solid #282828;
         }
         .buttons{
             width:100%;
@@ -421,7 +425,7 @@
                 
             }
             
-        },380);
+        },340);
         
     </script>
 
