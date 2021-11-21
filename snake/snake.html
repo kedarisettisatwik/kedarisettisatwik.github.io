@@ -94,6 +94,7 @@
             border-radius:50%;
             transform:translate(-50%,-50%);
             background-color:#282828;
+            display:none;
         }
         .table ul li.fruit{
             border:3px solid red;
@@ -102,9 +103,11 @@
         }
         .table ul li.fruit:after{
             background-color:red;
+            display:block;
         }
         .table ul li.active:after{
             background-color:#282828;
+            display:block;
         }
         .table ul li.active{
             opacity:1;
@@ -220,28 +223,28 @@
         }
         
         function down1(){
-            if (direction == "R" || direction == "L"){
+            if (direction != "U"){
                 direction = "D";
             }
             game_bool = true;
         }
         
         function up1(){
-            if (direction == "R" || direction == "L"){
+            if (direction != "D"){
                 direction = "U";
             }
             game_bool = true;
         }
         
         function right1(){
-            if (direction == "U" || direction == "D"){
+            if (direction != "L"){
                 direction = "R";
             }
             game_bool = true;
         }
         
         function left1(){
-            if (direction == "U" || direction == "D"){
+            if (direction != "R"){
                 direction = "L";
             }
             game_bool = true;
@@ -269,21 +272,13 @@
     if (game_bool){
              
          if (e.keyCode == 37){
-            if (direction == "U" || direction == "D"){
-                direction = "L";
-            }
+            left1();
          }else if (e.keyCode == 38){
-            if (direction == "R" || direction == "L"){
-                direction = "U";
-            } 
+            up1(); 
          }else if (e.keyCode == 39){
-            if (direction == "U" || direction == "D"){
-                direction = "R";
-            } 
+            right1();
          }else if (e.keyCode == 40){
-            if (direction == "R" || direction == "L"){
-                direction = "D";
-            } 
+            down1();
          }
   
     }
