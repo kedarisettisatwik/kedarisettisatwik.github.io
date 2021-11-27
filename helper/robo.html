@@ -78,7 +78,7 @@
         }
         body #chat #chatbox #msg{
             position: absolute;
-            bottom:0;
+            bottom:5px;
             left:0;
             width:100%;
             padding:5px;
@@ -100,8 +100,7 @@
             transition:0.3s;
         }
         body #chat #chatbox #msg #message::placeholder{
-            color:#ff6666;
-            font-size:16px;
+            font-size:15px;
             font-weight:bold;
             letter-spacing:2px;
         }
@@ -119,6 +118,7 @@
             flex-direction: column;
             padding:10px;
             padding-top:25px;
+            scroll-behavior: smooth;
         }
         body #chat #chatbox #chat_place .box2{
             width:100%;
@@ -136,15 +136,14 @@
         }
         body #chat #chatbox #chat_place .box2 .help_ans{
             position: relative;
-            padding:8px;
+            padding:8px 15px;
             background-color:#ffcccc;
-            font-size:13px;
+            font-size:14px;
             letter-spacing:1px;
             border-radius:8px;
             border-top-left-radius:0px;
             max-width:calc(100% - 35px - 90px);
             word-wrap: break-word;
-            padding-left:15px;
         }
         body #chat #chatbox #chat_place .box3{
             width:100%;
@@ -157,15 +156,40 @@
         }
         body #chat #chatbox #chat_place .box3 .help_me{
             position: relative;
-            padding:8px;
+            padding:8px 15px;
             background-color:#ff9999;
-            font-size:13px;
+            font-size:14px;
             letter-spacing:1px;
             border-radius:8px;
             border-top-right-radius:0px;
             max-width:calc(100% - 35px - 90px);
             word-wrap: break-word;
-            padding-right:15px;
+        }
+        body #chat #chatbox #chat_place .box2.active{
+            -webkit-animation:slide1 0.5s ease;
+        }
+        @keyframes slide1{
+            0%{
+                transform:translateX(-50px) scale(0.9);
+                opacity:0;
+            }
+            100%{
+                transform:translateX(0px) scale(1);
+                opacity:1;
+            }
+        }
+        body #chat #chatbox #chat_place .box3.active{
+            -webkit-animation:slide2 0.5s ease;
+        }
+        @keyframes slide2{
+            0%{
+                transform:translateX(50px) scale(0.9);
+                opacity:0;
+            }
+            100%{
+                transform:translateX(0px) scale(1);
+                opacity:1;
+            }
         }
         
         @media (max-width:800px){
@@ -212,29 +236,22 @@
               
               <div class="box2">
                   <img src="chatbot.png">
-                  <div class="help_ans">
-                      Hello, I'm Kedar.<br><br>I am here to help you in doing calculations.
-                  </div>
+                  <div class="help_ans">Hello, <b>I'm Kedar.</b> <br><br>I am here to help you in doing calculations</div>
               </div>
               
               <div class="box3">
-                  <div class="help_me">
-                      How ??
-                  </div>
+                  <div class="help_me">How ??</div>
               </div>
               
               <div class="box2">
-                  <img src="chatbot.png">
-                  <div class="help_ans">
-                      Please read instructions,<br>📑📚
-                  </div>
+                  <div class="help_ans">Please read instructions,<br>📑📚</div>
               </div>
               
           </div>
           
           <div id="msg" class="flex">
-              <input type="text" placeholder="Any Calculation" id="message" autocomplete="off">
-              <img src="calculator.png" alt="" style="width:40px;cursor:pointer;">
+              <input type="text" placeholder="Any Calculation" id="message" autocomplete="off" onkeydown="check_btn(event)">
+              <img src="chatbot.png" alt="" style="width:35px;cursor:pointer;" onclick="add_msg()">
           </div>
        
        </div>
@@ -248,8 +265,77 @@
    </section>
     
     <script>
-       
+        
+        var msg_prob = document.getElementById('message');
+        var chat_place = document.getElementById('chat_place');
+        var bool = true;
+        var chat_height = chat_place.scrollHeight;
     
+    function check_btn(event){
+        if (event.keyCode == 13){
+            add_msg();
+        }
+    }
+    
+    function add_msg(){
+        var msg = msg_prob.value;
+        if (msg.length != 0 && bool){
+            bool = false;
+            var box_3 = document.createElement("div");
+            box_3.classList.add("box3");
+            box_3.classList.add("active");
+            var help_me = document.createElement("div");
+            help_me.classList.add("help_me");
+            help_me.innerHTML = msg;
+            box_3.appendChild(help_me);
+            chat_place.appendChild(box_3);
+            msg_prob.value = "";
+            var sc = chat_place.scrollHeight;
+            chat_place.scrollBy(0,sc-chat_height);
+            
+            setTimeout(function(){
+                new_one();
+            },200);
+        }
+    }
+    
+    function response(){
+        var box_2 = document.createElement("div");
+        box_2.classList.add("box2");
+        box_2.classList.add("active");
+        var help_ans = document.createElement("div");
+        help_ans.classList.add("help_ans");
+        help_ans.innerHTML = msg + msg;
+        box_2.appendChild(help_ans);
+        chat_place.appendChild(box_2);
+        setTimeout(function(){
+                bool = true;
+                var sc = chat_place.scrollHeight;
+                chat_place.scrollBy(0,sc-chat_height);
+        },800);
+    }
+        
+    function new_one(){
+            fetch("https://api.quotable.io/random")
+            .then((res) =>{
+                return res.json();
+            } )
+            .then((data) =>{
+        var box_2 = document.createElement("div");
+        box_2.classList.add("box2");
+        box_2.classList.add("active");
+        var help_ans = document.createElement("div");
+        help_ans.classList.add("help_ans");
+        help_ans.innerHTML = data.content + "<br><br>" + " <b> - " + data.author + "</b>";
+        box_2.appendChild(help_ans);
+        chat_place.appendChild(box_2);
+        setTimeout(function(){
+                bool = true;
+                var sc = chat_place.scrollHeight;
+                chat_place.scrollBy(0,sc-chat_height);
+        },800);
+            } );
+        }
         
     </script>
  
