@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    <!-- google fonts -->
+    <title>chat bot</title>
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body{
+            width:100vw;
+            overflow-x: hidden;
+            background-color:#f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+        ::-webkit-scrollbar{
+            width:0px;
+        }
+        .flex{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: row;
+        }
+        body .box1{
+            width:50vw;
+            position:relative;
+            height:100vh;
+        }
+        body #rules{
+            background-color:white;
+        }
+        body #rules #text{
+            position: absolute;
+            top:50%;
+            left:0;
+            transform:translate(-50%,-50%);
+            background-color:#ff9999;
+            border-radius:5px;
+            font-size:20px;
+            font-weight:bold;
+            letter-spacing:2px;
+            writing-mode:vertical-lr;
+            text-orientation:upright;
+            -webkit-text-orientation:upright;
+            width:70px;
+            padding:20px 0;
+        }
+        body #chat{
+            padding-top:5px;
+            padding-left:5px;
+            padding-bottom:5px;
+            padding-right:40px;
+        }
+        body #chat #chatbox{
+            width:400px;
+            height:600px;
+            background-color:white;
+            box-shadow:0 0 15px rgb(0,0,0,0.2);
+            border-radius:8px;
+            overflow: hidden;
+        }
+        
+        @media (max-width:800px){
+            body{
+                flex-direction: column;
+            }
+            body .box1{
+                width:100vw;
+            }
+            body #chat{
+                padding:0px;
+            }
+            body #chat #chatbox{
+                margin:5px;
+                width:calc(100% - 10px);
+                max-width:400px;
+            }
+            body #rules{
+                height:auto;
+                min-height:500px;
+            }
+            body #rules #text{
+                top:0%;
+                left:50%;
+                height:70px;
+                width: auto;
+                writing-mode:horizontal-tb;
+                text-orientation:upright;
+                -webkit-text-orientation:upright;
+                transform:translate(-50%,-50%);
+                padding:0 20px;
+            }
+        }
+        
+    </style>
+</head>
+
+<body>
+   
+   <section id="chat" class="box1 flex">
+       <div id="chatbox">
+           
+       </div>
+   </section>
+    
+    
+    
+   <section id="rules" class="box1">
+       <section id="text" class="flex">Instructions</section>
+    
+   </section>
+    
+    <script>
+       
+    
+        
+    </script>
+ 
+</body>
+</html>
+<!--
+
+20,045
+
+-->
