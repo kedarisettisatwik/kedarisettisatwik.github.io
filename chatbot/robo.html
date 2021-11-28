@@ -193,7 +193,7 @@
               
               <div class="box2">
                   <img src="chatbot.png">
-                  <div class="help_ans">Hello, <b>I'm chat_bot.</b> <br><br>I am here to chat with you</div>
+                  <div class="help_ans">Hello, <b>I'm Aco.</b> <br><br>I am here to chat with you</div>
               </div>
               
               <div class="box3">
@@ -201,7 +201,7 @@
               </div>
               
               <div class="box2">
-                  <div class="help_ans">I am created by <br> <b> Kedar satwik </b> <br> using HTML, CSS, JS
+                  <div class="help_ans">I don't know <br> but i can tell you that we both met because of <b> Mr. kedar satwik </b>  <br> I am thanking him to use me in his website.
               </div>
               
           </div>
@@ -211,28 +211,26 @@
        </div>
     
     <div id="msg" class="flex">
-              <input type="text" placeholder="Any Calculation" id="message" autocomplete="off" onkeydown="check_btn(event)">
-              <img src="chatbot.png" alt="" style="width:35px;cursor:pointer;" onclick="add_msg()">
+              <input type="text" placeholder="Any Calculation" id="message" autocomplete="off">
+              <img src="chatbot.png" id="send" alt="" style="width:35px;cursor:pointer;">
     </div>
           
     </div>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
     <script>
         
         var msg_prob = document.getElementById('message');
+        var send = document.getElementById('send');
         var chat_place = document.getElementById('chat_place');
         var bool = true;
         var chat_height = chat_place.scrollHeight;
     
-    function check_btn(event){
-        if (event.keyCode == 13){
-            add_msg();
-        }
-    }
-    
-    function add_msg(){
-        var msg = msg_prob.value;
-        if (msg.length != 0 && bool){
+     send.addEventListener('click', async(e) => {
+         e.preventDefault();
+         var msg = msg_prob.value;
+         if (msg.length != 0 && bool){
             bool = false;
             var box_3 = document.createElement("div");
             box_3.classList.add("box3");
@@ -245,15 +243,77 @@
             msg_prob.value = "";
             var sc = chat_place.scrollHeight;
             chat_place.scrollBy(0,sc-chat_height);
-            
-            setTimeout(function(){
-                new_one();
-            },200);
-            
-        }
-    }
+            let response1 = "";
+            let ur = 'https://api.monkedev.com/fun/chat?msg='+msg;
+            await axios.get(ur).then(data => {
+               response1 = JSON.stringify(data.data.response);
+            var box_2 = document.createElement("div");
+            box_2.classList.add("box2");
+            box_2.classList.add("active");
+            var help_ans = document.createElement("div");
+            help_ans.classList.add("help_ans");
+            help_ans.innerHTML = response1;       
+            box_2.appendChild(help_ans);
+            chat_place.appendChild(box_2);
+            bool = true;
+            var sc = chat_place.scrollHeight;
+            chat_place.scrollBy(0,sc-chat_height);
         
-    function new_one(){
+                });
+             
+        }
+         msg_prob.select();
+     });   
+        
+     msg_prob.addEventListener('keydown', async(e) => {
+         
+         if (e.keyCode == 13){
+             var msg = msg_prob.value;
+         if (msg.length != 0 && bool){
+            bool = false;
+            var box_3 = document.createElement("div");
+            box_3.classList.add("box3");
+            box_3.classList.add("active");
+            var help_me = document.createElement("div");
+            help_me.classList.add("help_me");
+            help_me.innerHTML = msg;
+            box_3.appendChild(help_me);
+            chat_place.appendChild(box_3);
+            msg_prob.value = "";
+            var sc = chat_place.scrollHeight;
+            chat_place.scrollBy(0,sc-chat_height);
+            let response1 = "";
+            let ur = 'https://api.monkedev.com/fun/chat?msg='+msg;
+            await axios.get(ur).then(data => {
+               response1 = JSON.stringify(data.data.response);
+            var box_2 = document.createElement("div");
+            box_2.classList.add("box2");
+            box_2.classList.add("active");
+            var help_ans = document.createElement("div");
+            help_ans.classList.add("help_ans");
+            help_ans.innerHTML = response1;       
+            box_2.appendChild(help_ans);
+            chat_place.appendChild(box_2);
+            bool = true;
+            var sc = chat_place.scrollHeight;
+            chat_place.scrollBy(0,sc-chat_height);
+        
+                });
+             
+        }
+         msg_prob.select();
+         }
+     });  
+        
+    </script>
+ 
+</body>
+
+</html>
+
+<!--
+
+ function new_one(){
             fetch("https://api.quotable.io/random")
             .then((res) =>{
                 return res.json();
@@ -272,14 +332,6 @@
         chat_place.scrollBy(0,sc-chat_height);
             } );
         msg_prob.select();
-        }
-        
-    </script>
- 
-</body>
-</html>
-<!--
-
-20,045
+    }
 
 -->
