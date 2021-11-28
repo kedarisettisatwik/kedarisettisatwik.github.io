@@ -109,7 +109,7 @@
             bottom:65px;
             left:0;
             width:100%;
-            height:calc(100% - 65px);
+            height:calc(100% - 75px);
             overflow-x: hidden;
             overflow-y: scroll;
             display: flex;
@@ -316,6 +316,7 @@
                 var sc = chat_place.scrollHeight;
                 chat_place.scrollBy(0,sc-chat_height);
         },800);
+        msg_prob.select();
     }
         
     function new_one(){
@@ -338,6 +339,7 @@
                 chat_place.scrollBy(0,sc-chat_height);
         },800);
             } );
+        msg_prob.select();
         }
         
     </script>
