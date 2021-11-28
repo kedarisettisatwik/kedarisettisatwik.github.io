@@ -166,7 +166,10 @@
             word-wrap: break-word;
         }
         body #chat #chatbox #chat_place .box2.active{
-            -webkit-animation:slide1 0.5s ease;
+            opacity:0;
+            transform:translateX(-50px) scale(0.9);
+            -webkit-animation:slide1 0.5s ease forwards;
+            -webkit-animation-delay:0.6s;
         }
         @keyframes slide1{
             0%{
@@ -179,7 +182,10 @@
             }
         }
         body #chat #chatbox #chat_place .box3.active{
-            -webkit-animation:slide2 0.5s ease;
+            opacity:0;
+            transform:translateX(50px) scale(0.9);
+            -webkit-animation:slide2 0.5s ease forwards;
+            -webkit-animation-delay:0.2s;
         }
         @keyframes slide2{
             0%{
@@ -299,6 +305,7 @@
             setTimeout(function(){
                 new_one();
             },200);
+            
         }
     }
     
@@ -311,11 +318,9 @@
         help_ans.innerHTML = msg + msg;
         box_2.appendChild(help_ans);
         chat_place.appendChild(box_2);
-        setTimeout(function(){
-                bool = true;
-                var sc = chat_place.scrollHeight;
-                chat_place.scrollBy(0,sc-chat_height);
-        },800);
+        bool = true;
+        var sc = chat_place.scrollHeight;
+        chat_place.scrollBy(0,sc-chat_height);
         msg_prob.select();
     }
         
@@ -333,11 +338,9 @@
         help_ans.innerHTML = data.content + "<br><br>" + " <b> - " + data.author + "</b>";
         box_2.appendChild(help_ans);
         chat_place.appendChild(box_2);
-        setTimeout(function(){
-                bool = true;
-                var sc = chat_place.scrollHeight;
-                chat_place.scrollBy(0,sc-chat_height);
-        },800);
+        bool = true;
+        var sc = chat_place.scrollHeight;
+        chat_place.scrollBy(0,sc-chat_height);
             } );
         msg_prob.select();
         }
