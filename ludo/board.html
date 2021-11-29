@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    
+    <title>ludo board</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            list-style:none;
+            font-family: 'Caveat', cursive;
+/*            font-family: 'Poppins', sans-serif; */
+        }
+
+        .flex {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        ::-webkit-scrollbar {
+            width: 0px;
+        }
+        body {
+            width: 100vw;
+            height: 100vh;
+            background-color:white;
+        }
+        .main{
+            width:520px;
+            height:600px;
+            background-image: url("bg1.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            box-shadow:0 0 10px rgb(0,0,0,0.3);
+            filter:saturate(0.7);
+        }
+        .board{
+            width:400px;
+            height:400px;
+            background-image: url("bg2.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            box-shadow:0 0px 10px rgb(0,0,0,0.4);
+            position:relative;
+            overflow: visible;
+            filter:saturate(1.7);
+        }
+        .logo{
+            position: absolute;
+            top:50px;
+            left:50%;
+            transform:translate(-50%,-50%);
+            height:60px;
+        }
+        .player{
+            position:absolute;
+            width:160px;
+            height:160px;
+            background-image: url("bg2.jpg");
+            background-repeat: no-repeat;
+            background-size:400px;
+            border-radius:7px;
+            filter:saturate(0.6);
+        }
+        .player .text{
+            position: absolute;
+            color:white;
+        }
+        .player1 .text,.player4 .text{
+            top:50%;
+            left:-8px;
+            transform:translate(-100%,-50%);
+            writing-mode:vertical-lr;
+            font-size:18px;
+            letter-spacing:3px;
+        }
+        .player2 .text,.player3 .text{
+            top:50%;
+            right:-8px;
+            transform:translate(100%,-50%) rotateZ(180deg);
+            writing-mode:vertical-lr;
+            font-size:18px;
+            letter-spacing:3px;
+        }
+        .border{
+            position:relative;
+            width:calc(100% - 14px);
+            height:calc(100% - 14px);
+            box-shadow:inset 5px 5px 2px rgb(0,0,0,0.4),inset -2px -2px 2px rgb(0,0,0,0.3);
+            border-radius:7px;
+        }
+        .strip{
+            position: absolute;
+            background-image: url("bg2.jpg");
+            background-repeat: no-repeat;
+            background-size:400px;
+        }
+        .strip1{
+            top:50%;
+            left:0%;
+            transform:translate(-100%,-50%);
+            width:10px;
+            height:75px;
+            clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 90%);
+            background-position: center left;
+        }
+        .strip2{
+            top:0%;
+            left:50%;
+            transform:translate(-50%,-100%);
+            height:10px;
+            width:75px;
+            clip-path: polygon(10% 0, 90% 0, 100% 100%, 0 100%);
+            background-position: center top;
+        }
+        .strip3{
+            top:50%;
+            right:1px;
+            transform:translate(100%,-50%);
+            width:10px;
+            height:75px;
+            clip-path: polygon(0 0, 100% 10%, 100% 90%, 0 100%);
+            background-position: center right;
+        }
+        .strip4{
+            bottom:1px;
+            left:50%;
+            transform:translate(-50%,100%);
+            height:10px;
+            width:75px;
+            clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+            background-position: center bottom;
+        }
+        .player1{
+            top:-6px;
+            left:-6px;
+            background-position: top left;
+            box-shadow:4px 4px 3px rgb(0,0,0,0.4),-4px -4px 5px rgb(0,0,0,0.4);
+        }
+        .player2{
+            top:-6px;
+            right:-6px;
+            background-position: top right;
+            box-shadow:-4px 4px 3px rgb(0,0,0,0.4),4px -4px 5px rgb(0,0,0,0.4);
+        }
+        .player3{
+            bottom:-6px;
+            right:-6px;
+            background-position: bottom right;
+            box-shadow:-4px -4px 3px rgb(0,0,0,0.4),4px 4px 5px rgb(0,0,0,0.4);
+        }
+        .player4{
+            bottom:-6px;
+            left:-6px;
+            background-position: bottom left;
+            box-shadow:4px -4px 3px rgb(0,0,0,0.4),-4px 4px 5px rgb(0,0,0,0.4);
+        }
+        .holes{
+            width: calc(100% - 25px);
+            height: calc(100% - 25px);
+            box-shadow:0px 0px 5px rgb(0,0,0,0.4);
+            border-radius:7px;
+        }
+        .holes li{
+            position: absolute;
+            transform:translate(-50%,-50%);
+            width:25%;
+            height:25%;
+            border-radius:50%;
+            box-shadow:inset 0 0 4px rgb(0,0,0,0.6);
+            background-color: white;
+            filter: saturate(2);
+        }
+        .holes li:nth-child(1){
+            top : 30%;
+            left: 30%;
+        }
+        .holes li:nth-child(2){
+            top : 30%;
+            left: 70%;
+        }
+        .holes li:nth-child(3){
+            top : 70%;
+            left: 30%;
+        }
+        .holes li:nth-child(4){
+            top : 70%;
+            left: 70%;
+        }
+        .player1 .holes,.player1 .piece{
+            background-color: #ff9999;
+        }
+        .player2 .holes,.player2 .piece{
+            background-color: #00cc66;
+        }
+        .player3 .holes,.player3 .piece{
+            background-color: #ffff99;
+        }
+        .player4 .holes,.player4 .piece{
+            background-color: #0099ff;
+        }
+        .piece{
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            width:18px;
+            height:18px;
+            border-radius:50%;
+            box-shadow:0 0 4px rgb(0,0,0,0.4);
+            z-index:1000;
+            cursor:pointer;
+        }
+    </style>
+
+</head>
+
+<body class="flex">
+ 
+     <section class="main flex">
+              <img src="logo.png" alt="" class="logo">
+         <section class="board">
+             <section class="player player1 flex">
+                <div class="text">player 1</div>
+                 <section class="border flex">
+                     <div class="holes">
+                         <li><div class="p1p1 piece"></div></li>
+                         <li><div class="p1p2 piece"></div></li>
+                         <li><div class="p1p3 piece"></div></li>
+                         <li><div class="p1p4 piece"></div></li>
+                     </div>
+                 </section>
+             </section>
+             <section class="player player2 flex">
+                <div class="text">player 2</div>
+                 <section class="border flex">
+                     <div class="holes">
+                         <li><div class="p2p1 piece"></div></li>
+                         <li><div class="p2p2 piece"></div></li>
+                         <li><div class="p2p3 piece"></div></li>
+                         <li><div class="p2p4 piece"></div></li>
+                     </div>
+                 </section>
+             </section>
+             <section class="player player3 flex">
+                <div class="text">player 3</div>
+                 <section class="border flex">
+                     <div class="holes">
+                         <li><div class="p3p1 piece"></div></li>
+                         <li><div class="p3p2 piece"></div></li>
+                         <li><div class="p3p3 piece"></div></li>
+                         <li><div class="p3p4 piece"></div></li>
+                     </div>
+                 </section>
+             </section>
+             <section class="player player4 flex">
+                <div class="text">player 4</div>
+                 <section class="border flex">
+                     <div class="holes">
+                         <li><div class="p4p1 piece"></div></li>
+                         <li><div class="p4p2 piece"></div></li>
+                         <li><div class="p4p3 piece"></div></li>
+                         <li><div class="p4p4 piece"></div></li>
+                     </div>
+                 </section>
+             </section>
+             <div class="strip strip1"></div>
+             <div class="strip strip2"></div>
+             <div class="strip strip3"></div>
+             <div class="strip strip4"></div>
+         </section>
+     </section>
+   
+    <script>
+      
+       
+    </script>
+
+</body>
+
+</html>
