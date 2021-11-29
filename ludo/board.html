@@ -215,17 +215,36 @@
             z-index:1000;
             cursor:pointer;
         }
-        .player1 .holes,.player1 .piece{
+        .player1 .holes{
             background-color: #ff9999;
         }
-        .player2 .holes,.player2 .piece{
+        .player1 .piece{
+            background-color:darkred;
+        }
+        .player2 .holes{
             background-color: #00cc66;
         }
-        .player3 .holes,.player3 .piece{
+        .player2 .piece{
+            background-color:darkgreen;
+        }
+        .player3 .holes{
             background-color: #ffff99;
         }
-        .player4 .holes,.player4 .piece{
+        .player3 .piece{
+            background-color: burlywood;
+        }
+        .player4 .holes{
             background-color: #0099ff;
+        }
+        .player4 .piece{
+            background-color: darkblue;
+        }
+        .blocks{
+            position: absolute;
+        }
+        .blocks li{
+            width:calc(400px / 15);
+            height:calc(400px / 15);
         }
         
         @media (max-width:550px){
@@ -245,6 +264,7 @@
      <section class="main flex">
               <img src="logo.png" alt="" class="logo">
          <section class="board">
+               
              <section class="player player1 flex">
                 <div class="text">player 1</div>
                  <section class="border flex">
@@ -289,10 +309,125 @@
                      </div>
                  </section>
              </section>
+             
              <div class="strip strip1"></div>
              <div class="strip strip2"></div>
              <div class="strip strip3"></div>
              <div class="strip strip4"></div>
+             
+             <section class="blocks flex" style="width:400px;height:calc(400px / 15);top:50%;left:0;transform:translateY(-150%);flex-direction: row;">
+                 <li style="border-right:2px solid white;"></li>
+                 <li style="border-right:2px solid white;background-color:#ff9999;"></li>
+                 <li style="border-right:2px solid white"></li>
+                 <li style="border-right:2px solid white"></li>
+                 <li style="border-right:2px solid white"></li>
+                 <li style=""></li>
+                 <li style=""></li>
+                 <li style=""></li>
+                 <li style=""></li>
+                 <li style="border-right:2px solid white"></li>
+                 <li style="border-right:2px solid white"></li>
+                 <li style="border-right:2px solid white"></li>
+                 <li style="border-right:2px solid white"></li>
+                 <li style="border-right:2px solid white"></li>
+                 <li style=""></li>
+             </section>
+             
+             <section class="blocks flex" style="width:400px;height:calc(400px / 15);top:50%;left:0;transform:translateY(-50%);flex-direction: row;">
+                 <li style="border-right:2px solid white;"></li>
+                 <li style="border-right:2px solid white;background-color:#ff9999;"></li>
+                 <li style="border-right:2px solid white;background-color:#ff9999;"></li>
+                 <li style="border-right:2px solid white;background-color:#ff9999;"></li>
+                 <li style="border-right:2px solid white;background-color:#ff9999;"></li>
+                 <li style="border-right:2px solid white;background-color:#ff9999;"></li>
+                 <li style="background-color:darkred;"></li>
+                 <li style=""></li>
+                 <li style="border-right:2px solid white"></li>
+                 <li style="border-right:2px solid white;background-color: #ffff99;"></li>
+                 <li style="border-right:2px solid white;background-color: #ffff99;"></li>
+                 <li style="border-right:2px solid white;background-color: #ffff99;"></li>
+                 <li style="border-right:2px solid white;background-color: #ffff99;"></li>
+                 <li style="border-right:2px solid white;background-color: #ffff99;"></li>
+                 <li style=""></li>
+             </section>
+             
+             <section class="blocks flex" style="width:400px;height:calc(400px / 15);top:50%;left:0;transform:translateY(calc(50%));flex-direction: row;">
+                 <li style="border-right:2px solid white;"></li>
+                 <li style="border-right:2px solid white"></li>
+                 <li style="border-right:2px solid white"></li>
+                 <li style="border-right:2px solid white"></li>
+                 <li style="border-right:2px solid white"></li>
+                 <li style=""></li>
+                 <li style=""></li>
+                 <li style=""></li>
+                 <li style=""></li>
+                 <li style="border-right:2px solid white"></li>
+                 <li style="border-right:2px solid white"></li>
+                 <li style="border-right:2px solid white"></li>
+                 <li style="border-right:2px solid white"></li>
+                 <li style="border-right:2px solid white;background-color: #ffff99;"></li>
+                 <li style=""></li>
+             </section>
+              
+              <section class="blocks flex" style="height:400px;width:calc(400px / 15);left:50%;top:0;transform:translateX(-50%);flex-direction: column;">
+                 <li style="border-bottom:2px solid white"></li>
+                 <li style="border-bottom:2px solid white;background-color:#00cc66;"></li>
+                 <li style="border-bottom:2px solid white;background-color:#00cc66;"></li>
+                 <li style="border-bottom:2px solid white;background-color:#00cc66;"></li>
+                 <li style="border-bottom:2px solid white;background-color:#00cc66;"></li>
+                 <li style="border-bottom:2px solid white;background-color:#00cc66;"></li>
+                 <li style="background-color:darkgreen;"></li>
+                 <li style=""></li>
+                 <li style="border-bottom:2px solid white;background-color:darkblue;"></li>
+                 <li style="border-bottom:2px solid white;background-color:#0099ff;"></li>
+                 <li style="border-bottom:2px solid white;background-color:#0099ff;"></li>
+                 <li style="border-bottom:2px solid white;background-color:#0099ff;"></li>
+                 <li style="border-bottom:2px solid white;background-color:#0099ff;"></li>
+                 <li style="border-bottom:2px solid white;background-color:#0099ff;"></li>
+                 <li></li>
+             </section>
+             
+             <section class="blocks flex" style="height:400px;width:calc(400px / 15);left:50%;top:0;transform:translateX(50%);flex-direction: column;">
+                 <li style="border-bottom:2px solid white"></li>
+                 <li style="border-bottom:2px solid white;background-color:#00cc66;"></li>
+                 <li style="border-bottom:2px solid white"></li>
+                 <li style="border-bottom:2px solid white"></li>
+                 <li style="border-bottom:2px solid white"></li>
+                 <li style=""></li>
+                 <li style=""></li>
+                 <li style="background-color: burlywood"></li>
+                 <li style=""></li>
+                 <li style="border-bottom:2px solid white"></li>
+                 <li style="border-bottom:2px solid white"></li>
+                 <li style="border-bottom:2px solid white"></li>
+                 <li style="border-bottom:2px solid white"></li>
+                 <li style="border-bottom:2px solid white"></li>
+                 <li></li>
+             </section>
+             
+             <section class="blocks flex" style="height:400px;width:calc(400px / 15);left:50%;top:0;transform:translateX(-150%);flex-direction: column;">
+                 <li style="border-bottom:2px solid white"></li>
+                 <li style="border-bottom:2px solid white"></li>
+                 <li style="border-bottom:2px solid white"></li>
+                 <li style="border-bottom:2px solid white"></li>
+                 <li style="border-bottom:2px solid white"></li>
+                 <li style=""></li>
+                 <li style=""></li>
+                 <li style=""></li>
+                 <li style=""></li>
+                 <li style="border-bottom:2px solid white"></li>
+                 <li style="border-bottom:2px solid white"></li>
+                 <li style="border-bottom:2px solid white"></li>
+                 <li style="border-bottom:2px solid white"></li>
+                 <li style="border-bottom:2px solid white;background-color:#0099ff;"></li>
+                 <li></li>
+             </section>
+             
+             <div class="line" style="position: absolute; top:50%;left:0; transform: translateY(calc(-50% - 200px / 15));width:400px;height:1.5px;background-color: white;"></div>
+           <div class="line" style="position: absolute; top:50%;left:0; transform: translateY(calc(-50% + 200px / 15));width:400px;height:1.5px;background-color: white;"></div>
+           <div class="line" style="position: absolute; top:0%;left:50%; transform: translateX(calc(-50% + 200px / 15));width:2px;height:400px;background-color: white;"></div>
+           <div class="line" style="position: absolute; top:0%;left:50%; transform: translateX(calc(-50% - 200px / 15));width:2px;height:400px;background-color: white;"></div>
+           
          </section>
      </section>
    
