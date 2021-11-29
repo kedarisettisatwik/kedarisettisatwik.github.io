@@ -298,6 +298,12 @@
    
     <script>
       
+        var wind = window.innerWidth;
+           var board = document.querySelector(".board");
+           var sf = wind / 500; 
+           if (wind < 500){
+               board.style.transform = "scale("+ sf +")";
+           }
         
        window.addEventListener('resize',() => {
            var wind = window.innerWidth;
