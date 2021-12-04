@@ -43,6 +43,7 @@
         #home{
             width:100vw;
             position:relative;
+            align-items: stretch;
         }
         #home .box1,#home .box2{
             width:50%;
@@ -53,11 +54,11 @@
         }
         #home .box1{
             background-color: #1B224A;
+            padding-bottom:60px;
             min-height:100vh;
         }
         #home .box2{
             background-color: #C7DFC1;
-            min-height:100vh;
         }
         #home .box1 nav{
             width:100%;
@@ -107,7 +108,7 @@
             transition:0.3s;
         }
         #home .box1 p{
-            margin:20px 0 25px 40px;
+            margin:20px 0 0px 40px;
             color:white;
             opacity:0.6;
             padding-right:50px;
@@ -115,6 +116,8 @@
         }
         #home .box1 .button{
             margin-left:40px;
+            flex-wrap: wrap;
+            justify-content: flex-start;
         }
         #home .box1 .button button{
             margin-right:20px;
@@ -127,6 +130,7 @@
             border-radius:5px;
             font-weight:bold;
             letter-spacing:1px;
+            margin-top:20px;
         }
         #home .box1 .button button:nth-child(1){
             color:#1B224A;
@@ -198,6 +202,9 @@
                 min-height:500px;
                 padding-bottom:60px;
             }
+            #home .box2{
+                min-height:500px;
+            }
             #home .box2 ul{
                 display: none;
             }
@@ -208,12 +215,15 @@
             }
             #home .box1 .show{
                 flex-direction: column;
+                padding-left:40px;
+                padding-right:10px;
             }
             #home .box1 .show .c{
                 padding:0;
                 width:calc(100% - 30px);
                 flex-direction: row;
                 justify-content: flex-start;
+                margin:20px 0;
             }
             #home .box1 .show .c label{
                 margin-right:30px;
@@ -222,6 +232,15 @@
         @media (max-width:440px){
             #home .box1 h1{
                 font-size:30px;
+            }
+            #home .box1 .button,#home .box1 p,#home .box1 h1{
+                margin-left:20px;
+            }
+            #home .box1 nav{
+                padding:0 20px;
+            }
+            #home .box1 .show{
+                padding-left: 20px;
             }
         }
         
