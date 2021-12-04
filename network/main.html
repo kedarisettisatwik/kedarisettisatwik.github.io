@@ -40,6 +40,80 @@
             align-items: center;
             flex-direction: row;
         }
+        
+/*      navigation bar         */
+        
+        .nav{
+            width:100%;
+            position:sticky;
+            align-items: stretch;
+            height:70px;
+            top:0px;
+            left:0px;
+            z-index:1000;
+        }
+        .nav .box1,.nav .box2{
+            width:50%;
+            height:100%;
+        }
+        .nav .box1 ul,.nav .box2 li{
+            list-style:none;
+        }
+        .nav .box1{
+            background-color: #1B224A;
+            padding:0 40px;
+        }
+        .nav .box1 .title{
+            color:#C7DFC1;
+            font-weight:bold;
+            font-size:24px;
+            font-family: 'Caveat', cursive;
+            letter-spacing:1px;
+        }
+        .nav .box1 .title i{
+            margin:0 2px;
+            font-size:18px;
+        }
+        .nav .box1 ul .page{
+            margin:0 15px;
+            color:white;
+            opacity:0.5;
+            transition:0.5s;
+            cursor:pointer;
+            letter-spacing:1px;
+            font-size:14px;
+        }
+        .nav .box1 ul .page.active{
+            opacity:1;
+        }
+        .nav .box1 ul .page:hover{
+            opacity:1;
+            transform:scale(0.9);
+            color:#C7DFC1;
+        }
+        .nav .box2{
+            background-color: #C7DFC1;
+            padding-right:80px;
+        }
+        .nav .box2 li{
+            margin:0 15px;
+            font-size:14px;
+            color: #1B224A;
+            font-weight:bold;
+            letter-spacing:1px;
+            cursor:pointer;
+        }
+        .nav .box2 li:nth-child(2){
+            padding:10px 15px;
+            border:3px solid #1B224A;
+            border-radius:5px;
+        }
+
+/*      navigation bar         */
+
+
+/*      home   */
+        
         #home{
             width:100vw;
             position:relative;
@@ -55,49 +129,6 @@
         #home .box1{
             background-color: #1B224A;
             padding-bottom:60px;
-            min-height:100vh;
-        }
-        #home .box2{
-            background-color: #C7DFC1;
-        }
-        #home .box1 nav{
-            width:100%;
-            position:relative;
-            justify-content: space-between;
-            margin:25px 0;
-            padding:0 40px;
-        }
-        #home .box1 nav ul{
-            list-style: none;
-        }
-        #home .box1 nav .title{
-            color: #C7DFC1;
-            font-weight:bold;
-            letter-spacing:1px;
-            font-family: 'Caveat', cursive;
-            font-size:24px;
-        }
-        #home .box1 nav .title i{
-            margin:0 2px;
-            font-size:18px;
-        }
-        #home .box1 nav ul .page{
-            color:white;
-            margin:0 15px;
-            opacity:0.5;
-            transition:0.5s;
-            cursor:pointer;
-            font-size:14px;
-            letter-spacing:1px;
-            padding:10px 0;
-        }
-        #home .box1 nav ul .page.active{
-            opacity:1;
-        }
-        #home .box1 nav ul .page:hover{
-            color: #C7DFC1; 
-            opacity:1;
-            transform:scale(0.9);
         }
         #home .box1 h1{
             font-size:50px;
@@ -106,6 +137,7 @@
             color:white;
             margin-left:40px;
             transition:0.3s;
+            margin-top:10px;
         }
         #home .box1 p{
             margin:20px 0 0px 40px;
@@ -113,6 +145,7 @@
             opacity:0.6;
             padding-right:50px;
             font-size:14px;
+            max-width:600px;
         }
         #home .box1 .button{
             margin-left:40px;
@@ -163,6 +196,9 @@
         #home .box1 .show .c span{
             opacity:0.5;
         }
+        #home .box2{
+            background-color: #C7DFC1;
+        }
         #home .box2 ul{
             width:100%;
             justify-content: flex-end;
@@ -186,6 +222,9 @@
             background-color:transparent;
         }
         
+/*      home   */
+        
+        
         @media (max-width:1100px){
             #home .box1 h1{
                 font-size:40px;
@@ -195,7 +234,7 @@
             #home{
                 flex-direction: column;
             }
-            #home .box1,#home .box2{
+            #home .box1,#home .box2,.nav .box1{
                 width: 100%;
             }
             #home .box1{
@@ -205,14 +244,11 @@
             #home .box2{
                 min-height:500px;
             }
-            #home .box2 ul{
-                display: none;
+            .nav .box2{
+                display:none;
             }
         }
         @media (max-width:530px){
-            #home .box1 nav ul{
-                display:none;
-            }
             #home .box1 .show{
                 flex-direction: column;
                 padding-left:40px;
@@ -228,6 +264,12 @@
             #home .box1 .show .c label{
                 margin-right:30px;
             }
+            .nav .box1 ul{
+                display:none;
+            }
+            .nav{
+                position:relative;
+            }
         }
         @media (max-width:440px){
             #home .box1 h1{
@@ -235,9 +277,6 @@
             }
             #home .box1 .button,#home .box1 p,#home .box1 h1{
                 margin-left:20px;
-            }
-            #home .box1 nav{
-                padding:0 20px;
             }
             #home .box1 .show{
                 padding-left: 20px;
@@ -250,16 +289,23 @@
     
 <body>
    
+    <section class="flex nav">
+        <div class="box1 flex" style="justify-content: space-between">
+            <div class="title"> <i class="fas fa-comment-alt"></i> Chat Pie</div>
+            <ul class="flex">
+            <li class="page active">Home</li>
+            <li class="page">Features</li>
+            <li class="page">Contact</li>
+            </ul>
+        </div>
+        <div class="box2 flex" style="justify-content: flex-end">
+            <li>Log In</li>
+            <li>Sign Up</li>
+        </div>
+    </section>
+   
    <section id="home" class="flex">
        <div class="box1 flex">
-           <nav class="flex">
-               <div class="title"> <i class="fas fa-comment-alt"></i> Chat Pie</div>
-               <ul class="flex">
-                   <li class="page active">Home</li>
-                   <li class="page">Features</li>
-                   <li class="page">Contact</li>
-               </ul>
-           </nav>
            <h1>
                Best Chatting <br> Service You Ever <br> Discover.
            </h1>
@@ -286,13 +332,11 @@
            </div>
        </div>
        <div class="box2 flex">
-           <ul class="flex">
-               <li>Log In</li>
-               <li>Sign Up</li>
-           </ul>
+
        </div>
    </section>
    
+    <section style="height:200vh;width:100vw"></section>
     
 </body>
 
