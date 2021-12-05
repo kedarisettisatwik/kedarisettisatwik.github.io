@@ -30,7 +30,6 @@
             background-color:#F4F7FC;
             overflow-x: hidden;
             position:relative;
-            padding-bottom:50px;
         }
 /*
         ::-webkit-scrollbar{
@@ -304,6 +303,7 @@
             flex-direction: column;
             justify-content:flex-start;
             background-color:#1B224A;
+            padding:10px 0;
         }
         #contact .box1 h2{
             width:100%;
@@ -524,7 +524,53 @@
         
 /*       contact  */
         
+/*    last         */
         
+        #last{
+            position:relative;
+            width:100%;
+            align-items:stretch;
+        }
+        #last p,#last ul{
+            width:50%;
+            padding:15px;
+        }
+        #last p{
+            padding-left:30px;
+            font-size:15px;
+            letter-spacing:1px;
+        }
+        #last ul{
+            justify-content: flex-end;
+            padding-right:30px;
+        }
+        #last ul a{
+            width:40px;
+            height:40px;
+            line-height:40px;
+            text-align: center;
+            margin:0 10px;
+            cursor:pointer;
+            font-size:20px;
+            color:black;
+        }
+        #last ul a i{
+            line-height:40px;
+            text-align: center;
+        }
+        @media (max-width:700px){
+            #last{
+                flex-direction: column;
+            }
+            #last p,#last ul{
+                width:100%;
+            }
+            #last ul{
+                justify-content: center;
+            }
+        }
+        
+/*    last         */
         
     </style>
     
@@ -654,6 +700,17 @@
                
            </div>
         </div>
+    </section>
+    
+    <section id="last" class="flex">
+        <p>Meet & support Designer of this Page</p>
+        <ul class="flex">
+           <a href="https://kedarisettisatwik.github.io" target="_blank"><i class="fas fa-globe-asia"></i></a>
+           <a href="tel:+917386484905" target="_blank"><i class="fas fa-phone-alt"></i></a>
+           <a href="mailto:satwik1330@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+           <a href="https://www.instagram.com/satwikkedaresetti/" target="_blank"><i class="fab fa-instagram"></i></a>
+           <a href="https://www.youtube.com/channel/UCpLOopnR9TX9b1fjcDpapsw" target="_blank"><i class="fab fa-youtube"></i></a>
+        </ul>
     </section>
     
     <script>
