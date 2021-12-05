@@ -118,28 +118,6 @@
             border:3px solid #1B224A;
             border-radius:5px;
         }
-        .nav.active .box2 li:nth-child(2){
-            border:2px solid white;
-        }
-        .nav.active .box2 li{
-            color:white;
-            font-weight:500;
-        }
-        .nav.active .box2{
-            background-color: #1B224A
-        }
-        .nav.active .box1{
-            background-color: #C7DFC1;
-        }
-        .nav.active .box1 .title{
-            color: #1B224A;
-        }
-        .nav.active .box1 ul .page{
-            color: black;
-        }
-        .nav.active .box1 ul .page:hover{
-            color:#1B224A;
-        }
         
 /*      navigation bar         */
 
@@ -325,7 +303,7 @@
         #contact .box1{
             flex-direction: column;
             justify-content:flex-start;
-            background-color:#C7DFC1;
+            background-color:#1B224A;
         }
         #contact .box1 h2{
             width:100%;
@@ -333,7 +311,7 @@
             padding:0 20px;
             font-size:16px;
             letter-spacing:1px;
-            color:#1B224A;
+            color:white;
         }
         #contact .box1 form{
             background-color:white;
@@ -439,109 +417,97 @@
             cursor:pointer;
         }
         #contact .box2{
-            background-color:#1B224A; 
-            overflow: hidden;
-            display: grid;
-            align-content: center;
-            justify-content: center;
+            background-color: #C7DFC1; 
         }
         #contact .box2 .box{
-            width:350px;
-            height:450px;
-            position:relative;
+            padding:20px 0;
+            background-color:white;
+            border-radius:8px;
             justify-content: flex-start;
-            align-items:center;
-            overflow-y: hidden;
-            overflow-x: scroll;
-            scroll-snap-type:x mandatory;
+            flex-direction: column;
+            width:350px;
+            max-width:calc(100% - 10px);
+            max-height:550px;
+            position:relative;
+            padding-top:0px;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            padding-top:0;
+            margin:20px 0;
+        }
+        #contact .box2 .box::-webkit-scrollbar{
+            width:0;
+        }
+        #contact .box2 .box .cat{
+            width:100%;
+            background-color: white;
+            height:50%;
+            padding-left:30px;
+            position:sticky;
+            top:0;
+            left:0;
+            z-index:10;
+        }
+        #contact .box2 .box select{
+            top:0;
+            left:0;
+            outline:none;
+            border:none;
+            background:none;
+            padding:20px;
+            font-size:16px;
+            font-weight:bold;
+            letter-spacing:1px;
+            background-color: white;
         }
         #contact .box2 .box .rev{
-            width:300px;
-            height:400px;
-            position:absolute;
-            background-image:url(bg.jpg);
-            background-position: top;
-            background-repeat: no-repeat;
-            background-size: cover;
-            padding:15px;
-            transform:translateX(calc(var(--i) * (100% + 10px)));
-            scroll-snap-align:center;
-            border-radius:8px;
-            overflow: hidden;
-        }
-        #contact .box2 .box .rev h3{
-            letter-spacing:1px;
-            font-size:25px;
-            font-family: 'Caveat', cursive;
-            font-weight:bolder;
-            position: absolute;
-            top:15px;
-            left:20px;
-            padding:0px 20px;
-            background-image:linear-gradient(10deg,rgb(255,255,255,0.2),rgb(255,255,255,0.4));
-            backdrop-filter:blur(2px);
-            border-radius:5px;
-            height:50px;
-            line-height:50px;
-            vertical-align:center;
-            box-shadow:0 0 4px rgb(0,0,0,0.4);
-            max-width:200px;
-            white-space: nowrap;
-            text-overflow:ellipsis;
+            width:100%;
+            justify-content: flex-start;
+            border-bottom:1px dashed rgb(0,0,0,0.5);
+            padding:10px 0;
+            align-items: flex-start;
+            z-index:1;
         }
         #contact .box2 .box .rev span{
-            font-size:16px;
-            width:300px;
-            position:absolute;
-            background-image:linear-gradient(10deg,rgb(255,255,255,0.2),rgb(255,255,255,0.4));
-            backdrop-filter:blur(2px);
-            top:75px;
-            right:20px;
+            margin:0 10px 0 10px;
             width:50px;
             height:50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius:50%;
-            box-shadow:0 0 4px rgb(0,0,0,0.4);
-        }
-        #contact .box2 .box .rev p{
-            font-size:15px;
-            letter-spacing:1px;
-            width:calc(100% - 30px);
-            background-image:linear-gradient(30deg,rgb(255,255,255,0.5),rgb(255,255,255,0.6));
-            backdrop-filter:blur(2px);
-            position: absolute;
-            top:160px;
-            box-shadow:0 0 4px rgb(0,0,0,0.4);
+            width:50px;
             border-radius:5px;
-            left:50%;
-            transform:translateX(-50%);
-            padding:20px;
+            line-height:50px;
+            text-align: center;
+            background-color: #1B224A;
+            color:white;
         }
-        #contact .box2 .box .rev label{
-            position: absolute;
-            bottom:0px;
-            right:0px;
-            background-image:linear-gradient(10deg,rgb(255,255,255,0.8),rgb(255,255,255,0.7));
-            padding:0 20px;
-            border-top-left-radius:10px;
+        #contact .box2 .box .rev .ms{
+            width: calc(100% - 80px);
+            padding:5px 10px;
+            border-radius:5px;
+            background-color:whitesmoke;
+        }
+        #contact .box2 .box .rev .ms h3{
+            font-weight:600;
+            font-size:16px;
+            width:100%;
+            letter-spacing:2px;
+            margin-bottom:10px;
+        }
+        #contact .box2 .box .rev .ms p{
             font-size:14px;
-            height:40px;
-            line-height:40px;
-            backdrop-filter:blur(3px);
+            letter-spacing:1px;
         }
-        #contact .box2 .box .rev:nth-child(4n){
-            filter:hue-rotate(0deg);
+        #contact .box2 .box .rev .ms p i{
+            font-size:20px;
+            display:inline-block;
+            opacity:0.6;
         }
-        #contact .box2 .box .rev:nth-child(4n + 1){
-            filter:hue-rotate(90deg);
-        }
-        #contact .box2 .box .rev:nth-child(4n + 2){
-            filter:hue-rotate(200deg);
-        }
-        #contact .box2 .box .rev:nth-child(4n + 3){
-            filter:hue-rotate(160deg);
+        #contact .box2 .box .rev .ms label{
+            margin-top:10px;
+            opacity:0.5;
+            width:100%;
+            display: block;
+            text-align: right;
+            padding-right:10px;
         }
         
         @media (max-width:980px){
@@ -643,38 +609,49 @@
                 <input type="submit" value="submit">
             </form>
         </div>
-        <div class="box2">
+        <div class="box2 flex">
            <div class="box flex">
-               <div class="rev" style="--i:0">
-                   <h3>Kiran</h3>
+               <div class="cat">
+                  <select id="">
+                      <option value="0">All</option>
+                      <option value="4">4+</option>
+                      <option value="3">3+</option>
+                      <option value="2">2+</option>
+                  </select>
+               </div>
+               <div class="rev flex" style="--i:0">
+                   <span>4.9</span>
+                   <div class="ms">
+                       <h3>Hanish</h3>
+                       <p><i class="fas fa-quote-left"></i> Need not to mention specially the excellence of the designing of the website page... Its just out of the brains♾️ <i class="fas fa-quote-right"></i></p>
+                       <label>03 - 12 - 2021</label>
+                   </div>
+               </div>
+               <div class="rev flex" style="--i:0">
                    <span>4.5</span>
-                   <p>Awesome, cool platform</p>
-                   <label>03 - 12 - 2021</label>
+                   <div class="ms">
+                       <h3>Pranay</h3>
+                       <p><i class="fas fa-quote-left"></i> cool, Awesome ! <i class="fas fa-quote-right"></i></p>
+                       <label>15 - 11 - 2021</label>
+                   </div>
                </div>
-               <div class="rev" style="--i:1">
-                   <h3>Teja</h3>
+               <div class="rev flex" style="--i:0">
+                   <span>4.8</span>
+                   <div class="ms">
+                       <h3>Kiran</h3>
+                       <p><i class="fas fa-quote-left"></i> Very Useful, colorfull <i class="fas fa-quote-right"></i></p>
+                       <label>09 - 11 - 2021</label>
+                   </div>
+               </div>
+               <div class="rev flex" style="--i:0">
                    <span>4.7</span>
-                   <p>This one of the best project done by k.satwik</p>
-                   <label>13 - 11 - 2021</label>
+                   <div class="ms">
+                       <h3>Rajesh</h3>
+                       <p><i class="fas fa-quote-left"></i> Need not to mention specially the excellence of the designing of the website page... Its just out of the brains♾️ <i class="fas fa-quote-right"></i></p>
+                       <label>29 - 10 - 2021</label>
+                   </div>
                </div>
-               <div class="rev" style="--i:2">
-                   <h3>Akhil</h3>
-                   <span>4.2</span>
-                   <p>Useful thing, No compliants</p>
-                   <label>10 - 11 - 2021</label>
-               </div>
-               <div class="rev" style="--i:3">
-                   <h3>Abhishek</h3>
-                   <span>4.0</span>
-                   <p>All are fine, but working speed should improve</p>
-                   <label>05 - 10 - 2021</label>
-               </div>
-               <div class="rev" style="--i:4">
-                   <h3>Ashrit</h3>
-                   <span>4.3</span>
-                   <p>Superb !</p>
-                   <label>01 - 10 - 2021</label>
-               </div>
+               
            </div>
         </div>
     </section>
@@ -700,21 +677,6 @@
                 page[page_active].classList.add("active");
             }
             var nav = document.querySelector(".nav");
-            var wo = window.outerWidth;
-            if (wo > 530){
-                  if (document.getElementById(list1[0]).getBoundingClientRect().bottom < -40){
-                    nav.classList.add("active");
-                  }else{
-                    nav.classList.remove("active");
-                  }
-            }
-            if (wo > 530){
-                if (document.getElementById(list1[0]).getBoundingClientRect().top < -60){
-                    nav.style.boxShadow = "0 3px 10px rgb(0,0,0,0.5)";
-                }else{
-                    nav.style.boxShadow = "0 0px 0px rgb(0,0,0)";
-                }
-            }
         }
         
         window.addEventListener("scroll", () => {
