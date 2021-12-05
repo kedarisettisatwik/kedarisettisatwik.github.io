@@ -30,6 +30,7 @@
             background-color:#F4F7FC;
             overflow-x: hidden;
             position:relative;
+            padding-bottom:50px;
         }
 /*
         ::-webkit-scrollbar{
@@ -295,16 +296,129 @@
         #contact .box1,#contact .box2{
             width:50%;
             position:relative;
+            min-height:500px;
         }
-        #contact .box1 iframe{
+        #contact .box1{
+            flex-direction: column;
+            justify-content:flex-start;
+            background-color:#C7DFC1;
+        }
+        #contact .box1 h2{
             width:100%;
-            height:calc(570px);
+            margin:30px 0 30px 0;
+            padding:0 20px;
+            font-size:16px;
+            letter-spacing:1px;
+            color:#1B224A;
         }
-        @media (max-width:340px){
-            #contact .box1 iframe{
-                height:calc(660px - 70px);
-            }
+        #contact .box1 form{
+            background-color:white;
+            box-shadow: 0 0 10px rgb(0,0,0,0.4);
+            padding:10px;
+            border-radius:8px;
+            width:400px;
+            max-width:calc(100% - 10px);
+            position:relative;
+            margin-bottom:50px;
+            flex-direction: column;
         }
+        #contact .box1 form .input,#contact .box1 form .rating{
+            width:100%;
+            position:relative;
+            margin:5px 0;
+        }
+        #contact .box1 form .input span,#contact .box1 form .rating span{
+            font-size:15px;
+            width:100%;
+            padding:0 10px;
+            color: #1B224A;
+            font-weight:bold;
+            letter-spacing:1px;
+            position:relative;
+            display:block;
+        }
+        #contact .box1 form .input input{
+            width:100%;
+            background-color:whitesmoke;
+            font-size:14px;
+            transition:0.4s;
+            outline:none;
+            border:none;
+            padding:10px 15px;
+            margin:5px 0;
+            border-radius:5px;
+        }
+        #contact .box1 form .input textarea{
+            width:100%;
+            background-color:whitesmoke;
+            font-size:14px;
+            transition:0.4s;
+            outline:none;
+            border:none;
+            padding:10px 15px;
+            margin:5px 0;
+            border-radius:5px;
+            height:125px;
+            resize: none;
+        }
+        #contact .box1 form .rating .value{
+            position:relative;
+            margin:15px 0 5px 0px; 
+            transform:translateX(calc(17px));
+            width:40px;
+            background-color: #1B224A;
+            color:white;
+            font-size:14px;
+            height:40px;
+            border-radius:5px;
+        }
+        #contact .box1 form .rating .value::after{
+            content:'';
+            position:absolute;
+            bottom:2px;
+            left:50%;
+            transform:translate(-50%,50%) rotateZ(45deg);
+            width:10px;
+            height:10px;
+            background-color: #1B224A;
+        }
+        #contact .box1 form .rating input{
+            margin:10px 0 20px 30px;
+            width:300px;
+            -webkit-appearance:none;
+            height:5px;
+            background-color: #C7DFC1;
+            border-radius:0px;
+        }
+        #contact .box1 form input[type="submit"]{
+            width:calc(100% - 15px);
+            max-width:200px;
+            background-color:#C7DFC1;
+            color:#1B224A; 
+            font-size:15px;
+            font-weight:bold;
+            letter-spacing:1px;
+            margin:5px 0;
+            outline:none;
+            border:none;
+            padding:15px;
+            border-radius:8px;
+            cursor:pointer;
+        }
+        #rate::-webkit-slider-thumb{
+            -webkit-appearance:none; 
+            width:14px;
+            border-radius:50%;
+            height:14px;
+            box-shadow:0 0 5px rgb(0,0,0,0.3);
+            background-color: #1B224A;
+            cursor:pointer;
+        }
+        #contact .box2{
+            background-color:#1B224A; 
+        }
+        
+        
         @media (max-width:980px){
             #contact{
                 flex-direction:column-reverse;
@@ -312,7 +426,7 @@
             #contact .box1,#contact .box2{
                 width: 100%;
             }
-            #contact .box2{
+            #contact .box1,#contact .box2{
                 min-height:500px;
             }
         }
@@ -332,8 +446,8 @@
             <div class="title"> <i class="fas fa-comment-alt"></i> Chat Pie</div>
             <ul class="flex">
             <li class="page active" onclick="goto('home')">Home</li>
-            <li class="page" onclick="goto('contact')">Contact</li>
             <li class="page" onclick="goto('features')">Features</li>
+            <li class="page" onclick="goto('contact')">Contact</li>
             </ul>
         </div>
         <div class="box2 flex" style="justify-content: flex-end">
@@ -356,7 +470,7 @@
            </div>
            <div class="show flex">
                <div class="c flex">
-                   <label>4.6</label>
+                   <label>4.3</label>
                    <span>Average Platform Rating</span>
                </div>
                <div class="c flex">
@@ -375,14 +489,39 @@
        </div>
    </section>
    
+    
+    <section style="height:100vh;width:100vw;background-color: antiquewhite;" id="features"></section>
+    
     <section id="contact" class="flex">
-        <div class="box2"></div>
-        <div class="box1">
-            <iframe src="profile.html" frameborder="0"></iframe>
+        <div class="box2 flex">
+           
+        </div>
+        <div class="box1 flex">
+            <h2>We are happy to see your reviews..</h2>
+            <form class="flex">
+                <div class="input">
+                    <span>Name</span>
+                    <input type="text" placeholder="Mr.Example">
+                </div>
+                <div class="input">
+                    <span>E-mail / phone Number</span>
+                    <input type="text" placeholder="Example@gmail.com">
+                </div>
+                <div class="input">
+                    <span>Your Message</span>
+                    <textarea placeholder="write a review.."></textarea>
+                </div>
+                <div class="rating">
+                    <span>Give a Rating</span>
+                    <div class="value flex">
+                        4.3
+                    </div>
+                    <input type="range" min="0" max="100" id="rate" value="86" oninput="rate1()">
+                </div>
+                <input type="submit" value="submit">
+            </form>
         </div>
     </section>
-    
-    <section style="height:100vh;width:100vw" id="features"></section>
     
     <script>
     
@@ -395,7 +534,7 @@
         
         function check(){
             var page = document.querySelectorAll(".page");
-            var list1 = ["home","contact","features"];
+            var list1 = ["home","features","contact"];
             for (var i = 2;i > -1;i--){
                 var ele1 = document.getElementById(list1[i]).getBoundingClientRect().top;
                 if (ele1 > 0 && ele1 < 300) {
@@ -418,6 +557,15 @@
         
         check();
         
+        function rate1(){
+            var rate = document.getElementById("rate").value;
+            var value = document.querySelector('.value');
+            value.innerHTML = (rate / 20).toFixed(1);
+            var l = (rate * 285) / 100;
+            value.style.transform = "translateX(calc(17px + "+ l +"px))";
+        }
+        
+        rate1();
         
     </script>
     
