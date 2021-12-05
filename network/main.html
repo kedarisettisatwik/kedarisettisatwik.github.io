@@ -536,10 +536,10 @@
             var page = document.querySelectorAll(".page");
             var list1 = ["home","features","contact"];
             for (var i = 2;i > -1;i--){
-                var ele1 = document.getElementById(list1[i]).getBoundingClientRect().top;
-                if (ele1 > 0 && ele1 < 300) {
+                var ele1 = document.getElementById(list1[i]).getBoundingClientRect().bottom;
+                if (ele1 > 300){
                     page[page_active].classList.remove("active");
-                    page_active = i; 
+                    page_active = i;
                 }
                 page[page_active].classList.add("active");
             }
