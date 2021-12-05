@@ -67,6 +67,7 @@
         .nav .box1{
             background-color: #1B224A;
             padding:0 40px;
+            transition:0.5s;
         }
         .nav .box1 .title{
             color:#C7DFC1;
@@ -74,6 +75,7 @@
             font-size:24px;
             font-family: 'Caveat', cursive;
             letter-spacing:1px;
+            transition:0.4s;
         }
         .nav .box1 .title i{
             margin:0 2px;
@@ -87,6 +89,7 @@
             cursor:pointer;
             letter-spacing:1px;
             font-size:14px;
+            font-weight:bold;
         }
         .nav .box1 ul .page.active{
             opacity:1;
@@ -99,6 +102,7 @@
         .nav .box2{
             background-color: #C7DFC1;
             padding-right:80px;
+            transition:0.5s;
         }
         .nav .box2 li{
             margin:0 15px;
@@ -107,14 +111,34 @@
             font-weight:bold;
             letter-spacing:1px;
             cursor:pointer;
+            transition:0.5s;
         }
         .nav .box2 li:nth-child(2){
             padding:10px 15px;
             border:3px solid #1B224A;
             border-radius:5px;
         }
-        .nav.active {
-            box-shadow:0 4px 10px rgb(0,0,0,0.5);
+        .nav.active .box2 li:nth-child(2){
+            border:2px solid white;
+        }
+        .nav.active .box2 li{
+            color:white;
+            font-weight:500;
+        }
+        .nav.active .box2{
+            background-color: #1B224A
+        }
+        .nav.active .box1{
+            background-color: #C7DFC1;
+        }
+        .nav.active .box1 .title{
+            color: #1B224A;
+        }
+        .nav.active .box1 ul .page{
+            color: black;
+        }
+        .nav.active .box1 ul .page:hover{
+            color:#1B224A;
         }
         
 /*      navigation bar         */
@@ -301,7 +325,7 @@
         #contact .box1{
             flex-direction: column;
             justify-content:flex-start;
-            background-color:#1B224A;
+            background-color:#C7DFC1;
         }
         #contact .box1 h2{
             width:100%;
@@ -309,7 +333,7 @@
             padding:0 20px;
             font-size:16px;
             letter-spacing:1px;
-            color:white;
+            color:#1B224A;
         }
         #contact .box1 form{
             background-color:white;
@@ -321,7 +345,6 @@
             margin-bottom:50px;
             flex-direction: column;
             padding-top:15px;
-            box-shadow:0 0 10px rgb(0,0,0,0.4);
         }
         #contact .box1 form .input,#contact .box1 form .rating{
             width:100%;
@@ -416,7 +439,7 @@
             cursor:pointer;
         }
         #contact .box2{
-            background-color:#C7DFC1; 
+            background-color:#1B224A; 
             overflow: hidden;
             display: grid;
             align-content: center;
@@ -677,10 +700,20 @@
                 page[page_active].classList.add("active");
             }
             var nav = document.querySelector(".nav");
-            if (window.scrollY > 40){
-               // nav.classList.add("active");
-            }else{
-              //  nav.classList.remove("active");
+            var wo = window.outerWidth;
+            if (wo > 530){
+                  if (document.getElementById(list1[0]).getBoundingClientRect().bottom < -40){
+                    nav.classList.add("active");
+                  }else{
+                    nav.classList.remove("active");
+                  }
+            }
+            if (wo > 530){
+                if (document.getElementById(list1[0]).getBoundingClientRect().top < -60){
+                    nav.style.boxShadow = "0 3px 10px rgb(0,0,0,0.5)";
+                }else{
+                    nav.style.boxShadow = "0 0px 0px rgb(0,0,0)";
+                }
             }
         }
         
