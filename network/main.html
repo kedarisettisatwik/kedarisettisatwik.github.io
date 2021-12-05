@@ -31,9 +31,11 @@
             overflow-x: hidden;
             position:relative;
         }
+/*
         ::-webkit-scrollbar{
             width:0px;
         }
+*/
         .flex{
             display: flex;
             justify-content: center;
@@ -51,6 +53,8 @@
             top:0px;
             left:0px;
             z-index:1000;
+            box-shadow:none;
+            transition:0.4s;
         }
         .nav .box1,.nav .box2{
             width:50%;
@@ -108,7 +112,10 @@
             border:3px solid #1B224A;
             border-radius:5px;
         }
-
+        .nav.active {
+            box-shadow:0 4px 10px rgb(0,0,0,0.5);
+        }
+        
 /*      navigation bar         */
 
 
@@ -125,6 +132,7 @@
             justify-content: flex-start;
             align-items: flex-start;
             flex-direction: column;
+            overflow: hidden;
         }
         #home .box1{
             background-color: #1B224A;
@@ -210,13 +218,9 @@
             outline:none;
             border:none;
             border-radius:8px;
-            box-shadow:0 0 15px rgb(0,0,0,0.5);
         }
         
-/*      home   */
-        
-        
-        @media (max-width:1100px){
+        @media (max-width:1170px){
             #home .box1 h1{
                 font-size:40px;
             }
@@ -239,6 +243,7 @@
                 display:none;
             }
         }
+        
         @media (max-width:530px){
             #home .box1 .show{
                 flex-direction: column;
@@ -277,6 +282,45 @@
             }
         }
         
+/*      home   */
+        
+        
+/*       contact  */
+        
+        #contact{
+            width:100%;
+            align-items: stretch;
+            position:relative;
+        }
+        #contact .box1,#contact .box2{
+            width:50%;
+            position:relative;
+        }
+        #contact .box1 iframe{
+            width:100%;
+            height:calc(570px);
+        }
+        @media (max-width:340px){
+            #contact .box1 iframe{
+                height:calc(660px - 70px);
+            }
+        }
+        @media (max-width:980px){
+            #contact{
+                flex-direction:column-reverse;
+            }
+            #contact .box1,#contact .box2{
+                width: 100%;
+            }
+            #contact .box2{
+                min-height:500px;
+            }
+        }
+        
+/*       contact  */
+        
+        
+        
     </style>
     
     </head>
@@ -287,9 +331,9 @@
         <div class="box1 flex" style="justify-content: space-between">
             <div class="title"> <i class="fas fa-comment-alt"></i> Chat Pie</div>
             <ul class="flex">
-            <li class="page active">Home</li>
-            <li class="page">Features</li>
-            <li class="page">Contact</li>
+            <li class="page active" onclick="goto('home')">Home</li>
+            <li class="page" onclick="goto('contact')">Contact</li>
+            <li class="page" onclick="goto('features')">Features</li>
             </ul>
         </div>
         <div class="box2 flex" style="justify-content: flex-end">
@@ -325,14 +369,57 @@
                </div>
            </div>
        </div>
-       <div class="box2 flex">
-       
+       <div class="box2 flex circle">
        <iframe src="robo.html" frameborder="0"></iframe>
        
        </div>
    </section>
    
-    <section style="height:200vh;width:100vw"></section>
+    <section id="contact" class="flex">
+        <div class="box2"></div>
+        <div class="box1">
+            <iframe src="profile.html" frameborder="0"></iframe>
+        </div>
+    </section>
+    
+    <section style="height:100vh;width:100vw" id="features"></section>
+    
+    <script>
+    
+        var page_active = 0;
+        
+        function goto(a){
+            var ele1 = document.getElementById(a).getBoundingClientRect().top;
+            window.scrollBy(0,ele1 - 70);
+        }
+        
+        function check(){
+            var page = document.querySelectorAll(".page");
+            var list1 = ["home","contact","features"];
+            for (var i = 2;i > -1;i--){
+                var ele1 = document.getElementById(list1[i]).getBoundingClientRect().top;
+                if (ele1 > 0 && ele1 < 300) {
+                    page[page_active].classList.remove("active");
+                    page_active = i; 
+                }
+                page[page_active].classList.add("active");
+            }
+            var nav = document.querySelector(".nav");
+            if (window.scrollY > 40){
+                nav.classList.add("active");
+            }else{
+                nav.classList.remove("active");
+            }
+        }
+        
+        window.addEventListener("scroll", () => {
+            check();
+        });
+        
+        check();
+        
+        
+    </script>
     
 </body>
 

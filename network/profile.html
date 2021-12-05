@@ -1,0 +1,299 @@
+<html>
+<head>
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="shortcut icon" href="logo.png" type="image">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    
+    <title>satwik _ kedar</title>
+    
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: 'Poppins', sans-serif;
+/*          font-family: 'Caveat', cursive; */
+        }
+        html{
+            scroll-behavior: smooth;
+        }
+        body{
+            width:100vw;
+            min-height:100vh;
+            background-color:white;
+            overflow-x: hidden;
+            position:relative;
+        }
+        ::-webkit-scrollbar{
+            width:0px;
+        }
+        .flex{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+        body .home{
+            position:relative;
+            width:100vw;
+            overflow-x: hidden;
+            background-color:#1B224A; 
+            overflow: hidden;
+        }
+        body .main{
+            width:100vw;
+            height:calc(570px);
+            min-height:calc(555px);
+            overflow-x: hidden;
+            background-color:transparent;
+            position:relative;
+            transition:0.3s,width 0s;
+        }
+        body .main .img{
+            position:absolute;
+            bottom:0px;
+            right:5px;
+            clip-path: inset(100% 0 0 0);
+            -webkit-animation:img1 2s linear forwards;
+            transition:0.2s;
+        }
+        @keyframes img1{
+            0%{
+                clip-path: inset(100% 0 0 0);
+            }
+            100%{
+                clip-path: inset(0 0 0 0);
+            }
+        }
+        body .main .img img{
+            width:300px;
+            filter: drop-shadow(0px 0px 3px rgb(0,0,0,0.5));
+            transition:0.3s;
+        }
+        body .main .img span{
+            position: absolute;
+            bottom:15px;
+            left:0;
+            height:60px;
+            width:60px;
+            transform:translateX(50%);
+            background-color:snow;
+            font-weight:bold;
+            font-size:18px;
+            line-height:65px;
+            text-align: center;
+            border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+            transition:0.3s;
+            box-shadow:0 0 8px rgb(0,0,0,0.6);
+        }
+        body .main .name{
+            position: absolute;
+            top:50px;
+            left:35px;
+            transform:translate(0,0%);
+            transition:0.2s;
+        }
+        body .main .name h3{
+            color:white;
+            margin:10px 0;
+            letter-spacing:2px;
+            font-size:17px;
+        }
+        body .main .name h2{
+            font-size:63px;
+            color:white;
+        }
+        body .main .name h2 .name1{
+            font-family: 'Caveat', sans-serif;
+            text-shadow:0 0 0px aqua;
+            transition:0.3s;
+        }
+        body .main .name h2 .name1.active{
+            -webkit-animation:light1 1s linear forwards infinite;
+            letter-spacing:1px;
+        }
+        @keyframes light1{
+            0%{
+                text-shadow:0 0 0px aqua;
+            }
+            40%,60%{
+                text-shadow:0 0 9px aqua;
+            }
+            100%{
+                text-shadow:0 0 0px aqua;
+            }
+        }
+        body .main .name .follow{
+            margin-top:25px;
+        }
+        body .main .name .follow i{
+            color:antiquewhite;
+            margin:0 10px;
+            cursor:pointer;
+            font-size:22px;
+            transition:0.3s;
+        }
+        body .main .name .follow i:hover{
+            color:#cc0000;
+        }
+        body .main .name .down{
+            margin-top:40px;
+            height:50px;
+            line-height:50px;
+            padding:0 10px;
+            background-color:#cc0000;
+            color:white;
+            transition:0.3s;
+            cursor:pointer;
+            width:170px;
+            border-radius:8px;
+            justify-content: space-around;
+            font-weight:bold;
+            letter-spacing:1px;
+            font-size:15px;
+        }
+        body .main .name .down a{
+            color:white;
+            text-decoration:none;
+            transition:0.3s;
+        }
+        body .main .name .down:hover{
+            background-color:#fff;
+            color:#cc0000;
+        }
+        body .main .name .down:hover a{
+            color:#cc0000;
+        }
+        body .main .name .down i{
+            -webkit-animation:arrow 2s linear infinite forwards;
+            cursor:pointer;
+        }
+        @keyframes arrow{
+            0%{
+                font-size:15px;
+            }
+            50%{
+                font-size:20px;
+            }
+            100%{
+                font-size:15px;
+            }
+        }
+        
+        @media (max-width:700px){
+            body .main .img img{
+                width:250px;
+            }
+        }
+        
+        @media (max-width:510px){
+            body .main .name{
+                top:10px;
+            }
+            body .main .img img{
+                width:calc(100vw - 15px);
+                max-width:200px;
+            }
+            body .main .img span{
+                width:40px;
+                height:40px;
+                line-height:40px;
+                font-size:16px;
+            }
+        }
+        
+        @media (max-width:420px){
+            body .main .name h2{
+                font-size:40px;
+            }
+        }
+        
+        @media (max-width:340px){
+            body .main{
+                min-height:calc(660px - 70px);
+            }
+        }
+        
+    </style>
+    
+    </head>
+<body>
+   
+   <section class="home water">
+   
+   <section class="main">
+       
+       <div class="name">
+           <h3>Hello, I'm Designer of this Platform</h3>
+           <h2><span class="name1"></span><label class="name1"></label></h2>
+           <div class="follow">
+               <a href="tel:+917386484905" target="_blank"><i class="fas fa-phone-alt"></i></a>
+               <a href="mailto:satwik1330@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
+               <a href="https://www.instagram.com/satwikkedaresetti/" target="_blank"><i class="fab fa-instagram"></i></a>
+               <a href="https://www.youtube.com/channel/UCpLOopnR9TX9b1fjcDpapsw" target="_blank"><i class="fab fa-youtube"></i></a>
+           </div>
+           <div class="down flex">
+               <a style="cursor:pointer;text-decoration:none;" href="https://kedarisettisatwik.github.io" target="_blank">See More</a>
+           </div>
+       </div>
+       
+       <div class="img">
+           <img src="mine.png">
+           <span>19</span>
+       </div>
+       
+   </section>
+   
+   </section>  
+    
+    <script>
+        
+        name();
+        
+        function name(){
+            var name1 = document.querySelectorAll(".name1");
+            var st1_name = "Satwik - kedar";
+            var t = 0;
+            var write1 = setInterval(function(){
+                
+                if (t < 14){
+                    if (t < 6){
+                        name1[0].innerHTML += st1_name[t];
+                    }else{
+                        name1[1].innerHTML += st1_name[t];
+                    }
+                    t +=1;
+                }else{
+                    name1[0].classList.add("active");
+                    name1[1].classList.add("active");
+                    clearInterval(write1);
+                }
+                
+            },150);
+            
+        }
+
+        
+    </script>
+    
+    </body>
+</html>
+
+
+
+
+<!--
+
+<a href="https://www.hitwebcounter.com" target="_blank" class="c">
+<img src="https://hitwebcounter.com/counter/counter.php?page=7711238&style=0001&nbdigits=6&type=ip&initCount=0" title="Total Website Hits" Alt="Web Hits"   border="0" /></a>
+
+22,001
+
+
+-->
