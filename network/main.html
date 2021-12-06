@@ -601,7 +601,7 @@
             transition-delay:0.2s;
             transform:translateY(calc(50px + 10px * var(--i)));
         }
-        #contact.active .box2 .box .rev{
+        #contact .box2 .box.active .rev{
             transform:translateY(0px);
             opacity:1;
         }
@@ -844,7 +844,7 @@
             </form>
         </div>
         <div class="box2 flex">
-           <div class="box flex">
+           <div class="box flex form">
                <div class="cat">
                   <select id="">
                       <option value="0">All</option>
@@ -971,6 +971,12 @@
                 document.getElementById(list1[2]).classList.add("active");
             }else{
                 document.getElementById(list1[2]).classList.remove("active");
+            }
+            
+            if (document.querySelector(".form").getBoundingClientRect().top < 380){
+                document.querySelector(".form").classList.add("active");
+            }else{
+                document.querySelector(".form").classList.remove("active");
             }
             
             if (wo < 980){
