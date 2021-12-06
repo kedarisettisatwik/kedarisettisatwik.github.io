@@ -117,6 +117,18 @@
             border:3px solid #1B224A;
             border-radius:5px;
         }
+        .nav.active .box1,.nav.active .box2{
+            background-color: whitesmoke;
+        }
+        .nav.active .title{
+            color:#1B224A;
+        }
+        .nav.active .box1 ul .page{
+            color:black;
+        }
+        .nav.active .box1 ul .page:hover{
+            color:darkblue;
+        }
         
 /*      navigation bar         */
 
@@ -295,7 +307,6 @@
             position:relative;
         }
         #contact .box1,#contact .box2{
-            width:50%;
             position:relative;
             min-height:500px;
         }
@@ -304,6 +315,7 @@
             justify-content:flex-start;
             background-color:#1B224A;
             padding:10px 0;
+            width:500px;
         }
         #contact .box1 h2{
             width:100%;
@@ -418,14 +430,13 @@
         }
         #contact .box2{
             background-color: #C7DFC1; 
+            width:calc(100% - 500px);
         }
         #contact .box2 .box{
             padding:20px 0;
             background-color:white;
             border-radius:8px;
-            justify-content: flex-start;
-            flex-direction: column;
-            width:350px;
+            width:650px;
             max-width:calc(100% - 10px);
             max-height:550px;
             position:relative;
@@ -434,9 +445,10 @@
             overflow-y: scroll;
             padding-top:0;
             margin:20px 0;
-        }
-        #contact .box2 .box::-webkit-scrollbar{
-            width:0;
+            flex-wrap: wrap;
+            flex-direction: row;
+            align-items: stretch;
+            justify-content: space-between;
         }
         #contact .box2 .box .cat{
             width:100%;
@@ -461,7 +473,8 @@
             background-color: white;
         }
         #contact .box2 .box .rev{
-            width:100%;
+            width:300px;
+            max-width:100%;
             justify-content: flex-start;
             border-bottom:1px dashed rgb(0,0,0,0.5);
             padding:10px 0;
@@ -510,7 +523,23 @@
             padding-right:10px;
         }
         
-        @media (max-width:980px){
+        @media (max-width:1200px){
+            #contact .box1,#contact .box2{
+                width:50%;
+            }
+            #contact .box2 .box{
+                flex-direction: column;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                align-items: center;
+                width:400px;
+            }
+            #contact .box2 .box .rev{
+                width:100%;
+            }
+        }
+        
+        @media (max-width:920px){
             #contact{
                 flex-direction:column;
             }
@@ -520,8 +549,33 @@
             #contact .box1,#contact .box2{
                 min-height:500px;
             }
+            #contact .box2 .box{
+            width:calc(100% - 15px);
+            max-width:650px;
+            flex-wrap: wrap;
+            flex-direction: row;
+            align-items: stretch;
+            justify-content: space-between;
+            }
+            #contact .box2 .box .rev{
+                width:100%;
+                max-width:300px;
+            }
         }
-        
+        @media (max-width:650px){
+            #contact .box2 .box{
+            width:calc(100% - 15px);
+            max-width:400px;
+            flex-wrap: nowrap;
+            flex-direction:column;
+            justify-content:flex-start;
+            align-items: center;
+            }
+            #contact .box2 .box .rev{
+                max-width:350px;
+            }
+        }
+            
 /*       contact  */
         
 /*    last         */
@@ -697,7 +751,30 @@
                        <label>29 - 10 - 2021</label>
                    </div>
                </div>
-               
+               <div class="rev flex" style="--i:0">
+                   <span>4.5</span>
+                   <div class="ms">
+                       <h3>Pranay</h3>
+                       <p><i class="fas fa-quote-left"></i> cool, Awesome ! <i class="fas fa-quote-right"></i></p>
+                       <label>15 - 11 - 2021</label>
+                   </div>
+               </div>
+               <div class="rev flex" style="--i:0">
+                   <span>4.8</span>
+                   <div class="ms">
+                       <h3>Kiran</h3>
+                       <p><i class="fas fa-quote-left"></i> Very Useful, colorfull <i class="fas fa-quote-right"></i></p>
+                       <label>09 - 11 - 2021</label>
+                   </div>
+               </div>
+               <div class="rev flex" style="--i:0">
+                   <span>4.7</span>
+                   <div class="ms">
+                       <h3>Rajesh</h3>
+                       <p><i class="fas fa-quote-left"></i> Need not to mention specially the excellence of the designing of the website page... Its just out of the brains♾️ <i class="fas fa-quote-right"></i></p>
+                       <label>29 - 10 - 2021</label>
+                   </div>
+               </div>
            </div>
         </div>
     </section>
@@ -734,6 +811,11 @@
                 page[page_active].classList.add("active");
             }
             var nav = document.querySelector(".nav");
+            if (document.getElementById(list1[0]).getBoundingClientRect().top < -40){
+                nav.classList.add("active");
+            }else{
+                nav.classList.remove("active");
+            }
         }
         
         window.addEventListener("scroll", () => {
