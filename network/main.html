@@ -114,14 +114,6 @@
         .nav .box1 ul .page:nth-child(3){
             -webkit-animation-delay:0.8s;
         }
-        @keyframes drop2{
-            0%{
-                transform:translateY(-50px);
-            }
-            100%{
-                transform:translateY(0px);
-            }
-        }
         .nav .box1 ul .page.active{
             opacity:1;
         }
@@ -129,6 +121,14 @@
             opacity:1;
             transform:scale(0.9);
             color:#C7DFC1;
+        }
+        @keyframes drop2{
+            0%{
+                transform:translateY(-50px);
+            }
+            100%{
+                transform:translateY(0px);
+            }
         }
         .nav .box2{
             background-color: #C7DFC1;
@@ -411,21 +411,13 @@
             font-size:16px;
             letter-spacing:1px;
             color:white;
+            transition:0.5s;
             opacity:0;
-            transform:translateY(-50px);
+            transform:translateX(-50px);
         }
         #contact.active .box1 h2{
-            -webkit-animation:drag1 0.4s linear forwards;
-        }
-        @keyframes drag1{
-            0%{
-                transform:translateY(-50px);
-                opacity:0;
-            }
-            100%{
-                transform:translateY(0px);
-                opacity:1;
-            }
+            opacity:1;
+            transform:translateX(0px);
         }
         #contact .box1 form{
             background-color:white;
@@ -445,13 +437,34 @@
         }
         #contact .box1 form .input span,#contact .box1 form .rating span{
             font-size:15px;
-            width:100%;
             padding:0 10px;
             color: #1B224A;
             font-weight:bold;
             letter-spacing:1px;
             position:relative;
             display:block;
+            transition:0.5s;
+            opacity:0;
+            transform:scale(0);
+            display: inline-block;
+            filter:blur(1px);
+        }
+        #contact.active .box1 form .input span,#contact.active .box1 form .rating span{
+            transform:scale(1);
+            opacity:1;
+            filter:blur(0px);
+        }
+        #contact.active .box1 form .input:nth-child(1) span{
+            transition-delay:0.6s;
+        }
+        #contact.active .box1 form .input:nth-child(2) span{
+            transition-delay:0.7s;
+        }
+        #contact.active .box1 form .input:nth-child(3) span{
+            transition-delay:0.8s;
+        }
+        #contact .box1 form .rating span{
+            transition-delay:0.9s;
         }
         #contact .box1 form .input input{
             width:100%;
@@ -483,6 +496,7 @@
             transform:translateX(calc(17px));
             width:40px;
             background-color: #1B224A;
+            transform-origin: bottom;
             color:white;
             font-size:14px;
             height:40px;
@@ -582,6 +596,14 @@
             padding:10px 0;
             align-items: flex-start;
             z-index:1;
+            transition:0.5s;
+            opacity:0;
+            transition-delay:0.2s;
+            transform:translateY(calc(50px + 10px * var(--i)));
+        }
+        #contact.active .box2 .box .rev{
+            transform:translateY(0px);
+            opacity:1;
         }
         #contact .box2 .box .rev span{
             margin:0 10px 0 10px;
@@ -841,7 +863,7 @@
                        <label>03 - 12 - 2021</label>
                    </div>
                </div>
-               <div class="rev flex" style="--i:0">
+               <div class="rev flex" style="--i:1">
                    <span>4.5</span>
                    <div class="ms">
                        <h3>Pranay</h3>
@@ -851,7 +873,7 @@
                        <label>15 - 11 - 2021</label>
                    </div>
                </div>
-               <div class="rev flex" style="--i:0">
+               <div class="rev flex" style="--i:2">
                    <span>4.8</span>
                    <div class="ms">
                        <h3>Kiran</h3>
@@ -861,7 +883,7 @@
                        <label>09 - 11 - 2021</label>
                    </div>
                </div>
-               <div class="rev flex" style="--i:0">
+               <div class="rev flex" style="--i:3">
                    <span>4.7</span>
                    <div class="ms">
                        <h3>Rajesh</h3>
@@ -871,7 +893,7 @@
                        <label>29 - 10 - 2021</label>
                    </div>
                </div>
-               <div class="rev flex" style="--i:0">
+               <div class="rev flex" style="--i:4">
                    <span>4.5</span>
                    <div class="ms">
                        <h3>Pranay</h3>
@@ -881,7 +903,7 @@
                        <label>15 - 11 - 2021</label>
                    </div>
                </div>
-               <div class="rev flex" style="--i:0">
+               <div class="rev flex" style="--i:5">
                    <span>4.8</span>
                    <div class="ms">
                        <h3>Kiran</h3>
@@ -891,7 +913,7 @@
                        <label>09 - 11 - 2021</label>
                    </div>
                </div>
-               <div class="rev flex" style="--i:0">
+               <div class="rev flex" style="--i:6">
                    <span>4.7</span>
                    <div class="ms">
                        <h3>Rajesh</h3>
@@ -945,7 +967,7 @@
                 nav.classList.remove("active");
             }
             
-            if (document.getElementById(list1[2]).getBoundingClientRect().top < 300){
+            if (document.getElementById(list1[2]).getBoundingClientRect().top < 350){
                 document.getElementById(list1[2]).classList.add("active");
             }else{
                 document.getElementById(list1[2]).classList.remove("active");
