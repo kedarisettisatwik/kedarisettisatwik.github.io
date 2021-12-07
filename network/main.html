@@ -515,6 +515,8 @@
         #contact .box2{
             background-color: #C7DFC1; 
             width:calc(100% - 500px);
+            flex-direction: column;
+            padding:5px;
         }
         #contact .box2 .box{
             padding:20px 0;
@@ -522,7 +524,7 @@
             border-radius:8px;
             width:650px;
             max-width:calc(100% - 10px);
-            max-height:550px;
+            max-height:500px;
             position:relative;
             padding-top:0px;
             overflow-x: hidden;
@@ -533,18 +535,15 @@
             flex-direction: row;
             align-items: stretch;
             justify-content: space-between;
+            scroll-snap-type: y mandatory;
+            -webkit-scroll-snap-type: y mandatory;
         }
-        #contact .box2 .box .cat{
-            width:100%;
+        #contact .box2 .cat{
             background-color: white;
-            height:50%;
-            padding-left:30px;
-            position:sticky;
-            top:0;
-            left:0;
-            z-index:10;
+            border-radius:5px;
+            overflow: hidden;
         }
-        #contact .box2 .box select{
+        #contact .box2 .cat select{
             top:0;
             left:0;
             outline:none;
@@ -559,13 +558,11 @@
         #contact .box2 .box::-webkit-scrollbar{
             -webkit-appearance:none;
             background-color:transparent;
-            width:10px;
+            width:7px;
         }
         #contact .box2 .box::-webkit-scrollbar-thumb{
-            background-color:black;
-            opacity:0.7;
+            background-color:rgb(0,0,0,0.5);
             border-radius:5px;
-            width:7px;
         }
         #contact .box2 .box .rev{
             width:300px;
@@ -575,6 +572,8 @@
             padding:10px 0;
             align-items: flex-start;
             z-index:1;
+            scroll-snap-align:start;
+            -webkit-scroll-snap-align:start;
         }
         #contact .box2 .box .rev span{
             margin:0 10px 0 10px;
@@ -599,6 +598,7 @@
             width:100%;
             letter-spacing:2px;
             margin-bottom:10px;
+            margin-top:10px;
         }
         #contact .box2 .box .rev .ms .quote1,#contact .box2 .box .rev .ms .quote2{
             width:100%;
@@ -822,15 +822,16 @@
             </form>
         </div>
         <div class="box2 flex">
-           <div class="box flex form">
-               <div class="cat">
+          <div class="cat">
                   <select id="">
                       <option value="0">All</option>
                       <option value="4">Above 4</option>
                       <option value="3">Above 3</option>
                       <option value="2">Above 2</option>
                   </select>
-               </div>
+            </div>
+           <div class="box flex form">
+               
                <div class="rev flex" style="--i:0">
                    <span>4.9</span>
                    <div class="ms">
