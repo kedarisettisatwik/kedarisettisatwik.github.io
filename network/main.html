@@ -104,23 +104,20 @@
             letter-spacing:1px;
             font-size:14px;
             font-weight:bold;
-            transform:translateY(-50px);
-        }
-        .nav .box1 ul .page.open{
-            opacity:1;
         }
         .nav .box1 ul .page:hover{
             opacity:1;
             transform:scale(0.9);
             color:#C7DFC1;
         }
-        @keyframes drop2{
-            0%{
-                transform:translateY(-50px);
-            }
-            100%{
-                transform:translateY(0px);
-            }
+        .nav .box1 ul .page.open{
+            opacity:1;
+        }
+        .nav.active .box1 ul .page{
+            color:black;
+        }
+        .nav.active .box1 ul .page:hover{
+            color:darkblue;
         }
         .nav .box2{
             background-color: #C7DFC1;
@@ -135,26 +132,11 @@
             letter-spacing:1px;
             cursor:pointer;
             transition:0.5s;
-            transform:translateY(-50px);
-            opacity:0;
-            -webkit-animation:drop3 0.4s linear forwards;
-            -webkit-animation-delay:0.6s;
         }
         .nav .box2 li:nth-child(2){
             padding:10px 15px;
             border:3px solid #1B224A;
             border-radius:5px;
-            -webkit-animation-delay:0.7s;
-        }
-        @keyframes drop3{
-            0%{
-                transform:translateY(-50px);
-                opacity:0;
-            }
-            100%{
-                transform:translateY(0px);
-                opacity:1;
-            }
         }
         .nav.active .box1,.nav.active .box2{
             background-color: whitesmoke;
@@ -162,24 +144,7 @@
         .nav.active .title{
             color:#1B224A;
         }
-        .nav.active .box1 ul .page{
-            color:black;
-        }
-        .nav.active .box1 ul .page:hover{
-            color:darkblue;
-        }
-        .nav .box1 ul .page{
-            -webkit-animation:drop2 0.4s linear forwards;
-        }
-        .nav .box1 ul .page:nth-child(1){
-            -webkit-animation-delay:0.6s;
-        }
-        .nav .box1 ul .page:nth-child(2){
-            -webkit-animation-delay:0.7s;
-        }
-        .nav .box1 ul .page:nth-child(3){
-            -webkit-animation-delay:0.8s;
-        }
+        
         
 /*      navigation bar         */
 
@@ -255,6 +220,15 @@
             justify-content: space-between;
             align-items: flex-start;
         }
+        #home .box1 .show .c{
+            width:150px;
+            margin-right:30px;
+            flex-direction: column;
+            opacity:0;
+            transform:scale(0);
+            -webkit-animation:drop4 0.5s linear forwards;
+            -webkit-animation-delay:0.6s;
+        }
         @keyframes drop4{
             0%{
                 transform:scale(0);
@@ -264,15 +238,6 @@
                 transform:scale(1);
                 opacity:1;
             }
-        }
-        #home .box1 .show .c{
-            width:150px;
-            margin-right:30px;
-            flex-direction: column;
-            opacity:0;
-            transform:scale(0);
-            -webkit-animation:drop4 0.5s linear forwards;
-            -webkit-animation-delay:0.6s;
         }
         #home .box1 .show .c:nth-child(2){
             -webkit-animation-delay:0.7s;
@@ -797,7 +762,7 @@
         <div class="box1 flex" style="justify-content: space-between">
             <div class="title"> <i class="fas fa-comment-alt"></i> Chat Pie</div>
             <ul class="flex">
-            <li class="page" onclick="goto('home')">Home</li>
+            <li class="page open" onclick="goto('home')">Home</li>
             <li class="page" onclick="goto('features')">Features</li>
             <li class="page" onclick="goto('contact')">Contact</li>
             </ul>
