@@ -43,6 +43,8 @@
             flex-direction: row;
         }
         
+        
+        
 /*      navigation bar         */
         
         .nav{
@@ -103,18 +105,8 @@
             font-size:14px;
             font-weight:bold;
             transform:translateY(-50px);
-            -webkit-animation:drop2 0.4s linear forwards;
         }
-        .nav .box1 ul .page:nth-child(1){
-            -webkit-animation-delay:0.6s;
-        }
-        .nav .box1 ul .page:nth-child(2){
-            -webkit-animation-delay:0.7s;
-        }
-        .nav .box1 ul .page:nth-child(3){
-            -webkit-animation-delay:0.8s;
-        }
-        .nav .box1 ul .page.active{
+        .nav .box1 ul .page.open{
             opacity:1;
         }
         .nav .box1 ul .page:hover{
@@ -175,6 +167,18 @@
         }
         .nav.active .box1 ul .page:hover{
             color:darkblue;
+        }
+        .nav .box1 ul .page{
+            -webkit-animation:drop2 0.4s linear forwards;
+        }
+        .nav .box1 ul .page:nth-child(1){
+            -webkit-animation-delay:0.6s;
+        }
+        .nav .box1 ul .page:nth-child(2){
+            -webkit-animation-delay:0.7s;
+        }
+        .nav .box1 ul .page:nth-child(3){
+            -webkit-animation-delay:0.8s;
         }
         
 /*      navigation bar         */
@@ -738,6 +742,51 @@
         
 /*    last         */
         
+
+        /*        features   */
+        
+        #features{
+            width:100%;
+            padding:20px 10px;
+            background-color:white;
+            flex-direction: column;
+            justify-content:flex-start;
+            position:relative;
+            align-items: flex-start;
+        }
+        #features .fea{
+            flex-direction: row;
+            justify-content:flex-start;
+            padding:10px;
+            width:100%;
+            margin:20px;
+        }
+        #features .fea .img{
+            width:500px;
+            height:500px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius:5px;
+            margin-right: 10px;
+        }
+        #features .fea .line{
+            padding:10px;
+            width: calc(100% - 520px);
+        }
+        #features .fea .line h4{
+            font-size:35px;
+            font-family: 'Caveat', cursive;
+            letter-spacing:2px;
+            font-weight:bold;
+            margin-bottom:40px;
+        }
+        #features .fea .line p{
+            font-size:15px;
+        }
+        
+/*        features   */
+        
     </style>
     
     </head>
@@ -748,7 +797,7 @@
         <div class="box1 flex" style="justify-content: space-between">
             <div class="title"> <i class="fas fa-comment-alt"></i> Chat Pie</div>
             <ul class="flex">
-            <li class="page active" onclick="goto('home')">Home</li>
+            <li class="page" onclick="goto('home')">Home</li>
             <li class="page" onclick="goto('features')">Features</li>
             <li class="page" onclick="goto('contact')">Contact</li>
             </ul>
@@ -793,7 +842,29 @@
    </section>
    
     
-    <section style="height:100vh;width:100vw;background-color:white;" id="features"></section>
+    <section id="features" class="flex">
+        
+        <div class="fea flex">
+            <div class="img" style="background-image: url('https://images.unsplash.com/photo-1493612276216-ee3925520721?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmFuZG9tfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60')"></div>
+            <div class="line"><h4>App for chatting</h4> <p> This platform allows you to chat and share you work, feelings with your friends </p></div>
+        </div>
+        
+        <div class="fea flex">
+            <div class="img" style="background-image: url('https://images.unsplash.com/photo-1485550409059-9afb054cada4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cmFuZG9tfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60')"></div>
+            <div class="line"><h4>Teams</h4> <p> This platform allows you to create Teams / group as per your wish and giving you more further options</p></div>
+        </div>
+        
+        <div class="fea flex">
+            <div class="img" style="background-image: url('https://images.unsplash.com/photo-1484100356142-db6ab6244067?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cmFuZG9tfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60')"></div>
+            <div class="line"><h4>Profile = website</h4> <p> This platform allows you to make you profile page more cool and you can add your details and more links and etc.. to you profile and make it like a website for yourself and share with any one in the world with just using one link or one QR code which will be given by us. </p></div>
+        </div>
+        
+        <div class="fea flex">
+            <div class="img" style="background-image: url('https://images.unsplash.com/photo-1550686041-366ad85a1355?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHJhbmRvbXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60')"></div>
+            <div class="line"><h4>Notes</h4> <p> This platform allows you to write notes and you can keep them public mode or private mode and you can add notes to your profile</p></div>
+        </div>
+        
+    </section>
     
     <section id="contact" class="flex">
         <div class="box1 flex">
@@ -926,19 +997,20 @@
             window.scrollBy(0,ele1 - 70);
         }
         
+        var nav = document.querySelector(".nav");
+        
         function check(){
             var page = document.querySelectorAll(".page");
             var list1 = ["home","features","contact"];
             for (var i = 2;i > -1;i--){
                 var ele1 = document.getElementById(list1[i]).getBoundingClientRect().bottom;
                 if (ele1 > 300){
-                    page[page_active].classList.remove("active");
+                    page[page_active].classList.remove("open");
                     page_active = i;
                 }
-                page[page_active].classList.add("active");
+                page[page_active].classList.add("open");
             }
             var wo = window.innerWidth;
-            var nav = document.querySelector(".nav");
             
             if (document.getElementById(list1[0]).getBoundingClientRect().top < -40){
                 nav.classList.add("active");
