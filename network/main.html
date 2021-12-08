@@ -734,10 +734,12 @@
             background-size: cover;
             border-radius:5px;
             margin-right: 10px;
+            transition:0.3s;
         }
         #features .fea .line{
             padding:10px;
             width: calc(100% - 520px);
+            transition:0.3s;
         }
         #features .fea .line h4{
             font-size:35px;
@@ -748,6 +750,55 @@
         }
         #features .fea .line p{
             font-size:15px;
+        }
+        
+        @media (max-width:1100px){
+            #features .fea .img{
+                width:400px;
+                height:400px;
+            }
+            #features .fea .line{
+                width: calc(100% - 420px);
+            }
+        }
+        
+        @media (max-width:900px){
+            #features .fea .img{
+                width:300px;
+                height:300px;
+            }
+            #features .fea .line{
+                width: calc(100% - 320px);
+            }
+        }
+        
+        @media (max-width:660px){
+            #features .fea{
+                flex-direction: column;
+                background-color: whitesmoke;
+                width:calc(100% - 20px);
+                border-radius:5px;
+                align-items: flex-start;
+            }
+            #features .fea .img{
+                width:300px;
+                height:300px;
+                margin:0px;
+            }
+            #features .fea .line{
+                width:100%;
+            }
+        }
+        
+        @media (max-width:470px){
+            #features .fea{
+                width:calc(100% - 10px);
+                align-items: center;
+            }
+            #features .fea .img{
+                width:calc(100vw - 50px);
+                height:calc(100vw - 50px);
+            }
         }
         
 /*        features   */
@@ -827,6 +878,16 @@
         <div class="fea flex">
             <div class="img" style="background-image: url('https://images.unsplash.com/photo-1550686041-366ad85a1355?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHJhbmRvbXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60')"></div>
             <div class="line"><h4>Notes</h4> <p> This platform allows you to write notes and you can keep them public mode or private mode and you can add notes to your profile</p></div>
+        </div>
+        
+        <div class="fea flex">
+            <div class="img" style="background-image: url('https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjZ8fHJhbmRvbXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60')"></div>
+            <div class="line"><h4>Posts</h4> <p> This platform allows you to share your ideas, images as posts </p></div>
+        </div>
+        
+        <div class="fea flex">
+            <div class="img" style="background-image: url('https://images.unsplash.com/photo-1621867822738-ba65f95a8eea?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODB8fHJhbmRvbXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60')"></div>
+            <div class="line"><h4>Schedule</h4> <p> This platform allows you to plan your works perfectly.</p></div>
         </div>
         
     </section>
