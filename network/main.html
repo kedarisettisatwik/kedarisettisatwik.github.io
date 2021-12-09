@@ -733,9 +733,39 @@
         #features .small{
             width:100%;
             position:relative;
-            min-height:500px;
             background-color: white;
             display: none;
+            padding:10px;
+        }
+        #features .small .bb{
+            width:450px;
+            max-width:100%;
+            padding:10px;
+        }
+        #features .small .bb .fea{
+            margin-bottom:30px;
+            padding:0 10px;
+            width:100%;
+            position:relative;
+        }
+        #features .small .bb .fea .icon{
+            width:100%;
+            margin:12px 0;
+            width:100%;
+            justify-content: flex-start;
+            font-size:20px;
+            letter-spacing:2px;
+            font-weight:bold;
+        }
+        #features .small .bb .fea .icon i{
+            font-size:24px;
+            margin-right:20px;
+            color:#1B224A;
+            text-shadow:0 0 3px rgb(0,0,0,0.2);
+        }
+        #features .small .bb .fea p{
+            width:100%;
+            font-size:15px;
         }
         
         @media (max-width:980px){
@@ -743,7 +773,7 @@
                 display:none;
             }
             #features .small{
-                display:block;
+                display:flex;
             }
         }
         
@@ -810,8 +840,43 @@
                 
             </div>
         </section>
-        <section class="small">
+        <section class="small flex">
+            <div class="bb"> 
+                <div class="fea">
+                <div class="icon flex"><i class="fas fa-comment-alt"></i> Chats </div>
+                <p>
+                    Enjoy chatting with your friends.
+                </p>
+            </div>
             
+            <div class="fea">
+                <div class="icon flex"><i class="fas fa-search"></i> Search </div>
+                <p>
+                  Search for other people and make new friends
+                </p>
+            </div>
+            
+            <div class="fea">
+                <div class="icon flex"><i class="far fa-image"></i> Posts </div>
+                <p>
+                  Share your feelings, and moments to the world.
+                </p>
+            </div>
+            
+            <div class="fea">
+                <div class="icon flex"><i class="fas fa-sticky-note"></i> Notes </div>
+                <p>
+                  keep some important points safe by writting notes, you can keep them in public mode or private mode.
+                </p>
+            </div>
+            
+            <div class="fea">
+                <div class="icon flex"><i class="fas fa-user"></i> Profile </div>
+                <p>
+                  You can add any description points and your details, your social media links, any links, your notes to your profile. You can share your profile to anyone, even for the person who don't have account in chat pie app.
+                </p>
+            </div>
+            </div>
         </section>
     </section>
     
