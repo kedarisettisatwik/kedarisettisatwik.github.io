@@ -488,41 +488,16 @@
             padding:5px;
         }
         #contact .box2 .box{
-            padding:20px 0;
+            padding:10px;
             background-color:white;
             border-radius:8px;
             width:650px;
             max-width:calc(100% - 10px);
             max-height:500px;
             position:relative;
-            padding-top:0px;
             overflow-x: hidden;
             overflow-y: scroll;
-            padding-top:0;
             margin:20px 0;
-            flex-wrap: wrap;
-            flex-direction: row;
-            align-items: stretch;
-            justify-content: space-between;
-            scroll-snap-type: y mandatory;
-            -webkit-scroll-snap-type: y mandatory;
-        }
-        #contact .box2 .cat{
-            background-color: white;
-            border-radius:5px;
-            overflow: hidden;
-        }
-        #contact .box2 .cat select{
-            top:0;
-            left:0;
-            outline:none;
-            border:none;
-            background:none;
-            padding:20px;
-            font-size:16px;
-            font-weight:bold;
-            letter-spacing:1px;
-            background-color: white;
         }
         #contact .box2 .box::-webkit-scrollbar{
             -webkit-appearance:none;
@@ -535,54 +510,58 @@
         }
         #contact .box2 .box .rev{
             width:300px;
+            min-height:150px;
+            max-height:150px;
             max-width:100%;
-            justify-content: flex-start;
-            border-bottom:1px dashed rgb(0,0,0,0.5);
             padding:10px 0;
-            align-items: flex-start;
             z-index:1;
-            scroll-snap-align:start;
-            -webkit-scroll-snap-align:start;
-        }
-        #contact .box2 .box .rev span{
-            margin:0 10px 0 10px;
-            width:50px;
-            height:50px;
-            width:50px;
-            border-radius:5px;
-            line-height:50px;
-            text-align: center;
-            background-color: #1B224A;
-            color:white;
-        }
-        #contact .box2 .box .rev .ms{
-            width: calc(100% - 80px);
-            padding:5px 10px;
-            border-radius:5px;
             background-color:whitesmoke;
+            margin:5px 0;
+            border-radius:5px;
+            overflow: hidden;
+            transition:0.5s;
+            padding:5px;
+            display: inline-block;
         }
-        #contact .box2 .box .rev .ms h3{
-            font-weight:600;
-            font-size:16px;
-            width:100%;
-            letter-spacing:2px;
-            margin-bottom:10px;
-            margin-top:10px;
+        #contact .box2 .box .rev.active{
+            max-height:100vh;
+            margin:20px 0;
         }
-        #contact .box2 .box .rev .ms p{
-            width:100%;
-            text-align: center;
-            font-size:14px;
+        #contact .box2 .box .rev h3{
+            margin:10px 0 10px 10px;
+            font-size:24px;
+            font-family: 'Caveat', cursive;
             letter-spacing:1px;
-            padding:0 15px;
+            font-weight:bold;
         }
-        #contact .box2 .box .rev .ms label{
-            margin-top:10px;
-            opacity:0.5;
+        #contact .box2 .box .rev .stars{
+            position:relative;
             width:100%;
-            display: block;
-            text-align: right;
-            padding-right:10px;
+            padding:0 10px;
+            justify-content: flex-start;
+        }
+        #contact .box2 .box .rev .stars .fill{
+            margin-right:20px;
+            font-size:13px;
+            position:relative;
+        }
+        #contact .box2 .box .rev .stars .fill .one{
+            position:relative;
+        }
+        #contact .box2 .box .rev .stars .fill .two{
+            position:absolute;
+            top:0;
+            left:0;
+            clip-path: polygon(0 0, calc(1% * var(--i)) 0, calc(1% * var(--i)) 100%, 0% 100%);
+        }
+        #contact .box2 .box .rev .stars .date{
+            font-size:14px;
+        }
+        #contact .box2 .box .rev p{
+            margin:10px 0;
+            width:100%;
+            padding:0 10px;
+            font-size:15px;
         }
         
         @media (max-width:1400px){
@@ -633,13 +612,6 @@
             }
             #contact .box2 .box .rev{
                 max-width:350px;
-            }
-            #contact .box2 .box::-webkit-scrollbar{
-                -webkit-appearance:none;
-                width:0px;
-            }
-            #contact .box2 .box::-webkit-scrollbar-thumb{
-                width:0px;
             }
         }
             
@@ -1031,72 +1003,203 @@
             </form>
         </div>
         <div class="box2 flex">
-          <div class="cat">
-                  <select id="">
-                      <option value="0">All</option>
-                      <option value="4">Above 4</option>
-                      <option value="3">Above 3</option>
-                      <option value="2">Above 2</option>
-                  </select>
-            </div>
-           <div class="box flex form">
+          <h5 style="width:100%;padding:0 10px;margin:10px 0;font-size:16px;letter-spacing:1px;">
+              See what our Users feels about Us..
+          </h5>
+           <div class="box form">
                
-               <div class="rev flex" style="--i:0">
-                   <span>4.9</span>
-                   <div class="ms">
+               <div class="rev" onclick="more1(0)">
                        <h3>Hanish</h3>
-                       <p>Need not to mention specially the excellence of the designing of the website page... Its just out of the brains♾️</p>
-                       <label>03 - 12 - 2021</label>
-                   </div>
+                       <div class="stars flex">
+                           <div class="fill">
+                               <div class="one">
+                               <i class="far fa-star"></i>
+                               <i class="far fa-star"></i>
+                               <i class="far fa-star"></i>
+                               <i class="far fa-star"></i>
+                               <i class="far fa-star"></i>
+                               </div>
+                               <div class="two" style="--i:100">
+                                   <i class="fas fa-star"></i>
+                                   <i class="fas fa-star"></i>
+                                   <i class="fas fa-star"></i>
+                                   <i class="fas fa-star"></i>
+                                   <i class="fas fa-star"></i>
+                               </div>
+                           </div>
+                           <div class="date">
+                               06 December 2021
+                           </div>
+                       </div>
+                       <p>Need not to mention specially the excellence of the designing of the website page... Its just out of the brains♾️ Need not to mention specially the excellence of the designing of the website page... Its just out of the brains♾️ Need not to mention specially the excellence of the designing of the website page... Its just out of the brains♾️ Need not to mention specially the excellence of the designing of the website page... Its just out of the brains♾️</p>
                </div>
-               <div class="rev flex" style="--i:1">
-                   <span>4.5</span>
-                   <div class="ms">
-                       <h3>Pranay</h3>
-                       <p>cool, Awesome !</p>
-                       <label>15 - 11 - 2021</label>
-                   </div>
+               
+               <div class="rev" onclick="more1(1)">
+                       <h3>Rukhsana Baig</h3>
+                       <div class="stars flex">
+                           <div class="fill">
+                               <div class="one">
+                               <i class="far fa-star"></i>
+                               <i class="far fa-star"></i>
+                               <i class="far fa-star"></i>
+                               <i class="far fa-star"></i>
+                               <i class="far fa-star"></i>
+                               </div>
+                               <div class="two" style="--i:89">
+                                   <i class="fas fa-star"></i>
+                                   <i class="fas fa-star"></i>
+                                   <i class="fas fa-star"></i>
+                                   <i class="fas fa-star"></i>
+                                   <i class="fas fa-star"></i>
+                               </div>
+                           </div>
+                           <div class="date">
+                               30 September 2021
+                           </div>
+                       </div>
+                       <p>
+                           This game is really good but I gave it 4 stars because to buy a new character it is really expensive my little sister like tasha but it is really expensive to get and she really like noon but noon need real money please think about this and change this game a bit
+                       </p>
                </div>
-               <div class="rev flex" style="--i:2">
-                   <span>4.8</span>
-                   <div class="ms">
-                       <h3>Kiran</h3>
-                       <p>Very Useful, colorfull </p>
-                       <label>09 - 11 - 2021</label>
-                   </div>
+               
+               <div class="rev" onclick="more1(2)">
+                       <h3>Karthik Pedamallu</h3>
+                       <div class="stars flex">
+                           <div class="fill">
+                               <div class="one">
+                               <i class="far fa-star"></i>
+                               <i class="far fa-star"></i>
+                               <i class="far fa-star"></i>
+                               <i class="far fa-star"></i>
+                               <i class="far fa-star"></i>
+                               </div>
+                               <div class="two" style="--i:90">
+                                   <i class="fas fa-star"></i>
+                                   <i class="fas fa-star"></i>
+                                   <i class="fas fa-star"></i>
+                                   <i class="fas fa-star"></i>
+                                   <i class="fas fa-star"></i>
+                               </div>
+                           </div>
+                           <div class="date">
+                               15 October 2021
+                           </div>
+                       </div>
+                       <p>
+                           I love this game verymuch so I give 5stars for this game in this game 1problem thatis Facebook login option was not there so somany members not login with Facebook so please clear this problem subway surfers compeny so that one only problem after I don't like charcters thatis very poor charcters ok.
+                       </p>
                </div>
-               <div class="rev flex" style="--i:3">
-                   <span>4.7</span>
-                   <div class="ms">
-                       <h3>Rajesh</h3>
-                       <p>Need not to mention specially the excellence of the designing of the website page... Its just out of the brains♾️ </p>
-                       <label>29 - 10 - 2021</label>
-                   </div>
+               
+               <div class="rev" onclick="more1(3)">
+                       <h3>Sima Majumdar</h3>
+                       <div class="stars flex">
+                           <div class="fill">
+                               <div class="one">
+                               <i class="far fa-star"></i>
+                               <i class="far fa-star"></i>
+                               <i class="far fa-star"></i>
+                               <i class="far fa-star"></i>
+                               <i class="far fa-star"></i>
+                               </div>
+                               <div class="two" style="--i:75">
+                                   <i class="fas fa-star"></i>
+                                   <i class="fas fa-star"></i>
+                                   <i class="fas fa-star"></i>
+                                   <i class="fas fa-star"></i>
+                                   <i class="fas fa-star"></i>
+                               </div>
+                           </div>
+                           <div class="date">
+                               15 October 2021
+                           </div>
+                       </div>
+                       <p>
+                          It's a Very good game for child to adult and it keep our mind fresh . and also a disability is some time when we go very far that oir phone work very poor and laggful please fix that we can make a record . 
+                       </p>
                </div>
-               <div class="rev flex" style="--i:4">
-                   <span>4.5</span>
-                   <div class="ms">
-                       <h3>Pranay</h3>
-                       <p> cool, Awesome !</p>
-                       <label>15 - 11 - 2021</label>
-                   </div>
+               
+               <div class="rev" onclick="more1(4)">
+                       <h3>Hanish</h3>
+                       <div class="stars flex">
+                           <div class="fill">
+                               <div class="one">
+                               <i class="far fa-star"></i>
+                               <i class="far fa-star"></i>
+                               <i class="far fa-star"></i>
+                               <i class="far fa-star"></i>
+                               <i class="far fa-star"></i>
+                               </div>
+                               <div class="two" style="--i:50">
+                                   <i class="fas fa-star"></i>
+                                   <i class="fas fa-star"></i>
+                                   <i class="fas fa-star"></i>
+                                   <i class="fas fa-star"></i>
+                                   <i class="fas fa-star"></i>
+                               </div>
+                           </div>
+                           <div class="date">
+                               1 July 2021
+                           </div>
+                       </div>
+                       <p>Need not to mention specially the excellence of the designing of the website page... Its just out of the brains♾️ Need not to mention specially the excellence of the designing of the website page... Its just out of the brains♾️ Need not to mention specially the excellence of the designing of the website page... Its just out of the brains♾️ Need not to mention specially the excellence of the designing of the website page... Its just out of the brains♾️</p>
                </div>
-               <div class="rev flex" style="--i:5">
-                   <span>4.8</span>
-                   <div class="ms">
-                       <h3>Kiran</h3>
-                       <p>Very Useful, colorfull</p>
-                       <label>09 - 11 - 2021</label>
-                   </div>
+               
+               <div class="rev" onclick="more1(5)">
+                       <h3>Rukhsana Baig</h3>
+                       <div class="stars flex">
+                           <div class="fill">
+                               <div class="one">
+                               <i class="far fa-star"></i>
+                               <i class="far fa-star"></i>
+                               <i class="far fa-star"></i>
+                               <i class="far fa-star"></i>
+                               <i class="far fa-star"></i>
+                               </div>
+                               <div class="two" style="--i:80">
+                                   <i class="fas fa-star"></i>
+                                   <i class="fas fa-star"></i>
+                                   <i class="fas fa-star"></i>
+                                   <i class="fas fa-star"></i>
+                                   <i class="fas fa-star"></i>
+                               </div>
+                           </div>
+                           <div class="date">
+                               05 January 2021
+                           </div>
+                       </div>
+                       <p>
+                           This game is really good but I gave it 4 stars because to buy a new character it is really expensive my little sister like tasha but it is really expensive to get and she really like noon but noon need real money please think about this and change this game a bit
+                       </p>
                </div>
-               <div class="rev flex" style="--i:6">
-                   <span>4.7</span>
-                   <div class="ms">
-                       <h3>Rajesh</h3>
-                       <p> Need not to mention specially the excellence of the designing of the website page... Its just out of the brains♾️</p>
-                       <label>29 - 10 - 2021</label>
-                   </div>
+               
+               <div class="rev" onclick="more1(6)">
+                       <h3>Karthik Pedamallu</h3>
+                       <div class="stars flex">
+                           <div class="fill">
+                               <div class="one">
+                               <i class="far fa-star"></i>
+                               <i class="far fa-star"></i>
+                               <i class="far fa-star"></i>
+                               <i class="far fa-star"></i>
+                               <i class="far fa-star"></i>
+                               </div>
+                               <div class="two" style="--i:100">
+                                   <i class="fas fa-star"></i>
+                                   <i class="fas fa-star"></i>
+                                   <i class="fas fa-star"></i>
+                                   <i class="fas fa-star"></i>
+                                   <i class="fas fa-star"></i>
+                               </div>
+                           </div>
+                           <div class="date">
+                               05 November 2021
+                           </div>
+                       </div>
+                       <p>
+                           I love this game verymuch so I give 5stars for this game in this game 1problem thatis Facebook login option was not there so somany members not login with Facebook so please clear this problem subway surfers compeny so that one only problem after I don't like charcters thatis very poor charcters ok.
+                       </p>
                </div>
+               
            </div>
         </div>
     </section>
@@ -1203,6 +1306,11 @@
             }else if (a == 2){
                 window.open('form.html?type=2','_blank');
             }
+        }
+        
+        function more1(a){
+            var rev = document.querySelectorAll(".rev");
+            rev[a].classList.add("active");
         }
         
     </script>
