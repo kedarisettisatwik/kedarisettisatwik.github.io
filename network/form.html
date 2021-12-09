@@ -1,0 +1,354 @@
+<html>
+<head>
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    
+    <title>Account</title>
+    
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: 'Poppins', sans-serif;
+/*          font-family: 'Caveat', cursive; */
+        }
+        html{
+            scroll-behavior: smooth;
+        }
+        body{
+            width:100vw;
+            min-height:100vh;
+            background-color:#C7DFC1;
+            overflow-x: hidden;
+            position:relative;
+            transition:0.5s;
+            opacity:0;
+        }
+        .flex{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+        .box{
+            width:900px;
+            height:550px;
+            background-color:white;
+            border-radius:5px;
+            overflow: hidden;
+            box-shadow:0 0 10px rgb(0,0,0,0.2);
+            transition:0.4s;
+            position:relative;
+        }
+        .bg{
+            position: absolute;
+            background-color:#1B224A;
+            width:50%;
+            height:100%;
+            top:0;
+            left:0;
+            transition:0.5s;
+            z-index:10;
+        }
+        .box1,.box2{
+            position:absolute;
+            z-index:20;
+            width:50%;
+            height:100%;
+            top:0;
+        }
+        .box1{
+            left:0;
+        }
+        .box2{
+            right:0;
+        }
+        .box1 .text,.box2 .text{
+            position: absolute;
+            top:0;
+            left:0;
+            height:100%;
+            width:100%;
+            flex-direction: column;
+            padding:10px;
+            display:none;
+        }
+        .box1 .text h3,.box2 .text h3{
+            font-size:30px;
+            margin-bottom:40px;
+            letter-spacing:3px;
+            color:white;
+        }
+        .box1 .text p,.box2 .text p{
+            max-width:350px;
+            color:white;
+            font-size:14px;
+            letter-spacing:1px;
+            margin-bottom:30px;
+        }
+        .box1 .text span,.box2 .text span{
+            font-size:15px;
+            text-decoration:underline;
+            margin-bottom:20px;
+            color:white;
+            cursor:pointer;
+        }
+        .box2 .form,.box1 .form{
+            position: absolute;
+            width:100%;
+            height:100%;
+            top:0;
+            z-index:0;
+            flex-direction: column;
+            display:none;
+            opacity:0;
+            transition:0.5s;
+        }
+        .box1 .form{
+            left:0;
+        }
+        .box2 .form{
+            right:0;
+        }
+        .box2 .form .icons,.box1 .form .icons{
+            width:calc(100% - 20px);
+            margin:20px 0;
+        }
+        .box2 .form .icons i,.box1 .form .icons i{
+            font-size:20px;
+            width:40px;
+            height:40px;
+            line-height:40px;
+            text-align:center;
+            border:2px solid rgb(0,0,0);
+            opacity:0.5;
+            transition:0.5s;
+            margin:0 10px;
+            border-radius:50%;
+            cursor:pointer;
+            transform:scale(1);
+        }
+        .box2 .form .icons i:hover,.box1 .form .icons i:hover{
+            opacity:1;
+            transform:scale(0.9);
+        }
+        .box2 .form label,.box1 .form label{
+            font-size:14px;
+            margin-bottom:20px;
+        }
+        .box1 .form .input,.box2 .form .input{
+            width:350px;
+            max-width:100%;
+            position:relative;
+            margin:5px 0;
+        }
+        .box1 .form .input span,.box2 .form .input span{
+            font-size:14px;
+            padding:0 10px;
+            color: #1B224A;
+            font-weight:bold;
+            letter-spacing:1px;
+            position:relative;
+            display:block;
+        }
+        .box1 .form .input input,.box2 .form .input input{
+            width:100%;
+            background-color:whitesmoke;
+            font-size:14px;
+            transition:0.4s;
+            outline:none;
+            border:none;
+            padding:10px 15px;
+            margin:5px 0;
+            border-radius:5px;
+        }
+        .box1 .form input[type="submit"],.box2 .form input[type="submit"]{
+            width:calc(100% - 15px);
+            max-width:250px;
+            background-color:#C7DFC1;
+            color:#1B224A; 
+            font-size:15px;
+            font-weight:bold;
+            letter-spacing:1px;
+            margin:5px 0;
+            outline:none;
+            border:none;
+            padding:15px;
+            border-radius:8px;
+            cursor:pointer;
+            margin-top:20px;
+        }
+        
+        @media (max-width:920px){
+            .box{
+                width:calc(100vw - 20px);
+            }
+        }
+        
+        @media (max-width:760px){
+            .box{
+                width:100vw;
+                height:100vh;
+                border-radius:0px;
+                box-shadow:none;
+            }
+        }
+        
+    </style>
+    
+    </head>
+<body class="flex">
+   
+   <section class="box">
+       
+       <div class="bg"></div>
+       
+       <div class="box1">
+           <div class="new text flex">
+               <h3>Create Account</h3>
+               <p>Enter your Personal Details and Start journey with Us..</p>
+                <span onclick="form1(2)">Already Have Account ! </span>
+           </div>
+           <form class="form flex">
+               <div class="icons flex">
+                   <i class="fab fa-github"></i>
+                   <i class="fab fa-google-plus-g"></i>
+                   <i class="fab fa-linkedin-in"></i>
+                   <i class="fas fa-phone-alt"></i>
+               </div>
+               <label>or Use your Account </label>
+                <div class="input">
+                    <span>E-mail / phone Number</span>
+                    <input type="email" placeholder="Example@gmail.com" required>
+                </div>
+                <div class="input">
+                    <span>Password</span>
+                    <input type="text" placeholder="********" required>
+                </div>
+                <input type="submit" value="submit">
+           </form>
+       </div>
+       
+       <div class="box2">
+           <div class="old text flex">
+               <h3>Welcome Back</h3>
+               <p>To keep connected with Us, Please Log in with your details</p>
+                <span onclick="form1(1)">Don't Have Account ! </span>
+           </div>
+           <form class="form flex">
+               <div class="icons flex">
+                   <i class="fab fa-github"></i>
+                   <i class="fab fa-google-plus-g"></i>
+                   <i class="fab fa-linkedin-in"></i>
+                   <i class="fas fa-phone-alt"></i>
+               </div>
+               <label>or Use your E-mail for registration</label>
+               <div class="input">
+                    <span>Name</span>
+                    <input type="text" placeholder="Mr.Example" required>
+                </div>
+                <div class="input">
+                    <span>E-mail / phone Number</span>
+                    <input type="email" placeholder="Example@gmail.com" required>
+                </div>
+                <div class="input">
+                    <span>Set Password</span>
+                    <input type="password" placeholder="Password lock" required>
+                </div>
+                <div class="input">
+                    <span>Confirm Password</span>
+                    <input type="text" placeholder="********" required>
+                </div>
+                <input type="submit" value="submit">
+           </form>
+       </div>
+       
+   </section>
+   
+   <script>
+   
+       // 1 == new  
+       // 2 == sign in 
+    
+       document.body.style.opacity = 0;
+       
+       const myurl = new URL(window.location.href);
+       let type = myurl.searchParams.get("type");
+       // console.log(type);
+       
+       var fb = true;
+       
+       function form1(a){
+           var bg = document.querySelector(".bg");
+           var t = document.querySelectorAll(".text");
+           var f = document.querySelectorAll(".form");
+           if (fb){
+               fb = false;
+               if (a == 2 || a == "2"){
+                   f[1].style.opacity = 0;
+                   f[0].style.display = "flex";
+                   
+                   setTimeout(function(){
+                       t[1].style.display = "flex";
+                       bg.style.left = "50%";
+                       f[1].style.display = "none";
+                   },200);
+                   
+                   setTimeout(function(){
+                       t[0].style.display = "none";
+                       f[0].style.opacity = 1;
+                       fb = true;
+                   },500);
+                   
+                   setTimeout(function(){
+                       document.body.style.opacity = 1;
+                   },800);
+                   
+               }else if (a == 1 || a == "1"){
+                   f[0].style.opacity = 0;
+                   f[1].style.display = "flex";
+                   
+                   setTimeout(function(){
+                       t[0].style.display = "flex";
+                       bg.style.left = "0%";
+                       f[0].style.display = "none";
+                   },200);
+                   
+                   setTimeout(function(){
+                       t[1].style.display = "none";
+                       f[1].style.opacity = 1;
+                       fb = true;
+                   },500);
+                   
+                   setTimeout(function(){
+                       document.body.style.opacity = 1;
+                   },800);
+               }
+           }
+       }
+       
+       form1(type);
+       
+   </script>
+   
+    </body>
+</html>
+
+
+
+
+<!--
+
+<a href="https://www.hitwebcounter.com" target="_blank" class="c">
+<img src="https://hitwebcounter.com/counter/counter.php?page=7711238&style=0001&nbdigits=6&type=ip&initCount=0" title="Total Website Hits" Alt="Web Hits"   border="0" /></a>
+
+22,001
+
+-->
