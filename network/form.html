@@ -39,7 +39,7 @@
         }
         .box{
             width:900px;
-            height:550px;
+            height:620px;
             background-color:white;
             border-radius:5px;
             overflow: hidden;
@@ -187,6 +187,22 @@
             cursor:pointer;
             margin-top:20px;
         }
+        .error{
+            width:300px;
+            height:50px;
+            background-color:rgb(255,0,0,0.2);
+            font-size:14px;
+            color:red;
+            text-shadow:0 0 1px rgb(255,0,0,0.4);
+            font-weight: bold;
+            letter-spacing:2px;
+            padding:0 10px;
+            line-height:50px;
+            vertical-align: center;
+            margin:10px 0;
+            border-radius:5px;
+            display:none;
+        }
         
         @media (max-width:920px){
         .box{
@@ -318,13 +334,14 @@
                    <i class="fas fa-phone-alt"></i>
                </div>
                <label>or Use your Account </label>
+               <div class="error">Fill all the Fields</div>
                 <div class="input">
                     <span>E-mail / phone Number</span>
-                    <input type="email" placeholder="Example@gmail.com" required>
+                    <input type="text" placeholder="Example@gmail.com" id="in_mail">
                 </div>
                 <div class="input">
                     <span>Password</span>
-                    <input type="text" placeholder="********" required>
+                    <input type="text" placeholder="********" id="in_pass">
                 </div>
                 <input type="submit" value="submit">
            </form>
@@ -344,21 +361,22 @@
                    <i class="fas fa-phone-alt"></i>
                </div>
                <label>or Use your E-mail for registration</label>
+               <div class="error">Fill all the Fields</div>
                <div class="input">
                     <span>Name</span>
-                    <input type="text" placeholder="Mr.Example" required>
+                    <input type="text" placeholder="Mr.Example" id="up_name">
                 </div>
                 <div class="input">
                     <span>E-mail / phone Number</span>
-                    <input type="email" placeholder="Example@gmail.com" required>
+                    <input type="email" placeholder="Example@gmail.com" id="up_mail">
                 </div>
                 <div class="input">
                     <span>Set Password</span>
-                    <input type="password" placeholder="Password lock" required>
+                    <input type="password" placeholder="Password lock" id="up_pass">
                 </div>
                 <div class="input">
                     <span>Confirm Password</span>
-                    <input type="text" placeholder="********" required>
+                    <input type="text" placeholder="********" id="up_repass">
                 </div>
                 <input type="submit" value="submit">
            </form>
@@ -376,13 +394,14 @@
                    <i class="fas fa-phone-alt"></i>
                </div>
                <label>or Use your Account </label>
+               <div class="error">Fill all the Fields</div>
                 <div class="input">
                     <span>E-mail / phone Number</span>
-                    <input type="email" placeholder="Example@gmail.com" required>
+                    <input type="email" placeholder="Example@gmail.com" id="in_mail">
                 </div>
                 <div class="input">
                     <span>Password</span>
-                    <input type="text" placeholder="********" required>
+                    <input type="text" placeholder="********" id="in_pass">
                 </div>
                 <input type="submit" value="submit">
                 <p class="go" onclick="form1(1)"> New user, Don't Have Account !</p>
@@ -396,21 +415,22 @@
                    <i class="fas fa-phone-alt"></i>
                </div>
                <label>or Use your E-mail for registration</label>
+               <div class="error">Fill all the Fields</div>
                <div class="input">
                     <span>Name</span>
-                    <input type="text" placeholder="Mr.Example" required>
+                    <input type="text" placeholder="Mr.Example" id="up_name">
                 </div>
                 <div class="input">
                     <span>E-mail / phone Number</span>
-                    <input type="email" placeholder="Example@gmail.com" required>
+                    <input type="email" placeholder="Example@gmail.com" id="up_mail">
                 </div>
                 <div class="input">
                     <span>Set Password</span>
-                    <input type="password" placeholder="Password lock" required>
+                    <input type="password" placeholder="Password lock" id="up_pass">
                 </div>
                 <div class="input">
                     <span>Confirm Password</span>
-                    <input type="text" placeholder="********" required>
+                    <input type="text" placeholder="********" id="up_repass">
                 </div>
                 <input type="submit" value="submit">
                 <p class="go" onclick="form1(2)">Already Have Account !</p>
@@ -431,7 +451,41 @@
        
        var fb = true;
        
+       function error(a,b,c,d){
+           var err = document.querySelectorAll(".error");
+           if (d == 0){
+               for(var i = 0;i<err.length;i++){
+                   err[i].style.display = "none";
+               }
+           }else if (d == 1){
+               
+           }
+       }
+       
+       function check1(a){
+    
+       }
+       
+       var forms = document.querySelectorAll("form");
+       forms[0].addEventListener('submit', (e) => {
+               e.preventDefault();
+               check1(0);
+        });
+       forms[1].addEventListener('submit', (e) => {
+               e.preventDefault();
+               check1(1);
+        });
+       forms[2].addEventListener('submit', (e) => {
+               e.preventDefault();
+               check1(2);
+        });
+       forms[3].addEventListener('submit', (e) => {
+               e.preventDefault();
+               check1(3);
+        });
+       
        function form1(a){
+           error(0,0,0,0);
            var bd = window.innerWidth;
            var bg = document.querySelector(".bg");
            var t = document.querySelectorAll(".text");
