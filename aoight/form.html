@@ -3,6 +3,7 @@
    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- google fonts -->
+    <link rel="shortcut icon" href="icon_dark.svg" type="image">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
@@ -190,15 +191,12 @@
         .error{
             width:300px;
             height:50px;
-            background-color:rgb(255,0,0,0.2);
+            background-color:rgb(255,0,0,0.1);
             font-size:14px;
             color:red;
-            text-shadow:0 0 1px rgb(255,0,0,0.4);
-            font-weight: bold;
-            letter-spacing:2px;
+            letter-spacing:1px;
             padding:0 10px;
             line-height:50px;
-            vertical-align: center;
             margin:10px 0;
             border-radius:5px;
             display:none;
@@ -455,7 +453,7 @@
            var err = document.querySelectorAll(".error");
            if (d == 0){
                for(var i = 0;i<err.length;i++){
-                   err[i].style.display = "none";
+               //    err[i].style.display = "none";
                }
            }else if (d == 1){
                
@@ -594,13 +592,3 @@
 </html>
 
 
-
-
-<!--
-
-<a href="https://www.hitwebcounter.com" target="_blank" class="c">
-<img src="https://hitwebcounter.com/counter/counter.php?page=7711238&style=0001&nbdigits=6&type=ip&initCount=0" title="Total Website Hits" Alt="Web Hits"   border="0" /></a>
-
-22,001
-
--->
