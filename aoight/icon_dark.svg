@@ -27,7 +27,7 @@
      inkscape:snap-grids="true"
      inkscape:snap-global="true"
      inkscape:zoom="0.71446409"
-     inkscape:cx="150.46243"
+     inkscape:cx="151.86208"
      inkscape:cy="228.84285"
      inkscape:window-width="1920"
      inkscape:window-height="991"
@@ -37,15 +37,29 @@
      inkscape:current-layer="layer2"
      width="720px" />
   <defs
-     id="defs2" />
+     id="defs2">
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter824"
+       x="-0.027592311"
+       y="-0.027665481"
+       width="1.0551846"
+       height="1.055331">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="377.44895"
+         id="feGaussianBlur826" />
+    </filter>
+  </defs>
   <g
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Layer 2"
-     style="display:inline">
+     style="display:inline;filter:url(#filter824)">
     <path
        id="rect1372"
-       style="opacity:0.638026;fill:#00ff00;stroke-width:0"
+       style="opacity:0.638026;fill:#52f265;stroke-width:0;fill-opacity:1"
        d="m 2791.4921,3104.795 c 1622.8074,-4122.0592 26253.7239,-1903.9638 28157.6879,0 1903.964,1903.9638 4774.629,23882.902 0,27907.769 -4774.629,4024.867 -25677.7959,2575.88 -28157.6879,0 -2479.89194,-2575.88 -3005.9243,-20272.483 0,-27907.769 z"
        sodipodi:nodetypes="szzzs" />
   </g>
