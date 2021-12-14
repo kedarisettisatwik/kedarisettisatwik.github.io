@@ -21,7 +21,7 @@
            }
            
            if (teams.length > 0){
-               shorts.innerHTML += "<h2>Chats</h2>";
+               shorts.innerHTML += "<h2>Teams</h2>";
                for (var i = 0;i<teams.length;i++){
                    shorts.innerHTML += "<div class='to'><div class='pic'></div><p>"+teams[i]+"</p></div>";
                }
