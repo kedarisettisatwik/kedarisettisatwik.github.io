@@ -1,6 +1,6 @@
  .main {
-     width: calc(100% - 250px);
-     left: 250px;
+     width: calc(100% - 270px);
+     left: 270px;
      background-color: white;
      overflow: hidden;
      transition: 0.4s;
