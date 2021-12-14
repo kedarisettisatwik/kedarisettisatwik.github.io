@@ -10,7 +10,7 @@
     <!-- google fonts -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
     
-    <title>Aoight | Posts</title>
+    <title>Aoight | Chats</title>
     
     <style>
         *{
@@ -329,8 +329,8 @@
        
        <div class="label">Menu</div>
         
-       <div class="page active" onclick="page_open('posts.html')"><i class="fas fa-play"></i> <span>Posts</span> <label>New</label></div>
-       <div class="page" onclick="page_open('chats.html')"><i class="far fa-comment-alt"></i><span>Chats</span> <label>5</label></div>
+       <div class="page" onclick="page_open('posts.html')"><i class="fas fa-play"></i> <span>Posts</span> <label>New</label></div>
+       <div class="page active" onclick="page_open('chats.html')"><i class="far fa-comment-alt"></i><span>Chats</span> <label>5</label></div>
        <div class="page" onclick="page_open('tasks.html')"><i class="far fa-calendar-alt"></i><span>Tasks</span> <label> - !</label> </div>
        <div class="page" onclick="page_open('blogs.html')"><i class="far fa-sticky-note"></i><span>Blogs</span> <label> - !</label> </div>
        <div class="page" onclick="page_open('search.html')"><i class="fas fa-search"></i><span>Search</span></div>
@@ -410,7 +410,7 @@
        }
        
        window.addEventListener('contextmenu', (e) => {
-     //      e.preventDefault();
+           e.preventDefault();
            var short = document.querySelector(".short");
            var xx = e.offsetX;
            var yy = e.offsetY;
@@ -439,7 +439,7 @@
            
        });
        
-       
+    
    </script>
    
     </body>

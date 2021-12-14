@@ -333,7 +333,7 @@
        <div class="page" onclick="page_open('chats.html')"><i class="far fa-comment-alt"></i><span>Chats</span> <label>5</label></div>
        <div class="page" onclick="page_open('tasks.html')"><i class="far fa-calendar-alt"></i><span>Tasks</span> <label> - !</label> </div>
        <div class="page" onclick="page_open('blogs.html')"><i class="far fa-sticky-note"></i><span>Blogs</span> <label> - !</label> </div>
-       <div class="page" onclick="page_open('search.html')"><i class="fas fa-search"></i><span>Search</span></div>
+       <div class="page" onclick="page_open('search')"><i class="fas fa-search"></i><span>Search</span></div>
        
        <div class="label bt active" onclick="open_sub('.grp_list','.bt')">Teams <i class="fas fa-chevron-down"></i></div>
        
@@ -410,7 +410,7 @@
        }
        
        window.addEventListener('contextmenu', (e) => {
-     //      e.preventDefault();
+           e.preventDefault();
            var short = document.querySelector(".short");
            var xx = e.offsetX;
            var yy = e.offsetY;
@@ -439,6 +439,11 @@
            
        });
        
+       
+       window.addEventListener('beforeunload',(e) => {
+           e.preventDefault();
+           e.returnValue = "";
+       })
        
    </script>
    
