@@ -55,6 +55,7 @@
             justify-content: flex-start;
             padding:25px 0px 25px 15px;
             background-color: #1B224A;
+            transition:0.4s;
         }
         .side::-webkit-scrollbar{
             -webkit-appearance:none;
@@ -244,10 +245,11 @@
 /*        main page */
         
         .main{
-            width:calc(100% - 250px - 70px);
+            width:calc(100% - 250px);
             left:250px;
             background-color:white;
             overflow: hidden;
+            transition:0.4s;
         }
         .main::-webkit-scrollbar{
             -webkit-appearance:none;
@@ -270,45 +272,42 @@
 /*        short page */
         
         .short{
-            width:70px;
+            width:300px;
+            height:400px;
             overflow-x: hidden;
             overflow-y: auto;
-            right:0px;
-            background-color: ghostwhite;
-            padding: 25px 0;
+            left:50px;
+            top:50px;
+            border-radius:5px;
+            background-color:white;
+            box-shadow:0 3px 20px rgb(0,0,0,0.05);
+            padding:10px 10px 20px 20px;
+            transition:0.1s;
+            z-index:-1;
+            opacity:0;
+        }
+        .short.active{
+            z-index:10;
+            opacity:1;
         }
         .short::-webkit-scrollbar{
             -webkit-appearance:none;
-            width:0px;
+            background-color:transparent;
+            width:5px;
         }
-        .short ul{
+        .short::-webkit-scrollbar-thumb{
+            background-color:rgb(0,0,0,0.3);
+            border-radius:5px;
+        }
+        .short .cre{
             width:100%;
-            min-height:500px;
-            padding-left:10px;
-        }
-        .short i{
-            width:40px;
-            height:40px;
-            border-radius:50%;
-            font-size:22px;
-            color:white;
-            line-height:40px;
-            text-align: center;
-            background-color: #1B224A;
+            font-size:14px;
+            font-weight:bold;
+            letter-spacing:2px;
+            color:green;
             cursor:pointer;
-            display: block;
-            margin-bottom:30px;
-            margin-left:5px;
-        }
-        .short .shortcut{
-            width:40px;
-            height:40px;
-            border-radius:50%;
-            background-color:antiquewhite;
-            margin:30px 0;
-            display:block;
-            margin-left:5px;
-            cursor:pointer;
+            height:50px;
+            line-height:50px;
         }
         
 /*        short page */
@@ -324,7 +323,7 @@
    <section class="side">
       
        <div class="title flex"> 
-       <img src="icon_red.svg" alt="" width="40px"> <span>Aoight</span></div>
+       <img src="icon_green.svg" alt="" width="40px"> <span>Aoight</span></div>
        
        <div class="me flex"><div class="pro_dp"></div><div class="name">Kedar Satwik</div></div>
        
@@ -367,17 +366,31 @@
    
    <section class="short">
        
-       <ul>
-        <i class="fas fa-plus"></i>
+       <div class="cre">Create ShortCut + </div>
        
-       <div class="shortcut"></div>
-       <div class="shortcut"></div>
-       <div class="shortcut"></div>
-       <div class="shortcut"></div>
-       <div class="shortcut"></div>
-       <div class="shortcut"></div>
-       <div class="shortcut"></div>
-       </ul>
+       <div class="shorts">
+          <h2>Chats</h2>
+           <div class="to">
+               <div class="pic"></div>
+               <p>Hani</p>
+           </div>
+           <div class="to">
+               <div class="pic"></div>
+               <p>Pranay</p>
+           </div>
+           <h2>Teams</h2>
+           <div class="to">
+               <div class="pic"></div>
+               <p>EE207</p>
+           </div>
+           <h2>Blogs</h2>
+           <div class="to">
+               <div class="tit"></div>
+               <p>project</p>
+           </div>
+           <h2>Links</h2>
+            <span>project</span>
+       </div>
        
    </section>
    
@@ -398,6 +411,42 @@
            var sub1 = document.querySelector(b);
            sub1.classList.toggle('active');
        }
+       
+       window.addEventListener('contextmenu', (e) => {
+           e.preventDefault();
+           var short = document.querySelector(".short");
+           var xx = e.offsetX;
+           var yy = e.offsetY;
+//           console.log(xx,yy);
+           var wh = window.innerHeight;
+           var ww = window.innerWidth;
+           if (yy > wh - 420){
+               yy = yy - 420;
+               if (yy < 10){
+                   yy = 10;
+               }
+           }
+           if (short.classList.contains("active")){
+               short.classList.remove("active");
+               setTimeout(function(){
+                  short.style.top = yy + "px";
+                  short.style.left = xx + "px";
+                },100);
+           }else{
+               short.style.top = yy + "px";
+               short.style.left = xx + "px";
+               setTimeout(function(){
+                  short.classList.add("active");   
+                },100);
+           }
+           
+       });
+       
+       
+       window.addEventListener('beforeunload',(e) => {
+           e.preventDefault();
+           e.returnValue = "";
+       })
        
    </script>
    
