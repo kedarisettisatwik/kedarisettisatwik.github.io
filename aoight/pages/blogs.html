@@ -9,6 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
     <!-- google fonts -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="side.css">
+    <link rel="stylesheet" href="short.css">
     
     <title>Aoight | Blogs</title>
     
@@ -35,285 +38,6 @@
             align-items: center;
             flex-direction: row;
         }
-        
-        .side,.main,.short{
-            display:flex;
-            height:100vh;
-            position:absolute;
-            overflow-x: hidden;
-            overflow-y: scroll;
-            top:0;
-            flex-direction: column;
-        }
-        
-        
-/*        side bar  */
-        
-        .side{
-            width:250px;
-            left:0; 
-            justify-content: flex-start;
-            padding:25px 0px 25px 15px;
-            background-color: #1B224A;
-            transition:0.4s;
-        }
-        .side::-webkit-scrollbar{
-            -webkit-appearance:none;
-            width:0px;
-        }
-        .side .title{
-            width:100%;
-            justify-content: flex-start;
-            align-items: flex-end;
-            margin-bottom:10px;
-        }
-        .side .title span{
-            margin-left:5px;
-            font-family: 'Caveat', cursive;
-            font-size:25px;
-            letter-spacing:2px;
-            font-weight:bold;
-            color:white;
-        }
-        .side .me{
-            width:100%;
-            height:50px;
-            margin:20px 0 10px 0;
-            justify-content: flex-start;
-        }
-        .side .me .pro_dp{
-            width:40px;
-            height:40px;
-            background-color: antiquewhite;
-            border-radius:5px;
-            margin-right:10px;
-        }
-        .side .me .name{
-            color:white;
-            font-weight:bold;
-            letter-spacing:2px;
-            font-size:14px;
-            width:calc(100% - 10px - 40px);
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;  
-            padding-right:10px;
-        }
-        .side .label{
-            width:100%;
-            font-size:14px;
-            letter-spacing:2px;
-            font-weight:bold;
-            margin:20px 0 10px 0;
-            cursor:pointer;
-            color:white;
-        }
-        .side .label i{
-            margin-left:10px;
-            font-size:13px;
-            opacity:0.6;
-            transition:0.4s;
-        }
-        .side .label.active i{
-            transform:rotateZ(180deg);
-        }
-        .side .page,.side .grp,.side .save{
-            width:100%;
-            height:40px;
-            line-height:40px;
-            margin:2px 0;
-            cursor:pointer;
-        }
-        .side .page i{
-            width:30px;
-            height:30px;
-            line-height:30px;
-            font-size:18px;
-            opacity:0.5;
-            transition:0.4s;
-            color:white;
-        }
-        .side .page span{
-            margin-left:10px;
-            font-size:15px;
-            letter-spacing:2px;
-            font-weight:bold;
-            opacity:0.5;
-            transition:0.4s;
-            color:white;
-        }
-        .side .page.active i,.side .page.active span{
-            color:#C7DFC1;
-            opacity:1;
-        }
-        .side .page label{
-            font-size:13px;
-            margin-left:10px;
-            color:#C7DFC1;
-            font-weight:bold;
-            letter-spacing:2px;
-        }
-        .save_list,.grp_list{
-            display:none;
-            position:relative;
-            width:100%;
-        }
-        .save_list.active,.grp_list.active{
-            display:block;
-        }
-        .side .grp,.side .save{
-            font-size:15px;
-            letter-spacing:1px;
-            position:relative;
-        }
-        .side .grp,.side .save{
-            width:calc(100% - 10px);
-            background-color: white;
-            margin:8px 0;
-            border-radius:5px;
-            justify-content: flex-start;
-            padding:5px;
-            height:50px;
-            position:relative;
-        }
-        .side .grp .dp_grp,.side .save .dp_save{
-            width:40px;
-            height:40px;
-            background-color:antiquewhite;
-            margin-right:8px;
-            border-radius:5px;
-        }
-        .side .grp span{
-            font-size:13px;
-            letter-spacing:1px;
-            width:calc(100% - 40px - 30px);
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
-        .side .grp label{
-            font-size:13px;
-            font-weight: bold;
-            color:#c4252c;
-            width:22px;
-            text-align: center;
-        }
-        .side button{
-            width:100%;
-            text-align: left;
-            font-size:14px;
-            font-weight:bold;
-            letter-spacing:2px;
-            color:#C7DFC1;
-            outline:none;
-            background:none;
-            border:none;
-            cursor:pointer;
-            margin:10px 0;
-        }
-        .side .save p{
-            width:calc(100% - 50px);
-            position:relative;
-            flex-direction: column;
-            align-items: center;
-        }
-        .side .save span{
-            font-size:14px;
-            width:calc(100%);
-            line-height:normal;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
-        .side .save label{
-            font-size:10px;
-            opacity:0.6;
-            line-height:normal;
-            width:100%;
-        }
-        
-        @media (max-width:780px){
-            .side{
-                left:0px;
-                transform:translateX(-100%);
-            }
-        }
-        
-        
-/*        side bar  */
-        
-/*        main page */
-        
-        .main{
-            width:calc(100% - 250px);
-            left:250px;
-            background-color:white;
-            overflow: hidden;
-            transition:0.4s;
-        }
-        .main::-webkit-scrollbar{
-            -webkit-appearance:none;
-            background-color:transparent;
-            width:7px;
-        }
-        .main::-webkit-scrollbar-thumb{
-            background-color:rgb(0,0,0,0.5);
-            border-radius:5px;
-        }
-        @media (max-width:780px){
-            .main{
-                left:0px;
-                width:calc(100% - 70px);
-            }
-        }
-        
-/*        main page */
-        
-/*        short page */
-        
-        .short{
-            width:300px;
-            height:400px;
-            overflow-x: hidden;
-            overflow-y: auto;
-            left:50px;
-            top:50px;
-            border-radius:5px;
-            background-color:white;
-            box-shadow:0 3px 20px rgb(0,0,0,0.05);
-            padding:10px 10px 20px 20px;
-            transition:0.1s;
-            z-index:-1;
-            opacity:0;
-        }
-        .short.active{
-            z-index:10;
-            opacity:1;
-        }
-        .short::-webkit-scrollbar{
-            -webkit-appearance:none;
-            background-color:transparent;
-            width:5px;
-        }
-        .short::-webkit-scrollbar-thumb{
-            background-color:rgb(0,0,0,0.3);
-            border-radius:5px;
-        }
-        .short .cre{
-            width:100%;
-            font-size:14px;
-            font-weight:bold;
-            letter-spacing:2px;
-            color:green;
-            cursor:pointer;
-            height:50px;
-            line-height:50px;
-        }
-        
-/*        short page */
-        
-        
-        
         
     </style>
     
@@ -381,66 +105,22 @@
            <h2>Teams</h2>
            <div class="to">
                <div class="pic"></div>
-               <p>EE207</p>
+               <p>EE207 Applications of EMI</p>
            </div>
            <h2>Blogs</h2>
            <div class="to">
-               <div class="tit"></div>
-               <p>project</p>
+               <div class="pic"></div>
+               <p>Html Css</p>
            </div>
-           <h2>Links</h2>
-            <span>project</span>
+           <div class="to">
+               <div class="pic"></div>
+               <p>JS</p>
+           </div>
        </div>
        
    </section>
    
-   <script>
-       
-       var active_page = 0;
-       
-       function page_open(a){
-           location.replace(a);
-       }
-       
-       function open_sub(a,b){
-           var sub = document.querySelector(a);
-           sub.classList.toggle('active');
-           var sub1 = document.querySelector(b);
-           sub1.classList.toggle('active');
-       }
-       
-       window.addEventListener('contextmenu', (e) => {
-           e.preventDefault();
-           var short = document.querySelector(".short");
-           var xx = e.offsetX;
-           var yy = e.offsetY;
-//           console.log(xx,yy);
-           var wh = window.innerHeight;
-           var ww = window.innerWidth;
-           if (yy > wh - 420){
-               yy = yy - 420;
-               if (yy < 10){
-                   yy = 10;
-               }
-           }
-           if (short.classList.contains("active")){
-               short.classList.remove("active");
-               setTimeout(function(){
-                  short.style.top = yy + "px";
-                  short.style.left = xx + "px";
-                },100);
-           }else{
-               short.style.top = yy + "px";
-               short.style.left = xx + "px";
-               setTimeout(function(){
-                  short.classList.add("active");   
-                },100);
-           }
-           
-       });
-       
-       
-   </script>
+   <script src="short.js"></script>
    
     </body>
     

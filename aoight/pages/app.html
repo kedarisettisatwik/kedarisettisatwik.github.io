@@ -1,0 +1,73 @@
+<html>
+<head>
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="shortcut icon" href="icon_dark.svg" type="image">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    
+    <title>Aoight | App</title>
+    
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: 'Poppins', sans-serif;
+/*          font-family: 'Caveat', cursive; */
+        }
+        html{
+            scroll-behavior: smooth;
+        }
+        body{
+            width:100vw;
+            height:100vh;
+            overflow: hidden;
+            position:relative;
+        }
+        .flex{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+        iframe{
+            width:100%;
+            height:100%;
+            border:none;
+            outline:none;
+            background:none;
+        }
+        
+    </style>
+    
+    </head>
+<body>
+   
+   <iframe src="posts.html" frameborder="0" id="window1"></iframe>
+   
+   <script>
+       
+       window.addEventListener("beforeunload",(e) => {
+           e.preventDefault();
+           e.returnValue = "";
+       });
+       
+       var window1 = document.getElementById("window1");
+       
+       const myurl = new URL(window.location.href);
+       let type = parseInt(myurl.searchParams.get("page"));
+       var ur = ["posts.html","chats.html","tasks.html","blogs.html","search.html"];
+       window1.setAttribute("src",ur[type]);
+    
+   </script>
+   
+    </body>
+    
+</html>
+
+

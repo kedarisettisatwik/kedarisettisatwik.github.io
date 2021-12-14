@@ -1,0 +1,102 @@
+.short {
+    width: 300px;
+    height: 340px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    left: 50px;
+    top: 50px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 3px 20px rgb(0, 0, 0, 0.05);
+    padding: 10px 10px 20px 20px;
+    display: none;
+    position: absolute;
+    top: 0;
+    flex-direction: column;
+}
+
+.short.active {
+    display: block;
+}
+
+.short::-webkit-scrollbar {
+    -webkit-appearance: none;
+    background-color: transparent;
+    width: 5px;
+}
+
+.short::-webkit-scrollbar-thumb {
+    background-color: rgb(0, 0, 0, 0.3);
+    border-radius: 5px;
+}
+
+.short .cre {
+    width: 100%;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: green;
+    cursor: pointer;
+    height: 50px;
+    line-height: 50px;
+}
+
+.short .shorts{
+    width:100%;
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position:relative;
+}
+
+.shorts h2{
+    width:100%;
+    margin:8px 0;
+    font-size:14px;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+.shorts .to{
+    margin:5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor:pointer;
+}
+
+.shorts .to .pic{
+    width:40px;
+    height:40px;
+    margin-bottom:5px;
+    background-color: antiquewhite;
+    border-radius:5px;
+}
+
+.shorts .to p{
+    font-size:12px;
+    max-width:70px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,32 @@
+ .main {
+     width: calc(100% - 250px);
+     left: 250px;
+     background-color: white;
+     overflow: hidden;
+     transition: 0.4s;
+     display: flex;
+     height: 100vh;
+     position: absolute;
+     overflow-x: hidden;
+     overflow-y: scroll;
+     top: 0;
+     flex-direction: column;
+ }
+
+ .main::-webkit-scrollbar {
+     -webkit-appearance: none;
+     background-color: transparent;
+     width: 7px;
+ }
+
+ .main::-webkit-scrollbar-thumb {
+     background-color: rgb(0, 0, 0, 0.5);
+     border-radius: 5px;
+ }
+
+ @media (max-width:780px) {
+     .main {
+         left: 0px;
+         width: calc(100% - 70px);
+     }
+ }
