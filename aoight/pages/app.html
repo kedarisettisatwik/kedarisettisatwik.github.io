@@ -52,16 +52,16 @@
    
    <script>
        
-       window.addEventListener("beforeunload",(e) => {
-           e.preventDefault();
-           e.returnValue = "";
-       });
+//       window.addEventListener("beforeunload",(e) => {
+//           e.preventDefault();
+//           e.returnValue = "";
+//       });
        
        var window1 = document.getElementById("window1");
        
        const myurl = new URL(window.location.href);
        let type = parseInt(myurl.searchParams.get("page"));
-       var ur = ["posts.html","chats.html","tasks.html","blogs.html","search.html"];
+       var ur = ["dashboard.html","posts.html","chats.html","search.html"];
        window1.setAttribute("src",ur[type]);
     
    </script>

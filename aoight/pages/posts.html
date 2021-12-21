@@ -9,11 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
     <!-- google fonts -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
-    <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="side.css">
-    <link rel="stylesheet" href="short.css">
     
-    <title>Aoight | Posts</title>
+    <title>Aoight | Dashboard</title>
     
     <style>
         *{
@@ -45,42 +43,16 @@
 <body>
    
    <section class="side">
-      
-       <div class="title flex"> 
-       <img src="icon_green.svg" alt="" width="40px"> <span>Aoight</span></div>
        
-       <div class="me flex" onclick="page_open('profile.html')"><div class="pro_dp"></div><div class="name">Kedar Satwik</div></div>
+       <div class="me flex" onclick="page_open('profile.html')"><div class="pro_dp" id="pro_dp"></div><div class="name">Kedar Satwik</div></div>
        
        <div class="label">Menu</div>
-        
+       
+       <div class="page" onclick="page_open('dashboard.html')"><i class="fas fa-th-large"></i> <span>Dashboard</span> </div>
        <div class="page active" onclick="page_open('posts.html')"><i class="fas fa-play"></i> <span>Posts</span> <label>New</label></div>
        <div class="page" onclick="page_open('chats.html')"><i class="far fa-comment-alt"></i><span>Chats</span> <label>5</label></div>
-       <div class="page" onclick="page_open('tasks.html')"><i class="far fa-calendar-alt"></i><span>Tasks</span> <label> - !</label> </div>
-       <div class="page" onclick="page_open('blogs.html')"><i class="far fa-sticky-note"></i><span>Blogs</span> <label> - !</label> </div>
        <div class="page" onclick="page_open('search.html')"><i class="fas fa-search"></i><span>Search</span></div>
-       
-       <div class="label bt active" onclick="open_sub('.grp_list','.bt')">Teams <i class="fas fa-chevron-down"></i></div>
-       
-       
-       <ul class="grp_list active">
-       
-       <button> + Create New Team </button>
-       <div class="grp flex"><div class="dp_grp"></div><span>Friends</span><label>2</label></div>
-       <div class="grp flex"><div class="dp_grp"></div><span>Ee207 project Applications of EMI</span></div>
-       <div class="grp flex"><div class="dp_grp"></div><span>NITK campus</span><label>10</label></div>
-       
-       </ul>
-       
-       <div class="label bs" onclick="open_sub('.save_list','.bs')">Saved <i class="fas fa-chevron-down"></i></div>
-       
-       <ul class="save_list">
-           
-       <div class="save flex"><div class="dp_save"></div><p class="flex"><span>Js</span><label>18 posts</label></p></div>
-       <div class="save flex"><div class="dp_save"></div><p class="flex"><span>Firebase</span><label> 05 posts</label></p></div>
-       
-       </ul>
-       
-        <div class="page"><i class="fas fa-sign-out-alt"></i><span>Log out</span></div>
+       <div class="page"><i class="fas fa-sign-out-alt"></i><span>Log out</span></div>
   
    </section>
    
@@ -88,9 +60,15 @@
        
    </section>
    
-   <section class="short" id="short"></section>
-   
-   <script src="short.js"></script>
+   <script>
+    
+    function page_open(a){
+        location.replace(a);
+    }
+       
+    </script>
+    
+    <script src="side.js"></script>
    
     </body>
     
