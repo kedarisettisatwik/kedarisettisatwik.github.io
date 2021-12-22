@@ -3,7 +3,7 @@
    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- google fonts -->
-    <link rel="shortcut icon" href="icon_dark.svg" type="image">
+    <link rel="shortcut icon" href="logos/icon_dark.svg" type="image">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
@@ -17,6 +17,7 @@
             margin:0;
             padding:0;
             box-sizing:border-box;
+            cursor:pointer;
             font-family: 'Poppins', sans-serif;
 /*          font-family: 'Caveat', cursive; */
         }
@@ -51,6 +52,35 @@
    
    
 <!--   <iframe src="posts.html" frameborder="0" id="window1"></iframe> -->
+   
+   
+   
+   <script src="https://cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
+   
+    <script>
+
+        const burst = new mojs.Burst({
+            count:10,
+            left:0,
+            top:0,
+            children:{
+                shape:['circle', 'rect', 'curve', 'polygon'],
+                fill:['yellow', 'red', 'green', 'blue'],
+                delay: 'stagger(0,15)',
+            },
+            duration:200
+        });
+
+        document.onclick = (e) => {
+            const position = {
+                x: e.pageX,
+                y: e.pageY
+            }
+            burst.tune(position);
+            burst.replay();
+        }
+    </script>
+    
    
    <script>
        
