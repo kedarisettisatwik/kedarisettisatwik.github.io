@@ -9,9 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
     <!-- google fonts -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
-    <link rel="stylesheet" href="side.css">
     
-    <title>Aoight | Dashboard</title>
+    <title>Aoight | App</title>
     
     <style>
         *{
@@ -36,39 +35,38 @@
             align-items: center;
             flex-direction: row;
         }
+        iframe{
+            width:100%;
+            height:100%;
+            border:none;
+            outline:none;
+            background:none;
+        }
         
     </style>
     
     </head>
 <body>
    
-   <section class="side">
-       
-       <div class="me flex" onclick="page_open('profile.html')"><div class="pro_dp" id="pro_dp"></div><div class="name">Kedar Satwik</div></div>
-       
-       <div class="label">Menu</div>
-       
-       <div class="page" onclick="page_open('dashboard.html')"><i class="fas fa-th-large"></i> <span>Dashboard</span> </div>
-       <div class="page" onclick="page_open('posts.html')"><i class="fas fa-play"></i> <span>Posts</span> <label>New</label></div>
-       <div class="page" onclick="page_open('chats.html')"><i class="far fa-comment-alt"></i><span>Chats</span> <label>5</label></div>
-       <div class="page active" onclick="page_open('search.html')"><i class="fas fa-search"></i><span>Search</span></div>
-       <div class="page"><i class="fas fa-sign-out-alt"></i><span>Log out</span></div>
-  
-   </section>
    
-   <section class="main">
-       
-   </section>
+   
+<!--   <iframe src="posts.html" frameborder="0" id="window1"></iframe> -->
    
    <script>
-    
-    function page_open(a){
-        location.replace(a);
-    }
        
-    </script>
+//       window.addEventListener("beforeunload",(e) => {
+//           e.preventDefault();
+//           e.returnValue = "";
+//       });
+       
+       var window1 = document.getElementById("window1");
+       
+       const myurl = new URL(window.location.href);
+       let type = parseInt(myurl.searchParams.get("page"));
+       var ur = ["dashboard.html","posts.html","chats.html","search.html"];
+//       window1.setAttribute("src",ur[type]);
     
-    <script src="side.js"></script>
+   </script>
    
     </body>
     
