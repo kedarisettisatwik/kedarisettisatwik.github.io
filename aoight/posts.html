@@ -54,6 +54,29 @@
             background-color:white;
             position: absolute;
             left:270px;
+            transition:0.4s;
+            z-index: 1;
+        }
+        .screen .main.active{
+            left:70px;
+        }
+        @media (max-width:470px) and (min-width:450px){
+            .screen  .main.active,.screen  .main{
+                width:calc(100% - 70px);
+            }
+        }
+        @media (max-width:450px){
+            .screen .main.active,.screen .main{
+                width:100%;
+                z-index:2;
+                left:0px;
+            }
+            .screen .main.active.open,.screen .main.open{
+                left: calc(100% - 150px);
+                transform: scale(0.95) rotateZ(-1deg);
+                box-shadow: 0 0 15px rgb(0 0 0 / 50%);
+                border-radius: 5px;
+            }
         }
         
 /*        main      */
@@ -68,39 +91,25 @@
             backdrop-filter:sepia(1);
             -webkit-backdrop-filter:sepia(1);
             background-image:linear-gradient(to right,rgb(0, 102, 255,0.8),rgb(0, 102, 255,0.5));
-            box-shadow:1px 0 1px rgb(0, 102, 255,0.5);
-            padding:20px 0 10px 20px;
+            box-shadow:2px 0 3px rgb(0, 102, 255,0.5);
+            padding:20px 0 10px 10px;
             position: absolute;
             left:0;
+            transition:0.4s;
+            z-index: 2;
         }
-        .side .new{
-            font-size:25px;
-            cursor:pointer;
-            color:white;
-        }
-        .side .new span{
-            letter-spacing:2px;
-            font-weight:bold;
-            font-size:30px;
-            font-family: 'Caveat', cursive;
-        }
-        .side .new i{
-            margin-right:10px;
-        }
-        .side h2{
-            margin:20px 0;
-            font-size:16px;
-            letter-spacing:2px;
-            color:white;
+        .screen .side.active{
+            width:70px;
+            background-image:linear-gradient(to right,rgb(0, 102, 255,0.8),rgb(0, 102, 255,0.8));
         }
         .side .page{
-            width:100%;
+            width:250px;
             margin:5px 0;
             cursor:pointer;
             justify-content: flex-start;
             height:50px;
             color:black;
-            font-weight:500;
+            font-weight:700;
             transition:0.4s;
             letter-spacing:0px;
         }
@@ -108,9 +117,17 @@
             color:white;
             font-weight:700;
         }
+        .side .page .one,.side.active .page .two{
+            display:block;
+        }
+        .side .page .two,.side.active .page .one{
+            display:none;
+        }
         .side .page i{
             font-size:20px;
             margin-right:15px;
+            width:50px;
+            text-align: center;
         }
         .side span{
             font-size:17px;
@@ -126,7 +143,13 @@
             letter-spacing:2px;
             color:white;
         }
-        
+        @media (max-width:450px){
+            .screen .side.active,.screen .side{
+                width:100%;
+                z-index:1;
+            }
+            
+        }
         
 /*        side     */
         
@@ -140,6 +163,7 @@
             left:0;
             background-color: white;
             overflow: hidden;
+            z-index:4;
         }
         .logo h1{
             font-size:350px;
@@ -167,6 +191,43 @@
         
 /*        logo     */
         
+/*        space   */
+        
+        .space{
+            position: absolute;
+            right:0;
+            top: 0;
+            width:calc(100% - 400px - 270px);
+            height:100%;
+            transition:0.4s;
+            background-color: white;
+            display: none;
+            z-index:3;
+        }
+        .space.active{
+            width:calc(100% - 400px - 70px);
+        }
+        @media (max-width:1085px){
+            .space{
+                width:calc(100% - 400px - 70px);
+                right:-200px;
+            }
+            .space.active{
+                width:calc(100% - 400px - 70px);
+                right:0px;
+            }
+        }
+        
+        @media (max-width:850px){
+            .space,.space.active{
+               position: absolute;
+               right:0;
+               width:100%;
+            }
+        }
+        
+/*        space   */
+        
     </style>
     
     </head>
@@ -179,44 +240,42 @@
         </div>
         
        <div class="side">
-          
-          <div class="new">
-                <i class="fas fa-plus"></i>
-                <span>New</span>
+     
+          <div class="page flex active" title="menu" onclick="open_menu()">
+               <i class="fas fa-times one"></i>
+               <i class="fas fa-stream two"></i>
            </div>
-          
-          <h2>Menu</h2>
-          
+           
            <div class="page flex">
-                <i class="fas fa-calendar-check"></i>
+                <i class="fas fa-calendar-check" title="calender"></i>
                 <span>Calender</span>
                 <label>2</label>
            </div>
            
-           <div class="page active flex">
+           <div class="page active flex" title="posts">
                <i class="fas fa-image"></i>
                <span>Posts</span>
                <label>New</label>
            </div>
            
-           <div class="page flex">
+           <div class="page flex" title="chats">
                <i class="fas fa-comment-alt"></i>
                <span>Chats</span>
                <label>12</label>
            </div>
            
-           <div class="page flex">
+           <div class="page flex" title="blogs">
                <i class="fas fa-sticky-note"></i>
                <span>Blogs</span>
                <label>!</label>
            </div>
            
-           <div class="page flex">
+           <div class="page flex" title="activity">
                <i class="fas fa-history"></i>
                <span>Activity</span>
            </div>
            
-           <div class="page flex">
+           <div class="page flex" title="settings">
                <i class="fas fa-cog"></i>
                <span>Settings</span>
            </div>
@@ -224,6 +283,9 @@
            
        </div>
        
+       <div class="space">
+           
+       </div>
        
        
    </div>
@@ -252,7 +314,21 @@
           setTimeout(function(){
               document.querySelector(".logo").style.display = "none";
           },3300);
-       })
+       });
+       
+       var side = document.querySelector(".side");
+       var main= document.querySelector(".main");
+       var space= document.querySelector(".space");
+       
+       if (bw + 60 < 1086 && bw + 60 > 850){
+           open_menu();
+       }
+       
+       function open_menu(){
+           side.classList.toggle('active');
+           main.classList.toggle('active');
+           space.classList.toggle('active');
+       }
     
    </script>
    
