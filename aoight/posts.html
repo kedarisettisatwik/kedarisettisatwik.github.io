@@ -41,7 +41,6 @@
             background-image: url(bg.jpg);
             background-repeat: no-repeat;
             background-size: cover;
-            justify-content: flex-start;
         }
         
 /*        main      */
@@ -52,6 +51,8 @@
             overflow-x: hidden;
             overflow-y: auto;
             background-color:white;
+            position: absolute;
+            left:270px;
         }
         
 /*        main      */
@@ -68,6 +69,8 @@
             background-image:linear-gradient(to right,rgb(0, 102, 255,0.8),rgb(0, 102, 255,0.5));
             box-shadow:1px 0 1px rgb(0, 102, 255,0.5);
             padding:20px 0 10px 20px;
+            position: absolute;
+            left:0;
         }
         .side .new{
             font-size:25px;
@@ -170,6 +173,10 @@
    
    <div class="screen flex">
        
+       <div class="main">
+       
+        </div>
+        
        <div class="side">
           
           <div class="new">
@@ -216,9 +223,7 @@
            
        </div>
        
-       <div class="main">
        
-        </div>
        
    </div>
    
