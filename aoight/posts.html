@@ -1,0 +1,287 @@
+<html>
+<head>
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="shortcut icon" href="logos/icon_dark.svg" type="image">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    
+    <title>Aoight | Posts</title>
+    
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: 'Poppins', sans-serif;
+/*          font-family: 'Caveat', cursive; */
+        }
+        html{
+            scroll-behavior: smooth;
+        }
+        body{
+            position:relative;
+        }
+        .flex{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+        
+        .screen{
+            width:100vw;
+            height:100vh;
+            position:relative;
+            overflow: hidden;
+            background-image: url(bg.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            justify-content: flex-start;
+        }
+        
+/*        main      */
+        
+        .screen .main{
+            width:400px;
+            height:100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+            background-color:white;
+        }
+        
+/*        main      */
+        
+/*        side     */
+        
+        .screen .side{
+            width:270px;
+            height:100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+            backdrop-filter:sepia(1);
+            -webkit-backdrop-filter:sepia(1);
+            background-image:linear-gradient(to right,rgb(0, 102, 255,0.8),rgb(0, 102, 255,0.5));
+            box-shadow:1px 0 1px rgb(0, 102, 255,0.5);
+            padding:20px 0 10px 20px;
+        }
+        .side .new{
+            font-size:25px;
+            cursor:pointer;
+            color:white;
+        }
+        .side .new span{
+            letter-spacing:2px;
+            font-weight:bold;
+            font-size:30px;
+            font-family: 'Caveat', cursive;
+        }
+        .side .new i{
+            margin-right:10px;
+        }
+        .side h2{
+            margin:20px 0;
+            font-size:16px;
+            letter-spacing:2px;
+            color:white;
+        }
+        .side .page{
+            width:100%;
+            margin:5px 0;
+            cursor:pointer;
+            justify-content: flex-start;
+            height:50px;
+            color:black;
+            font-weight:500;
+            transition:0.4s;
+            letter-spacing:0px;
+        }
+        .side .page.active{
+            color:white;
+            font-weight:700;
+        }
+        .side .page i{
+            font-size:20px;
+            margin-right:15px;
+        }
+        .side span{
+            font-size:17px;
+            letter-spacing:1px;
+        }
+        .side .page.active span{
+            letter-spacing:2px;
+        }
+        .side label{
+            margin:0 10px;
+            font-weight:bold;
+            font-size:16px;
+            letter-spacing:2px;
+            color:white;
+        }
+        
+        
+/*        side     */
+        
+/*        logo     */
+        
+        .logo{
+            width:100vw;
+            height:100vh;
+            position: absolute;
+            top:0;
+            left:0;
+            background-color: white;
+            overflow: hidden;
+        }
+        .logo h1{
+            font-size:350px;
+            background-image: url(bg.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            justify-content: flex-start;
+            background-clip:text;
+            -webkit-background-clip:text;
+            text-fill-color:transparent;
+            -webkit-text-fill-color:transparent;
+        }
+        .logo.active{
+            -webkit-animation:opa1 1.5s forwards;
+            -webkit-animation-delay:1.5s;
+        }
+        @keyframes opa1{
+            0%{
+                opacity:1;
+            }
+            100%{
+                opacity:0;
+            }
+        }
+        
+/*        logo     */
+        
+    </style>
+    
+    </head>
+<body>
+   
+   <div class="screen flex">
+       
+       <div class="side">
+          
+          <div class="new">
+                <i class="fas fa-plus"></i>
+                <span>New</span>
+           </div>
+          
+          <h2>Menu</h2>
+          
+           <div class="page flex">
+                <i class="fas fa-calendar-check"></i>
+                <span>Calender</span>
+                <label>2</label>
+           </div>
+           
+           <div class="page active flex">
+               <i class="fas fa-image"></i>
+               <span>Posts</span>
+               <label>New</label>
+           </div>
+           
+           <div class="page flex">
+               <i class="fas fa-comment-alt"></i>
+               <span>Chats</span>
+               <label>12</label>
+           </div>
+           
+           <div class="page flex">
+               <i class="fas fa-sticky-note"></i>
+               <span>Blogs</span>
+               <label>!</label>
+           </div>
+           
+           <div class="page flex">
+               <i class="fas fa-history"></i>
+               <span>Activity</span>
+           </div>
+           
+           <div class="page flex">
+               <i class="fas fa-cog"></i>
+               <span>Settings</span>
+           </div>
+           
+           
+       </div>
+       
+       <div class="main">
+       
+        </div>
+       
+   </div>
+   
+   <div class="logo flex">
+       <h1 class="bg_text">AOIGHT</h1>
+   </div>
+   
+   
+    
+   
+   <script>
+       
+//       window.addEventListener("beforeunload",(e) => {
+//           e.preventDefault();
+//           e.returnValue = "";
+//       });
+       
+       var bt = document.querySelector(".bg_text");
+       var tw = bt.getBoundingClientRect().width;
+       var bw = window.innerWidth + 20;
+       bt.style.transform = "scale("+ bw / tw +")";
+       
+       window.addEventListener('load',(e) => {
+          document.querySelector(".logo").classList.add("active");
+          setTimeout(function(){
+              document.querySelector(".logo").style.display = "none";
+          },3300);
+       })
+    
+   </script>
+   
+    </body>
+    
+</html>
+
+<!-- 
+
+<script src="https://cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
+   
+    <script>
+
+        const burst = new mojs.Burst({
+            count:10,
+            left:0,
+            top:0,
+            children:{
+                shape:['circle', 'rect', 'curve', 'polygon'],
+                fill:['yellow', 'red', 'green', 'blue'],
+                delay: 'stagger(0,15)',
+            },
+            duration:200
+        });
+
+        document.onclick = (e) => {
+            const position = {
+                x: e.pageX,
+                y: e.pageY
+            }
+            burst.tune(position);
+            burst.replay();
+        }
+        
+    </script>
+
+
+-->

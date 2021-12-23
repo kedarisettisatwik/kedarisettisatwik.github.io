@@ -64,10 +64,7 @@
 /*        main      */
         
         .screen .main{
-            position: absolute;
-            top:0;
-            left:270px;
-            width:420px;
+            width:400px;
             height:100%;
             overflow-x: hidden;
             overflow-y: auto;
@@ -79,16 +76,13 @@
 /*        side     */
         
         .screen .side{
-            position: absolute;
-            top:0;
-            left:0;
             width:270px;
             height:100%;
             overflow-x: hidden;
             overflow-y: auto;
             backdrop-filter:sepia(1);
             -webkit-backdrop-filter:sepia(1);
-            background-color:rgb(0, 102, 255,0.5);
+            background-image:linear-gradient(to right,rgb(0, 102, 255,0.7),rgb(0, 102, 255,0.4));
             box-shadow:1px 0 1px rgb(0, 102, 255,0.5);
         }
         
@@ -101,9 +95,9 @@
    
    <div class="screen flex">
        
-       <div class="main flex"> </div>
-       
        <div class="side"></div>
+       
+       <div class="main flex"> </div>
        
    </div>
    
