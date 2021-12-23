@@ -329,6 +329,9 @@
        if (bw + 60 < 1086 && bw + 60 > 850){
            open_menu();
        }
+       if (bw + 60 < 450){
+           main.classList.add("open");
+       }
        
        function open_menu(){
            side.classList.toggle('active');
