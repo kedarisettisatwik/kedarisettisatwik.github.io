@@ -244,7 +244,7 @@
        
        var bt = document.querySelector(".bg_text");
        var tw = bt.getBoundingClientRect().width;
-       var bw = window.innerWidth + 20;
+       var bw = window.innerWidth - 60;
        bt.style.transform = "scale("+ bw / tw +")";
        
        window.addEventListener('load',(e) => {
