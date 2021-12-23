@@ -29,6 +29,22 @@
             height:100vh;
             overflow: hidden;
             position:relative;
+            opacity:0;
+            filter:grayscale(1);
+        }
+        body.active{
+            -webkit-animation:opa 1s forwards;
+            -webkit-animation-delay:0.5s;
+        }
+        @keyframes opa{
+            0%{
+                opacity:0;
+                filter:grayscale(1);
+            }
+            100%{
+                opacity:1;
+                filter:grayscale(0);
+            }
         }
         .flex{
             display: flex;
@@ -36,23 +52,61 @@
             align-items: center;
             flex-direction: row;
         }
-        iframe{
-            width:100%;
-            height:100%;
-            border:none;
-            outline:none;
-            background:none;
+        .screen{
+            width:100vw;
+            height:100vh;
+            overflow: hidden;
+            background-image: url(bg.jpg);
+            background-position: bottom;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
+        
+/*        main      */
+        
+        .screen .main{
+            position: absolute;
+            top:0;
+            left:270px;
+            width:420px;
+            height:100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+            background-color:white;
+        }
+        
+/*        main      */
+        
+/*        side     */
+        
+        .screen .side{
+            position: absolute;
+            top:0;
+            left:0;
+            width:270px;
+            height:100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+            backdrop-filter:sepia(1);
+            -webkit-backdrop-filter:sepia(1);
+            background-color:rgb(0, 102, 255,0.5);
+            box-shadow:1px 0 1px rgb(0, 102, 255,0.5);
+        }
+        
+/*        side     */
         
     </style>
     
     </head>
 <body>
    
-   
-   
-<!--   <iframe src="posts.html" frameborder="0" id="window1"></iframe> -->
-   
+   <div class="screen">
+       
+       <div class="main flex"> </div>
+       
+       <div class="side"></div>
+       
+   </div>
    
    
    <script src="https://cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
@@ -79,6 +133,7 @@
             burst.tune(position);
             burst.replay();
         }
+        
     </script>
     
    
@@ -89,12 +144,9 @@
 //           e.returnValue = "";
 //       });
        
-       var window1 = document.getElementById("window1");
-       
-       const myurl = new URL(window.location.href);
-       let type = parseInt(myurl.searchParams.get("page"));
-       var ur = ["dashboard.html","posts.html","chats.html","search.html"];
-//       window1.setAttribute("src",ur[type]);
+       window.addEventListener('load',(e) => {
+          document.body.classList.add("active");
+       })
     
    </script>
    
@@ -102,4 +154,8 @@
     
 </html>
 
+<!-- 
 
+dark : rgb(27, 34, 74); 
+
+-->
