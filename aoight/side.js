@@ -1,4 +1,3 @@
-side_bar();
 
 function side_bar() {
     var pages = ["task_page", "chat_page", "posts_page", "blogs_page", "history_page"];
@@ -20,3 +19,9 @@ function side_bar() {
         }
     }
 }
+
+function navigate_to(a){
+    location.replace(a);
+}
+
+side_bar();

@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="side.css">
     <link rel="stylesheet" href="main.css">
     
-    <title>Aoight | Posts</title>
+    <title>Aoight | Calender</title>
     
     <style>
         *{
@@ -187,7 +187,7 @@
                <div class="top flex">
                   <div class="de flex">
                      <i class="fas fa-stream open_menu" onclick="open_menu()"></i>
-                     <h3>Posts</h3>
+                     <h3>Calender</h3>
                      <div class="pro"></div>
                    </div>
                    <p class="name"><span style="font-family: 'Caveat', cursive;font-size:18px">Hello ,</span> Andrew</p>
@@ -205,7 +205,7 @@
                <i class="fas fa-stream two"></i>
            </div>
            
-           <div class="page flex" id="task_page" title="calender" onclick="navigate_to('calender.html')">
+           <div class="page active flex" id="task_page" title="calender" onclick="navigate_to('calender.html')">
                 <i class="fas fa-calendar-check"></i>
                 <span>Calender</span>
                 <label></label>
@@ -217,7 +217,7 @@
                <label></label>
            </div>
            
-           <div class="page active flex" id="posts_page" title="posts" onclick="navigate_to('posts.html')">
+           <div class="page flex" id="posts_page" title="posts" onclick="navigate_to('posts.html')">
                <i class="fas fa-image"></i>
                <span>Posts</span>
                <label></label>
@@ -256,7 +256,7 @@
    </div>
 
    <script>
-    
+       
        var bt = document.querySelector(".bg_text");
        var tw = bt.getBoundingClientRect().width;
        var bw = window.innerWidth - 50;
