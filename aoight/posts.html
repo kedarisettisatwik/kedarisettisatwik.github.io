@@ -55,8 +55,7 @@
         .screen .main{
             width:400px;
             height:100%;
-            overflow-x: hidden;
-            overflow-y: auto;
+            overflow: hidden;
             background-color:white;
             position: absolute;
             left:270px;
@@ -73,7 +72,7 @@
         .main .top{
             position: relative;
             width:100%;
-            min-height:130px;
+            min-height:120px;
             background:none;
             border-bottom-left-radius:50%;
             border-bottom-right-radius:50%;
@@ -104,13 +103,59 @@
             height:40px;
             border-radius:5px;
             cursor:pointer;
-            background-image: url(https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60);
+            background-image: url(https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHBvcnRyYWl0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60);
             background-position: top;
             background-repeat: no-repeat;
             background-size: cover;
             box-shadow:0 0 4px rgb(0,0,0,0.2);
         }
+        .main .top .name{
+            width:100%;
+            position:relative;
+            padding-left:50px;
+            font-size:14px;
+            letter-spacing:1px;
+            font-weight:bold;
+        }
+        .main .top .but {
+            position: absolute;
+            bottom:0;
+            left:50%;
+            padding:10px 15px;
+            background-color:black;
+            color:white;
+            border-radius:5px;
+            cursor:pointer;
+            transform:translate(-50%,50%);
+            transition:0.4s;
+            letter-spacing:2px;
+            font-size:13px;
+        }
+        .main .top .but:hover{
+            box-shadow:0 0 5px rgb(0,0,0,0.2);
+        }
+        .main .top .but i{
+            margin-right:4px;
+        }
+        .main .posts{
+            width:calc(100% - 3px);
+            height:calc(100% - 120px);
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .posts .po{
+            height:200vh;
+        }
         
+        .posts::-webkit-scrollbar{
+            -webkit-appearance:none;
+            background-color:transparent;
+            width:7px;
+        }
+        .posts::-webkit-scrollbar-thumb{
+            background-color:rgb(0,0,0,0.5);
+            border-radius:5px;
+        }
         @media (max-width:470px) and (min-width:450px){
             .screen  .main.active,.screen  .main{
                 width:calc(100% - 70px);
@@ -203,9 +248,6 @@
             transition:0.4s;
         }
         .side .page.noti::before{
-            opacity:0;
-        }
-        .side.active .page.noti::before{
             opacity:1;
         }
         .side span{
@@ -224,6 +266,10 @@
             letter-spacing:2px;
             color:white;
         }
+        .side::-webkit-scrollbar{
+            -webkit-appearance:none;
+            width:0px;
+        }
         @media (max-width:450px){
             .screen .side.active,.screen .side{
                 width:100%;
@@ -233,7 +279,9 @@
             .side .page::before,.side.active .page::before,.side .page.noti::before,.side.active .page.noti::before{
                 opacity:0;
             }
-            
+            .side .page.noti::before{
+                opacity:1;
+            }
         }
         
 /*        side     */
@@ -327,8 +375,12 @@
                      <h3>Posts</h3>
                      <div class="pro"></div>
                    </div>
+                   <p class="name"><span style="font-family: 'Caveat', cursive;font-size:18px">Hello ,</span> Andrew</p>
+                   <div class="but"><i class="fas fa-plus"></i> New</div>
                </div>
-               <div class="posts"></div>
+               <div class="posts">
+                   <div class="po"></div>
+               </div>
         </div>
         
        <div class="side">
@@ -359,17 +411,19 @@
            <div class="page noti flex" title="blogs">
                <i class="fas fa-sticky-note"></i>
                <span>Blogs</span>
-               <label>!</label>
+               <label></label>
            </div>
            
-           <div class="page flex" title="activity">
+           <div class="page flex noti" title="activity">
                <i class="fas fa-history"></i>
                <span>Activity</span>
+               <label>!</label>
            </div>
            
            <div class="page flex" title="Profile">
                <i class="fas fa-user"></i>
                <span>Profile</span>
+               <label></label>
            </div>
            
            
