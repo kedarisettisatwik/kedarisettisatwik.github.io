@@ -71,15 +71,16 @@
         
         .main .top{
             position: relative;
-            width:100%;
-            min-height:120px;
-            background:none;
-            border-bottom-left-radius:50%;
-            border-bottom-right-radius:50%;
+            width: 100%;
+            min-height: 120px;
+            background: none;
+            border-bottom-left-radius: 50%;
+            border-bottom-right-radius: 50%;
             justify-content: flex-start;
             flex-direction: column;
-            background-color:rgb(255, 230, 230);
-            box-shadow:0 2px 2px rgb(153, 51, 0,0.3);
+            background-color: 1B224A;
+            box-shadow: 0 2px 2px rgb(0 0 0 / 30%);
+            color: white;
         }
         .main .de{
             width:100%;
@@ -122,14 +123,17 @@
             bottom:0;
             left:50%;
             padding:10px 15px;
-            background-color:black;
+            background-color:rgb(0, 102, 255,0.8);
             color:white;
+            font-weight:bold;
             border-radius:5px;
             cursor:pointer;
             transform:translate(-50%,50%);
             transition:0.4s;
             letter-spacing:2px;
             font-size:13px;
+            backdrop-filter:blur(2px);
+            -webkit-backdrop-filter:blur(2px);
         }
         .main .top .but:hover{
             box-shadow:0 0 5px rgb(0,0,0,0.2);
@@ -458,7 +462,7 @@
        var main= document.querySelector(".main");
        var space= document.querySelector(".space");
        
-       if (bw + 60 < 1086 && bw + 60 > 850){
+       if ( bw + 60 < 670){
            open_menu();
        }
        if (bw + 60 < 450){
