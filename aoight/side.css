@@ -1,5 +1,11 @@
 /*        side     */
 
+*{
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 .screen .side {
     width: 270px;
     height: 100%;
