@@ -78,7 +78,7 @@
     border-bottom-right-radius: 50%;
     justify-content: flex-start;
     flex-direction: column;
-    background-color: 1B224A;
+    background-color: #1B224A;
     box-shadow: 0 2px 2px rgb(0 0 0 / 30%);
     color: white;
 }
@@ -150,6 +150,45 @@
 
 .main .top .but i {
     margin-right: 4px;
+}
+
+.top .bell {
+    position: absolute;
+    bottom: -10px;
+    color: #1B224A;
+    font-size: 20px;
+    right: 20px;
+    transform-origin: top;
+    transition: 0.4s;
+    cursor: pointer;
+    display: none;
+}
+
+@media (max-width:450px) {
+    .top .bell.active {
+        -webkit-animation: ring 1.5s linear infinite;
+        display: block;
+    }
+
+    @keyframes ring {
+
+        0%,
+        100% {
+            transform: rotateZ(0deg);
+        }
+
+        25% {
+            transform: rotateZ(-30deg);
+        }
+
+        50% {
+            transform: rotateZ(0deg);
+        }
+
+        75% {
+            transform: rotateZ(30deg);
+        }
+    }
 }
 
 .main .container {

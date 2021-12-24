@@ -2,6 +2,7 @@
 function side_bar() {
     var pages = ["task_page", "chat_page", "posts_page", "blogs_page", "history_page"];
     var notify = [1, 1, 0, 0, 1];
+    var total = 0;
     for (var i = 0; i < pages.length; i++) {
         var pp = document.getElementById(pages[i]);
         var ll = pp.querySelector('label');
@@ -17,7 +18,14 @@ function side_bar() {
             pp.classList.remove("noti");
             ll.innerHTML = "";
         }
+        total += notify[i];
     }
+    if (total >= 1){
+        document.querySelector('.bell').classList.add('active');
+    }else{
+        document.querySelector('.bell').classList.remove('active');
+    }
+    console.log(total);
 }
 
 function navigate_to(a){
