@@ -60,6 +60,10 @@
         .screen .main.active{
             left:70px;
         }
+        .screen .main .open_menu{
+            display:none;
+        }
+        
         @media (max-width:470px) and (min-width:450px){
             .screen  .main.active,.screen  .main{
                 width:calc(100% - 70px);
@@ -70,6 +74,9 @@
                 width:100%;
                 z-index:2;
                 left:0px;
+            }
+            .screen .main .open_menu{
+                display:block;
             }
             .screen .main.active.open,.screen .main.open{
                 left: calc(100% - 140px);
@@ -117,6 +124,7 @@
             font-weight:700;
             transition:0.4s;
             letter-spacing:0px;
+            position:relative;
         }
         .side .page.active{
             color:white;
@@ -133,6 +141,25 @@
             margin-right:15px;
             width:50px;
             text-align: center;
+        }
+        .side .page::before{
+            content:'';
+            position: absolute;
+            width:10px;
+            height:10px;
+            border-radius:20px;
+            background-color: white;
+            top:50%;
+            left:0%;
+            transform:translate(-2px,-50%);
+            opacity:0;
+            transition:0.4s;
+        }
+        .side .page.noti::before{
+            opacity:0;
+        }
+        .side.active .page.noti::before{
+            opacity:1;
         }
         .side span{
             font-size:17px;
@@ -153,6 +180,9 @@
                 width:100%;
                 z-index:1;
                 background-image: linear-gradient(to right,rgb(0, 102, 255,0.8),rgb(0, 102, 255,0.5));
+            }
+            .side .page::before,.side.active .page::before,.side .page.noti::before,.side.active .page.noti::before{
+                opacity:0;
             }
             
         }
@@ -242,7 +272,7 @@
    <div class="screen flex">
        
        <div class="main">
-       
+               <i class="fas fa-stream open_menu" onclick="open_menu()"></i>
         </div>
         
        <div class="side">
@@ -252,13 +282,13 @@
                <i class="fas fa-stream two"></i>
            </div>
            
-           <div class="page flex">
+           <div class="page noti flex">
                 <i class="fas fa-calendar-check" title="calender"></i>
                 <span>Calender</span>
                 <label>2</label>
            </div>
            
-           <div class="page flex" title="chats">
+           <div class="page noti flex" title="chats">
                <i class="fas fa-comment-alt"></i>
                <span>Chats</span>
                <label>12</label>
@@ -267,10 +297,10 @@
            <div class="page active flex" title="posts">
                <i class="fas fa-image"></i>
                <span>Posts</span>
-               <label>New</label>
+               <label></label>
            </div>
            
-           <div class="page flex" title="blogs">
+           <div class="page noti flex" title="blogs">
                <i class="fas fa-sticky-note"></i>
                <span>Blogs</span>
                <label>!</label>
@@ -334,9 +364,14 @@
        }
        
        function open_menu(){
-           side.classList.toggle('active');
-           main.classList.toggle('active');
-           space.classList.toggle('active');
+           var bw = window.innerWidth;
+           if (bw > 450){
+               side.classList.toggle('active');
+               main.classList.toggle('active');
+               space.classList.toggle('active');
+           }else{
+               main.classList.toggle('open');
+           }
        }
     
    </script>
