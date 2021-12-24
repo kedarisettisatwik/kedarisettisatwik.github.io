@@ -118,6 +118,8 @@
             font-size:13px;
             backdrop-filter:blur(2px);
             -webkit-backdrop-filter:blur(2px);
+            outline: none;
+            border:none;
         }
         .main .top .but:hover{
             box-shadow:0 0 5px rgb(0,0,0,0.2);
@@ -191,7 +193,7 @@
                      <div class="pro"></div>
                    </div>
                    <p class="name"><span style="font-family: 'Caveat', cursive;font-size:18px">Hello ,</span> Andrew</p>
-                   <div class="but"><i class="fas fa-plus"></i> New</div>
+                   <button class="but"><i class="fas fa-plus"></i> New</button>
                </div>
                <div class="posts">
                    <div class="po"></div>
@@ -200,46 +202,46 @@
         
        <div class="side">
      
-          <div class="page flex active" title="menu" onclick="open_menu()">
+          <button class="page flex active" title="menu" onclick="open_menu()">
                <i class="fas fa-times one"></i>
                <i class="fas fa-stream two"></i>
-           </div>
+           </button>
            
-           <div class="page active flex" id="task_page" title="calender" onclick="navigate_to('calender.html')">
+           <button class="page flex" id="task_page" title="calender" onclick="navigate_to('calender.html')">
                 <i class="fas fa-calendar-check"></i>
                 <span>Calender</span>
                 <label></label>
-           </div>
+           </button>
            
-           <div class="page flex" id="chat_page" title="chats" onclick="navigate_to('chats.html')">
+           <button class="page flex" id="chat_page" title="chats" onclick="navigate_to('chats.html')">
                <i class="fas fa-comment-alt"></i>
                <span>Chats</span>
                <label></label>
-           </div>
+           </button>
            
-           <div class="page flex" id="posts_page" title="posts" onclick="navigate_to('posts.html')">
+           <button class="page active flex" id="posts_page" title="posts" onclick="navigate_to('posts.html')">
                <i class="fas fa-image"></i>
                <span>Posts</span>
                <label></label>
-           </div>
+           </button>
            
-           <div class="page flex" id="blogs_page" title="blogs" onclick="navigate_to('blogs.html')">
+           <button class="page flex" id="blogs_page" title="blogs" onclick="navigate_to('blogs.html')">
                <i class="fas fa-sticky-note"></i>
                <span>Blogs</span>
                <label></label>
-           </div>
+           </button>
            
-           <div class="page flex" id="history_page" title="activity" onclick="navigate_to('activity.html')">
+           <button class="page flex" id="history_page" title="activity" onclick="navigate_to('activity.html')">
                <i class="fas fa-history"></i>
                <span>Activity</span>
                <label></label>
-           </div>
+           </button>
            
-           <div class="page flex" title="profile" onclick="navigate_to('profile.html')">
+           <button class="page flex" title="profile" onclick="navigate_to('profile.html')">
                <i class="fas fa-user"></i>
                <span>Profile</span>
                <label></label>
-           </div>
+           </button>
            
            
        </div>
