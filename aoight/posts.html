@@ -92,11 +92,23 @@
             white-space: nowrap;
         }
         .sample .cap .share {
-            width: 40px;
             height: 40px;
-            border-radius: 5px;
-            cursor:pointer;
         }
+        .sample .cap .share .s{
+            display: none;
+            color:blue;
+            text-shadow:0 0 2px rgb(0,0,255,0.1);
+        }
+        .sample .cap .share .f,.sample .cap.new .share .s{
+            width:40px;
+            height:40px;
+            line-height:40px;
+            cursor:pointer;
+            display:inline;
+            text-align: center;
+        }
+        
+        
         .sample .pos {
             width: 100%;
             height: 300px;
@@ -128,30 +140,38 @@
         }
         .sample .buttons .lc .bt {
             margin-right: 5px;
-            width: 120px;
+            width: 140px;
             display: flex;
             justify-content:flex-start;
             align-items: center;
             flex-direction: row;
             padding:0 10px;
         }
+        .sample .buttons .lc .bt p{
+            height:40px;
+            width:80px;
+        }
+        .sample .buttons .lc .bt p span{
+            display:block;
+            font-size:12px;
+        }
+        .sample .buttons .lc .bt p label{
+            font-size:13px;
+        }
         .sample .buttons .lc .bt i{
             line-height:40px;
             height:40px;
             width:40px;
             cursor:pointer;
-        }
-        .sample .buttons .lc .bt span{
-            margin-left:10px;
-            font-size:13px;
-            font-weight:bold;
-            letter-spacing:2px;
-            cursor:pointer;
+            text-align: center;
         }
         .sample .buttons .bt {
             height: 40px;
             border-radius: 5px;
             cursor:pointer;
+        }
+        .sample .buttons .bt i{
+            color:rgb(0,0,0,0.4);
         }
         .sample .buttons .save {
             width: 40px;
@@ -159,14 +179,20 @@
         .sample .des {
             width: 100%;
             height: 30px;
-            max-height:30px;
+            line-height:30px;
             font-size:12px;
             letter-spacing:1px;
             overflow: hidden;
+            text-overflow: ellipsis;
             justify-content: flex-start;
             padding:0 10px;
+            white-space: nowrap;
         }
-
+        .sample .des.active{
+            height: auto;
+            white-space: normal;
+        }
+        
         .sample .cap .dp::after,
         .sample .cap .name::after,
         .sample .cap .share::after,
@@ -181,6 +207,7 @@
             position: absolute;
             background-color: #e6e6e6;
             border-radius:5px;
+            z-index:1;
             transition:0.4s;
         }
         .sample.active .cap .dp::after,
@@ -190,11 +217,7 @@
         .sample.active .buttons .bt:after,
         .sample.active .des::after{
             opacity:0;
-            -webkit-animation:non 0.1s linear forwards;
-        }
-        @keyframes non {
-            0%{display:block}
-            100%{display: none}
+            z-index:-1;
         }
         
 
@@ -264,32 +287,39 @@
             <div class="container">
 
                 <div class="sample">
-                    <div class="cap">
+                    <div class="cap new">
                         <div class="details flex">
                             <div class="dp" style="background-image: url(https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fHBvcnRyYWl0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60);"></div>
-                            <div class="name">Striking Wolves</div>
+                            <div class="name">Striking Wolves </div>
                         </div>
                         <div class="share flex">
-                              <i class="fas fa-share-alt"></i>
+                              <i class="fas fa-user-plus s"></i>
+                              <i class="fas fa-share-alt f"></i>
                         </div>
                     </div>
                     <div class="pos" style="background-image: url(https://images.unsplash.com/photo-1536152470836-b943b246224c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTl8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60)"></div>
                     <div class="buttons">
                         <div class="lc">
                             <div class="like bt">
-                                <i class="far fa-heart flex"></i>
-                                <span>12</span>
+                                <i class="fas fa-heart flex"></i>
+                                <p>
+                                  <span>Likes</span>
+                                   <label>65</label>
+                                </p>
                             </div>
                             <div class="comment bt flex">
-                                <i class="far fa-comment"></i>
-                                <span>4</span>
+                                <i class="fas fa-comment"></i>
+                               <p>
+                                  <span>Comments</span>
+                                   <label>17</label>
+                                </p>
                             </div>
                         </div>
                         <div class="save bt flex">
-                            <i class="far fa-bookmark"></i>
+                            <i class="fas fa-bookmark"></i>
                         </div>
                     </div>
-                    <div class="des flex"> hello, welcoming 2022 with village environment </div>
+                    <div class="des" onclick="this.classList.toggle('active')" > Matt told her to reach for the stars, but Veronica thought it was the most ridiculous advice she'd ever received. Sure, it had been well-meaning when he said it, but she didn't understand why anyone would want to suggest something that would literally kill you if you actually managed to achieve it. </div>
                 </div>
 
             </div>
@@ -367,6 +397,7 @@
             document.querySelector(".logo").classList.add("active");
             setTimeout(function() {
                 document.querySelector(".logo").style.display = "none";
+                document.querySelector(".sample").classList.add("active");
             }, 3300);
         });
 
@@ -380,11 +411,9 @@
         if (bw + 60 < 450) {
             main.classList.add("open");
         }
-
-        setTimeout(function(){
-            document.querySelector(".sample").classList.add("active");
-        },4000);
-
+        
+         
+        
         function open_menu() {
             var bw = window.innerWidth;
             if (bw > 450) {

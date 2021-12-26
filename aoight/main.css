@@ -196,7 +196,7 @@
     height: calc(100% - 150px);
     margin-top: 25px;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: scroll;
     padding-right:3px;
     padding-left:6px;
     position:relative;
@@ -204,12 +204,12 @@
 
 .container::-webkit-scrollbar {
     -webkit-appearance: none;
-    width: 7px;
+    width: 5px;
 }
 
 .container::-webkit-scrollbar-thumb{
     -webkit-appearance: none;
-    width: 7px;
+    width:5px;
     border-radius:5px;
     background-color:#1B224A;
 }
