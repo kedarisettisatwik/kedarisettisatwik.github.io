@@ -1,10 +1,11 @@
 <html>
+
 <head>
-   <meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#1B224A">
     <meta name="msapplication-navbutton-color" content="#1B224A">
-    
+
     <!-- google fonts -->
     <link rel="shortcut icon" href="logos/icon_dark.svg" type="image">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -16,208 +17,391 @@
     <link rel="stylesheet" href="logo.css">
     <link rel="stylesheet" href="side.css">
     <link rel="stylesheet" href="main.css">
-    
+
     <title>Aoight | Posts</title>
-    
+
     <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
-/*          font-family: 'Caveat', cursive; 
+            /*          font-family: 'Caveat', cursive; 
             font-family: 'Pushster', cursive;
 */
         }
-        html{
+
+        html {
             scroll-behavior: smooth;
         }
-        body{
-            position:relative;
+
+        body {
+            position: relative;
         }
-        .flex{
+
+        .flex {
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: row;
         }
 
-/*        space   */
-        
-        .space{
-            position: absolute;
-            right:0;
+        .container .sample {
+            width: 100%;
+            position: relative;
             top: 0;
-            width:calc(100% - 400px - 270px);
-            height:100%;
+            left: 0;
+            padding: 0 5px;
+            margin: 5px 0;
+        }
+
+        .sample .cap {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+            width: 100%;
+            height: 50px;
+            align-items: center;
+        }
+        .sample .cap .details{
+            cursor:pointer;
+        }
+        .sample .cap .dp,.sample .cap .name,.sample .cap .share,.sample .pos,.sample .buttons .bt,.sample .des{
+            position:relative;
+        }
+        .sample .cap .dp {
+            width: 40px;
+            height: 40px;
+            position:relative;
+            border-radius:8px;
+            background-position: top;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .sample .cap .name{
+            width: 190px;
+            height: 30px;
+            line-height: 30px;
+            margin-left:10px;
+            font-size:14px;
+            font-weight:bold;
+            letter-spacing:2px;
+            padding-left:10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .sample .cap .share {
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            cursor:pointer;
+        }
+        .sample .pos {
+            width: 100%;
+            height: 300px;
+            border-radius:8px;
+            background-position: top;
+            background-repeat: no-repeat;
+            background-size: cover;
             transition:0.4s;
+        }
+        .sample .pos:hover{
+            cursor: crosshair;
+        }
+        .sample .pos:active{
+            background-size: contain;
+        }
+        .sample .buttons {
+            width: 100%;
+            margin: 5px 0;
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+        .sample .buttons .lc {
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: row;
+            align-items: center;
+            width: calc(100% - 50px);
+        }
+        .sample .buttons .lc .bt {
+            margin-right: 5px;
+            width: 120px;
+            display: flex;
+            justify-content:flex-start;
+            align-items: center;
+            flex-direction: row;
+            padding:0 10px;
+        }
+        .sample .buttons .lc .bt i{
+            line-height:40px;
+            height:40px;
+            width:40px;
+            cursor:pointer;
+        }
+        .sample .buttons .lc .bt span{
+            margin-left:10px;
+            font-size:13px;
+            font-weight:bold;
+            letter-spacing:2px;
+            cursor:pointer;
+        }
+        .sample .buttons .bt {
+            height: 40px;
+            border-radius: 5px;
+            cursor:pointer;
+        }
+        .sample .buttons .save {
+            width: 40px;
+        }
+        .sample .des {
+            width: 100%;
+            height: 30px;
+            max-height:30px;
+            font-size:12px;
+            letter-spacing:1px;
+            overflow: hidden;
+            justify-content: flex-start;
+            padding:0 10px;
+        }
+
+        .sample .cap .dp::after,
+        .sample .cap .name::after,
+        .sample .cap .share::after,
+        .sample .pos::after,
+        .sample .buttons .bt:after,
+        .sample .des::after{
+            content:'';
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            position: absolute;
+            background-color: #e6e6e6;
+            border-radius:5px;
+            transition:0.4s;
+        }
+        .sample.active .cap .dp::after,
+        .sample.active .cap .name::after,
+        .sample.active .cap .share::after,
+        .sample.active .pos::after,
+        .sample.active .buttons .bt:after,
+        .sample.active .des::after{
+            opacity:0;
+            -webkit-animation:non 0.1s linear forwards;
+        }
+        @keyframes non {
+            0%{display:block}
+            100%{display: none}
+        }
+        
+
+        /*        space   */
+
+        .space {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: calc(100% - 400px - 270px);
+            height: 100%;
+            transition: 0.4s;
             background-color: white;
             display: none;
-            z-index:3;
+            z-index: 3;
         }
-        .space.active{
-            width:calc(100% - 400px - 70px);
+
+        .space.active {
+            width: calc(100% - 400px - 70px);
         }
-        @media (max-width:1085px){
-            .space{
-                width:calc(100% - 400px - 70px);
-                right:-200px;
+
+        @media (max-width:1085px) {
+            .space {
+                width: calc(100% - 400px - 70px);
+                right: -200px;
             }
-            .space.active{
-                width:calc(100% - 400px - 70px);
-                right:0px;
-            }
-        }
-        
-        @media (max-width:850px){
-            .space,.space.active{
-               position: absolute;
-               right:0;
-               width:100%;
+
+            .space.active {
+                width: calc(100% - 400px - 70px);
+                right: 0px;
             }
         }
-        
-/*        space   */
-        
-        
+
+        @media (max-width:850px) {
+
+            .space,
+            .space.active {
+                position: absolute;
+                right: 0;
+                width: 100%;
+            }
+        }
+
+        /*        space   */
+
     </style>
-    
-    </head>
+
+</head>
+
 <body>
-   
-   <div class="screen flex">
-       
-       <div class="main">
-               <div class="top flex">
-                  <div class="de flex">
-                     <i class="fas fa-stream open_menu" onclick="open_menu()"></i>
-                     <h3>Posts</h3>
-                     <div class="pro"></div>
-                   </div>
-                   <p class="name"><span style="font-family: 'Caveat', cursive;font-size:18px">Hello ,</span> Andrew</p>
-                   <button class="but"><i class="fas fa-plus"></i> New</button>
-                   <div class="bell" onclick="open_menu()">
-                       <i class="fas fa-bell"></i>
-                   </div>
-               </div>
-               <div class="container">
-                   <div class="content"></div>
-                   <div class="content"></div>
-                   <div class="content"></div>
-                   <div class="content"></div>
-                   <div class="content"></div>
-                   <div class="content"></div>
-                   <div class="content"></div>
-                   <div class="content"></div>
-                   <div class="content"></div>
-               </div>
+
+    <div class="screen flex">
+
+        <div class="main">
+            <div class="top flex">
+                <div class="de flex">
+                    <i class="fas fa-stream open_menu" onclick="open_menu()"></i>
+                    <h3>Posts</h3>
+                    <div class="pro"></div>
+                </div>
+                <p class="name"><span style="font-family: 'Caveat', cursive;font-size:18px">Hello ,</span> Andrew</p>
+                <button class="but"><i class="fas fa-plus"></i> New</button>
+                <div class="bell" onclick="open_menu()">
+                    <i class="fas fa-bell"></i>
+                </div>
+            </div>
+            <div class="container">
+
+                <div class="sample">
+                    <div class="cap">
+                        <div class="details flex">
+                            <div class="dp" style="background-image: url(https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fHBvcnRyYWl0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60);"></div>
+                            <div class="name">Striking Wolves</div>
+                        </div>
+                        <div class="share flex">
+                              <i class="fas fa-share-alt"></i>
+                        </div>
+                    </div>
+                    <div class="pos" style="background-image: url(https://images.unsplash.com/photo-1536152470836-b943b246224c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTl8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60)"></div>
+                    <div class="buttons">
+                        <div class="lc">
+                            <div class="like bt">
+                                <i class="far fa-heart flex"></i>
+                                <span>12</span>
+                            </div>
+                            <div class="comment bt flex">
+                                <i class="far fa-comment"></i>
+                                <span>4</span>
+                            </div>
+                        </div>
+                        <div class="save bt flex">
+                            <i class="far fa-bookmark"></i>
+                        </div>
+                    </div>
+                    <div class="des flex"> hello, welcoming 2022 with village environment </div>
+                </div>
+
+            </div>
         </div>
-        
-       <div class="side">
-     
-          <button class="page flex active" title="menu" onclick="open_menu()">
-               <i class="fas fa-times one"></i>
-               <i class="fas fa-stream two"></i>
-           </button>
-           
-           <button class="page flex" id="task_page" title="calender" onclick="navigate_to('calender.html')">
+
+        <div class="side">
+
+            <button class="page flex active" title="menu" onclick="open_menu()">
+                <i class="fas fa-times one"></i>
+                <i class="fas fa-stream two"></i>
+            </button>
+
+            <button class="page flex" id="task_page" title="calender" onclick="navigate_to('calender.html')">
                 <i class="fas fa-calendar-check"></i>
                 <span>Calender</span>
                 <label></label>
-           </button>
-           
-           <button class="page flex" id="chat_page" title="chats" onclick="navigate_to('chats.html')">
-               <i class="fas fa-comment-alt"></i>
-               <span>Chats</span>
-               <label></label>
-           </button>
-           
-           <button class="page active flex" id="posts_page" title="posts" onclick="navigate_to('posts.html')">
-               <i class="fas fa-image"></i>
-               <span>Posts</span>
-               <label></label>
-           </button>
-           
-           <button class="page flex" id="blogs_page" title="blogs" onclick="navigate_to('blogs.html')">
-               <i class="fas fa-sticky-note"></i>
-               <span>Blogs</span>
-               <label></label>
-           </button>
-           
-           <button class="page flex" id="history_page" title="activity" onclick="navigate_to('activity.html')">
-               <i class="fas fa-history"></i>
-               <span>Activity</span>
-               <label></label>
-           </button>
-           
-           <button class="page flex" id="history_page" title="activity" onclick="navigate_to('saved.html')">
-               <i class="fas fa-bookmark"></i>
-               <span>Saved</span>
-               <label></label>
-           </button>
-           
-           <button class="page flex" title="profile" onclick="navigate_to('profile.html')">
-               <i class="fas fa-user"></i>
-               <span>Profile</span>
-               <label></label>
-           </button>
-           
-       </div>
-       
-       <div class="space">
-           
-       </div>
-       
-       
-   </div>
-   
-   <div class="logo flex">
-       <h1 class="bg_text">AOIGHT</h1>
-   </div>
+            </button>
 
-   <script>
-    
-       var bt = document.querySelector(".bg_text");
-       var tw = bt.getBoundingClientRect().width;
-       var bw = window.innerWidth - 50;
-       bt.style.transform = "scale("+ bw / tw +")";
-       
-       window.addEventListener('load',(e) => {
-          document.querySelector(".logo").classList.add("active");
-          setTimeout(function(){
-              document.querySelector(".logo").style.display = "none";
-          },3300);
-       });
-       
-       var side = document.querySelector(".side");
-       var main= document.querySelector(".main");
-       var space= document.querySelector(".space");
-       
-       if ( bw + 60 < 670){
-           open_menu();
-       }
-       if (bw + 60 < 450){
-           main.classList.add("open");
-       }
-       
-       
-       function open_menu(){
-           var bw = window.innerWidth;
-           if (bw > 450){
-               side.classList.toggle('active');
-               main.classList.toggle('active');
-               space.classList.toggle('active');
-           }else{
-               main.classList.toggle('open');
-           }
-       }
-       
-   </script>
-   
-   <script src="side.js"></script>
-   
-    </body>
-    
+            <button class="page flex" id="chat_page" title="chats" onclick="navigate_to('chats.html')">
+                <i class="fas fa-comment-alt"></i>
+                <span>Chats</span>
+                <label></label>
+            </button>
+
+            <button class="page active flex" id="posts_page" title="posts" onclick="navigate_to('posts.html')">
+                <i class="fas fa-image"></i>
+                <span>Posts</span>
+                <label></label>
+            </button>
+
+            <button class="page flex" id="blogs_page" title="blogs" onclick="navigate_to('blogs.html')">
+                <i class="fas fa-sticky-note"></i>
+                <span>Blogs</span>
+                <label></label>
+            </button>
+
+            <button class="page flex" id="history_page" title="activity" onclick="navigate_to('activity.html')">
+                <i class="fas fa-history"></i>
+                <span>Activity</span>
+                <label></label>
+            </button>
+
+            <button class="page flex" id="history_page" title="activity" onclick="navigate_to('saved.html')">
+                <i class="fas fa-bookmark"></i>
+                <span>Saved</span>
+                <label></label>
+            </button>
+
+            <button class="page flex" title="profile" onclick="navigate_to('profile.html')">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+                <label></label>
+            </button>
+
+        </div>
+
+        <div class="space">
+
+        </div>
+
+
+    </div>
+
+    <div class="logo flex">
+        <h1 class="bg_text">AOIGHT</h1>
+    </div>
+
+    <script>
+        var bt = document.querySelector(".bg_text");
+        var tw = bt.getBoundingClientRect().width;
+        var bw = window.innerWidth - 50;
+        bt.style.transform = "scale(" + bw / tw + ")";
+
+        window.addEventListener('load', (e) => {
+            document.querySelector(".logo").classList.add("active");
+            setTimeout(function() {
+                document.querySelector(".logo").style.display = "none";
+            }, 3300);
+        });
+
+        var side = document.querySelector(".side");
+        var main = document.querySelector(".main");
+        var space = document.querySelector(".space");
+
+        if (bw + 60 < 670) {
+            open_menu();
+        }
+        if (bw + 60 < 450) {
+            main.classList.add("open");
+        }
+
+        setTimeout(function(){
+            document.querySelector(".sample").classList.add("active");
+        },4000);
+
+        function open_menu() {
+            var bw = window.innerWidth;
+            if (bw > 450) {
+                side.classList.toggle('active');
+                main.classList.toggle('active');
+                space.classList.toggle('active');
+            } else {
+                main.classList.toggle('open');
+            }
+        }
+
+    </script>
+
+    <script src="side.js"></script>
+
+</body>
+
 </html>
 
 <!-- 

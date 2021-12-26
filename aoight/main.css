@@ -192,34 +192,27 @@
 }
 
 .main .container {
-    width: calc(100%);
+    width: calc(100% - 3px);
     height: calc(100% - 150px);
     margin-top: 25px;
     overflow-x: hidden;
     overflow-y: auto;
+    padding-right:3px;
+    padding-left:6px;
+    position:relative;
 }
 
 .container::-webkit-scrollbar {
     -webkit-appearance: none;
-    width: 0px;
+    width: 7px;
 }
 
-.container .content {
-    width: 100%;
-    height: 400px;
-    background-color: antiquewhite;
-    margin: 5px 0;
+.container::-webkit-scrollbar-thumb{
+    -webkit-appearance: none;
+    width: 7px;
+    border-radius:5px;
+    background-color:#1B224A;
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
