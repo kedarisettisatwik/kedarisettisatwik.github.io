@@ -25,7 +25,6 @@ function side_bar() {
     }else{
         document.querySelector('.bell').classList.remove('active');
     }
-    console.log(total);
 }
 
 function navigate_to(a){
