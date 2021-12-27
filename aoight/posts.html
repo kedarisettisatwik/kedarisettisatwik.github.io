@@ -26,6 +26,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
             /*          font-family: 'Caveat', cursive; 
             font-family: 'Pushster', cursive;
 */
@@ -45,6 +46,10 @@
             align-items: center;
             flex-direction: row;
         }
+        
+        .container{
+            scroll-snap-type: y mandatory;
+        }
 
         .container .sample {
             width: 100%;
@@ -52,7 +57,9 @@
             top: 0;
             left: 0;
             padding: 0 5px;
-            margin: 5px 0;
+            margin-bottom:15px;
+            -webkit-scroll-snap-align:start;
+            scroll-snap-align:start;
         }
 
         .sample .cap {
@@ -80,16 +87,25 @@
         }
         .sample .cap .name{
             width: 190px;
-            height: 30px;
-            line-height: 30px;
+            height: 40px;
             margin-left:10px;
-            font-size:14px;
-            font-weight:bold;
-            letter-spacing:2px;
             padding-left:10px;
+        }
+        .sample .cap .name span,
+        .sample .cap .name label{
+            display: block;
+            width:100%;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+        }
+        .sample .cap .name span{
+            font-size:14px;
+            font-weight:bold;
+            letter-spacing:2px;
+        }
+        .sample .cap .name label{
+            font-size:12px;
         }
         .sample .cap .share {
             height: 40px;
@@ -112,7 +128,7 @@
             width: 100%;
             height: 300px;
             border-radius:8px;
-            background-position: top;
+            background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
             transition:0.4s;
@@ -125,7 +141,7 @@
         }
         .sample .buttons {
             width: 100%;
-            margin: 5px 0;
+            margin-top:10px;
             display: flex;
             justify-content: space-between;
             position: relative;
@@ -195,6 +211,7 @@
         .sample .des {
             width: 100%;
             height: 30px;
+            margin:6px 0;
             line-height:30px;
             font-size:12px;
             letter-spacing:1px;
@@ -303,16 +320,17 @@
             <div class="container">
 
                 <div class="sample">
-                    <div class="cap new">
+                    <div class="cap">
                         <div class="details flex" onclick="view_profile(0)">
                             <div class="dp" style="background-image: url(https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fHBvcnRyYWl0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60);"></div>
-                            <div class="name">Striking Wolves </div>
+                            <div class="name"><span>Striking Wolves</span><label>2hrs Ago</label></div>
                         </div>
                         <div class="share flex">
                               <i class="fas fa-user-plus s" onclick="follow(0)"></i>
                               <i class="fas fa-share-alt f" onclick="share_post(0)"></i>
                         </div>
                     </div>
+                    <div class="des" id="des" onclick="this.classList.toggle('active')" > Matt told her to reach for the stars, but Veronica thought it was the most ridiculous advice she'd ever received. Sure, it had been well-meaning when he said it, but she didn't understand why anyone would want to suggest something that would literally kill you if you actually managed to achieve it. </div>
                     <div class="pos" style="background-image: url(https://images.unsplash.com/photo-1536152470836-b943b246224c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTl8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60)"></div>
                     <div class="buttons">
                         <div class="lc">
@@ -335,9 +353,122 @@
                             <i class="fas fa-bookmark"></i>
                         </div>
                     </div>
-                    <div class="des" id="des" onclick="this.classList.toggle('active')" > Matt told her to reach for the stars, but Veronica thought it was the most ridiculous advice she'd ever received. Sure, it had been well-meaning when he said it, but she didn't understand why anyone would want to suggest something that would literally kill you if you actually managed to achieve it. </div>
                 </div>
-
+                
+                
+                <div class="sample">
+                    <div class="cap new">
+                        <div class="details flex" onclick="view_profile(0)">
+                            <div class="dp" style="background-image: url(https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZmFjZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60);"></div>
+                            <div class="name"><span>Travel feel</span><label>6hrs Ago</label></div>
+                        </div>
+                        <div class="share flex">
+                              <i class="fas fa-user-plus s" onclick="follow(1)"></i>
+                              <i class="fas fa-share-alt f" onclick="share_post(1)"></i>
+                        </div>
+                    </div>
+                    <div class="des" id="des" onclick="this.classList.toggle('active')">“Life is always better at the beach.” “You can never have too much beach.” “Salty hair, sandy toes, ocean breeze, anything goes.” “Good vibes only.”</div>
+                    <div class="pos" style="background-image: url(https://images.unsplash.com/photo-1539139329395-ceb575183d8b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MjJ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60)"></div>
+                    <div class="buttons">
+                        <div class="lc">
+                            <div class="like bt">
+                                <i class="fas fa-heart flex" onclick="like_post(1)"></i>
+                                <p onclick="see_likes(1)">
+                                  <span>Likes</span>
+                                   <label>47</label>
+                                </p>
+                            </div>
+                            <div class="comment bt flex">
+                                <i class="fas fa-comment" onclick="comment_post(1)"></i>
+                               <p onclick="see_comments(1)">
+                                  <span>Comments</span>
+                                   <label>03</label>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="save bt flex" onclick="save_post(1)">
+                            <i class="fas fa-bookmark"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="sample">
+                    <div class="cap">
+                        <div class="details flex" onclick="view_profile(0)">
+                            <div class="dp" style="background-image: url(https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fHBvcnRyYWl0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60);"></div>
+                            <div class="name"><span>Striking Wolves</span><label>2hrs Ago</label></div>
+                        </div>
+                        <div class="share flex">
+                              <i class="fas fa-user-plus s" onclick="follow(0)"></i>
+                              <i class="fas fa-share-alt f" onclick="share_post(0)"></i>
+                        </div>
+                    </div>
+                    <div class="des" id="des" onclick="this.classList.toggle('active')" > Matt told her to reach for the stars, but Veronica thought it was the most ridiculous advice she'd ever received. Sure, it had been well-meaning when he said it, but she didn't understand why anyone would want to suggest something that would literally kill you if you actually managed to achieve it. </div>
+                    <div class="pos" style="background-image: url(https://images.unsplash.com/photo-1536152470836-b943b246224c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTl8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60)"></div>
+                    <div class="buttons">
+                        <div class="lc">
+                            <div class="like bt">
+                                <i class="fas fa-heart flex" onclick="like_post(0)"></i>
+                                <p onclick="see_likes(0)">
+                                  <span>Likes</span>
+                                   <label>65</label>
+                                </p>
+                            </div>
+                            <div class="comment bt flex">
+                                <i class="fas fa-comment" onclick="comment_post(0)"></i>
+                               <p onclick="see_comments(0)">
+                                  <span>Comments</span>
+                                   <label>17</label>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="save bt flex" onclick="save_post(0)">
+                            <i class="fas fa-bookmark"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="sample">
+                    <div class="cap new">
+                        <div class="details flex" onclick="view_profile(0)">
+                            <div class="dp" style="background-image: url(https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZmFjZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60);"></div>
+                            <div class="name"><span>Travel feel</span><label>6hrs Ago</label></div>
+                        </div>
+                        <div class="share flex">
+                              <i class="fas fa-user-plus s" onclick="follow(1)"></i>
+                              <i class="fas fa-share-alt f" onclick="share_post(1)"></i>
+                        </div>
+                    </div>
+                    <div class="des" id="des" onclick="this.classList.toggle('active')">“Life is always better at the beach.” “You can never have too much beach.” “Salty hair, sandy toes, ocean breeze, anything goes.” “Good vibes only.”</div>
+                    <div class="pos" style="background-image: url(https://images.unsplash.com/photo-1539139329395-ceb575183d8b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MjJ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60)"></div>
+                    <div class="buttons">
+                        <div class="lc">
+                            <div class="like bt">
+                                <i class="fas fa-heart flex" onclick="like_post(1)"></i>
+                                <p onclick="see_likes(1)">
+                                  <span>Likes</span>
+                                   <label>47</label>
+                                </p>
+                            </div>
+                            <div class="comment bt flex">
+                                <i class="fas fa-comment" onclick="comment_post(1)"></i>
+                               <p onclick="see_comments(1)">
+                                  <span>Comments</span>
+                                   <label>03</label>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="save bt flex" onclick="save_post(1)">
+                            <i class="fas fa-bookmark"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                
+                
             </div>
         </div>
 
@@ -409,12 +540,16 @@
         var tw = bt.getBoundingClientRect().width;
         var bw = window.innerWidth - 50;
         bt.style.transform = "scale(" + bw / tw + ")";
-
+        
+        var sample = document.querySelectorAll(".sample");
+        
         window.addEventListener('load', (e) => {
             document.querySelector(".logo").classList.add("active");
             setTimeout(function() {
                 document.querySelector(".logo").style.display = "none";
-                document.querySelector(".sample").classList.add("active");
+                for (var m = 0;m<sample.length;m++){
+                    sample[m].classList.add("active");
+                }
             }, 3300);
         });
 
@@ -473,6 +608,8 @@
         function save_post(a){
             document.querySelectorAll(".save")[a].classList.toggle("active");
         }
+        
+        
         
     </script>
     
