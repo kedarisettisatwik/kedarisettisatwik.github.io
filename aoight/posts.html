@@ -48,7 +48,7 @@
         }
         
         .container{
-            scroll-snap-type: y mandatory;
+            scroll-snap-type: y proximity;
         }
 
         .container .sample {
@@ -609,6 +609,7 @@
             document.querySelectorAll(".save")[a].classList.toggle("active");
         }
         
+        var container= document.querySelector(".container");
         
         
     </script>
