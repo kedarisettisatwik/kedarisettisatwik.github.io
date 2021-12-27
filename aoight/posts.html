@@ -132,11 +132,85 @@
             background-repeat: no-repeat;
             background-size: cover;
             transition:0.4s;
+            overflow: hidden;
         }
         .sample .pos:hover{
             cursor: crosshair;
         }
         .sample .pos:active{
+            background-size: contain;
+        }
+        .sample .pos .info{
+            position: absolute;
+            bottom:10px;
+            left:10px;
+            width:20px;
+            height:20px;
+            line-height:20px;
+            border-radius:50%;
+            background-image:linear-gradient(rgb(0,0,0,0.5),rgb(0,0,0,0.3));
+            backdrop-filter:blur(1px);
+            color:white;
+            font-weight:bold;
+            font-size:10px;
+            text-align: center;
+            cursor:pointer;
+        }
+        .sample .pos.multi .left,
+        .sample .pos.multi .right{
+            position: absolute;
+            top:50%;
+            font-size:12px;
+            font-weight:bold;
+            transform:translate(0%,-50%);
+            width:25px;
+            height:25px;
+            line-height:25px;
+            text-align: center;
+            background-color:rgb(255,255,255,0.8);
+            color:black;
+            cursor:pointer;
+            display: none;
+        }
+        .sample .pos.multi.n_first_page .left{
+            display: block;
+        }
+        .sample .pos.multi.n_last_page .right{
+            display: block;
+        }
+        .sample .pos.multi .left{
+            left:10px;
+        }
+        .sample .pos.multi .right{
+            right:10px;
+        }
+        .sample .pos.multi .pages{
+            position: relative;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            border-radius:8px;
+            transition:0.4s;
+            overflow:visible;
+            scroll-snap-type: x mandatory;
+        }
+        .sample .pos.multi .pages::-webkit-scrollbar{
+/*            -webkit-appearance: none;*/
+        }
+        .sample .pos.multi .pages .page{
+            position:absolute;
+            width:100%;
+            height:100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            top:0;
+            left:calc(100% * var(--i));
+            -webkit-scroll-snap-align:start;
+            scroll-snap-align:start;
+        }
+        .sample .pos.multi .pages .page:active{
             background-size: contain;
         }
         .sample .buttons {
@@ -201,8 +275,8 @@
             text-shadow:0 0 3px rgb(255 0 0 / 30%);
         }
         .sample .buttons .comment.active i{
-            color:darkmagenta;
-            text-shadow:0 0 3px rgb(102 0 102 / 30%);
+            color:black;
+            text-shadow:0 0 3px rgb(0 0 0 / 30%);
         }
         .sample .buttons .save.active i{
             color:green;
@@ -331,7 +405,7 @@
                         </div>
                     </div>
                     <div class="des" id="des" onclick="this.classList.toggle('active')" > Matt told her to reach for the stars, but Veronica thought it was the most ridiculous advice she'd ever received. Sure, it had been well-meaning when he said it, but she didn't understand why anyone would want to suggest something that would literally kill you if you actually managed to achieve it. </div>
-                    <div class="pos" style="background-image: url(https://images.unsplash.com/photo-1536152470836-b943b246224c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTl8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60)"></div>
+                    <div class="pos" style="background-image: url(https://images.unsplash.com/photo-1536152470836-b943b246224c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTl8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60)"><i class="fas fa-info info"></i></div>
                     <div class="buttons">
                         <div class="lc">
                             <div class="like bt">
@@ -360,7 +434,7 @@
                     <div class="cap new">
                         <div class="details flex" onclick="view_profile(0)">
                             <div class="dp" style="background-image: url(https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZmFjZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60);"></div>
-                            <div class="name"><span>Travel feel</span><label>6hrs Ago</label></div>
+                            <div class="name"><span>Nature Nithya</span><label>6hrs Ago</label></div>
                         </div>
                         <div class="share flex">
                               <i class="fas fa-user-plus s" onclick="follow(1)"></i>
@@ -368,7 +442,18 @@
                         </div>
                     </div>
                     <div class="des" id="des" onclick="this.classList.toggle('active')">“Life is always better at the beach.” “You can never have too much beach.” “Salty hair, sandy toes, ocean breeze, anything goes.” “Good vibes only.”</div>
-                    <div class="pos" style="background-image: url(https://images.unsplash.com/photo-1539139329395-ceb575183d8b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MjJ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60)"></div>
+                    <div class="pos multi n_last_page" total='3' present='0'>
+                        <div class="pages">
+                            <div class="page" style="background-image:url(https://images.unsplash.com/photo-1539139329395-ceb575183d8b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MjJ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60);--i:0" ></div>
+                            <div class="page" style="background-image:url(https://images.unsplash.com/photo-1586521995568-39abaa0c2311?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8bmF0dXJlJTIwYmFja2dyb3VuZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60);--i:1"></div>
+                            <div class="page" style="background-image:url(https://images.unsplash.com/photo-1548217395-6c6095abb49c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60);--i:2"></div>
+                            <div class="page" style="background-image:url(https://images.unsplash.com/photo-1548164806-9709e698bfc8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTB8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60);--i:3"></div>
+                            
+                        </div>
+                        <i class="fas fa-info info"></i>
+                        <i class="fas fa-chevron-left left" onclick="scroll_left(1)"></i>
+                        <i class="fas fa-chevron-right right" onclick="scroll_right(1)"></i>
+                    </div>
                     <div class="buttons">
                         <div class="lc">
                             <div class="like bt">
@@ -391,81 +476,6 @@
                         </div>
                     </div>
                 </div>
-                
-                
-                <div class="sample">
-                    <div class="cap">
-                        <div class="details flex" onclick="view_profile(0)">
-                            <div class="dp" style="background-image: url(https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fHBvcnRyYWl0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60);"></div>
-                            <div class="name"><span>Striking Wolves</span><label>2hrs Ago</label></div>
-                        </div>
-                        <div class="share flex">
-                              <i class="fas fa-user-plus s" onclick="follow(0)"></i>
-                              <i class="fas fa-share-alt f" onclick="share_post(0)"></i>
-                        </div>
-                    </div>
-                    <div class="des" id="des" onclick="this.classList.toggle('active')" > Matt told her to reach for the stars, but Veronica thought it was the most ridiculous advice she'd ever received. Sure, it had been well-meaning when he said it, but she didn't understand why anyone would want to suggest something that would literally kill you if you actually managed to achieve it. </div>
-                    <div class="pos" style="background-image: url(https://images.unsplash.com/photo-1536152470836-b943b246224c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTl8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60)"></div>
-                    <div class="buttons">
-                        <div class="lc">
-                            <div class="like bt">
-                                <i class="fas fa-heart flex" onclick="like_post(0)"></i>
-                                <p onclick="see_likes(0)">
-                                  <span>Likes</span>
-                                   <label>65</label>
-                                </p>
-                            </div>
-                            <div class="comment bt flex">
-                                <i class="fas fa-comment" onclick="comment_post(0)"></i>
-                               <p onclick="see_comments(0)">
-                                  <span>Comments</span>
-                                   <label>17</label>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="save bt flex" onclick="save_post(0)">
-                            <i class="fas fa-bookmark"></i>
-                        </div>
-                    </div>
-                </div>
-                
-                
-                <div class="sample">
-                    <div class="cap new">
-                        <div class="details flex" onclick="view_profile(0)">
-                            <div class="dp" style="background-image: url(https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZmFjZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60);"></div>
-                            <div class="name"><span>Travel feel</span><label>6hrs Ago</label></div>
-                        </div>
-                        <div class="share flex">
-                              <i class="fas fa-user-plus s" onclick="follow(1)"></i>
-                              <i class="fas fa-share-alt f" onclick="share_post(1)"></i>
-                        </div>
-                    </div>
-                    <div class="des" id="des" onclick="this.classList.toggle('active')">“Life is always better at the beach.” “You can never have too much beach.” “Salty hair, sandy toes, ocean breeze, anything goes.” “Good vibes only.”</div>
-                    <div class="pos" style="background-image: url(https://images.unsplash.com/photo-1539139329395-ceb575183d8b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MjJ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60)"></div>
-                    <div class="buttons">
-                        <div class="lc">
-                            <div class="like bt">
-                                <i class="fas fa-heart flex" onclick="like_post(1)"></i>
-                                <p onclick="see_likes(1)">
-                                  <span>Likes</span>
-                                   <label>47</label>
-                                </p>
-                            </div>
-                            <div class="comment bt flex">
-                                <i class="fas fa-comment" onclick="comment_post(1)"></i>
-                               <p onclick="see_comments(1)">
-                                  <span>Comments</span>
-                                   <label>03</label>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="save bt flex" onclick="save_post(1)">
-                            <i class="fas fa-bookmark"></i>
-                        </div>
-                    </div>
-                </div>
-                
                 
                 
                 
@@ -536,6 +546,7 @@
     
     
     <script>
+        
         var bt = document.querySelector(".bg_text");
         var tw = bt.getBoundingClientRect().width;
         var bw = window.innerWidth - 50;
@@ -598,7 +609,7 @@
         }
         
         function comment_post(a){
-            document.querySelectorAll(".comment")[a].classList.toggle("active");
+            console.log("comment_post");
         }
         
         function see_comments(a){
@@ -611,6 +622,52 @@
         
         var container= document.querySelector(".container");
         
+        function scroll_left(a){
+            var pos = document.querySelectorAll(".pos")[a];
+            var pages = pos.querySelector(".pages");
+            var pos = document.querySelectorAll(".pos")[a];
+            var pages = pos.querySelector(".pages");
+            var total = parseInt(pos.getAttribute('total'));
+            var present = parseInt(pos.getAttribute('present'));
+            if (present > 0){
+                pages.style.transform = "translateX(calc("+ eval(present - 1) +"* -100%))";
+                pos.setAttribute('present',present - 1);
+                present -= 1;
+            }
+            if (present == 0){
+                    pos.classList.remove('n_first_page');
+            }else{
+                    pos.classList.add('n_first_page');
+            }
+            if (present == total){
+                    pos.classList.remove('n_last_page');
+            }else{
+                    pos.classList.add('n_last_page');
+            }
+        }
+        
+        function scroll_right(a){
+            var pos = document.querySelectorAll(".pos")[a];
+            var pages = pos.querySelector(".pages");
+            var total = parseInt(pos.getAttribute('total'));
+            var present = parseInt(pos.getAttribute('present'));
+            if (present < total){
+                pages.style.transform = "translateX(calc("+ eval(present + 1) +"* -100%))";
+                pos.setAttribute('present',present + 1);
+                present += 1;
+            }
+            if (present == total){
+                    pos.classList.remove('n_last_page');
+            }else{
+                    pos.classList.add('n_last_page');
+            }
+            if (present == 0){
+                    pos.classList.remove('n_first_page');
+            }else{
+                    pos.classList.add('n_first_page');
+            }
+        }
+
         
     </script>
     
@@ -654,5 +711,7 @@ window.addEventListener("beforeunload",(e) => {
            e.returnValue = "";
        });
        
-
+       
+       
+       
 -->
