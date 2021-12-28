@@ -130,7 +130,7 @@
             border-radius:8px;
             background-position: center;
             background-repeat: no-repeat;
-            background-size: cover;
+            background-size: contain;
             transition:0.4s;
             overflow: hidden;
         }
@@ -148,7 +148,7 @@
             height:20px;
             line-height:20px;
             border-radius:50%;
-            background-image:linear-gradient(rgb(0,0,0,0.5),rgb(0,0,0,0.3));
+            background-color:rgb(0,0,0,0.8);
             backdrop-filter:blur(1px);
             color:white;
             font-weight:bold;
@@ -206,7 +206,7 @@
             height:100%;
             background-position: center;
             background-repeat: no-repeat;
-            background-size: cover;
+            background-size: contain;
             top:0;
             left:calc(100% * var(--i));
             -webkit-scroll-snap-align:start;
@@ -434,7 +434,7 @@
                 
                 <div class="sample">
                     <div class="cap new">
-                        <div class="details flex" onclick="view_profile(0)">
+                        <div class="details flex" onclick="view_profile(1)">
                             <div class="dp" style="background-image: url(https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZmFjZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60);"></div>
                             <div class="name"><span>Nature Nithya</span><label>6hrs Ago</label></div>
                         </div>
@@ -480,6 +480,54 @@
                 </div>
                 
                 
+                <div class="sample">
+                    <div class="cap new">
+                        <div class="details flex" onclick="view_profile(2)">
+                            <div class="dp" style="background-image: url(https://images.unsplash.com/photo-1545996124-0501ebae84d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fGZhY2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60);"></div>
+                            <div class="name"><span>wonders watcher</span><label>9hrs Ago</label></div>
+                        </div>
+                        <div class="share flex">
+                              <i class="fas fa-user-plus s" onclick="follow(2)"></i>
+                              <i class="fas fa-share-alt f" onclick="share_post(2)"></i>
+                        </div>
+                    </div>
+                    <div class="des" id="des" onclick="this.classList.toggle('active')">All things of nature there is something of the marvelous.<br> Look deep into nature, and then you will understand everything better.<br>Those who contemplate the beauty of the earth find reserves of strength that will endure as long as life lasts.<br>The wonders of nature are endless.</div>
+                    <div class="pos multi n_last_page" total='6' present='0'>
+                        <div class="pages" onscroll="pos_indicate(2)">
+                            <div class="page" style="background-image:url(https://media.istockphoto.com/photos/sunrise-over-taj-mahal-picture-id528476982?b=1&k=20&m=528476982&s=170667a&w=0&h=m7KSaUL_6I0LBfTUzXUmmArYfvigTC9o5o01SvI8PA0=);--i:0" ></div>
+                            <div class="page" style="background-image: url(https://media.istockphoto.com/photos/camel-and-the-pyramids-in-giza-picture-id1139238705?b=1&k=20&m=1139238705&s=170667a&w=0&h=xq2ykORROSwHdQyhtKEtHD6PSO4vTa197NRgOWZl2vk=);--i:1"></div>
+                            <div class="page" style="background-image: url(https://media.istockphoto.com/photos/machu-picchu-peru-picture-id930824730?b=1&k=20&m=930824730&s=170667a&w=0&h=1JxLd3OP8-U95vnds4j9sK671dITJq7JuSkGdIMP3Gw=);--i:2"></div>
+                            <div class="page" style="background-image: url(https://images.unsplash.com/photo-1553808991-e39e7611442c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2V2ZW4lMjB3b25kZXJzJTIwb2YlMjB0aGUlMjB3b3JsZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60);--i:3"></div>
+                            <div class="page" style="background-image: url(https://wallpapercave.com/dwp1x/wp1921812.jpg);--i:4"></div>
+                            <div class="page" style="background-image: url(https://www.mordeo.org/files/uploads/2020/05/Eiffel-Tower-Autumn-Sunset-4K-Ultra-HD-Mobile-Wallpaper-950x1689.jpg);--i:5"></div>
+                            <div class="page" style="background-image: url(https://images.unsplash.com/photo-1591014979304-6d2599e8b904?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2V2ZW4lMjB3b25kZXJzJTIwb2YlMjB0aGUlMjB3b3JsZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60);--i:6"></div>
+                        </div>
+                        <i class="fas fa-info info" onclick="info_post(2)"></i>
+                        <i class="fas fa-chevron-left left" onclick="scroll_left(2)"></i>
+                        <i class="fas fa-chevron-right right" onclick="scroll_right(2)"></i>
+                    </div>
+                    <div class="buttons">
+                        <div class="lc">
+                            <div class="like bt">
+                                <i class="fas fa-heart flex" onclick="like_post(2)"></i>
+                                <p onclick="see_likes(2)">
+                                  <span>Likes</span>
+                                   <label>87</label>
+                                </p>
+                            </div>
+                            <div class="comment bt flex">
+                                <i class="fas fa-comment" onclick="comment_post(2)"></i>
+                               <p onclick="see_comments(2)">
+                                  <span>Comments</span>
+                                   <label>14</label>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="save bt flex" onclick="save_post(2)">
+                            <i class="fas fa-bookmark"></i>
+                        </div>
+                    </div>
+                </div>
                 
             </div>
         </div>
