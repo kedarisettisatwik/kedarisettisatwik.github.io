@@ -194,7 +194,7 @@
             transition:0.4s;
             overflow-x:scroll;
             overflow-y:hidden;
-            scroll-snap-type: x mandatory;
+            scroll-snap-type: x proximity;
         }
         .sample .pos.multi .pages::-webkit-scrollbar{
             -webkit-appearance: none;
@@ -445,7 +445,7 @@
                     </div>
                     <div class="des" id="des" onclick="this.classList.toggle('active')">“Life is always better at the beach.” “You can never have too much beach.” “Salty hair, sandy toes, ocean breeze, anything goes.” “Good vibes only.”</div>
                     <div class="pos multi n_last_page" total='3' present='0'>
-                        <div class="pages">
+                        <div class="pages" onscroll="pos_indicate(1)">
                             <div class="page" style="background-image:url(https://images.unsplash.com/photo-1539139329395-ceb575183d8b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MjJ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60);--i:0" ></div>
                             <div class="page" style="background-image:url(https://images.unsplash.com/photo-1586521995568-39abaa0c2311?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8bmF0dXJlJTIwYmFja2dyb3VuZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60);--i:1"></div>
                             <div class="page" style="background-image:url(https://images.unsplash.com/photo-1548217395-6c6095abb49c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60);--i:2"></div>
@@ -628,45 +628,45 @@
         
         var container= document.querySelector(".container");
         
-        var pages = document.querySelector(".pages");
+        
         
         function scroll_left(a){
             var pos = document.querySelectorAll(".pos")[a];
-            var pages = pos.querySelector(".pages");
-            var pos = document.querySelectorAll(".pos")[a];
-            var pages = pos.querySelector(".pages");
             var total = parseInt(pos.getAttribute('total'));
+            var pages = pos.querySelector(".pages");
             var ph = parseInt(window.getComputedStyle(pages).width);
             var present = parseInt(pos.getAttribute('present'));
             
             if (present > 0){
-                pages.scrollLeft = (present - 1) * ph;
                 pos.setAttribute('present',present - 1);
-                present -= 1;
-            }
-            if (present == 0){
-                    pos.classList.remove('n_first_page');
-            }else{
-                    pos.classList.add('n_first_page');
-            }
-            if (present == total){
-                    pos.classList.remove('n_last_page');
-            }else{
-                    pos.classList.add('n_last_page');
+                pages.scrollLeft = (present - 1) * ph;
             }
         }
         
         function scroll_right(a){
             var pos = document.querySelectorAll(".pos")[a];
-            var pages = pos.querySelector(".pages");
             var total = parseInt(pos.getAttribute('total'));
             var present = parseInt(pos.getAttribute('present'));
+            var pages = pos.querySelector(".pages");
             var ph = parseInt(window.getComputedStyle(pages).width);
+            
             if (present < total){
-                pages.scrollLeft = (present + 1) * ph;
                 pos.setAttribute('present',present + 1);
-                present += 1;
+                pages.scrollLeft = (present + 1) * ph;
             }
+            
+        }
+        
+        function pos_indicate(a){
+            var pos = document.querySelectorAll(".pos")[a];
+            var pages = pos.querySelector(".pages");
+            var ph = parseInt(window.getComputedStyle(pages).width);
+            var sl = parseInt(pages.scrollLeft);
+            var ps = Math.round(sl / ph)
+            pos.setAttribute('present',ps);
+            
+            var total = parseInt(pos.getAttribute('total'));
+            var present = parseInt(pos.getAttribute('present'));
             if (present == total){
                     pos.classList.remove('n_last_page');
             }else{
@@ -678,7 +678,6 @@
                     pos.classList.add('n_first_page');
             }
         }
-
         
         
     </script>
