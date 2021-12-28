@@ -192,11 +192,13 @@
             height:100%;
             border-radius:8px;
             transition:0.4s;
-            overflow:visible;
+            overflow-x:scroll;
+            overflow-y:hidden;
             scroll-snap-type: x mandatory;
         }
         .sample .pos.multi .pages::-webkit-scrollbar{
-/*            -webkit-appearance: none;*/
+            -webkit-appearance: none;
+            height:0px;
         }
         .sample .pos.multi .pages .page{
             position:absolute;
@@ -405,7 +407,7 @@
                         </div>
                     </div>
                     <div class="des" id="des" onclick="this.classList.toggle('active')" > Matt told her to reach for the stars, but Veronica thought it was the most ridiculous advice she'd ever received. Sure, it had been well-meaning when he said it, but she didn't understand why anyone would want to suggest something that would literally kill you if you actually managed to achieve it. </div>
-                    <div class="pos" style="background-image: url(https://images.unsplash.com/photo-1536152470836-b943b246224c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTl8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60)"><i class="fas fa-info info"></i></div>
+                    <div class="pos" style="background-image: url(https://images.unsplash.com/photo-1536152470836-b943b246224c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTl8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60)"><i class="fas fa-info info" onclick="info_post(0)"></i></div>
                     <div class="buttons">
                         <div class="lc">
                             <div class="like bt">
@@ -450,7 +452,7 @@
                             <div class="page" style="background-image:url(https://images.unsplash.com/photo-1548164806-9709e698bfc8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTB8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60);--i:3"></div>
                             
                         </div>
-                        <i class="fas fa-info info"></i>
+                        <i class="fas fa-info info" onclick="info_post(1)"></i>
                         <i class="fas fa-chevron-left left" onclick="scroll_left(1)"></i>
                         <i class="fas fa-chevron-right right" onclick="scroll_right(1)"></i>
                     </div>
@@ -620,7 +622,13 @@
             document.querySelectorAll(".save")[a].classList.toggle("active");
         }
         
+        function info_post(a){
+            console.log("info_post");
+        }
+        
         var container= document.querySelector(".container");
+        
+        var pages = document.querySelector(".pages");
         
         function scroll_left(a){
             var pos = document.querySelectorAll(".pos")[a];
@@ -628,9 +636,11 @@
             var pos = document.querySelectorAll(".pos")[a];
             var pages = pos.querySelector(".pages");
             var total = parseInt(pos.getAttribute('total'));
+            var ph = parseInt(window.getComputedStyle(pages).width);
             var present = parseInt(pos.getAttribute('present'));
+            
             if (present > 0){
-                pages.style.transform = "translateX(calc("+ eval(present - 1) +"* -100%))";
+                pages.scrollLeft = (present - 1) * ph;
                 pos.setAttribute('present',present - 1);
                 present -= 1;
             }
@@ -651,8 +661,9 @@
             var pages = pos.querySelector(".pages");
             var total = parseInt(pos.getAttribute('total'));
             var present = parseInt(pos.getAttribute('present'));
+            var ph = parseInt(window.getComputedStyle(pages).width);
             if (present < total){
-                pages.style.transform = "translateX(calc("+ eval(present + 1) +"* -100%))";
+                pages.scrollLeft = (present + 1) * ph;
                 pos.setAttribute('present',present + 1);
                 present += 1;
             }
@@ -668,6 +679,7 @@
             }
         }
 
+        
         
     </script>
     
