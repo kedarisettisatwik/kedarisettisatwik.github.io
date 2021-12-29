@@ -1,7 +1,7 @@
 
 function side_bar() {
     var pages = ["task_page", "chat_page", "posts_page", "blogs_page", "history_page"];
-    var notify = [0,0, 0, 0, 0];
+    var notify = [0, 0, 0, 0, 1];
     var total = 0;
     for (var i = 0; i < pages.length; i++) {
         var pp = document.getElementById(pages[i]);

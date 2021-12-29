@@ -46,8 +46,31 @@
             align-items: center;
             flex-direction: row;
         }
-        
-        .container{
+
+        .main .container {
+            width: calc(100% - 3px);
+            height: calc(100% - 150px);
+            margin-top: 25px;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            padding-right: 3px;
+            padding-left: 6px;
+            position: relative;
+        }
+
+        .container::-webkit-scrollbar {
+            -webkit-appearance: none;
+            width: 5px;
+        }
+
+        .container::-webkit-scrollbar-thumb {
+            -webkit-appearance: none;
+            width: 5px;
+            border-radius: 5px;
+            background-color: #1B224A;
+        }
+
+        .container {
             scroll-snap-type: y proximity;
         }
 
@@ -57,9 +80,9 @@
             top: 0;
             left: 0;
             padding: 0 5px;
-            margin-bottom:15px;
-            -webkit-scroll-snap-align:start;
-            scroll-snap-align:start;
+            margin-bottom: 15px;
+            -webkit-scroll-snap-align: start;
+            scroll-snap-align: start;
         }
 
         .sample .cap {
@@ -70,186 +93,220 @@
             height: 50px;
             align-items: center;
         }
-        .sample .cap .details{
-            cursor:pointer;
+
+        .sample .cap .details {
+            cursor: pointer;
         }
-        .sample .cap .dp,.sample .cap .name,.sample .cap .share,.sample .pos,.sample .buttons .bt,.sample .des{
-            position:relative;
+
+        .sample .cap .dp,
+        .sample .cap .name,
+        .sample .cap .share,
+        .sample .pos,
+        .sample .buttons .bt,
+        .sample .des {
+            position: relative;
         }
+
         .sample .cap .dp {
             width: 40px;
             height: 40px;
-            position:relative;
-            border-radius:8px;
+            position: relative;
+            border-radius: 8px;
             background-position: top;
             background-repeat: no-repeat;
             background-size: cover;
         }
-        .sample .cap .name{
+
+        .sample .cap .name {
             width: 190px;
             height: 40px;
-            margin-left:10px;
-            padding-left:10px;
+            margin-left: 10px;
+            padding-left: 10px;
         }
+
         .sample .cap .name span,
-        .sample .cap .name label{
+        .sample .cap .name label {
             display: block;
-            width:100%;
+            width: 100%;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
         }
-        .sample .cap .name span{
-            font-size:14px;
-            font-weight:bold;
-            letter-spacing:2px;
+
+        .sample .cap .name span {
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 2px;
         }
-        .sample .cap .name label{
-            font-size:12px;
+
+        .sample .cap .name label {
+            font-size: 12px;
         }
+
         .sample .cap .share {
             height: 40px;
         }
-        .sample .cap .share .s{
+
+        .sample .cap .share .s {
             display: none;
-            color:blue;
-            text-shadow:0 0 3px rgb(0 0 255 / 20%);
+            color: blue;
+            text-shadow: 0 0 3px rgb(0 0 255 / 20%);
         }
-        .sample .cap .share .f,.sample .cap.new .share .s{
-            width:40px;
-            height:40px;
-            line-height:40px;
-            cursor:pointer;
-            display:inline;
+
+        .sample .cap .share .f,
+        .sample .cap.new .share .s {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            cursor: pointer;
+            display: inline;
             text-align: center;
-            font-size:16px;
+            font-size: 16px;
         }
+
         .sample .pos {
             width: 100%;
             height: 300px;
-            border-radius:8px;
+            border-radius: 8px;
             background-position: center;
             background-repeat: no-repeat;
-            background-size:cover;
-            transition:0.4s;
+            background-size: cover;
+            transition: 0.4s;
             overflow: hidden;
         }
-        .sample .pos:hover{
+
+        .sample .pos:hover {
             cursor: crosshair;
         }
-        .sample .pos:active{
+
+        .sample .pos:active {
             background-size: contain;
         }
-        .sample .pos .info{
+
+        .sample .pos .info {
             position: absolute;
-            bottom:10px;
-            left:10px;
-            width:20px;
-            height:20px;
-            line-height:20px;
-            border-radius:50%;
-            background-color:rgb(0,0,0,0.8);
-            backdrop-filter:blur(1px);
-            color:white;
-            font-weight:bold;
-            font-size:10px;
+            bottom: 10px;
+            left: 10px;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            border-radius: 50%;
+            background-color: rgb(0, 0, 0, 0.8);
+            backdrop-filter: blur(1px);
+            color: white;
+            font-weight: bold;
+            font-size: 10px;
             text-align: center;
-            cursor:pointer;
+            cursor: pointer;
         }
-        .sample .pos.multi .page_no{
+
+        .sample .pos.multi .page_no {
             position: absolute;
-            top:10px;
-            right:10px;
-            padding:5px 10px;
-            background-color:rgb(0,0,0,0.5);
-            backdrop-filter:blur(1px);
-            -webkit-backdrop-filter:blur(1px);
-            color:white;
-            font-size:12px;
-            font-weight:bold;
-            letter-spacing:1px;
+            top: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            background-color: rgb(0, 0, 0, 0.5);
+            backdrop-filter: blur(1px);
+            -webkit-backdrop-filter: blur(1px);
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
         }
+
         .sample .pos.multi .left,
-        .sample .pos.multi .right{
+        .sample .pos.multi .right {
             position: absolute;
-            top:50%;
-            font-size:12px;
-            font-weight:bold;
-            transform:translate(0%,-50%);
-            width:25px;
-            height:25px;
-            line-height:25px;
+            top: 50%;
+            font-size: 12px;
+            font-weight: bold;
+            transform: translate(0%, -50%);
+            width: 25px;
+            height: 25px;
+            line-height: 25px;
             text-align: center;
-            background-color:rgb(255,255,255,0.8);
-            color:black;
-            cursor:pointer;
+            background-color: rgb(255, 255, 255, 0.8);
+            color: black;
+            cursor: pointer;
             display: none;
         }
-        .sample .pos.multi.n_first_page .left{
+
+        .sample .pos.multi.n_first_page .left {
             display: block;
         }
-        .sample .pos.multi.n_last_page .right{
+
+        .sample .pos.multi.n_last_page .right {
             display: block;
         }
-        .sample .pos.multi .left{
-            left:10px;
+
+        .sample .pos.multi .left {
+            left: 10px;
         }
-        .sample .pos.multi .right{
-            right:10px;
+
+        .sample .pos.multi .right {
+            right: 10px;
         }
-        .sample .pos.multi .pages{
+
+        .sample .pos.multi .pages {
             position: relative;
-            top:0;
-            left:0;
-            width:100%;
-            height:100%;
-            border-radius:8px;
-            transition:0.4s;
-            overflow-x:scroll;
-            overflow-y:hidden;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            transition: 0.4s;
+            overflow-x: scroll;
+            overflow-y: hidden;
             scroll-snap-type: x mandatory;
         }
-        .sample .pos.multi .pages::-webkit-scrollbar{
+
+        .sample .pos.multi .pages::-webkit-scrollbar {
             -webkit-appearance: none;
-            height:0px;
+            height: 0px;
         }
-        .sample .pos.multi .pages .page{
-            position:absolute;
-            width:100%;
-            height:100%;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size:cover;
-            top:0;
-            left:calc(100% * var(--i));
-            -webkit-scroll-snap-align:start;
-            scroll-snap-align:start;
-        }
-        .sample .pos.multi .pages .page::before{
+
+        .sample .pos.multi .pages .page {
             position: absolute;
-            content:'';
-            top:0;
-            left:5px;
-            width:calc(100% - 10px);
-            height:100%;
+            width: 100%;
+            height: 100%;
             background-position: center;
             background-repeat: no-repeat;
-            background-size:cover;
-            background-image:var(--img);
+            background-size: cover;
+            top: 0;
+            left: calc(100% * var(--i));
+            -webkit-scroll-snap-align: start;
+            scroll-snap-align: start;
         }
-        .sample .pos.multi .pages .page:active{
+
+        .sample .pos.multi .pages .page::before {
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 5px;
+            width: calc(100% - 10px);
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-image: var(--img);
+        }
+
+        .sample .pos.multi .pages .page:active {
             background-size: contain;
         }
-        .sample .pos.multi .pages .page:active::before{
+
+        .sample .pos.multi .pages .page:active::before {
             background-size: contain;
         }
+
         .sample .buttons {
             width: 100%;
-            margin-top:10px;
+            margin-top: 10px;
             display: flex;
             justify-content: space-between;
             position: relative;
         }
+
         .sample .buttons .lc {
             display: flex;
             justify-content: flex-start;
@@ -257,106 +314,121 @@
             align-items: center;
             width: calc(100% - 50px);
         }
+
         .sample .buttons .lc .bt {
             margin-right: 5px;
             width: 140px;
             display: flex;
-            justify-content:flex-start;
+            justify-content: flex-start;
             align-items: center;
             flex-direction: row;
-            padding:0 10px;
+            padding: 0 10px;
         }
-        .sample .buttons .lc .bt p{
-            height:40px;
-            width:80px;
+
+        .sample .buttons .lc .bt p {
+            height: 40px;
+            width: 80px;
         }
-        .sample .buttons .lc .bt p span{
-            display:block;
-            font-size:12px;
+
+        .sample .buttons .lc .bt p span {
+            display: block;
+            font-size: 12px;
         }
-        .sample .buttons .lc .bt p label{
-            font-size:13px;
+
+        .sample .buttons .lc .bt p label {
+            font-size: 13px;
         }
-        .sample .buttons .lc .bt i{
-            line-height:40px;
-            height:40px;
-            width:40px;
-            cursor:pointer;
+
+        .sample .buttons .lc .bt i {
+            line-height: 40px;
+            height: 40px;
+            width: 40px;
+            cursor: pointer;
             text-align: center;
         }
+
         .sample .buttons .bt {
             height: 40px;
             border-radius: 5px;
-            cursor:pointer;
+            cursor: pointer;
         }
-        .sample .buttons .bt i{
-            color:rgb(0,0,0,0.4);
-            transition:0.4s;
-            font-size:16px;
+
+        .sample .buttons .bt i {
+            color: rgb(0, 0, 0, 0.4);
+            transition: 0.4s;
+            font-size: 16px;
         }
+
         .sample .buttons .save {
             width: 40px;
         }
-        .sample .buttons .bt.active i{
-            font-size:18px;
+
+        .sample .buttons .bt.active i {
+            font-size: 18px;
         }
-        .sample .buttons .like.active i{
-            color:red;
-            text-shadow:0 0 3px rgb(255 0 0 / 30%);
+
+        .sample .buttons .like.active i {
+            color: red;
+            text-shadow: 0 0 3px rgb(255 0 0 / 30%);
         }
-        .sample .buttons .comment.active i{
-            color:black;
-            text-shadow:0 0 3px rgb(0 0 0 / 30%);
+
+        .sample .buttons .comment.active i {
+            color: black;
+            text-shadow: 0 0 3px rgb(0 0 0 / 30%);
         }
-        .sample .buttons .save.active i{
-            color:green;
-            text-shadow:0 0 3px rgb(0 255 0 / 30%);
+
+        .sample .buttons .save.active i {
+            color: green;
+            text-shadow: 0 0 3px rgb(0 255 0 / 30%);
         }
+
         .sample .des {
             width: 100%;
             height: 30px;
-            margin:6px 0;
-            line-height:30px;
-            font-size:12px;
-            letter-spacing:1px;
+            margin: 6px 0;
+            line-height: 30px;
+            font-size: 12px;
+            letter-spacing: 1px;
             overflow: hidden;
             text-overflow: ellipsis;
             justify-content: flex-start;
-            padding:0 10px;
+            padding: 0 10px;
             white-space: nowrap;
         }
-        .sample .des.active{
+
+        .sample .des.active {
             height: auto;
             white-space: normal;
         }
-        
+
         .sample .cap .dp::after,
         .sample .cap .name::after,
         .sample .cap .share::after,
         .sample .pos::after,
         .sample .buttons .bt:after,
-        .sample .des::after{
-            content:'';
-            top:0;
-            left:0;
-            width:100%;
-            height:100%;
+        .sample .des::after {
+            content: '';
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             position: absolute;
             background-color: #e6e6e6;
-            border-radius:5px;
-            z-index:1;
-            transition:0.4s;
+            border-radius: 5px;
+            z-index: 1;
+            transition: 0.4s;
         }
+
         .sample.active .cap .dp::after,
         .sample.active .cap .name::after,
         .sample.active .cap .share::after,
         .sample.active .pos::after,
         .sample.active .buttons .bt:after,
-        .sample.active .des::after{
-            opacity:0;
-            z-index:-1;
+        .sample.active .des::after {
+            opacity: 0;
+            z-index: -1;
         }
-        
+
 
         /*        space   */
 
@@ -430,26 +502,26 @@
                             <div class="name"><span>Striking Wolves</span><label>2hrs Ago</label></div>
                         </div>
                         <div class="share flex">
-                              <i class="fas fa-user-plus s" onclick="follow(0)"></i>
-                              <i class="fas fa-share-alt f" onclick="share_post(0)"></i>
+                            <i class="fas fa-user-plus s" onclick="follow(0)"></i>
+                            <i class="fas fa-share-alt f" onclick="share_post(0)"></i>
                         </div>
                     </div>
-                    <div class="des" id="des" onclick="this.classList.toggle('active')" > Matt told her to reach for the stars, but Veronica thought it was the most ridiculous advice she'd ever received. Sure, it had been well-meaning when he said it, but she didn't understand why anyone would want to suggest something that would literally kill you if you actually managed to achieve it. </div>
+                    <div class="des" id="des" onclick="this.classList.toggle('active')"> Matt told her to reach for the stars, but Veronica thought it was the most ridiculous advice she'd ever received. Sure, it had been well-meaning when he said it, but she didn't understand why anyone would want to suggest something that would literally kill you if you actually managed to achieve it. </div>
                     <div class="pos" style="background-image: url(https://images.unsplash.com/photo-1536152470836-b943b246224c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTl8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60)"><i class="fas fa-info info" onclick="info_post(0)"></i></div>
                     <div class="buttons">
                         <div class="lc">
                             <div class="like bt">
                                 <i class="fas fa-heart flex" onclick="like_post(0)"></i>
                                 <p onclick="see_likes(0)">
-                                  <span>Likes</span>
-                                   <label>15</label>
+                                    <span>Likes</span>
+                                    <label>15</label>
                                 </p>
                             </div>
                             <div class="comment bt flex">
                                 <i class="fas fa-comment" onclick="comment_post(0)"></i>
-                               <p onclick="see_comments(0)">
-                                  <span>Comments</span>
-                                   <label>07</label>
+                                <p onclick="see_comments(0)">
+                                    <span>Comments</span>
+                                    <label>07</label>
                                 </p>
                             </div>
                         </div>
@@ -458,8 +530,8 @@
                         </div>
                     </div>
                 </div>
-                
-                
+
+
                 <div class="sample">
                     <div class="cap new">
                         <div class="details flex" onclick="view_profile(1)">
@@ -467,18 +539,18 @@
                             <div class="name"><span>Nature Nithya</span><label>6hrs Ago</label></div>
                         </div>
                         <div class="share flex">
-                              <i class="fas fa-user-plus s" onclick="follow(1)"></i>
-                              <i class="fas fa-share-alt f" onclick="share_post(1)"></i>
+                            <i class="fas fa-user-plus s" onclick="follow(1)"></i>
+                            <i class="fas fa-share-alt f" onclick="share_post(1)"></i>
                         </div>
                     </div>
                     <div class="des" id="des" onclick="this.classList.toggle('active')">“Life is always better at the beach.” “You can never have too much beach.” “Salty hair, sandy toes, ocean breeze, anything goes.” “Good vibes only.”</div>
                     <div class="pos multi n_last_page" total='3' present='0'>
                         <div class="pages" onscroll="pos_indicate(1)">
-                            <div class="page" style="--img:url(https://images.unsplash.com/photo-1539139329395-ceb575183d8b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MjJ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60);--i:0" ></div>
+                            <div class="page" style="--img:url(https://images.unsplash.com/photo-1539139329395-ceb575183d8b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MjJ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60);--i:0"></div>
                             <div class="page" style="--img:url(https://images.unsplash.com/photo-1586521995568-39abaa0c2311?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8bmF0dXJlJTIwYmFja2dyb3VuZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60);--i:1"></div>
                             <div class="page" style="--img:url(https://images.unsplash.com/photo-1548217395-6c6095abb49c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60);--i:2"></div>
                             <div class="page" style="--img:url(https://images.unsplash.com/photo-1548164806-9709e698bfc8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTB8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60);--i:3"></div>
-                            
+
                         </div>
                         <div class="page_no">1 / 4</div>
                         <i class="fas fa-info info" onclick="info_post(1)"></i>
@@ -490,15 +562,15 @@
                             <div class="like bt">
                                 <i class="fas fa-heart flex" onclick="like_post(1)"></i>
                                 <p onclick="see_likes(1)">
-                                  <span>Likes</span>
-                                   <label>46</label>
+                                    <span>Likes</span>
+                                    <label>46</label>
                                 </p>
                             </div>
                             <div class="comment bt flex">
                                 <i class="fas fa-comment" onclick="comment_post(1)"></i>
-                               <p onclick="see_comments(1)">
-                                  <span>Comments</span>
-                                   <label>03</label>
+                                <p onclick="see_comments(1)">
+                                    <span>Comments</span>
+                                    <label>03</label>
                                 </p>
                             </div>
                         </div>
@@ -507,8 +579,8 @@
                         </div>
                     </div>
                 </div>
-                
-                
+
+
                 <div class="sample">
                     <div class="cap new">
                         <div class="details flex" onclick="view_profile(2)">
@@ -516,14 +588,14 @@
                             <div class="name"><span>wonders watcher</span><label>9hrs Ago</label></div>
                         </div>
                         <div class="share flex">
-                              <i class="fas fa-user-plus s" onclick="follow(2)"></i>
-                              <i class="fas fa-share-alt f" onclick="share_post(2)"></i>
+                            <i class="fas fa-user-plus s" onclick="follow(2)"></i>
+                            <i class="fas fa-share-alt f" onclick="share_post(2)"></i>
                         </div>
                     </div>
                     <div class="des" id="des" onclick="this.classList.toggle('active')">All things of nature there is something of the marvelous.<br> Look deep into nature, and then you will understand everything better.<br>Those who contemplate the beauty of the earth find reserves of strength that will endure as long as life lasts.<br>The wonders of nature are endless.</div>
                     <div class="pos multi n_last_page" total='6' present='0'>
                         <div class="pages" onscroll="pos_indicate(2)">
-                            <div class="page" style="--img:url(https://media.istockphoto.com/photos/sunrise-over-taj-mahal-picture-id528476982?b=1&k=20&m=528476982&s=170667a&w=0&h=m7KSaUL_6I0LBfTUzXUmmArYfvigTC9o5o01SvI8PA0=);--i:0" ></div>
+                            <div class="page" style="--img:url(https://media.istockphoto.com/photos/sunrise-over-taj-mahal-picture-id528476982?b=1&k=20&m=528476982&s=170667a&w=0&h=m7KSaUL_6I0LBfTUzXUmmArYfvigTC9o5o01SvI8PA0=);--i:0"></div>
                             <div class="page" style="--img: url(https://media.istockphoto.com/photos/camel-and-the-pyramids-in-giza-picture-id1139238705?b=1&k=20&m=1139238705&s=170667a&w=0&h=xq2ykORROSwHdQyhtKEtHD6PSO4vTa197NRgOWZl2vk=);--i:1"></div>
                             <div class="page" style="--img: url(https://media.istockphoto.com/photos/machu-picchu-peru-picture-id930824730?b=1&k=20&m=930824730&s=170667a&w=0&h=1JxLd3OP8-U95vnds4j9sK671dITJq7JuSkGdIMP3Gw=);--i:2"></div>
                             <div class="page" style="--img: url(https://images.unsplash.com/photo-1553808991-e39e7611442c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2V2ZW4lMjB3b25kZXJzJTIwb2YlMjB0aGUlMjB3b3JsZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60);--i:3"></div>
@@ -541,15 +613,15 @@
                             <div class="like bt">
                                 <i class="fas fa-heart flex" onclick="like_post(2)"></i>
                                 <p onclick="see_likes(2)">
-                                  <span>Likes</span>
-                                   <label>87</label>
+                                    <span>Likes</span>
+                                    <label>87</label>
                                 </p>
                             </div>
                             <div class="comment bt flex">
                                 <i class="fas fa-comment" onclick="comment_post(2)"></i>
-                               <p onclick="see_comments(2)">
-                                  <span>Comments</span>
-                                   <label>14</label>
+                                <p onclick="see_comments(2)">
+                                    <span>Comments</span>
+                                    <label>14</label>
                                 </p>
                             </div>
                         </div>
@@ -558,7 +630,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
 
@@ -623,22 +695,21 @@
     <div class="logo flex">
         <h1 class="bg_text">AOIGHT</h1>
     </div>
-    
-    
+
+
     <script>
-        
         var bt = document.querySelector(".bg_text");
         var tw = bt.getBoundingClientRect().width;
         var bw = window.innerWidth - 50;
         bt.style.transform = "scale(" + bw / tw + ")";
-        
+
         var sample = document.querySelectorAll(".sample");
-        
+
         window.addEventListener('load', (e) => {
             document.querySelector(".logo").classList.add("active");
             setTimeout(function() {
                 document.querySelector(".logo").style.display = "none";
-                for (var m = 0;m<sample.length;m++){
+                for (var m = 0; m < sample.length; m++) {
                     sample[m].classList.add("active");
                 }
             }, 3300);
@@ -654,9 +725,9 @@
         if (bw + 60 < 450) {
             main.classList.add("open");
         }
-        
-         
-        
+
+
+
         function open_menu() {
             var bw = window.innerWidth;
             if (bw > 450) {
@@ -667,103 +738,102 @@
                 main.classList.toggle('open');
             }
         }
-        
-        function view_profile(a){
+
+        function view_profile(a) {
             console.log("view_profile");
         }
-        
-        function share_post(a){
+
+        function share_post(a) {
             console.log("share_post");
         }
-        
-        function follow(a){
+
+        function follow(a) {
             document.querySelectorAll(".cap")[a].classList.remove("new");
         }
-        
-        function like_post(a){
+
+        function like_post(a) {
             document.querySelectorAll(".like")[a].classList.toggle("active");
         }
-        
-        function see_likes(a){
+
+        function see_likes(a) {
             console.log("see_likes");
         }
-        
-        function comment_post(a){
+
+        function comment_post(a) {
             console.log("comment_post");
         }
-        
-        function see_comments(a){
+
+        function see_comments(a) {
             console.log("see_comments");
         }
-        
-        function save_post(a){
+
+        function save_post(a) {
             document.querySelectorAll(".save")[a].classList.toggle("active");
         }
-        
-        function info_post(a){
+
+        function info_post(a) {
             console.log("info_post");
         }
-        
-        var container= document.querySelector(".container");
-        
-        
-        
-        function scroll_left(a){
+
+        var container = document.querySelector(".container");
+
+
+
+        function scroll_left(a) {
             var pos = document.querySelectorAll(".pos")[a];
             var total = parseInt(pos.getAttribute('total'));
             var pages = pos.querySelector(".pages");
             var ph = parseInt(window.getComputedStyle(pages).width);
             var present = parseInt(pos.getAttribute('present'));
-            
-            if (present > 0){
-                pos.setAttribute('present',present - 1);
+
+            if (present > 0) {
+                pos.setAttribute('present', present - 1);
                 pages.scrollLeft = (present - 1) * ph;
             }
         }
-        
-        function scroll_right(a){
+
+        function scroll_right(a) {
             var pos = document.querySelectorAll(".pos")[a];
             var total = parseInt(pos.getAttribute('total'));
             var present = parseInt(pos.getAttribute('present'));
             var pages = pos.querySelector(".pages");
             var ph = parseInt(window.getComputedStyle(pages).width);
-            
-            if (present < total){
-                pos.setAttribute('present',present + 1);
+
+            if (present < total) {
+                pos.setAttribute('present', present + 1);
                 pages.scrollLeft = (present + 1) * ph;
             }
-            
+
         }
-        
-        function pos_indicate(a){
+
+        function pos_indicate(a) {
             var pos = document.querySelectorAll(".pos")[a];
             var pages = pos.querySelector(".pages");
             var ph = parseInt(window.getComputedStyle(pages).width);
             var sl = parseInt(pages.scrollLeft);
             var ps = Math.round(sl / ph)
-            pos.setAttribute('present',ps);
+            pos.setAttribute('present', ps);
             var page_no = pos.querySelector(".page_no");
-            
+
             var total = parseInt(pos.getAttribute('total'));
             var present = parseInt(pos.getAttribute('present'));
-            
+
             page_no.innerHTML = (present + 1) + " / " + (total + 1);
-                
-            if (present == total){
-                    pos.classList.remove('n_last_page');
-            }else{
-                    pos.classList.add('n_last_page');
+
+            if (present == total) {
+                pos.classList.remove('n_last_page');
+            } else {
+                pos.classList.add('n_last_page');
             }
-            if (present == 0){
-                    pos.classList.remove('n_first_page');
-            }else{
-                    pos.classList.add('n_first_page');
+            if (present == 0) {
+                pos.classList.remove('n_first_page');
+            } else {
+                pos.classList.add('n_first_page');
             }
         }
-        
-        
+
     </script>
-    
+
     <script src="side.js"></script>
 
 </body>

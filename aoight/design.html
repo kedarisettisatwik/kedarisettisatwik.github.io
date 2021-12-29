@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="side.css">
     <link rel="stylesheet" href="main.css">
 
-    <title>Aoight | Calender</title>
+    <title>Aoight | Design</title>
 
     <style>
         * {
@@ -45,68 +45,10 @@
             align-items: center;
             flex-direction: row;
         }
-        .main .nav{
-            width:100%;
-            position:relative;
-            margin-top:25px;
-            padding-left:20px;
-            justify-content: flex-start;
-        }
-        .main .nav .list{
-            list-style: none;
-            justify-content: space-around;
-            position:relative;
-        }
-        .main .nav .list li{
-            font-size:14px;
-            font-weight:bold;
-            letter-spacing:2px;
-            transition:0.4s;
-            height:40px;
-            line-height:40px;
-            border-radius:10px;
-            width:100px;
-            margin:0 10px;
-            cursor:pointer;
-            text-align: center;
-            z-index:1;
-        }
-        .main .nav .list .bg{
-            position: absolute;
-            width:100px;
-            height:40px;
-            box-shadow:0 0 4px rgb(0,0,0,0.2);
-            background-color:#1B224A;
-            border-radius:8px;
-            top:0;
-            left:10px;
-            transition:0.4s;
-            z-index:0;
-        }
-        .main .nav .list.event .bg{
-            left:130px;
-        }
-        .main .nav .list li:nth-child(2){
-            opacity:1;
-            color:white;
-        }
-        .main .nav .list li:nth-child(3){
-            opacity:0.5;
-            color:black;
-        }
-        .main .nav .list.event li:nth-child(2){
-            opacity:0.5;
-            color:black;
-        }
-        .main .nav .list.event li:nth-child(3){
-            opacity:1;
-            color:white;
-        }
-        
         .main .container {
             position: relative;
             width:100%;
-            height:calc(100% - 120px - 80px);
+            height:calc(100% - 120px - 20px);
             margin-top:8px;
         }
 
@@ -172,13 +114,6 @@
                 <div class="bell" onclick="open_menu()">
                     <i class="fas fa-bell"></i>
                 </div>
-            </div>
-            <div class="nav flex">
-                <ul class="list flex">
-                     <div class="bg"></div>
-                     <li onclick="document.querySelector('.list').classList.remove('event')">Tasks</li>
-                     <li onclick="document.querySelector('.list').classList.add('event')">Events</li>
-                </ul>
             </div>
             <div class="container">
             
