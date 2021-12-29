@@ -26,6 +26,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
             /*          font-family: 'Caveat', cursive; 
             font-family: 'Pushster', cursive;
 */
@@ -106,9 +107,62 @@
         .main .container {
             position: relative;
             width:100%;
-            height:calc(100% - 120px - 80px);
+            height:calc(100% - 120px - 70px);
             margin-top:8px;
+            overflow: hidden;
         }
+        
+        .main .container .pages{
+            height:100%;
+            width:100%;
+            position:relative;
+            overflow-x: scroll;
+            scroll-snap-type: x mandatory;
+        }
+        .pages::-webkit-scrollbar {
+            -webkit-appearance: none;
+             height:0px;
+        }
+        .main .container .pages .page{
+            height:100%;
+            position:absolute;
+            width:100%;
+            overflow: hidden;
+            top:0;
+            left:0;
+            padding:0 3px 5px 0;
+            -webkit-scroll-snap-align: start;
+            scroll-snap-align: start;
+        }
+        .main .container .pages .page:nth-child(1){
+            transform:translateX(0);
+            background-color: antiquewhite;
+        }
+        .main .container .pages .page:nth-child(2){
+            transform:translateX(100%);
+            background-color: blueviolet;
+        }
+        .main .container .pages .page .content{
+            position:relative;
+            width:100%;
+            height:100%;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            padding-left:3px;
+        }
+        .content::-webkit-scrollbar {
+            -webkit-appearance: none;
+            width: 5px;
+        }
+
+        .content::-webkit-scrollbar-thumb {
+            -webkit-appearance: none;
+            width: 5px;
+            border-radius: 5px;
+            background-color: #1B224A;
+        }
+        
+        
 
         /*        space   */
 
@@ -176,12 +230,15 @@
             <div class="nav flex">
                 <ul class="list flex">
                      <div class="bg"></div>
-                     <li onclick="document.querySelector('.list').classList.remove('event')">Tasks</li>
-                     <li onclick="document.querySelector('.list').classList.add('event')">Events</li>
+                     <li onclick="goto1(0)">Tasks</li>
+                     <li onclick="goto1(1)">Events</li>
                 </ul>
             </div>
             <div class="container">
-            
+                 <div class="pages">
+                     <div class="page"></div>
+                     <div class="page"></div>
+                 </div>
             </div>
         </div>
 
@@ -252,7 +309,7 @@
             document.querySelector(".logo").classList.add("active");
             setTimeout(function() {
                 document.querySelector(".logo").style.display = "none";
-            }, 3300);
+            }, 3100);
         });
 
         var side = document.querySelector(".side");
@@ -277,7 +334,29 @@
                 main.classList.toggle('open');
             }
         }
+        
+        var list = document.querySelector(".list");
+        var pages = document.querySelector(".pages");
 
+        pages.addEventListener('scroll', (e) => {
+            var pages_width = parseInt(window.getComputedStyle(pages).width);
+            var scroll_x = pages.scrollLeft;
+            if (scroll_x > pages_width - 90){
+                list.classList.add("event");
+            }else{
+                list.classList.remove("event");
+            }
+        });
+        
+        function goto1(a){
+            var pages_width = parseInt(window.getComputedStyle(pages).width);
+            if (a == 0){
+                pages.scrollLeft = 0;
+            }else{
+                pages.scrollLeft = pages_width;
+            }
+        }
+        
     </script>
 
     <script src="side.js"></script>
