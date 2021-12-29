@@ -43,8 +43,8 @@
     .screen .main.active.open,
     .screen .main.open {
         left: calc(100% - 140px);
-        transform: scale(0.95) rotateZ(-2deg);
-        box-shadow: 0 0 15px rgb(0 0 0 / 50%);
+        transform: scale(0.85) rotateZ(3deg);
+        box-shadow: 0 0 20px rgb(0 0 0 / 50%);
         border-radius: 5px;
     }
 }
@@ -53,7 +53,7 @@
 
     .screen .main.active.open,
     .screen .main.open {
-        left: calc(100% - 50px);
+        left: calc(100% - 100px);
     }
 }
 
