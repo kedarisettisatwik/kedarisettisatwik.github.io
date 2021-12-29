@@ -341,7 +341,7 @@
         pages.addEventListener('scroll', (e) => {
             var pages_width = parseInt(window.getComputedStyle(pages).width);
             var scroll_x = pages.scrollLeft;
-            if (scroll_x > pages_width - 90){
+            if (scroll_x > pages_width/2 + 15){
                 list.classList.add("event");
             }else{
                 list.classList.remove("event");
