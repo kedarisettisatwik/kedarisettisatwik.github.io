@@ -133,7 +133,9 @@
             top:0;
             left:0;
             padding:0 5px 0 15px;
-            scroll-snap-type: y proximity;
+            -webkit-scroll-snap-align: start;
+            scroll-snap-align: start;
+            scroll-snap-type: y mandatory;
         }
         
         .main .container .pages .page:nth-child(1){
