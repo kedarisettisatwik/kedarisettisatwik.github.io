@@ -105,7 +105,6 @@
         }
         .main .date{
             width:100%;
-            margin-top:5px;
             padding-right:20px;
             position:relative;
             text-align: right;
@@ -141,7 +140,6 @@
             height:calc(100% - 120px - 60px - 45px - 5px);
             overflow: hidden;
             padding-right:3px;
-            margin-top:5px;
         }
         
         .main .container .pages{
@@ -187,10 +185,40 @@
         }
         .main .container .pages .page .task{
             width:100%;
-            padding:10px 0;
-            margin-bottom:5px;
+            padding:10px;
+            margin-bottom:8px;
             -webkit-scroll-snap-align: start;
             scroll-snap-align: start;
+            position:relative;
+            box-shadow:0 0 15px rgb(0,0,0,0.08);
+            border:none;
+            background-color:var(--i);
+            opacity:1;
+            transition:0.4s, opacity 0.5s;
+            transition-delay:0s, 0.8s; 
+        }
+        .main .container .pages .page .task.completed{
+            background-color:white;
+            border-left:10px solid var(--i);
+            opacity:0.3;
+            box-shadow:0 0 0px rgb(0,0,0,0.08);
+        }
+        .main .container .pages .page .task h3{
+            font-size:14px;
+            font-weight:500;
+            letter-spacing:1px;
+            width:100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            height:30px;
+            line-height:30px;
+        }
+        .main .container .pages .page .task p{
+            font-size:16px;
+            font-weight:bold;
+            letter-spacing:2px;
+            width:100%;
         }
         .main .container .pages .page .event{
             width:100%;
@@ -279,11 +307,14 @@
             <div class="container">
                  <div class="pages">
                      <div class="page tasks">
-                         <div class="task">
+                         <div class="task" style="--i:rgb(0,0,255,0.1)">
                              <h3>Ee207 Project Pratice</h3>
                              <p>3:30 PM - 5:00 PM</p>
                          </div>
-                         <div class="task"></div>
+                         <div class="task"style="--i:rgb(255,0,0,0.1)">
+                             <h3>Ee256 Assignment</h3>
+                             <p>4hrs to Go!, Before 11 PM</p>
+                         </div>
                      </div>
                      <div class="page events">
                          <div class="event"></div>
