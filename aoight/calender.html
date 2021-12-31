@@ -110,6 +110,7 @@
             height:calc(100% - 120px - 70px);
             margin-top:8px;
             overflow: hidden;
+            padding-right:3px;
         }
         
         .main .container .pages{
@@ -127,39 +128,45 @@
             height:100%;
             position:absolute;
             width:100%;
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: scroll;
             top:0;
             left:0;
-            padding:0 3px 5px 0;
-            -webkit-scroll-snap-align: start;
-            scroll-snap-align: start;
+            padding:0 5px 0 15px;
+            scroll-snap-type: y proximity;
         }
+        
         .main .container .pages .page:nth-child(1){
             transform:translateX(0);
-            background-color: antiquewhite;
         }
         .main .container .pages .page:nth-child(2){
             transform:translateX(100%);
-            background-color: blueviolet;
         }
-        .main .container .pages .page .content{
-            position:relative;
-            width:100%;
-            height:100%;
-            overflow-x: hidden;
-            overflow-y: scroll;
-            padding-left:3px;
-        }
-        .content::-webkit-scrollbar {
+        .page::-webkit-scrollbar {
             -webkit-appearance: none;
             width: 5px;
         }
-
-        .content::-webkit-scrollbar-thumb {
+        .page::-webkit-scrollbar-thumb {
             -webkit-appearance: none;
             width: 5px;
             border-radius: 5px;
             background-color: #1B224A;
+        }
+        .main .container .pages .page .task{
+            width:100%;
+            height:500px;
+            background-color: antiquewhite;
+            margin-bottom:10px;
+            -webkit-scroll-snap-align: start;
+            scroll-snap-align: start;
+        }
+        .main .container .pages .page .event{
+            width:100%;
+            height:500px;
+            background-color:blueviolet;
+            margin-bottom:10px;
+            -webkit-scroll-snap-align: start;
+            scroll-snap-align: start;
         }
         
         
@@ -236,8 +243,14 @@
             </div>
             <div class="container">
                  <div class="pages">
-                     <div class="page"></div>
-                     <div class="page"></div>
+                     <div class="page tasks">
+                         <div class="task"></div>
+                         <div class="task"></div>
+                     </div>
+                     <div class="page events">
+                         <div class="event"></div>
+                         <div class="event"></div>
+                     </div>
                  </div>
             </div>
         </div>
