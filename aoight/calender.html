@@ -110,13 +110,23 @@
             position:relative;
             text-align: right;
         }
+        .main .date::before{
+            content:'';
+            position: absolute;
+            top:50%;
+            right:20px;
+            width:calc(100% - 20px);
+            height:3px;
+            background-color:rgb(0,0,0,0.1);
+            transform:translateY(-50%);
+        }
         .main .date span{
             padding:0 15px;
             height:40px;
             line-height:40px;
             text-align: center;
             border-radius:10px;
-            background-color:rgb(0,0,0,0.05);
+            background-color:white;
             color:rgb(0,0,0,0.7);
             font-weight:bold;
             letter-spacing:2px;
