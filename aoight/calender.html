@@ -211,8 +211,8 @@
             box-shadow:0 0 0px rgb(0,0,0,0.08);
         }
         .main .container .pages .page .task h3{
-            font-size:14px;
-            font-weight:500;
+            font-size:13px;
+            font-weight:bold;
             letter-spacing:1px;
             width:100%;
             overflow: hidden;
@@ -222,8 +222,7 @@
             line-height:30px;
         }
         .main .container .pages .page .task p{
-            font-size:16px;
-            font-weight:bold;
+            font-size:14px;
             letter-spacing:2px;
             width:100%;
         }
@@ -448,17 +447,21 @@
         function check_tasks(){
             var tasks_page = document.querySelector(".tasks");
             var tasks = document.querySelectorAll(".task");
-            var done = 2;
+            var done = 1;
             var count = 0;
+            var height_total = 0;
+            
             checks = setInterval(function(){
                  if (count < done){
                      tasks[count].classList.add('completed');
+                     height_total += parseInt(window.getComputedStyle(tasks[count]).height) + 8;
                      count += 1;
                  }else{
-                     tasks_page.scrollTop = (done) * 88;
+                     tasks_page.scrollTop = height_total;
                      clearInterval(checks);
                  }
-            },500);
+            },200);
+            
         }
         
     </script>
