@@ -183,8 +183,15 @@
             border-radius: 5px;
             background-color: #1B224A;
         }
+        .main .container .pages .tasks .pusher{
+            width:100%;
+            height:100%;
+            -webkit-scroll-snap-align: start;
+            scroll-snap-align: start;
+        }
         .main .container .pages .page .task{
             width:100%;
+            height:80px;
             padding:10px;
             margin-bottom:8px;
             -webkit-scroll-snap-align: start;
@@ -194,8 +201,8 @@
             border:none;
             background-color:var(--i);
             opacity:1;
-            transition:0.4s, opacity 0.5s;
-            transition-delay:0s, 0.8s; 
+            transition:0.4s, opacity 0.4s;
+            transition-delay:0s, 0s; 
         }
         .main .container .pages .page .task.completed{
             background-color:white;
@@ -315,6 +322,7 @@
                              <h3>Ee256 Assignment</h3>
                              <p>4hrs to Go!, Before 11 PM</p>
                          </div>
+                         <div class="pusher"></div>
                      </div>
                      <div class="page events">
                          <div class="event"></div>
@@ -391,6 +399,7 @@
             document.querySelector(".logo").classList.add("active");
             setTimeout(function() {
                 document.querySelector(".logo").style.display = "none";
+                check_tasks();
             }, 3100);
         });
 
@@ -437,6 +446,22 @@
             }else{
                 pages.scrollLeft = pages_width;
             }
+        }
+        
+        function check_tasks(){
+            var tasks_page = document.querySelector(".tasks");
+            var tasks = document.querySelectorAll(".task");
+            var done = 2;
+            var count = 0;
+            checks = setInterval(function(){
+                 if (count < done){
+                     tasks[count].classList.add('completed');
+                     count += 1;
+                 }else{
+                     tasks_page.scrollTop = (done) * 88;
+                     clearInterval(checks);
+                 }
+            },500);
         }
         
     </script>
