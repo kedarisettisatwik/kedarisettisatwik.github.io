@@ -407,11 +407,8 @@
         var main = document.querySelector(".main");
         var space = document.querySelector(".space");
 
-        if (bw + 60 < 670) {
+        if (bw + 60 < 670 && bw + 60 > 450) {
             open_menu();
-        }
-        if (bw + 60 < 450) {
-            main.classList.add("open");
         }
 
 
