@@ -183,13 +183,13 @@
             border-radius: 5px;
             background-color: #1B224A;
         }
-        .main .container .pages .tasks .pusher{
+        .main .container .pages .tasks .pusher,.main .container .pages .events .pusher{
             width:100%;
             height:100%;
             -webkit-scroll-snap-align: start;
             scroll-snap-align: start;
         }
-        .main .container .pages .page .task{
+        .main .container .pages .page .task,.main .container .pages .page .event{
             width:100%;
             padding:10px;
             margin-bottom:8px;
@@ -203,13 +203,16 @@
             transition:0.4s, opacity 0.4s;
             transition-delay:0s, 0s; 
         }
-        .main .container .pages .page .task.completed{
+        .main .container .pages .page .event{
+            box-shadow:0 0 10px rgb(0,0,0,0.08);
+        }
+        .main .container .pages .page .task.completed,.main .container .pages .page .event.completed{
             background-color:white;
             border-left:10px solid var(--i);
             opacity:0.3;
             box-shadow:0 0 0px rgb(0,0,0,0.08);
         }
-        .main .container .pages .page .task h3{
+        .main .container .pages .page .task h3,.main .container .pages .page .event h3{
             font-size:13px;
             font-weight:bold;
             letter-spacing:1px;
@@ -225,15 +228,6 @@
             letter-spacing:2px;
             width:100%;
         }
-        .main .container .pages .page .event{
-            width:100%;
-            height:500px;
-            background-color:blueviolet;
-            margin-bottom:10px;
-            -webkit-scroll-snap-align: start;
-            scroll-snap-align: start;
-        }
-        
         
 
         /*        space   */
@@ -319,15 +313,20 @@
                              <h3>Ee207 Project Pratice</h3>
                              <p>3:30 PM - 5:00 PM</p>
                          </div>
-                         <div class="task"style="--i:rgb(255,0,0,0.1)">
+                         <div class="task" style="--i:rgb(255,0,0,0.1)">
                              <h3>Ee256 Assignment</h3>
                              <p>4hrs to Go!, Before 11 PM</p>
                          </div>
                          <div class="pusher"></div>
                      </div>
                      <div class="page events">
-                         <div class="event"></div>
-                         <div class="event"></div>
+                         <div class="event" style="--i:rgb(255,0,0,0.1)">
+                             <h3>Return to NITK</h3>
+                         </div>
+                         <div class="event" style="--i:rgb(0,255,0,0.1)">
+                             <h3>Time Table</h3>
+                         </div>
+                         <div class="pusher"></div>
                      </div>
                  </div>
             </div>
@@ -401,6 +400,7 @@
             setTimeout(function() {
                 document.querySelector(".logo").style.display = "none";
                 check_tasks();
+                check_events();
             }, 3100);
         });
 
@@ -463,7 +463,25 @@
                      clearInterval(checks);
                  }
             },200);
+        }
+        
+        function check_events(){
+            var events_page = document.querySelector(".events");
+            var events = document.querySelectorAll(".event");
+            var done = 1;
+            var count = 0;
+            var height_total = 0;
             
+            checks1 = setInterval(function(){
+                 if (count < done){
+                     events[count].classList.add('completed');
+                     height_total += parseInt(window.getComputedStyle(events[count]).height) + 8;
+                     count += 1;
+                 }else{
+                     events_page.scrollTop = height_total;
+                     clearInterval(checks1);
+                 }
+            },200);
         }
         
     </script>
