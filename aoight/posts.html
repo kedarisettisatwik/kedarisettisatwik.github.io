@@ -494,7 +494,269 @@
                 </div>
             </div>
             <div class="container">
+<!--                                 adding elements sample                -->
+            </div>
+        </div>
 
+        <div class="side">
+
+            <button class="page flex active" title="menu" onclick="open_menu()">
+                <i class="fas fa-times one"></i>
+                <i class="fas fa-stream two"></i>
+            </button>
+
+            <button class="page flex" id="task_page" title="calender" onclick="navigate_to('calender.html')">
+                <i class="fas fa-calendar-check"></i>
+                <span>Calender</span>
+                <label></label>
+            </button>
+
+            <button class="page flex" id="chat_page" title="chats" onclick="navigate_to('chats.html')">
+                <i class="fas fa-comment-alt"></i>
+                <span>Chats</span>
+                <label></label>
+            </button>
+
+            <button class="page active flex" id="posts_page" title="posts" onclick="navigate_to('posts.html')">
+                <i class="fas fa-image"></i>
+                <span>Posts</span>
+                <label></label>
+            </button>
+
+            <button class="page flex" id="blogs_page" title="blogs" onclick="navigate_to('blogs.html')">
+                <i class="fas fa-sticky-note"></i>
+                <span>Blogs</span>
+                <label></label>
+            </button>
+
+            <button class="page flex" id="history_page" title="activity" onclick="navigate_to('activity.html')">
+                <i class="fas fa-history"></i>
+                <span>Activity</span>
+                <label></label>
+            </button>
+
+            <button class="page flex" id="history_page" title="activity" onclick="navigate_to('saved.html')">
+                <i class="fas fa-bookmark"></i>
+                <span>Saved</span>
+                <label></label>
+            </button>
+
+            <button class="page flex" title="profile" onclick="navigate_to('profile.html')">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+                <label></label>
+            </button>
+
+        </div>
+
+        <div class="space">
+
+        </div>
+
+
+    </div>
+
+    <div class="logo flex">
+        <h1 class="bg_text">AOIGHT</h1>
+    </div>
+
+
+    <script>
+        var bt = document.querySelector(".bg_text");
+        var tw = bt.getBoundingClientRect().width;
+        var bw = window.innerWidth - 50;
+        bt.style.transform = "scale(" + bw / tw + ")";
+
+        var sample = document.querySelectorAll(".sample");
+
+        window.addEventListener('load', (e) => {
+            add_posts();
+            document.querySelector(".logo").classList.add("active");
+            setTimeout(function() {
+                document.querySelector(".logo").style.display = "none";
+                for (var m = 0; m < sample.length; m++) {
+                    sample[m].classList.add("active");
+                }
+            }, 3100);
+        });
+
+        var side = document.querySelector(".side");
+        var main = document.querySelector(".main");
+        var space = document.querySelector(".space");
+
+        if (bw + 60 < 670) {
+            open_menu();
+        }
+        if (bw + 60 < 450) {
+            main.classList.add("open");
+        }
+
+        
+        var posts_array = [];
+        
+    class posts{
+        
+    constructor(_id,_name,_dp,_following,_time,_multi,_images,_des,_likes,_comments,_liked,_commented,_saved,_shared){
+            this.id = _id;
+            this.name = _name;
+            this.dp = _dp;
+            this.follow = _following;
+            this.time = _time;
+            this.multi = _multi;
+            this.images = _images;
+            this.des = _des;
+            this.likes = _likes;
+            this.comments = _comments;
+            this.liked = _liked;
+            this.commented = _commented;
+            this.saved = _saved;
+            this.share = _shared;
+            this.draw();
+        }
+        draw(){
+            if (this.multi){
+              var scroll1 = '';
+              for (var i = 0;i<this.images.length;i++){
+                  scroll1 += '<div class="page" style="--img:url('+ this.images[i] +');--i:'+ i +'"></div>';
+              }
+              container.innerHTML += '<div class="sample active"><div class="'+ this.follow +'"><div class="details flex" onclick="view_profile('+ this.id +')"><div class="dp" style="background-image: url('+ this.dp +');"></div><div class="name"><span>'+ this.name +'</span><label>'+ this.time +'</label></div></div><div class="share flex"><i class="fas fa-user-plus s" onclick="follow('+ this.id +')"></i><i class="fas fa-share-alt f" onclick="share_post('+ this.id +')"></i></div></div><div class="des" id="des" onclick="read_des('+ this.id +')">'+ this.des +'</div><div class="pos multi n_last_page" total='+ eval(this.images.length - 1) +' present=0><div class="pages" onscroll="pos_indicate('+ this.id +')">'+ scroll1 +'</div><div class="page_no"> 1 / '+ eval(this.images.length) +' </div><i class="fas fa-info info" onclick="info_post('+ this.id +')"></i><i class="fas fa-chevron-left left" onclick="scroll_left('+ this.id +')"></i><i class="fas fa-chevron-right right" onclick="scroll_right('+ this.id +')"></i></div><div class="buttons"><div class="lc"><div class="'+ this.liked +'"><i class="fas fa-heart flex" onclick="like_post('+ this.id +')"></i><p onclick="see_likes('+ this.id +')"><span>Likes</span><label>'+ this.likes +'</label></p></div><div class="'+ this.commented +'"><i class="fas fa-comment" onclick="comment_post('+ this.id +')"></i><p onclick="see_comments(1)"><span>Comments</span><label>'+ this.comments +'</label></p></div></div><div class="'+ this.saved +'" onclick="save_post('+ this.id +')"><i class="fas fa-bookmark"></i></div></div></div>';
+                
+            }else{
+              container.innerHTML += '<div class="sample active"><div class="'+ this.follow +'"><div class="details flex" onclick="view_profile('+ this.id +')"><div class="dp" style="background-image: url('+ this.dp +');"></div><div class="name"><span>'+ this.name +'</span><label>'+ this.time +'</label></div></div><div class="share flex"><i class="fas fa-user-plus s" onclick="follow('+ this.id +')"></i><i class="fas fa-share-alt f" onclick="share_post('+ this.id +')"></i></div></div><div class="des" id="des" onclick="read_des('+ this.id +')">'+ this.des +'</div><div class="pos" style="background-image: url('+ this.images[0] +')"><i class="fas fa-info info" onclick="info_post('+ this.id +')"></i></div><div class="buttons"><div class="lc"><div class="'+ this.liked +'"><i class="fas fa-heart flex" onclick="like_post('+ this.id +')"></i><p onclick="see_likes('+ this.id +')"><span>Likes</span><label>'+ this.likes +'</label></p></div><div class="'+ this.commented +'"><i class="fas fa-comment" onclick="comment_post('+ this.id +')"></i><p onclick="see_comments('+ this.id +')"><span>Comments</span><label>'+ this.comments +'</label></p></div></div><div class="'+ this.saved +'" onclick="save_post('+ this.id +')"><i class="fas fa-bookmark"></i></div></div></div>';
+            }
+        }
+    }
+
+        function add_posts(){
+            var post1 = new posts(0,"Striking Wolves","https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fHBvcnRyYWl0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60","cap new","2hrs Ago",false,["https://images.unsplash.com/photo-1536152470836-b943b246224c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTl8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"],"Matt told her to reach for the stars, but Veronica thought it was the most ridiculous advice she'd ever received. Sure, it had been well-meaning when he said it, but she didn't understand why anyone would want to suggest something that would literally kill you if you actually managed to achieve it.","15","07",'like bt active ','comment bt flex','save bt flex',"https://kedarisettisatwik.github.io");
+            posts_array.push(post1);
+            
+            post1 = new posts(1,"Nature Nithya","https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZmFjZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60","cap","6hrs Ago",true,["https://images.unsplash.com/photo-1539139329395-ceb575183d8b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MjJ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60","https://images.unsplash.com/photo-1586521995568-39abaa0c2311?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8bmF0dXJlJTIwYmFja2dyb3VuZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60","https://images.unsplash.com/photo-1548217395-6c6095abb49c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60","https://images.unsplash.com/photo-1548164806-9709e698bfc8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTB8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"],"Life is always better at the beach. You can never have too much beach. Salty hair, sandy toes, ocean breeze, anything goes. Good vibes only.","43","19",'like bt active ','comment active bt flex','save bt flex',"https://kedarisettisatwik.github.io");
+            posts_array.push(post1);
+            
+            var post1 = new posts(2,"wonders watcher","https://images.unsplash.com/photo-1545996124-0501ebae84d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fGZhY2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60","cap new","7hrs Ago",true,["https://media.istockphoto.com/photos/sunrise-over-taj-mahal-picture-id528476982?b=1&k=20&m=528476982&s=170667a&w=0&h=m7KSaUL_6I0LBfTUzXUmmArYfvigTC9o5o01SvI8PA0=","https://media.istockphoto.com/photos/camel-and-the-pyramids-in-giza-picture-id1139238705?b=1&k=20&m=1139238705&s=170667a&w=0&h=xq2ykORROSwHdQyhtKEtHD6PSO4vTa197NRgOWZl2vk=","https://media.istockphoto.com/photos/machu-picchu-peru-picture-id930824730?b=1&k=20&m=930824730&s=170667a&w=0&h=1JxLd3OP8-U95vnds4j9sK671dITJq7JuSkGdIMP3Gw=","https://images.unsplash.com/photo-1553808991-e39e7611442c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2V2ZW4lMjB3b25kZXJzJTIwb2YlMjB0aGUlMjB3b3JsZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60","https://wallpapercave.com/dwp1x/wp1921812.jpg","https://www.mordeo.org/files/uploads/2020/05/Eiffel-Tower-Autumn-Sunset-4K-Ultra-HD-Mobile-Wallpaper-950x1689.jpg","https://images.unsplash.com/photo-1591014979304-6d2599e8b904?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2V2ZW4lMjB3b25kZXJzJTIwb2YlMjB0aGUlMjB3b3JsZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"],"All things of nature there is something of the marvelous.<br> Look deep into nature, and then you will understand everything better.<br>Those who contemplate the beauty of the earth find reserves of strength that will endure as long as life lasts.<br>The wonders of nature are endless.","67","24",'like bt ','comment bt flex','save active bt flex',"https://kedarisettisatwik.github.io");
+            posts_array.push(post1);
+            
+        }
+        
+
+        function open_menu() {
+            var bw = window.innerWidth;
+            if (bw > 450) {
+                side.classList.toggle('active');
+                main.classList.toggle('active');
+                space.classList.toggle('active');
+            } else {
+                main.classList.toggle('open');
+            }
+        }
+
+        function view_profile(a) {
+            console.log("view_profile");
+        }
+
+        function share_post(a) {
+            console.log("share_post");
+        }
+
+        function follow(a) {
+            document.querySelectorAll(".cap")[a].classList.remove("new");
+        }
+
+        function read_des(a){
+            document.querySelectorAll(".des")[a].classList.toggle("active");
+        }
+        
+        function like_post(a) {
+            document.querySelectorAll(".like")[a].classList.toggle("active");
+        }
+
+        function see_likes(a) {
+            console.log("see_likes");
+        }
+
+        function comment_post(a) {
+            console.log("comment_post");
+        }
+
+        function see_comments(a) {
+            console.log("see_comments");
+        }
+
+        function save_post(a) {
+            document.querySelectorAll(".save")[a].classList.toggle("active");
+        }
+
+        function info_post(a) {
+            console.log("info_post");
+        }
+
+        var container = document.querySelector(".container");
+        
+        function scroll_left(a) {
+            var pos = document.querySelectorAll(".pos")[a];
+            var total = parseInt(pos.getAttribute('total'));
+            var pages = pos.querySelector(".pages");
+            var ph = parseInt(window.getComputedStyle(pages).width);
+            var present = parseInt(pos.getAttribute('present'));
+
+            if (present > 0) {
+                pos.setAttribute('present', present - 1);
+                pages.scrollLeft = (present - 1) * ph;
+            }
+        }
+
+        function scroll_right(a) {
+            var pos = document.querySelectorAll(".pos")[a];
+            var total = parseInt(pos.getAttribute('total'));
+            var present = parseInt(pos.getAttribute('present'));
+            var pages = pos.querySelector(".pages");
+            var ph = parseInt(window.getComputedStyle(pages).width);
+
+            if (present < total) {
+                pos.setAttribute('present', present + 1);
+                pages.scrollLeft = (present + 1) * ph;
+            }
+
+        }
+
+        function pos_indicate(a) {
+            var pos = document.querySelectorAll(".pos")[a];
+            var pages = pos.querySelector(".pages");
+            var ph = parseInt(window.getComputedStyle(pages).width);
+            var sl = parseInt(pages.scrollLeft);
+            var ps = Math.round(sl / ph)
+            pos.setAttribute('present', ps);
+            var page_no = pos.querySelector(".page_no");
+
+            var total = parseInt(pos.getAttribute('total'));
+            var present = parseInt(pos.getAttribute('present'));
+
+            page_no.innerHTML = (present + 1) + " / " + (total + 1);
+
+            if (present == total) {
+                pos.classList.remove('n_last_page');
+            } else {
+                pos.classList.add('n_last_page');
+            }
+            if (present == 0) {
+                pos.classList.remove('n_first_page');
+            } else {
+                pos.classList.add('n_first_page');
+            }
+        }
+
+    </script>
+
+    <script src="side.js"></script>
+
+</body>
+
+</html>
+
+
+
+<!--               
                 <div class="sample">
                     <div class="cap">
                         <div class="details flex" onclick="view_profile(0)">
@@ -550,7 +812,6 @@
                             <div class="page" style="--img:url(https://images.unsplash.com/photo-1586521995568-39abaa0c2311?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8bmF0dXJlJTIwYmFja2dyb3VuZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60);--i:1"></div>
                             <div class="page" style="--img:url(https://images.unsplash.com/photo-1548217395-6c6095abb49c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60);--i:2"></div>
                             <div class="page" style="--img:url(https://images.unsplash.com/photo-1548164806-9709e698bfc8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTB8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60);--i:3"></div>
-
                         </div>
                         <div class="page_no">1 / 4</div>
                         <i class="fas fa-info info" onclick="info_post(1)"></i>
@@ -631,214 +892,12 @@
                     </div>
                 </div>
 
-            </div>
-        </div>
 
-        <div class="side">
-
-            <button class="page flex active" title="menu" onclick="open_menu()">
-                <i class="fas fa-times one"></i>
-                <i class="fas fa-stream two"></i>
-            </button>
-
-            <button class="page flex" id="task_page" title="calender" onclick="navigate_to('calender.html')">
-                <i class="fas fa-calendar-check"></i>
-                <span>Calender</span>
-                <label></label>
-            </button>
-
-            <button class="page flex" id="chat_page" title="chats" onclick="navigate_to('chats.html')">
-                <i class="fas fa-comment-alt"></i>
-                <span>Chats</span>
-                <label></label>
-            </button>
-
-            <button class="page active flex" id="posts_page" title="posts" onclick="navigate_to('posts.html')">
-                <i class="fas fa-image"></i>
-                <span>Posts</span>
-                <label></label>
-            </button>
-
-            <button class="page flex" id="blogs_page" title="blogs" onclick="navigate_to('blogs.html')">
-                <i class="fas fa-sticky-note"></i>
-                <span>Blogs</span>
-                <label></label>
-            </button>
-
-            <button class="page flex" id="history_page" title="activity" onclick="navigate_to('activity.html')">
-                <i class="fas fa-history"></i>
-                <span>Activity</span>
-                <label></label>
-            </button>
-
-            <button class="page flex" id="history_page" title="activity" onclick="navigate_to('saved.html')">
-                <i class="fas fa-bookmark"></i>
-                <span>Saved</span>
-                <label></label>
-            </button>
-
-            <button class="page flex" title="profile" onclick="navigate_to('profile.html')">
-                <i class="fas fa-user"></i>
-                <span>Profile</span>
-                <label></label>
-            </button>
-
-        </div>
-
-        <div class="space">
-
-        </div>
-
-
-    </div>
-
-    <div class="logo flex">
-        <h1 class="bg_text">AOIGHT</h1>
-    </div>
-
-
-    <script>
-        var bt = document.querySelector(".bg_text");
-        var tw = bt.getBoundingClientRect().width;
-        var bw = window.innerWidth - 50;
-        bt.style.transform = "scale(" + bw / tw + ")";
-
-        var sample = document.querySelectorAll(".sample");
-
-        window.addEventListener('load', (e) => {
-            document.querySelector(".logo").classList.add("active");
-            setTimeout(function() {
-                document.querySelector(".logo").style.display = "none";
-                for (var m = 0; m < sample.length; m++) {
-                    sample[m].classList.add("active");
-                }
-            }, 3100);
-        });
-
-        var side = document.querySelector(".side");
-        var main = document.querySelector(".main");
-        var space = document.querySelector(".space");
-
-        if (bw + 60 < 670) {
-            open_menu();
-        }
-        if (bw + 60 < 450) {
-            main.classList.add("open");
-        }
+-->
 
 
 
-        function open_menu() {
-            var bw = window.innerWidth;
-            if (bw > 450) {
-                side.classList.toggle('active');
-                main.classList.toggle('active');
-                space.classList.toggle('active');
-            } else {
-                main.classList.toggle('open');
-            }
-        }
 
-        function view_profile(a) {
-            console.log("view_profile");
-        }
-
-        function share_post(a) {
-            console.log("share_post");
-        }
-
-        function follow(a) {
-            document.querySelectorAll(".cap")[a].classList.remove("new");
-        }
-
-        function like_post(a) {
-            document.querySelectorAll(".like")[a].classList.toggle("active");
-        }
-
-        function see_likes(a) {
-            console.log("see_likes");
-        }
-
-        function comment_post(a) {
-            console.log("comment_post");
-        }
-
-        function see_comments(a) {
-            console.log("see_comments");
-        }
-
-        function save_post(a) {
-            document.querySelectorAll(".save")[a].classList.toggle("active");
-        }
-
-        function info_post(a) {
-            console.log("info_post");
-        }
-
-        var container = document.querySelector(".container");
-
-
-
-        function scroll_left(a) {
-            var pos = document.querySelectorAll(".pos")[a];
-            var total = parseInt(pos.getAttribute('total'));
-            var pages = pos.querySelector(".pages");
-            var ph = parseInt(window.getComputedStyle(pages).width);
-            var present = parseInt(pos.getAttribute('present'));
-
-            if (present > 0) {
-                pos.setAttribute('present', present - 1);
-                pages.scrollLeft = (present - 1) * ph;
-            }
-        }
-
-        function scroll_right(a) {
-            var pos = document.querySelectorAll(".pos")[a];
-            var total = parseInt(pos.getAttribute('total'));
-            var present = parseInt(pos.getAttribute('present'));
-            var pages = pos.querySelector(".pages");
-            var ph = parseInt(window.getComputedStyle(pages).width);
-
-            if (present < total) {
-                pos.setAttribute('present', present + 1);
-                pages.scrollLeft = (present + 1) * ph;
-            }
-
-        }
-
-        function pos_indicate(a) {
-            var pos = document.querySelectorAll(".pos")[a];
-            var pages = pos.querySelector(".pages");
-            var ph = parseInt(window.getComputedStyle(pages).width);
-            var sl = parseInt(pages.scrollLeft);
-            var ps = Math.round(sl / ph)
-            pos.setAttribute('present', ps);
-            var page_no = pos.querySelector(".page_no");
-
-            var total = parseInt(pos.getAttribute('total'));
-            var present = parseInt(pos.getAttribute('present'));
-
-            page_no.innerHTML = (present + 1) + " / " + (total + 1);
-
-            if (present == total) {
-                pos.classList.remove('n_last_page');
-            } else {
-                pos.classList.add('n_last_page');
-            }
-            if (present == 0) {
-                pos.classList.remove('n_first_page');
-            } else {
-                pos.classList.add('n_first_page');
-            }
-        }
-
-    </script>
-
-    <script src="side.js"></script>
-
-</body>
-
-</html>
 
 <!-- 
 
