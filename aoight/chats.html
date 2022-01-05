@@ -26,6 +26,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
             /*          font-family: 'Caveat', cursive; 
             font-family: 'Pushster', cursive;
 */
@@ -88,13 +89,104 @@
             color:rgb(0, 102, 255, 0.9);
             letter-spacing:1px;
         }
+        .main .container .box1{
+            width:100%;
+            overflow-x: scroll;
+            position:relative;
+            margin-bottom:5px;
+            cursor:pointer;
+        }
+        .main .container .box1::-webkit-scrollbar{
+            -webkit-appearance:none;
+            height:0px;
+        }
         .main .container .person{
             position:relative;
+            width:calc(100% + 300px);
+            padding-bottom:10px;
+        }
+        .main .container .person .profile{
+            width:calc(100% - 300px);
+            padding:0 5px;
+            justify-content: flex-start;
+            height:50px;
+            padding-right:30px;
+            position:relative;
+        }
+        .main .container .person .profile .pro_dp{
+            width:40px;
+            height:40px;
+            border-radius:10px;
+            box-shadow:0 0 5px rgb(0,0,0,0.2);
+            background-position: top;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position:relative;
+        }
+        .main .container .person .profile.online .pro_dp::after{
+            content:'';
+            position:absolute;
+            bottom:0;
+            right:0;
+            transform:translate(6px,6px);
+            width:14px;
+            height:14px;
+            border-radius:50%;
+            background-color:lawngreen;
+            box-shadow:0 0 4px rgb(0,255,0,0.1);
+        }
+        .main .container .person .profile .details{
+            width:calc(100% - 65px);
+            position:relative;
+            height:100%;
+            margin-left:15px;
+        }
+        .main .container .person .profile .details .name{
             width:100%;
-            padding:10px;
-            margin-bottom:5px;
-            height:100px;
-            background-color: antiquewhite;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space:nowrap;
+            font-size:20px;
+            font-weight:bold;
+            letter-spacing:1px;
+            line-height:30px;
+            height:30px;
+            font-family: 'Caveat', cursive; 
+        }
+        .main .container .person .profile .details .seen{
+            width:100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space:nowrap;
+            font-size:11px;
+            letter-spacing:1px;
+        }
+        .main .container .person .profile .unseen{
+            opacity:0;
+            transition:0.4s;
+        }
+        .main .container .person .profile.active .unseen{
+            opacity:1;
+            padding:0 5px;
+            min-width:20px;
+            height:20px;
+            line-height:20px;
+            border-radius:5px;
+            position: absolute;
+            top:50%;
+            right:5px;
+            transform:translate(0%,-50%);
+            background-color:rgb(0, 102, 255, 0.9);
+            font-size:12px;
+            font-weight:bold;
+            color:white;
+            letter-spacing:1px;
+            box-shadow:0 0 5px rgb(0, 102, 255, 0.2);
+        }
+        .main .container .person .options{
+            width:300px;
+            height:50px;
+            background-color: azure;
         }
         
         /*        space   */
@@ -162,7 +254,35 @@
             </div>
             <div class="container">
                    <div class="general">General <span>3</span> </div>
-                   <div class="person"></div>
+                   
+                   <div class="box1" oncontextmenu="scroll_person(0,event)">
+                       <div class="person flex">
+                       <div class="profile flex online active">
+                           <div class="pro_dp" style="background-image: url(https://images.unsplash.com/photo-1545996124-0501ebae84d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fGZhY2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60)"></div>
+                           <div class="details">
+                           <div class="name">Wonder Watcher</div>
+                           <div class="seen">Active Now</div>
+                           </div>
+                           <div class="unseen">12</div>
+                        </div>
+                       <div class="options"></div>
+                       </div>
+                   </div>
+                   
+                   <div class="box1" oncontextmenu="scroll_person(1,event)">
+                       <div class="person flex">
+                       <div class="profile flex">
+                           <div class="pro_dp" style="background-image: url(https://images.unsplash.com/photo-1545996124-0501ebae84d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fGZhY2V8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60)"></div>
+                           <div class="details">
+                           <div class="name">Wonder Watcher</div>
+                           <div class="seen">last seen 2hrs Ago</div>
+                           </div>
+                           <div class="unseen"></div>
+                        </div>
+                       <div class="options"></div>
+                       </div>
+                   </div>
+                   
             </div>
         </div>
 
@@ -259,6 +379,21 @@
             }
         }
 
+        var scrolled = -1;
+    
+        function scroll_person(a,e){
+            e.preventDefault();
+            var box = document.querySelectorAll('.box1')[a];
+            if (scrolled < 0){
+                box.scrollLeft = 300;
+                scrolled = a;
+            }else{
+                var box2 = document.querySelectorAll('.box1')[scrolled];
+                box2.scrollLeft = 0;
+                box.scrollLeft = 300;
+                scrolled = a;
+            }
+        }
     </script>
 
     <script src="side.js"></script>
