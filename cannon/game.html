@@ -1,0 +1,157 @@
+<html>
+<head>
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <title>cannon</title>
+    
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        html{
+            scroll-behavior: smooth;
+        }
+        body{
+            width:100vw;
+            height:100vh;
+            background-color:white;
+            overflow: hidden;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: row;
+            position:relative;
+        }
+        .flex{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #screen,#rules{
+            width:400px;
+            height:600px;
+            margin:0 10px;
+            position: relative;
+        }
+        #screen{
+            background-color:lightskyblue;
+            box-shadow:0 0 15px rgb(0,0,0,0.1);
+        }
+        #rules::before{
+            background-color: #000;
+            content: "";
+            height: calc(100%);
+            position: absolute;
+            right:2px;
+            top: 0px;
+            width: 2px;
+        }
+        #rules .detail{
+            width:calc(100%);
+            height:100%;
+            position:relative;
+            overflow-x: hidden;
+            overflow-y: scroll;
+        }
+        #rules .detail::-webkit-scrollbar{
+            -webkit-appearance: none;
+            background-color: transparent;
+            width: 7px;
+        }
+        #rules .detail::-webkit-scrollbar-thumb {
+            background-color: #000;
+            border-radius: 5px;
+        }
+        #rules .detail .li{
+            width:calc(100% - 5px);
+            padding:10px;
+        }
+        #rules .detail .li h2{
+            width:100%;
+            text-align: center;
+            font-size:85px;
+            letter-spacing:1px;
+            margin-bottom:30px;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        #rules .detail .li p{
+            font-size:13px;
+            opacity:0.5;
+        }
+        #rules .detail .li span{
+            font-size:14px;
+            margin:10px 0;
+            display: block;
+            letter-spacing:1px;
+        }
+        #rules .detail .li label{
+            display: block;
+            margin:5px 0;
+            font-size:15px;
+            color:darkblue;
+            letter-spacing:1px;
+            font-weight:bold;
+        }
+        #rules .detail .li i{
+            display: block;
+            margin-bottom:10px;
+            font-size:16px;
+            font-style: normal;
+        }
+    </style>
+    
+    </head>
+    
+<body>
+ 
+ <section id="rules">
+     <div class="detail">
+         <div class="li">
+             <h2>Cannon</h2>
+             <p>Can A Cannon Can Win ? </p>
+             <span>Rule's are very simple,</span>
+             <label>Rule 1 : </label>
+             <i>Here the aim is to save the cannon.</i>
+             <label>Rule 2 : </label>
+             <i>The problem is different rocks fall from air, you should blast them.</i>
+             <label>Rule 3 : </label>
+             <i>The number on rock indicates that it will blast after hitting with that number of bullets</i>
+             <label>Rule 4 : </label>
+             <i>Controls are left and right arrow keys to move cannon</i>
+         </div>
+     </div>
+ </section>
+ 
+ <section id="screen">
+     
+ </section>
+ 
+</body>
+
+</html>
+
+
+
+
+<!--
+
+<a href="https://www.hitwebcounter.com" target="_blank" class="c">
+<img src="https://hitwebcounter.com/counter/counter.php?page=7711238&style=0001&nbdigits=6&type=ip&initCount=0" title="Total Website Hits" Alt="Web Hits"   border="0" /></a>
+
+22,001
+
+
+-->
