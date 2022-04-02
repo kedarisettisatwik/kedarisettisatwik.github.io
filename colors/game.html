@@ -40,39 +40,76 @@
             align-items: center;
             flex-direction: column;
         }
-        #screen,#rules{
+        #board,#rules{
             width:400px;
             height:600px;
             margin:0 10px;
             position: relative;
             max-width:100%;
         }
+        #board{
+            height:auto;
+        }
         #screen{
-            box-shadow:0 0 15px rgb(0,0,0,0.1);
+            box-shadow:0 0 15px rgb(0,0,0,0.15);
             border-radius:10px;
             overflow: hidden;
-            width:400px;
+            width:100%;
             height:100px;
-            background-color: #404040;
             flex-direction: row;
             justify-content: space-around;
             padding:10px;
+            position:relative;
         }
         #screen button{
-            color:white;
             background:none;
             outline:none;
             border:none;
             font-size:20px;
             font-family: 'Noto Sans JP', sans-serif;
             letter-spacing:1px;
+            z-index:1;
         }
         #screen #word{
+            position:relative;
+        }
+        #screen #word #key,#board #score{
             font-size:35px;
+            font-weight: bold;
             font-family: 'Noto Sans JP', sans-serif;
-            text-shadow:0 0 15px rgb(0,0,255,0.5);
             color:rgb(0,0,255);
             letter-spacing:3px;
+            z-index:1;
+        }
+        #screen #word,#screen #bt1,#screen #bt2{
+            width:calc(100% / 3);
+            text-align: center;
+        }
+        #board #score{
+            margin-bottom:10px;
+            display:block;
+            color:black;
+            text-shadow:none;
+        }
+        #screen #word #dot{
+            position: absolute;
+            width:10px;
+            height:10px;
+            border-radius:50%;
+            bottom:-10px;
+            left:50%;
+            transform:translate(-50%,50%);
+            background-color:rgb(0,0,255);
+            opacity:1;
+            z-index:100;
+        }
+        #screen p{
+            position: absolute;
+            top:10px;
+            right:10px;
+            font-size:13px;
+            opacity:0.6;
+            z-index:1;
         }
         #rules::before{
             background-color: #000;
@@ -140,18 +177,22 @@
             body{
                 flex-direction: column;
                 padding:10px;
+                justify-content: flex-start;
             }
-            #rules,#screen{
+            #rules,#board{
                 margin:0;
+            }
+            #board{
+                margin-top:40px;
             }
             #screen{
                 height:90px;
             }
             #rules{
-                height:calc(100% - 140px);
+                height:calc(100% - 140px - 140px);
             }
         }
-        @media (max-width:350px){
+        @media (max-width:450px){
             #rules .detail .li h2{
                 font-size:25px;
             }
@@ -168,11 +209,10 @@
          <div class="li">
              <h2>Color ?</h2>
              <p>Guess Color ? </p>
-             <label>Use Spacebar to Pause & Play</label>
-             <label>Controls are left and right arrow keys to answer</label>
+             <label>Use left and right arrow keys to answer</label>
              <span>Rule's are very simple,</span>
              <label>Rule 1 : </label>
-             <i>Time Limit of 60 seconds</i>
+             <i>Time Limit of 30 seconds</i>
              <label>Rule 2 : </label>
              <i>A word be dispayed on screen</i>
              <label>Rule 3 : </label>
@@ -183,15 +223,78 @@
      </div>
  </section>
  
- <section id="screen" class="flex">
+ <section id="board" class="flex">
+    <h2 id="score">0</h2>
+     <section id="screen" class="flex">
+        <p><i class="fa-solid fa-alarm-clock"></i> <span id="time">30</span></p>
         <button id="bt1">red</button>
-        <span id="word">red</span>
+        <span id="word"> <span id="key">red</span> <div id="dot"></div> </span>
         <button id="bt2">blue</button>
+    </section>
  </section>
    
    <script>
-   
+       
+       var c1 = ['rgb(255,0,0)','rgb(0,255,0)','rgb(0,0,255)','rgb(255, 102, 255)','rgb(255, 153, 51)',
+                 'rgb(255, 255, 102)','rgb(153, 51, 255)','rgb(0,0,0)'];
+       var c3 = ['rgb(255,0,0,0.3)','rgb(0,255,0,0.3)','rgb(0,0,255,0.3)','rgb(255, 102, 255,0.3)','rgb(255, 153, 51,0.3)','rgb(255, 255, 102,0.3)','rgb(153, 51, 255,0.3)','rgb(0,0,0,0.3)'];
+       var c2 = ['red','green','blue','pink','orange','yellow','purple','black'];
+       
+       var bt1 = document.getElementById("bt1");
+       var bt2 = document.getElementById("bt2");
+       var key = document.getElementById("key");
+       var dot = document.getElementById("dot");
+       
+       var arr = [];
+       var ans = '';
+       
+       function draw(){
+           var x1 = Math.floor(Math.random()*c2.length);
+           var li = [0,1,2,3,4,5,6,7];
+           li.splice(x1,1);
+           var x2 = Math.floor(Math.random()*li.length);
+//           console.log(c2[x1],c2[li[x2]]);
+           bt1.innerHTML = c2[x1];
+           bt2.innerHTML = c2[li[x2]];
+           var x3 = Math.floor(Math.random()*2);
+           var x4 = [x1,li[x2]][x3];
+           var x5 = [li[x2],x1][x3];
+           key.innerHTML = c2[x4];
+           key.style.color = c1[x5];
+           if (x5 == 5){
+               key.style.textShadow = "0 0 3px rgb(0,0,0)";
+           }else{
+               key.style.textShadow = "0 0 5px " + c3[x5];
+           }
+           dot.style.backgroundColor = c1[x5];
+           arr = [c2[x1],c2[li[x2]]];
+           ans = c2[x4];
+//           console.log(arr,ans);
+       }
+       
+       draw();
+       
+       window.addEventListener('keydown',(e) => {
+           // left = 37
+          // right = 39
+          if (e.keyCode == 37){
+              draw();
+          }else if (e.keyCode == 39){
+              draw();
+          }
+       });
       
+       var time = document.getElementById("time");
+       var t = 30;
+       
+       var timer = setInterval(function(){
+           t -= 1;
+           time.innerHTML = t;
+           if (t == 0){
+               clearInterval(timer);
+           }
+       },1000);
+       
    </script>
  
 </body>
