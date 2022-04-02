@@ -184,9 +184,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            position:relative;
-            font-size:35px;
-            width:100px;
+            position:absolute;
+            letter-spacing:4px;
         }
         #screen #rocks .rock span{
             position:absolute;
@@ -197,6 +196,14 @@
         #screen #rocks .rock img{
             filter:drop-shadow(0 0 2px rgb(0,0,0,0.9));
             width:100%;
+        }
+        #screen .ground{
+            position: absolute;
+            bottom:0;
+            left:0;
+            width:100%;
+            height:10px;
+            background-color:rgb(0,0,0,0.5);
         }
     </style>
     
@@ -209,6 +216,8 @@
          <div class="li">
              <h2>Cannon</h2>
              <p>Can A Cannon Can Win ? </p>
+             <label>Use Spacebar to Pause & Play</label>
+             <label>Controls are left and right arrow keys to move cannon</label>
              <span>Rule's are very simple,</span>
              <label>Rule 1 : </label>
              <i>Here the aim is to save the cannon.</i>
@@ -216,8 +225,6 @@
              <i>The problem is different rocks fall from air, you should blast them.</i>
              <label>Rule 3 : </label>
              <i>The number on rock indicates that it will blast after hitting with that number of bullets</i>
-             <label>Rule 4 : </label>
-             <i>Controls are left and right arrow keys to move cannon</i>
          </div>
      </div>
  </section>
@@ -230,18 +237,24 @@
      </div>
      
      <div id="rocks" class="flex"> 
+       
+<!--
         <div class="rock">
             <img src="rock1.png">
             <span>1</span>
         </div>
+        
         <div class="rock">
             <img src="rock2.png">
             <span>3</span>
         </div>
+        
         <div class="rock">
             <img src="rock3.png">
             <span>8</span>
         </div>
+        
+-->
      </div>
      
       <div class="board">
@@ -255,7 +268,67 @@
           </div>
       </div>
       
+      <div class="ground"></div>
+      
  </section>
+   
+   <script>
+   
+       var Game = false;
+       
+       var rocks = document.getElementById("rocks");
+       
+       function draw(){
+           var rock = document.createElement('div');
+           rock.classList.add("rock");
+           
+           var imgs = ['rock1.png','rock2.png','rock3.png'];
+           var x1 = Math.floor(Math.random()*3);
+           var img = document.createElement("img");
+           img.setAttribute('src',imgs[x1]);
+           rock.appendChild(img);
+           
+           var s = Math.floor(Math.random()*20 + 1);
+           var w = 0;
+           if (s < 7){
+               w = Math.floor(Math.random()*30 + 50);
+           }else if (s < 13){
+               w = Math.floor(Math.random()*60 + 90);
+           }else if (s < 22){
+               w = Math.floor(Math.random()*50 + 100);
+           }
+           rock.style.width = w;
+           rock.style.fontSize = (w > 75) ? "35px" : "22px";
+           
+           var span = document.createElement("span");
+           span.innerHTML = s;
+           rock.appendChild(span);
+           
+           rocks.appendChild(rock);
+           
+           rock.style.top = -1 * Math.floor(Math.random()*20 + 10);
+           var l = Math.floor(Math.random()*(400 - w))
+           rock.style.left = l + "px";
+           
+       }
+       
+       draw();
+    
+       window.addEventListener('keydown',(e) => {
+          // left = 37
+          // right = 39
+          if (Game){
+              if (e.keyCode == 37 || e.keyCode == 39){
+                  console.log(e.keyCode);
+              }
+          }
+          if (e.keyCode == 32){
+              Game = (Game) ? false : true;
+              console.log(e.keyCode);
+          }
+       });
+       
+   </script>
  
 </body>
 

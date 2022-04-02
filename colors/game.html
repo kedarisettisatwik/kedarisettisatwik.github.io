@@ -1,0 +1,212 @@
+<html>
+<head>
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <title>cannon</title>
+    
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        html{
+            scroll-behavior: smooth;
+        }
+        body{
+            width:100vw;
+            height:100vh;
+            background-color:white;
+            overflow: hidden;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: row;
+            position:relative;
+        }
+        .flex{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #screen,#rules{
+            width:400px;
+            height:600px;
+            margin:0 10px;
+            position: relative;
+            max-width:100%;
+        }
+        #screen{
+            box-shadow:0 0 15px rgb(0,0,0,0.1);
+            border-radius:10px;
+            overflow: hidden;
+            width:400px;
+            height:100px;
+            background-color: #404040;
+            flex-direction: row;
+            justify-content: space-around;
+            padding:10px;
+        }
+        #screen button{
+            color:white;
+            background:none;
+            outline:none;
+            border:none;
+            font-size:20px;
+            font-family: 'Noto Sans JP', sans-serif;
+            letter-spacing:1px;
+        }
+        #screen #word{
+            font-size:35px;
+            font-family: 'Noto Sans JP', sans-serif;
+            text-shadow:0 0 15px rgb(0,0,255,0.5);
+            color:rgb(0,0,255);
+            letter-spacing:3px;
+        }
+        #rules::before{
+            background-color: #000;
+            content: "";
+            height: calc(100%);
+            position: absolute;
+            right:2px;
+            top: 0px;
+            width: 2px;
+        }
+        #rules .detail{
+            width:calc(100%);
+            height:100%;
+            position:relative;
+            overflow-x: hidden;
+            overflow-y: scroll;
+        }
+        #rules .detail::-webkit-scrollbar{
+            -webkit-appearance: none;
+            background-color: transparent;
+            width: 7px;
+        }
+        #rules .detail::-webkit-scrollbar-thumb {
+            background-color: #000;
+            border-radius: 5px;
+        }
+        #rules .detail .li{
+            width:calc(100% - 5px);
+            padding:10px;
+        }
+        #rules .detail .li h2{
+            width:100%;
+            text-align: center;
+            font-size:85px;
+            letter-spacing:1px;
+            margin-bottom:30px;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        #rules .detail .li p{
+            font-size:13px;
+            opacity:0.5;
+        }
+        #rules .detail .li span{
+            font-size:14px;
+            margin:10px 0;
+            display: block;
+            letter-spacing:1px;
+        }
+        #rules .detail .li label{
+            display: block;
+            margin:5px 0;
+            font-size:15px;
+            color:darkblue;
+            letter-spacing:1px;
+            font-weight:bold;
+        }
+        #rules .detail .li i{
+            display: block;
+            margin-bottom:10px;
+            font-size:16px;
+            font-style: normal;
+        }
+        
+        @media (max-width:850px){
+            body{
+                flex-direction: column;
+                padding:10px;
+            }
+            #rules,#screen{
+                margin:0;
+            }
+            #screen{
+                height:90px;
+            }
+            #rules{
+                height:calc(100% - 140px);
+            }
+        }
+        @media (max-width:350px){
+            #rules .detail .li h2{
+                font-size:25px;
+            }
+        }
+        
+    </style>
+    
+    </head>
+    
+<body>
+ 
+ <section id="rules">
+     <div class="detail">
+         <div class="li">
+             <h2>Color ?</h2>
+             <p>Guess Color ? </p>
+             <label>Use Spacebar to Pause & Play</label>
+             <label>Controls are left and right arrow keys to answer</label>
+             <span>Rule's are very simple,</span>
+             <label>Rule 1 : </label>
+             <i>Time Limit of 60 seconds</i>
+             <label>Rule 2 : </label>
+             <i>A word be dispayed on screen</i>
+             <label>Rule 3 : </label>
+             <i>You should answer what is the colour of the given word. </i>
+             <label>Rule 4 : </label>
+             <i>You are have two options.</i>
+         </div>
+     </div>
+ </section>
+ 
+ <section id="screen" class="flex">
+        <button id="bt1">red</button>
+        <span id="word">red</span>
+        <button id="bt2">blue</button>
+ </section>
+   
+   <script>
+   
+      
+   </script>
+ 
+</body>
+
+</html>
+
+
+
+
+<!--
+
+<a href="https://www.hitwebcounter.com" target="_blank" class="c">
+<img src="https://hitwebcounter.com/counter/counter.php?page=7711238&style=0001&nbdigits=6&type=ip&initCount=0" title="Total Website Hits" Alt="Web Hits"   border="0" /></a>
+
+22,001
+
+
+-->
