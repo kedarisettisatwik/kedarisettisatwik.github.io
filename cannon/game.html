@@ -47,8 +47,13 @@
             position: relative;
         }
         #screen{
-            background-color:lightskyblue;
+            background-position: bottom left;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-image:url(bg.png);
             box-shadow:0 0 15px rgb(0,0,0,0.1);
+            border-radius:10px;
+            overflow: hidden;
         }
         #rules::before{
             background-color: #000;
@@ -111,6 +116,88 @@
             font-size:16px;
             font-style: normal;
         }
+        
+        #screen #cannon {
+            position: absolute;
+            bottom:0px;
+            left:20px;
+        }
+        #screen #cannon img{
+            height:100px;
+        }
+        #screen .opa{
+            position: absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background-color:rgb(255,255,255,0.5);
+            backdrop-filter:blur(1px);
+        }
+        #screen .board{
+            position: absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:70px;
+            background-color: white;
+            padding:5px 10px;
+            box-shadow:0 2px 5px rgb(0,0,0,0.2);
+        }
+        #screen .board .icons{
+            flex-direction: row;
+            justify-content: flex-start;
+            position:relative;
+        }
+        #screen .board .icons img{
+            height:30px;
+        }
+        #screen .board .icons:nth-child(2){
+            margin-top:3px;
+        }
+        #screen .board .icons:nth-child(2) img{
+            height:25px;
+            margin-left:3px;
+        }
+        #screen .board .icons #lifeline{
+            width:calc(100% - 50px);
+            background-color:red;
+            height:8px;
+            border-radius:10px;
+            margin-left:10px;
+        }
+        #screen .board .icons #score{
+            margin-left:10px;
+            font-size:14px;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight:bold;
+            letter-spacing:1px;
+        }
+        #screen #rocks{
+            position: absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+        }
+        #screen #rocks .rock{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position:relative;
+            font-size:35px;
+            width:100px;
+        }
+        #screen #rocks .rock span{
+            position:absolute;
+            font-weight:bold;
+            color:white;
+            text-shadow:0 0 12px rgb(0,0,0);
+        }
+        #screen #rocks .rock img{
+            filter:drop-shadow(0 0 2px rgb(0,0,0,0.9));
+            width:100%;
+        }
     </style>
     
     </head>
@@ -136,7 +223,38 @@
  </section>
  
  <section id="screen">
+    <div class="opa"></div> 
+    
+    <div id="cannon">
+       <img src="1.png" style="filter:drop-shadow(0 0 2px rgb(0,0,0,0.4))">
+     </div>
      
+     <div id="rocks" class="flex"> 
+        <div class="rock">
+            <img src="rock1.png">
+            <span>1</span>
+        </div>
+        <div class="rock">
+            <img src="rock2.png">
+            <span>3</span>
+        </div>
+        <div class="rock">
+            <img src="rock3.png">
+            <span>8</span>
+        </div>
+     </div>
+     
+      <div class="board">
+          <div class="icons flex">
+              <img src="life.png">
+              <div id="lifeline"></div> 
+          </div>
+          <div class="icons flex">
+              <img src="coin.png">
+              <div id="score">0</div>
+          </div>
+      </div>
+      
  </section>
  
 </body>
