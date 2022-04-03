@@ -8,8 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
     <!-- google fonts -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
     <title>cannon</title>
     
@@ -60,6 +58,8 @@
             justify-content: space-around;
             padding:10px;
             position:relative;
+            z-index:10;
+            background-color: white;
         }
         #screen button{
             background:none;
@@ -74,7 +74,7 @@
             position:relative;
         }
         #screen #word #key,#board #score{
-            font-size:35px;
+            font-size:30px;
             font-weight: bold;
             font-family: 'Noto Sans JP', sans-serif;
             color:rgb(0,0,255);
@@ -102,6 +102,7 @@
             background-color:rgb(0,0,255);
             opacity:1;
             z-index:100;
+            transition:0.5s linear;
         }
         #screen p{
             position: absolute;
@@ -110,6 +111,20 @@
             font-size:13px;
             opacity:0.6;
             z-index:1;
+        }
+        #screen #grade{
+            z-index:0;
+            background-image: linear-gradient(193deg, rgb(255, 0, 0), white);
+            opacity:0;
+            transition:0.5s;
+            transition-delay:0.2s;
+            position: absolute;
+            top:0;
+            left:50%;
+            transform:translate(-50%,-50%) scale(1);
+            width:15px;
+            height:15px;
+            border-radius:50%;
         }
         #rules::before{
             background-color: #000;
@@ -173,6 +188,23 @@
             font-style: normal;
         }
         
+        #board .judge{
+            position: absolute;
+            bottom:0;
+            left:50%;
+            transform:translate(-50%,40px);
+            width:50px;
+            height:50px;
+            border-radius:50%;
+            z-index:1;
+            opacity:0;
+            transition:0.5s ease;
+            transition-delay:0.1s;
+        }
+        #board .judge img{
+            height:80px;
+        }
+        
         @media (max-width:850px){
             body{
                 flex-direction: column;
@@ -225,15 +257,20 @@
  
  <section id="board" class="flex">
     <h2 id="score">0</h2>
-     <section id="screen" class="flex">
+    <div id="right" class="judge flex"><img src="https://img.icons8.com/bubbles/100/000000/checkmark.png"/></div>
+    <div id="wrong" class="judge flex"><img src="https://img.icons8.com/external-bearicons-outline-color-bearicons/64/000000/external-rejected-approved-and-rejected-bearicons-outline-color-bearicons-11.png"/></div>
+    <section id="screen" class="flex">
         <p><i class="fa-solid fa-alarm-clock"></i> <span id="time">30</span></p>
         <button id="bt1">red</button>
         <span id="word"> <span id="key">red</span> <div id="dot"></div> </span>
         <button id="bt2">blue</button>
+        <div id="grade"></div>
     </section>
  </section>
    
    <script>
+       
+       var game = true;
        
        var c1 = ['rgb(255,0,0)','rgb(0,255,0)','rgb(0,0,255)','rgb(255, 102, 255)','rgb(255, 153, 51)',
                  'rgb(255, 255, 102)','rgb(153, 51, 255)','rgb(0,0,0)'];
@@ -244,6 +281,9 @@
        var bt2 = document.getElementById("bt2");
        var key = document.getElementById("key");
        var dot = document.getElementById("dot");
+       var grade = document.getElementById("grade");
+       var score = document.getElementById("score");
+       var s = 0;
        
        var arr = [];
        var ans = '';
@@ -262,7 +302,7 @@
            key.innerHTML = c2[x4];
            key.style.color = c1[x5];
            if (x5 == 5){
-               key.style.textShadow = "0 0 3px rgb(0,0,0)";
+               key.style.textShadow = "0 0 3px rgb(0,0,0,0.3)";
            }else{
                key.style.textShadow = "0 0 5px " + c3[x5];
            }
@@ -270,28 +310,100 @@
            arr = [c2[x1],c2[li[x2]]];
            ans = c2[x4];
 //           console.log(arr,ans);
+           score.innerHTML = s;
+           game = true;
        }
        
        draw();
+       
+       var right = document.getElementById("right");
+       var wrong = document.getElementById("wrong");
+       
+       function correct(){
+           right.style.transform = "translate(-50%,80px)";
+           right.style.opacity = 1;
+           setTimeout(function(){
+               dot.style.transform = "translate(-50%,50%)";
+              dot.style.opacity = 1;
+           },450);
+           setTimeout(function(){
+              grade.style.transform="translate(-50%,-50%) scale(1)";
+               grade.style.zIndex = '0';
+               grade.style.opacity = '0';
+               right.style.transform = "translate(-50%,40px)";
+               right.style.opacity = 0;
+               draw();
+           },800);
+       }
+       
+       function incorrect(){
+           wrong.style.transform = "translate(-50%,80px)";
+           wrong.style.opacity = 1;
+           setTimeout(function(){
+               dot.style.transform = "translate(-50%,50%)";
+              dot.style.opacity = 1;
+           },450);
+           setTimeout(function(){
+              grade.style.transform="translate(-50%,-50%) scale(1)";
+               grade.style.zIndex = '0';
+               grade.style.opacity = '0';
+               wrong.style.transform = "translate(-50%,40px)";
+               wrong.style.opacity = 0;
+               draw();
+           },800);
+       }
        
        window.addEventListener('keydown',(e) => {
            // left = 37
           // right = 39
           if (e.keyCode == 37){
-              draw();
+              game = false;
+              dot.style.transform = "translate(-200px,-20px) scale(10)";
+              dot.style.opacity = 0.6;
+              grade.style.zIndex = '10000';
+              grade.style.opacity = '1';
+              grade.style.transform="translate(-50%,-50%) scale(60)";
+              grade.style.backgroundImage = "linear-gradient(130deg,"+arr[0]+", white)";
+              if (arr[1] == ans){
+                  s += 1;
+                  correct();
+              }else{
+                  s -= 1;
+                  incorrect();
+              }
           }else if (e.keyCode == 39){
-              draw();
+              game = false;
+              dot.style.transform = "translate(200px,-20px) scale(10)";
+              dot.style.opacity = 0.6;
+              grade.style.zIndex = '10000';
+              grade.style.opacity = '1';
+              grade.style.transform="translate(-50%,-50%) scale(60)";
+              grade.style.backgroundImage = "linear-gradient(190deg, "+arr[1]+", white)";
+              if (arr[0] == ans){
+                  s += 1;
+                  correct();
+              }else{
+                  s -= 1;
+                  incorrect();
+              }
           }
        });
+       
+       function over(){
+           alert("game over ! Your score : " + s);
+       }
       
        var time = document.getElementById("time");
        var t = 30;
        
        var timer = setInterval(function(){
-           t -= 1;
-           time.innerHTML = t;
-           if (t == 0){
-               clearInterval(timer);
+           if (game){
+               t -= 1;
+               time.innerHTML = t;
+               if (t == 0){
+                   over();
+                   clearInterval(timer);
+               }
            }
        },1000);
        
