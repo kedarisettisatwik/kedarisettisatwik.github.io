@@ -261,9 +261,9 @@
     <div id="wrong" class="judge flex"><img src="https://img.icons8.com/external-bearicons-outline-color-bearicons/64/000000/external-rejected-approved-and-rejected-bearicons-outline-color-bearicons-11.png"/></div>
     <section id="screen" class="flex">
         <p><i class="fa-solid fa-alarm-clock"></i> <span id="time">30</span></p>
-        <button id="bt1">red</button>
+        <button id="bt1" onclick="clickl()">red</button>
         <span id="word"> <span id="key">red</span> <div id="dot"></div> </span>
-        <button id="bt2">blue</button>
+        <button id="bt2" onclick="clickr()">blue</button>
         <div id="grade"></div>
     </section>
  </section>
@@ -353,39 +353,47 @@
            },800);
        }
        
+       function clickl(){
+           game = false;
+           dot.style.transform = "translate(-200px,-20px) scale(10)";
+           dot.style.opacity = 0.6;
+           grade.style.zIndex = '10000';
+           grade.style.opacity = '1';
+           grade.style.transform="translate(-50%,-50%) scale(60)";
+           grade.style.backgroundImage = "linear-gradient(130deg,"+arr[0]+", white)";
+           if (arr[1] == ans){
+               s += 1;
+               correct();
+           }else{
+               s -= 1;
+               incorrect();
+           }
+       }
+       
+       function clickr(){
+           game = false;
+           dot.style.transform = "translate(200px,-20px) scale(10)";
+           dot.style.opacity = 0.6;
+           grade.style.zIndex = '10000';
+           grade.style.opacity = '1';
+           grade.style.transform="translate(-50%,-50%) scale(60)";
+           grade.style.backgroundImage = "linear-gradient(190deg, "+arr[1]+", white)";
+           if (arr[0] == ans){
+               s += 1;
+               correct();
+           }else{
+               s -= 1;
+               incorrect();
+           }
+       }
+       
        window.addEventListener('keydown',(e) => {
            // left = 37
           // right = 39
           if (e.keyCode == 37){
-              game = false;
-              dot.style.transform = "translate(-200px,-20px) scale(10)";
-              dot.style.opacity = 0.6;
-              grade.style.zIndex = '10000';
-              grade.style.opacity = '1';
-              grade.style.transform="translate(-50%,-50%) scale(60)";
-              grade.style.backgroundImage = "linear-gradient(130deg,"+arr[0]+", white)";
-              if (arr[1] == ans){
-                  s += 1;
-                  correct();
-              }else{
-                  s -= 1;
-                  incorrect();
-              }
+              clickl();
           }else if (e.keyCode == 39){
-              game = false;
-              dot.style.transform = "translate(200px,-20px) scale(10)";
-              dot.style.opacity = 0.6;
-              grade.style.zIndex = '10000';
-              grade.style.opacity = '1';
-              grade.style.transform="translate(-50%,-50%) scale(60)";
-              grade.style.backgroundImage = "linear-gradient(190deg, "+arr[1]+", white)";
-              if (arr[0] == ans){
-                  s += 1;
-                  correct();
-              }else{
-                  s -= 1;
-                  incorrect();
-              }
+              clickr();
           }
        });
        
