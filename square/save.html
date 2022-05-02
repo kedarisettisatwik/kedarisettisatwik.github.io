@@ -40,6 +40,11 @@
             position:relative;
             transition:0.4s;
         }
+        .game.mobile{
+            width:100%;
+            height:100%;
+            box-shadow:0 0 15px rgb(0,0,0,0);
+        }
         .camera{
             position: absolute;
             top:0;
@@ -68,7 +73,13 @@
   
   
   <script>
-    
+
+      let para = new URLSearchParams(window.location.search);
+      if (parseInt(para.get('mobile')) == 1){
+          alert('rotate your phone ');
+       var game = document.querySelector('.game');
+          game.classList.add("mobile");
+      }
     
   </script>
   
