@@ -1,0 +1,198 @@
+<html>
+<head>
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    <script src="https://kit.fontawesome.com/d867b74fd4.js" crossorigin="anonymous"></script>
+    <title>save the square</title>
+    <style>
+        
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: 'Poppins', sans-serif;
+            user-select: none;
+        }
+        body {
+            width: 100vw;
+            height:100vh;
+            overflow: hidden;
+            display:flex;
+            justify-content: center;
+            align-items:center;
+            background-color: white;
+        }
+        .flex{
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .game{
+            width:600px;
+            height:350px;
+            box-shadow:0 0 15px rgb(0,0,0,0.1);
+            overflow: hidden;
+            position:relative;
+            transition:1.2s ease;
+            background-color:black;
+        }
+        .camera{
+            position: absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:calc(100% - 60px);
+            transition:0.4s;
+        }
+        .page{
+            width:100%;
+            height:100%;
+            position: absolute;
+            transform:translateX(calc(100% * var(--i)));
+            overflow: hidden;
+        }
+        .page.one{
+            color:white;
+            text-shadow:0 0 20px rgb(255,255,255,1);
+            letter-spacing:2px;
+        }
+        .page.one h2:nth-child(1){
+            font-size:30px;
+            transform:translate(-60px,-40px);
+            -webkit-animation: fall 1s ease forwards;
+        }
+        @keyframes fall{
+            0%{
+                opacity:0;
+                transform:translate(-60px,-40px);
+            }
+            100%{
+                opacity:1;
+                transform:translate(-60px,-10px);
+            }
+        }
+        .page.one h2:nth-child(3){
+            font-size:30px;
+            transform:translate(80px,40px);
+            -webkit-animation: rise 1s ease forwards;
+        }
+        @keyframes rise{
+            0%{
+                opacity:0;
+                transform:translate(80px,40px);
+            }
+            100%{
+                opacity:1;
+                transform:translate(80px,10px);
+            }
+        }
+        .buttons{
+            position: absolute;
+            bottom:0px;
+            left:0;
+            flex-direction: row;
+            width:100%;
+            justify-content: space-around;
+        }
+        .buttons button{
+            margin:5px 10px;
+            padding:10px;
+            font-size:14px;
+            cursor:pointer;
+            background:none;
+            color:white;
+            outline:none;
+            border:none;
+            letter-spacing:1px;
+            font-weight:bold;
+        }
+        .buttons button:nth-child(1){
+            background-color:white;
+            color:black;
+        }
+        .page img{
+            width:300px;
+        }
+        
+        @media (max-width:650px){
+            .game{
+                width:100%;
+                height:100%;
+                box-shadow:none;
+            }
+        }
+        
+    </style>
+    </head>
+<body>
+  
+  <section class="game">
+      <section class="camera" id="screen">
+          <div class="page one flex" style="--i:0">
+              <h2>Save</h2>
+              <b>the</b>
+              <h2>Square</h2>
+          </div>
+          <div class="page two flex" style="--i:1">
+              <img src="images/1.webp">
+          </div>
+          <div class="page two flex" style="--i:2">
+              <img src="images/2.webp">
+          </div>
+          <div class="page two flex" style="--i:3">
+              <img src="images/3.webp">
+          </div>
+          <div class="page two flex" style="--i:4">
+              <img src="images/4.webp">
+          </div>
+      </section>
+      <section class="buttons flex">
+          <button onclick="play()">Play</button>
+          <button onclick="next()">Next</button>
+      </section>
+  </section>
+  
+  
+  <script>
+      
+      function play(){
+        location.replace('save.html');
+      }
+      var x = 1;
+      
+      function next(){
+          var screen = document.getElementById("screen");
+          screen.style.transform = 'translateX(calc(-100% * '+x+'))';
+          console.log(x);
+          if (x == 5){
+              screen.style.transform = 'translateX(calc(-100% * '+x+'))';
+              setTimeout(function(){
+                  play();
+              },400);
+          }
+          x += 1;
+      }
+      
+  </script>
+  
+</body>
+</html>
+
+
+
+
+<!--
+
+<a href="https://www.hitwebcounter.com" target="_blank" class="c">
+<img src="https://hitwebcounter.com/counter/counter.php?page=7711238&style=0001&nbdigits=6&type=ip&initCount=0" title="Total Website Hits" Alt="Web Hits"   border="0" /></a>
+
+22,001
+
+
+-->
