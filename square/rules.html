@@ -40,7 +40,6 @@
             box-shadow:0 0 15px rgb(0,0,0,0.15);
             overflow: hidden;
             position:relative;
-            transition:1.2s ease;
             background-color:black;
         }
         .game.mobile{
@@ -185,7 +184,8 @@
       let para = new URLSearchParams(window.location.search);
       if (parseInt(para.get('mobile')) == 1){
           alert('rotate your phone ');
-       var game = document.querySelector('.game');
+          document.body.style.backgroundColor = 'black';
+          var game = document.querySelector('.game');
           game.classList.add("mobile");
       }
       
