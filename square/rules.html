@@ -160,7 +160,11 @@
       
       function play(){
 //        location.replace('save.html');
-          location.href = 'save.html';
+          if (parseInt(para.get('mobile')) == 1){
+              location.replace('save.html?mobile=1');
+          }else{
+              location.replace('save.html?mobile=0');
+          }
       }
       var x = 1;
       
