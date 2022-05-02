@@ -7,8 +7,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
     <!-- google fonts -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
-    <script src="https://kit.fontawesome.com/d867b74fd4.js" crossorigin="anonymous"></script>
     <title>save the square</title>
     <style>
         
@@ -109,7 +107,26 @@
             border-radius:50%;
             background-image:linear-gradient(220deg,rgb(255,255,255,1),rgb(255,255,255,0.5));
         }
-        
+        .buttons{
+            position: absolute;
+            bottom:0;
+            height:50px;
+            width:100%;
+            left:0;
+        }
+        .buttons .button{
+            position: absolute;
+            width:50px;
+            height:50px;
+            top:50%;
+            transform:translateY(-50%);
+            opacity:0.8;
+            cursor:pointer;
+        }
+        .buttons img{
+            width:20px;
+            filter: invert(1);
+        }
     </style>
     </head>
 <body>
@@ -124,6 +141,17 @@
                 <div class="block" style="left:0px;height:60px;width:120px;"></div>
             </div>
             <div class="player" style="bottom:60px;left:45px;"></div>
+        </div>
+        <div class="buttons">
+            <div class="button flex" style="left:30px;">
+                <img src="arrow-left-solid.svg">
+            </div>
+            <div class="button flex" style="left:90px;">
+                <img src="arrow-right-solid.svg">
+            </div>
+            <div class="button flex" style="right:30px;">
+                <img src="arrow-up-solid.svg">
+            </div>
         </div>
     </section>
   </section>
