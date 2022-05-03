@@ -6,7 +6,7 @@
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
-    <script src="jquery-3.6.0.min.js"></script>
+    <script src="images/jquery-3.6.0.min.js"></script>
     <!-- google fonts -->
     <title>save the square</title>
     <style>
@@ -21,8 +21,8 @@
         html{
             --x : 0;
             --y : 0;
-            --sx : 30;
-            --sy : 60;
+            --sx : 0;
+            --sy : 0;
             --sr : 0;
         }
         body {
@@ -62,7 +62,7 @@
         }
         .camera{
             position: absolute;
-            top:0;
+            left:0;
             bottom:0;
             width:100%;
             height:100%;
@@ -89,6 +89,9 @@
             height:calc(100% + 70px);
             width:220px;
         }
+        .wall,.ground,.block{
+            box-shadow:0 0 2px rgb(0,0,0);
+        }
         .blocks{
             position: absolute;
             left:220px;
@@ -108,16 +111,21 @@
             background-color: black;
             bottom:0;
         }
+        .square{
+            position: absolute;
+            width:25px;
+            height:25px;
+            bottom:60px;
+            left:30px;
+        }
         .player{
             width:100%;
             position: absolute;
             height:100%;
             background-color: black;
-            width:25px;
-            height:25px;
             box-shadow:0 0 5px rgb(0,0,0,0.3);
-            bottom:60px;
-            left:30px;
+            bottom:0;
+            left:0;
         }
         .player .circle{
             position: absolute;
@@ -130,7 +138,7 @@
         }
         .piece{
             position: absolute;
-            bottom:calc(var(--sy) * 1px);
+            bottom:calc(calc(var(--sy) + 1) * 1px);
             left:calc(calc(var(--sx) + 12.5) * 1px);
             background-color: black;
             width:calc(var(--wh) * 1px);
@@ -216,47 +224,52 @@
             <div class="levels">
                 <div class="block" style="left:0px;height:60px;width:120px;"></div>
             </div>
-            <div class="piece" style="--wh:10;--s:0.1;"></div>
-            <div class="piece" style="--wh:9;--s:0.14"></div>
-            <div class="piece" style="--wh:8;--s:.18"></div>
-            <div class="piece" style="--wh:7;--s:0.22"></div>
-            <div class="piece" style="--wh:6;--s:0.26"></div>
-            <div class="piece" style="--wh:5;--s:0.30"></div>
-            <div class="piece" style="--wh:4;--s:0.34"></div>
-            <div class="piece" style="--wh:3;--s:0.38"></div>
-            <div class="player"><div class="circle"></div></div>
+            <div class="square">
+                <div class="piece" style="--wh:10;--s:0.1;"></div>
+                <div class="piece" style="--wh:9;--s:0.14"></div>
+                <div class="piece" style="--wh:8;--s:.18"></div>
+                <div class="piece" style="--wh:7;--s:0.22"></div>
+                <div class="piece" style="--wh:6;--s:0.26"></div>
+                <div class="piece" style="--wh:5;--s:0.30"></div>
+                <div class="piece" style="--wh:4;--s:0.34"></div>
+                <div class="piece" style="--wh:3;--s:0.38"></div>
+                <div class="player"><div class="circle"></div></div>
+            </div>
         </div>
     </section>
     <div class="buttons">
             <div class="button flex" style="left:30px;">
-                <img src="arrow-left-solid.svg">
+                <img src="images/arrow-left-solid.svg">
             </div>
             <div class="button flex" style="left:90px;">
-                <img src="arrow-right-solid.svg">
+                <img src="images/arrow-right-solid.svg">
             </div>
             <div class="button flex" style="right:30px;" onclick="bt_jump()">
-                <img src="arrow-up-solid.svg">
+                <img src="images/arrow-up-solid.svg">
             </div>
     </div>
     <div class="board flex">
             <div class="distance">
                 <h2>Distance</h2>
-                <h3><span>0</span><label> .m</label></h3>
+                <h3><span class="meters">0</span><label> .m</label></h3>
             </div>
             <div class="pp flex" onclick="control()">
-                <img src="pause-solid.svg">
-                <img src="play-solid.svg">
+                <img src="images/pause-solid.svg">
+                <img src="images/play-solid.svg">
             </div>
         </div>
   </section>
   
-  <p class='notice' style="margin-top:50px;">Use arrows to move left & right & jump</p>
-  <p class='notice'>Use space bar to pause & play </p>
+  <p class='notice' style="margin-top:50px;">Use arrows to move & jump</p>
+<!--  <p class='notice'>Use ctrl + arrows to jump front and jump back</p>-->
+  <p class='notice' style="margin-top:10px;">Use space bar to pause & play </p>
     
   
   <script>
       
-      var audio_jump = new Audio("jump.mp3");
+      var distance = 0;
+      var d1 = 0;
+      var audio_jump = new Audio("images/jump.mp3");
       audio_jump.volume = 0.2;
       
       let para = new URLSearchParams(window.location.search);
@@ -292,63 +305,91 @@
       function jump(){
           if (game_control){
               
-              game_control = false;
-//          $("body").get(0).style.setProperty("--sx", position.x);
-          audio_jump.play();
-          $("body").get(0).style.setProperty("--sy", position.y + 70);
-          $("body").get(0).style.setProperty("--sr", 180);
+              if (jump_bool){      
+                  
+               game_control = false;
+               camera_up();
+//             $("body").get(0).style.setProperty("--sx", position.x);
+             audio_jump.play();
+             $("body").get(0).style.setProperty("--sy", 71);
+             $("body").get(0).style.setProperty("--sr", 180);
           
-          $('.player').animate({
-              bottom : '+=70px'
-          },600,function(){
-              $("body").get(0).style.setProperty("--sy", position.y);
-              $("body").get(0).style.setProperty("--sr", 360);
-          });
+             $('.player').animate({
+                 bottom : '+=70px'
+             },600,function(){
+                 $("body").get(0).style.setProperty("--sy",0);
+                 $("body").get(0).style.setProperty("--sr", 360);
+             });
           
-          $('.player').animate({
+             $('.player').animate({
               bottom : '-=70px'
-          },600,function(){
-              audio_jump.pause();
-              game_control = true;
-          });
-              
+             },600,function(){
+                 audio_jump.pause();
+                 game_control = true;
+             });
+                  
+            }else{
+                if (movement == 1){
+                    console.log("run to jump front");
+                }else if (movement == -1){
+                    console.log("run to jump back");
+                }
+            }
           }
       }
       
       var camera_x = 0;
       var camera_y = 0;
       
+      var movement = 0;
+      
       function camera_up(){
-          camera_x += 0;
-          camera_y += 30;
-          $("body").get(0).style.setProperty("--x", camera_x);
-          $("body").get(0).style.setProperty("--y", camera_y);
-          setTimeout(function(){
               camera_x += 0;
-              camera_y -= 30;
+              camera_y += 30;
               $("body").get(0).style.setProperty("--x", camera_x);
               $("body").get(0).style.setProperty("--y", camera_y);
-          },500);
+              setTimeout(function(){
+                  camera_x += 0;
+                  camera_y -= 30;
+                  $("body").get(0).style.setProperty("--x", camera_x);
+                  $("body").get(0).style.setProperty("--y", camera_y);
+              },500);
       }
       
       function bt_jump(){
-          if (game_control){
+          if (game_control && jump_bool){
               jump();
-              camera_up();
           }
       }
       
-      const moveright = setInterval(function(){
-          $('.square').animate({
-              bottom : '+=70px'
-          },400);
-      },100);
+      var bool_right = false;
+      var bool_left = false;
+      var jump_bool = true;
       
-      const moveleft = setInterval(function(){
-          
-      },100);
+      var render = setInterval(function(){
+          if (bool_left && position.x - 2 >= 0){
+              position.x -= 2;
+              $(".square").css("left",position.x + "px");
+              $(".square").css("bottom",position.y + "px");
+              jump_bool = false;
+              movement = -1;
+              d1 -= 0.08;
+          }else if (bool_right){
+              position.x += 2;
+              $(".square").css("left",position.x + "px");
+              $(".square").css("bottom",position.y + "px");
+              jump_bool = false;
+              movement = 1;
+              d1 += 0.08;
+              if (distance < d1){
+                  distance = d1;
+                  document.querySelector(".meters").innerHTML = distance.toFixed(1);
+              }
+          }
+      },1000/70);
       
       window.addEventListener('keydown',(e) => {
+          
 //          left arrow	37
 //          up arrow	38
 //          right arrow	39
@@ -356,24 +397,32 @@
           if (e.keyCode == 38){
               if (game_control){
                   jump();
-                  camera_up();
               }
-          }else if (e.keyCode == 37){
-              if (game_control){
-                  moveleft;
-              }
-          }else if (e.keyCode == 39){
-              if (game_control){
-                  moveright;
-              }
-          }else if (e.keyCode == 32){
+          }
+          if (e.keyCode == 32){
               control();
           }
-                    
+          if (game_control){
+              if (e.keyCode == 37){
+                  bool_left = true;
+              }else if (e.keyCode == 39){
+                  bool_right = true;
+              }
+          }else{
+              if (e.keyCode == 37){
+                  console.log('jump to back');
+              }else if (e.keyCode == 39){
+                  console.log('jump to front');
+              }
+          }
+          
       });
       
       window.addEventListener('keyup',(e) => {
-          
+//          console.log(e.keyCode);
+          bool_right = false;
+          bool_left = false;
+          jump_bool = true;
       });
       
   </script>
