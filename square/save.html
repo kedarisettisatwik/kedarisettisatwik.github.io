@@ -62,12 +62,13 @@
         }
         .camera{
             position: absolute;
-            left:0;
+            left:calc(var(--x) * 1px);
             bottom:0;
             width:100%;
             height:100%;
-            transform:translate(calc(var(--x) * 1px),calc(var(--y) * 1px));
-            transition:0.5s;
+            transform:translate(calc(var(--x) * 0px),calc(var(--y) * 1px));
+            transition:0.5s,left 1.5s ease;
+            transition-delay:0s,0.7s;
         }
         .bg{
             position: absolute;
@@ -82,8 +83,9 @@
             bottom:0;
         }
         .ground{
-            width:100%;
+            width:200%;
             height:60px;
+            left:calc(-1px * var(--x));
         }
         .wall{
             height:calc(100% + 70px);
@@ -118,6 +120,13 @@
             bottom:60px;
             left:30px;
         }
+        .pieces{
+            position:absolute;
+            width:100%;
+            height:100%;
+            transition:0.1s;
+            opacity:1;
+        }
         .player{
             width:100%;
             position: absolute;
@@ -135,7 +144,8 @@
             height:7px;
             border-radius:50%;
             background-image:linear-gradient(220deg,rgb(255,255,255,1),rgb(255,255,255,0.8));
-            transition:0.3s;
+            transition:right 0.5s ease-in,opacity 0s;
+            transition-delay:0.1s,0s;
         }
         .piece{
             position: absolute;
@@ -223,17 +233,19 @@
         <div class="wall"></div>
         <div class="blocks">
             <div class="levels">
-                <div class="block" style="left:0px;height:60px;width:120px;"></div>
+                <div class="block" style="left:0px;height:60px;width:121px;"></div>
             </div>
             <div class="square">
-                <div class="piece" style="--wh:10;--s:0.1;"></div>
-                <div class="piece" style="--wh:9;--s:0.14"></div>
-                <div class="piece" style="--wh:8;--s:.18"></div>
-                <div class="piece" style="--wh:7;--s:0.22"></div>
-                <div class="piece" style="--wh:6;--s:0.26"></div>
-                <div class="piece" style="--wh:5;--s:0.30"></div>
-                <div class="piece" style="--wh:4;--s:0.34"></div>
-                <div class="piece" style="--wh:3;--s:0.38"></div>
+                <div class="pieces">
+                    <div class="piece" style="--wh:10;--s:0.1;"></div>
+                    <div class="piece" style="--wh:9;--s:0.14"></div>
+                    <div class="piece" style="--wh:8;--s:.18"></div>
+                    <div class="piece" style="--wh:7;--s:0.22"></div>
+                    <div class="piece" style="--wh:6;--s:0.26"></div>
+                    <div class="piece" style="--wh:5;--s:0.30"></div>
+                    <div class="piece" style="--wh:4;--s:0.34"></div>
+                    <div class="piece" style="--wh:3;--s:0.38"></div>
+                </div>
                 <div class="player"><div class="circle"></div></div>
             </div>
         </div>
@@ -303,11 +315,14 @@
       var player = document.querySelector('.player');
       var position = {x:30,y:60};
       
+      var circle_opa = true;
+      
       function jump(){
           if (game_control){
               
-              if (jump_bool){      
-                  
+              if (jump_bool){
+               circle_opa = false;
+               $('.circle').css("opacity","1");
                game_control = false;
                camera_up();
 //             $("body").get(0).style.setProperty("--sx", position.x);
@@ -327,13 +342,16 @@
              },600,function(){
                  audio_jump.pause();
                  game_control = true;
+                 circle_opa = true;
              });
                   
             }else{
-                if (movement == 1){
+                if (movement == 1 && jumping_bool){
                     console.log("run to jump front");
-                }else if (movement == -1){
+                    rjf();
+                }else if (movement == -1 && jumping_bool){
                     console.log("run to jump back");
+                    rjb();
                 }
             }
           }
@@ -345,14 +363,10 @@
       var movement = 0;
       
       function camera_up(){
-              camera_x += 0;
               camera_y += 30;
-              $("body").get(0).style.setProperty("--x", camera_x);
               $("body").get(0).style.setProperty("--y", camera_y);
               setTimeout(function(){
-                  camera_x += 0;
                   camera_y -= 30;
-                  $("body").get(0).style.setProperty("--x", camera_x);
                   $("body").get(0).style.setProperty("--y", camera_y);
               },500);
       }
@@ -366,21 +380,25 @@
       var bool_right = false;
       var bool_left = false;
       var jump_bool = true;
+      var jumping_bool = true;
       
       var render = setInterval(function(){
-          if (bool_left && position.x - 2 >= 0){
+          check();
+          if (bool_left){
               $('.circle').css("right","15px");
-              position.x -= 3;
+              if (position.x - 2 >= maps[position_check][0]){
+                  position.x -= 2;
+              }else{
+                  position.x = maps[position_check][0];
+              }
               $(".square").css("left",position.x + "px");
-              $(".square").css("bottom",position.y + "px");
               jump_bool = false;
               movement = -1;
               d1 -= 0.05;
           }else if (bool_right){
               $('.circle').css("right","5px");
-              position.x += 3;
+              position.x += 2;
               $(".square").css("left",position.x + "px");
-              $(".square").css("bottom",position.y + "px");
               jump_bool = false;
               movement = 1;
               d1 += 0.05;
@@ -412,14 +430,124 @@
                   bool_right = true;
               }
           }else{
-              if (e.keyCode == 37){
+              if (e.keyCode == 37 && jumping_bool){
                   console.log('jump to back');
-              }else if (e.keyCode == 39){
+                  jump_bool = false;
+                  jb();
+              }else if (e.keyCode == 39 && jumping_bool){
                   console.log('jump to front');
+                  jump_bool = false;
+                  jf();
               }
           }
           
       });
+      
+      function jf(){
+          if (jumping_bool){
+              game_control = false;
+              jumping_bool = false;
+              circle_opa = false;
+              $('.pieces').css("opacity","0");
+              $('.circle').css("right","5px");
+              $('.square').css("transition","0.5s");
+              $('.square').css("left","+=45px");
+              position.x += 45;
+              d1 += ((45 * 0.05) / 2);
+              if (distance < d1){
+                  distance = d1;
+                  document.querySelector(".meters").innerHTML = distance.toFixed(1);
+              }
+              setTimeout(function(){
+                  $('.square').css("transition","0s");
+                  $('.pieces').css("opacity","1");
+                  game_control = true;
+                  jumping_bool = true;
+                  circle_opa = true;
+              },800);
+          }
+      }
+      
+      function jb(){
+          if (jumping_bool){
+              jumping_bool = false;
+              game_control = false;
+              circle_opa = false;
+              $('.pieces').css("opacity","0");
+              $('.circle').css("right","15px");
+              $('.square').css("transition","0.5s");
+              if (position.x - 45 >= 0){
+                  $('.square').css("left","-=45px");
+                  position.x -= 45;
+                  d1 -= ((45 * 0.05) / 2);
+                  setTimeout(function(){
+                      $('.square').css("transition","0s");
+                      $('.pieces').css("opacity","1");
+                      game_control = true;
+                      jumping_bool = true;
+                  },800);
+              }else {
+                  $('.square').css("left","0");
+                  position.x = 0;
+                  d1 = 0;
+                  setTimeout(function(){
+                      $('.square').css("transition","0s");
+                      $('.pieces').css("opacity","1");
+                      game_control = true;
+                      jumping_bool = true;
+                      circle_opa = true;
+                  },800);
+              }
+          }
+      }
+      
+      function rjf(){
+          if (jumping_bool){
+              
+          }
+      }
+      
+      function rjb(){
+          
+      }
+      
+//      gravity 
+      
+      const maps = [[0,121,60],[121,400,0]];
+      var position_check = 0;
+      
+      function check(){
+          if (position.x >= maps[position_check][0] && position.x <= maps[position_check][1]){
+              // square is in position_check region
+              camera_x = -1 * maps[position_check][0];
+              $("body").get(0).style.setProperty("--x", camera_x);
+              if (position.x == maps[position_check][0] && circle_opa){
+                  $('.circle').css("opacity","0");
+              }else{
+                  $('.circle').css("opacity","1");
+              }
+              if (position.y != maps[position_check][2]){
+                  game_control = false;
+                  $('.square').css('transition',"0.3s");
+                  $('.square').css('bottom',maps[position_check][2]);
+                  position.y = maps[position_check][2];
+                  setTimeout(function(){
+                      $('.square').css('transition',"0s");
+                      game_control = true;
+                  },300);
+              }
+          }else if (position.x < maps[position_check][0]){
+              // square is in previous region maps[position_check - 1]
+              position_check -= 1;
+              check();
+          }else if (position.x > maps[position_check][1]){
+              // square is in previous region maps[position_check + 1]
+              if (position_check + 1 < maps.length){
+                  position_check += 1;
+                  check();
+              }
+          }
+      }
       
       window.addEventListener('keyup',(e) => {
 //          console.log(e.keyCode);
