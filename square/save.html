@@ -135,6 +135,7 @@
             height:7px;
             border-radius:50%;
             background-image:linear-gradient(220deg,rgb(255,255,255,1),rgb(255,255,255,0.8));
+            transition:0.3s;
         }
         .piece{
             position: absolute;
@@ -238,20 +239,20 @@
         </div>
     </section>
     <div class="buttons">
-            <div class="button flex" style="left:30px;">
+            <div class="button flex left" style="left:30px;">
                 <img src="images/arrow-left-solid.svg">
             </div>
-            <div class="button flex" style="left:90px;">
+            <div class="button flex right" style="left:90px;">
                 <img src="images/arrow-right-solid.svg">
             </div>
-            <div class="button flex" style="right:30px;" onclick="bt_jump()">
+            <div class="button flex up" style="right:30px;">
                 <img src="images/arrow-up-solid.svg">
             </div>
     </div>
     <div class="board flex">
             <div class="distance">
                 <h2>Distance</h2>
-                <h3><span class="meters">0</span><label> .m</label></h3>
+                <h3><span class="meters">0</span><label> m</label></h3>
             </div>
             <div class="pp flex" onclick="control()">
                 <img src="images/pause-solid.svg">
@@ -368,19 +369,21 @@
       
       var render = setInterval(function(){
           if (bool_left && position.x - 2 >= 0){
-              position.x -= 2;
+              $('.circle').css("right","15px");
+              position.x -= 3;
               $(".square").css("left",position.x + "px");
               $(".square").css("bottom",position.y + "px");
               jump_bool = false;
               movement = -1;
-              d1 -= 0.08;
+              d1 -= 0.05;
           }else if (bool_right){
-              position.x += 2;
+              $('.circle').css("right","5px");
+              position.x += 3;
               $(".square").css("left",position.x + "px");
               $(".square").css("bottom",position.y + "px");
               jump_bool = false;
               movement = 1;
-              d1 += 0.08;
+              d1 += 0.05;
               if (distance < d1){
                   distance = d1;
                   document.querySelector(".meters").innerHTML = distance.toFixed(1);
