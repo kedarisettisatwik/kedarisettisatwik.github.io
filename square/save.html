@@ -62,7 +62,7 @@
         }
         .camera{
             position: absolute;
-            left:calc(var(--x) * 1px);
+            left:calc(calc(var(--x) - 50) * 1px);
             bottom:0;
             width:100%;
             height:100%;
@@ -85,7 +85,9 @@
         .ground{
             width:200%;
             height:60px;
-            left:calc(-1px * var(--x));
+            left:calc(calc(var(--x) - 50) * -1px);
+            transition:left 1.5s ease;
+            transition-delay:0.7s;
         }
         .wall{
             height:calc(100% + 70px);
@@ -282,6 +284,7 @@
       
       var distance = 0;
       var d1 = 0;
+      
       var audio_jump = new Audio("images/jump.mp3");
       audio_jump.volume = 0.2;
       
@@ -385,6 +388,7 @@
       var render = setInterval(function(){
           check();
           if (bool_left){
+              
               $('.circle').css("right","15px");
               if (position.x - 2 >= maps[position_check][0]){
                   position.x -= 2;
@@ -395,7 +399,11 @@
               jump_bool = false;
               movement = -1;
               d1 -= 0.05;
+              
           }else if (bool_right){
+              var next_x = maps[position_check+1][1];
+              var next_y = maps[position_check+1][2];
+              var pre_y = maps[position_check][2];
               $('.circle').css("right","5px");
               position.x += 2;
               $(".square").css("left",position.x + "px");
@@ -502,9 +510,7 @@
       }
       
       function rjf(){
-          if (jumping_bool){
-              
-          }
+          
       }
       
       function rjb(){
@@ -513,11 +519,11 @@
       
 //      gravity 
       
-      const maps = [[0,121,60],[121,400,0]];
+      const maps = [[0,121,60]];
       var position_check = 0;
       
       function check(){
-          if (position.x >= maps[position_check][0] && position.x <= maps[position_check][1]){
+          if (position.x + 5 >= maps[position_check][0] && position.x +5 <= maps[position_check][1]){
               // square is in position_check region
               camera_x = -1 * maps[position_check][0];
               $("body").get(0).style.setProperty("--x", camera_x);
@@ -536,17 +542,46 @@
                       game_control = true;
                   },300);
               }
-          }else if (position.x < maps[position_check][0]){
+              if (position_check + 4 > maps.length){
+                  generate();
+              }
+          }else if (position.x + 5 < maps[position_check][0]){
               // square is in previous region maps[position_check - 1]
               position_check -= 1;
               check();
-          }else if (position.x > maps[position_check][1]){
+          }else if (position.x + 5 > maps[position_check][1]){
               // square is in previous region maps[position_check + 1]
               if (position_check + 1 < maps.length){
                   position_check += 1;
                   check();
               }
           }
+      }
+      
+      function generate(){
+          var last_piece_s = maps[maps.length - 1][0];
+          var last_piece_e = maps[maps.length - 1][1];
+          var ww = Math.floor(Math.random()*180 + 60);
+          var last_piece_h = maps[maps.length - 1][2];
+          var poss = [];
+          if (last_piece_h == 0){
+              poss = [30,60];
+          }else if (last_piece_h == 30){
+              poss = [0,60];
+          }else if (last_piece_h == 60){
+              poss = [0,30,90];
+          }else if (last_piece_h == 90){
+              poss = [30,60];
+          }
+          var hh = Math.floor(Math.random()*poss.length);
+          var new1 = [last_piece_e,last_piece_e+ww,poss[hh]];
+          var levels = document.querySelector(".levels");
+          levels.innerHTML += '<div class="block" style="left:'+new1[0]+'px;height:'+new1[2]+'px;width:'+ww+'px;"></div>';
+          maps.push(new1);
+      }
+      
+      for (var i = 0;i<5;i++){
+          generate();
       }
       
       window.addEventListener('keyup',(e) => {
