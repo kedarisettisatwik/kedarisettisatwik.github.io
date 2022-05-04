@@ -478,9 +478,9 @@
               $('.pieces').css("opacity","0");
               $('.circle').css("right","5px");
               $('.square').css("transition","0.5s");
-              $('.square').css("left","+=45px");
-              position.x += 45;
-              d1 += ((45 * 0.05) / 2);
+              $('.square').css("left","+=100px");
+              position.x += 100;
+              d1 += ((100 * 0.05) / 2);
               if (distance < d1){
                   distance = d1;
                   document.querySelector(".meters").innerHTML = distance.toFixed(1);
@@ -503,10 +503,10 @@
               $('.pieces').css("opacity","0");
               $('.circle').css("right","15px");
               $('.square').css("transition","0.5s");
-              if (position.x - 45 >= 0){
-                  $('.square').css("left","-=45px");
-                  position.x -= 45;
-                  d1 -= ((45 * 0.05) / 2);
+              if (position.x - 100 >= 0){
+                  $('.square').css("left","-=100px");
+                  position.x -= 100;
+                  d1 -= ((100 * 0.05) / 2);
                   setTimeout(function(){
                       $('.square').css("transition","0s");
                       $('.pieces').css("opacity","1");
@@ -547,7 +547,16 @@
               camera_x = -1 * maps[position_check][0];
               $("body").get(0).style.setProperty("--x", camera_x);
               if ((position.x == maps[position_check][0] || position.x + 25 == maps[position_check][1]) && circle_opa){
-                  $('.circle').css("opacity","0");
+                  if (position_check == 0){
+                      $('.circle').css("opacity","0");
+                  }else{
+//                      console.log(maps[position_check][2],maps[position_check-1][2]);
+                      if ((position.x == maps[position_check][0] && maps[position_check][2] < maps[position_check-1][2]) || position.x + 25 == maps[position_check][1] && maps[position_check][2] < maps[position_check+1][2] ){
+                          $('.circle').css("opacity","0");
+                      }else{
+                          $('.circle').css("opacity","1");
+                      }
+                  }
               }else{
                   $('.circle').css("opacity","1");
               }
