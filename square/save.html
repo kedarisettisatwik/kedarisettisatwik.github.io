@@ -390,26 +390,45 @@
           if (bool_left){
               
               $('.circle').css("right","15px");
-              if (position.x - 2 >= maps[position_check][0]){
+              var before_y = 60;
+              if (position_check > 0){
+                  before_y = maps[position_check-1][2];
+              }
+              var pre_y = maps[position_check][2];
+              if (pre_y > before_y){
                   position.x -= 2;
+                  d1 -= 0.05;
               }else{
-                  position.x = maps[position_check][0];
+                  if (position.x - 2 >= maps[position_check][0]){
+                      position.x -= 2;
+                      d1 -= 0.05;
+                  }else{
+                      position.x = maps[position_check][0];
+                  }
               }
               $(".square").css("left",position.x + "px");
               jump_bool = false;
               movement = -1;
-              d1 -= 0.05;
-              
           }else if (bool_right){
-              var next_x = maps[position_check+1][1];
               var next_y = maps[position_check+1][2];
               var pre_y = maps[position_check][2];
               $('.circle').css("right","5px");
-              position.x += 2;
-              $(".square").css("left",position.x + "px");
               jump_bool = false;
               movement = 1;
-              d1 += 0.05;
+              if (pre_y > next_y){
+                  position.x += 2;
+                  $(".square").css("left",position.x + "px");
+                  d1 += 0.05;
+              }else{
+                  if (position.x + 2 + 25 <= maps[position_check][1]){
+                      position.x += 2;
+                      $(".square").css("left",position.x + "px");
+                      d1 += 0.05;
+                  }else{
+                      position.x = maps[position_check][1] - 25;
+                      $(".square").css("left",position.x + "px");
+                  }
+              }
               if (distance < d1){
                   distance = d1;
                   document.querySelector(".meters").innerHTML = distance.toFixed(1);
@@ -527,7 +546,7 @@
               // square is in position_check region
               camera_x = -1 * maps[position_check][0];
               $("body").get(0).style.setProperty("--x", camera_x);
-              if (position.x == maps[position_check][0] && circle_opa){
+              if ((position.x == maps[position_check][0] || position.x + 25 == maps[position_check][1]) && circle_opa){
                   $('.circle').css("opacity","0");
               }else{
                   $('.circle').css("opacity","1");
