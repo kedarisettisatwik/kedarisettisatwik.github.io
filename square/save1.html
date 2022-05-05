@@ -49,6 +49,7 @@
             overflow: hidden;
             position:relative;
             background-color: ghostwhite;
+            transition:0.4s;
         }
         .game.mobile{
             width:100vh;
@@ -222,13 +223,13 @@
         </div>
     </section>
     <div class="buttons">
-            <div class="button flex left" style="left:30px;">
+            <div class="button flex left" style="left:30px;" onclick="mobile_left();">
                 <img src="images/arrow-left-solid.svg">
             </div>
-            <div class="button flex right" style="left:90px;">
+            <div class="button flex right" style="left:90px;" onclick="mobile_right()">
                 <img src="images/arrow-right-solid.svg">
             </div>
-            <div class="button flex up" style="right:30px;">
+            <div class="button flex up" style="right:30px;" onclick="mobile_jump()">
                 <img src="images/arrow-up-solid.svg">
             </div>
     </div>
@@ -277,9 +278,11 @@
           if (pp.classList.contains('active')){
               // play
               game_control = true;
+              $('.camera').css("opacity","1");
           }else{
               // pause
               game_control = false;
+              $('.camera').css("opacity","0.5");
           }
           pp.classList.toggle("active");
       }
@@ -417,27 +420,6 @@
       const maps = [[0,121,60]];
       var position_check = 0;
       
-//      function generate(){
-//          var last_piece_s = maps[maps.length - 1][0];
-//          var last_piece_e = maps[maps.length - 1][1];
-//          var ww = Math.floor(Math.random()*180 + 60);
-//          var last_piece_h = maps[maps.length - 1][2];
-//          var poss = [];
-//          if (last_piece_h == 0){
-//              poss = [30,60];
-//          }else if (last_piece_h == 30){
-//              poss = [0,60];
-//          }else if (last_piece_h == 60){
-//              poss = [0,30,90];
-//          }else if (last_piece_h == 90){
-//              poss = [30,60];
-//          }
-//          var hh = Math.floor(Math.random()*poss.length);
-//          var new1 = [last_piece_e,last_piece_e+ww,poss[hh]];
-//          var levels = document.querySelector(".levels");
-//          levels.innerHTML += '<div class="block" style="left:'+new1[0]+'px;height:'+new1[2]+'px;width:'+ww+'px;"></div>';
-//          maps.push(new1);
-//      }
       var types = [1,1,2,2];
       
       var max_dis = 0;
@@ -448,8 +430,9 @@
       function generate(){
           // 1 - normal
           // 2 - normal with one step block in middle
-          // 3 - normal with single spike
-          // 4 - normal spikes
+          // 3 - less spikes
+          // 4 - fire break
+          // 5 - more spikes
           var rand = Math.floor(Math.random()*types.length);
           var last_piece_s = maps[maps.length - 1][0];
           var last_piece_e = maps[maps.length - 1][1];
@@ -484,24 +467,36 @@
               levels.innerHTML += '<div class="block" style="background-color:yellow;left:'+new1[0]+'px;height:'+new1[2]+'px;width:'+ww+'px;"></div>';
               maps.push(new1);
           }else if (types[rand] == 4){
-              ww = Math.floor(Math.random()*60 + 200);
-              new1 = [last_piece_e,last_piece_e+ww,poss[hh],4];
-              levels.innerHTML += '<div class="block" style="background-color:red;left:'+new1[0]+'px;height:'+new1[2]+'px;width:'+ww+'px;"></div>';
+              ww = Math.floor(Math.random()*60 + 60);
+              var x = 0;
+              if (last_piece_h == 0){
+                  x = 60;
+              }else if (last_piece_h == 30){
+                  x = 60
+              }else if (last_piece_h == 60){
+                  x = 30;
+              }
+              new1 = [last_piece_e,last_piece_e+ww,x,2];
+              levels.innerHTML += '<div class="block" style="left:'+new1[0]+'px;height:'+x+'px;width:'+ww+'px;"></div>';
+              maps.push(new1);
+              var ww1 = Math.floor(Math.random()*30 + 50);
+              new1 = [last_piece_e+ww,last_piece_e+ww+ww1,0,4];
+              levels.innerHTML += '<div class="block" style="background-color:red;left:'+new1[0]+'px;height:10px;width:'+ww1+'px;"></div>';
               maps.push(new1);
           }
           
       }
       
-      for (var i = 0;i<10;i++){
+      for (var i = 0;i<30;i++){
           generate();
       }
       
       function check(){
           
           if (max_dis > 17){
-              types = [1,1,2,2,3,3,3,4,4,4];
+              types = [1,2,2,3,4,3,3,4];
           }else if (max_dis > 8){
-              types = [1,1,2,2,3,3,3,4];
+              types = [1,2,2,3,4,3,4,3];
           }else if (max_dis > 3){
               types = [1,1,2,2,3,3];
           }
@@ -548,6 +543,43 @@
           }
       }
       
+      var present_move = "none";
+      
+      function mobile_left(){
+          if (game_control){
+              if (present_move == 'none'){
+                  bool_move.right = false;
+                  bool_move.left = true;
+                  present_move = 'left';
+              }else if (present_move == 'right'){
+                  bool_move.left = false;
+                  bool_move.right = false;
+                  present_move = 'none';
+              }
+          }
+      }
+      
+      function mobile_right(){
+          if (game_control){
+              if (present_move == 'none'){
+                  bool_move.left = false;
+                  bool_move.right = true;
+                  present_move = 'right';
+              }else if (present_move == 'left'){
+                  bool_move.left = false;
+                  bool_move.right = false;
+                  present_move = 'none';                  
+              }
+          }
+      }
+      
+      function mobile_jump(){
+          if (game_control){
+              jump();
+          }
+      }
+      
+     
       window.addEventListener('keyup',(e) => {
 //          console.log(e.keyCode);
           bool_move.left = false;
