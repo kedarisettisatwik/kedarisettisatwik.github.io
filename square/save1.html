@@ -316,8 +316,15 @@
                       position.x += 2;
                       d1 += 0.05;
                   }else if (jumping == 0){
-                      position.x += 2;
-                      d1 += 0.05;
+                      if (position.x + 25 + 2 > maps[position_check+1][0]){
+                          if (position.y >= maps[position_check+1][2]){
+                              position.x += 2;
+                              d1 += 0.05;
+                          }
+                      }else{
+                          position.x += 2;
+                          d1 += 0.05;
+                      }
                   }else{
                       if (position.x + 2 + 25 <= maps[position_check][1]){
                           position.x += 2;
@@ -339,7 +346,15 @@
                       d1 -= 0.05;
                   }else if (jumping == 0){
                       if (position.x - 2 >= 0){
-                          position.x -= 2;
+                          if (position.x - 2 < maps[position_check][0]){
+                              if (position.y >= maps[position_check-1][2]){
+                                  position.x -= 2;
+                                  d1 += 0.05;
+                              }
+                          }else{
+                              position.x -= 2;
+                              d1 += 0.05;
+                          }
                       }else{
                           position.x = 0;
                       }
@@ -402,10 +417,43 @@
       const maps = [[0,121,60]];
       var position_check = 0;
       
+//      function generate(){
+//          var last_piece_s = maps[maps.length - 1][0];
+//          var last_piece_e = maps[maps.length - 1][1];
+//          var ww = Math.floor(Math.random()*180 + 60);
+//          var last_piece_h = maps[maps.length - 1][2];
+//          var poss = [];
+//          if (last_piece_h == 0){
+//              poss = [30,60];
+//          }else if (last_piece_h == 30){
+//              poss = [0,60];
+//          }else if (last_piece_h == 60){
+//              poss = [0,30,90];
+//          }else if (last_piece_h == 90){
+//              poss = [30,60];
+//          }
+//          var hh = Math.floor(Math.random()*poss.length);
+//          var new1 = [last_piece_e,last_piece_e+ww,poss[hh]];
+//          var levels = document.querySelector(".levels");
+//          levels.innerHTML += '<div class="block" style="left:'+new1[0]+'px;height:'+new1[2]+'px;width:'+ww+'px;"></div>';
+//          maps.push(new1);
+//      }
+      var types = [1,1,2,2];
+      
+      var max_dis = 0;
+      var check_dis = 0;
+      
+//      [left,right,height,type];
+      
       function generate(){
+          // 1 - normal
+          // 2 - normal with one step block in middle
+          // 3 - normal with single spike
+          // 4 - normal spikes
+          var rand = Math.floor(Math.random()*types.length);
           var last_piece_s = maps[maps.length - 1][0];
           var last_piece_e = maps[maps.length - 1][1];
-          var ww = Math.floor(Math.random()*180 + 60);
+          var ww = 0;
           var last_piece_h = maps[maps.length - 1][2];
           var poss = [];
           if (last_piece_h == 0){
@@ -417,18 +465,47 @@
           }else if (last_piece_h == 90){
               poss = [30,60];
           }
+          var new1 = 0;
           var hh = Math.floor(Math.random()*poss.length);
-          var new1 = [last_piece_e,last_piece_e+ww,poss[hh]];
           var levels = document.querySelector(".levels");
-          levels.innerHTML += '<div class="block" style="left:'+new1[0]+'px;height:'+new1[2]+'px;width:'+ww+'px;"></div>';
-          maps.push(new1);
+          if (types[rand] == 1){
+              ww = Math.floor(Math.random()*20 + 40);
+              new1 = [last_piece_e,last_piece_e+ww,poss[hh],1];
+              levels.innerHTML += '<div class="block" style="background-color:blue;left:'+new1[0]+'px;height:'+new1[2]+'px;width:'+ww+'px;"></div>';
+              maps.push(new1);
+          }else if (types[rand] == 2){
+              ww = Math.floor(Math.random()*60 + 60);
+              new1 = [last_piece_e,last_piece_e+ww,poss[hh],2];
+              levels.innerHTML += '<div class="block" style="left:'+new1[0]+'px;height:'+new1[2]+'px;width:'+ww+'px;"></div>';
+              maps.push(new1);
+          }else if (types[rand] == 3){
+              ww = Math.floor(Math.random()*40 + 90);
+              new1 = [last_piece_e,last_piece_e+ww,poss[hh],3];
+              levels.innerHTML += '<div class="block" style="background-color:yellow;left:'+new1[0]+'px;height:'+new1[2]+'px;width:'+ww+'px;"></div>';
+              maps.push(new1);
+          }else if (types[rand] == 4){
+              ww = Math.floor(Math.random()*60 + 200);
+              new1 = [last_piece_e,last_piece_e+ww,poss[hh],4];
+              levels.innerHTML += '<div class="block" style="background-color:red;left:'+new1[0]+'px;height:'+new1[2]+'px;width:'+ww+'px;"></div>';
+              maps.push(new1);
+          }
+          
       }
       
-      for (var i = 0;i<5;i++){
+      for (var i = 0;i<10;i++){
           generate();
       }
       
       function check(){
+          
+          if (max_dis > 17){
+              types = [1,1,2,2,3,3,3,4,4,4];
+          }else if (max_dis > 8){
+              types = [1,1,2,2,3,3,3,4];
+          }else if (max_dis > 3){
+              types = [1,1,2,2,3,3];
+          }
+          
           if (position.x + 15 >= maps[position_check][0] && position.x + 15 <= maps[position_check][1]){
               // square is in position_check region
               camera_x = -1 * maps[position_check][0];
@@ -453,11 +530,19 @@
           }else if (position.x < maps[position_check][0]){
               // square is in previous region maps[position_check - 1]
               position_check -= 1;
+              check_dis -= 1;
+              if (max_dis < check_dis){
+                  max_dis = check_dis;
+              }
               check();
           }else if (position.x + 15 > maps[position_check][1]){
               // square is in previous region maps[position_check + 1]
               if (position_check + 1 < maps.length){
                   position_check += 1;
+                  check_dis += 1;
+                  if (max_dis < check_dis){
+                      max_dis = check_dis;
+                  }
                   check();
               }
           }
