@@ -258,9 +258,7 @@
       var audio_jump = new Audio("images/jump.mp3");
       audio_jump.volume = 0.2;
       
-      var device = 0;
       let para = new URLSearchParams(window.location.search);
-      device = para.get('mobile');
       if (parseInt(para.get('mobile')) == 1){
           document.body.style.backgroundColor = 'black';
           var game = document.querySelector('.game');
@@ -325,13 +323,6 @@
                           if (position.y >= maps[position_check+1][2]){
                               position.x += 2;
                               d1 += 0.05;
-                          }else{
-                              position.x += 0;
-                              if (device == 1){
-                                  bool_move.right = false;
-                                  bool_move.left = false;
-                                  present_move = 'none';
-                              }
                           }
                       }else{
                           position.x += 2;
@@ -343,11 +334,6 @@
                           d1 += 0.05;
                       }else{
                           position.x = maps[position_check][1] - 25;
-                          if (device == 1){
-                              bool_move.right = false;
-                              bool_move.left = false;
-                              present_move = 'none';
-                          }
                       }
                   }
               }
@@ -367,12 +353,6 @@
                               if (position.y >= maps[position_check-1][2]){
                                   position.x -= 2;
                                   d1 += 0.05;
-                              }else{
-                                 if (device == 1){
-                                     bool_move.right = false;
-                                     bool_move.left = false;
-                                     present_move = 'none';
-                                 }
                               }
                           }else{
                               position.x -= 2;
@@ -380,11 +360,6 @@
                           }
                       }else{
                           position.x = 0;
-                          if (device == 1){
-                              bool_move.right = false;
-                              bool_move.left = false;
-                              present_move = 'none';
-                          }
                       }
                   }else{
                       if (position.x - 2 >= maps[position_check][0]){
@@ -392,11 +367,6 @@
                           d1 -= 0.05;
                       }else{
                           position.x = maps[position_check][0];
-                          if (device == 1){
-                              bool_move.right = false;
-                              bool_move.left = false;
-                              present_move = 'none';
-                          }
                       }
                   }
               }
