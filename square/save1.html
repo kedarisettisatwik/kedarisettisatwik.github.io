@@ -506,7 +506,7 @@
               types = [3,1,2,3,2,3];
           }
           
-          if (position.x + 15 >= maps[position_check][0] && position.x + 15 <= maps[position_check][1]){
+          if (position.x + 25 + 2 >= maps[position_check][0] && position.x + 2 <= maps[position_check][1]){
               // square is in position_check region
               camera_x = -1 * maps[position_check][0];
               $("body").get(0).style.setProperty("--x", camera_x);
