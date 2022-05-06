@@ -114,6 +114,14 @@
             background-color: black;
             bottom:0;
         }
+        .block.fire{
+            background-color:transparent;
+            background-image: linear-gradient(to top, #e02a2a, transparent);
+            z-index:-100;
+            transform:scaleX(1.1);
+            height:60px;
+            box-shadow: none;
+        }
         .square{
             position: absolute;
             width:25px;
@@ -342,7 +350,7 @@
               jumping = false;
               setTimeout(function(){
                   bool_move.up = false;
-              },500);
+              },480);
           }
       }
       
@@ -542,10 +550,11 @@
               maps.push(new1);
               var ww1 = Math.floor(Math.random()*30 + 50);
               var new2 = [last_piece_e+ww,last_piece_e+ww+ww1,0,4];
-              levels.innerHTML += '<div class="block" style="background-color:red;left:'+new2[0]+'px;height:10px;width:'+ww1+'px;"></div>';
+              levels.innerHTML += '<div class="block fire" style="left:'+new2[0]+'px;width:'+ww1+'px;"></div>';
               maps.push(new2);
-              var new3 = [last_piece_e+ww+ww1,last_piece_e+ww+ww1+ww,x,2];
-              levels.innerHTML += '<div class="block" style="left:'+new3[0]+'px;height:'+x+'px;width:'+ww+'px;"></div>';
+              var w3 = Math.floor(Math.random()*60 + 30);
+              var new3 = [last_piece_e+ww+ww1,last_piece_e+ww+ww1+w3,x,2];
+              levels.innerHTML += '<div class="block" style="left:'+new3[0]+'px;height:'+x+'px;width:'+w3+'px;"></div>';
               maps.push(new3);
           }
           
