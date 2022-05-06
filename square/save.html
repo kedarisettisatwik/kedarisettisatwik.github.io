@@ -1,0 +1,685 @@
+<html>
+<head>
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000" />
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <script src="images/jquery-3.6.0.min.js"></script>
+    <!-- google fonts -->
+    <title>save the square</title>
+    <style>
+        
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: 'Poppins', sans-serif;
+            user-select: none;
+        }
+        html{
+            --x : 0;
+            --y : 0;
+        }
+        body {
+            width: 100vw;
+            height:100vh;
+            overflow: hidden;
+            display:flex;
+            justify-content: center;
+            align-items:center;
+            flex-direction: column;
+            background-color: white;
+        }
+        .flex{
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            flex-direction: column;
+        }
+        p{
+            font-size:14px;
+            opacity:0.6;
+        }
+        .game{
+            width:600px;
+            height:350px;
+            box-shadow:0 0 15px rgb(0,0,0,0.1);
+            overflow: hidden;
+            position:relative;
+            background-color: ghostwhite;
+            transition:0.4s;
+        }
+        .game.mobile{
+            width:100vh;
+            height:100vw;
+            position: absolute;
+            transform:rotateZ(90deg);
+            box-shadow:0 0 15px rgb(0,0,0,0);
+        }
+        .camera{
+            position: absolute;
+            left:calc(calc(var(--x) - 50) * 1px);
+            bottom:0;
+            width:100%;
+            height:100%;
+            transform:translate(calc(var(--x) * 0px),calc(var(--y) * 1px));
+            transition:0.4s,left 1s ease;
+            transition-delay:0s,0.3s;
+        }
+        .bg{
+            position: absolute;
+            width:100%;
+            height:100%;
+            background-image:linear-gradient(to bottom,rgb(0,0,0,0.45),rgb(255,255,255,0.3));
+        }
+        .ground,.wall{
+            position: absolute;
+            background-color: black;
+            left:0;
+            bottom:0;
+        }
+        .ground{
+            width:200%;
+            height:100px;
+            bottom:-40px;
+            left:calc(calc(var(--x) - 50) * -1px);
+            transition:left 1s ease;
+            transition-delay:0.3s;
+        }
+        .wall{
+            height:calc(100% + 70px);
+            width:220px;
+        }
+        .wall,.ground,.block{
+            box-shadow:0 0 2px rgb(0,0,0);
+        }
+        .blocks{
+            position: absolute;
+            left:220px;
+            bottom:60px;
+            height:calc(100% - 60px);
+            min-width:calc(100% - 220px);
+        }
+        .levels{
+            position: absolute;
+            height:100%;
+            min-width:100%;
+            top:0;
+            left:0;
+        }
+        .block,.player{
+            position: absolute;
+            background-color: black;
+            bottom:0;
+        }
+        .square{
+            position: absolute;
+            width:25px;
+            height:25px;
+            bottom:60px;
+            left:30px;
+        }
+        .player{
+            width:100%;
+            position: absolute;
+            height:100%;
+            background-color: black;
+            box-shadow:0 0 5px rgb(0,0,0,0.3);
+            bottom:0;
+            left:0;
+        }
+        .player .circle{
+            position: absolute;
+            top:5px;
+            right:5px;
+            width:7px;
+            height:7px;
+            border-radius:50%;
+            background-image:linear-gradient(220deg,rgb(255,255,255,1),rgb(255,255,255,0.8));
+            transition:right 0.5s ease-in,opacity 0s;
+            transition-delay:0.1s,0s;
+        }
+        .buttons{
+            position: absolute;
+            bottom:20px;
+            height:55px;
+            width:100%;
+            left:0;
+        }
+        .buttons .button{
+            position: absolute;
+            width:55px;
+            height:55px;
+            top:50%;
+            transform:translateY(-50%);
+            cursor:pointer;
+            background-color:#8c8c8c;
+        }
+        .buttons img{
+            width:25px;
+            filter: invert(1);
+        }
+        .board{
+            position: absolute;
+            top:10px;
+            right:20px;
+            flex-direction: row;
+        }
+        .board .distance{
+            margin-right:20px;
+        }
+        .board h2{
+            font-size:17px;
+            letter-spacing:1px;
+        }
+        .board h3{
+            font-size:17px;
+            text-align: right;
+            color:white;
+            text-shadow:0 0 3px rgb(0,0,0);
+            letter-spacing:3px;
+        }
+        .board .pp{
+            flex-direction: row;
+            cursor:pointer;
+            width:40px;
+            height:40px;
+            background-color:rgb(0,0,0,0.2);
+        }
+        .board .pp img{
+            width:15px;
+            filter:invert(1);
+        }
+        .board .pp img:nth-child(1){
+            display: block;
+        }
+        .board .pp img:nth-child(2){
+            display: none;
+        }
+        .board .pp.active img:nth-child(1){
+            display: none;
+        }
+        .board .pp.active img:nth-child(2){
+            display: block;
+        }
+        
+        .block .spikes{
+            position: absolute;
+            top:-20px;
+            height:20px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: row;
+        }
+        .block .spikes .spike{
+            width:20px;
+            height:20px;
+            background-color: black;
+            box-shadow:0 0 5px rgb(0,0,0,0.3);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+        .over{
+            position: absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background-color:rgb(0,0,0,0.7);
+            backdrop-filter:blur(1px);
+            opacity:0;
+            transition:0.5s;
+        }
+        .over h1{
+            font-size:30px;
+            transform:scaleY(1.5);
+            color: white;
+            letter-spacing:4px;
+            opacity:0;
+            transition:0.3s;
+        }
+        
+    </style>
+    </head>
+<body>
+  
+  <section class="game">
+    <div class="bg"></div>
+    <section class="camera">
+        <div class="ground"></div>
+        <div class="wall"></div>
+        <div class="blocks">
+            <div class="levels">
+                <div class="block" style="left:0px;height:60px;width:121px;"></div>
+            </div>
+            <div class="square">
+                <div class="player"><div class="circle"></div></div>
+            </div>
+        </div>
+    </section>
+    <section class="over flex"><h1 class="overh1">GAME OVER</h1></section>
+    <div class="buttons">
+            <div class="button flex left" style="left:30px;">
+                <img src="images/arrow-left-solid.svg">
+            </div>
+            <div class="button flex right" style="left:90px;">
+                <img src="images/arrow-right-solid.svg">
+            </div>
+            <div class="button flex up" style="right:30px;">
+                <img src="images/arrow-up-solid.svg">
+            </div>
+    </div>
+    <div class="board flex">
+            <div class="distance">
+                <h2>Distance</h2>
+                <h3><span class="meters">0</span><label> m</label></h3>
+            </div>
+            <div class="pp flex" onclick="control()">
+                <img src="images/pause-solid.svg">
+                <img src="images/play-solid.svg">
+            </div>
+        </div>
+  </section>
+  
+  <p class='notice' style="margin-top:50px;">Use arrows to move & jump</p>
+<!--  <p class='notice'>Use ctrl + arrows to jump front and jump back</p>-->
+  <p class='notice' style="margin-top:10px;">Use space bar to pause & play </p>
+    
+  
+  <script>
+      
+      var distance = 0;
+      var d1 = 0;
+      
+      var audio_jump = new Audio("images/jump.mp3");
+      audio_jump.volume = 0.2;
+      
+      var audio_die = new Audio("images/die.mp3");
+      audio_die.volume = 0.5;
+      
+      let para = new URLSearchParams(window.location.search);
+      if (parseInt(para.get('mobile')) == 1){
+          document.body.style.backgroundColor = 'black';
+          var game = document.querySelector('.game');
+          game.classList.add("mobile");
+          var notice = document.querySelectorAll('.notice');
+          notice[0].style.display = 'none';
+          notice[1].style.display = 'none';
+      }
+      
+      var game_control = true;
+      
+      function control(){
+          var pp = document.querySelector(".pp");
+          if (pp.classList.contains('active')){
+              // play
+              game_control = true;
+              $('.over').css("opacity",0);
+          }else{
+              // pause
+              game_control = false;
+              $('.over').css("opacity",1);
+          }
+          pp.classList.toggle("active");
+      }
+      
+      var player = document.querySelector('.player');
+      var position = {x:30,y:60};
+      var velocity = {x:2,y:2};
+      var bool_move = {left:false,right:false,up:false};
+      
+      var jumping = true;
+      
+      function jump(){
+          if (game_control){
+              audio_jump.play();
+              bool_move.up = true;
+              jumping = false;
+              setTimeout(function(){
+                  bool_move.up = false;
+              },500);
+          }
+      }
+      
+      var camera_x = 0;
+      var camera_y = 0;
+      
+      var render = setInterval(function(){
+          if (game_control){
+              check();
+              if (maps[position_check][3] == 3){
+                  death_spike();
+              }else if (maps[position_check][3] == 4){
+                  death_fire();
+              }
+              if (bool_move.right){
+                  $('.circle').css("right","5px");
+                  var next_y = maps[position_check+1][2];
+                  var pre_y = maps[position_check][2];
+                  if (pre_y > next_y){
+                      position.x += 2;
+                      d1 += 0.05;
+                  }else if (jumping == 0){
+                      if (position.x + 25 + 2 > maps[position_check+1][0]){
+                          if (position.y >= maps[position_check+1][2]){
+                              position.x += 2;
+                              d1 += 0.05;
+                              position_check += 1;
+                          }
+                      }else{
+                          position.x += 2;
+                          d1 += 0.05;
+                      }
+                  }else{
+                      if (position.x + 2 + 25 <= maps[position_check][1]){
+                          position.x += 2;
+                          d1 += 0.05;
+                      }else{
+                          position.x = maps[position_check][1] - 25;
+                      }
+                  }
+              }
+              if (bool_move.left){
+                  $('.circle').css("right","15px");
+                  var before_y = 60;
+                  if (position_check > 0){
+                      before_y = maps[position_check-1][2];
+                  }
+                  var pre_y = maps[position_check][2];
+                  if (pre_y > before_y){
+                      position.x -= 2;
+                      d1 -= 0.05;
+                  }else if (jumping == 0){
+                      if (position.x - 2 >= 0){
+                          if (position.x - 2 < maps[position_check][0]){
+                              if (position.y >= maps[position_check-1][2]){
+                                  position.x -= 2;
+                                  d1 += 0.05;
+                                  position_check -= 1;
+                              }
+                          }else{
+                              position.x -= 2;
+                              d1 += 0.05;
+                          }
+                      }else{
+                          position.x = 0;
+                      }
+                  }else{
+                      if (position.x - 2 >= maps[position_check][0]){
+                          position.x -= 2;
+                          d1 -= 0.05;
+                      }else{
+                          position.x = maps[position_check][0];
+                      }
+                  }
+              }
+              if (bool_move.up){
+                  position.y += 2;
+                  camera_y += 2;
+              }else{
+                  if (position.y - 2 > maps[position_check][2]){
+                        position.y -= 2;
+                        camera_y -= 2;
+                    }else{
+                        position.y = maps[position_check][2];
+                        camera_y = 0;
+                        jumping = true;
+                  }
+              }
+          if (distance < d1){
+              distance = d1;
+              document.querySelector(".meters").innerHTML = distance.toFixed(1);
+          }
+          $("body").get(0).style.setProperty("--y", camera_y); 
+          $('.square').css("left",position.x);
+          $('.square').css("bottom",position.y);
+          }
+        },1000/70);
+      
+      
+//      window.addEventListener('keydown',(e) => {
+//          
+////          left arrow	37
+////          up arrow	38
+////          right arrow	39
+////          space 	    32
+//          
+//          if (e.keyCode == 32){
+//              control();
+//          }
+//          if (game_control){
+//              if (e.keyCode == 37){
+//                  bool_move.left = true;;
+//              }else if (e.keyCode == 39){
+//                  bool_move.right = true;
+//              }else if (e.keyCode == 38 && game_control && jumping){
+//                  jump();
+//              }
+//          }
+//      });
+      
+      const left_bt = document.querySelector('.left');
+      const right_bt = document.querySelector('.right');
+      const up_bt = document.querySelector('.up');
+      
+      left_bt.addEventListener('pointerdown', (event) => {
+          if (game_control){
+              bool_move.right = false;
+              bool_move.left = true;
+          }
+      });
+      left_bt.addEventListener('pointerup', (event) => {
+          if (game_control){
+              bool_move.right = false;
+              bool_move.left = false;
+          }
+      });
+      right_bt.addEventListener('pointerdown',(event) => {
+          if (game_control){
+              bool_move.left = false;
+              bool_move.right = true;
+          }
+      });
+      right_bt.addEventListener('pointerup', (event) => {
+          if (game_control){
+              bool_move.right = false;
+              bool_move.left = false;
+          }
+      });
+      up_bt.addEventListener('pointerdown',(event) => {
+          if (game_control && jumping){
+              jump();
+          }
+      });
+      
+//      gravity 
+      
+      const maps = [[0,121,60]];
+      var position_check = 0;
+      
+      var types = [1,1,2,2];
+      
+      var max_dis = 0;
+      var check_dis = 0;
+      
+//      [left,right,height,type];
+      
+      function generate(){
+          // 1 - one step block
+          // 2 - normal
+          // 3 - less spikes
+          // 4 - fire break
+          // 5 - more spikes
+          var rand = Math.floor(Math.random() * types.length);
+          var last_piece_s = maps[maps.length - 1][0];
+          var last_piece_e = maps[maps.length - 1][1];
+          var ww = 0;
+          var last_piece_h = maps[maps.length - 1][2];
+          var poss = [];
+          if (last_piece_h == 0){
+              poss = [30,60];
+          }else if (last_piece_h == 30){
+              poss = [0,60];
+          }else if (last_piece_h == 60){
+              poss = [0,30,90];
+          }else if (last_piece_h == 90){
+              poss = [30,60];
+          }
+          var new1 = 0;
+          var hh = Math.floor(Math.random() * poss.length);
+          var levels = document.querySelector(".levels");
+          if (types[rand] == 1){
+              ww = Math.floor(Math.random()*15 + 30);
+              new1 = [last_piece_e,last_piece_e+ww,poss[hh],1];
+              levels.innerHTML += '<div class="block" style="left:'+new1[0]+'px;height:'+new1[2]+'px;width:'+ww+'px;"></div>';
+              maps.push(new1);
+          }else if (types[rand] == 2){
+              ww = Math.floor(Math.random()*60 + 60);
+              new1 = [last_piece_e,last_piece_e+ww,poss[hh],2];
+              levels.innerHTML += '<div class="block" style="left:'+new1[0]+'px;height:'+new1[2]+'px;width:'+ww+'px;"></div>';
+              maps.push(new1);
+          }else if (types[rand] == 3){
+              // no of spikes effect width; each spike 10px;
+              var nl = [1,2,3,2,1,3,2,3,3,1];
+              var nn = Math.floor(Math.random() * nl.length);
+              var sp = Math.floor(Math.random()*20 + 35);
+              if (nl[nn] == 3){
+                  sp = Math.floor(Math.random()*20 + 55);
+              }
+              ww = Math.floor(Math.random()*25 + 30 + sp + 20*nl[nn]);
+              new1 = [last_piece_e,last_piece_e+ww,poss[hh],3,[nl[nn],last_piece_e + sp]];
+              var st = '';
+              for (var k = 0;k<nl[nn];k++){
+                  st += '<div class="spike"></div>';
+              }
+              levels.innerHTML += '<div class="block" style="left:'+new1[0]+'px;height:'+eval(new1[2])+'px;width:'+ww+'px;"><div class="spikes" style="left:'+sp+'px;">'+st+'</div></div>';
+              maps.push(new1);
+          }else if (types[rand] == 4){
+              ww = Math.floor(Math.random()*60 + 60);
+              var x = 0;
+              if (last_piece_h == 0){
+                  x = 60;
+              }else if (last_piece_h == 30){
+                  x = 60
+              }else if (last_piece_h == 60){
+                  x = 30;
+              }else if (last_piece_h == 90){
+                  x = 60;
+              }
+              new1 = [last_piece_e,last_piece_e+ww,x,2];
+              levels.innerHTML += '<div class="block" style="left:'+new1[0]+'px;height:'+x+'px;width:'+ww+'px;"></div>';
+              maps.push(new1);
+              var ww1 = Math.floor(Math.random()*30 + 50);
+              var new2 = [last_piece_e+ww,last_piece_e+ww+ww1,0,4];
+              levels.innerHTML += '<div class="block" style="background-color:red;left:'+new2[0]+'px;height:10px;width:'+ww1+'px;"></div>';
+              maps.push(new2);
+              var new3 = [last_piece_e+ww+ww1,last_piece_e+ww+ww1+ww,x,2];
+              levels.innerHTML += '<div class="block" style="left:'+new3[0]+'px;height:'+x+'px;width:'+ww+'px;"></div>';
+              maps.push(new3);
+          }
+          
+      }
+      
+      for (var i = 0;i<30;i++){
+          if (i > 17){
+              types = [3,2,4,3,2,4,1,3,4,3];
+          }else if (i > 7){
+              types = [2,3,1,2,3,4,3,4,2];
+          }else if (i > 3){
+              types = [1,3,3,2,3,2,3,2,1,3,2,3];
+          }
+          generate();
+      }
+      
+      function combo(){
+          for (var j = 0;j<20;j++){
+              generate();
+          }
+      }
+      
+      function death_spike(){
+          var de = maps[position_check][4];
+          if (position.x + 25 - 8 >= de[1] && position.x <= (de[1] + de[0]*20 - 8)){
+              if (position.y < (25 - 8 + maps[position_check][2])){
+                  console.log("game over - spike");
+                  control();
+                  audio_die.play();
+                  $('.over').css("opacity",1);
+                  $('.overh1').css("opacity",1);
+              }
+          }
+      }
+      
+      function death_fire(){
+          if (position.y == 0){
+              console.log("game over - fire");
+              control();
+              audio_die.play();
+              $('.over').css("opacity",1);
+              $('.overh1').css("opacity",1);
+          }
+      }
+      
+      function check(){
+          
+          if (max_dis > 17){
+              types = [3,2,4,3,2,4,1,3,4,3];
+          }else if (max_dis > 7){
+              types = [2,3,1,2,3,4,3,4,2];
+          }else if (max_dis > 2){
+              types = [3,3,2,3,2,3,2,3,2,3];
+          }
+          
+          if (position.x + 25 - 2 >= maps[position_check][0] && position.x + 2 <= maps[position_check][1]){
+              // square is in position_check region
+              camera_x = -1 * maps[position_check][0];
+              $("body").get(0).style.setProperty("--x", camera_x);
+              if ((position.x == maps[position_check][0] || position.x + 25 == maps[position_check][1]) && jumping){
+                  if (position_check == 0){
+                      $('.circle').css("opacity","0");
+                  }else{
+//                      console.log(maps[position_check][2],maps[position_check-1][2]);
+                      if ((position.x == maps[position_check][0] && maps[position_check][2] < maps[position_check-1][2]) || position.x + 25 == maps[position_check][1] && maps[position_check][2] < maps[position_check+1][2] ){
+                          $('.circle').css("opacity","0");
+                      }else{
+                          $('.circle').css("opacity","1");
+                      }
+                  }
+              }else{
+                  $('.circle').css("opacity","1");
+              }
+              if (position_check + 12 > maps.length){
+                  combo();
+              }
+          }else if (position.x + 25 - 2 < maps[position_check][0]){
+              // square is in previous region maps[position_check - 1]
+              position_check -= 1;
+              check_dis -= 1;
+              if (max_dis < check_dis){
+                  max_dis = check_dis;
+              }
+              check();
+          }else if (position.x + 25 + 2 > maps[position_check][1]){
+              // square is in previous region maps[position_check + 1]
+              if (position_check + 1 < maps.length){
+                  position_check += 1;
+                  check_dis += 1;
+                  if (max_dis < check_dis){
+                      max_dis = check_dis;
+                  }
+                  check();
+              }
+          }
+      }
+     
+//      window.addEventListener('keyup',(e) => {
+//          bool_move.left = false;
+//          bool_move.right = false;
+//      });
+      
+  </script>
+  
+</body>
+</html>
