@@ -82,7 +82,8 @@
         }
         .ground{
             width:200%;
-            height:60px;
+            height:100px;
+            bottom:-40px;
             left:calc(calc(var(--x) - 50) * -1px);
             transition:left 1s ease;
             transition-delay:0.3s;
@@ -220,6 +221,25 @@
             box-shadow:0 0 5px rgb(0,0,0,0.3);
             clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
         }
+        .over{
+            position: absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background-color:rgb(0,0,0,0.7);
+            backdrop-filter:blur(1px);
+            opacity:0;
+            transition:0.5s;
+        }
+        .over h1{
+            font-size:30px;
+            transform:scaleY(1.5);
+            color: white;
+            letter-spacing:4px;
+            opacity:0;
+            transition:0.3s;
+        }
         
     </style>
     </head>
@@ -239,6 +259,7 @@
             </div>
         </div>
     </section>
+    <section class="over flex"><h1 class="overh1">GAME OVER</h1></section>
     <div class="buttons">
             <div class="button flex left" style="left:30px;">
                 <img src="images/arrow-left-solid.svg">
@@ -275,6 +296,9 @@
       var audio_jump = new Audio("images/jump.mp3");
       audio_jump.volume = 0.2;
       
+      var audio_die = new Audio("images/die.mp3");
+      audio_die.volume = 0.5;
+      
       let para = new URLSearchParams(window.location.search);
       if (parseInt(para.get('mobile')) == 1){
           document.body.style.backgroundColor = 'black';
@@ -295,11 +319,11 @@
           if (pp.classList.contains('active')){
               // play
               game_control = true;
-              $('.camera').css("opacity","1");
+              $('.over').css("opacity",0);
           }else{
               // pause
               game_control = false;
-              $('.camera').css("opacity","0.5");
+              $('.over').css("opacity",1);
           }
           pp.classList.toggle("active");
       }
@@ -549,7 +573,10 @@
           if (position.x + 25 - 8 >= de[1] && position.x <= (de[1] + de[0]*20 - 8)){
               if (position.y < (25 - 8 + maps[position_check][2])){
                   console.log("game over - spike");
-                  game_control = false;
+                  control();
+                  audio_die.play();
+                  $('.over').css("opacity",1);
+                  $('.overh1').css("opacity",1);
               }
           }
       }
@@ -557,7 +584,10 @@
       function death_fire(){
           if (position.y == 0){
               console.log("game over - fire");
-              game_control = false;
+              control();
+              audio_die.play();
+              $('.over').css("opacity",1);
+              $('.overh1').css("opacity",1);
           }
       }
       
