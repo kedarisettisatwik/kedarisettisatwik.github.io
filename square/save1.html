@@ -204,6 +204,23 @@
             display: block;
         }
         
+        .block .spikes{
+            position: absolute;
+            top:-20px;
+            height:20px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: row;
+        }
+        .block .spikes .spike{
+            width:20px;
+            height:20px;
+            background-color: black;
+            box-shadow:0 0 5px rgb(0,0,0,0.3);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+        
     </style>
     </head>
 <body>
@@ -223,13 +240,13 @@
         </div>
     </section>
     <div class="buttons">
-            <div class="button flex left" style="left:30px;" onclick="mobile_left();">
+            <div class="button flex left" style="left:30px;">
                 <img src="images/arrow-left-solid.svg">
             </div>
-            <div class="button flex right" style="left:90px;" onclick="mobile_right()">
+            <div class="button flex right" style="left:90px;">
                 <img src="images/arrow-right-solid.svg">
             </div>
-            <div class="button flex up" style="right:30px;" onclick="mobile_jump()">
+            <div class="button flex up" style="right:30px;">
                 <img src="images/arrow-up-solid.svg">
             </div>
     </div>
@@ -311,6 +328,11 @@
       var render = setInterval(function(){
           if (game_control){
               check();
+              if (maps[position_check][3] == 3){
+                  death_spike();
+              }else if (maps[position_check][3] == 4){
+                  death_fire();
+              }
               if (bool_move.right){
                   $('.circle').css("right","5px");
                   var next_y = maps[position_check+1][2];
@@ -430,12 +452,12 @@
 //      [left,right,height,type];
       
       function generate(){
-          // 1 - normal
-          // 2 - normal with one step block in middle
+          // 1 - one step block
+          // 2 - normal
           // 3 - less spikes
           // 4 - fire break
           // 5 - more spikes
-          var rand = Math.floor(Math.random()*types.length);
+          var rand = Math.floor(Math.random() * types.length);
           var last_piece_s = maps[maps.length - 1][0];
           var last_piece_e = maps[maps.length - 1][1];
           var ww = 0;
@@ -451,12 +473,12 @@
               poss = [30,60];
           }
           var new1 = 0;
-          var hh = Math.floor(Math.random()*poss.length);
+          var hh = Math.floor(Math.random() * poss.length);
           var levels = document.querySelector(".levels");
           if (types[rand] == 1){
-              ww = Math.floor(Math.random()*20 + 40);
+              ww = Math.floor(Math.random()*15 + 30);
               new1 = [last_piece_e,last_piece_e+ww,poss[hh],1];
-              levels.innerHTML += '<div class="block" style="background-color:blue;left:'+new1[0]+'px;height:'+new1[2]+'px;width:'+ww+'px;"></div>';
+              levels.innerHTML += '<div class="block" style="left:'+new1[0]+'px;height:'+new1[2]+'px;width:'+ww+'px;"></div>';
               maps.push(new1);
           }else if (types[rand] == 2){
               ww = Math.floor(Math.random()*60 + 60);
@@ -464,9 +486,20 @@
               levels.innerHTML += '<div class="block" style="left:'+new1[0]+'px;height:'+new1[2]+'px;width:'+ww+'px;"></div>';
               maps.push(new1);
           }else if (types[rand] == 3){
-              ww = Math.floor(Math.random()*40 + 90);
-              new1 = [last_piece_e,last_piece_e+ww,poss[hh],3];
-              levels.innerHTML += '<div class="block" style="background-color:yellow;left:'+new1[0]+'px;height:'+eval(new1[2] + 10)+'px;width:'+ww+'px;"></div>';
+              // no of spikes effect width; each spike 10px;
+              var nl = [1,2,3,2,1,3,2,3,3,1];
+              var nn = Math.floor(Math.random() * nl.length);
+              var sp = Math.floor(Math.random()*20 + 35);
+              if (nl[nn] == 3){
+                  sp = Math.floor(Math.random()*20 + 55);
+              }
+              ww = Math.floor(Math.random()*25 + 30 + sp + 20*nl[nn]);
+              new1 = [last_piece_e,last_piece_e+ww,poss[hh],3,[nl[nn],last_piece_e + sp]];
+              var st = '';
+              for (var k = 0;k<nl[nn];k++){
+                  st += '<div class="spike"></div>';
+              }
+              levels.innerHTML += '<div class="block" style="left:'+new1[0]+'px;height:'+eval(new1[2])+'px;width:'+ww+'px;"><div class="spikes" style="left:'+sp+'px;">'+st+'</div></div>';
               maps.push(new1);
           }else if (types[rand] == 4){
               ww = Math.floor(Math.random()*60 + 60);
@@ -499,7 +532,7 @@
               types = [3,2,4,3,2,4,1,3,4,3];
           }else if (i > 7){
               types = [2,3,1,2,3,4,3,4,2];
-          }else if (i > 2){
+          }else if (i > 3){
               types = [1,3,3,2,3,2,3,2,1,3,2,3];
           }
           generate();
@@ -508,6 +541,23 @@
       function combo(){
           for (var j = 0;j<20;j++){
               generate();
+          }
+      }
+      
+      function death_spike(){
+          var de = maps[position_check][4];
+          if (position.x + 25 - 8 >= de[1] && position.x <= (de[1] + de[0]*20 - 8)){
+              if (position.y < (25 - 8 + maps[position_check][2])){
+                  console.log("game over - spike");
+                  game_control = false;
+              }
+          }
+      }
+      
+      function death_fire(){
+          if (position.y == 0){
+              console.log("game over - fire");
+              game_control = false;
           }
       }
       
@@ -562,43 +612,6 @@
               }
           }
       }
-      
-      var present_move = "none";
-      
-      function mobile_left(){
-          if (game_control){
-              if (present_move == 'none'){
-                  bool_move.right = false;
-                  bool_move.left = true;
-                  present_move = 'left';
-              }else if (present_move == 'right'){
-                  bool_move.left = false;
-                  bool_move.right = false;
-                  present_move = 'none';
-              }
-          }
-      }
-      
-      function mobile_right(){
-          if (game_control){
-              if (present_move == 'none'){
-                  bool_move.left = false;
-                  bool_move.right = true;
-                  present_move = 'right';
-              }else if (present_move == 'left'){
-                  bool_move.left = false;
-                  bool_move.right = false;
-                  present_move = 'none';                  
-              }
-          }
-      }
-      
-      function mobile_jump(){
-          if (game_control){
-              jump();
-          }
-      }
-      
      
       window.addEventListener('keyup',(e) => {
 //          console.log(e.keyCode);
@@ -610,16 +623,3 @@
   
 </body>
 </html>
-
-
-
-
-<!--
-
-<a href="https://www.hitwebcounter.com" target="_blank" class="c">
-<img src="https://hitwebcounter.com/counter/counter.php?page=7711238&style=0001&nbdigits=6&type=ip&initCount=0" title="Total Website Hits" Alt="Web Hits"   border="0" /></a>
-
-22,001
-
-
--->
