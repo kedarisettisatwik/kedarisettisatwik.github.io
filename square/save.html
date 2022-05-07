@@ -240,12 +240,26 @@
             transition:0.3s;
         }
         
+        .lights{
+            position:absolute;
+            top:0;
+            left:220px;
+            min-width:calc(100% - 220px);
+            height:100%;
+        }
         .eye{
             position: absolute;
             top:80px;
-            left:350px;
-            width:300px;
             height:calc(100% - 80px);
+            -webkit-animation:movel 15s linear infinite;
+        }
+        @keyframes movel{
+            0%,100%{
+                left:calc(1px * var(--lf));
+            }
+            50%{
+                left:calc(1px * var(--lb));
+            }
         }
         .eye .light{
             position:absolute;
@@ -254,7 +268,7 @@
             width:100%;
             height:100%;
             clip-path:polygon(50% 0, 0% 100%, 100% 100%);
-            background-image:linear-gradient(to bottom,rgb(255,255,255,0.9),rgb(255,255,255,0.2));
+            background-image:linear-gradient(to bottom,rgb(255,255,255,0.9),transparent);
         }
         .eye .watch{
             width:40px;
@@ -589,6 +603,26 @@
               generate();
           }
       }
+      
+      var map_l = [];
+      
+      function lights(){
+          var l = document.querySelector(".lights");
+          var wi = Math.floor(Math.random()*100 + 200);
+          var pre_e = 400;
+          if (map_l.length > 0){
+              pre_e = 0;
+          }
+          var lf = Math.floor(Math.random()*300) + pre_e;
+          var lb = Math.floor(Math.random()*500 + 200) + wi;
+          var cc = 'ee'+map_l;
+          var s = '<div class="eye '+ cc +'" style="--lf :'+lf+';--lb:'+eval(lf+lb)+';width:'+wi+'px;left:'+lf+'px"><div class="light"></div><div class="watch"><div class="dot"></div></div></div>';
+          l.innerHTML += s;
+          map_l.push([lf,lf+wi,lb]);
+          console.log(map_l);
+      }
+      
+      lights();
       
       function death_spike(){
           var de = maps[position_check][4];
