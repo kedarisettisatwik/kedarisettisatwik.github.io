@@ -173,7 +173,11 @@
               location.replace('save1.html?mobile=0');
           }
       }
-      
+      if (localStorage.getItem('mobile_kedar') == 1){
+          document.body.style.backgroundColor = 'black';
+          var game = document.querySelector('.game');
+          game.classList.add("mobile");
+      }
       var x = 1;
       
       function next(){
@@ -187,13 +191,6 @@
               console.log(x);
           }
           x += 1;
-      }
-      
-      let para = new URLSearchParams(window.location.search);
-      if (parseInt(para.get('mobile')) == 1){
-          document.body.style.backgroundColor = 'black';
-          var game = document.querySelector('.game');
-          game.classList.add("mobile");
       }
       
   </script>
