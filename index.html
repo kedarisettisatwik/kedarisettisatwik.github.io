@@ -423,11 +423,13 @@
     <script>
         
         let para = new URLSearchParams(window.location.search);
-        
+        console.log(para);
       if (parseInt(para.get('mobile')) == 1){
           localStorage.setItem("mobile_kedar",'1');
+          alert(localStorage.getItem("mobile_kedar"));
       }else{
           localStorage.setItem('mobile_kedar','0');
+          alert(localStorage.getItem("mobile_kedar"));
       }
         
         
