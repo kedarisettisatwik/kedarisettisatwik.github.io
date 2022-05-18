@@ -343,7 +343,7 @@
        <h2 class="pro_head">Projects</h2>
        
        <div class="box">
-    <a href="https://kedarisettisatwik.github.io/aoight/#/save-square" target="_blank" class="link">Save The Square</a>
+    <a href="https://kedarisettisatwik.github.io/square/rules.html" target="_blank" class="link">Save The Square</a>
     <a href="colors/game.html" target="_blank" class="link">Colors</a>
     <a href = "snake/snake.html" target="_blank" class="link">snake game</a>  
     <a href = "run/running.html" target="_blank" class="link">Just Run</a>  
@@ -407,11 +407,6 @@
     <a href = "rain.html" target="_blank" class="link">RAIN..</a> 
     </div>
     
-    <div class="box" style="opacity:0">
-        <a href="https://www.hitwebcounter.com" target="_blank" class="c">
-        <img src="https://hitwebcounter.com/counter/counter.php?page=7711238&style=0001&nbdigits=6&type=ip&initCount=0"     title="Total Website Hits" Alt="Web Hits"   border="0" /></a>
-    </div>
-    
    </section>
    
    
@@ -426,6 +421,15 @@
     </script> 
     
     <script>
+        
+        let para = new URLSearchParams(window.location.search);
+        
+      if (parseInt(para.get('mobile')) == 1){
+          localStorage.setItem("mobile_kedar",'1');
+      }else{
+          localStorage.setItem('mobile_kedar','0');
+      }
+        
         
         name();
         
@@ -492,15 +496,3 @@
     
     </body>
 </html>
-
-
-
-
-<!--
-
-<a href="https://www.hitwebcounter.com" target="_blank" class="c">
-<img src="https://hitwebcounter.com/counter/counter.php?page=7711238&style=0001&nbdigits=6&type=ip&initCount=0" title="Total Website Hits" Alt="Web Hits"   border="0" /></a>
-
-22,001
-
--->
