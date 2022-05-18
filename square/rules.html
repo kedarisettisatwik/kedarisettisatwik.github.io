@@ -168,9 +168,9 @@
       
       function play(){
           if (localStorage.getItem('mobile_kedar') == 1){
-              location.replace('save.html?mobile=1');
+              location.href= 'save.html?mobile=1';
           }else{
-              location.replace('save1.html?mobile=0');
+              location.href = 'save1.html?mobile=0';
           }
       }
       if (localStorage.getItem('mobile_kedar') == 1){
