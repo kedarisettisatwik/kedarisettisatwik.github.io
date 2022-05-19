@@ -8,8 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&display=swap" rel="stylesheet">
     <!-- google fonts -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
-    <script src="https://kit.fontawesome.com/d867b74fd4.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
     <title>IRIS</title>
@@ -30,7 +28,6 @@
         body{
             width:100vw;
             height:100vh;
-            background-color:white;
             overflow: hidden;
             position:relative;
         }
@@ -49,16 +46,26 @@
             top:0px;
             overflow-x: hidden;
             overflow-y: auto;
+            background-color:white;
         }
         .sidebar{
             width:280px;
-            left:0;
+            left:-290px;
             box-shadow:0 0 3px rgb(0,0,0,0.5);
             padding:10px 20px;
+            transition:0.6s;
+            transition-delay:0.1s;
+        }
+        .sidebar.active{
+            left:0;
         }
         .main{
+            left:0;
+            width:calc(100vw);
+        }
+        .main.active{
             width:calc(100vw - 280px);
-            left:250px;
+            left:280px;
         }
         
         .sidebar .name{
@@ -67,11 +74,23 @@
             display: flex;
             justify-content:flex-start;
             align-items:center;
+            position:relative;
         }
         .sidebar .name h2{
             font-family: 'Rajdhani', sans-serif;
             font-weight:bold;
             letter-spacing:1px;
+        }
+        .sidebar .name .close{
+            position: absolute;
+            top:50%;
+            right:0;
+            transform:translateY(-50%);
+            width:15px;
+            cursor:pointer;
+            padding:10px;
+            box-sizing: content-box;
+            display:none;
         }
         .sidebar ul {
             list-style: none;
@@ -143,15 +162,38 @@
         .sidebar ul li .heading.active .icons{
             fill:#6770d2;
         }
+        @media (min-width:1000px){
+            .sidebar,.sidebar.active{
+                left:0;
+            }
+            .main,.main.active{
+                left:280;
+                width:calc(100vw - 280px);
+            }
+        }
+        @media (max-width:1000px){
+            .sidebar .name .close{
+                display:block;
+            }
+            .main,.main.active{
+                left:0;
+                width:100vw;
+            }
+        }
         
     </style>
     
     </head>
 <body>
+ 
+  <section class="main flex">
+      <button onclick="open_sidebar()">open</button>
+  </section>
   
   <section class="sidebar">
       <div class="name">
           <h2>IRIS</h2>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512" class="close" onclick='close1()'><path d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"/></svg>
       </div>
       <ul> 
           <li> <div class="heading active" onclick="open1(0)">
@@ -172,9 +214,6 @@
           <li class='links'>officers@nitk.ac.in</li>
       </ul>
   </section>
-  <section class="main">
-      
-  </section>
   
    <script>
        
@@ -187,6 +226,15 @@
            ini = a;
        }
        
+       function open_sidebar(){
+           document.querySelector(".main").classList.add("active");
+           document.querySelector(".sidebar").classList.add("active");
+       }
+       
+       function close1(){
+           document.querySelector(".main").classList.remove("active");
+           document.querySelector(".sidebar").classList.remove("active");
+       }
     </script>
     
     </body>
