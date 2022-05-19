@@ -1,0 +1,306 @@
+<html>
+<head>
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <script src="https://kit.fontawesome.com/d867b74fd4.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <title>IRIS</title>
+    
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: 'Poppins', sans-serif;
+/*          font-family: 'Caveat', cursive; */
+            user-select: none;
+        }
+        html{
+            scroll-behavior: smooth;
+        }
+        body{
+            width:100vw;
+            min-height:100vh;
+            background-color:white;
+            overflow: hidden;
+            position:relative;
+        }
+        ::-webkit-scrollbar{
+            width:0px;
+        }
+        .flex{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+        .board{
+            width:100vw;
+            height:100vh;
+            justify-content: flex-start;
+            position:relative;
+            overflow: hidden;
+        }
+        .board .img{
+            width:430px;
+            height:100%;
+            background-image: url(college.png);
+            background-position:center;
+        }
+        .board .main{
+            width:calc(100% - 430px);
+            padding:10px 200px;
+            position:relative;
+            max-height:100%;
+            overflow:auto;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+        .board .form{
+            width:100%;
+            position:relative;
+        }
+        .board .form .header{
+            width:100%;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding-bottom:15px;
+            border-bottom:1px solid rgb(0,0,0,0.5);
+            margin-bottom:20px;
+        }
+        .board .form .header .logo img{
+            width:50px;
+            margin-right:20px;
+        }
+        .board .form .header .logo h2{
+            font-weight:300;
+            letter-spacing:2px;
+        }
+        .board .form .header .name{
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        .board .form .header .name p{
+            width:100%;
+            padding-top:20px;
+            font-size:18px;
+            font-weight:bold;
+            letter-spacing:2px;
+            text-align:right;
+            margin-bottom:10px;
+            font-family: 'Rajdhani', sans-serif;
+        }
+        .board .form .header .name img{
+            height:24px;
+            max-width:100%;
+        }
+        .board .form .form1{
+            margin:10px 0 10px 0;
+            flex-wrap: wrap;
+            width:100%;
+            justify-content:space-around;
+        }
+        .board .form .form1 .in {
+            margin:10px 15px;
+            position:relative;
+        }
+        .board .form .form1 .in svg{
+            position: absolute;
+            width:20px;
+            cursor:pointer;
+            top:calc(50% + 2px);
+            right:10px;
+            transform:translateY(50%);
+            opacity:0.6;
+            display:none;
+        }
+        .board .form .form1 .in label{
+            font-weight:bold;
+            font-size:13px;
+            display: block;
+            margin:10px 0;
+        }
+        .board .form .form1 .in input{
+            outline:none;
+            border: none;
+            background:none;
+            border-radius:3px;
+            font-size:14px;
+            box-shadow:inset 0 0 3px rgb(0,0,0,0.4);
+            padding:10px;
+            width:240px;
+        }
+        .board .form .submit{
+            width:100%;
+            margin:5px 0;
+            padding:10px 0;
+            border-bottom:1px solid rgb(0,0,0,0.5);
+            border-top:1px solid rgb(0,0,0,0.5);
+            position:relative;
+            justify-content:space-between;
+            flex-wrap: wrap;
+        }
+        .board .form .submit .options{
+            margin:10px;
+        }
+        .board .form .submit .options label{
+            font-size:11px;
+        }
+        .board .form .submit .options label  i {
+            cursor:pointer;
+            padding:7px;
+            font-size:18px;
+            color:#6770d2;
+            background-color:white;
+            border:2px solid white;
+            transition:0.2s;
+            transition-delay:0.2s;
+            border-radius:50%;
+            margin:0 3px;
+        }
+        .board .form .submit .options label  i:hover{
+            background-color: #6770d2;
+            color:white;
+            border:2px solid #6770d2;
+        }
+        .board .form .buttons{
+            flex-wrap: wrap;
+        }
+        .board .form .buttons button{
+            outline:none;
+            background:none;
+            min-width:150px;
+            border:none;
+            margin:5px;
+            font-size:12px;
+            font-weight:bold;
+            padding:10px;
+            letter-spacing:1px;
+            border-radius:3px;
+            cursor:pointer;
+        }
+        .board .form .buttons button:nth-child(1){
+            background-color:gainsboro;
+        }
+        .board .form .buttons button:nth-child(2){
+            background-color:#6770d2;
+            color:white;
+        }
+        .board .form .other{
+            flex-wrap: wrap;
+        }
+        .board .form .other li{
+            list-style: none;
+            padding:8px 10px;
+            border-radius:5px;
+            border:2px solid black;
+            font-size:11px;
+            margin:10px;
+            cursor:pointer;
+            font-weight:bold;
+            letter-spacing:1px;
+            color:black;
+            background-color:white;
+            transition:0.3s;
+            transition-delay:0.2s;
+        }
+        .board .form .other li:hover{
+            color:white;
+            background-color:black;
+        }
+        
+        @media (max-width:900px){
+            .board .img{
+                display: none;
+            }
+            .board .main{
+                width:100%;
+            }
+        }
+        @media (max-width:1300px){
+            .board .main{
+                padding:10px 90px;
+            }
+        }
+        @media (max-width:1150px){
+            .board .main{
+                padding:10px 20px;
+            }
+        }
+        @media (max-width:1015px){
+            .board .form .header{
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+    
+    </head>
+<body>
+  
+  <section class="board flex">
+      <section class="img"></section>
+      <section class="main flex">
+          <form class="form">
+              <header class="header flex">
+                 <div class="logo flex"><img src="logo.png"><h2>IRIS</h2></div>
+                 <div class="name flex">
+                     <p>National Institute of Technology <br> Karnataka, Surathkal</p>
+                     <img src="https://cdn.iris.nitk.ac.in//svg/nitk-hindi.svg">
+                 </div>
+              </header>
+              <label style="font-size:20px;font-family: 'Rajdhani', sans-serif;font-weight:bold;letter-spacing:1px;">welcome to IRIS</label>
+              <p style="font-size:14px;margin:4px 0;">Please sign into your account</p>
+              <div class='form1 flex'>
+                  <div class="in">
+                      <label>Roll No. / Email</label>
+                      <input type="text" placeholder="Username / Email">
+                  </div>
+                  <div class="in">
+                      <label>Password</label>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" style="display: none;" id="text" onclick="visible(0)"><path d="M279.6 160.4C282.4 160.1 285.2 160 288 160C341 160 384 202.1 384 256C384 309 341 352 288 352C234.1 352 192 309 192 256C192 253.2 192.1 250.4 192.4 247.6C201.7 252.1 212.5 256 224 256C259.3 256 288 227.3 288 192C288 180.5 284.1 169.7 279.6 160.4zM480.6 112.6C527.4 156 558.7 207.1 573.5 243.7C576.8 251.6 576.8 260.4 573.5 268.3C558.7 304 527.4 355.1 480.6 399.4C433.5 443.2 368.8 480 288 480C207.2 480 142.5 443.2 95.42 399.4C48.62 355.1 17.34 304 2.461 268.3C-.8205 260.4-.8205 251.6 2.461 243.7C17.34 207.1 48.62 156 95.42 112.6C142.5 68.84 207.2 32 288 32C368.8 32 433.5 68.84 480.6 112.6V112.6zM288 112C208.5 112 144 176.5 144 256C144 335.5 208.5 400 288 400C367.5 400 432 335.5 432 256C432 176.5 367.5 112 288 112z"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" style="display:block;" id="pass" onclick="visible(1)"><path d="M320 400c-75.85 0-137.25-58.71-142.9-133.11L72.2 185.82c-13.79 17.3-26.48 35.59-36.72 55.59a32.35 32.35 0 0 0 0 29.19C89.71 376.41 197.07 448 320 448c26.91 0 52.87-4 77.89-10.46L346 397.39a144.13 144.13 0 0 1-26 2.61zm313.82 58.1l-110.55-85.44a331.25 331.25 0 0 0 81.25-102.07 32.35 32.35 0 0 0 0-29.19C550.29 135.59 442.93 64 320 64a308.15 308.15 0 0 0-147.32 37.7L45.46 3.37A16 16 0 0 0 23 6.18L3.37 31.45A16 16 0 0 0 6.18 53.9l588.36 454.73a16 16 0 0 0 22.46-2.81l19.64-25.27a16 16 0 0 0-2.82-22.45zm-183.72-142l-39.3-30.38A94.75 94.75 0 0 0 416 256a94.76 94.76 0 0 0-121.31-92.21A47.65 47.65 0 0 1 304 192a46.64 46.64 0 0 1-1.54 10l-73.61-56.89A142.31 142.31 0 0 1 320 112a143.92 143.92 0 0 1 144 144c0 21.63-5.29 41.79-13.9 60.11z"/></svg>
+                      <input type="password" id="password" placeholder="Password">
+                  </div>
+              </div>
+              <div class="submit flex">
+                  <div class="options"><label>You can also sign in with <wbr/> <i class="fab fa-google"></i><i class="fab fa-linkedin"></i><i class="fab fa-windows"></i></label></div>
+                  <div class="buttons flex"><button>Recover Password</button><button>Login to IRIS</button></div>
+              </div>
+              <div class="other flex">
+                   <li>Applications</li>
+                   <li>Admissions</li>
+                   <li>Placement</li>
+                   <li>About Us</li>
+                   <li>Blog</li>
+                   <li>Contact Us</li>
+              </div>
+          </form>
+      </section>
+  </section>
+  
+  
+   <script>
+       function visible(a){
+           if (a == 0){
+               document.querySelector("#text").style.display = "none";
+               document.querySelector("#pass").style.display = "block";
+               document.querySelector("#password").setAttribute("type","password");
+           }else{
+               document.querySelector("#pass").style.display = "none";
+               document.querySelector("#text").style.display = "block";
+               document.querySelector("#password").setAttribute("type","text");
+           }
+       }
+    </script>
+    
+    </body>
+</html>
