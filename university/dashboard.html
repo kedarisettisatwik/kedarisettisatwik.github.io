@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
    <meta charset="utf-8">
@@ -131,18 +132,6 @@
             transition:0.4s;
             position:relative;
         }
-        .sidebar ul li .heading::after{
-            content: '';
-            position: absolute;
-            top:50%;
-            right:10px;
-            width:0px;
-            height:3px;
-            background-color:black;
-            border-radius:5px;
-            transform:translateY(-50%);
-            transition:0.2s;
-        }
         .sidebar ul li .heading span{
             font-size:15px;
         }
@@ -152,23 +141,86 @@
             font-weight:700;
             letter-spacing:1px;
         }
-        .sidebar ul li .heading.active::after{
-            width:45px;
-            background-color:#6770d2;
-        }
-        .sidebar ul li .heading:hover::after{
-            width:45px;
-        }
         .sidebar ul li .heading.active .icons{
             fill:#6770d2;
         }
+        .sidebar ul li .heading:hover{
+            opacity:1;
+            color:#6770d2;
+            font-weight:bold;
+        }
+        
+        .main .top,.main .bottom{
+            width:100%;
+            min-height:50%;
+            padding:10px;
+            position:relative;
+        }
+        .main .top{
+/*            background-color: #f2f2f2;*/
+            background-color: rgb(0,0,0,0.04);
+            transition:0.3s;
+        }
+        .main .top header{
+            height:60px;
+            width:100%;
+            justify-content:space-between;
+            flex-direction: row;
+            padding-bottom:5px;
+            border-bottom:2px solid rgb(0,0,0,0.5);
+            box-sizing: content-box;
+        }
+        .main .top header .search{
+            padding:10px 15px;
+            background-color: white;
+            border-radius:8px;
+            height:45px;
+        }
+        .main .top header .search{
+            flex-direction: row;
+        }
+        .main .top header .search svg{
+            width:20px;
+            margin-right:15px;
+        }
+        .main .top header .search svg:nth-child(1){
+            font-size:14px;
+            border-right:2px solid rgb(0,0,0,0.5);
+            padding-right:20px;
+            box-sizing: content-box;
+            cursor:pointer;
+            height:30px;
+            line-height:30px;
+            text-align:center;
+        }
+        .main .top header .search input{
+            background:none;
+            outline:none;
+            border:none;
+            font-size:13px;
+        }
+        .main .top header ul span{
+            font-size:13px;
+            font-weight:bold;
+            margin:0 10px;
+            letter-spacing:1px;
+        }
+        .main .top .grades{
+            height:300px;
+            margin:10px 0;
+            padding:10px;
+        }
+        
         @media (min-width:1000px){
             .sidebar,.sidebar.active{
                 left:0;
             }
             .main,.main.active{
-                left:280;
+                left:280px;
                 width:calc(100vw - 280px);
+            }
+            .main .top header .search svg:nth-child(1){
+                display: none;
             }
         }
         @media (max-width:1000px){
@@ -179,6 +231,29 @@
                 left:0;
                 width:100vw;
             }
+            .main .top header .search svg:nth-child(1){
+                display:block;
+            }
+        }
+        @media (max-width:800px){
+            .main .top header ul span{
+                display:none;
+            }
+            .main .top header ul span:nth-last-child(1){
+                display:block;
+            }
+            .main .top{
+                background-color: white;
+            }
+        }
+        @media (max-width:400px){
+            .main .top header ul span:nth-last-child(1){
+                display:none;
+            }
+            .main .top header .search{
+                width:100%;
+                justify-content: flex-start;
+            }
         }
         
     </style>
@@ -186,8 +261,37 @@
     </head>
 <body>
  
-  <section class="main flex">
-      <button onclick="open_sidebar()">open</button>
+  <section class="main">
+     <div class="top">
+         <header class="flex">
+             <div class="search flex">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" onclick="open_sidebar()"><path d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+                
+                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="opacity:0.5"><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+                 <input type="search" placeholder="Search anything">
+             </div>
+             <ul>
+                 <span>NITK surathkal</span>
+                 <span>About IRIS</span>
+                 <span>Terms of Service</span>
+                 <span>Tell IRIS</span>
+             </ul>
+         </header>
+         <div class="grades">
+             <div class="graph">
+                 
+             </div>
+             <div class="credits">
+                 
+             </div>
+             <div class="calender">
+                 
+             </div>
+         </div>
+     </div>
+      <div class="bottom">
+      
+      </div>
   </section>
   
   <section class="sidebar">
@@ -202,6 +306,7 @@
           <li><div class="heading" onclick="open1(2)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icons"><path d="M243.4 2.587C251.4-.8625 260.6-.8625 268.6 2.587L492.6 98.59C506.6 104.6 514.4 119.6 511.3 134.4C508.3 149.3 495.2 159.1 479.1 160V168C479.1 181.3 469.3 192 455.1 192H55.1C42.74 192 31.1 181.3 31.1 168V160C16.81 159.1 3.708 149.3 .6528 134.4C-2.402 119.6 5.429 104.6 19.39 98.59L243.4 2.587zM256 128C273.7 128 288 113.7 288 96C288 78.33 273.7 64 256 64C238.3 64 224 78.33 224 96C224 113.7 238.3 128 256 128zM127.1 416H167.1V224H231.1V416H280V224H344V416H384V224H448V420.3C448.6 420.6 449.2 420.1 449.8 421.4L497.8 453.4C509.5 461.2 514.7 475.8 510.6 489.3C506.5 502.8 494.1 512 480 512H31.1C17.9 512 5.458 502.8 1.372 489.3C-2.715 475.8 2.515 461.2 14.25 453.4L62.25 421.4C62.82 420.1 63.41 420.6 63.1 420.3V224H127.1V416z"/></svg><span>Campus</span></div></li>
           <li><div class="heading" onclick="open1(3)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="icons"><path d="M623.1 136.9l-282.7-101.2c-13.73-4.91-28.7-4.91-42.43 0L16.05 136.9C6.438 140.4 0 149.6 0 160s6.438 19.65 16.05 23.09L76.07 204.6c-11.89 15.8-20.26 34.16-24.55 53.95C40.05 263.4 32 274.8 32 288c0 9.953 4.814 18.49 11.94 24.36l-24.83 149C17.48 471.1 25 480 34.89 480H93.11c9.887 0 17.41-8.879 15.78-18.63l-24.83-149C91.19 306.5 96 297.1 96 288c0-10.29-5.174-19.03-12.72-24.89c4.252-17.76 12.88-33.82 24.94-47.03l190.6 68.23c13.73 4.91 28.7 4.91 42.43 0l282.7-101.2C633.6 179.6 640 170.4 640 160S633.6 140.4 623.1 136.9zM351.1 314.4C341.7 318.1 330.9 320 320 320c-10.92 0-21.69-1.867-32-5.555L142.8 262.5L128 405.3C128 446.6 213.1 480 320 480c105.1 0 192-33.4 192-74.67l-14.78-142.9L351.1 314.4z"/><span>Academics</span></svg></div></li>
           <li style="margin:15px 0 0 0;"><label style="font-size:14px;color:#6770d2;font-weight:bold;letter-spacing: 1px;">QUICK LINKS</label></li>
+          <li class='links'>Tell IRIS</li>
           <li class='links'>About IRIS</li>
           <li class='links'>IRIS Blog</li>
           <li class='links'>NITK Website</li>
