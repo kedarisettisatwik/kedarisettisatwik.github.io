@@ -194,7 +194,6 @@
         .main .top{
             width:100%;
             min-height:300px;
-            padding:10px;
             position:relative;
         }
         .main .top{
@@ -203,12 +202,12 @@
             transition:0.3s;
         }
         .main .top header{
-            height:60px;
+            min-height:60px;
             width:100%;
             justify-content:space-between;
             flex-direction: row;
-            box-sizing: content-box;
             position:relative;
+            padding:10px;
         }
         .main .top header svg{
             width:20px;
@@ -225,6 +224,7 @@
             justify-content: space-between;
             align-items: center;
             flex-direction: row;
+            position:relative;
         }
         .main .top header ul .search{
             flex-direction: row;
@@ -249,13 +249,13 @@
             background: none;
         }
         .main .top header h2 img{
-            width:20px;
+            width:25px;
             padding:10px;
             box-sizing: content-box;
             cursor:pointer;
             padding-left:0px;
             margin-right:5px;
-            filter: drop-shadow(0px 0px 3px rgb(0,0,0,0.23));
+            filter: drop-shadow(0px 0px 3px rgb(0,0,0,0.2));
         }
         .main .top header h2 label{
             color:#6770d2;
@@ -263,8 +263,82 @@
             letter-spacing:1px;
             font-weight:bold;
         }
+        .main .grades{
+            display: flex;
+            justify-content:space-around;
+            align-items:stretch;
+            flex-direction: row;
+            flex-wrap: wrap;
+            width:100%;
+            padding:5px;
+            position:relative;
+        }
+        .main .grades .box{
+            min-height:100px;
+        }
+        .main .grades .graph{
+            width:500px;
+        }
+        .main .grades .calender{
+            width:calc(100% - 500px - 210px);
+        }
+        .main .grades .credits{
+            width:200px;
+        }
+        .main .grades .courses{
+            width:calc(100%);
+        } 
+        @media (max-width:1320px){
+           .main .grades .graph{
+               width:500px;
+           }
+           .main .grades .calender{
+               width:calc(100% - 500px);
+           }
+           .main .grades .credits{
+               width:200px;
+           }
+           .main .grades .courses{
+               width:calc(100% - 210px);
+           } 
+        }
+        @media (max-width:928px){
+           .main .grades .graph{
+               width:100%;
+               transform:translateX(-10px);
+           }
+           .main .grades .calender{
+               width:100%;
+           }
+           .main .grades .credits{
+               width:200px;
+           }
+           .main .grades .courses{
+               width:calc(100% - 210px);
+           } 
+        }
+        @media (max-width:870px){
+           .main .grades .credits{
+               width:100%;
+           }
+           .main .grades .courses{
+               width:calc(100%);
+           } 
+        }
+        .main .grades .graph {
+            position:relative;
+        }
+        .main .grades .graph .graph1{
+            width:100%;
+            max-width:500px;
+            position:relative;
+        }
+        .main .grades .graph #canvas1{
+            width:100%;
+            height:400px;
+        }
         
-        @media (min-width:1000px){
+        @media (min-width:1240px){
             .sidebar,.sidebar.active{
                 left:0;
             }
@@ -276,7 +350,7 @@
                 display: none;
             }
         }
-        @media (max-width:1000px){
+        @media (max-width:1240px){
             .sidebar .name .close{
                 display:block;
             }
@@ -351,13 +425,16 @@
              </ul>
          </header>
          <div class="grades">
-             <div class="graph">
+             <div class="graph box flex">
+                   <div class="graph1"><canvas id="canvas1"></canvas></div>
+             </div>
+             <div class="calender box flex">
                  
              </div>
-             <div class="credits">
+             <div class="credits box flex">
                  
              </div>
-             <div class="calender">
+             <div class="courses box flex">
                  
              </div>
          </div>
@@ -395,6 +472,7 @@
       </ul>
   </section>
   
+  <script src="chart.js"></script>
    <script>
        
        var headings = document.querySelectorAll(".heading");
@@ -415,6 +493,64 @@
            document.querySelector(".main").classList.remove("active");
            document.querySelector(".sidebar").classList.remove("active");
        }
+       
+       var ctx = document.getElementById('canvas1').getContext("2d");
+       var xx = ["sem 1", "sem 2", "sem 3", "sem 4", "sem 5", "sem 6", "sem 7","sem 8"];
+       var st = 2;
+       if (window.innerWidth < 420){
+           xx = ["s1", "s2", "s3", "s4", "s5", "s6", "s7","s8"];
+       }
+       
+       var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: xx,
+        datasets: [{
+            label: "CGPA",
+            backgroundColor:"#d8dcf3",
+            borderColor:"#6770d2",
+            fill: true,
+            data: [7.3, 7.4, 7.82, 8.6, 0, 0, 0, 0]
+        }]
+    },
+    options: {
+        legend: {
+            position: "top",
+            display:false
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    fontColor: "#6770d2",
+                    fontStyle: "bold",
+                    beginAtZero: false,
+                    maxTicksLimit: 10,
+                    padding: 20,
+                    min: 0,
+                    max:10,
+                    stepSize:2,
+                    opacity:0
+                },
+                gridLines: {
+                    drawTicks: true,
+                    display: true
+                }
+}],
+            xAxes: [{
+                gridLines: {
+                    zeroLineColor: "transparent"
+},
+                ticks: {
+                    padding: 20,
+                    fontColor: "rgba(0,0,0,0.5)",
+                    fontStyle: "bold",
+                    fontSize:10
+                }
+            }]
+        }
+    }
+});
+       
     </script>
     
     </body>
