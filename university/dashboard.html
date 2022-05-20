@@ -275,6 +275,7 @@
         }
         .main .grades .box{
             min-height:100px;
+            position:relative;
         }
         .main .grades .graph{
             width:500px;
@@ -287,7 +288,39 @@
         }
         .main .grades .courses{
             width:calc(100%);
+            margin-top:20px;
         } 
+        .main .grades .credits .credits1{
+            max-width:200px;
+            height:150px;
+        }
+        .main .grades .credits .credits1 img{
+            width:100px;
+        }
+        .main .grades .credits .credits1 p{
+            font-size:14px;
+            font-weight:bold;
+            letter-spacing:1px;
+            height:30px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: row;
+        }
+        .main .grades .credits .credits1 p span{
+            color: #6770d2;
+            font-size:45px;
+            margin:0 10px;
+            text-shadow:0 0 4px #d8dcf3;
+        }
+        .main .grades .credits .credits1 h1{
+            position: absolute;
+            top:50%;
+            left:calc(50% - 10px);
+            transform:translate(-50%,-50%);
+            font-size:160px;
+            color:rgb(0,0,0,0.07);
+        }
         @media (max-width:1320px){
            .main .grades .graph{
                width:500px;
@@ -297,6 +330,7 @@
            }
            .main .grades .credits{
                width:200px;
+               margin-top:20px;
            }
            .main .grades .courses{
                width:calc(100% - 210px);
@@ -432,7 +466,11 @@
                  
              </div>
              <div class="credits box flex">
-                 
+                 <div class="credits1 flex">
+                     <h1>4</h1>
+                     <img src="credits.jpg">
+                     <p>Major credits <span>90</span> </p>
+                 </div>
              </div>
              <div class="courses box flex">
                  
