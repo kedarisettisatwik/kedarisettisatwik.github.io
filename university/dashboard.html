@@ -272,6 +272,7 @@
             width:100%;
             padding:5px;
             position:relative;
+            margin-top:20px;
         }
         .main .grades .box{
             min-height:100px;
@@ -280,11 +281,15 @@
         .main .grades .graph{
             width:500px;
         }
-        .main .grades .calender{
-            width:calc(100% - 500px - 210px);
+        .main .grades .graph .overall{
+            position: absolute;
+            right:20px;
+            top:20px;
+            font-size:45px;
+            color:rgb(0,0,0,0.3);
         }
         .main .grades .credits{
-            width:200px;
+            width:210px;
         }
         .main .grades .courses{
             width:calc(100%);
@@ -321,43 +326,13 @@
             font-size:160px;
             color:rgb(0,0,0,0.07);
         }
-        @media (max-width:1320px){
-           .main .grades .graph{
-               width:500px;
-           }
-           .main .grades .calender{
-               width:calc(100% - 500px);
-           }
-           .main .grades .credits{
-               width:200px;
-               margin-top:20px;
-           }
-           .main .grades .courses{
-               width:calc(100% - 210px);
-           } 
-        }
-        @media (max-width:928px){
-           .main .grades .graph{
+        @media (max-width:760px){
+           .main .grades .credits,.main .grades .graph{
                width:100%;
+           }
+           .main .grades .graph{
                transform:translateX(-10px);
            }
-           .main .grades .calender{
-               width:100%;
-           }
-           .main .grades .credits{
-               width:200px;
-           }
-           .main .grades .courses{
-               width:calc(100% - 210px);
-           } 
-        }
-        @media (max-width:870px){
-           .main .grades .credits{
-               width:100%;
-           }
-           .main .grades .courses{
-               width:calc(100%);
-           } 
         }
         .main .grades .graph {
             position:relative;
@@ -425,6 +400,10 @@
                 justify-content: flex-start;
                 margin-top: 5px;
             }
+            .main .grades .graph .overall{
+                font-size:30px;
+                color:rgb(0,0,0,0.5);
+            }
             .main .top header ul .search svg{
                 margin:0 15px 0 10px;
             }
@@ -460,10 +439,7 @@
          </header>
          <div class="grades">
              <div class="graph box flex">
-                   <div class="graph1"><canvas id="canvas1"></canvas></div>
-             </div>
-             <div class="calender box flex">
-                 
+                   <div class="graph1"><canvas id="canvas1"></canvas><h1 class="overall">7.86</h1></div>
              </div>
              <div class="credits box flex">
                  <div class="credits1 flex">
