@@ -190,7 +190,7 @@
             border-top:none;
             border-left:none;
         }
-        .main .top,.main .bottom{
+        .main .top{
             width:100%;
             min-height:300px;
             padding:10px;
@@ -198,7 +198,7 @@
         }
         .main .top{
 /*            background-color: #f2f2f2;*/
-            background-color: rgb(0,0,0,0.04);
+            background-color: white;
             transition:0.3s;
         }
         .main .top header{
@@ -213,8 +213,6 @@
             background-color: white;
             border-radius:8px;
             height:45px;
-        }
-        .main .top header .search{
             flex-direction: row;
         }
         .main .top header .search svg{
@@ -250,10 +248,16 @@
             letter-spacing:1px;
         }
         .main .top .grades{
-            height:300px;
+            min-height:300px;
             margin:10px 0;
             padding:10px;
+            display:flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: row;
         }
+        
+        
         
         @media (min-width:1000px){
             .sidebar,.sidebar.active{
@@ -287,9 +291,6 @@
             .main .top header ul span:nth-last-child(1),.main .top header ul span:nth-last-child(2){
                 display:inline-block;
             }
-            .main .top{
-                background-color: white;
-            }
         }
         @media (max-width:530px){
             .main .top header{
@@ -299,10 +300,13 @@
             .main .top header .search{
                 width:100%;
                 justify-content: flex-start;
+                box-shadow:0 0 3px rgb(0,0,0,0);
             }
             .main .top header ul{
                 width:100%;
                 margin:15px 0;
+                flex-direction: row-reverse;
+                justify-content: space-between;
             }
         }
         
@@ -340,9 +344,6 @@
              </div>
          </div>
      </div>
-      <div class="bottom">
-      
-      </div>
   </section>
   
   <section class="sidebar">
