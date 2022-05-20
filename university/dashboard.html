@@ -295,7 +295,7 @@
             height:150px;
         }
         .main .grades .credits .credits1 img{
-            width:100px;
+            width:120px;
         }
         .main .grades .credits .credits1 p{
             font-size:14px;
@@ -533,10 +533,11 @@
        }
        
        var ctx = document.getElementById('canvas1').getContext("2d");
-       var xx = ["sem 1", "sem 2", "sem 3", "sem 4", "sem 5", "sem 6", "sem 7","sem 8"];
+       var grades = [7.3, 7.4, 7.82, 8.6, 0, 0, 0, 0];
+       var xx = [[" ",grades[0],"sem 1"],[" ",grades[1],"sem 2"],[" ",grades[2],"sem 3"],[" ",grades[3],"sem 4"],[" ",grades[4],"sem 5"],[" ",grades[5],"sem 6"],[" ",grades[6],"sem 7"],[" ",grades[7],"sem 8"]];
        var st = 2;
        if (window.innerWidth < 420){
-           xx = ["s1", "s2", "s3", "s4", "s5", "s6", "s7","s8"];
+           xx = [[" ",grades[0],"s1"],[" ",grades[1],"s2"],[" ",grades[2],"s3"],[" ",grades[3],"s4"],[" ",grades[4],"s5"],[" ",grades[5],"s6"],[" ",grades[6],"s7"],[" ",grades[7],"s8"]];
        }
        
        var myChart = new Chart(ctx, {
@@ -548,7 +549,7 @@
             backgroundColor:"#d8dcf3",
             borderColor:"#6770d2",
             fill: true,
-            data: [7.3, 7.4, 7.82, 8.6, 0, 0, 0, 0]
+            data: grades
         }]
     },
     options: {
@@ -567,7 +568,6 @@
                     min: 0,
                     max:10,
                     stepSize:2,
-                    opacity:0
                 },
                 gridLines: {
                     drawTicks: true,
@@ -579,8 +579,7 @@
                     zeroLineColor: "transparent"
 },
                 ticks: {
-                    padding: 20,
-                    fontColor: "rgba(0,0,0,0.5)",
+                    fontColor: "rgba(0,0,0,0.6)",
                     fontStyle: "bold",
                     fontSize:10
                 }
