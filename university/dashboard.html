@@ -272,7 +272,6 @@
             cursor:pointer;
             padding-left:0px;
             margin-right:5px;
-            filter: drop-shadow(0px 0px 3px rgb(0,0,0,0.2));
         }
         .main .top header h2 label{
             color:#6770d2;
@@ -417,12 +416,13 @@
         }
         .main .bottom .page3 .course{
             width:300px;
-            max-width:100%;
             min-height:120px;
             margin:10px;
             transition:0.3s;
             padding:10px 15px;
             box-shadow:0 0 10px rgb(0,0,0,0);
+            overflow: hidden;
+            cursor:pointer;
         }
         .main .bottom .page3 .course:hover{
             box-shadow:0 0 10px rgb(0,0,0,0.15);
@@ -447,10 +447,13 @@
         .main .bottom .page3 .course label{
             font-size: 13px;
             color: grey;
-            height:50px;
-            display:flex;
-            justify-content: flex-start;
-            align-items: flex-end;
+            width:100%;
+            height:30px;
+            line-height:30px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            display:block;
         }
         .main .bottom .page3 .course span{
             display:block;
@@ -541,6 +544,11 @@
                 justify-content: space-around;
             }
         }
+        @media (max-width:648px){
+            .main .bottom .page3 .course{
+                width: 100%;
+            }
+        }
         @media (max-width:412px){
             .main .top header{
                 flex-direction: column;
@@ -608,8 +616,7 @@
                
                 <nav>
                     <button class="button1 flex active" onclick='page1(0)'>Announcements</button>
-                    <button class="button1 flex" onclick='page1(1)'>Calender</button>
-                    <button class="button1 flex" onclick='page1(2)'>Courses</button>
+                    <button class="button1 flex" onclick='page1(1)'>Courses</button>
                 </nav>
                 
                 <div class="page page1 active">
@@ -646,15 +653,12 @@
                        <label><i class="fa-solid fa-clock"></i><span>May 14, 2022 - 12:40 PM</span></label>
                    </div>
                 </div>
-                <div class="page page2">
-                    
-                </div>
                 <div class="page page3">
                     <div class='course'>
                         <h3>EE224</h3>
                         <p>Electrical Measurements And Measuring Instruments</p>
                         <label>By DHARAVATH KISHAN</label>
-                        <span>Attendence <i style="--c:orange">81%</i> </span>
+                        <span>Attendence <i style="--c:orange">79%</i> </span>
                     </div>
                     <div class='course'>
                         <h3>EE258</h3>
@@ -665,14 +669,14 @@
                     <div class='course'>
                         <h3>EE265</h3>
                         <p>Power System Engineering - I</p>
-                        <label>By DASTAGIRI REDDY B,<br> K Manjunatha Sharma</label>
+                        <label>By DASTAGIRI REDDY B, K Manjunatha Sharma</label>
                         <span>Attendence <i style="--c:red">50%</i> </span>
                     </div>
                     <div class='course'>
                         <h3>EE276</h3>
                         <p>Digital Electronic Circuits</p>
                         <label>By Yashwant Kashyap</label>
-                        <span>Attendence <i style="--c:green">100%</i> </span>
+                        <span>Attendence <i style="--c:green">90%</i> </span>
                     </div>
                     <div class='course'>
                         <h3>EE308</h3>
