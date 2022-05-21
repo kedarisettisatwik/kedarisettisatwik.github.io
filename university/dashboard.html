@@ -33,9 +33,11 @@
             overflow: hidden;
             position:relative;
         }
+/*
         ::-webkit-scrollbar{
             width:0px;
         }
+*/
         .flex{
             display: flex;
             justify-content: center;
@@ -50,6 +52,9 @@
             overflow-y: auto;
             background-color:white;
         }
+        .sidebar::-webkit-scrollbar{
+            width:0px;
+        }
         .sidebar{
             width:280px;
             left:-290px;
@@ -57,6 +62,7 @@
             padding:10px 20px;
             transition:0.6s;
             transition-delay:0.1s;
+            z-index:200;
         }
         .sidebar.active{
             left:0;
@@ -216,8 +222,11 @@
             width:100%;
             justify-content:space-between;
             flex-direction: row;
-            position:relative;
+            position:sticky;
+            top:0;
             padding:10px;
+            background-color: white;
+            z-index:100;
         }
         .main .top header svg{
             width:20px;
@@ -388,7 +397,48 @@
         }
         .main .bottom nav .button1.active{
             color:#6770d2;
-            font-size:20px;
+        }
+        .main .bottom .page{
+            width:100%;
+            margin-top:10px;
+            min-height:100px;
+        }
+        .main .bottom .page1 .li{
+            margin:10px 0;
+            padding:10px;
+            padding-left:30px;
+            list-style:none;
+            position:relative;
+            cursor:pointer;
+        }
+        .main .bottom .page1 .li::after{
+            content:'';
+            position: absolute;
+            top:12px;
+            left:10px;
+            width:6px;
+            height:calc(100% - 24px);
+            background-color:#6770d2;
+            border-radius:6px;
+            
+        }
+        .main .bottom .page1 .li li{
+            width:100%;
+            font-size:14px;
+            font-weight:bold;
+            letter-spacing:1px;
+            margin-bottom:10px;
+            color:rgb(0,0,0,0.6);
+        }
+        .main .bottom .page1 .li label{
+            width:100%;
+            font-size:13px;
+        }
+        .main .bottom .page1 .li label i{
+            margin-right:15px;
+        }
+        .main .bottom .page.page2,.main .bottom .page.page3{
+            display: none;
         }
         
         
@@ -428,6 +478,9 @@
         @media (max-width:502px){
             .main .top header ul div span:nth-last-child(1){
                 display: none;
+            }
+            .main .bottom nav{
+                justify-content: space-around;
             }
         }
         @media (max-width:412px){
@@ -496,10 +549,51 @@
              <div class="bottom box">
                
                 <nav>
-                    <button class="button1 flex" onclick='page1(0)'>Announcements</button>
-                    <button class="button1 flex active" onclick='page1(1)'>Calender</button>
+                    <button class="button1 flex active" onclick='page1(0)'>Announcements</button>
+                    <button class="button1 flex" onclick='page1(1)'>Calender</button>
                     <button class="button1 flex" onclick='page1(2)'>Courses</button>
                 </nav>
+                
+                <div class="page page1">
+                   <div class="li">
+                       <li>Major SGPA and CGPA for 2022 Even updated</li>
+                       <label><i class="fa-solid fa-clock"></i><span>May 20, 2022 - 04:00 PM</span></label>
+                   </div>
+                   <div class="li">
+                       <li>Grades for EE308 - POWER ELECTRONICS are finalised</li>
+                       <label><i class="fa-solid fa-clock"></i><span>May 20, 2022 - 1:37 PM</span></label>
+                   </div>
+                   <div class="li">
+                       <li>Grades for EE276 - Digital Electronic Circuits are finalised</li>
+                       <label><i class="fa-solid fa-clock"></i><span>May 20, 2022 - 11:28 AM</span></label>
+                   </div>
+                   <div class="li">
+                       <li>Grades for EE265 - Power System Engineering - I are finalised</li>
+                       <label><i class="fa-solid fa-clock"></i><span>May 20, 2022 - 10:06 AM</span></label>
+                   </div>
+                   <div class="li">
+                       <li>Grades for EE258 - Electrical Machines - II are finalised</li>
+                       <label><i class="fa-solid fa-clock"></i><span>May 20, 2022 - 9:55 AM</span></label>
+                   </div>
+                   <div class="li">
+                       <li>Grades for EE224 - Electrical Measurements And Measuring Instruments are finalised</li>
+                       <label><i class="fa-solid fa-clock"></i><span>May 20, 2022 - 9:12 AM</span></label>
+                   </div>
+                  <div class="li">
+                       <li>Guidelines for BTech Second Semester Courses Registration due to Backlog or Branch Change </li>
+                       <label><i class="fa-solid fa-clock"></i><span>May 17, 2022 - 03:51 PM</span></label>
+                   </div>
+                   <div class="li">
+                       <li>IRIS Monthly Report - April 2022 </li>
+                       <label><i class="fa-solid fa-clock"></i><span>May 14, 2022 - 12:40 PM</span></label>
+                   </div>
+                </div>
+                <div class="page page2">
+                    
+                </div>
+                <div class="page page3">
+                    
+                </div>
                 
              </div>
          </div>
@@ -601,7 +695,7 @@
        }
        
        var buttons1 = document.querySelectorAll(".button1");
-       var ini_p = 1;
+       var ini_p = 0;
        
        function page1(a){
            buttons1[ini_p].classList.remove("active");
