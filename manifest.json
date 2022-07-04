@@ -1,0 +1,9 @@
+{
+  "short_name": "Aoight",
+  "name": "Aoight",
+  "start_url": ".",
+  "display": "standalone",
+  "description":"App of Infinity",
+  "theme_color": "#fff",
+  "background_color": "#fff"
+}
