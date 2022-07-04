@@ -8,8 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
     <!-- google fonts -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
     
     <title>satwik _ kedar</title>
     
@@ -26,474 +25,44 @@
         }
         body{
             width:100vw;
-            min-height:100vh;
+            height:100vh;
             background-color:white;
-            overflow-x: hidden;
+            overflow: hidden;
             position:relative;
         }
         .flex{
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: row;
         }
-        body .home{
-            position:relative;
+        .full{
             width:100vw;
-            overflow-x: hidden;
-            background-color:#282828; 
-            overflow: hidden;
-        }
-        body .nav{
-            position:relative;
-            width:100%;
-            height:70px;
-            justify-content: space-between;
-            background-color:transparent;
-            top:0;
-            z-index:100;
-            padding:0 10px;
-        }
-        body .nav h2{
-            margin:0 5px;
-        }
-        body .nav h2{
-            letter-spacing:1px;
-            font-size:24px;
-        }
-        body .nav h2 span{
-            margin:0 6px;
-            color:white;
-        }
-        body .nav h2 label{
-            color:#cc0000;
-        }
-        body .main{
-            width:100vw;
-            height:calc(570px - 70px);
-            min-height:calc(555px - 70px);;
-            overflow-x: hidden;
-            background-color:transparent;
-            position:relative;
-            transition:0.3s,width 0s;
-        }
-        body .main .img{
-            position:absolute;
-            bottom:0px;
-            right:5px;
-            clip-path: inset(100% 0 0 0);
-            -webkit-animation:img1 2s linear forwards;
-            transition:0.2s;
-        }
-        @keyframes img1{
-            0%{
-                clip-path: inset(100% 0 0 0);
-            }
-            100%{
-                clip-path: inset(0 0 0 0);
-            }
-        }
-        body .main .img img{
-            width:300px;
-            filter: drop-shadow(0px 0px 3px rgb(0,0,0,0.5));
-            transition:0.3s;
-        }
-        body .main .img span{
-            position: absolute;
-            bottom:15px;
-            left:0;
-            height:60px;
-            width:60px;
-            transform:translateX(50%);
-            background-color:snow;
-            font-weight:bold;
-            font-size:18px;
-            line-height:65px;
-            text-align: center;
-            border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
-            transition:0.3s;
-            box-shadow:0 0 8px rgb(0,0,0,0.6);
-        }
-        body .main .name{
-            position: absolute;
-            top:50px;
-            left:35px;
-            transform:translate(0,0%);
-            transition:0.2s;
-        }
-        body .main .name h3{
-            color:white;
-            margin:10px 0;
-            letter-spacing:2px;
-            font-size:17px;
-        }
-        body .main .name h2{
-            font-size:63px;
-            color:white;
-        }
-        body .main .name h2 .name1{
-            font-family: 'Caveat', sans-serif;
-            text-shadow:0 0 0px aqua;
-            transition:0.3s;
-        }
-        body .main .name h2 .name1.active{
-            -webkit-animation:light1 1s linear forwards infinite;
-            letter-spacing:1px;
-        }
-        @keyframes light1{
-            0%{
-                text-shadow:0 0 0px aqua;
-            }
-            40%,60%{
-                text-shadow:0 0 9px aqua;
-            }
-            100%{
-                text-shadow:0 0 0px aqua;
-            }
-        }
-        body .main .name .follow{
-            margin-top:25px;
-        }
-        body .main .name .follow i{
-            color:antiquewhite;
-            margin:0 10px;
-            cursor:pointer;
-            font-size:22px;
-            transition:0.3s;
-        }
-        body .main .name .follow i:hover{
-            color:#cc0000;
-        }
-        body .main .name .down{
-            margin-top:40px;
             height:50px;
-            line-height:50px;
-            padding:0 10px;
-            background-color:#cc0000;
-            color:white;
-            transition:0.3s;
             cursor:pointer;
-            width:170px;
-            border-radius:8px;
-            justify-content: space-around;
+            font-size:13px;
+            color:rgb(0,0,0,0.6);
             font-weight:bold;
             letter-spacing:1px;
-            font-size:15px;
         }
-        body .main .name .down:hover{
-            background-color:#fff;
-            color:#cc0000;
-        }
-        body .main .name .down i{
-            -webkit-animation:arrow 2s linear infinite forwards;
-            cursor:pointer;
-        }
-        @keyframes arrow{
-            0%{
-                font-size:15px;
-            }
-            50%{
-                font-size:20px;
-            }
-            100%{
-                font-size:15px;
-            }
-        }
-        body .border{
+        .iframe{
             width:100vw;
-            height:60px;
-            position:relative;
-            background-color:transparent;
+            height:calc(100vh - 50px);
+            border:none;
+            outline:none;
+            padding:none;
         }
-        body .border .wave{
-            position:absolute;
-            top:10px;
-            left:0;
-            width:100%;
-            height:100%;
-            clip-path: polygon(0 70%, 100% 0%, 100% 100%, 0% 100%);
-            background-color:var(--i);
-            transition:1s;
-        }
-        body .projects{
-            width:100vw;
-            min-height:500px;
-            height:calc(100vh - 70px);
-            background-color:white;
-            transition:0.5s;
-            opacity:0;
-        }
-        body .projects .pro_head{
-            margin:20px;
-            letter-spacing:2px;
-            font-size:23px;
-            transform:translateX(-100px);
-            transition:0.6s;
-        }
-        body .projects .box{
-            width:100%;
-            margin-top:5px;
-            position:relative;
-            display: flex;
-            justify-content: flex-start;
-            align-items: flex-start;
-            flex-direction: row;
-            flex-wrap: wrap;
-            transition:0.4s;
-            padding:0 20px;
-        }
-        body .projects .box a{
-            cursor:pointer;
-            padding:15px;
-            margin:7px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: row;
-            height:70px;
-            text-decoration:none;
-            color:black;
-            border-radius:5px;
-            transition:0.3s;
-        }
-        body .projects .box a:hover{
-            color:darkblue;
-        }
-        body .projects .box a img{
-            height:50px;
-            margin:0 8px;
-        }
-        
-        @media (max-width:700px){
-            body .main .img img{
-                width:250px;
-            }
-        }
-        
-        @media (max-width:510px){
-            body .main .name{
-                top:10px;
-            }
-            body .main .img img{
-                width:calc(100vw - 15px);
-                max-width:200px;
-            }
-            body .main .img span{
-                width:40px;
-                height:40px;
-                line-height:40px;
-                font-size:16px;
-            }
-        }
-        
-        @media (max-width:420px){
-            body .main .name h2{
-                font-size:40px;
-            }
-        }
-        
-        @media (max-width:340px){
-            body .main{
-                min-height:calc(660px - 70px);
-            }
-        }
-        
     </style>
     
     </head>
 <body>
-   
-   <section class="home water">
-      
-       <nav class="nav flex">
-          <h2><span>Project</span><label>store</label></h2>
-    </nav>
-   
-   <section class="main">
-       
-       <div class="name">
-           <h3>Hello, I'm</h3>
-           <h2><span class="name1"></span><label class="name1"></label></h2>
-           <div class="follow">
-               <a href="tel:+917386484905" target="_blank"><i class="fas fa-phone-alt"></i></a>
-               <a href="mailto:satwik1330@gmail.com" target="_blank"><i class="fas fa-envelope"></i></a>
-               <a href="https://www.instagram.com/satwikkedaresetti/" target="_blank"><i class="fab fa-instagram"></i></a>
-               <a href="https://www.youtube.com/channel/UCpLOopnR9TX9b1fjcDpapsw" target="_blank"><i class="fab fa-youtube"></i></a>
-           </div>
-           <div class="down flex">
-               <i class="fas fa-long-arrow-alt-down"></i>
-               <label style="cursor:pointer">scroll down..</label>
-           </div>
-       </div>
-       
-       <div class="img">
-           <img src="mine.png">
-           <span>19</span>
-       </div>
-       
-   </section>
-   
-   <section class="border">
-       <div class="wave" style="--i:#fff"></div>
-   </section>
-   
-   </section>
-   
-   <section class="projects">
-       <h2 class="pro_head">Projects</h2>
-       
-       <div class="box">
-       
-    <a target='_self' href="university/login.html" class="link">IRIS</a>
-    <a target='_self' href="https://kedarisettisatwik.github.io/square/rules.html" class="link">Save The Square</a>
-    <a target='_self' href="colors/game.html" class="link">Colors</a>
-    <a target='_self' href = "snake/snake.html" class="link">snake game</a>  
-    <a target='_self' href = "run/running.html" class="link">Just Run</a>  
-    <a target='_self' href = "ping/ping-pong.html" class="link">ping - pong</a>  
-    <a target='_self' href = "2048/home.html" class="link">2048 Game</a>
-    <a target='_self' href ="super/super.html" 
-    class="link" id="super">SUPER <br> CALCULATOR</a>
-    <a target='_self' href ="cb/cow1.html" class="link">COW'S & BULL'S GAME</a>
-    <a target='_self' href ="chatbot/robo.html" class="link">Chat Bot</a>
-    <a target='_self' href = "projects/other/quotes.html" class="link">Quote</a> 
-    <a target='_self' href ="event/main.html" class="link"> Digital Clock</a> 
-    <a target='_self' href ="len/len.html" class="link">character counter</a>
-    <a target='_self' href = "chess/chess.html" class="link">CHESS GAME</a>
-    
-    
-       </div>
-    
-    <div class="box">
-        <a target='_self' href = "college/login.html" class="link">college</a>
-        <a target='_self' href = "online/home_online1.html" class="link">KSR <br> online shopping ..</a> 
-        <a target='_self' href ="tr/travel_home.html" class="link">ACE TOURISIM</a>
-        <a target='_self' href = "food/web1.html" class="link">food!e 😋</a>
-        <a target='_self' href = "manager/home.html" class="link"> NETWORK chat app</a>
-    </div>
-    
-    <div class="box">
-    <a target='_self' href = "projects/buttons/p1.html" class="link">button-1</a>
-    <a target='_self' href = "projects/buttons/p2.html" class="link">button-2</a>
-    <a target='_self' href = "projects/buttons/p3.html" class="link">button-3</a>
-    <a target='_self' href = "projects/buttons/p4.html" class="link">add to cart</a>
-    <a target='_self' href = "projects/buttons/p5.html" class="link">order now 1</a>
-    <a target='_self' href = "projects/buttons/p6.html" class="link">order now 2</a>
-    <a target='_self' href = "projects/other/table/ttable.html" class="link">Book a table</a>
-    <a target='_self' href = "projects/buttons/ballon.html" class="link">slider - 1</a>
-    <a target='_self' href = "projects/menu/loading-1.html" class="link">loading-1</a>
-    <a target='_self' href = "projects/menu/loading-2.html" class="link">loading-2</a>
-    <a target='_self' href = "projects/menu/icons1.html" class="link">icons-1</a>
-    </div>
-    
-    <div class="box">
-    <a target='_self' href = "projects/forms/form1.html" class="link">form-1</a>
-    <a target='_self' href = "projects/forms/form2.html" class="link">form-2</a>
-    <a target='_self' href = "projects/forms/form3.html" class="link">form-3</a>
-    <a target='_self' href = "projects/forms/form4.html" class="link">form-4</a>
-    <a target='_self' href = "projects/forms/password.html" class="link">password - 1</a>    
-    <a target='_self' href = "projects/forms/password%20-%202.html" class="link">password - 2</a>   
-    <a target='_self' href = "projects/forms/atmcard.html" class="link">ATM card</a> 
-    <a target='_self' href = "projects/other/bio.html" class="link">profile - 1</a>
-    <a target='_self' href = "projects/buttons/pro-1.html" class="link">products - 1</a>
-    </div>
-    
-    <div class="box">
-    <a target='_self' href = "projects/menu/menu1.html" class="link">menu - 1</a>
-    <a target='_self' href = "projects/menu/menu2.html" class="link">menu - 2</a>
-    <a target='_self' href = "projects/menu/menu3.html" class="link">menu - 3</a>   
-    <a target='_self' href = "projects/menu/menu4.html" class="link">menu - 4</a> 
-    <a target='_self' href = "projects/menu/menu5.html" class="link">menu - 5</a> 
-    <a target='_self' href = "projects/menu/menu6.html" class="link">menu - 6</a>   
-    <a target='_self' href = "projects/forms/search1.html" class="link">search bar 1</a>
-    <a target='_self' href = "projects/other/para%201.html" class="link">Invisible para</a>
-    <a target='_self' href = "rain.html" class="link">RAIN..</a> 
-    </div>
-    
-   </section>
-   
-   
-   <script src="jquery.ripples-min.js"></script>
+    <div class="full flex" onclick="full_screen()"> <i class="fa-solid fa-expand" style="margin:0 10px"></i> Full Screen Mode</div>
+    <iframe class="iframe" title="iframe" src="indexfull.html"></iframe>
     <script>
-    $(document).ready(function(){
-        $(".water").ripples({
-            dropRadius : 30,
-            perturbance : 0
-        });
-    });
-    </script> 
-    
-    <script>
-        
-        let para = new URLSearchParams(window.location.search);
-        console.log(para);
-      if (parseInt(para.get('mobile')) == 1){
-          localStorage.setItem("mobile_kedar",'1');
-      }else{
-          localStorage.setItem('mobile_kedar','0');
-      }
-        
-        
-        name();
-        
-        function name(){
-            var name1 = document.querySelectorAll(".name1");
-            var st1_name = "Satwik - kedar";
-            var t = 0;
-            var write1 = setInterval(function(){
-                
-                if (t < 14){
-                    if (t < 6){
-                        name1[0].innerHTML += st1_name[t];
-                    }else{
-                        name1[1].innerHTML += st1_name[t];
-                    }
-                    t +=1;
-                }else{
-                    name1[0].classList.add("active");
-                    name1[1].classList.add("active");
-                    clearInterval(write1);
-                }
-                
-            },150);
-            
+        function full_screen(){
+            document.documentElement.requestFullscreen();
+            document.querySelector(".full").style.display = "none";
+            document.querySelector(".iframe").style.height = "100vh";
         }
-        
-        var wave = document.querySelectorAll(".wave");
-        
-        var body_width = window.innerWidth;
-        
-        window.addEventListener("scroll",(e) => {
-            
-            var scroll_yy = window.scrollY;
-            
-            var projects_self = document.querySelector(".projects").getBoundingClientRect().top;
-            
-            var pro_head = document.querySelector(".pro_head");
-            var pro_box = document.querySelector(".projects");
-            
-           if (projects_self < 300){
-               wave[0].style.clipPath = "polygon(0 50%, 100% 50%, 100% 100%, 0% 100%)";
-               pro_head.style.transform = "translateX(0px)";
-               pro_box.style.opacity = "1";
-           }else{
-               wave[0].style.clipPath =  "polygon(0 70%, 100% 0%, 100% 100%, 0% 100%)";
-               pro_head.style.transform = "translateX(-100px)";
-               pro_box.style.opacity = "0";
-           }
-            
-            var name_box = document.querySelector(".name");
-            var img_box = document.querySelector(".img");
-            
-            if (scroll_yy > 60){
-                 name_box.style.transform = "translate( "+ -0.4*scroll_yy+"px" +",0%)";
-                 img_box.style.transform = "translate( "+ 0.4*scroll_yy+"px" +",0%)";
-            }else{
-                name_box.style.transform = "translate(0%,0%)";
-                img_box.style.transform = "translate(0%,0%)";
-            }
-                
-        });
-        
     </script>
     
     </body>
