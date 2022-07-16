@@ -1,0 +1,143 @@
+<html>
+<head>
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
+    <title>message</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: 'Poppins', sans-serif;
+/*          font-family: 'Caveat', cursive; */
+        }
+        html{
+            scroll-behavior: smooth;
+        }
+        body {
+            width: 100vw;
+            min-height:100vh;
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            overflow-x: hidden;
+        }
+        .flex{
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .page{
+            width:400px;
+            padding:10px;
+            position:relative;
+            align-items: flex-start;
+        }
+        .page h1{
+            font-family: 'Caveat', cursive;
+            margin-top:10px;
+        }
+        .page label{
+            color:rgb(0,0,0,0.5);
+            font-size:13px;
+            font-weight:bold;
+            letter-spacing:1px;
+        }
+        .page .msg{
+            width:100%;
+            padding:10px;
+            min-height:200px;
+            resize: none;
+        }
+        .page div{
+            width:100%;
+            padding:5px;
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: row;
+            margin:20px 0;
+        }
+        .page div input{
+            line-height:30px;
+            font-size:14px;
+            letter-spacing:2px;
+            font-weight:bold;
+            padding:5px 10px;
+        }
+        .page div img{
+            width:30px;
+            margin-right:20px;
+        }
+        .page button{
+            background-color:blue;
+            margin:20px 0;
+            color:white;
+            font-weight:bold;
+            font-size:14px;
+            letter-spacing:1px;
+            outline:none;
+            border:none;
+            padding:15px 10px;
+            cursor:pointer;
+            border-radius:6px;
+        }
+        .page button i{
+            margin:0px 10px;
+        }
+        @media (max-width: 400px){
+            .page{
+                width:100vw;
+                padding:5px;
+            }
+        }
+    </style>
+    </head>
+<body>
+  
+  <form class="page flex" id="form">
+       <h1>Send Message on What's app</h1>
+       <label>Without Saving Number.. 😉</label>
+       <div>
+           <img src="india.png">
+           <input class="phone" type="number" placeholder="Fill Phone Number" required>
+       </div>
+       <textarea class="msg" placeholder="Message You want to send..." required></textarea>
+       <button>send <i class="fa-solid fa-paper-plane"></i> </button>
+   </form>
+   
+    
+    <script>
+        var form = document.getElementById("form");
+        form.addEventListener('submit',(e) => {
+            e.preventDefault();
+            var p = document.querySelector(".phone").value;
+            var m = document.querySelector(".msg").value;
+            var str = "https://wa.me/"+p+"?text="+m;
+            window.open(str,"_blank");
+        });
+        
+    </script>
+    
+    
+    </body>
+</html>
+
+
+
+
+<!--
+
+<a href="https://www.hitwebcounter.com" target="_blank" class="c">
+<img src="https://hitwebcounter.com/counter/counter.php?page=7711238&style=0001&nbdigits=6&type=ip&initCount=0" title="Total Website Hits" Alt="Web Hits"   border="0" /></a>
+
+22,001
+
+
+-->
