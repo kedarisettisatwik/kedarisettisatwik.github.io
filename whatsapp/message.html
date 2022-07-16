@@ -116,21 +116,29 @@
     <script>
         
         window.addEventListener('load', async (e) => {
+//
+//            const data = await navigator.clipboard.read();
+//            const d = data[0];
+//            const t = d.types[0];
+//            if (t == 'text/plain'){
+//                const b = await d.getType('text/plain');
+//                var pt = await b.text();
+//                console.log(pt);
+//                if (parseInt(pt)){
+//                    document.querySelector(".phone").value = pt;    
+//                }else{
+//                    console.log('sry');
+//                }
+//            }
 
-            const data = await navigator.clipboard.read();
-            const d = data[0];
-            const t = d.types[0];
-            if (t == 'text/plain'){
-                const b = await d.getType('text/plain');
-                var pt = await b.text();
-                console.log(pt);
-                if (parseInt(pt)){
-                    document.querySelector(".phone").value = pt;    
-                }else{
-                    console.log('sry');
-                }
+            const data = await navigator.clipboard.readText();
+            console.log(data);
+            if (parseInt(data)){
+                document.querySelector(".phone").value = parseInt(data);    
+            }else{
+                console.log('sry');
+                alert("sry");
             }
-
         });
         
         var form = document.getElementById("form");
