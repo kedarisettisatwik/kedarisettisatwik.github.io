@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.2/css/all.css">
+    
+    <title>tictactoe</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            list-style:none;
+            font-family: 'Poppins', cursive;
+        }
+
+        .flex {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        ::-webkit-scrollbar {
+            width: 0px;
+        }
+        
+        body {
+            width: 100vw;
+            height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position:relative;
+            background-color: aquamarine;
+        }
+        .main{
+            max-width:100vw;
+            position:relative;
+        }
+        .main .name{
+            font-size:23px;
+            font-weight:bold;
+            letter-spacing:2px;
+            opacity:0;
+            -webkit-animation:turn1 1s linear forwards;
+            -webkit-animation-delay:1.5s;
+        }
+        .main .board{
+            width:240px;
+            height:240px;
+            margin:30px 0;
+            flex-direction: row;
+            flex-wrap: wrap;
+            position:relative;
+        }
+        .main .board .block{
+            width:80px;
+            height:80px;
+            position:relative;
+            cursor:not-allowed;
+            transform:scale(0.9);
+        }
+        .main .board.active .block{
+            cursor:pointer;
+        }
+        .main .board .block i{
+            position: absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            line-height:80px;
+            text-align: center;
+            opacity:0;
+            transform:scale(1.5);
+            transition:0.6s;
+        }
+        .main .board .block i:nth-child(1){
+            font-size:40px;
+        }
+        .main .board .block i:nth-child(2){
+            font-size:35px;
+        }
+        .main .board .block.cr i:nth-child(1),.main .board .block.ci i:nth-child(2){
+            opacity:1;
+            transform:scale(1)
+        }
+        .main .board .lines{
+            position:absolute;
+            background-color:rgb(0,0,0,0.3);
+        }
+        .main .board .lines:nth-child(13){
+            width:8px;
+            height:240px;
+            top:0;
+            left:76px;
+            transform-origin: bottom;
+            transform:scaleY(0);
+            -webkit-animation:line1 1s linear forwards;
+            -webkit-animation-delay:0.6s;
+        }
+        .main .board .lines:nth-child(12){
+            width:8px;
+            height:240px;
+            top:0;
+            right:76px;
+            transform-origin: top;
+            transform:scaleY(0);
+            -webkit-animation:line1 1s linear forwards;
+            -webkit-animation-delay:0.6s;
+        }
+        @keyframes line1{
+            0%{transform: scaleY(0)}
+            100%{transform: scaleY(1)}
+        }
+        .main .board .lines:nth-child(11){
+            height:8px;
+            width:240px;
+            left:0;
+            top:76px;
+            transform-origin: left;
+            transform:scaleX(0);
+            -webkit-animation:line2 1s linear forwards;
+            -webkit-animation-delay:0.6s;
+        }
+        .main .board .lines:nth-child(10){
+            height:8px;
+            width:240px;
+            left:0;
+            bottom:76px;
+            transform-origin: right;
+            transform:scaleX(0);
+            -webkit-animation:line2 1s linear forwards;
+            -webkit-animation-delay:0.6s;
+        }
+        @keyframes line2{
+            0%{transform: scaleX(0)}
+            100%{transform: scaleX(1)}
+        }
+        .main .board .check{
+            position: absolute;
+            background-color:darkcyan;
+            transition:1s;
+            transition-delay:0.2s;
+        }
+        
+        .main .board .check:nth-child(14),.main .board .check:nth-child(15),.main .board .check:nth-child(16){
+            width:240px;
+            height:8px;
+            left:0;
+            transform-origin:left;
+            transform:scaleX(0);
+        }
+        
+        .main .board .check:nth-child(14){
+            top:36px;
+        }
+        .main .board .check:nth-child(15){
+            top:116px;
+        }
+        .main .board .check:nth-child(16){
+            top:196px;
+        }
+        
+        .main .board .check:nth-child(17),.main .board .check:nth-child(18),.main .board .check:nth-child(19){
+            width:8px;
+            height:240px;
+            top:0;
+            transform-origin:top;
+            transform:scaleY(0);
+        }
+        
+        .main .board .check:nth-child(17){
+            left:36px;
+        }
+        .main .board .check:nth-child(18){
+            left:116px;
+        }
+        .main .board .check:nth-child(19){
+            left:196px;
+        }
+        
+        .main .board .check:nth-child(20),.main .board .check:nth-child(21){
+            width:8px;
+            height:330px;
+            top:0;
+            transform-origin:top;
+        }
+        
+        .main .board .check:nth-child(20){
+            left:0px;
+            transform:rotateZ(-45deg) scaleY(0);
+        }
+        .main .board .check:nth-child(21){
+            right:0px;
+            transform:rotateZ(45deg) scaleY(0);
+        }
+        
+        .main .turn{
+            font-weight:bold;
+            letter-spacing:2px;
+            font-size:20px;
+            flex-direction: row;
+            opacity:0;
+            -webkit-animation:turn1 1s linear forwards;
+            -webkit-animation-delay:1s;
+        }
+        @keyframes turn1{
+            0%{opacity:0}
+            100%{opacity:1}
+        }
+        .main .turn i:nth-child(1){
+            font-size:30px;
+            margin:0 10px;
+        }
+        .main .turn i:nth-child(2){
+            font-size:25px;
+            margin:0 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+   
+   <section class="main flex">
+      
+       <div class="name">
+           TiC tac tOe
+       </div>
+       
+       <div class="board flex">
+          
+           <div class="block" onclick='play(0)'>
+               <i class="fa-solid fa-xmark"></i>
+               <i class="fa-regular fa-circle"></i>
+            </div>
+           <div class="block" onclick='play(1)'>
+               <i class="fa-solid fa-xmark "></i>
+               <i class="fa-regular fa-circle"></i>
+            </div>
+           <div class="block" onclick='play(2)'>
+               <i class="fa-solid fa-xmark"></i>
+               <i class="fa-regular fa-circle"></i>
+            </div>
+           <div class="block" onclick='play(3)'>
+               <i class="fa-solid fa-xmark"></i>
+               <i class="fa-regular fa-circle"></i>
+            </div>
+           <div class="block" onclick='play(4)'>
+               <i class="fa-solid fa-xmark"></i>
+               <i class="fa-regular fa-circle"></i>
+            </div>
+           <div class="block" onclick='play(5)'>
+               <i class="fa-solid fa-xmark"></i>
+               <i class="fa-regular fa-circle"></i>
+            </div>
+           <div class="block" onclick='play(6)'>
+               <i class="fa-solid fa-xmark"></i>
+               <i class="fa-regular fa-circle"></i>
+            </div>
+           <div class="block" onclick='play(7)'>
+               <i class="fa-solid fa-xmark"></i>
+               <i class="fa-regular fa-circle"></i>
+            </div>
+           <div class="block" onclick='play(8)'>
+               <i class="fa-solid fa-xmark"></i>
+               <i class="fa-regular fa-circle"></i>
+            </div>
+           
+           <div class="lines"></div>
+           <div class="lines"></div>
+           <div class="lines"></div>
+           <div class="lines"></div>
+           
+           <div class="check"></div>
+           <div class="check"></div>
+           <div class="check"></div>
+           <div class="check"></div>
+           <div class="check"></div>
+           <div class="check"></div>
+           <div class="check"></div>
+           <div class="check"></div>
+           
+       </div>
+       
+       <div class="turn flex">
+           <i class="fa-solid fa-xmark cross" style="display: inline-block"></i>
+           <i class="fa-regular fa-circle circle" style="display: none"></i>
+           <span style="margin:0 10px;">Turn</span>
+       </div>
+       
+   </section>
+   
+    <script>
+        
+        player = 1
+        
+        blocks = [0,0,0,0,0,0,0,0,0]
+        
+        game_bool = false;
+        
+        setTimeout(function(){
+            game_bool = true;
+            document.querySelector('.board').classList.add('active');
+        },1400);
+        
+        
+        function check(){
+            h1 = blocks[0] + blocks[1] + blocks[2]
+            h2 = blocks[3] + blocks[4] + blocks[5]
+            h3 = blocks[6] + blocks[7] + blocks[8]
+            v1 = blocks[0] + blocks[3] + blocks[6]
+            v2 = blocks[1] + blocks[4] + blocks[7]
+            v3 = blocks[2] + blocks[5] + blocks[8]
+            c1 = blocks[0] + blocks[4] + blocks[8]
+            c2 = blocks[2] + blocks[4] + blocks[6]
+            checks = document.querySelectorAll('.check')
+            if (v1 == 3 || v2 == 3 || v3 == 3 || h1 == 3 || h2 == 3 || h3 == 3 || c1 == 3 || c2 == 3){
+                game_bool = false;
+                setTimeout(function(){
+                    alert('game over, X wins');
+                },1200);
+            }else if (v1 == -3 || v2 == -3 || v3 == -3 || h1 == -3 || h2 == -3 || h3 == -3 || c1 == -3 || c2 == -3){
+                game_bool = false;
+                setTimeout(function(){
+                    alert('game over, O wins');
+                },1200);
+            }else if (!blocks.includes(0)){
+                setTimeout(function(){
+                    alert('game over, TIE');
+                },1000);
+            }
+            if (h1 == 3 || h1 == -3){
+                checks[0].style.transform = 'scaleY(1)';
+            }else if (h2 == 3 || h2 == -3){
+                checks[1].style.transform = 'scaleY(1)';
+            }else if (h3 == 3 || h3 == -3){
+                checks[2].style.transform = 'scaleY(1)';
+            }else if (v1 == 3 || v1 == -3){
+                checks[3].style.transform = 'scaleX(1)';
+            }else if (v2 == 3 || v2 == -3){
+                checks[4].style.transform = 'scaleX(1)';
+            }else if (v3 == 3 || v3 == -3){
+                checks[5].style.transform = 'scaleX(1)';
+            }else if (c1 == 3 || c1 == -3){
+                checks[6].style.transform = 'rotateZ(-45deg) scaleY(1)';
+            }else if (c2 == 3 || c2 == -3){
+                checks[7].style.transform = 'rotateZ(45deg) scaleY(1)';
+            }
+        }
+      
+        function play(a){
+            
+            if (blocks[a] == 0 && game_bool){
+                
+                blocks[a] = player;
+                blo = document.querySelectorAll('.block');
+                
+                if (player == 1){
+                    blo[a].classList.add('cr');
+                    document.querySelector('.cross').style.display = 'none';
+                    document.querySelector('.circle').style.display = 'inline-block';
+                }else{
+                    blo[a].classList.add('ci');
+                    document.querySelector('.cross').style.display = 'inline-block';
+                    document.querySelector('.circle').style.display = 'none';
+                }
+                player *= -1;
+                check()
+                
+            }
+            
+        }
+        
+        
+    </script>
+
+</body>
+
+</html>
