@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Historical places in India</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
+    <link rel="shortcut icon" href="india.png" type="image">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href=""> -->
+    <style>
+         body{
+            width:100vw;
+            min-height:100vh;
+            overflow-x: hidden;
+            position: relative;
+            font-family:poppins;
+            padding:0px;
+            margin:0px;
+         }
+         body::-webkit-scrollbar{
+            appearance:none;
+         }
+         .container{
+            width:100%;
+         }
+         .container header{
+            width:100%;
+            line-height:50px;
+            font-size:23px;
+            text-align:center;
+            font-weight:bold;
+            letter-spacing:1px;
+            margin:20px 0;
+         }
+         .container header img{
+            position: absolute;
+            width:40px;
+            -webkit-animation:anil 1.5s linear infinite;
+         }
+         @keyframes anil {
+            0%,100%{
+               transform:translate(0,0);
+            }
+            50%{
+               transform:translate(0,-10px);
+            }
+         } 
+         .container header img:nth-child(1){
+            top:0;
+            left:20px;
+            -webkit-animation-delay:0s;
+         }
+         .container header img:nth-child(2){
+            top:-10px;
+            right:30px;
+            -webkit-animation-delay:0.75s;
+         }
+         .container header img:nth-child(3){
+            top:15px;
+            right:60px;
+            -webkit-animation-delay:1s;
+         }
+         .container .images{
+            width:100%;
+            display:flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+         }
+         .container .images .image{
+            width:calc(100% / 3);
+            min-width:400px;
+            max-width:100%;
+            padding:10px;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+         }
+         .container .images .image label{
+            position: absolute;
+            top:50%;
+            left:50%;
+            padding:0 20px;
+            color: white;
+            background-color:rgb(0,0,0,0.9);
+            transform:translate(-50%,-50%);
+            transition:0.3s;
+            opacity:0;
+            cursor: pointer;
+         }
+         .container .images .image label span{
+            margin:10px 0;
+            display:block;
+            font-size:18px;
+            font-weight:bold;
+            letter-spacing:1px;
+         }
+         .container .images .image label p{
+            font-size:14px;
+         }
+         .container .images .image label p a{
+            color:white;
+         }
+         .container .images .image:hover label{
+            opacity:1;
+         }
+         .container .images .image img{
+            width:100%;
+            height:300px;
+            transition:0.3s;
+            opacity:1;
+            object-fit: contain;
+         }
+         .container .images .image:hover img{
+            transform: scale(1.15);
+            opacity:0.8;
+         }
+         .container .anthem{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            flex-direction:column;
+            width:100%;
+            margin:15px 0;
+         }
+         footer{
+            display: flex;
+            justify-content:space-between;
+            align-items: center;
+            flex-direction: row;
+            padding:0 20px;
+            flex-wrap: wrap;
+            box-sizing: border-box;
+            margin-bottom:20px;
+         }
+         footer h4{
+            margin:0 10px;
+         }
+    </style>
+    
+</head>
+<body>
+   <section class="container">
+      <header>
+         Historical places of India
+         <img src="india.png">
+         <img src="man.png">
+         <img src="woman.png">
+      </header>
+      <div class="images">
+         <div class="image">
+            <img src="taj.jpg">
+            <label>
+               <span>Taj Mahal</span>
+               <p>
+                  In Agra <br> Built By : Shah Jahan <br> Built In: 1648 <br> <a href="https://en.wikipedia.org/wiki/Taj_Mahal">More</a>
+               </p>
+            </label>
+         </div>
+         <div class="image">
+            <img src="red.webp">
+            <label>
+               <span>Red Fort</span>
+               <p>
+                  In New Delhi <br> Built By : Shah Jahan <br> Built In: 1639 <br> <a href="https://en.wikipedia.org/wiki/Red_Fort">More</a>
+               </p>
+            </label>
+         </div>
+         <div class="image">
+            <img src="khajuraho.jpg">
+            <label>
+               <span>Khajuraho Temple</span>
+               <p>
+                  In Madhya Pradesh <br> Built By : Chandela dynasty <br> Built In: 950 AD - 1050 AD <br> <a href="https://en.wikipedia.org/wiki/Khajuraho_Group_of_Monuments">More</a>
+               </p>
+            </label>
+         </div>
+         <div class="image">
+            <img src="konark.jpg">
+            <label>
+               <span>Konark Temple</span>
+               <p>
+                  In odisha <br> Built By : Raja Narasinghs Deva I <br> 13th century BCE <br> <a href="https://en.wikipedia.org/wiki/Konark_Sun_Temple">More</a>
+               </p>
+            </label>
+         </div>
+         <div class="image">
+            <img src="Rani-ki-vav.jpg">
+            <label>
+               <span>Rani ki Vav</span>
+               <p>
+                  In Gujrat <br> By : Udayamati <br> Built In: 11th century AD <br> <a href="https://en.wikipedia.org/wiki/Rani_ki_vav">More</a>
+               </p>
+            </label>
+         </div>
+         <div class="image">
+            <img src="Victoria Memorial.jpg">
+            <label>
+               <span>Victoria Memorial</span>
+               <p>
+                  In Kolkata <br> Built By : Lord Curzon <br> Built In: 1921 <br> <a href="https://en.wikipedia.org/wiki/Victoria_Memorial,_Kolkata">More</a>
+               </p>
+            </label>
+         </div>
+         <div class="image">
+            <img src="India Gate.jpg">
+            <label>
+               <span>India Gate</span>
+               <p>
+                  In Delhi <br> Built By : Edwin Lutyens <br> Built In: 1921 <br> <a href="https://en.wikipedia.org/wiki/India_Gate">More</a>
+               </p>
+            </label>
+         </div>
+         <div class="image">
+            <img src="Hyderabad-Charminar.jpg">
+            <label>
+               <span>Charminar</span>
+               <p>
+                  In Hyderabad <br> Built By : Muhammad Quli Qutb Shah <br> Built In: 1591 <br> <a href="https://en.wikipedia.org/wiki/Charminar">More</a>
+               </p>
+            </label>
+         </div>
+         <div class="image">
+            <img src="Hampi.jpg">
+            <label>
+               <span>Hampi</span>
+               <p>
+                  In karnataka <br> Built By : Lakkana Dandesha <br> Built In: 1570 <br> <a href="https://en.wikipedia.org/wiki/Hampi">More</a>
+               </p>
+            </label>
+         </div>
+      </div>
+      <div class="anthem">
+         <p>Listen to Our Indian National Anthem, written by <br> <a href="https://en.wikipedia.org/wiki/Rabindranath_Tagore">Rabindranath Tagore</a></p>
+         <audio src="anthem.mp3" controls></audio>
+      </div>
+      <footer>
+         <h4>Thankyou</h4>
+         <h4>Anil Bhukya</h4>
+      </footer>
+   </section>
+</body>
+</html>
