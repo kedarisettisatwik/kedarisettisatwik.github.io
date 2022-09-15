@@ -55,6 +55,7 @@
         .container .resume .header .name{
             width:calc(100% - 250px);
             padding-left:80px;
+            overflow: hidden;
         }
         .container .resume .header .name h1{
             font-size:70px;
@@ -201,6 +202,61 @@
             color:black;
             font-size:14px;
             text-decoration:none;
+        }
+        @media (max-width:900px){
+            .container{
+                width:100vw;
+                padding:0;
+            }
+            .container .resume{
+                width:100%;
+                box-shadow:0 0 20px rgb(0,0,0,0);
+            }
+        }
+        @media (max-width:800px){
+            .container .resume .right .projects a{
+                width:calc(50% - 20px);
+                min-width:100px;
+            }
+        }
+        @media (max-width:740px){
+            .container .resume .left{
+                width:250px
+            }
+            .container .resume .right{
+                width:calc(100% - 250px);
+            }
+        }
+        @media (max-width:650px){
+            .container .resume .header .name {
+                padding-left:30px;
+            }
+            .container .resume .header .name h1{
+                font-size:50px;
+            }
+            .container .resume .header .name h3{
+                font-size:20px;
+            }
+        }
+        @media (max-width:600px){
+            .container .resume .header .name {
+                padding-left:0px;
+            }
+            .container .resume .more{
+                flex-direction: column-reverse;
+            }
+            .container .resume .right,.container .resume .left{
+                width:100%;
+            }
+        }
+        @media (max-width:510px){
+            .container .resume .header{
+                flex-direction: column;
+            }
+            .container .resume .header .name{
+                width:100%;
+                text-align:center;
+            }
         }
     </style>
     
