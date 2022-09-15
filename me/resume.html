@@ -1,0 +1,385 @@
+<html>
+<head>
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="shortcut icon" href="logo.png" type="image">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
+    
+    <title>satwik _ kedar</title>
+    
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            font-family:poppins;
+            box-sizing:border-box;
+        }
+        .flex{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        body{
+            width:100vw;
+            overflow-x: hidden;
+            position:relative;
+        }
+        .container{
+            width:100%;
+            position:relative;
+            padding:60px 20px;
+        }
+        .container .resume{
+            width:850px;
+            min-height:500px;
+            padding:30px;
+            box-shadow:0 0 50px rgb(0,0,0,0.09);
+            padding:20px 40px;
+        }
+        .container .resume .header{
+            width:100%;
+            flex-direction:row;
+            justify-content:space-between;
+        }
+        .container .resume .header img{
+            width:200px;
+            border-radius:50%;
+            background-color: #edeff1;
+        }
+        .container .resume .header .name{
+            width:calc(100% - 250px);
+            padding-left:80px;
+        }
+        .container .resume .header .name h1{
+            font-size:70px;
+            letter-spacing:5px;
+        }
+        .container .resume .header .name h3{
+            font-size:25px;
+            letter-spacing:1px;
+        }
+        .container .resume .more{
+            width:100%;
+            flex-direction: row;
+            margin-top:15px;
+            align-items:flex-start;
+        }
+        .container .resume .left{
+            width:300px;
+        }
+        .container .resume .right{
+            width:calc(100% - 300px);
+        }
+        .container .resume .left .contact,
+        .container .resume .left .education,
+        .container .resume .left .language,
+        .container .resume .left .intrest,
+        .container .resume .right .profile,
+        .container .resume .right .skills,
+        .container .resume .right .work,
+        .container .resume .right .projects{
+            width:100%;
+            margin-top:15px;
+        }
+        .container .resume .left .contact h4,
+        .container .resume .left .education h4,
+        .container .resume .left .language h4,
+        .container .resume .left .intrest h4,
+        .container .resume .right .profile h4,
+        .container .resume .right .skills h4,
+        .container .resume .right .work h4,
+        .container .resume .right .projects h4{
+            margin:20px 0;
+            letter-spacing:1px;
+            position:relative;
+        }
+        .container .resume .left .contact h4::before,
+        .container .resume .left .education h4::before,
+        .container .resume .left .language h4::before,
+        .container .resume .left .intrest h4::before,
+        .container .resume .right .profile h4::before,
+        .container .resume .right .skills h4::before,
+        .container .resume .right .work h4::before,
+        .container .resume .right .projects h4::before{
+            content:'';
+            position: absolute;
+            top:0;
+            left:-15px;
+            width:5px;
+            height:30px;
+            background-color:blueviolet;
+        }
+        .container .resume .left .contact .link{
+            display: block;
+            text-decoration:none;
+            color:black;
+            margin:10px 0;
+            font-size:14px;
+            width:200px;
+        }
+        .container .resume .left .contact .link i,
+        .container .resume .left .intrest div i{
+            margin-right:10px;
+            color:blue;
+            color:blueviolet;
+        }
+        .container .resume .left .education div,
+        .container .resume .left .language div,
+        .container .resume .left .intrest div,
+        .container .resume .right .skills div{
+            margin:10px 0;
+        }
+        .container .resume .left .education div h5{
+            font-size:14px;
+            color:blueviolet;
+        }
+        .container .resume .left .education div p{
+            font-size:12px;
+        }
+        .container .resume .left .language div h5,
+        .container .resume .right .skills div h5{
+            font-size:12px;
+            letter-spacing:1px;
+        }
+        .container .resume .right .skills div h5{
+            width:80px;
+        }
+        .container .resume .left .language div,
+        .container .resume .right .skills div{
+            margin-bottom:20px;
+        }
+        .container .resume .right .skills div{
+            display: flex;
+            justify-content: flex-start;
+            align-items:center;
+            flex-direction: row;
+        }
+        .container .resume .left .language div .percent,
+        .container .resume .right .skills div .percent{
+            width:200px;
+            height:4px;
+            background-color:rgb(0,0,0,0.1);
+            position:relative;
+        }
+        .container .resume .right .skills div .percent{
+            height:6px;
+        }
+        .container .resume .left .language div .percent::before,
+        .container .resume .right .skills div .percent::before{
+            content:'';
+            position:absolute;
+            top:0;
+            left:0;
+            height:100%;
+            width:calc(var(--per)*1%);
+            background-color:blueviolet;
+        }
+        .container .resume .left .intrest div label{
+            font-size:14px;
+        }
+        .container .resume .right .profile p{
+            font-size:13px;
+        }
+        .container .resume .right .skills div .percent{
+            margin:0;
+            margin-left:20px;
+            width:280px;
+        }
+        .container .resume .right .work p{
+            font-size:13px;
+        }
+        .container .resume .right .projects a{
+            display:inline-block;
+            width:200px;
+            margin:5px 0;
+            color:black;
+            font-size:14px;
+            text-decoration:none;
+        }
+    </style>
+    
+    </head>
+<body>
+  
+    <section class="container flex">
+        <section class="resume">
+           
+           <div class="header flex">
+               <img src="me1.png">
+               <div class="name">
+                   <h1>Satwik</h1>
+                   <h3>Kedarisetti</h3>
+               </div>
+           </div>
+           <div class="more flex">
+              
+               <div class="left">
+                   
+                   <div class="contact">
+                       <h4>Contact Info</h4>
+                       <a href="tel:+917386484905" target="_self" class="link"> 
+                           <i class="fas fa-phone-alt"></i> <label> +91 7386484905 </label> 
+                       </a>
+                       <a href="mailto:satwik1330@gmail.com" target="_self" class="link">
+                           <i class="fas fa-envelope"></i>
+                           <label>satwik1330@gmail.com</label>
+                       </a>
+                       <a href="https://www.instagram.com/satwikkedaresetti/" target="_self" class="link">
+                           <i class="fab fa-instagram"></i>
+                           <label>satwikkedarestti</label>
+                       </a>
+                       <a href="https://www.youtube.com/channel/UCpLOopnR9TX9b1fjcDpapsw" target="_self" class="link">
+                           <i class="fab fa-youtube"></i>
+                           <label>kedar satwik</label>
+                        </a>
+                        <a href="https://github.com/kedarisettisatwik" target='_self' class="link">
+                           <i class="fa-brands fa-github"></i>
+                           <label>Github</label>
+                        </a>
+                        <a href="https://www.linkedin.com/in/satwik-kedar-21a89a202/" class="link">
+                            <i class="fa-brands fa-linkedin"></i>
+                            <label>Satwik kedar</label>
+                        </a>
+                        <a href="https://goo.gl/maps/zfoTzhVW5jEbmXwGA" class="link">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <label>Kakinada AP, India</label>
+                        </a>
+                   </div>
+                   <div class="education">
+                       <h4>Education</h4>
+                       <div>
+                           <h5>2020 - 2024</h5>
+                           <p>National Institute of Technology,<br>Karnataka</p>
+                       </div>
+                       <div>
+                           <h5>2018 - 2020</h5>
+                           <p>Aditya Junior College, <br> Kakinada </p>
+                       </div>
+                       <div>
+                           <h5>2014 - 2018</h5>
+                           <p>Gowtham High School, <br> Kakinada </p>
+                       </div>
+                   </div>
+                   <div class="language">
+                       <h4>Language</h4>
+                       <div>
+                           <h5>English</h5>
+                           <div class="percent" style="--per:85"></div>
+                       </div>
+                       <div>
+                           <h5>Hindi</h5>
+                           <div class="percent" style="--per:10"></div>
+                       </div>
+                       <div>
+                           <h5>Telugu</h5>
+                           <div class="percent" style="--per:98"></div>
+                       </div>
+                   </div>
+                   <div class="intrest">
+                       <h4>Intrest</h4>
+                       <div>
+                           <i class="fa-solid fa-laptop-code"></i>
+                           <label>Coding</label>
+                       </div>
+                       <div>
+                           <i class="fa-solid fa-glasses"></i>
+                           <label>Reading</label>
+                       </div>
+                       <div>
+                           <i class="fa-solid fa-utensils"></i>
+                           <label>Cooking</label>
+                       </div>
+                       <div>
+                           <i class="fa-solid fa-music"></i>
+                           <label>Music</label>
+                       </div>
+                   </div>
+                   
+               </div>
+               
+               <div class="right">
+                  
+                   <div class="profile">
+                       <h4>Profile</h4>
+                       <p>
+                            Hey, I'm Satwik Kedarisetti. 
+                            <br>some call me satwik, while my school used to call kedar which I am missing now.
+                            <br>
+                            <br>
+                            I am present studying B.tech Electrical and Electronics Engineering, 
+                            <br>
+                            In NITK SURATHKAL, Intrested to go in Coding Side.
+                            <br>
+                            All My schooling happened in Kakinada, Andhra Pradesh.
+                            <br>
+                            <br>
+                            COVID lockdown changed my path a lot,
+                            <br>Before that I don't have any touch of laptop
+                            <br>In covid free time my uncle teached me about coding
+                            <br>After that with my curiosity of Learning more and new things, I learned so many things
+                            and in my free times I will do frontend works.
+                            <br>
+                            <br>
+                            Tools,softwares I have used/using till now
+                            <br>
+                            Brackets, VS Code, Word, Power Point, Github, Code Blocks ...
+                       </p>
+                   </div>
+                   <div class="skills">
+                       <h4>Skills</h4>
+                       <div>
+                           <h5>HTML</h5>
+                           <div class="percent" style="--per:95"></div>
+                       </div>
+                       <div>
+                           <h5>CSS</h5>
+                           <div class="percent" style="--per:95"></div>
+                       </div>
+                       <div>
+                           <h5>JS</h5>
+                           <div class="percent" style="--per:90"></div>
+                       </div>
+                       <div>
+                           <h5>React</h5>
+                           <div class="percent" style="--per:40"></div>
+                       </div>
+                       <div>
+                           <h5>Python</h5>
+                           <div class="percent" style="--per:80"></div>
+                       </div>
+                       <div>
+                           <h5>C++</h5>
+                           <div class="percent" style="--per:70"></div>
+                       </div>
+                   </div>
+                   <div class="work">
+                       <h4>Experience</h4>
+                       <p> ---- Not Yet ----</p>
+                   </div>
+                   <div class="projects">
+                       <h4>Projects</h4>
+                       <a href="https://kedarisettisatwik.github.io/tic/tactoe.html">Tic Tac Toe</a>
+                       <a href="https://kedarisettisatwik.github.io/2048/home.html">2048 Game</a>
+                       <a href="https://kedarisettisatwik.github.io/snake/snake.html">Snake Game</a>
+                       <a href="https://kedarisettisatwik.github.io/ping/ping-pong.html">Ping Pong</a>
+                       <a href="https://kedarisettisatwik.github.io/university/login.html">College Website</a>
+                       <a href="https://kedarisettisatwik.github.io/colors/game.html">Colors Game</a>
+                   </div>
+               </div>
+           </div>
+            
+        </section>      
+    </section>
+   
+    <script>
+        
+    </script>
+    
+    </body>
+</html>
