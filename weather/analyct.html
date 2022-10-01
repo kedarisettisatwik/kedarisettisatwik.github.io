@@ -424,7 +424,7 @@
             var sun = document.getElementById('sun');
 //            console.log(r,p,s);
             if (ct.getHours() < st.getHours() && ct.getHours() > rt.getHours() ){
-                var per = ct.getHours()/(st.getHours() - rt.getHours());
+                var per = (ct.getHours() - rt.getHours())/(st.getHours() - rt.getHours());
                 per = per * 100;
                 sun.style.left = per+'%';
             }else if (ct.getHours() > st.getHours() ){
