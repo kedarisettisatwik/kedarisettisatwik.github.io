@@ -482,7 +482,7 @@
         
         function getLocation(){
             city = document.getElementById('city').value;
-            api = 'http://api.openweathermap.org/geo/1.0/direct?q='+city+'&limit=1&appid='+key
+            api = 'https://api.openweathermap.org/geo/1.0/direct?q='+city+'&limit=1&appid='+key
             fetch(api).then(function(response){
                 var data = response.json();
                 return data;
