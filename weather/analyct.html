@@ -16,7 +16,6 @@
             padding:0;
             box-sizing:border-box;
             font-family:poppins,monospace;
-            user-select:none;
         }
         .flex{
             display: flex;
@@ -33,7 +32,7 @@
             overflow-x: hidden;
             position:relative;
             background-color:whitesmoke;
-            padding:50px 0;
+            padding:20px 0;
         }
         .page{
             width:700px;
@@ -227,7 +226,7 @@
             width:15px;
             height:15px;
             top:50%;
-            left:90%;
+            left:50%;
             transform:translate(-50%,-50%);
             background-color: orangered;
             box-shadow:0 0 8px rgb(0,0,0,0.1);
@@ -423,16 +422,16 @@
             
             var sun = document.getElementById('sun');
 //            console.log(r,p,s);
-            if (ct.getHours() < st.getHours() && ct.getHours() > rt.getHours() ){
-                var per = (ct.getHours() - rt.getHours())/(st.getHours() - rt.getHours());
-                per = per * 100;
-                sun.style.left = per+'%';
-            }else if (ct.getHours() > st.getHours() ){
-                sun.style.left = '100%';
-            }else if (ct.getHours() < rt.getHours() ){
+            var x = rt.getHours()*60 + rt.getMinutes();
+            var y = ct.getHours()*60 + ct.getMinutes();
+            var z = st.getHours()*60 + st.getMinutes();
+            if (y > x && y < z){
+                sun.style.left = ((y-x)/(z-x))*100 + '%';
+            }else if (y <= x){
                 sun.style.left = '0%';
+            }else if (y >= z){
+                sun.style.left = '100%';
             }
-            
             document.getElementById('today_temp').innerHTML = list[0].main.temp.toFixed(2);
             document.getElementById('condition').innerHTML = list[0].weather[0].description;
             document.getElementById('real_temp').innerHTML = list[0].main.feels_like.toFixed(2);
