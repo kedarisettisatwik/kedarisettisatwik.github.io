@@ -86,6 +86,9 @@
    <script>
        function start_read(){
            var msg = document.getElementById("msg").value;
+           if (msg.length == 0){
+               msg = "Hello, Write some content.";
+           }
            var reader = new SpeechSynthesisUtterance(msg);
            speechSynthesis.speak(reader);
        }
