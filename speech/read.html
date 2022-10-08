@@ -1,0 +1,95 @@
+<html>
+<head>
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
+    
+    <title>text - speech</title>
+    
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Poppins,sans-serif;
+        }
+        body{
+            width:100vw;
+            height:100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding:50px 0;
+            background-color:lightskyblue;
+            position:relative;
+            overflow: hidden;
+        }
+        .page{
+            width:400px;
+            padding:20px;
+            background-color: white;
+            box-shadow:0 0 20px rgb(0,0,0,0.1);
+            position:relative;
+        }
+        .page h3{
+            font-size:20px;
+            letter-spacing:1px;
+            margin:10px 0;
+        }
+        .page textarea{
+            width:100%;
+            height:200px;
+            resize:none;
+            padding:10px;
+            font-size:13px;
+        }
+        .page button{
+            margin:10px 0;
+            width:200px;
+            outline:none;
+            border:none;
+            cursor:pointer;
+            background-color:lightskyblue;
+            font-size:14px;
+            font-weight:bold;
+            letter-spacing:1px;
+            padding:0 15px;
+            height:40px;
+        }
+        @media (max-width:430px){
+            body{
+                background-color: white;
+            }
+            .page{
+                box-shadow:0 0 20px rgb(0,0,0,0);
+                width:100%;
+            }
+        }
+        
+    </style>
+    
+    </head>
+<body>
+   
+   <section class="page">
+       <h3>Text to Speech</h3>
+       <textarea id="msg" placeholder="write your content"></textarea>
+       <button onclick="start_read()">Convert to Speech</button>
+   </section>
+   
+   <script>
+       function start_read(){
+           var msg = document.getElementById("msg").value;
+           var reader = new SpeechSynthesisUtterance(msg);
+           speechSynthesis.speak(reader);
+       }
+    </script>
+    
+    </body>
+</html>
