@@ -1,0 +1,348 @@
+<html>
+<head>
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sofia&display=swap" rel="stylesheet">
+   
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css">
+    
+    <title>DoCold</title>
+    
+    <style>
+        *{
+            box-sizing: border-box;
+            margin:0;
+            padding:0;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            /*
+            font-family: 'Sofia', cursive;
+            font-family: 'Fragment Mono', monospace;
+            */
+        }
+        body{
+            width:100vw;
+            overflow-x: hidden;
+            overflow-y: auto;
+            position: relative;
+        }
+        .flex{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .coverPage{
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
+        }
+        .coverPage .button,.mobile .button{
+            background-color: black;
+            color: white;
+            padding:10px 20px;
+            border-radius:25px;
+            letter-spacing:2px;
+            cursor: pointer;
+            overflow: hidden;
+            box-shadow:0 0 8px rgb(0,0,0,0.1);
+            margin-top:40px;
+        }
+        .coverPage .button i,.mobile .button i{
+            margin-left:10px;
+            -webkit-animation:arrow 2s linear infinite forwards;
+        }
+        @keyframes arrow{
+            0%{
+                transform: translate(0px,-30px);
+            }
+            100%{
+                transform: translate(0px,30px);
+            }
+        }
+        .coverPage .title{
+            position: relative;
+            width:950px;
+            padding: 100px 0 200px 0;
+            transition:0.2s;
+        }
+        .coverPage .title div{
+            position:relative;
+            height: 235px;
+        }
+        .coverPage .title div label{
+            font-size:150px;
+            font-family: 'Sofia', cursive;
+            text-shadow: 0 0 4px rgb(0,0,0,0.5);
+        }
+        .coverPage .title div span{
+            position: absolute;
+            font-family: 'Poppins', sans-serif;
+            font-size:13px;
+            transition:0.4s;
+            color:black;
+            opacity:1;
+        }
+        .coverPage .title div span:hover{
+            cursor:pointer;
+            color:red;
+        }
+        .coverPage .title div span:nth-child(2){
+            bottom:-180px;
+            left:-0px;
+        }
+        .coverPage .title div span:nth-child(3){
+            top:-45px;
+            left:-180px;
+        }
+        .coverPage .title div span:nth-child(4){
+            bottom:-70px;
+            left:180px;
+        }
+        .coverPage .title div span:nth-child(5){
+            bottom:-140px;
+            left:320px;
+        }
+        .coverPage .title div span:nth-child(6){
+            top:-40px;
+            right:-50px;
+        }
+        .coverPage .title div span:nth-child(7){
+            bottom:-42px;
+            right:-134px;
+        }
+        .coverPage .title div i{
+            position: absolute;
+        }
+        .coverPage .title div i:nth-child(8){
+            bottom:50px;
+            left:25px;
+            height:183px;
+            border-right:2px dashed rgb(0,0,0,0.3);
+            transform:translate(0,100%);
+        }
+        .coverPage .title div i:nth-child(9){
+            top:-35px;
+            left:137px;
+            height:130px;
+            width:200px;
+            border-right:2px dashed rgb(0,0,0,0.3);
+            border-top:2px dashed rgb(0,0,0,0.3);
+            transform:translate(-100%,0%);
+        }
+        .coverPage .title div i:nth-child(10){
+            bottom: 38px;
+            width:26px;
+            height: 168px;
+            left: 206px;
+            transform: translate(0px,50%);
+            border-top: 2px dashed rgb(0,0,0,0.4);
+            border-left: 2px dashed rgb(0,0,0,0.4);
+        }
+        .coverPage .title div i:nth-child(11){
+            bottom:54px;
+            left:362px;
+            height:170px;
+            border-right:2px dashed rgb(0,0,0,0.3);
+            transform:translate(0,100%);
+        }
+        .coverPage .title div i:nth-child(12){
+            top: -30px;
+            width: 118px;
+            height: 72px;
+            right: -10px;
+            border-top: 2px dashed rgb(0,0,0,0.3);
+            border-left: 2px dashed rgb(0,0,0,0.3);
+        }
+        .coverPage .title div i:nth-child(13){
+            bottom: -13px;
+            width: 92px;
+            height: 70px;
+            right: -38px;
+            border-left: 2px dashed rgb(0,0,0,0.3);
+            border-bottom: 2px dashed rgb(0,0,0,0.3);
+        }
+        @media (max-width:910px){
+            .coverPage .title{
+                transform: scale(0.9);
+            }
+        }
+        @media (max-width:820px){
+            .coverPage .title{
+                transform: scale(0.8);
+            }
+        }
+        @media (max-width:730px){
+            .coverPage .title{
+                transform: scale(0.7);
+            }
+        }
+        @media (max-width:630px){
+            .coverPage .title{
+                transform: scale(0.6);
+            }
+        }
+        @media (max-width:540px){
+            .coverPage{
+                display: none;
+            }
+        }
+        
+        .mobile{
+            position:relative;
+            width:100vw;
+            height:100vh;
+            display: none;
+        }
+        .mobile .title{
+            position:relative;
+            width:100vw;
+            padding-left:30px;
+            padding-top:50px;
+            overflow-x: auto;
+        }
+        .mobile .title::-webkit-scrollbar{
+            display: none;
+        }
+        .mobile .title div{
+            position:relative;
+            display: flex;
+            align-items: center;
+        }
+        .mobile .title div span{
+            font-size:50px;
+            font-family: 'Sofia', cursive;
+            text-shadow: 0 0 4px rgb(0,0,0,0.5);
+        }
+        .mobile .title div label{
+            position: absolute;
+            font-family: 'Poppins', sans-serif;
+            font-size:13px;
+            transition:0.4s;
+            color:black;
+            width:300px;
+        }
+        .mobile .title div label:hover{
+            cursor:pointer;
+            color:red;
+        }
+        .mobile .title div:nth-child(1) label{
+            left:100px;
+        }
+        .mobile .title div:nth-child(2) label{
+            left:210px;
+        }
+        .mobile .title div:nth-child(3) label{
+            left:180px;
+        }
+        .mobile .title div:nth-child(4) label{
+            left:250px;
+        }
+        .mobile .title div:nth-child(5) label{
+            left:80px;
+        }
+        .mobile .title div:nth-child(6) label{
+            left:190px;
+        }
+        .mobile .title div i{
+            height:20px;
+            position: absolute;
+            border-top:2px dashed rgb(0,0,0,0.3);
+            transform:translateY(50%);
+        }
+        
+        @media (max-width:540px){
+            .mobile{
+                display: flex;
+                justify-content: flex-start;
+                flex-direction: column;
+            }
+            ::-webkit-scrollbar{
+                display: none;
+            }
+        }
+        
+    </style>
+    
+    </head>
+<body>
+      
+      <section class="coverPage">
+          <div class="title flex">
+              <div>
+                  <label>Do Cold</label>
+                  <span>Data Structures <br> & Algorithms</span>
+                  <span>Object Oriented <br> Programming</span>
+                  <span>Computer Network</span>
+                  <span>Operating System</span>
+                  <span>Linux</span>
+                  <span>DataBase <br> Management <br> System</span>
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                  <i></i>
+              </div>
+          </div>
+         <div class="button" onclick="start()"> <span>start</span> <i class="fa-solid fa-arrow-down"></i> </div>
+      </section>
+      
+      <section class="mobile flex">
+          <div class="title">
+              <div>
+                  <span>D</span>
+                  <i style="width:55px;left:40px"></i>
+                  <label>Data Structures & Algorithms</label>
+              </div>
+              <div>
+                  <span>o</span>
+                  <i style="width:160px;left:30px"></i>
+                  <label>Object Oriented Programming</label>
+              </div>
+              <div>
+                  <span>C</span>
+                  <i style="width:130px;left:40px"></i>
+                  <label>Computer Network</label>
+              </div>
+              <div>
+                  <span>o</span>
+                  <i style="width:210px;left:30px"></i>
+                  <label>Operating System</label>
+              </div>
+              <div>
+                  <span>l</span>
+                  <i style="width:45px;left:25px"></i>
+                  <label>Linux</label>
+              </div>
+              <div>
+                  <span>d</span>
+                  <i style="width:155px;left:30px"></i>
+                  <label>DataBase Management System</label>
+              </div>
+          </div>
+          <label class="button" onclick="start()"> <span>start</span> <i class="fa-solid fa-arrow-down"></i> </label>
+      </section>
+      
+      <section style="width:100vw;height: 100vh">
+          
+      </section>
+   
+    <script>
+        let windowheight = window.innerHeight;
+        function start(){
+            window.scrollBy(0,windowheight-20);
+        }
+        
+    </script>
+    
+    </body>
+</html>
