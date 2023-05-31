@@ -39,11 +39,12 @@
         .coverPage{
             position: relative;
             width: 100vw;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             justify-content: flex-start;
             align-items: center;
             flex-direction: column;
+            overflow: hidden;
         }
         .coverPage .button,.mobile .button{
             background-color: black;
@@ -89,7 +90,14 @@
             font-size:13px;
             transition:0.4s;
             color:black;
-            opacity:1;
+            opacity:0;
+            -webkit-animation:ho 0.5s linear forwards;
+            -webkit-animation-delay:1s;
+        }
+        @keyframes ho{
+            100%{
+                opacity:1;
+            }
         }
         .coverPage .title div span:hover{
             cursor:pointer;
@@ -128,6 +136,13 @@
             height:183px;
             border-right:2px dashed rgb(0,0,0,0.3);
             transform:translate(0,100%);
+            clip-path: polygon(0 0, 100% 0%, 100% 0, 0 0);
+            -webkit-animation:line1 1s linear forwards;
+        }
+        @keyframes line1{
+            100%{
+                clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+            }
         }
         .coverPage .title div i:nth-child(9){
             top:-35px;
@@ -137,6 +152,16 @@
             border-right:2px dashed rgb(0,0,0,0.3);
             border-top:2px dashed rgb(0,0,0,0.3);
             transform:translate(-100%,0%);
+            clip-path: polygon(90% 90%, 100% 90%, 100% 100%, 90% 100%);
+            -webkit-animation:line2 1s linear forwards;
+        }
+        @keyframes line2{
+            50%{
+                clip-path: polygon(90% 0, 100% 0, 100% 100%, 90% 100%);
+            }
+            100%{
+                clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+            }
         }
         .coverPage .title div i:nth-child(10){
             bottom: 38px;
@@ -146,6 +171,16 @@
             transform: translate(0px,50%);
             border-top: 2px dashed rgb(0,0,0,0.4);
             border-left: 2px dashed rgb(0,0,0,0.4);
+            clip-path: polygon(90% 0, 100% 0, 100% 10%, 90% 10%);
+            -webkit-animation:line3 1s linear forwards;
+        }
+        @keyframes line3{
+            20%{
+                clip-path: polygon(0 0, 100% 0, 100% 10%, 0 10%);
+            }
+            100%{
+                clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+            }
         }
         .coverPage .title div i:nth-child(11){
             bottom:54px;
@@ -153,6 +188,8 @@
             height:170px;
             border-right:2px dashed rgb(0,0,0,0.3);
             transform:translate(0,100%);
+            clip-path: polygon(0 0, 100% 0%, 100% 0, 0 0);
+            -webkit-animation:line1 1s linear forwards;
         }
         .coverPage .title div i:nth-child(12){
             top: -30px;
@@ -161,6 +198,16 @@
             right: -10px;
             border-top: 2px dashed rgb(0,0,0,0.3);
             border-left: 2px dashed rgb(0,0,0,0.3);
+            clip-path: polygon(0 90%, 10% 90%, 10% 100%, 0 100%);
+            -webkit-animation:line4 1s linear forwards;
+        }
+        @keyframes line4{
+            50%{
+                clip-path: polygon(0 0, 10% 0, 10% 100%, 0 100%);
+            }
+            100%{
+                clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+            }
         }
         .coverPage .title div i:nth-child(13){
             bottom: -13px;
@@ -169,6 +216,16 @@
             right: -38px;
             border-left: 2px dashed rgb(0,0,0,0.3);
             border-bottom: 2px dashed rgb(0,0,0,0.3);
+            clip-path: polygon(0 0, 10% 0, 10% 10%, 0 10%);
+            -webkit-animation:line5 1s linear forwards;
+        }
+        @keyframes line5{
+            50%{
+                clip-path: polygon(0 0, 10% 0, 10% 100%, 0 100%);
+            }
+            100%{
+                clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+            }
         }
         @media (max-width:910px){
             .coverPage .title{
@@ -199,7 +256,7 @@
         .mobile{
             position:relative;
             width:100vw;
-            height:100vh;
+            min-height:100vh;
             display: none;
         }
         .mobile .title{
@@ -337,6 +394,7 @@
       </section>
    
     <script>
+       
         let windowheight = window.innerHeight;
         function start(){
             window.scrollBy(0,windowheight-20);
