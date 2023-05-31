@@ -37,7 +37,7 @@
         .title1{
             position: relative;
             width:100vw;
-            padding: 100px 0 200px 0;
+            padding: 100px 0 170px 0;
             transition:0.2s;
             transform-origin: top;
             margin:auto;
@@ -71,83 +71,71 @@
             color:red;
         }
         .title1 div span:nth-child(2){
-            bottom:-180px;
-            left:-0px;
+            bottom:-98px;
+            left:-64px;
         }
         .title1 div span:nth-child(3){
             top:-54px;
-            left:-110px;
+            left:-113px;
         }
         .title1 div span:nth-child(4){
-            bottom:-70px;
-            left:133px;
+            bottom:-23px;
+            left:78px;
         }
         .title1 div span:nth-child(5){
-            bottom:-159px;
-            left:271px;
+            bottom:-125px;
+            left:191px;
         }
         .title1 div span:nth-child(6){
             top:-40px;
             right:-46px;
         }
         .title1 div span:nth-child(7){
-            bottom:-42px;
-            right:-134px;
+            bottom:101px;
+            right:-136px;
         }
         .title1 div i{
             position: absolute;
         }
         .title1 div i:nth-child(8){
-            bottom:50px;
-            left:54px;
-            height:183px;
-            border-right:2px dashed rgb(0,0,0,0.3);
-            transform:translate(0,100%);
-            clip-path: polygon(0 0, 100% 0%, 100% 0, 0 0);
-            -webkit-animation:line1 1s linear forwards;
-        }
-        @keyframes line1{
-            100%{
-                clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
-            }
+            bottom: 107px;
+            width: 20px;
+            left: -16px;
+            border-top: 2px dashed rgb(0,0,0,0.3);
+            height: 183px;
+            border-left: 2px dashed rgb(0,0,0,0.3);
+            transform: translate(0,100%);
+            clip-path: polygon(90% 0, 100% 0%, 100% 10%, 90% 10%);
+            -webkit-animation: line4 1s linear forwards;
         }
         .title1 div i:nth-child(9){
-            top:-35px;
-            left:137px;
-            height:131px;
-            width:136px;
-            border-right:2px dashed rgb(0,0,0,0.3);
-            border-top:2px dashed rgb(0,0,0,0.3);
-            transform:translate(-100%,0%);
+            top: -35px;
+            left: 131px;
+            height: 131px;
+            width: 136px;
+            border-right: 2px dashed rgb(0,0,0,0.3);
+            border-top: 2px dashed rgb(0,0,0,0.3);
+            transform: translate(-100%,0%);
             clip-path: polygon(90% 90%, 100% 90%, 100% 100%, 90% 100%);
-            -webkit-animation:line2 1s linear forwards;
-        }
-        @keyframes line2{
-            50%{
-                clip-path: polygon(90% 0, 100% 0, 100% 100%, 90% 100%);
-            }
-            100%{
-                clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
-            }
+            -webkit-animation: line2 1s linear forwards;
         }
         .title1 div i:nth-child(10){
-            bottom: 5px;
-            width:26px;
-            height: 102px;
-            left: 198px;
+            bottom: 28px;
+            height: 57px;
+            left: 131px;
             transform: translate(0px,50%);
             border-left: 2px dashed rgb(0,0,0,0.4);
             clip-path: polygon(0 0, 100% 0%, 100% 0, 0 0);
-            -webkit-animation:line1 1s linear forwards;
+            -webkit-animation: line1 1s linear forwards;
         }
         .title1 div i:nth-child(11){
-            bottom:54px;
-            left:307px;
-            height:170px;
-            border-right:2px dashed rgb(0,0,0,0.3);
-            transform:translate(0,100%);
+            bottom: 54px;
+            left: 237px;
+            height: 136px;
+            border-right: 2px dashed rgb(0,0,0,0.3);
+            transform: translate(0,100%);
             clip-path: polygon(0 0, 100% 0%, 100% 0, 0 0);
-            -webkit-animation:line1 1s linear forwards;
+            -webkit-animation: line1 1s linear forwards;
         }
         .title1 div i:nth-child(12){
             top: -30px;
@@ -157,27 +145,30 @@
             border-top: 2px dashed rgb(0,0,0,0.3);
             border-left: 2px dashed rgb(0,0,0,0.3);
             clip-path: polygon(0 90%, 10% 90%, 10% 100%, 0 100%);
-            -webkit-animation:line4 1s linear forwards;
-        }
-        @keyframes line4{
-            50%{
-                clip-path: polygon(0 0, 10% 0, 10% 100%, 0 100%);
-            }
-            100%{
-                clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
-            }
+            -webkit-animation: line3 1s linear forwards;
         }
         .title1 div i:nth-child(13){
-            bottom: -13px;
-            width: 92px;
-            height: 70px;
-            right: -38px;
-            border-left: 2px dashed rgb(0,0,0,0.3);
+            bottom: 122px;
+            width: 60px;
+            right: -42px;
             border-bottom: 2px dashed rgb(0,0,0,0.3);
-            clip-path: polygon(0 0, 10% 0, 10% 10%, 0 10%);
-            -webkit-animation:line5 1s linear forwards;
+            clip-path: polygon(0 0,0% 0, 0% 0%, 0 0%);
+            -webkit-animation: line1 1s linear forwards;
         }
-        @keyframes line5{
+        @keyframes line1{
+            100%{
+                clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+            }
+        }
+        @keyframes line2{
+            50%{
+                clip-path: polygon(90% 0, 100% 0, 100% 100%, 90% 100%);
+            }
+            100%{
+                clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
+            }
+        }
+        @keyframes line3{
             50%{
                 clip-path: polygon(0 0, 10% 0, 10% 100%, 0 100%);
             }
@@ -185,45 +176,46 @@
                 clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
             }
         }
-        @media (max-width:780px){
-            .title1{
-                transform: scale(0.9);
-                margin-bottom:-50px;
+        @keyframes line4{
+            10%{
+                clip-path: polygon(0 0, 100% 0%, 100% 10%, 0 10%);
+            }
+            100%{
+                clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%);
             }
         }
-        @media (max-width:700px){
+        
+        
+        @media (max-width:585px){
             .title1{
                 transform: scale(0.8);
                 margin-bottom:-100px;
             }
         }
-        @media (max-width:600px){
+        @media (max-width:480px){
             .title1{
                 transform: scale(0.7);
                 margin-bottom:-150px;
             }
+        }
+        @media (max-width:450px){
             ::-webkit-scrollbar{
                 display: none;
             }
         }
-        @media (max-width:500px){
+        @media (max-width:425px){
             .title1{
                 transform: scale(0.6);
                 margin-bottom:-200px;
             }
         }
-        @media (max-width:440px){
+        @media (max-width:345px){
             .title1{
                 transform: scale(0.5);
                 margin-bottom:-250px;
             }
         }
-        @media (max-width:350px){
-            .title1{
-                display: none;
-            }
-            
-        }
+        
         
     </style>
     
@@ -232,7 +224,7 @@
       
       <div class="title1 flex">
           <div>
-              <label>Cooldd</label>
+              <label>Cold</label>
               <span>Computer Network</span>
               <span>Object Oriented <br> Programming</span>
               <span>Operating System</span>
