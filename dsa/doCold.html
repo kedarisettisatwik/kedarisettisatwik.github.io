@@ -39,7 +39,6 @@
         .coverPage{
             position: relative;
             width: 100vw;
-            min-height: 100vh;
             display: flex;
             justify-content: flex-start;
             align-items: center;
@@ -47,14 +46,11 @@
             overflow: hidden;
         }
         .coverPage .button,.mobile .button{
-            background-color: black;
-            color: white;
             padding:10px 20px;
             border-radius:25px;
             letter-spacing:2px;
             cursor: pointer;
             overflow: hidden;
-            box-shadow:0 0 8px rgb(0,0,0,0.1);
             margin-top:40px;
         }
         .coverPage .button i,.mobile .button i{
@@ -256,7 +252,6 @@
         .mobile{
             position:relative;
             width:100vw;
-            min-height:100vh;
             display: none;
         }
         .mobile .title{
@@ -350,7 +345,7 @@
                   <i></i>
               </div>
           </div>
-         <div class="button" onclick="start()"> <span>start</span> <i class="fa-solid fa-arrow-down"></i> </div>
+         <div class="button" onclick="start1()"> <span>start</span> <i class="fa-solid fa-arrow-down"></i> </div>
       </section>
       
       <section class="mobile flex">
@@ -386,7 +381,7 @@
                   <label>DataBase Management System</label>
               </div>
           </div>
-          <label class="button" onclick="start()"> <span>start</span> <i class="fa-solid fa-arrow-down"></i> </label>
+          <label class="button" onclick="start2()"> <span>start</span> <i class="fa-solid fa-arrow-down"></i> </label>
       </section>
       
       <section style="width:100vw;height: 100vh">
@@ -394,10 +389,15 @@
       </section>
    
     <script>
-       
-        let windowheight = window.innerHeight;
-        function start(){
-            window.scrollBy(0,windowheight-20);
+
+        function start1(){
+            let y = document.querySelector('.coverPage').clientHeight;
+            console.log(y);
+            window.scrollBy(0,y);
+        }
+        function start2(){
+            let y = document.querySelector('.mobile').clientHeight;
+            window.scrollBy(0,y);
         }
         
     </script>
