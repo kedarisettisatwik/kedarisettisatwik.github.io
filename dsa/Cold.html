@@ -251,48 +251,48 @@
             color:blue;
         }
        
-        
-        .course h2{
-            font-family: 'Sofia', cursive;
-        }
-        .course .prob{
+        .prob{
             position:relative;
-            width:100%;
-            margin:30px 0;
+            width:750px;
+            margin:0px auto;
+            padding:10px 20px 10px 15px
         }
-        .course .prob h5{
+        .prob h5{
             font-size:15px;
+            user-select: text;
         }
-        .course .prob .question{
+        .prob .question{
             font-size:14px;
             margin:10px 0;
+            user-select: text;
         }
-        .course .prob .id{
+        .prob .id{
             font-size:12px;
             opacity:0.5;
+            user-select: text;
         }
-        .course .prob .keys{
+        .prob .keys{
             margin:10px 0;
         }
-        .course .prob .keys .cat{
+        .prob .keys .cat{
             display:inline-block;
             margin-right:10px;
             padding:10px;
             background-color: whitesmoke;
             font-size:13px;
         }
-        .course .prob .solve{
+        .prob .solve{
             margin:10px 0;
             font-size:13px;
         }
-        .course .prob .solve a{
+        .prob .solve a{
             color:blue;
             opacity:0.5;
             word-break:break-all;
         }
         
          @media (max-width:800px){
-            .page,.course{
+            .page,.prob{
                 margin:0;
                 width:100vw;
             }
@@ -510,52 +510,47 @@
           
       </section>
       
-      <section class="course sorting">
-          <h2>Sorting</h2>
+      <section class="prob easy sorting arrays">
+          <h5>Bubble Sort</h5>
+          <p class="question">Given an array of N integers, write a program to implement the Bubble sorting algorithm.</p>
+          <p class="id">Question ID : 0106231625</p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">sorting</div>
+              <div class="cat">Arrays</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/bubble-sort/1">https://practice.geeksforgeeks.org/problems/bubble-sort/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/HGk_ypEuS24?t=1062">https://youtu.be/HGk_ypEuS24?t=1062</a> </p>
+          <div style="font-size:13px;">Hint : observe two adjacent elements and swap them if second one is smaller.</div>
+      </section>
           
-          <section class="prob easy sorting arrays">
-              <h5>Bubble Sort</h5>
-              <p class="question">Given an array of N integers, write a program to implement the Bubble sorting algorithm.</p>
-              <p class="id">Question ID : 0106231625</p>
-              <div class="keys">
-                  <div class="cat">Easy</div>
-                  <div class="cat">sorting</div>
-                  <div class="cat">Arrays</div>
-              </div>
-              <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/bubble-sort/1">https://practice.geeksforgeeks.org/problems/bubble-sort/1</a> </p>
-              <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/HGk_ypEuS24?t=1062">https://youtu.be/HGk_ypEuS24?t=1062</a> </p>
-              <div style="font-size:13px;">Hint : observe two adjacent elements and swap them if second one is smaller.</div>
-          </section>
-          
-          <section class="prob Easy sorting arrays">
-              <h5>Selection Sort</h5>
-              <p class="question">Given an unsorted array of N integers, write a program to implement the Selection sorting algorithm.</p>
-              <p class="id">Question ID : 0106231657</p>
-              <div class="keys">
-                  <div class="cat">Easy</div>
-                  <div class="cat">sorting</div>
-                  <div class="cat">Arrays</div>
-              </div>
-              <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/selection-sort/1">https://practice.geeksforgeeks.org/problems/selection-sort/1</a> </p>
-              <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/HGk_ypEuS24?t=167">https://youtu.be/HGk_ypEuS24?t=167</a> </p>
-              <div style="font-size:13px;">Hint : if you are at index (i) swap it with minimum from i to last index</div>
-          </section>
-          
-          
-          
+      <section class="prob Easy sorting arrays">
+          <h5>Selection Sort</h5>
+          <p class="question">Given an unsorted array of N integers, write a program to implement the Selection sorting algorithm.</p>
+          <p class="id">Question ID : 0106231657</p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">sorting</div>
+              <div class="cat">Arrays</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/selection-sort/1">https://practice.geeksforgeeks.org/problems/selection-sort/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/HGk_ypEuS24?t=167">https://youtu.be/HGk_ypEuS24?t=167</a> </p>
+          <div style="font-size:13px;">Hint : if you are at index (i) swap it with minimum from i to last index</div>
       </section>
       
-      <section class="course arrays"></section>
-      <section class="course linkedlist"></section>
-      <section class="course binarysearch"></section>
-      <section class="course strings"></section>
-      <section class="course recursion"></section>
-      <section class="course stact"></section>
-      <section class="course greedy"></section>
-      <section class="course trees"></section>
-      <section class="course bst"></section>
-      <section class="course graphs"></section>
-      <section class="course dp"></section>
+      <section class="prob">
+          <h5>Insertion Sort</h5>
+          <p class="question"></p>
+          <p class="id">Question ID : 0106231926</p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">sorting</div>
+              <div class="cat">Arrays</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/insertion-sort/0">https://practice.geeksforgeeks.org/problems/insertion-sort/0</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/HGk_ypEuS24?t=1899">https://youtu.be/HGk_ypEuS24?t=1899</a> </p>
+          <div style="font-size:13px;">Hint : For index(i) move it left until (i-1) is less than i, for i = 0 -> n</div>
+    </section>
       
       <div class="select">
           <span>ALL</span>
@@ -618,6 +613,8 @@
 </section>
 
 question id = date + month + year + time(24hrs format)
+
+
 -->
 
 
