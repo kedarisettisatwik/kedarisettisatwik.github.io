@@ -346,10 +346,10 @@
             opacity:0.8;
             cursor:pointer;
         }
-        .menu .levels label:nth-child(1){
+        .menu .levels label:nth-child(2){
             clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
         }
-        .menu .levels label:nth-child(2){
+        .menu .levels label:nth-child(3),.menu .levels label:nth-child(1){
             border-radius:50%;
         }
         .menu .levels i{
@@ -510,7 +510,7 @@
           
       </section>
       
-      <section class="prob easy sorting arrays">
+      <section class="prob Easy Sorting Arrays">
           <h5>Bubble Sort</h5>
           <p class="question">Given an array of N integers, write a program to implement the Bubble sorting algorithm.</p>
           <p class="id">Question ID : 0106231625</p>
@@ -524,7 +524,7 @@
           <div style="font-size:13px;">Hint : observe two adjacent elements and swap them if second one is smaller.</div>
       </section>
           
-      <section class="prob Easy sorting arrays">
+      <section class="prob Easy Sorting Arrays">
           <h5>Selection Sort</h5>
           <p class="question">Given an unsorted array of N integers, write a program to implement the Selection sorting algorithm.</p>
           <p class="id">Question ID : 0106231657</p>
@@ -538,9 +538,9 @@
           <div style="font-size:13px;">Hint : if you are at index (i) swap it with minimum from i to last index</div>
       </section>
       
-      <section class="prob">
+      <section class="prob Easy Sorting Arrays">
           <h5>Insertion Sort</h5>
-          <p class="question"></p>
+          <p class="question">Given an unsorted array of N integers, write a program to implement the Insertion sorting algorithm.</p>
           <p class="id">Question ID : 0106231926</p>
           <div class="keys">
               <div class="cat">Easy</div>
@@ -551,21 +551,48 @@
           <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/HGk_ypEuS24?t=1899">https://youtu.be/HGk_ypEuS24?t=1899</a> </p>
           <div style="font-size:13px;">Hint : For index(i) move it left until (i-1) is less than i, for i = 0 -> n</div>
     </section>
+     
+     <section class="prob Easy Arrays">
+          <h5>Merge Two Sorted Arrays</h5>
+          <p class="question">Given two sorted arrays A[] and B[] of size N and M. The task is to merge both the arrays into a single array in non-decreasing order.</p>
+          <p class="id">Question ID : 0106231948</p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">Arrays</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.interviewbit.com/blog/merge-two-sorted-arrays/">https://www.interviewbit.com/blog/merge-two-sorted-arrays/</a> </p>
+          <div style="font-size:13px;">Hint : i = 0, j = 0, compare and add and move least index</div>
+    </section>
+     
+     <section class="prob Medium Sorting Recursion Arrays">
+          <h5>Merge Sort</h5>
+          <p class="question">Given an array arr[], its starting position l and its ending position r. Sort the array using merge sort algorithm.</p>
+          <p class="id">Question ID : 0106232013</p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Sorting</div>
+              <div class="cat">Recursion</div>
+              <div class="cat">Arrays</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/merge-sort/1">https://practice.geeksforgeeks.org/problems/merge-sort/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/ogjf7ORKfd8?t=75">https://youtu.be/ogjf7ORKfd8?t=75</a> </p>
+          <div style="font-size:13px;">Hint : Divide array and use merge two sorted arrays algorithm</div>
+    </section>
       
       <div class="select">
-          <span>ALL</span>
-          <span>Sorting</span>
-          <span>Arrays</span>
-          <span>LinkedList</span>
-          <span>Binary Search</span>
-          <span>Strings</span>
-          <span>Recursion</span>
-          <span>Stack - Queue</span>
-          <span>Greedy</span>
-          <span>Trees</span>
-          <span>BST</span>
-          <span>Graphs</span>
-          <span>DP</span>
+          <span onclick="filterChapter(0)">ALL</span>
+          <span onclick="filterChapter(1)">Sorting</span>
+          <span onclick="filterChapter(2)">Arrays</span>
+          <span onclick="filterChapter(3)">LinkedList</span>
+          <span onclick="filterChapter(4)">Binary Search</span>
+          <span onclick="filterChapter(5)">Strings</span>
+          <span onclick="filterChapter(6)">Recursion</span>
+          <span onclick="filterChapter(7)">Stack - Queue</span>
+          <span onclick="filterChapter(8)">Greedy</span>
+          <span onclick="filterChapter(9)">Trees</span>
+          <span onclick="filterChapter(10)">BST</span>
+          <span onclick="filterChapter(11)">Graphs</span>
+          <span onclick="filterChapter(12)">DP</span>
       </div>
       <div class="menu flex">
           <div class="logo">
@@ -574,14 +601,18 @@
           </div>
           <div id="chapter" title="Topic" onclick="chapter()">ALL</div>
           <div class="levels">
-              <label class="revisit" style="background-color:lightskyblue;" title="ReVisit" onclick="level(0)"></label>
-              <label class="easy" style="background-color:greenyellow;" title="Easy" onclick="level(1)"></label>
-              <label class="medium" style="background-color: yellow;" title="Medium" onclick="level(2)"></label>
-              <i class="fa-solid fa-star hard" style="color: red;" title="Hard" onclick="level(3)"></i>
+              <label class="all" style="background-color:white;" title="All" onclick="level(0)"></label>
+              <label class="revisit" style="background-color:lightskyblue;" title="ReVisit" onclick="level(1)"></label>
+              <label class="easy" style="background-color:greenyellow;" title="Easy" onclick="level(2)"></label>
+              <label class="medium" style="background-color: yellow;" title="Medium" onclick="level(3)"></label>
+              <i class="fa-solid fa-star hard" style="color: red;" title="Hard" onclick="level(4)"></i>
           </div>
       </div>
       
     <script>
+        
+        var hardness = 0;
+        var course = 0;
         
         function chapter(){
             var select = document.querySelector(".select");
@@ -589,8 +620,34 @@
         }
         
         function level(a){
-            var l = ["ReVist","Easy","Medium","Hard"];
-            alert(l[a]);
+            var l = ["prob","ReVist","Easy","Medium","Hard"];
+            hardness = 0;
+            var probs = document.querySelectorAll(".prob");
+            for (var i = 0;i < probs.length;i++){
+                var ele = probs[i];
+                if (ele.classList.contains(l[a])){
+                    ele.style.display = "block";
+                }else{
+                    ele.style.display = "none";
+                }
+            }
+            var select = document.querySelector(".select");
+            select.classList.remove("active");
+        }
+        function filterChapter(a){
+            course = a;
+            var c = ["prob","Sorting","Arrays","LinkedList","Binary","Strings","Recursion","StackQueue","Greedy","Trees","BST", "Graphs","DP"];
+                    
+            var probs = document.querySelectorAll(".prob");
+            for (var i = 0;i < probs.length;i++){
+                var ele = probs[i];
+                if (ele.classList.contains(c[a])){
+                    ele.style.display = "block";
+                }else{
+                    ele.style.display = "none";
+                }
+            }
+            chapter();
         }
         
     </script>
