@@ -250,6 +250,40 @@
                 width:100vw;
             }
         }
+        .div{
+            width:750px;
+            margin:auto;
+            padding:10px 20px 10px 15px;
+            position:relative;
+        }
+        .div h1{
+            font-family: 'Sofia', cursive;
+            margin:20px 0;
+        }
+        .div p{
+            margin:20px 0 10px 0;
+            font-weight:bold;
+            font-size:13px;
+            letter-spacing:1px;
+        }
+        .div a{
+            margin:10px 0;
+            display: block;
+            color:black;
+            font-size:12px;
+            transition:0.5s;
+            width:100%;
+            overflow: hidden;
+        }
+        .div a:hover{
+            color:blue;
+        }
+        @media (max-width:800px){
+            .div{
+                margin:0;
+                width:100vw;
+            }
+        }
         
         .menu{
             position: fixed;
@@ -262,7 +296,7 @@
             max-width:100vw;
             min-width:270px;
             height:55px;
-            box-shadow: 0 0 5px rgb(0,0,0,0.2)
+            box-shadow: 0 0 5px rgb(0,0,0,0.2);
         }
         .menu .logo{
             margin-right:15px;
@@ -292,6 +326,36 @@
             margin:0 5px;
             opacity:0.7;
         }
+        .select{
+            position: fixed;
+            bottom: 70px;
+            left:50%;
+            transform:translateX(-50%);
+            background-color: black;
+            color: white;
+            padding:10px 10px 10px 30px;
+            width:320px;
+            max-height:calc(100vh - 100px);
+            overflow-x: hidden;
+            overflow-y: auto;
+            box-shadow: 0 0 5px rgb(0,0,0,0.2);
+            display: none;
+        }
+        .select.active{
+            display: block;
+        }
+        @keyframes open{
+            100%{
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+            }
+        }
+        .select span{
+            display: block;
+            line-height:40px;
+            cursor:pointer;
+            text-transform: uppercase;
+            opacity:0.8;
+        }
         
     </style>
     
@@ -319,13 +383,13 @@
       <section class="page">
           <h1>Computer Network</h1>
           <p>Reference Links : </p>
-          <a href="https://www.geeksforgeeks.org/computer-network-tutorials/">
+          <a target="_blank" href="https://www.geeksforgeeks.org/computer-network-tutorials/">
           https://www.geeksforgeeks.org/computer-network-tutorials/
           </a>
-          <a href="https://youtube.com/playlist?list=PLBlnK6fEyqRgMCUAG0XRw78UA8qnv6jEx">
+          <a target="_blank" href="https://youtube.com/playlist?list=PLBlnK6fEyqRgMCUAG0XRw78UA8qnv6jEx">
           https://youtube.com/playlist?list=PLBlnK6fEyqRgMCUAG0XRw78UA8qnv6jEx
           </a>
-          <a href="https://takeuforward.org/computer-network/most-asked-computer-networks-interview-questions/">
+          <a target="_blank" href="https://takeuforward.org/computer-network/most-asked-computer-networks-interview-questions/">
               https://takeuforward.org/computer-network/most-asked-computer-networks-interview-questions/
           </a>
       </section>
@@ -334,16 +398,16 @@
           <h1>Object Oriented Programming</h1>
           <p>Reference Links : </p>
           
-          <a href="https://youtu.be/wN0x9eZLix4">
+          <a target="_blank" href="https://youtu.be/wN0x9eZLix4">
           https://youtu.be/wN0x9eZLix4
           </a>
-          <a href="https://www.geeksforgeeks.org/object-oriented-programming-in-cpp/">
+          <a target="_blank" href="https://www.geeksforgeeks.org/object-oriented-programming-in-cpp/">
           https://www.geeksforgeeks.org/object-oriented-programming-in-cpp/
           </a>
-          <a href="https://youtube.com/playlist?list=PL43pGnjiVwgTJg7uz8KUGdXRdGKE0W_jN">
+          <a target="_blank" href="https://youtube.com/playlist?list=PL43pGnjiVwgTJg7uz8KUGdXRdGKE0W_jN">
               https://youtube.com/playlist?list=PL43pGnjiVwgTJg7uz8KUGdXRdGKE0W_jN
           </a>
-          <a href="https://drive.google.com/file/d/1sBHIi91iT9MbpLNj8LVLPn9AyO13wMUG/view?usp=sharing">
+          <a target="_blank" href="https://drive.google.com/file/d/1sBHIi91iT9MbpLNj8LVLPn9AyO13wMUG/view?usp=sharing">
               https://drive.google.com/file/d/1sBHIi91iT9MbpLNj8LVLPn9AyO13wMUG/view?usp=sharing
           </a>
       </section>
@@ -352,13 +416,13 @@
           <h1>Operating System</h1>
           <p>Reference Links : </p>
           
-          <a href="https://www.geeksforgeeks.org/operating-systems/">
+          <a target="_blank" href="https://www.geeksforgeeks.org/operating-systems/">
           https://www.geeksforgeeks.org/operating-systems/
           </a>
-          <a href="https://youtube.com/playlist?list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVcp2O">
+          <a target="_blank" href="https://youtube.com/playlist?list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVcp2O">
           https://youtube.com/playlist?list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVcp2O
           </a>
-          <a href="https://takeuforward.org/operating-system/most-asked-operating-system-interview-questions/">
+          <a target="_blank" href="https://takeuforward.org/operating-system/most-asked-operating-system-interview-questions/">
               https://takeuforward.org/operating-system/most-asked-operating-system-interview-questions/
           </a>
       </section>
@@ -366,41 +430,76 @@
       <section class="page">
           <h1>Linux</h1>
           <p>Reference Links : </p>
-          <a href="https://www.geeksforgeeks.org/linux-commands/">https://www.geeksforgeeks.org/linux-commands/</a>
-          <a href="https://youtu.be/ZtqBQ68cfJc">https://youtu.be/ZtqBQ68cfJc</a>
+          <a target="_blank" href="https://www.geeksforgeeks.org/linux-commands/">https://www.geeksforgeeks.org/linux-commands/</a>
+          <a target="_blank" href="https://youtu.be/ZtqBQ68cfJc">https://youtu.be/ZtqBQ68cfJc</a>
       </section>
       
       <section class="page">
           <h1>DataBase Managment System</h1>
           <p>Reference Links : </p>
-          <a href="https://youtu.be/5OdVJbNCSso">https://youtu.be/5OdVJbNCSso</a>
-          <a href="https://youtu.be/nWeW3sCmD2k">https://youtu.be/nWeW3sCmD2k</a>
-          <a href="https://youtu.be/p3qvj9hO_Bo">https://youtu.be/p3qvj9hO_Bo</a>
-          <a href="https://youtu.be/HXV3zeQKqGY">https://youtu.be/HXV3zeQKqGY</a>
-          <a href="https://www.geeksforgeeks.org/dbms/">https://www.geeksforgeeks.org/dbms/</a>
-          <a href="https://youtube.com/playlist?list=PLBlnK6fEyqRiyryTrbKHX1Sh9luYI0dhX">
+          <a target="_blank" href="https://youtu.be/5OdVJbNCSso">https://youtu.be/5OdVJbNCSso</a>
+          <a target="_blank" href="https://youtu.be/nWeW3sCmD2k">https://youtu.be/nWeW3sCmD2k</a>
+          <a target="_blank" href="https://youtu.be/p3qvj9hO_Bo">https://youtu.be/p3qvj9hO_Bo</a>
+          <a target="_blank" href="https://youtu.be/HXV3zeQKqGY">https://youtu.be/HXV3zeQKqGY</a>
+          <a target="_blank" href="https://www.geeksforgeeks.org/dbms/">https://www.geeksforgeeks.org/dbms/</a>
+          <a target="_blank" href="https://youtube.com/playlist?list=PLBlnK6fEyqRiyryTrbKHX1Sh9luYI0dhX">
           https://youtube.com/playlist?list=PLBlnK6fEyqRiyryTrbKHX1Sh9luYI0dhX</a>
-          <a href="https://takeuforward.org/interviews/must-do-questions-for-dbms-cn-os-interviews-sde-core-sheet/">https://takeuforward.org/interviews/must-do-questions-for-dbms-cn-os-interviews-sde-core-sheet/</a>
+          <a target="_blank" href="https://takeuforward.org/interviews/must-do-questions-for-dbms-cn-os-interviews-sde-core-sheet/">https://takeuforward.org/interviews/must-do-questions-for-dbms-cn-os-interviews-sde-core-sheet/</a>
       </section>
       
       <section class="page">
           <h1>DataStructures & Algorithms</h1>
           <p>Reference Links : </p>
-          <a href="https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2/">https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2/</a>
+          <a target="_blank" href="https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2/">https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2/</a>
           <a href="https://www.geeksforgeeks.org/dsa-sheet-by-love-babbar/">https://www.geeksforgeeks.org/dsa-sheet-by-love-babbar/</a>
-          <a href="https://takeuforward.org/interviews/strivers-sde-sheet-top-coding-interview-problems/">https://takeuforward.org/interviews/strivers-sde-sheet-top-coding-interview-problems/</a>
-          <a href="https://www.geeksforgeeks.org/fundamentals-of-algorithms/?ref=shm">https://www.geeksforgeeks.org/fundamentals-of-algorithms/?ref=shm</a>
-          <a href="https://practice.geeksforgeeks.org/explore">https://practice.geeksforgeeks.org/explore</a>
-          <a href="https://leetcode.com/problemset/all/">https://leetcode.com/problemset/all/</a>
-          <a href="https://neetcode.io/">https://neetcode.io/</a>
+          <a target="_blank" href="https://takeuforward.org/interviews/strivers-sde-sheet-top-coding-interview-problems/">https://takeuforward.org/interviews/strivers-sde-sheet-top-coding-interview-problems/</a>
+          <a target="_blank" href="https://www.geeksforgeeks.org/fundamentals-of-algorithms/?ref=shm">https://www.geeksforgeeks.org/fundamentals-of-algorithms/?ref=shm</a>
+          <a target="_blank" href="https://practice.geeksforgeeks.org/explore">https://practice.geeksforgeeks.org/explore</a>
+          <a target="_blank" href="https://leetcode.com/problemset/all/">https://leetcode.com/problemset/all/</a>
+          <a target="_blank" href="https://neetcode.io/">https://neetcode.io/</a>
       </section>
       
+      <section class="div">
+          <h1>DSA - start </h1>
+          <p>Baiscs : </p>
+          <a href="https://youtu.be/EAR7De6Goz4">https://youtu.be/EAR7De6Goz4</a>
+          
+          <p>C++ STL</p>
+          <a target="_blank" href="https://youtu.be/RRVYpIET_RU">https://youtu.be/RRVYpIET_RU</a>
+          <a target="_blank" href="https://drive.google.com/file/d/1SGClJuB_ZMXUmZyvHc-laxbonjKEH3nZ/view?usp=sharing">https://drive.google.com/file/d/1SGClJuB_ZMXUmZyvHc-laxbonjKEH3nZ/view?usp=sharing</a>
+          
+          <p>Time & Space Complexity</p>
+          <a target="_blank" href="https://youtu.be/FPu9Uld7W-E">https://youtu.be/FPu9Uld7W-E</a>
+          
+          <p>Pattern Problems</p>
+          <a target="_blank" href="https://youtu.be/tNm_NNSB3_w">https://youtu.be/tNm_NNSB3_w</a>
+          
+          <p>Math Problems</p>
+          <a target="_blank" href="https://youtu.be/1xNbjMdbjug">https://youtu.be/1xNbjMdbjug</a>
+          
+      </section>
+      
+      <div class="select">
+          <span>HOME</span>
+          <span>Sorting</span>
+          <span>Arrays</span>
+          <span>LinkedList</span>
+          <span>Binary Search</span>
+          <span>Strings</span>
+          <span>Recursion</span>
+          <span>Stack - Queue</span>
+          <span>Greedy</span>
+          <span>Trees</span>
+          <span>BST</span>
+          <span>Graphs</span>
+          <span>DP</span>
+      </div>
       <div class="menu flex">
           <div class="logo">
               <span><i></i><i style="border-radius:50%"></i></span>
               <span><i></i><i></i></span>
           </div>
-          <div id="chapter" title="Topic" onclick="chapter()">INDEX</div>
+          <div id="chapter" title="Topic" onclick="chapter()">HOME</div>
           <div class="levels">
               <i class="fa-solid fa-star revisit" style="color:lightskyblue;" title="ReVisit" onclick="level(0)"></i>
               <i class="fa-solid fa-star easy" style="color: greenyellow;" title="Easy" onclick="level(1)"></i>
@@ -412,7 +511,8 @@
     <script>
         
         function chapter(){
-            
+            var select = document.querySelector(".select");
+            select.classList.toggle("active");
         }
         
         function level(a){
