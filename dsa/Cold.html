@@ -29,6 +29,7 @@
             overflow-x: hidden;
             overflow-y: auto;
             position: relative;
+            padding-bottom:200px;
         }
         .flex{
             display: flex;
@@ -217,6 +218,30 @@
             }
         }
         
+        .page{
+            width:100vw;
+            max-width:800px;
+            margin:auto;
+            padding:10px;
+            margin-bottom:20px;
+        }
+        .page h1{
+            font-family: 'Sofia', cursive;
+            margin:20px 0;
+        }
+        .page p,.page a{
+            margin:10px 0;
+            display: block;
+            color:black;
+            transition:0.5s;
+        }
+        .page p{
+            margin-bottom:15px;
+        }
+        .page a:hover{
+            color:blue;
+        }
+        
         .menu{
             position: fixed;
             bottom:10px;
@@ -225,8 +250,10 @@
             padding:15px;
             background-color: black;
             color: white;
-            width:330px;
+            max-width:100vw;
+            min-width:270px;
             height:55px;
+            box-shadow: 0 0 5px rgb(0,0,0,0.2)
         }
         .menu .logo{
             margin-right:15px;
@@ -243,7 +270,7 @@
             margin:2px;
             background-color: white;
         }
-        .menu #subject,.menu #chapter{
+        .menu #chapter{
             margin:0 10px;
             cursor:pointer;
             opacity:0.8;
@@ -256,6 +283,7 @@
             margin:0 5px;
             opacity:0.7;
         }
+        
     </style>
     
     </head>
@@ -279,8 +307,83 @@
           </div>
       </div>
 
-      <section style="width:100vw;height: 100vh;">
+      <section class="page">
+          <h1>Computer Network</h1>
+          <p>Reference Links : </p>
+          <a href="https://www.geeksforgeeks.org/computer-network-tutorials/">
+          https://www.geeksforgeeks.org/computer-network-tutorials/
+          </a>
+          <a href="https://youtube.com/playlist?list=PLBlnK6fEyqRgMCUAG0XRw78UA8qnv6jEx">
+          https://youtube.com/playlist?list=PLBlnK6fEyqRgMCUAG0XRw78UA8qnv6jEx
+          </a>
+          <a href="https://takeuforward.org/computer-network/most-asked-computer-networks-interview-questions/">
+              https://takeuforward.org/computer-network/most-asked-computer-networks-interview-questions/
+          </a>
+      </section>
+      
+      <section class="page">
+          <h1>Object Oriented Programming</h1>
+          <p>Reference Links : </p>
           
+          <a href="https://youtu.be/wN0x9eZLix4">
+          https://youtu.be/wN0x9eZLix4
+          </a>
+          <a href="https://www.geeksforgeeks.org/object-oriented-programming-in-cpp/">
+          https://www.geeksforgeeks.org/object-oriented-programming-in-cpp/
+          </a>
+          <a href="https://youtube.com/playlist?list=PL43pGnjiVwgTJg7uz8KUGdXRdGKE0W_jN">
+              https://youtube.com/playlist?list=PL43pGnjiVwgTJg7uz8KUGdXRdGKE0W_jN
+          </a>
+          <a href="https://drive.google.com/file/d/1sBHIi91iT9MbpLNj8LVLPn9AyO13wMUG/view?usp=sharing">
+              https://drive.google.com/file/d/1sBHIi91iT9MbpLNj8LVLPn9AyO13wMUG/view?usp=sharing
+          </a>
+      </section>
+      
+      <section class="page">
+          <h1>Operating System</h1>
+          <p>Reference Links : </p>
+          
+          <a href="https://www.geeksforgeeks.org/operating-systems/">
+          https://www.geeksforgeeks.org/operating-systems/
+          </a>
+          <a href="https://youtube.com/playlist?list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVcp2O">
+          https://youtube.com/playlist?list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVcp2O
+          </a>
+          <a href="https://takeuforward.org/operating-system/most-asked-operating-system-interview-questions/">
+              https://takeuforward.org/operating-system/most-asked-operating-system-interview-questions/
+          </a>
+      </section>
+      
+      <section class="page">
+          <h1>Linux</h1>
+          <p>Reference Links : </p>
+          <a href="https://www.geeksforgeeks.org/linux-commands/">https://www.geeksforgeeks.org/linux-commands/</a>
+          <a href="https://youtu.be/ZtqBQ68cfJc">https://youtu.be/ZtqBQ68cfJc</a>
+      </section>
+      
+      <section class="page">
+          <h1>DataBase Managment System</h1>
+          <p>Reference Links : </p>
+          <a href="https://youtu.be/5OdVJbNCSso">https://youtu.be/5OdVJbNCSso</a>
+          <a href="https://youtu.be/nWeW3sCmD2k">https://youtu.be/nWeW3sCmD2k</a>
+          <a href="https://youtu.be/p3qvj9hO_Bo">https://youtu.be/p3qvj9hO_Bo</a>
+          <a href="https://youtu.be/HXV3zeQKqGY">https://youtu.be/HXV3zeQKqGY</a>
+          <a href="https://www.geeksforgeeks.org/dbms/">https://www.geeksforgeeks.org/dbms/</a>
+          <a href="https://youtube.com/playlist?list=PLBlnK6fEyqRiyryTrbKHX1Sh9luYI0dhX">
+          https://youtube.com/playlist?list=PLBlnK6fEyqRiyryTrbKHX1Sh9luYI0dhX</a>
+          <a href="https://takeuforward.org/interviews/must-do-questions-for-dbms-cn-os-interviews-sde-core-sheet/">https://takeuforward.org/interviews/must-do-questions-for-dbms-cn-os-interviews-sde-core-sheet/</a>
+      </section>
+      
+      <section class="page">
+          <h1>DataStructures & Algorithms</h1>
+          <p>Reference Links : </p>
+          <a href="https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2/">https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2/</a>
+          <a href="https://www.geeksforgeeks.org/dsa-sheet-by-love-babbar/">https://www.geeksforgeeks.org/dsa-sheet-by-love-babbar/</a>
+          <a href="https://takeuforward.org/interviews/strivers-sde-sheet-top-coding-interview-problems/">https://takeuforward.org/interviews/strivers-sde-sheet-top-coding-interview-problems/</a>
+          <a href="https://www.geeksforgeeks.org/fundamentals-of-algorithms/?ref=shm">https://www.geeksforgeeks.org/fundamentals-of-algorithms/?ref=shm</a>
+          <a href="https://practice.geeksforgeeks.org/explore">https://practice.geeksforgeeks.org/explore</a>
+          <a href="https://leetcode.com/problemset/all/">https://leetcode.com/problemset/all/</a>
+          <a href="https://neetcode.io/">https://neetcode.io/</a>
       </section>
       
       <div class="menu flex">
@@ -288,20 +391,24 @@
               <span><i></i><i style="border-radius:50%"></i></span>
               <span><i></i><i></i></span>
           </div>
-          <div id="subject" title="Module" onclick="level(1)">DSA</div>
-          <div id="chapter" title="Topic" onclick="level(2)">BASICS</div>
+          <div id="chapter" title="Topic" onclick="chapter()">INDEX</div>
           <div class="levels">
-              <i class="fa-solid fa-star revisit" style="color:lightskyblue;" title="ReVisit" onclick="level(1)"></i>
-              <i class="fa-solid fa-star easy" style="color: greenyellow;" title="Easy" onclick="level(2)"></i>
-              <i class="fa-solid fa-star medium" style="color: yellow;" title="Medium" onclick="level(3)"></i>
-              <i class="fa-solid fa-star hard" style="color: red;" title="Hard" onclick="level(4)"></i>
+              <i class="fa-solid fa-star revisit" style="color:lightskyblue;" title="ReVisit" onclick="level(0)"></i>
+              <i class="fa-solid fa-star easy" style="color: greenyellow;" title="Easy" onclick="level(1)"></i>
+              <i class="fa-solid fa-star medium" style="color: yellow;" title="Medium" onclick="level(2)"></i>
+              <i class="fa-solid fa-star hard" style="color: red;" title="Hard" onclick="level(3)"></i>
           </div>
       </div>
       
     <script>
         
+        function chapter(){
+            
+        }
+        
         function level(a){
-            alert(a);
+            var l = ["ReVist","Easy","Medium","Hard"];
+            alert(l[a]);
         }
         
     </script>
