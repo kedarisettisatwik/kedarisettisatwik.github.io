@@ -276,7 +276,7 @@
         }
         .prob .keys .cat{
             display:inline-block;
-            margin-right:10px;
+            margin:5px 10px 5px 0;
             padding:10px;
             background-color: whitesmoke;
             font-size:13px;
@@ -330,6 +330,7 @@
             margin:0 10px;
             cursor:pointer;
             opacity:0.8;
+            text-transform:uppercase;
         }
         .menu .levels{
             margin-left:10px;
@@ -564,12 +565,13 @@
           <div style="font-size:13px;">Hint : i = 0, j = 0, compare and add and move least index</div>
     </section>
      
-     <section class="prob Medium Sorting Recursion Arrays">
+     <section class="prob Medium Sorting Recursion Arrays ReVisit">
           <h5>Merge Sort</h5>
           <p class="question">Given an array arr[], its starting position l and its ending position r. Sort the array using merge sort algorithm.</p>
           <p class="id">Question ID : 0106232013</p>
           <div class="keys">
               <div class="cat">Medium</div>
+              <div class="cat">ReVisit</div>
               <div class="cat">Sorting</div>
               <div class="cat">Recursion</div>
               <div class="cat">Arrays</div>
@@ -620,7 +622,7 @@
         }
         
         function level(a){
-            var l = ["prob","ReVist","Easy","Medium","Hard"];
+            var l = ["prob","ReVisit","Easy","Medium","Hard"];
             hardness = 0;
             var probs = document.querySelectorAll(".prob");
             for (var i = 0;i < probs.length;i++){
@@ -636,7 +638,7 @@
         }
         function filterChapter(a){
             course = a;
-            var c = ["prob","Sorting","Arrays","LinkedList","Binary","Strings","Recursion","StackQueue","Greedy","Trees","BST", "Graphs","DP"];
+            var c = ["prob","Sorting","Arrays","LinkedList","Binary","Strings","Recursion","Stack-Queue","Greedy","Trees","BST", "Graphs","DP"];
                     
             var probs = document.querySelectorAll(".prob");
             for (var i = 0;i < probs.length;i++){
@@ -646,6 +648,11 @@
                 }else{
                     ele.style.display = "none";
                 }
+            }
+            if (a == 0){                
+                document.getElementById("chapter").innerHTML = "ALL";
+            }else{
+                document.getElementById("chapter").innerHTML = c[a];
             }
             chapter();
         }
