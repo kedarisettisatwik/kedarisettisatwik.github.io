@@ -307,9 +307,9 @@
             background-color: black;
             color: white;
             max-width:100vw;
-            min-width:270px;
             height:55px;
             box-shadow: 0 0 5px rgb(0,0,0,0.2);
+            cursor:pointer;
         }
         .menu .logo{
             margin-right:15px;
@@ -328,34 +328,8 @@
         }
         .menu #chapter{
             margin:0 10px;
-            cursor:pointer;
             opacity:0.8;
             text-transform:uppercase;
-        }
-        .menu .levels{
-            margin-left:10px;
-            cursor:pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .menu .levels label{
-            width:15px;
-            height:15px;
-            margin:0 7px;
-            display:inline-block;
-            opacity:0.8;
-            cursor:pointer;
-        }
-        .menu .levels label:nth-child(2){
-            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-        }
-        .menu .levels label:nth-child(3),.menu .levels label:nth-child(1){
-            border-radius:50%;
-        }
-        .menu .levels i{
-            margin:0 7px;
-            opacity:0.8;
         }
         .select{
             position: fixed;
@@ -366,7 +340,7 @@
             color: white;
             padding:10px 10px 10px 30px;
             width:320px;
-            max-height:calc(100vh - 100px);
+            max-height:calc(60vh);
             overflow-x: hidden;
             overflow-y: auto;
             box-shadow: 0 0 5px rgb(0,0,0,0.2);
@@ -387,7 +361,16 @@
             text-transform: uppercase;
             opacity:0.8;
         }
-        
+        .select p{
+            font-size:13px;
+            opacity:0.8;
+            margin:10px 0;
+        }
+        .select label{
+            font-size:13px;
+            margin:5px 5px 5px 0;
+            cursor:pointer;
+        }
         
     </style>
     
@@ -582,6 +565,13 @@
     </section>
       
       <div class="select">
+          <p>Hardness : </p>
+          <label onclick="level(0)">ALL</label>
+          <label onclick="level(1)">REVISIT</label>
+          <label onclick="level(2)">EASY</label>
+          <label onclick="level(3)">Middle</label>
+          <label onclick="level(4)">HARD</label>
+          <p style="margin-top:20px;">Topic : </p>
           <span onclick="filterChapter(0)">ALL</span>
           <span onclick="filterChapter(1)">Sorting</span>
           <span onclick="filterChapter(2)">Arrays</span>
@@ -596,19 +586,12 @@
           <span onclick="filterChapter(11)">Graphs</span>
           <span onclick="filterChapter(12)">DP</span>
       </div>
-      <div class="menu flex">
+      <div class="menu flex" onclick="chapter()">
           <div class="logo">
               <span><i></i><i style="border-radius:50%"></i></span>
               <span><i></i><i></i></span>
           </div>
-          <div id="chapter" title="Topic" onclick="chapter()">ALL</div>
-          <div class="levels">
-              <label class="all" style="background-color:white;" title="All" onclick="level(0)"></label>
-              <label class="revisit" style="background-color:lightskyblue;" title="ReVisit" onclick="level(1)"></label>
-              <label class="easy" style="background-color:greenyellow;" title="Easy" onclick="level(2)"></label>
-              <label class="medium" style="background-color: yellow;" title="Medium" onclick="level(3)"></label>
-              <i class="fa-solid fa-star hard" style="color: red;" title="Hard" onclick="level(4)"></i>
-          </div>
+          <div id="chapter" title="Topic">ALL</div>
       </div>
       
     <script>
@@ -635,6 +618,7 @@
             }
             var select = document.querySelector(".select");
             select.classList.remove("active");
+            document.getElementById("chapter").innerHTML = l[a];
         }
         function filterChapter(a){
             course = a;
