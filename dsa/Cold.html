@@ -219,7 +219,7 @@
             }
         }
         
-        .page{
+        .page,.course{
             width:750px;
             margin:auto;
             padding:10px 20px 10px 15px;
@@ -241,6 +241,8 @@
         .page a{
             line-height:35px;
             white-space: nowrap;
+            max-width:calc(100vw - 30px);
+            overflow-x: hidden;
         }
         .page p{
             font-weight:bold;
@@ -248,8 +250,49 @@
         .page a:hover{
             color:blue;
         }
-        @media (max-width:800px){
-            .page{
+       
+        
+        .course h2{
+            font-family: 'Sofia', cursive;
+        }
+        .course .prob{
+            position:relative;
+            width:100%;
+            margin:30px 0;
+        }
+        .course .prob h5{
+            font-size:15px;
+        }
+        .course .prob .question{
+            font-size:14px;
+            margin:10px 0;
+        }
+        .course .prob .id{
+            font-size:12px;
+            opacity:0.5;
+        }
+        .course .prob .keys{
+            margin:10px 0;
+        }
+        .course .prob .keys .cat{
+            display:inline-block;
+            margin-right:10px;
+            padding:10px;
+            background-color: whitesmoke;
+            font-size:13px;
+        }
+        .course .prob .solve{
+            margin:10px 0;
+            font-size:13px;
+        }
+        .course .prob .solve a{
+            color:blue;
+            opacity:0.5;
+            word-break:break-all;
+        }
+        
+         @media (max-width:800px){
+            .page,.course{
                 margin:0;
                 width:100vw;
             }
@@ -343,6 +386,7 @@
             text-transform: uppercase;
             opacity:0.8;
         }
+        
         
     </style>
     
@@ -466,8 +510,55 @@
           
       </section>
       
+      <section class="course sorting">
+          <h2>Sorting</h2>
+          
+          <section class="prob easy sorting arrays">
+              <h5>Bubble Sort</h5>
+              <p class="question">Given an array of N integers, write a program to implement the Bubble sorting algorithm.</p>
+              <p class="id">Question ID : 0106231625</p>
+              <div class="keys">
+                  <div class="cat">Easy</div>
+                  <div class="cat">sorting</div>
+                  <div class="cat">Arrays</div>
+              </div>
+              <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/bubble-sort/1">https://practice.geeksforgeeks.org/problems/bubble-sort/1</a> </p>
+              <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/HGk_ypEuS24?t=1062">https://youtu.be/HGk_ypEuS24?t=1062</a> </p>
+              <div style="font-size:13px;">Hint : observe two adjacent elements and swap them if second one is smaller.</div>
+          </section>
+          
+          <section class="prob Easy sorting arrays">
+              <h5>Selection Sort</h5>
+              <p class="question">Given an unsorted array of N integers, write a program to implement the Selection sorting algorithm.</p>
+              <p class="id">Question ID : 0106231657</p>
+              <div class="keys">
+                  <div class="cat">Easy</div>
+                  <div class="cat">sorting</div>
+                  <div class="cat">Arrays</div>
+              </div>
+              <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/selection-sort/1">https://practice.geeksforgeeks.org/problems/selection-sort/1</a> </p>
+              <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/HGk_ypEuS24?t=167">https://youtu.be/HGk_ypEuS24?t=167</a> </p>
+              <div style="font-size:13px;">Hint : if you are at index (i) swap it with minimum from i to last index</div>
+          </section>
+          
+          
+          
+      </section>
+      
+      <section class="course arrays"></section>
+      <section class="course linkedlist"></section>
+      <section class="course binarysearch"></section>
+      <section class="course strings"></section>
+      <section class="course recursion"></section>
+      <section class="course stact"></section>
+      <section class="course greedy"></section>
+      <section class="course trees"></section>
+      <section class="course bst"></section>
+      <section class="course graphs"></section>
+      <section class="course dp"></section>
+      
       <div class="select">
-          <span>HOME</span>
+          <span>ALL</span>
           <span>Sorting</span>
           <span>Arrays</span>
           <span>LinkedList</span>
@@ -486,7 +577,7 @@
               <span><i></i><i style="border-radius:50%"></i></span>
               <span><i></i><i></i></span>
           </div>
-          <div id="chapter" title="Topic" onclick="chapter()">HOME</div>
+          <div id="chapter" title="Topic" onclick="chapter()">ALL</div>
           <div class="levels">
               <label class="revisit" style="background-color:lightskyblue;" title="ReVisit" onclick="level(0)"></label>
               <label class="easy" style="background-color:greenyellow;" title="Easy" onclick="level(1)"></label>
@@ -511,3 +602,30 @@
     
     </body>
 </html>
+
+<!--
+
+<section class="prob">
+  <h5></h5>
+  <p class="question"></p>
+  <p class="id">Question ID : </p>
+  <div class="keys">
+      <div class="cat"> </div>
+  </div>
+  <p class="solve"><span>Problem : </span><a target="_blank" href=""></a> </p>
+  <p class="solve"><span>Solution : </span><a target="_blank" href=""></a> </p>
+  <div style="font-size:13px;">Hint : </div>
+</section>
+
+question id = date + month + year + time(24hrs format)
+-->
+
+
+
+
+
+
+
+
+
+
