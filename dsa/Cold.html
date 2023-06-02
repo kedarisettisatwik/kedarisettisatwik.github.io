@@ -251,48 +251,48 @@
             color:blue;
         }
        
-        .prob{
+        .all{
             position:relative;
             width:750px;
             margin:0px auto;
             padding:10px 20px 10px 15px
         }
-        .prob h5{
+        .all h5{
             font-size:15px;
             user-select: text;
         }
-        .prob .question{
+        .all .question{
             font-size:14px;
             margin:10px 0;
             user-select: text;
         }
-        .prob .id{
+        .all .id{
             font-size:12px;
             opacity:0.5;
             user-select: text;
         }
-        .prob .keys{
+        .all .keys{
             margin:10px 0;
         }
-        .prob .keys .cat{
+        .all .keys .cat{
             display:inline-block;
             margin:5px 10px 5px 0;
             padding:10px;
             background-color: whitesmoke;
             font-size:13px;
         }
-        .prob .solve{
+        .all .solve{
             margin:10px 0;
             font-size:13px;
         }
-        .prob .solve a{
+        .all .solve a{
             color:blue;
             opacity:0.5;
             word-break:break-all;
         }
         
          @media (max-width:800px){
-            .page,.prob{
+            .page,.all{
                 margin:0;
                 width:100vw;
             }
@@ -370,6 +370,7 @@
             font-size:13px;
             margin:5px 5px 5px 0;
             cursor:pointer;
+            opacity:0.8;
         }
         
     </style>
@@ -494,7 +495,7 @@
           
       </section>
       
-      <section class="prob Easy Sorting Arrays">
+      <section class="all easy sorting arrays">
           <h5>Bubble Sort</h5>
           <p class="question">Given an array of N integers, write a program to implement the Bubble sorting algorithm.</p>
           <p class="id">Question ID : 0106231625</p>
@@ -508,7 +509,7 @@
           <div style="font-size:13px;">Hint : observe two adjacent elements and swap them if second one is smaller.</div>
       </section>
           
-      <section class="prob Easy Sorting Arrays">
+      <section class="all easy sorting arrays">
           <h5>Selection Sort</h5>
           <p class="question">Given an unsorted array of N integers, write a program to implement the Selection sorting algorithm.</p>
           <p class="id">Question ID : 0106231657</p>
@@ -522,7 +523,7 @@
           <div style="font-size:13px;">Hint : if you are at index (i) swap it with minimum from i to last index</div>
       </section>
       
-      <section class="prob Easy Sorting Arrays">
+      <section class="all easy sorting arrays">
           <h5>Insertion Sort</h5>
           <p class="question">Given an unsorted array of N integers, write a program to implement the Insertion sorting algorithm.</p>
           <p class="id">Question ID : 0106231926</p>
@@ -536,7 +537,7 @@
           <div style="font-size:13px;">Hint : For index(i) move it left until (i-1) is less than i, for i = 0 -> n</div>
     </section>
      
-     <section class="prob Easy Arrays">
+     <section class="all easy arrays">
           <h5>Merge Two Sorted Arrays</h5>
           <p class="question">Given two sorted arrays A[] and B[] of size N and M. The task is to merge both the arrays into a single array in non-decreasing order.</p>
           <p class="id">Question ID : 0106231948</p>
@@ -548,7 +549,7 @@
           <div style="font-size:13px;">Hint : i = 0, j = 0, compare and add and move least index</div>
     </section>
      
-     <section class="prob Medium Sorting Recursion Arrays ReVisit">
+     <section class="all medium sorting recursion arrays revisit">
           <h5>Merge Sort</h5>
           <p class="question">Given an array arr[], its starting position l and its ending position r. Sort the array using merge sort algorithm.</p>
           <p class="id">Question ID : 0106232013</p>
@@ -562,6 +563,167 @@
           <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/merge-sort/1">https://practice.geeksforgeeks.org/problems/merge-sort/1</a> </p>
           <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/ogjf7ORKfd8?t=75">https://youtu.be/ogjf7ORKfd8?t=75</a> </p>
           <div style="font-size:13px;">Hint : Divide array and use merge two sorted arrays algorithm</div>
+    </section>
+     
+     <section class="all easy sorting arrays">
+          <h5>Count Sort</h5>
+          <p class="question"></p>
+          <p class="id">Question ID : 0206230938</p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">Sorting</div>
+              <div class="cat">Arrays</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/counting-sort/1">https://practice.geeksforgeeks.org/problems/counting-sort/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/7zuGmKfUt7s">https://youtu.be/7zuGmKfUt7s</a> </p>
+          <div style="font-size:13px;">Hint : conunt freq of all elements</div>
+    </section>
+     
+    <section class="all revisit medium recursion sorting arrays">
+          <h5>Quick Sort</h5>
+          <p class="question"></p>
+          <p class="id">Question ID : 0206230954</p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">ReVisit</div>
+              <div class="cat">Sorting</div>
+              <div class="cat">Arrays</div>
+              <div class="cat">Recursion</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.codingninjas.com/codestudio/problems/quick-sort_983625">https://www.codingninjas.com/codestudio/problems/quick-sort_983625</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/WIrA4YexLRQ">https://youtu.be/WIrA4YexLRQ</a> </p>
+          <div style="font-size:13px;">Hint : Pick an element and place it in right position</div>
+    </section>
+     
+     <section class="all easy arrays">
+          <h5>Largest Element</h5>
+          <p class="question">Find the largest element in array</p>
+          <p class="id">Question ID : 0206231026</p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">Arrays</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://bit.ly/3Pld280">https://bit.ly/3Pld280</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/37E9ckMDdTk?t=522">https://youtu.be/37E9ckMDdTk?t=522</a> </p>
+    </section>
+     
+     <section class="all easy arrays">
+          <h5>Second Largest Element</h5>
+          <p class="question">Find the second largest element in array</p>
+          <p class="id">Question ID : 0206231037</p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">Arrays</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://bit.ly/3pFvBcN">https://bit.ly/3pFvBcN</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/37E9ckMDdTk?t=815">https://youtu.be/37E9ckMDdTk?t=815</a> </p>
+    </section>
+     
+     <section class="all easy arrays">
+          <h5>check sorted</h5>
+          <p class="question">Check whether the given array is sorted</p>
+          <p class="id">Question ID : 0206231043</p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">Arrays</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/check-if-an-array-is-sorted0701/1">https://practice.geeksforgeeks.org/problems/check-if-an-array-is-sorted0701/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/37E9ckMDdTk?t=1722">https://youtu.be/37E9ckMDdTk?t=1722</a> </p>
+          <div style="font-size:13px;">Hint : ele(i+1) should be greater than ele(i)</div>
+    </section>
+     
+     <section class="all revisit easy arrays">
+          <h5>Remove Duplicates</h5>
+          <p class="question">Remove duplicates from sorted array</p>
+          <p class="id">Question ID : 0206231053</p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">ReVisit</div>
+              <div class="cat">Arrays</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://bit.ly/3w7b6ck">https://bit.ly/3w7b6ck</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/37E9ckMDdTk?t=1891">https://youtu.be/37E9ckMDdTk?t=1891</a> </p>
+          <div style="font-size:13px;">Hint : slow, fast pointer to be used</div>
+    </section>
+     
+     <section class="all easy arrays">
+          <h5>Left Rotate By 1</h5>
+          <p class="question">Given an array arr[] of size N, the task is to left rotate the array 1 index</p>
+          <p class="id">Question ID : 0206231107</p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">Arrays</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://bit.ly/3dnn9vC">https://bit.ly/3dnn9vC</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/wvcQg43_V8U?t=61">https://youtu.be/wvcQg43_V8U?t=61</a> </p>
+          <div style="font-size:13px;">Hint : keep start element, move all elements one index left and place start element at the end</div>
+    </section>
+     
+     <section class="all revisit easy arrays">
+          <h5>Quick Left Rotate</h5>
+          <p class="question">Given an array arr[] of size N, the task is to left rotate the array K indexes</p>
+          <p class="id">Question ID : 0206231108</p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">ReVisit</div>
+              <div class="cat">Arrays</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://bit.ly/3dnn9vC">https://bit.ly/3dnn9vC</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/wvcQg43_V8U?t=486">https://youtu.be/wvcQg43_V8U?t=486</a> </p>
+          <div style="font-size:13px;">Hint : reverse(0,d) reverse(d,n) reverse(0,n)</div>
+    </section>
+     
+     <section class="all easy arrays">
+          <h5>Move Zeros to End</h5>
+          <p class="question">Given an array arr[] of N positive integers. Push all the zeros of the given array to the right end of the array while maitaining the order of non-zero elements.</p>
+          <p class="id">Question ID : 0206231208</p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">Arrays</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://bit.ly/3PrGIjT">https://bit.ly/3PrGIjT</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/wvcQg43_V8U?t=1633">https://youtu.be/wvcQg43_V8U?t=1633</a> </p>
+          <div style="font-size:13px;">Hint : slowPointer, fastPointer to be used</div>
+    </section>
+     
+    <section class="all easy arrays">
+          <h5>Searching an element in a sorted array</h5>
+          <p class="question">Given an array arr[] sorted in ascending order of size N and an integer K. Check if K is present in the array or not. If it is present return the index, or -1.</p>
+          <p class="id">Question ID : 0206231216</p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">Arrays</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://bit.ly/3KcpHcB">https://bit.ly/3KcpHcB</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/wvcQg43_V8U?t=2465">https://youtu.be/wvcQg43_V8U?t=2465</a> </p>
+          <div style="font-size:13px;">Hint : slowPointer, fastPointer to be used</div>
+    </section>
+     
+     <section class="all easy arrays">
+          <h5>Union of Two Arrays</h5>
+          <p class="question">Union of two arrays can be defined as the common and distinct elements in the two arrays.
+  <br>Given two sorted arrays of size n and m respectively, find their union.</p>
+          <p class="id">Question ID : 0206231224</p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">Arrays</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://bit.ly/3Ap7Onp">https://bit.ly/3Ap7Onp</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/wvcQg43_V8U?t=2584">https://youtu.be/wvcQg43_V8U?t=2584</a> </p>
+          <div style="font-size:13px;">Hint : like mergeing two sorted arrays</div>
+    </section>
+    
+    <section class="all easy arrays">
+          <h5>Intersection of Two Arrays</h5>
+          <p class="question">You are given two arrays 'A' and 'B' of size 'N' and 'M' respectively. Both these arrays are sorted in non-decreasing order. You have to find the intersection of these two arrays. <br>Intersection of two arrays is an array that consists of all the common elements occurring in both arrays.</p>
+          <p class="id">Question ID : 0206231256</p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">Arrays</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="http://bit.ly/3KSSx3Z">http://bit.ly/3KSSx3Z</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/wvcQg43_V8U?t=3551">https://youtu.be/wvcQg43_V8U?t=3551</a> </p>
+          <div style="font-size:13px;">Hint : like mergeing two sorted arrays</div>
     </section>
       
       <div class="select">
@@ -585,6 +747,8 @@
           <span onclick="filterChapter(10)">BST</span>
           <span onclick="filterChapter(11)">Graphs</span>
           <span onclick="filterChapter(12)">DP</span>
+          <p style="margin-top:20px;">solution : </p>
+          <span><a target="_blank" href="https://drive.google.com/file/d/1twze1HY4OQg1meTllYqWSn2I19W6elz4/view?usp=sharing" style="color: white">Cold.cpp</a></span>
       </div>
       <div class="menu flex" onclick="chapter()">
           <div class="logo">
@@ -598,16 +762,18 @@
         
         var hardness = 0;
         var course = 0;
+        var probs = document.querySelectorAll(".all");
         
+        console.log(probs.length);
+
         function chapter(){
             var select = document.querySelector(".select");
             select.classList.toggle("active");
         }
         
         function level(a){
-            var l = ["prob","ReVisit","Easy","Medium","Hard"];
+            var l = ["all","revisit","easy","medium","hard"];
             hardness = 0;
-            var probs = document.querySelectorAll(".prob");
             for (var i = 0;i < probs.length;i++){
                 var ele = probs[i];
                 if (ele.classList.contains(l[a])){
@@ -622,9 +788,8 @@
         }
         function filterChapter(a){
             course = a;
-            var c = ["prob","Sorting","Arrays","LinkedList","Binary","Strings","Recursion","Stack-Queue","Greedy","Trees","BST", "Graphs","DP"];
-                    
-            var probs = document.querySelectorAll(".prob");
+            var c = ["all","sorting","arrays","linkedlist","binary","strings","recursion","stackqueue","greedy","trees","bst", "graphs","dp"];
+            var cc = ["all","sorting","arrays","linked - list","binary search","strings","recursion","stack - queue","greedy","trees","bst", "graphs","dp"];     
             for (var i = 0;i < probs.length;i++){
                 var ele = probs[i];
                 if (ele.classList.contains(c[a])){
@@ -633,11 +798,7 @@
                     ele.style.display = "none";
                 }
             }
-            if (a == 0){                
-                document.getElementById("chapter").innerHTML = "ALL";
-            }else{
-                document.getElementById("chapter").innerHTML = c[a];
-            }
+            document.getElementById("chapter").innerHTML = cc[a];
             chapter();
         }
         
@@ -648,7 +809,7 @@
 
 <!--
 
-<section class="prob">
+<section class="all">
   <h5></h5>
   <p class="question"></p>
   <p class="id">Question ID : </p>
