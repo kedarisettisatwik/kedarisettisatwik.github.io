@@ -44,6 +44,7 @@
             transition:0.2s;
             transform-origin: top;
             margin:auto;
+            page-break-after:always;
         }
         .title1 div{
             position:relative;
@@ -225,6 +226,9 @@
             padding:10px 20px 10px 15px;
             position:relative;
             overflow-x: hidden;
+            page-break-before: auto;
+            page-break-after:auto;
+            page-break-inside: avoid;
         }
         .page h1{
             font-family: 'Sofia', cursive;
@@ -269,7 +273,10 @@
             position:relative;
             width:750px;
             margin:0px auto;
-            padding:10px 20px 10px 15px
+            padding:10px 20px 10px 15px;
+            page-break-before: auto;
+            page-break-after:auto;
+            page-break-inside: avoid;
         }
         .all h5{
             font-size:15px;
@@ -845,13 +852,14 @@
           <div style="font-size:13px;">Hint : Kadane's Algorithm</div>
     </section>
      
-     <section class="all easy arrays">
+     <section class="all easy arrays window">
           <h5>Maximum sum of smallest and second smallest.</h5>
           <p class="question">Given an array, find maximum sum of smallest and second smallest elements chosen from all possible sub-arrays. More formally, if we write all (nC2) sub-arrays of array of size >=2 and find the sum of smallest and second smallest, then our answer will be maximum sum among them.</p>
           <p class="id">Question ID : 0206231844 </p>
           <div class="keys">
               <div class="cat">Easy</div>
               <div class="cat">Arrays</div>
+              <div class="cat">Sliding Window</div>
           </div>
           <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/max-sum-in-sub-arrays0824/0">https://practice.geeksforgeeks.org/problems/max-sum-in-sub-arrays0824/0</a> </p>
           <div style="font-size:13px;">Hint : sliding window, check max(vec[i]+vec[i+1])</div>
@@ -953,7 +961,7 @@
     <section class="all medium arrays">
           <h5>Pascal Triangle</h5>
           <p class="question">Given a positive integer N, return the Nth row of pascal's triangle.<br>Pascal's triangle is a triangular array of the binomial coefficients formed by summing up the elements of previous row.</p>
-          <p class="id">Question ID : 0206231018 </p>
+          <p class="id">Question ID : 0306231018 </p>
           <div class="keys">
               <div class="cat">Medium</div>
               <div class="cat">Arrays</div>
@@ -966,7 +974,7 @@
      <section class="all medium arrays">
           <h5>Three Sum</h5>
           <p class="question">You are given an array ‘ARR’ containing ‘N’ integers.Return all the unique triplets [ARR[i], ARR[j], ARR[k]] such that i != j, j != k and k != i and their sum is equal to zero.</p>
-          <p class="id">Question ID : 0206231053 </p>
+          <p class="id">Question ID : 0306231053 </p>
           <div class="keys">
               <div class="cat">Medium</div>
               <div class="cat">Arrays</div>
@@ -979,7 +987,7 @@
      <section class="all hard arrays revisit">
           <h5>Four Sum</h5>
           <p class="question">Given an array of integers and another number. Find all the unique quadruple from the given array that sums up to the given number.</p>
-          <p class="id">Question ID : 0206231122 </p>
+          <p class="id">Question ID : 0306231122 </p>
           <div class="keys">
               <div class="cat">Hard</div>
               <div class="cat">ReVisit</div>
@@ -993,7 +1001,7 @@
      <section class="all arrays hard revisit">
           <h5>Largest subarray with 0 sum</h5>
           <p class="question">Largest subarray with 0 sum</p>
-          <p class="id">Question ID : 0206231152 </p>
+          <p class="id">Question ID : 0306231152 </p>
           <div class="keys">
               <div class="cat">Hard</div>
               <div class="cat">ReVisit</div>
@@ -1007,7 +1015,7 @@
      <section class="all linkedlist easy">
           <h5>Insert Node</h5>
           <p class="question">Given head of a linkedList, create and insert a node at the end, begining of list.</p>
-          <p class="id">Question ID : 0206231410 </p>
+          <p class="id">Question ID : 0306231410 </p>
           <div class="keys">
               <div class="cat">Linked List</div>
               <div class="cat">Easy</div>
@@ -1019,7 +1027,7 @@
     <section class="all easy linkedlist">
           <h5>Delete Node in Linked List</h5>
           <p class="question">Given a singly linked list and an integer x.Delete x th node from the singly linked list.</p>
-          <p class="id">Question ID : 0206231419 </p>
+          <p class="id">Question ID : 0306231419 </p>
           <div class="keys">
               <div class="cat">Easy</div>
               <div class="cat">Linked List</div>
@@ -1031,7 +1039,7 @@
     <section class="all easy linkedlist">
           <h5>Length of List</h5>
           <p class="question">Given a singly linked list. The task is to find the length of the linked list, where length is defined as the number of nodes in the linked list.</p>
-          <p class="id">Question ID : 0206231427 </p>
+          <p class="id">Question ID : 0306231427 </p>
           <div class="keys">
               <div class="cat">Easy</div>
               <div class="cat">Linked List</div>
@@ -1042,7 +1050,7 @@
     <section class="all middle linkedlist revisit">
           <h5>Finding middle element in a linked list</h5>
           <p class="question">Given a singly linked list of N nodes. The task is to find the middle of the linked list. For example, if the linked list is <br> 1-> 2->3->4->5, then the middle node of the list is 3.<br> If there are two middle nodes(in case, when N is even), print the second middle element.</p>
-          <p class="id">Question ID : 0206231433 </p>
+          <p class="id">Question ID : 0306231433 </p>
           <div class="keys">
               <div class="cat">Medium</div>
               <div class="cat">ReVisit</div>
@@ -1056,7 +1064,7 @@
     <section class="all easy linkedlist">
           <h5>Reverse Linked List</h5>
           <p class="question"></p>
-          <p class="id">Question ID : 0206231441 </p>
+          <p class="id">Question ID : 0306231441 </p>
           <div class="keys">
               <div class="cat">Easy</div>
               <div class="cat">Linked List</div>
@@ -1087,8 +1095,10 @@
           <span onclick="filterChapter(10)">BST</span>
           <span onclick="filterChapter(11)">Graphs</span>
           <span onclick="filterChapter(12)">DP</span>
+          <span onclick="filterChapter(13)">window</span>
           <p style="margin-top:20px;">solution : </p>
-          <span><a target="_blank" href="https://drive.google.com/file/d/13K8LY8LvGDtfNLAz5gh-8ojt8yw14bOC/view?usp=sharing" style="color: white">Cold.cpp</a></span>
+          <span><a target="_blank" href="https://drive.google.com/file/d/1yxOOn2hrE5qiY8ghw_cG8WMlKEw-nvhC/view?usp=sharing" style="color: white">DSA.c++</a></span>
+          <span onclick="print_page()">COLD.c++</span>
       </div>
       <div class="menu flex" onclick="chapter()">
          <i class="fa-solid fa-house" style="margin-right:10px; opacity:0.8;font-size:14px;"></i>
@@ -1126,8 +1136,8 @@
         }
         function filterChapter(a){
             course = a;
-            var c = ["all","sorting","arrays","linkedlist","binary","strings","recursion","stackqueue","greedy","trees","bst", "graphs","dp"];
-            var cc = ["all","sorting","arrays","linked - list","binary search","strings","recursion","stack - queue","greedy","trees","bst", "graphs","dp"];     
+            var c = ["all","sorting","arrays","linkedlist","binary","strings","recursion","stackqueue","greedy","trees","bst", "graphs","dp","window"];
+            var cc = ["all","sorting","arrays","linked - list","binary search","strings","recursion","stack - queue","greedy","trees","bst", "graphs","dp","sliding window"];     
             for (var i = 0;i < probs.length;i++){
                 var ele = probs[i];
                 if (ele.classList.contains(c[a])){
@@ -1138,6 +1148,11 @@
             }
             document.getElementById("chapter").innerHTML = cc[a];
             chapter();
+        }
+        function print_page(){
+            document.querySelector('.menu').style.display = "none";
+            document.querySelector('.select').style.display = "none";
+            window.print();
         }
         
     </script>
