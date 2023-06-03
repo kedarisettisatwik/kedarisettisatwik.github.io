@@ -250,6 +250,20 @@
         .page a:hover{
             color:blue;
         }
+        .page::after{
+            content:'';
+            position: absolute;
+            top:0;
+            right:0px;
+            width:30px;
+            height:100%;
+            background-color: white;
+        }
+        @media (max-width:450px){
+            .page::after{
+                width:20px;
+            }
+        }
        
         .all{
             position:relative;
