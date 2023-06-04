@@ -276,16 +276,16 @@
             }
         }
        
-        .all{
+        .all,.sql{
             position:relative;
             width:750px;
             margin:0px auto;
             padding:10px 20px 10px 15px;
-            page-break-before: auto;
+            page-break-before:auto;
             page-break-after:auto;
             page-break-inside: avoid;
         }
-        .all h5{
+        .all h5,.sql h5{
             font-size:1.2rem;
             user-select: text;
         }
@@ -320,10 +320,61 @@
         }
         
          @media (max-width:800px){
-            .page,.all{
+            .page,.all,.sql{
                 margin:0;
                 width:100vw;
             }
+        }
+        
+        .sql{
+            padding:0px 20px 0px 15px
+        }
+        .sql .sqlText,.sql .sqlCode{
+            position:relative;
+            width:100%;
+            font-size:0.9rem;
+            page-break-before:inherit;
+            page-break-after:inherit;
+            page-break-inside: avoid;
+        }
+        .sql .sqlText{
+            margin:20px 0 0 0;
+        }
+        .sql .sqlCode{
+            overflow-x: auto;
+            padding:10px 20px;
+            margin:2px 0 10px 0;
+            overflow-y: hidden;
+            background-color:rgb(0,0,0,0.03);
+            line-height:2rem;
+            user-select: text;
+        }
+        .sql .sqlCode div{
+            min-width:2000px;
+            user-select: text;
+        }
+        .sql .sqlCode span{
+            color: blue;
+            text-transform:uppercase;
+            user-select: text;
+            white-space: pre;
+        }
+        .sql .sqlCode label{
+            color: black;
+            user-select: text;
+            white-space: pre;
+        }
+        .sql .sqlCode i{
+            color:green;
+            font-style: normal;
+            user-select: text;
+            white-space: pre;
+        }
+        .sql .sqlCode::-webkit-scrollbar{
+            display:none;
+        }
+        .sql .sqlCode b{
+            margin-right:25px;
         }
         
         .menu{
@@ -486,10 +537,7 @@
           <a target="_blank" href="https://practice.geeksforgeeks.org/explore">https://practice.geeksforgeeks.org/explore</a><br>
           <a target="_blank" href="https://leetcode.com/problemset/all/">https://leetcode.com/problemset/all/</a><br>
           <a target="_blank" href="https://neetcode.io/">https://neetcode.io/</a>
-      </section>
-      
-      <section class="page">
-          <h1>DSA - start </h1>
+          
           <p>Baiscs : </p>
           <a href="https://youtu.be/EAR7De6Goz4">https://youtu.be/EAR7De6Goz4</a><br>
           
@@ -505,10 +553,658 @@
           
           <p>Math Problems</p>
           <a target="_blank" href="https://youtu.be/1xNbjMdbjug">https://youtu.be/1xNbjMdbjug</a>
-          
       </section>
       
-      <section class="all easy sorting arrays">
+      <section class="sql" style="page-break-before:always">
+          <h5 style="margin:15px 0;">DBMS - SQL</h5>
+          
+          <div class="sqlText">
+              SQL -> Structured Query Language <br> sql is case insensitive language i.e Create == CREATE
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+              creating a dataBase : 
+          </div>
+          <section class="sqlCode">
+              <div>
+                  <i>-- single line comments</i> <br>
+                  <span>CREATE DATABASE </span> <label> myDB </label> <span> ;</span> <br>
+                  <span>USE </span><label> myDB </label><span> ;</span> <br>
+              </div>
+          </section>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+              Delete dataBase : 
+          </div>
+          <section class="sqlCode">
+              <div>
+                  <span>DROP DATABASE </span><label> myDB </label><span> ;</span> 
+              </div>
+          </section>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+              Alter is a keyword used when we want to modify database structure or constraints.
+          </div>
+          <section class="sqlCode">
+              <div>
+                 <i>-- means we can't modify / delete the dataBase</i><br>
+                  <span>alter database </span><label> myDB </label><span> read only = </span><label> 1</label>
+                  <span> ;</span>
+              </div>
+          </section>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+              create a table :
+          </div>
+          <div class="sqlCode">
+                <div>
+                    <span>create table </span><label> employees </label><span> (</span> <br>
+                    <b></b><label>employee_id </label><span> INT ,</span> <i>-- represents one column in a table</i><br>
+                    <b></b><label>first_name </label><span>varchar (50) , </span><br>
+                    <b></b><label>last_name </label><span>varchar (50) , </span><br>
+                    <b></b><label>hourly_pay </label><span>decimal (5,2) , </span><i>-- 5 interger, 2 decimal places</i><br>
+                    <b></b><label>hire_date </label><span>date </span><i>-- " yyyy - mm - dd "</i><br>
+                    <span>);</span>
+                </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+              select a table, which will print or display it.
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>select </span><label> * </label><span> from </span><label> employees </label><span> ; </span>
+                  <i>-- * means all</i><br>
+                  <span>select </span><label>id, first_name </label><span> from </span><label> employees </label><span> ; </span>
+                  <i>-- we can select custom columns</i><br>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+               rename or drop the table
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>rename table </span><label> employees </label><span> to </span><label> workers </label><span> ; </span><br>
+                  <span>drop table</span><label> employees </label><span> ; </span><br>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+              add another column to the table / delte column
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>alter table </span><label> employees </label><span> add </span><label> phone_no </label><span>varchar(50) ;</span><br>
+                  <span> alter table </span><label> employees </label><span> drop column </span><label> last_name </label><span> ; </span><br>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+              rename the column name, modify the column. 
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>alter table </span><label> employees </label><span> rename column </span><label> phone_no </label><span>to </span><label> email </label><span> ; </span><br>
+                  <span>alter table </span><label> employees </label><span> modify column </span><label> email VARCHAR(100) </label><span> ; </span><br>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+              change the order of columns
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>alter table </span><label> employees </label><span> modify </span><label> email </label><span> first ; </span> <i> -- email column will be 1st column in table.</i> <br>
+                  <span>alter table </span><label> employees </label><span> modify </span><label> email </label><span> after </span><label> first_name</label><span> ; </span> <i> -- email column will be kept after first_name column in table.</i> <br>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+              insert data / entity / row into table.
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>insert into </span><label>employees </label><span>values</span><br>
+                  <span>(</span><label> 1 , "satwik" , "satwik1330@gmail.com" , 13.6 , "2023 - 05 - 31" </label><span> ) ;</span><br>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+              insert multiple rows into table.
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>insert into </span><label>employees </label><span>values</span>
+                  <span>( ) , ( ) , ( ) ;</span><br>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+              insert partial data into table.
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>insert into </span><label>employees </label><span>( </span><label>id , first_name </label><span> ) values ( </span><label>2 , "kedar" </label><span> );</span><br>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+              select data with a condition check.
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>select </span><label> * </label><span> from </span><label> employees </label><span> where </span><label> houlry_pay >= 15 </label><span> ; </span><br>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+              update column values.
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>update </span><label> employees </label><span> set </span><label>hourly_pay = 6 </label><span> ; </span> <i>--  this will make hourly_pay of all employees = 6 </i><br>
+                  <span>update </span><label> employees </label><span> set </span><label>hourly_pay = 10.5 , hire_date = " 2023 - 07 - 14 "</label><br><b></b><span> where </span><label>employee_id = 7</label><span> ; </span><i>--  this will change only hourly_pay and hire_date of employee with id = 7 </i>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+              delete row
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>delete from </span><label> employees </label><span> ; </span><i> -- this will delete whole table </i><br>
+                  <span>delete from </span><label> employess </label><span> where </span><label> employee_id = 7 </label><span> ; </span><i> -- whole row with employee id = 7 is deleted</i>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+              Generally if we modify the table, we can't undo the action <br> but with keeping auto commit off we can undo the action.
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>set autocommit = off ;</span>
+                  <br>
+                  <i> -- assume we made some modifications to table ... </i>
+                  <br>
+                  <span>commit</span> <i>-- this is a safe point, changes upto now are saved </i>
+                  <br>
+                  <i> -- some another modifications , if we want to undo these actions </i>
+                  <br>
+                  <span>rollback ;</span> <i> -- modifications removed, back to latest safe point</i>
+                  <br>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+             date , time , now 
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>create table </span><label> test </label><span> ( </span><br>
+                  <b></b><label>my_date </label><span> date ,</span><br>
+                  <b></b><label>time </label><span> time ,</span><br>
+                  <b></b><label>my_date_time </label><span> date ,</span><br>
+                  <span>); </span><br>
+              </div>
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>insert into </span><label> test </label><span> values ( current_date() , current_time(), now() );</span><br>
+                  <i>-- " 2023 - 06 - 04 " , " 07:19:56 " , " 2023 - 06 - 04  07:19:56 "</i><br>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+             unique constraint while creating table
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>create table </span><label> products </label><span> ( </span><br>
+                  <b></b><label>product_name </label><span> varchar(25) unique , </span><i>-- no two products should have same name </i><br>
+                  <b></b><label>price </label><span> decimal(4,2) </span><br>
+                  <span>); </span><br>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+             unique constraint to already created table
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>alter table </span><label> products </label><span> add constraint unique ( product_name ) ; </span>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+             Null is Invalid constraint while creating table
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>create table </span><label> products </label><span> ( </span><br>
+                  <b></b><label>product_name </label><span> varchar(25) unique , </span><br>
+                  <b></b><label>price </label><span> decimal(4,2) not null </span><i> -- null / empty values are not accepted. </i><br>
+                  <span>); </span><br>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+             Null is Invalid constraint to already created table
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>alter table </span><label> products </label><span> modify </span><label> price </label><span> decimal(4, 2) not null ; </span>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+              check attribute constraint while creating table
+          </div>
+          <div class="sqlCode">
+                <div>
+                    <span>create table </span><label> employees </label><span> (</span> <br>
+                    <b></b><label>employee_id </label><span> INT ,</span><br>
+                    <b></b><label>last_name </label><span>varchar (50) , </span><br>
+                    <b></b><label>hourly_pay </label><span>decimal (5,2) , </span><br>
+                    <b></b><span>check(</span><label>hourly_pay >= 10.00</label><span>)</span><br>
+                    <span>);</span>
+                </div>
+          </div>
+          <div class="sqlCode">
+                <div>
+                    <span>create table </span><label> employees </label><span> (</span> <br>
+                    <b></b><label>employee_id </label><span> INT ,</span><br>
+                    <b></b><label>last_name </label><span>varchar (50) , </span><br>
+                    <b></b><label>hourly_pay </label><span>decimal (5,2) , </span><br>
+                    <b></b><span>constraint </span> <label>check_func</label> <span> check(</span><label>hourly_pay >= 10.00</label><span>)</span><i>-- giving name to constraint</i><br> 
+                    <span>);</span>
+                </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+                check constraint to already created table.
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>alter table </span><label> employees </label><span> add constraint </span><label> check_func </label><span> check(</span><label>hourly_pay >= 10.00</label><span>);</span>
+              </div>
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>alter table </span><label> employees </label><span> drop check </span><label>check_func</label><span>; </span><i>-- remove constraint </i><br>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+              default data while creating table
+          </div>
+          <div class="sqlCode">
+                <div>
+                  <span>create table </span><label> products </label><span> ( </span><br>
+                  <b></b><label>product_name </label><span> varchar(25) unique , </span><br>
+                  <b></b><label>price </label><span> decimal(4,2) default 0.1 </span><i> -- if price is not given while inserting data by default it will take 0.1</i><br>
+                  <span>); </span><br>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+                default data to already created table.
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>alter table </span><label> products </label><span> alter </span><label> price </label><span> set default 0.1 ; </span><br>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+                primary key,<br>A table should have only one primary key
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>create table </span><label> transactions </label><span> ( </span><br>
+                  <b></b><label>trans_id </label><span> int primary_key , </span><br>
+                  <b></b><label>amount </label><span> decimal(4,2) default 0 </span><br>
+                  <span>); </span><br>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+                add primary key to already created table.
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>alter table </span><label> transactions </label><span> add constraint primary_key( </span><label> trans_id </label><span> ) ; </span><br>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+                Auto Increment
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>create table </span><label> transactions </label><span> ( </span><br>
+                  <b></b><label>trans_id </label><span> int primary_key auto_increment, </span><br>
+                  <b></b><label>amount </label><span> decimal(4,2) default 0 </span><br>
+                  <span>); </span><br>
+              </div>
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>alter table </span><label>transactions </label><span>auto_incerment = </span><label> 1000 </label><span> ; </span><br>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+              Foreign Key - to establish link btw Two tables
+          </div>
+          <div class="sqlCode">
+              <div>
+                  =<span>set foreign_key_checks = 0 ;</span>
+              </div>
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>create table </span><label> transactions </label><span> ( </span><br>
+                  <b></b><label>trans_id </label><span> int primary_key , </span><br>
+                  <b></b><label>amount </label><span> decimal(4,2) default 0 </span><br>
+                  <b></b><label>emp_id </label><span>int , </span>
+                  <span>foreign key (</span><label>emp_id</label><span>) references employees(</span><label> employee_id </label><span> ); </span><br>
+                  <b></b><i>-- emp_id in transaction table referece's to employee_id in employees table</i><br>
+                  <span>); </span><br>
+              </div>
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>alter table </span><label> transactions </label><span> drop foregin key </span><label>key_name</label><span> ; </span><br>
+              </div>
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>alter table </span><label> transactions </label><br>
+                  <span>add constraint ( </span><label>key_name</label><span> ) </span><br>
+                  <span>foreign key ( </span><label>emp_id</label><span> ) references employees( </span><label>employee_id </label><span> );</span>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+              Joins
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>select </span><label> * </label><span> from </span><label>transactions </label><span> inner join </span><label>employees</label><span> on transactions.emp_id = employees.employee_id ; </span>
+                  <br>
+                  <i>-- output will be table of trans_id -> amount -> emp_id -> employee details from employees table</i>
+                  <br>
+                  <i>-- INNER JOIN => table on transcations which have proper employee id </i><br>
+                  <i>-- LEFT JOIN => table all transcations, if emp_id is proper followed employee details </i><br>
+                  <i>-- RIGHT JOIN => table all customers, if emp_id is proper followed transaction details </i><br>
+              </div>
+          </div>
+      </section>
+         
+      <section class="sql">
+          <div class="sqlText">
+              Functions
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>select count( </span><label>amount )</label><span>from transactions ; </span><br>
+                  <i>-- MAX( amount )</i>          
+                  <i>-- AVG( amount )</i>
+                  <span>select concat(</span><label>first_name , last_name )</label><span>as </span><label> full_name </label><span>from transactions ; </span><br>
+              </div>
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>where </span><label>hire_date > " " </label><span>and </span><label>Job = " " </label><br>
+                  <i>-- AND </i><br>
+                  <i>-- NOT </i><br>
+                  <i>-- IN  </i><br>
+                  <span>where </span><label>Job </label><span> in ( " " , " " , " " )</span><br>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+              Wild Cards
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>select </span><label> * </label><span> from </span><label>employees</label><br>
+                  <span>where </span><label> first_name </label><span> like </span><label> "s%"</label>
+                  <i>-- s% = s + anyString </i><br>
+                  <i>-- s_ = s + anyOneChar </i><br>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+              Order BY
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>select </span><label> * </label><span> from </span><label>employees</label><br>
+                  <span>order by </span><label> last_name </label><span> ; </span><i> -- asc </i>
+                  <br><br>
+                  <span>select </span><label> * </label><span> from </span><label>employees</label><br>
+                  <span>order by </span><label> last_name </label><span> desc; </span>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+              Limit
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>select </span><label> * </label><span> from </span><label>employees</label><br>
+                  <span>order by </span><label> last_name </label><span> limit </span><label> 2</label> <span> ; </span><i> -- first two row's will be displayed </i>
+                  <br><br>
+                  <span>select </span><label> * </label><span> from </span><label>employees</label><br>
+                  <span>order by </span><label> last_name </label><span> limit </span><label> 3 , 5</label> <span> ;</span><br>
+                  <i>-- after odering after 3rd record i.e from 4th row 5 records will be displayed.</i>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+              Union
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>select </span><label> * </label><span> from </span><label>income</label><br>
+                  <span>union</span><br>
+                  <span>select </span><label> * </label><span> from </span><label>expenses</label><span> ; </span><br>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+              Self Join
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>alter table </span><label>customers </label><span>add </span><label> referal_id </label><span>INT ;</span><br>                                    
+                  <span>select </span><label> * </label><span> from </span><label> customers </label><span> As </span>
+                  <label> a </label><span>inner join customers as </span><label> b </label><span> on a.referal_id b.customer_id ; </span>
+                  <br>
+                  <i>-- table have id , name , referal_id </i>
+                  <br>
+                  <i>-- one user may be referal to another use, inner join helps to visualize it</i>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+              View
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>create  view employee_sheet </span><label> employees </label><span> as select </span><label>first_name, last_name </label><span> from </span><label> employees </label><span> ; </span>
+                  <br>
+                  <i> -- employee sheet is not another table it is a custom view of employee table </i><br>
+                  <i> -- changes in first_name, last_name of employee table will also effect employee_sheet .</i><br>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+              Distinct
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>select distinct </span><label> first_name </label><span> from </span><label> employees</label><span> ; </span><br>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+              Sub Queries
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>select </span><label> first_name , hourly_pay , </label> <span>( select avg(</span><label>hourly_pay</label><span>) from employees </span> <span> ) from </span><label> employees</label><span> ; </span><br>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+              Group By
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>select sum( </span><label> amount </label><span>), </span><label> order_date </label><span>from transactions group by </span><label>order_date ;</label>
+                  <br>
+                  <i> order_date - total amount on this order_date </i>
+                  <br>
+                  <span>select sum( </span><label> amount </label><span>), </span><label> customer_id </label><span>from transactions group by </span><label> customer_id </label><span> having count( </span><label>amount  </label><span> ) > 1 and </span><label>customer_id</label><span>is not null ;</span>
+                  <br>
+                  <i> order_date - total amount on this order_date </i>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+              Roll Up
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>select sum( </span><label> amount </label><span>), </span><label> order_date </label><span>from transactions group by </span><label>order_date </label><span> with roll up ;</span>
+                  <br>
+                  <i>-- total sum added as another row</i>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+              On Delete
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>create table </span><label> transactions </label><span> ( </span><br>
+                  <b></b><label>trans_id </label><span> int primary_key , </span><br>
+                  <b></b><label>amount </label><span> decimal(4,2) default 0 </span><br>
+                  <b></b><label>emp_id </label><span>int , </span>
+                  <span>foreign key (</span><label>emp_id</label><span>) references employees(</span><label> employee_id </label><span>) on delete set null ; </span><br>
+                  <b></b>
+                  <span>); </span><br>
+                  <i>-- on delete set null = on breaking foreign key relation, the value is kept as null</i><br>
+                  <i>-- on delete set cascade = on breaking foreign key relation, the whole row is deleted</i><br>
+              </div>
+          </div>
+      </section>
+      
+      <section class="sql">
+          <div class="sqlText">
+              Triggers
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>create trigger </span><label> before_func_name </label><br>
+                  <span>before update on </span><label>employees </label><br>
+                  <span>for each row </span><br>
+                  <span>set new.</span><label>salary = </label><span>( new.</span><label>hourly_pay * 2800 </label><span>) ;</span>
+                  <br>
+                  <i>-- assume we made a change SET hourly_pay = 50,</i><br>
+                  <i>-- before updating hourly_pay, salary will change to new.horuly_pay * 2800</i><br>
+                  <i>-- before insert, before update, before delete</i><br>
+                  <i>-- after insert, after update, after delete</i><br>
+              </div>
+          </div>
+      </section>
+            
+      <section class="all easy sorting arrays" style="page-break-before:always">
           <h5>Bubble Sort</h5>
           <p class="question">Given an array of N integers, write a program to implement the Bubble sorting algorithm.</p>
           <p class="id">Question ID : 0106231625</p>
