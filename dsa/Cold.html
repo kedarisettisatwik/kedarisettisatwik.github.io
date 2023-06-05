@@ -670,8 +670,8 @@
           </div>
           <div class="sqlCode">
               <div>
-                  <span>alter table </span><label> employees </label><span> modify </span><label> email </label><span> first ; </span> <i> -- email column will be 1st column in table.</i> <br>
-                  <span>alter table </span><label> employees </label><span> modify </span><label> email </label><span> after </span><label> first_name</label><span> ; </span> <i> -- email column will be kept after first_name column in table.</i> <br>
+                  <span>alter table </span><label> employees </label><span> modify </span><label> email </label><span> first ; </span> <br><b></b><i> -- email column will be 1st column in table.</i> <br>
+                  <span>alter table </span><label> employees </label><span> modify </span><label> email </label><span> after </span><label> first_name</label><span> ; </span><br><b></b> <i> -- email column will be kept after first_name column in table.</i> <br>
               </div>
           </div>
       </section>
@@ -728,8 +728,8 @@
           </div>
           <div class="sqlCode">
               <div>
-                  <span>update </span><label> employees </label><span> set </span><label>hourly_pay = 6 </label><span> ; </span> <i>--  this will make hourly_pay of all employees = 6 </i><br>
-                  <span>update </span><label> employees </label><span> set </span><label>hourly_pay = 10.5 , hire_date = " 2023 - 07 - 14 "</label><br><b></b><span> where </span><label>employee_id = 7</label><span> ; </span><i>--  this will change only hourly_pay and hire_date of employee with id = 7 </i>
+                  <span>update </span><label> employees </label><span> set </span><label>hourly_pay = 6 </label><span> ; </span> <br><b></b><i>--  this will make hourly_pay of all employees = 6 </i><br>
+                  <span>update </span><label> employees </label><span> set </span><label>hourly_pay = 10.5 , hire_date = " 2023 - 07 - 14 "</label><br><b></b><span> where </span><label>employee_id = 7</label><span> ; </span> <br><b></b><i>--  this will change only hourly_pay and hire_date of employee with id = 7 </i>
               </div>
           </div>
       </section>
@@ -741,7 +741,7 @@
           <div class="sqlCode">
               <div>
                   <span>delete from </span><label> employees </label><span> ; </span><i> -- this will delete whole table </i><br>
-                  <span>delete from </span><label> employess </label><span> where </span><label> employee_id = 7 </label><span> ; </span><i> -- whole row with employee id = 7 is deleted</i>
+                  <span>delete from </span><label> employess </label><span> where </span><label> employee_id = 7 </label><span> ; </span> <br><b></b><i> -- whole row with employee id = 7 is deleted</i>
               </div>
           </div>
       </section>
@@ -887,7 +887,7 @@
                 <div>
                   <span>create table </span><label> products </label><span> ( </span><br>
                   <b></b><label>product_name </label><span> varchar(25) unique , </span><br>
-                  <b></b><label>price </label><span> decimal(4,2) default 0.1 </span><i> -- if price is not given while inserting data by default it will take 0.1</i><br>
+                  <b></b><label>price </label><span> decimal(4,2) default 0.1 </span><i> <br><b></b> -- if price is not given while inserting data by default it will take 0.1</i><br>
                   <span>); </span><br>
               </div>
           </div>
@@ -988,9 +988,9 @@
           </div>
           <div class="sqlCode">
               <div>
-                  <span>select </span><label> * </label><span> from </span><label>transactions </label><span> inner join </span><label>employees</label><span> on transactions.emp_id = employees.employee_id ; </span>
+                  <span>select </span><label> * </label><span> from </span><label>transactions </label><span> inner join </span><label>employees</label> <br><b></b><span> on transactions.emp_id = employees.employee_id ; </span>
                   <br>
-                  <i>-- output will be table of trans_id -> amount -> emp_id -> employee details from employees table</i>
+                  <i>-- output will be table of <br><b></b> trans_id -> amount -> emp_id -> employee details from employees table</i>
                   <br>
                   <i>-- INNER JOIN => table on transcations which have proper employee id </i><br>
                   <i>-- LEFT JOIN => table all transcations, if emp_id is proper followed employee details </i><br>
@@ -1006,8 +1006,8 @@
           <div class="sqlCode">
               <div>
                   <span>select count( </span><label>amount )</label><span>from transactions ; </span><br>
-                  <i>-- MAX( amount )</i>          
-                  <i>-- AVG( amount )</i>
+                  <i>-- MAX( amount )</i><br>      
+                  <i>-- AVG( amount )</i><br>
                   <span>select concat(</span><label>first_name , last_name )</label><span>as </span><label> full_name </label><span>from transactions ; </span><br>
               </div>
           </div>
@@ -1088,7 +1088,7 @@
               <div>
                   <span>alter table </span><label>customers </label><span>add </span><label> referal_id </label><span>INT ;</span><br>                                    
                   <span>select </span><label> * </label><span> from </span><label> customers </label><span> As </span>
-                  <label> a </label><span>inner join customers as </span><label> b </label><span> on a.referal_id b.customer_id ; </span>
+                  <label> a </label><span>inner join customers as </span><label> b </label> <br><b></b><span> on a.referal_id b.customer_id ; </span>
                   <br>
                   <i>-- table have id , name , referal_id </i>
                   <br>
@@ -1103,7 +1103,7 @@
           </div>
           <div class="sqlCode">
               <div>
-                  <span>create  view employee_sheet </span><label> employees </label><span> as select </span><label>first_name, last_name </label><span> from </span><label> employees </label><span> ; </span>
+                  <span>create  view employee_sheet </span><label> employees </label><span> as select </span><label>first_name, last_name </label> <br><b></b><span> from </span><label> employees </label><span> ; </span>
                   <br>
                   <i> -- employee sheet is not another table it is a custom view of employee table </i><br>
                   <i> -- changes in first_name, last_name of employee table will also effect employee_sheet .</i><br>
@@ -1128,7 +1128,7 @@
           </div>
           <div class="sqlCode">
               <div>
-                  <span>select </span><label> first_name , hourly_pay , </label> <span>( select avg(</span><label>hourly_pay</label><span>) from employees </span> <span> ) from </span><label> employees</label><span> ; </span><br>
+                  <span>select </span><label> first_name , hourly_pay , </label> <br><b></b> <span>( select avg(</span><label>hourly_pay</label><span>) from employees </span> <span> ) from </span><label> employees</label><span> ; </span><br>
               </div>
           </div>
       </section>
@@ -1143,7 +1143,7 @@
                   <br>
                   <i> order_date - total amount on this order_date </i>
                   <br>
-                  <span>select sum( </span><label> amount </label><span>), </span><label> customer_id </label><span>from transactions group by </span><label> customer_id </label><span> having count( </span><label>amount  </label><span> ) > 1 and </span><label>customer_id</label><span>is not null ;</span>
+                  <span>select sum( </span><label> amount </label><span>), </span><label> customer_id </label><span>from transactions group by </span><label> customer_id </label> <br><b></b><span> having count( </span><label>amount  </label><span> ) > 1 and </span><label>customer_id</label><span>is not null ;</span>
                   <br>
                   <i> order_date - total amount on this order_date </i>
               </div>
@@ -1156,7 +1156,7 @@
           </div>
           <div class="sqlCode">
               <div>
-                  <span>select sum( </span><label> amount </label><span>), </span><label> order_date </label><span>from transactions group by </span><label>order_date </label><span> with roll up ;</span>
+                  <span>select sum( </span><label> amount </label><span>), </span><label> order_date </label><span>from transactions group by </span><br><b></b><label>order_date </label><span> with roll up ;</span>
                   <br>
                   <i>-- total sum added as another row</i>
               </div>
@@ -1173,7 +1173,7 @@
                   <b></b><label>trans_id </label><span> int primary_key , </span><br>
                   <b></b><label>amount </label><span> decimal(4,2) default 0 </span><br>
                   <b></b><label>emp_id </label><span>int , </span>
-                  <span>foreign key (</span><label>emp_id</label><span>) references employees(</span><label> employee_id </label><span>) on delete set null ; </span><br>
+                  <span>foreign key (</span><label>emp_id</label><span>) references employees(</span><label> employee_id </label><span>)</span> <br><b></b><b></b> <span> on delete set null ; </span><br>
                   <b></b>
                   <span>); </span><br>
                   <i>-- on delete set null = on breaking foreign key relation, the value is kept as null</i><br>
