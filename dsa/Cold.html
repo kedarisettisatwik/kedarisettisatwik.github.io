@@ -50,6 +50,7 @@
             background-repeat: no-repeat;
             background-clip:border-box;
             background-size: cover;
+            background-attachment: fixed;
         }
         .title1 div{
             position:relative;
@@ -276,7 +277,7 @@
             }
         }
        
-        .all,.sql{
+        .all,.sql,.linux{
             position:relative;
             width:750px;
             margin:0px auto;
@@ -285,7 +286,7 @@
             page-break-after:auto;
             page-break-inside: avoid;
         }
-        .all h5,.sql h5{
+        .all h5,.sql h5,.linux h5{
             font-size:1.2rem;
             user-select: text;
         }
@@ -372,6 +373,18 @@
         }
         .sql .sqlCode b{
             margin-right:25px;
+        }
+        
+        .linux p{
+            margin-bottom:20px;
+        }
+        .linux p b{
+            font-size:0.9rem;
+            letter-spacing:1px;
+        }
+        .linux p span{
+            font-size:0.9rem;
+            line-height:1.5rem;
         }
         
         .menu{
@@ -553,7 +566,7 @@
       </section>
       
       <section class="sql" style="page-break-before:always">
-          <h5 style="margin:15px 0;">DBMS - SQL</h5>
+          <h5 style="margin:15px 0; letter-spacing:1px;">DBMS - SQL</h5>
           
           <div class="sqlText">
               SQL -> Structured Query Language <br> sql is case insensitive language i.e Create == CREATE
@@ -1200,8 +1213,134 @@
               </div>
           </div>
       </section>
-            
-      <section class="all easy sorting arrays" style="page-break-before:always">
+        
+      <section class="linux" style="page-break-before:always;margin-bottom:20px;">
+          <h5 style="margin-bottom:15px;letter-spacing:1px;">LINUX</h5>
+          
+          <p>
+              <b>1. whoami</b><br>
+              <span>-- returns the UserName</span>
+          </p>
+          <p>
+              <b>2. man</b><br>
+              <span>-- manual, man whoami = gives the description of whoami</span>
+          </p>
+          <p>
+              <b>3. clear</b><br>
+              <span>-- clear terminal, clear -x scrolls down</span>
+          </p>
+          <p>
+              <b>4. pwd</b><br>
+              <span>-- displays present working directory</span>
+          </p>
+          <p>
+              <b>5. ls</b><br>
+              <span>-- displays list of files in that folder</span>
+          </p>         
+          <p>
+              <b>6. cd</b><br>
+              <span>-- change directory, cd /Desktop/aoight, cd ../.. , cd ~/ </span>
+          </p>
+          <p>
+              <b>7. mkdir</b><br>
+              <span>-- make directory, creates folder, mkdir xyz, mkdir mutliple folders </span>
+          </p>  
+          <p>
+              <b>8. touch</b><br>
+              <span>-- creates a empty .txt file, if file is already present file will be opened in write mode.</span>
+          </p>  
+          <p>
+              <b>9. rmdir</b><br>
+              <span>-- removes directory (folder) only if it is empty</span>
+          </p>
+          <p>
+              <b>10. rm</b><br>
+              <span>-- remove files</span>
+          </p>
+          <p>
+              <b>11. open </b><br>
+              <span>-- open filename, open foldername </span>
+          </p>
+          <p>
+              <b>12. mv</b><br>
+              <span>-- move / rename , mv exp.pdf Exp.pdf (rename) , mv exp.pdf fold/ (move exp into fold folder) </span>
+          </p>
+          <p>
+              <b>13. cp</b><br>
+              <span>-- copy, cp ex.pdf EX.pdf (in the directory EX.pdf is created which is a copy of ex.pdf)</span>
+          </p>
+          <p>
+              <b>14. head</b><br>
+              <span>-- first lines, head ex.pdf -n 10 (first 10 lines of EX.pdf)</span>
+          </p>
+          <p>
+              <b>15. tail</b><br>
+              <span>-- last lines, tail ex.pdf -n 10 (last 10 lines of EX.pdf)</span>
+          </p>
+          <p>
+              <b>16. date</b><br>
+              <span>-- displays current date time</span>
+          </p>
+          <p>
+              <b>17. redircting ouptut</b><br>
+              <span>-- date > text.txt (overrides text), date >> text.txt (appends text)</span>
+          </p>
+          <p>
+              <b>18. cat</b><br>
+              <span>-- cat f1 f2 (displays f1.txt + f2.txt)</span>
+          </p>
+          <p>
+              <b>19. echo</b><br>
+              <span>-- echo "hi"( print hi in terminal), echo "hi" > text.txt, echo "hi" >> text.txt</span>
+          </p>
+          <p>
+              <b>20. sort</b><br>
+              <span>-- sort text.txt </span>
+          </p>
+          <p>
+              <b>21. uniq</b><br>
+              <span>-- removes same adjacent values</span>
+          </p>
+          <p>
+              <b>22. find</b><br>
+              <span>-- (find -name 'te'), (find -name '*t*' = find file which contains t in it)</span>
+          </p>
+          <p>
+              <b>23. du</b><br>
+              <span>-- finds the disk usage , storage used ( du exFolder )</span>
+          </p>
+          <p>
+              <b>24. df</b><br>
+              <span>-- disk free space available</span>
+          </p>
+          <p>
+              <b>25. history</b><br>
+              <span>-- previous commands, (history | less)- few history ,(history | exam) - history commands which included exam </span>
+          </p>
+          <p>
+              <b>26. ps</b><br>
+              <span>-- proccess, display what programmes are running</span>
+          </p>
+          <p>
+              <b>27. top</b><br>
+              <span>-- display process and update sorted information</span>
+          </p>
+          <p>
+              <b>28. gzip</b><br>
+              <span>-- (gzip -k file) creates zip version of file</span>
+          </p>
+          <p>
+              <b>29. gunzip</b><br>
+              <span>-- (gunzip file.gz) unzips compressedfile</span>
+          </p>
+          
+      </section>
+      
+      <section class="sql end" style="page-break-before:always;">
+          <h5 style="letter-spacing:1px;">DSA</h5>
+      </section>
+      
+      <section class="all easy sorting arrays">
           <h5>Bubble Sort</h5>
           <p class="question">Given an array of N integers, write a program to implement the Bubble sorting algorithm.</p>
           <p class="id">Question ID : 0106231625</p>
@@ -1865,7 +2004,7 @@
 <section class="all">
       <h5></h5>
       <p class="question"></p>
-      <p class="id">Question ID : 020623 </p>
+      <p class="id">Question ID : 050623 </p>
       <div class="keys">
           <div class="cat"> </div>
       </div>
