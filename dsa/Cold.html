@@ -2189,7 +2189,32 @@
           <div style="font-size:13px;">Hint : modification of countInversions</div>
     </section>
 
+    <section class="all hard arrays revisit">
+          <h5>Maximum Product Subarray</h5>
+          <p class="question">Given an integer array nums, find a subarray that has the largest product, and return the product.</p>
+          <p class="id">Question ID : 0806230743 </p>
+          <div class="keys">
+              <div class="cat">Hard</div>
+              <div class="cat">Arrays</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://bit.ly/3VPdyyq">https://bit.ly/3VPdyyq</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/hnswaLJvr6g">https://youtu.be/hnswaLJvr6g</a> </p>
+          <div style="font-size:13px;">Hint : </div>
+    </section>
 
+
+    <section class="all">
+          <h5></h5>
+          <p class="question"></p>
+          <p class="id">Question ID : 080623 </p>
+          <div class="keys">
+              <div class="cat"> </div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href=""></a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href=""></a> </p>
+          <div style="font-size:13px;">Hint : leftMax, rightMax, zeroPresent? </div>
+    </section>
       <div class="select">
           <p>Hardness : </p>
           <label onclick="level(0)">ALL</label>
@@ -2239,10 +2264,12 @@
         function level(a){
             var l = ["all","revisit","easy","medium","hard"];
             hardness = 0;
+            var cnt = 0;
             for (var i = 0;i < probs.length;i++){
                 var ele = probs[i];
                 if (ele.classList.contains(l[a])){
                     ele.style.display = "block";
+                    cnt++;
                 }else{
                     ele.style.display = "none";
                 }
@@ -2250,20 +2277,24 @@
             var select = document.querySelector(".select");
             select.classList.remove("active");
             document.getElementById("chapter").innerHTML = l[a];
+            document.querySelector('.count').innerHTML = cnt;
         }
         function filterChapter(a){
             course = a;
             var c = ["all","sorting","arrays","linkedlist","binary","strings","recursion","stackqueue","greedy","trees","bst", "graphs","dp","window"];
             var cc = ["all","sorting","arrays","linked - list","binary search","strings","recursion","stack - queue","greedy","trees","bst", "graphs","dp","sliding window"];     
+            var cnt = 0;
             for (var i = 0;i < probs.length;i++){
                 var ele = probs[i];
                 if (ele.classList.contains(c[a])){
                     ele.style.display = "block";
+                    cnt++;
                 }else{
                     ele.style.display = "none";
                 }
             }
             document.getElementById("chapter").innerHTML = cc[a];
+            document.querySelector('.count').innerHTML = cnt;
             chapter();
         }
         function print_page(){
