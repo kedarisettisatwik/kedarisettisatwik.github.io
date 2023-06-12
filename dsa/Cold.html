@@ -286,9 +286,30 @@
             page-break-after:auto;
             page-break-inside:avoid;
         }
+        .easy h5::before,.medium h5::before,.hard h5::before,.revisit h5::after{
+            content: '';
+            width: 45px;
+            height: 5px;
+            position: absolute;
+            background-color: lightgreen;
+            bottom: -6px;
+            left: 0px;
+            opacity: 0.8;
+        }
+        .medium h5::before{
+            background-color: orange;
+        }
+        .hard h5::before{
+            background-color: red;
+        }
+        .revisit h5::after{
+            left:48px;
+            background-color: skyblue;
+        }
         .all h5,.sql h5,.linux h5{
             font-size:1.2rem;
             user-select: text;
+            position:relative;
         }
         .all .question{
             font-size:1rem;
@@ -1892,7 +1913,7 @@
           <p class="solve"><span>Problem : </span><a target="_blank" href="https://bit.ly/3Po7tpf">https://bit.ly/3Po7tpf</a> </p>
     </section>
       
-    <section class="all middle linkedlist revisit">
+    <section class="all medium linkedlist revisit">
           <h5>Finding middle element in a linked list</h5>
           <p class="question">Given a singly linked list of N nodes. The task is to find the middle of the linked list. For example, if the linked list is <br> 1-> 2->3->4->5, then the middle node of the list is 3.<br> If there are two middle nodes(in case, when N is even), print the second middle element.</p>
           <p class="id">Question ID : 0306231433 </p>
@@ -1933,7 +1954,7 @@
           <div style="font-size:13px;">Hint : fastPointer, slowPointer when they meet cycle is there.</div>
     </section>
     
-    <section class="all">
+    <section class="all easy linkedlist">
           <h5>Starting node of Cycle</h5>
           <p class="question">Given the head of a linked list, return the node where the cycle begins. If there is no cycle, return null.</p>
           <p class="id">Question ID : 0606230759 </p>
