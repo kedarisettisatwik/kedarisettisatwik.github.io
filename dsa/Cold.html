@@ -334,11 +334,19 @@
         .all .solve{
             margin:10px 0;
             font-size:13px;
+            position:relative;
+        }
+        .solve{
+            display:flex;
+            flex-direction: row;
         }
         .all .solve a{
             color:blue;
             opacity:0.5;
-            word-break:break-all;
+            margin-left:10px;
+            max-width: calc(100% - 80px);
+            overflow: hidden;
+            max-height:20px;
         }
         
          @media (max-width:800px){
@@ -2721,6 +2729,46 @@
           <div style="font-size:13px;">Hint : create a hash map using vector&lt;pair&lt;int, char &gt;&gt;</div>
     </section>
     
+    <section class="all medium strings revisit">
+          <h5>Longest Palindrome in a String</h5>
+          <p class="question">In case of conflict, return the substring which occurs first ( with the least starting index).</p>
+          <p class="id">Question ID : 1406230842 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">ReVisit</div>
+              <div class="cat">Strings</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://bit.ly/3CeQ27D">https://bit.ly/3CeQ27D</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/XYQecbcd6_c">https://youtu.be/XYQecbcd6_c</a> </p>
+          <div style="font-size:13px;">Hint : get a plaindrome by str[i] in middle, str[i]+str[i+1] in middle</div>
+    </section>
+    
+    <section class="all medium strings revisit">
+          <h5>Count number of substrings</h5>
+          <p class="question">Given a string of lowercase alphabets, count all possible substrings (not necessarily distinct) that have exactly k distinct characters. </p>
+          <p class="id">Question ID : 1406231054 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Strings</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://bit.ly/3CfQfYi">https://bit.ly/3CfQfYi</a> </p>
+          <div style="font-size:13px;">Hint : uniq(atmost k) - uniq(atmost k-1) == uniq(exact k)</div>
+    </section>
+    
+    <section class="all medium strings">
+          <h5>Sum of Beauty of subStrings</h5>
+          <p class="question"></p>
+          <p class="id">Question ID : 1406231136 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Strings</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/sum-of-beauty-of-all-substrings/">https://leetcode.com/problems/sum-of-beauty-of-all-substrings/</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/5XjJs5SBN8g">https://youtu.be/5XjJs5SBN8g</a> </p>
+          <div style="font-size:13px;">Hint : vector&lt;int&gt;(26,0) = use it as freq map</div>
+    </section>
+    
     <div class="select">dd
           <p>Hardness : </p>
           <label onclick="level(0)">ALL</label>
@@ -2819,7 +2867,7 @@
     <section class="all">
           <h5></h5>
           <p class="question"></p>
-          <p class="id">Question ID : 130623 </p>
+          <p class="id">Question ID : 140623 </p>
           <div class="keys">
               <div class="cat"> </div>
           </div>
