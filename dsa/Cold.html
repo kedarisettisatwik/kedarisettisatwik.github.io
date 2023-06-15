@@ -482,7 +482,6 @@
             font-size:13px;
             margin:5px 5px 5px 0;
             cursor:pointer;
-            opacity:0.8;
         }
         @media (max-width:500px){
             .menu{
@@ -2769,13 +2768,107 @@
           <div style="font-size:13px;">Hint : vector&lt;int&gt;(26,0) = use it as freq map</div>
     </section>
     
-    <div class="select">dd
+    <section class="all hard recursion grid">
+          <h5>Word Search</h5>
+          <p class="question">Given a 2D board of letters and a word. Check if the word exists in the board. The word can be constructed from letters of adjacent cells only. ie - horizontal or vertical neighbors.<br>The same letter cell can not be used more than once.</p>
+          <p class="id">Question ID : 1406231714 </p>
+          <div class="keys">
+              <div class="cat">Hard</div>
+              <div class="cat">Recursion</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/word-search/1">https://practice.geeksforgeeks.org/problems/word-search/1</a> </p>
+          <div style="font-size:13px;">Hint : search for str[index] and make it -1 and search around for str[index+1]</div>
+    </section>
+    
+    <section class="all medium recursion grid">
+          <h5>Rat in a Maze Problem - I</h5>
+          <p class="question">Consider a rat placed at (0, 0) in a square matrix of order N * N. It has to reach the destination at (N - 1, N - 1). Find all possible paths that the rat can take to reach from source to destination. The directions in which the rat can move are 'U', 'D', 'L', 'R'. Value 0 at a cell in the matrix represents that it is blocked and rat cannot move to it while value 1 at a cell in the matrix represents that rat can be travel through it.</p>
+          <p class="id">Question ID : 1406231733 </p>
+          <div class="keys">
+              <div class="cat">Recursion</div>
+              <div class="cat">Grid</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/rat-in-a-maze-problem/1">https://practice.geeksforgeeks.org/problems/rat-in-a-maze-problem/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/bLGZhJlt4y0">https://youtu.be/bLGZhJlt4y0</a> </p>
+    </section>
+    
+    <section class="all medium recursion grid">
+          <h5>Sudoko Solver</h5>
+          <p class="question">Given an incomplete Sudoku configuration in terms of a 9 x 9  2-D square matrix ( grid[][] ), the task to find a solved Sudoku.</p>
+          <p class="id">Question ID : 1406231744 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Recursion</div>
+              <div class="cat">Grid</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/solve-the-sudoku-1587115621/1">https://practice.geeksforgeeks.org/problems/solve-the-sudoku-1587115621/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/FWAIf_EVUKE">https://youtu.be/FWAIf_EVUKE</a> </p>
+    </section>
+    
+    <section class="all recursion grid medium revisit">
+          <h5>N Queen</h5>
+          <p class="question">The n-queens puzzle is the problem of placing n queens on a (n×n) chessboard such that no two queens can attack each other.<br>Given an integer n, find all distinct solutions to the n-queens puzzle.</p>
+          <p class="id">Question ID : 1406231918 </p>
+          <div class="keys">
+              <div class="cat">Recursion</div>
+              <div class="cat">Grid</div>
+              <div class="cat">ReVisit</div>
+              <div class="cat">Medium</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/n-queen-problem0315/1">https://practice.geeksforgeeks.org/problems/n-queen-problem0315/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/i05Ju7AftcM">https://youtu.be/i05Ju7AftcM</a> </p>
+          <div style="font-size:13px;">Hint : keep a queen in one col at some position, go for next col</div>
+    </section>
+    
+    <section class="all recursion stackqueue medium">
+          <h5>Insert at Bottom of Stack</h5>
+          <p class="question">Given a value N, a stack st, insert N in the bottom of stack.</p>
+          <p class="id">Question ID : 1506231033 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Recursion</div>
+              <div class="cat">Stack</div>
+          </div>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://www.geeksforgeeks.org/program-to-insert-an-element-at-the-bottom-of-a-stack/">https://www.geeksforgeeks.org/program-to-insert-an-element-at-the-bottom-of-a-stack/</a> </p>
+          <div style="font-size:13px;">Hint : pop, recursive call</div>
+    </section>
+    
+    <section class="all recursion stackqueue medium">
+          <h5>Reverse Stack</h5>
+          <p class="question"></p>
+          <p class="id">Question ID : 1506231042 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Recursion</div>
+              <div class="cat">Stack</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://bit.ly/3podAiY">https://bit.ly/3podAiY</a></p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/SW14tOda_kI">https://youtu.be/SW14tOda_kI</a> </p>
+          <div style="font-size:13px;">Hint : pop, recursive call, insert at bottom</div>
+    </section>
+    
+    <section class="all recursion stackqueue medium revisit">
+          <h5>Sort Stack</h5>
+          <p class="question">Given a stack, the task is to sort it such that the top of the stack has the greatest element.</p>
+          <p class="id">Question ID : 1506231110 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Stack</div>
+              <div class="cat">ReVisit</div>
+              <div class="cat">Recursion</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/sort-a-stack/1">https://practice.geeksforgeeks.org/problems/sort-a-stack/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/SjDq1xYxC44">https://youtu.be/SjDq1xYxC44</a> </p>
+          <div style="font-size:13px;">Hint : pop, recursive call, insert sort</div>
+    </section>
+    
+    <div class="select">
           <p>Hardness : </p>
           <label onclick="level(0)">ALL</label>
-          <label onclick="level(1)">REVISIT</label>
-          <label onclick="level(2)">EASY</label>
-          <label onclick="level(3)">Middle</label>
-          <label onclick="level(4)">HARD</label>
+          <label onclick="level(1)" style="color:deepskyblue">REVISIT</label>
+          <label onclick="level(2)" style="color: greenyellow">EASY</label>
+          <label onclick="level(3)" style="color: orange">Middle</label>
+          <label onclick="level(4)" style="color: red">HARD</label>
           <p style="margin-top:20px;">Topic : </p>
           <span onclick="filterChapter(0)">ALL</span>
           <span onclick="filterChapter(1)">Sorting</span>
@@ -2791,6 +2884,7 @@
           <span onclick="filterChapter(11)">Graphs</span>
           <span onclick="filterChapter(12)">DP</span>
           <span onclick="filterChapter(13)">window</span>
+          <span onclick="filterChapter(14)">Grid</span>
           <p style="margin-top:20px;">solution : </p>
           <span><a target="_blank" href="https://drive.google.com/file/d/1sBHIi91iT9MbpLNj8LVLPn9AyO13wMUG/view?usp=sharing" style="color: white">OOPS.c++</a></span>
           <span><a target="_blank" href="https://drive.google.com/file/d/1yxOOn2hrE5qiY8ghw_cG8WMlKEw-nvhC/view?usp=sharing" style="color: white">DSA.c++</a></span>
@@ -2835,8 +2929,8 @@
         }
         function filterChapter(a){
             course = a;
-            var c = ["all","sorting","arrays","linkedlist","binary","strings","recursion","stackqueue","greedy","trees","bst", "graphs","dp","window"];
-            var cc = ["all","sorting","arrays","linked - list","binary search","strings","recursion","stack - queue","greedy","trees","bst", "graphs","dp","sliding window"];     
+            var c = ["all","sorting","arrays","linkedlist","binary","strings","recursion","stackqueue","greedy","trees","bst", "graphs","dp","window","grid"];
+            var cc = ["all","sorting","arrays","linked - list","binary search","strings","recursion","stack - queue","greedy","trees","bst", "graphs","dp","sliding window","Grid"];     
             var cnt = 0;
             for (var i = 0;i < probs.length;i++){
                 var ele = probs[i];
@@ -2867,7 +2961,7 @@
     <section class="all">
           <h5></h5>
           <p class="question"></p>
-          <p class="id">Question ID : 140623 </p>
+          <p class="id">Question ID : 150623 </p>
           <div class="keys">
               <div class="cat"> </div>
           </div>
