@@ -289,7 +289,7 @@
         .easy h5::before,.medium h5::before,.hard h5::before,.revisit h5::after{
             content: '';
             width: 45px;
-            height: 5px;
+            height: 3px;
             position: absolute;
             background-color: lightgreen;
             bottom: -6px;
@@ -2862,6 +2862,111 @@
           <div style="font-size:13px;">Hint : pop, recursive call, insert sort</div>
     </section>
     
+    <section class="all greedy easy">
+          <h5>Assign Cookies</h5>
+          <p class="question">Assume you are an awesome parent of N children and want to give your children some cookies out of given M cookies. But, you should give each child atmost one cookie.<br><br>Each child i has a greed factor greed [ i ], which is the minimum size of cookie that the child will be content with; and each cookie j has a size sz [ j ]. If sz [ j ] >= greed [ i ], we can assign the cookie j to the child ith, and the child i will be content.<br><br>Your goal is to maximize the number of your content children and return the maximum number.</p>
+          <p class="id">Question ID : 1506231616 </p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">Greedy</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://bit.ly/3Wl3PBd">https://bit.ly/3Wl3PBd</a> </p>
+          <div style="font-size:13px;">Hint : sort the given arrays, start from more greedy one</div>
+    </section>
+    
+    <section class="all easy greedy">
+          <h5>Minimum number of Coins</h5>
+          <p class="question">Given an infinite supply of each denomination of Indian currency { 1, 2, 5, 10, 20, 50, 100, 200, 500, 2000 } and a target value N.<br>Find the minimum number of coins and/or notes needed to make the change for Rs N. You must return the list containing the value of coins required. </p>
+          <p class="id">Question ID : 1506231622 </p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">Greedy</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://bit.ly/3Ka7xYU">https://bit.ly/3Ka7xYU</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/mVg9CfJvayM">https://youtu.be/mVg9CfJvayM</a> </p>
+          <div style="font-size:13px;">Hint : first check with 2000, .. </div>
+    </section>
+    
+    <section class="all medium greedy">
+          <h5>Lemonade Change</h5>
+          <p class="question">You are an owner of lemonade island, each lemonade costs $5. Customers are standing in a queue to buy from you and order one at a time (in the order specified by bills).<br><br>Each customer will only buy one lemonade and pay with either a $5, $10, or $20 bill. You must provide the correct change to each customer so that the net transaction is that the customer pays $5. <br><br> NOTE: At first, you do not have any bill to provide changes with. You can provide changes from the bills that you got from the previous customers.<br><br>Given an integer array bills of size N where bills [ i ] is the bill the ith customer pays, return true if you can provide every customer with the correct change, or false otherwise.</p>
+          <p class="id">Question ID : 1506231709 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Greedy</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://bit.ly/3DoFGRx">https://bit.ly/3DoFGRx</a> </p>
+          <div style="font-size:13px;">Hint : cnt_5, cnt_10</div>
+    </section>
+    
+    <section class="all easy strings stackqueue">
+          <h5>Parenthesis Checker</h5>
+          <p class="question">Given an expression string x. Examine whether the pairs and the orders of {,},(,),[,] are correct in exp.</p>
+          <p class="id">Question ID : 1506231716 </p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">Strings</div>
+              <div class="cat">Stack</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://bit.ly/3K6ulZA">https://bit.ly/3K6ulZA</a> </p>
+          <div style="font-size:13px;">Hint : stack top == str[i] for closed, </div>
+    </section>
+    
+    <section class="all medium revisit greedy">
+          <h5>Fractional Knapsack</h5>
+          <p class="question">Given weights and values of N items, we need to put these items in a knapsack of capacity W to get the maximum total value in the knapsack.<br>Note: Unlike 0/1 knapsack, you are allowed to break the item. </p>
+          <p class="id">Question ID : 1506231738 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Greedy</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://bit.ly/3PsqOFL">https://bit.ly/3PsqOFL</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/F_DDzYnxO14">https://youtu.be/F_DDzYnxO14</a> </p>
+          <div style="font-size:13px;">Hint : sort based on (val/gram)</div>
+    </section>
+    
+    <section class="all medium greedy">
+          <h5>N meetings in one room</h5>
+          <p class="question">There is one meeting room in a firm. There are N meetings in the form of (start[i], end[i]) where start[i] is start time of meeting i and end[i] is finish time of meeting i.<br><br>What is the maximum number of meetings that can be accommodated in the meeting room when only one meeting can be held in the meeting room at a particular time? </p>
+          <p class="id">Question ID : 1506231841 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Greedy</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://bit.ly/3A6Ob1Y">https://bit.ly/3A6Ob1Y</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/II6ziNnub1Q"> https://youtu.be/II6ziNnub1Q </a> </p>
+          <div style="font-size:13px;">Hint : sort based on end timings</div>
+    </section>
+    
+    <section class="all greedy revisit medium">
+          <h5>Minimum Platforms</h5>
+          <p class="question">Given arrival and departure times of all trains that reach a railway station. Find the minimum number of platforms required for the railway station so that no train is kept waiting.</p>
+          <p class="id">Question ID : 1506231934 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Greedy</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://bit.ly/3bXX5Hm">https://bit.ly/3bXX5Hm</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/dxVcMDI7vyI">https://youtu.be/dxVcMDI7vyI</a> </p>
+          <div style="font-size:13px;">Hint : sort both start-end arrays, two pointer(like merge sorted arrays) </div>
+    </section>
+    
+    <section class="all medium greedy revisit">
+          <h5>Job Sequencing Problem</h5>
+          <p class="question">Given a set of N jobs where each jobi has a deadline and profit associated with it.<br>Each job takes 1 unit of time to complete and only one job can be scheduled at a time. We earn the profit associated with job if and only if the job is completed by its deadline.<br>Find the number of jobs done and the maximum profit.</p>
+          <p class="id">Question ID : 1506232023 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Greedy</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://bit.ly/3Pttpzj">https://bit.ly/3Pttpzj</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/LjPx4wQaRIs">https://youtu.be/LjPx4wQaRIs</a> </p>
+          <div style="font-size:13px;">Hint : sort based on profit, create vec of maxDeadline</div>
+    </section>
+    
     <div class="select">
           <p>Hardness : </p>
           <label onclick="level(0)">ALL</label>
@@ -2961,7 +3066,7 @@
     <section class="all">
           <h5></h5>
           <p class="question"></p>
-          <p class="id">Question ID : 150623 </p>
+          <p class="id">Question ID : 160623 </p>
           <div class="keys">
               <div class="cat"> </div>
           </div>
