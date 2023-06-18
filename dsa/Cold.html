@@ -3333,6 +3333,46 @@
           <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/2r5wLmQfD6g">https://youtu.be/2r5wLmQfD6g</a> </p>
           <div style="font-size:13px;">Hint : parent pointers, node at max dis = ans</div>
     </section>
+
+    <section class="all medium trees">
+          <h5>Count Number of Nodes in a Binary Tree</h5>
+          <p class="question">You are given the root of a complete binary tree. Your task is to find the count of nodes.<br>A complete binary tree is a binary tree whose, all levels except the last one are completely filled, the last level may or may not be completely filled and Nodes in the last level are as left as possible.</p>
+          <p class="id">Question ID : 1806231644 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Trees</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://bit.ly/3EoPFXM">https://bit.ly/3EoPFXM</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/u-yWemKGWO0">https://youtu.be/u-yWemKGWO0</a> </p>
+          <div style="font-size:13px;">Hint : LH == RH -> 2**n - 1, 1 + lh + rh</div>
+    </section>
+
+    <section class="all hard trees revisit">
+          <h5>Construct Tree from Inorder & Preorder</h5>
+          <p class="question">Given 2 Arrays of Inorder and preorder traversal. The tree can contain duplicate elements. Construct a tree and print the Postorder traversal. </p>
+          <p class="id">Question ID : 1806231905 </p>
+          <div class="keys">
+              <div class="cat">Hard</div>
+              <div class="cat">Trees</div>
+              <div class="cat">Revisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/">https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/aZNaLrVebKQ">https://youtu.be/aZNaLrVebKQ</a> </p>
+          <div style="font-size:13px;">Hint : pre[start] = root, pre[start .. n] left, pre[n+1 .. end] right</div>
+    </section>
+
+    <section class="all hard trees revisit">
+          <h5>Construct Tree from Inorder & Postorder</h5>
+          <p class="question">Given inorder and postorder traversals of a Binary Tree in the arrays in[] and post[] respectively. The task is to construct the binary tree from these traversals.</p>
+          <p class="id">Question ID : 1806232004 </p>
+          <div class="keys">
+              <div class="cat">Hard</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://bit.ly/3wbFiTI">https://bit.ly/3wbFiTI</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/LgLRTaEMRVc">https://youtu.be/LgLRTaEMRVc</a> </p>
+          <div style="font-size:13px;">Hint : pre[end] = root, pre[end .. end-n] right, pre[end-n-1 .. start] left</div>
+    </section>
     
     <div class="select">
           <p>Hardness : </p>
@@ -3422,6 +3462,13 @@
             document.querySelector('.select').style.display = "none";
             window.print();
         }
+        
+        document.addEventListener('keydown', e => {
+          if (e.ctrlKey && e.key === 's') {
+            e.preventDefault();
+            print_page();
+          }
+        });
         
     </script>
     
