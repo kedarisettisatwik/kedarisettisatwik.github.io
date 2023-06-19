@@ -3048,17 +3048,18 @@
           <div style="font-size:13px;">Hint : while (true) , push end left</div>
     </section>
     
-    <section class="all medium trees">
+    <section class="all medium trees revisit">
           <h5>Postorder Traversal Iterative</h5>
           <p class="question">Given a root of binary tree, find the Postorder Traversal of it.</p>
           <p class="id">Question ID : 1706230831 </p>
           <div class="keys">
               <div class="cat">Medium</div>
               <div class="cat">Trees</div>
+              <div class="cat">ReVisit</div>
           </div>
           <p class="solve"><span>Problem : </span><a target="_blank" href="https://bit.ly/3Cb5Wjz">https://bit.ly/3Cb5Wjz</a> </p>
           <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/2YBhNLodD8Q">https://youtu.be/2YBhNLodD8Q</a> </p>
-          <div style="font-size:13px;">Hint : using 2 stacks,</div>
+          <div style="font-size:13px;">Hint : stack [ pop, left, right ], reverse ans</div>
     </section>
     
     <section class="all medium trees revisit">
@@ -3373,6 +3374,112 @@
           <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/LgLRTaEMRVc">https://youtu.be/LgLRTaEMRVc</a> </p>
           <div style="font-size:13px;">Hint : pre[end] = root, pre[end .. end-n] right, pre[end-n-1 .. start] left</div>
     </section>
+
+    <section class="all medium trees">
+          <h5>Serialize and Deserialize a Binary Tree</h5>
+          <p class="question">Serialization is to store a tree in an array so that it can be later restored and Deserialization is reading tree back from the array. Now your task is to complete the function serialize which stores the tree into an array A[ ] and deSerialize which deserializes the array to the tree and returns it.</p>
+          <p class="id">Question ID : 1906230815 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Tress</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/serialize-and-deserialize-binary-tree/">https://leetcode.com/problems/serialize-and-deserialize-binary-tree/</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/-YbXySKJsX8">https://youtu.be/-YbXySKJsX8</a> </p>
+          <div style="font-size:13px;">Hint : deserialize (root , left, right)</div>
+    </section>
+    
+    <section class="all medium trees revisit stackqueue">
+          <h5>Flatten tree to linked list</h5>
+          <p class="question">Given the root of a binary tree, flatten the tree into a "linked list": <br>The "linked list" should use the same Node class where the right child pointer points to the next   node in the list and the left child pointer is always null.<br>The "linked list" should be in the same order as a pre-order traversal of the binary tree.</p>
+          <p class="id">Question ID : 1906230956 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Trees</div>
+              <div class="cat">ReVisit</div>
+              <div class="cat">Stack</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://bit.ly/3PFzwko">https://bit.ly/3PFzwko</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/sWf7k1x9XR4">https://youtu.be/sWf7k1x9XR4</a> </p>
+          <div style="font-size:13px;">Hint : st, [ t = pop, right , left] , t -> right = st.top() </div>
+    </section>
+    
+    <section class="all easy bst">
+          <h5>Search a node in BST</h5>
+          <p class="question">Given an array of integers in[] representing inorder traversal of elements of a binary tree. Return true if the given inorder traversal can be of a valid Binary Search Tree.</p>
+          <p class="id">Question ID : 1906231019 </p>
+          <div class="keys">
+              <div class="cat">BST</div>
+              <div class="cat">Easy</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/search-a-node-in-bst/1">https://practice.geeksforgeeks.org/problems/search-a-node-in-bst/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/KcNt6v_56cc">https://youtu.be/KcNt6v_56cc</a> </p>
+          <div style="font-size:13px;">Hint : left &lt; root &lt; right </div>
+    </section>
+    
+    <section class="all easy bst">
+          <h5>Find min / max in BST</h5>
+          <p class="question">Given a Binary Search Tree. The task is to find the minimum valued element in this given BST.</p>
+          <p class="id">Question ID : 1906231031 </p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">BST</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/minimum-element-in-bst/1">https://practice.geeksforgeeks.org/problems/minimum-element-in-bst/1</a> </p>
+          <div style="font-size:13px;">Hint : min = leftMost, max = rightMost</div>
+    </section>
+    
+    <section class="all easy bst">
+          <h5>Ceil in BST</h5>
+          <p class="question">Given a BST and a number X, find Ceil of X.<br>Note: Ceil(X) is a number that is either equal to X or is immediately greater than X.</p>
+          <p class="id">Question ID : 1906231038 </p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">BST</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/implementing-ceil-in-bst/1">https://practice.geeksforgeeks.org/problems/implementing-ceil-in-bst/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/KSsk8AhdOZA">https://youtu.be/KSsk8AhdOZA</a> </p>
+          <div style="font-size:13px;">Hint : move right</div>
+    </section>
+    
+    <section class="all easy bst">
+          <h5>Floor in BST</h5>
+          <p class="question">You are given a BST(Binary Search Tree) with n number of nodes and value x. your task is to find the greatest value node of the BST which is smaller than or equal to x.<br>Note: when x is smaller than the smallest node of BST then returns -1.</p>
+          <p class="id">Question ID : 1906231048 </p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">BST</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://bit.ly/3TSbXXE">https://bit.ly/3TSbXXE</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/xm_W1ub-K-w">https://youtu.be/xm_W1ub-K-w</a> </p>
+          <div style="font-size:13px;">Hint : move left</div>
+    </section>
+    
+    <section class="all medium bst">
+          <h5>Insert a node in a BST</h5>
+          <p class="question">Given a BST and a key K. If K is not present in the BST, Insert a new Node with a value equal to K into the BST.<br>Note: If K is already present in the BST, don't modify the BST.</p>
+          <p class="id">Question ID : 1906231058 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">BST</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/insert-a-node-in-a-bst/1">https://practice.geeksforgeeks.org/problems/insert-a-node-in-a-bst/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/FiFiNvM29ps">https://youtu.be/FiFiNvM29ps</a> </p>
+          <div style="font-size:13px;">Hint : if ( k &lt; root , root->left == NULL insert ) ( k &gt; root , root->right == NULL insert )</div>
+    </section>
+    
+    <section class="all hard bst revisit">
+          <h5>Delete a Node in BST</h5>
+          <p class="question">Given a Binary Search Tree and a node value X. Delete the node with the given value X from the BST. If no node with value x exists, then do not make any change. </p>
+          <p class="id">Question ID : 1906231350 </p>
+          <div class="keys">
+              <div class="cat">BST</div>
+              <div class="cat">Hard</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/delete-a-node-from-bst/1">https://practice.geeksforgeeks.org/problems/delete-a-node-from-bst/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/kouxiP_H5WE">https://youtu.be/kouxiP_H5WE</a> </p>
+          <div style="font-size:13px;">Hint : find del_prevNode, all del left &lt; all del right , connect del left to atmost del right</div>
+    </section>
     
     <div class="select">
           <p>Hardness : </p>
@@ -3480,7 +3587,7 @@
     <section class="all">
           <h5></h5>
           <p class="question"></p>
-          <p class="id">Question ID : 180623 </p>
+          <p class="id">Question ID : 190623 </p>
           <div class="keys">
               <div class="cat"> </div>
           </div>
