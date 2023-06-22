@@ -3663,7 +3663,7 @@
           </div>
           <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/cousins-in-binary-tree-ii/">https://leetcode.com/problems/cousins-in-binary-tree-ii/</a> </p>
           <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/TF8jF0PxavM">https://youtu.be/TF8jF0PxavM</a> </p>
-          <div style="font-size:13px;">Hint : level order traversal + map</div>
+          <div style="font-size:13px;">Hint : level order traversal + total level sum  + vector[node*, childSum]</div>
     </section>
     
     <section class="all easy trees">
@@ -3700,6 +3700,128 @@
           </div>
           <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/path-sum-ii/">https://leetcode.com/problems/path-sum-ii/</a> </p>
           <div style="font-size:13px;">Hint : backtracking + pathSum I</div>
+    </section>
+
+    <section class="all easy arrays revisit">
+          <h5>Increasing Triplet Subsequence</h5>
+          <p class="question">Given an integer array nums, return true if there exists a triple of indices (i, j, k) such that <br> i &lt; j &lt; k and nums[i] &lt; nums[j] &lt; nums[k]. If no such indices exists, return false.</p>
+          <p class="id">Question ID : 2206231007 </p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">Arrays</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/increasing-triplet-subsequence/">https://leetcode.com/problems/increasing-triplet-subsequence/</a> </p>
+          <div style="font-size:13px;">Hint : min1, min2 , [ like find second minimum ]</div>
+    </section>
+
+    <section class="all medium bst dp">
+          <h5>Unique Binary Search Trees</h5>
+          <p class="question">Given an integer n, return the number of structurally unique BST's (binary search trees) which has exactly n nodes of unique values from 1 to n.</p>
+          <p class="id">Question ID : 2206231039 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">BST</div>
+              <div class="cat">DP</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/unique-binary-search-trees/">https://leetcode.com/problems/unique-binary-search-trees/</a> </p>
+          <div style="font-size:13px;">Hint : nTrees(i-1, dp) * nTrees(n-i, dp) </div>
+    </section>
+
+    <section class="all medium bst">
+          <h5>Convert Sorted Array to Binary Search Tree</h5>
+          <p class="question">Given an integer array nums where the elements are sorted in ascending order, convert it to a height-balanced binary search tree.</p>
+          <p class="id">Question ID : 2206231056 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">BST</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/">https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/</a> </p>
+          <div style="font-size:13px;">Hint : (l,r) => if (l > r) return NULL => [ root=(m), left = (l,m-1), right = (m+1, r)]</div>
+    </section>
+
+    <section class="all medium bst">
+          <h5>Unique Binary Search Trees II</h5>
+          <p class="question">Given an integer n, return all the structurally unique BST's (binary search trees), which has exactly n nodes of unique values from 1 to n</p>
+          <p class="id">Question ID : 2206231427 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">BST</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/unique-binary-search-trees-ii/">https://leetcode.com/problems/unique-binary-search-trees-ii/</a> </p>
+          <div style="font-size:13px;">Hint : left,right + [ left * right all combinations using for(for(loop)) ]</div>
+    </section>
+
+    <section class="all bst medium">
+          <h5>Sum Root to Leaf Numbers</h5>
+          <p class="question">You are given the root of a binary tree containing digits from 0 to 9 only. Each root-to-leaf path in the tree represents a number. For example, the root-to-leaf path 1 -> 2 -> 3 represents the number 123.</p>
+          <p class="id">Question ID : 2206231431 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Trees</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/sum-root-to-leaf-numbers/">https://leetcode.com/problems/sum-root-to-leaf-numbers/</a> </p>
+          <div style="font-size:13px;">Hint : path = path*10 + root, stop at leaf nodes, dont consider NULL nodes</div>
+    </section>
+
+    <section class="all medium trees">
+          <h5>Sum of Left Leaves</h5>
+          <p class="question">Given the root of a binary tree, return the sum of all left leaves. A leaf is a node with no children. A left leaf is a leaf that is the left child of another node.</p>
+          <p class="id">Question ID : 2206231454 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Trees</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/sum-of-left-leaves/">https://leetcode.com/problems/sum-of-left-leaves/</a> </p>
+          <div style="font-size:13px;">Hint : traversal( ans, root, bool fromLeft )</div>
+    </section>
+    
+    <section class="all easy trees">
+          <h5>N-ary Tree Level Order Traversal</h5>
+          <p class="question">Given an n-ary tree, return the level order traversal of its nodes' values.</p>
+          <p class="id">Question ID : 2206231504 </p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">Trees</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/n-ary-tree-level-order-traversal/">https://leetcode.com/problems/n-ary-tree-level-order-traversal/</a> </p>
+          <div style="font-size:13px;">Hint : for(auto it: f->children) push</div>
+    </section>
+
+    <section class="all easy trees">
+          <h5>Binary Tree Paths</h5>
+          <p class="question">Given the root of a binary tree, return all root-to-leaf paths in any order.</p>
+          <p class="id">Question ID : 2206231527 </p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">Trees</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/binary-tree-paths/">https://leetcode.com/problems/binary-tree-paths/</a> </p>
+          <div style="font-size:13px;">Hint : do any traversal recursive</div>
+    </section>
+
+    <section class="all easy trees">
+          <h5>Find Bottom Left Tree Value</h5>
+          <p class="question">Given the root of a binary tree, return the leftmost value in the last row of the tree.</p>
+          <p class="id">Question ID : 2206231546 </p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">Trees</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/find-bottom-left-tree-value/">https://leetcode.com/problems/find-bottom-left-tree-value/</a> </p>
+          <div style="font-size:13px;">Hint : level order traversal</div>
+    </section>
+
+    <section class="all easy trees">
+          <h5>Find Largest Value in Each Tree Row</h5>
+          <p class="question">Given the root of a binary tree, return an array of the largest value in each row of the tree (0-indexed).</p>
+          <p class="id">Question ID : 2206231750 </p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">Trees</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/find-largest-value-in-each-tree-row/">https://leetcode.com/problems/find-largest-value-in-each-tree-row/</a> </p>
+          <div style="font-size:13px;">Hint : level order traversal</div>
     </section>
     
     <div class="select">
