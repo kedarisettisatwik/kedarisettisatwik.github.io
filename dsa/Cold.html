@@ -3893,6 +3893,104 @@
           </div>
           <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/n-ary-tree-postorder-traversal/">https://leetcode.com/problems/n-ary-tree-postorder-traversal/</a> </p>
     </section>
+
+    <section class="all trees easy">
+          <h5>Average of Levels in Binary Tree</h5>
+          <p class="question">Given the root of a binary tree, return the average value of the nodes on each level in the form of an array.</p>
+          <p class="id">Question ID : 2306231359 </p>
+          <div class="keys">
+              <div class="cat">Trees</div>
+              <div class="cat">Easy</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/average-of-levels-in-binary-tree/">https://leetcode.com/problems/average-of-levels-in-binary-tree/</a> </p>
+          <div style="font-size:13px;">Hint : level order traversal</div>
+    </section>
+
+    <section class="all medium trees">
+          <h5>Maximum Binary Tree</h5>
+          <p class="question">You are given an integer array nums with no duplicates. A maximum binary tree can be built recursively from nums using the following algorithm: <br>Create a root node whose value is the maximum value in nums.</p>
+          <p class="id">Question ID : 2306231500 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Trees</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/maximum-binary-tree/">https://leetcode.com/problems/maximum-binary-tree/</a> </p>
+          <div style="font-size:13px;">Hint : root = max, (left = [l,maxInd-1]), (right = [maxInd+1,r])</div>
+    </section>
+    
+    <section class="all bst easy">
+          <h5>Minimum Absolute Difference in BST</h5>
+          <p class="question">Given the root of a Binary Search Tree (BST), return the minimum absolute difference between the values of any two different nodes in the tree.</p>
+          <p class="id">Question ID : 2306231513 </p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">BST</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/minimum-absolute-difference-in-bst/">https://leetcode.com/problems/minimum-absolute-difference-in-bst/</a> </p>
+          <div style="font-size:13px;">Hint : inOrder, min(vec[i]-vec[i-1])</div>
+    </section>
+    
+    <section class="all easy trees">
+          <h5>Second Minimum Node In a Binary Tree</h5>
+          <p class="question">Given a non-empty special binary tree consisting of nodes with the non-negative value, where each node in this tree has exactly two or zero sub-node. If the node has two sub-nodes, then this node's value is the smaller value among its two sub-nodes. More formally, the property root.val = min(root.left.val, root.right.val) always holds. Given such a binary tree, you need to output the second minimum value in the set made of all the nodes' value in the whole tree. <br> If no such second minimum value exists, output -1 instead.</p>
+          <p class="id">Question ID : 2306231703 </p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">Trees</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/second-minimum-node-in-a-binary-tree/">https://leetcode.com/problems/second-minimum-node-in-a-binary-tree/</a> </p>
+          <div style="font-size:13px;">Hint : min1 = INT_MAX, min2 = -1 </div>
+    </section>
+    
+    <section class="all trees medium">
+          <h5>Binary Tree Pruning</h5>
+          <p class="question">Given the root of a binary tree, return the same tree where every subtree (of the given tree) not containing a 1 has been removed.</p>
+          <p class="id">Question ID : 2306231746 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Trees</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/binary-tree-pruning/">https://leetcode.com/problems/binary-tree-pruning/</a> </p>
+          <div style="font-size:13px;">Hint : l == false = null, r == false = null, [l or r true ]return true</div>
+    </section>
+    
+    <section class="all medium trees">
+          <h5>Leaf-Similar Trees</h5>
+          <p class="question">Consider all the leaves of a binary tree, from left to right order, the values of those leaves form a leaf value sequence.</p>
+          <p class="id">Question ID : 2306231808 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Trees</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/leaf-similar-trees/">https://leetcode.com/problems/leaf-similar-trees/</a> </p>
+          <div style="font-size:13px;">Hint : addLeaf to vector, compare </div>
+    </section>
+    
+    <section class="all hard revisit trees">
+          <h5>Subtree of Another Tree</h5>
+          <p class="question">Given the roots of two binary trees root and subRoot, return true if there is a subtree of root with the same structure and node values of subRoot and false otherwise.</p>
+          <p class="id">Question ID : 2306231944 </p>
+          <div class="keys">
+              <div class="cat">Hard</div>
+              <div class="cat">Trees</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href=""></a> </p>
+          <div style="font-size:13px;">Hint : [root != subRoot] check [root->left,subRoot] or [root->right, subTree]  </div>
+    </section>
+         
+    <section class="all trees hard revisit">
+          <h5>Longest Univalue Path</h5>
+          <p class="question">Given the root of a binary tree, return the length of the longest path, where each node in the path has the same value. This path may or may not pass through the root. <br> The length of the path between two nodes is represented by the number of edges between them.</p>
+          <p class="id">Question ID : 2306232157 </p>
+          <div class="keys">
+              <div class="cat">Hard</div>
+              <div class="cat">ReVisit</div>
+              <div class="cat">Trees</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/longest-univalue-path/">https://leetcode.com/problems/longest-univalue-path/</a> </p>
+          <div style="font-size:13px;">Hint : maxC = max(maxC,1+l+r), return 1 + max(ll,rr)</div>
+    </section>
     
     <div class="select">
           <p>Hardness : </p>
@@ -4000,7 +4098,7 @@
     <section class="all">
           <h5></h5>
           <p class="question"></p>
-          <p class="id">Question ID : 230623 </p>
+          <p class="id">Question ID : 240623 </p>
           <div class="keys">
               <div class="cat"> </div>
           </div>
