@@ -4036,6 +4036,55 @@
           <div style="font-size:13px;">Hint : root == left == right -> recursive</div>
     </section>
     
+    <section class="all easy trees">
+          <h5>Cousins in Binary Tree</h5>
+          <p class="question">Given the root of a binary tree with unique values and the values of two different nodes of the tree x and y, return true if the nodes corresponding to the values x and y in the tree are cousins, or false otherwise.<br>Two nodes of a binary tree are cousins if they have the same depth with different parents.</p>
+          <p class="id">Question ID : 2406231215 </p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">Trees</div>
+          </div>
+         <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/cousins-in-binary-tree/">https://leetcode.com/problems/cousins-in-binary-tree/</a> </p>
+          <div style="font-size:13px;">Hint : levelOrder Traversal</div>
+    </section>
+
+    <section class="all hard revisit trees">
+          <h5>Construct Binary Tree from Pre + Post Traversal</h5>
+          <p class="question">Given two integer arrays, preorder and postorder where preorder is the preorder traversal of a binary tree of distinct values and postorder is the postorder traversal of the same tree, reconstruct and return the binary tree.<br>If there exist multiple answers, you can return any of them.</p>
+          <p class="id">Question ID : 2406231252 </p>
+          <div class="keys">
+              <div class="cat">Hard</div>
+              <div class="cat">ReVisit</div>
+              <div class="cat">Trees</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/">https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/</a> </p>
+          <div style="font-size:13px;">Hint :root = preOrder[l],<br>ii = index of (postOrder[l] - 1) in preOrder <br>[l + 1, ii-1] [ii,r]</div>
+    </section>
+
+    <section class="all medium trees">
+          <h5>Smallest Subtree with all the Deepest Nodes</h5>
+          <p class="question">Given the root of a binary tree, the depth of each node is the shortest distance to the root<br>Return the smallest subtree such that it contains all the deepest nodes in the original tree.</p>
+          <p class="id">Question ID : 2406231526 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Trees</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/">https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/</a> </p>
+          <div style="font-size:13px;">Hint : [height of tree], [l == r return (1 + l),root],<br>[ return (1+max(l,r)),maxRoot(l,r)] </div>
+    </section>
+    
+    <section class="all easy trees">
+          <h5>Smallest String Starting From Leaf</h5>
+          <p class="question">You are given the root of a binary tree where each node has a value in the range [0, 25] representing the letters 'a' to 'z'.<br>Return the lexicographically smallest string that starts at a leaf of this tree and ends at the root.</p>
+          <p class="id">Question ID : 2406231552 </p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">Trees</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/smallest-string-starting-from-leaf/">https://leetcode.com/problems/smallest-string-starting-from-leaf/</a> </p>
+          <div style="font-size:13px;">Hint : vector[string], sort </div>
+    </section>
+    
     <div class="select">
           <p>Hardness : </p>
           <label onclick="level(0)">ALL</label>
