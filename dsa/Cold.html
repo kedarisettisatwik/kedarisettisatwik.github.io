@@ -3,6 +3,7 @@
 <head>
    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="logo.png" type="image">
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
@@ -3722,6 +3723,7 @@
           <div class="keys">
               <div class="cat">Medium</div>
               <div class="cat">BST</div>
+              <div class="cat">ReVisit</div>
               <div class="cat">DP</div>
           </div>
           <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/unique-binary-search-trees/">https://leetcode.com/problems/unique-binary-search-trees/</a> </p>
@@ -3740,12 +3742,13 @@
           <div style="font-size:13px;">Hint : (l,r) => if (l > r) return NULL => [ root=(m), left = (l,m-1), right = (m+1, r)]</div>
     </section>
 
-    <section class="all medium bst">
+    <section class="all medium bst revisit">
           <h5>Unique Binary Search Trees II</h5>
           <p class="question">Given an integer n, return all the structurally unique BST's (binary search trees), which has exactly n nodes of unique values from 1 to n</p>
           <p class="id">Question ID : 2206231427 </p>
           <div class="keys">
               <div class="cat">Medium</div>
+              <div class="cat">ReVisit</div>
               <div class="cat">BST</div>
           </div>
           <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/unique-binary-search-trees-ii/">https://leetcode.com/problems/unique-binary-search-trees-ii/</a> </p>
@@ -3976,7 +3979,7 @@
               <div class="cat">ReVisit</div>
           </div>
           <p class="solve"><span>Problem : </span><a target="_blank" href=""></a> </p>
-          <div style="font-size:13px;">Hint : [root != subRoot] check [root->left,subRoot] or [root->right, subTree]  </div>
+          <div style="font-size:13px;">Hint : [root == subRoot -> checkIdentical] <br> [root != subRoot] check [root->left,subRoot] or<br> [root->right, subTree]  </div>
     </section>
          
     <section class="all trees hard revisit">
@@ -3990,6 +3993,32 @@
           </div>
           <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/longest-univalue-path/">https://leetcode.com/problems/longest-univalue-path/</a> </p>
           <div style="font-size:13px;">Hint : maxC = max(maxC,1+l+r), return 1 + max(ll,rr)</div>
+    </section>
+
+    <section class="all medium bst revisit">
+          <h5>Increasing Order Search Tree</h5>
+          <p class="question">Given the root of a binary search tree, rearrange the tree in in-order so that the leftmost node in the tree is now the root of the tree, and every node has no left child and only one right child.</p>
+          <p class="id">Question ID : 2406230816 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">ReVisit</div>
+              <div class="cat">BST</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/increasing-order-search-tree">https://leetcode.com/problems/increasing-order-search-tree</a> </p>
+          <div style="font-size:13px;">Hint : [like flatten tree], dummyRoot = prev,[ inorder travel ] => prev->right = root,prev = root </div>
+    </section>
+
+    <section class="all medium trees">
+          <h5>All Possible Full Binary Trees</h5>
+          <p class="question">Given an integer n, return a list of all possible full binary trees with n nodes. Each node of each tree in the answer must have Node.val == 0. <br>Each element of the answer is the root node of one possible tree. You may return the final list of trees in any order.<br>A full binary tree is a binary tree where each node has exactly 0 or 2 children.</p>
+          <p class="id">Question ID : 2406230847 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Trees</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href=""></a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href=""></a> </p>
+          <div style="font-size:13px;">Hint : [every subTree will have odd no of nodes] <br> (l,r) => if ((i - l)%2 != 0 && (r-i)%2 != 0)[go for subTree mutiple combinations] </div>
     </section>
     
     <div class="select">
