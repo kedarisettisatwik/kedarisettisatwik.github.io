@@ -5939,6 +5939,91 @@ void eventualSafeNodes(int v, vector<int> adj[]) {
     printVector(safeNodes);
 }
 
+// ? 2706231113
+void topoDFS(int n,int vis[],vector<int>adj[],vector<int>&ans){
+    vis[n] = 1;
+    for (auto adjNode : adj[n]){
+        if (vis[adjNode] == 0){
+            topoDFS(adjNode,vis,adj,ans);
+        }
+    }
+    ans.push_back(n);
+}
+void topoSortDFS(int v, vector<int> adj[]) {
+    vector<int>ans;
+    int vis[v] = {0};
+    for (int i = 0; i < v;i++){
+        if (vis[i] == 0){
+            topoDFS(i,vis,adj,ans);
+        }
+    }
+    reverse(ans.begin(),ans.end());
+    printVector(ans);
+}
+
+// ? 2706231133
+void topoSortKhans(int v, vector<int> adj[]) {
+    vector<int>ans;
+    int degree[v] = {0};
+    
+    for (int i = 0;i < v;i++){
+        for(auto it : adj[i]){
+            degree[it]++;
+        }
+    }
+    
+    queue<int>q;
+    // bfs from degree = 0
+    for (int i = 0;i < v;i++){
+        if (degree[i] == 0){
+            q.push(i);
+        }
+    }
+    
+    while (q.empty() == false){
+        int f = q.front();
+        q.pop();
+        ans.push_back(f);
+        for (auto adjNode : adj[f]){
+            degree[adjNode]--;
+            if (degree[adjNode] == 0){
+                q.push(adjNode);
+            }
+        }
+    }
+    
+    printVector(ans);
+}
+
+// ? 2706231151
+void isDirectedGraphCyclicKhans(int v, vector<int> adj[]) {
+    int cnt = 0;
+    int degree[v] = {0};
+    for (int i = 0; i < v;i++){
+        for (auto it : adj[i]){
+            degree[it]++;
+        }
+    }
+    queue<int>q;
+    for (int i = 0;i<v;i++){
+        if (degree[i] == 0) q.push(i);    
+    }
+    while (q.empty() == false){
+        int f = q.front();
+        q.pop();
+        cnt++;
+        for (auto adjNode : adj[f]){
+            degree[adjNode]--;
+            if (degree[adjNode] == 0) q.push(adjNode);
+        }
+    }
+    if (cnt == v){
+        cout << "no cycle" << endl;
+        return ;
+    }
+    cout << "cycle" << endl;
+}
+
 int main(){
     cout << endl;
 
@@ -6955,7 +7040,22 @@ int main(){
     // ? 2606232028
     // vector<int>adj[10] = {{1},{2},{3,6},{4},{5},{},{4},{1,9},{7},{8}};
     // eventualSafeNodes(10,adj);
-    
+
+    // ? 2706231113
+    // vector<int>adj[6] = {{},{},{3},{1},{0,1},{0,2}};
+    // topoSortDFS(6,adj);
+
+    // ? 2706231133
+    // vector<int>adj[6] = {{},{},{3},{1},{0,1},{0,2}};
+    // topoSortKhans(6,adj);
+
+    // ? 2706231151
+    // vector<int>adj[10] = {{1},{2},{3,6},{4},{5},{},{4},{1,9},{7},{8}};
+    // isDirectedGraphCyclicKhans(10,adj);
+
     cout << endl;
     return 0;
 }
+
+
+

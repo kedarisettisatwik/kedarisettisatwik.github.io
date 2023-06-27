@@ -493,6 +493,12 @@
                 transform: none;
             }
         }
+        
+        pre code.hljs{
+            background:none;
+            font-size:12px;
+            padding:none;
+        }
     </style>
     
     </head>
@@ -4357,6 +4363,71 @@
           <div style="font-size:13px;">Hint : nodes, which are not involved in cycle and not connected in cycle </div>
     </section>
     
+    <section class="all medium revisit graphs">
+          <h5>Topological sort DFS</h5>
+          <p class="question">Given a Directed Acyclic Graph (DAG) with V vertices and E edges, Find any Topological Sorting of that Graph. linear ordering i.e if there is a edge btw u -> v , v appears first.</p>
+          <p class="id">Question ID : 2706231113 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">ReVisit</div>
+              <div class="cat">Graphs</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/topological-sort/1">https://practice.geeksforgeeks.org/problems/topological-sort/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/5lZ0iJMrUMk">https://youtu.be/5lZ0iJMrUMk</a> </p>
+          <div style="font-size:13px;">Hint : first dfs completed , first in topological sort</div>
+    </section>
+    
+    <section class="all medium revisit graphs">
+          <h5>Topo sort | Khan's Algo </h5>
+          <p class="question">Given a Directed Acyclic Graph (DAG) with V vertices and E edges, Find any Topological Sorting of that Graph. linear ordering i.e if there is a edge btw u -> v , v appears first.</p>
+          <p class="id">Question ID : 2706231133 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">ReVisit</div>
+              <div class="cat">Graphs</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/topological-sort/1">https://practice.geeksforgeeks.org/problems/topological-sort/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/73sneFXuTEg">https://youtu.be/73sneFXuTEg</a> </p>
+          <div style="font-size:13px;">Hint : degree = no of incoming edges, [bfs start with 0 degree],<br> [adj of top of q subtract degree if 0 push],<br> ans = pop elements </div>
+    </section>
+    
+    <section class="all medium graphs">
+          <h5>Detect cycle in a directed graph</h5>
+          <p class="question">Given a Directed Graph with V vertices (Numbered from 0 to V-1) and E edges, check whether it contains any cycle or not.</p>
+          <p class="id">Question ID : 2706231151 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Graphs</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1">https://practice.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/iTBaI90lpDQ">https://youtu.be/iTBaI90lpDQ</a> </p>
+          <div style="font-size:13px;">Hint : cnt[topo sort == v -> no cycle]</div>
+    </section>
+    
+    <section class="all">
+          <h5></h5>
+          <p class="question"></p>
+          <p class="id">Question ID : 270623 </p>
+          <div class="keys">
+              <div class="cat"> </div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href=""></a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href=""></a> </p>
+          <div style="font-size:13px;">Hint : </div>
+    </section>
+    
+    <section class="all">
+          <h5></h5>
+          <p class="question"></p>
+          <p class="id">Question ID : 270623 </p>
+          <div class="keys">
+              <div class="cat"> </div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href=""></a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href=""></a> </p>
+          <div style="font-size:13px;">Hint : </div>
+    </section>
+    
     <div class="select">
           <p>Hardness : </p>
           <label onclick="level(0)">ALL</label>
@@ -4381,16 +4452,17 @@
           <span onclick="filterChapter(13)">window</span>
           <span onclick="filterChapter(14)">Grid</span>
           <p style="margin-top:20px;">solution : </p>
-          <span><a target="_blank" href="https://drive.google.com/file/d/1sBHIi91iT9MbpLNj8LVLPn9AyO13wMUG/view?usp=sharing" style="color: white">OOPS.c++</a></span>
-          <span><a target="_blank" href="https://drive.google.com/file/d/1yxOOn2hrE5qiY8ghw_cG8WMlKEw-nvhC/view?usp=sharing" style="color: white">DSA.c++</a></span>
+          <span><a target="_blank" href="https://github.com/kedarisettisatwik/kedarisettisatwik.github.io/blob/master/dsa/syntax.cpp" style="color: white">SYNTAX.c++</a></span>
+          <span><a target="_blank" href="https://github.com/kedarisettisatwik/kedarisettisatwik.github.io/blob/master/dsa/oops.cpp" style="color: white">OOPS.c++</a></span>
+          <span><a target="_blank" href="https://github.com/kedarisettisatwik/kedarisettisatwik.github.io/blob/master/dsa/cold.cpp" style="color: white">DSA.c++</a></span>
           <span onclick="print_page()">COLD.c++</span>
       </div>
       <div class="menu flex" onclick="chapter()">
          <i class="fa-solid fa-house" style="margin-right:10px; opacity:0.8;font-size:14px;"></i>
           <div id="chapter" title="Topic">ALL</div>
           <i class='count' style="opacity:0.8;font-size:12px;font-style: normal;"></i>
-      </div>
-      
+       </div>
+   
     <script>
         
         var hardness = 0;
@@ -4473,7 +4545,6 @@
     </section>
 
 question id = date + month + year + time(24hrs format)
-
 
 -->
 
