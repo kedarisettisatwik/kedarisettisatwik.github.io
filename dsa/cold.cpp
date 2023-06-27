@@ -6024,6 +6024,122 @@ void isDirectedGraphCyclicKhans(int v, vector<int> adj[]) {
     cout << "cycle" << endl;
 }
 
+// ? 2706231356
+void courseSchedule1(int v,vector<vector<int>> preRequisites) {
+    // converting preRequisites to graph
+    // pre = {{1,0},{2,0}} => 0 have edges directed to 1,2
+    // topoSort , -> degree[0] = 0, degree[1] = 1, degree[2] = 1;
+    
+    int degree[v] = {0};
+    vector<int>ans;
+    vector<int>adj[v] = {};
+    
+    for (auto edge : preRequisites){
+        // edge from edge[1] to edge[0]
+        degree[edge[0]]++;
+        adj[edge[1]].push_back(edge[0]);
+    }
+    
+    queue<int>q;
+    for (int i = 0; i < v;i++){
+        if (degree[i] == 0) q.push(i);
+    }
+    while (q.empty() == false){
+        int f = q.front();
+        q.pop();
+        ans.push_back(f);
+        for (auto adjNode : adj[f]){
+            degree[adjNode]--;
+            if (degree[adjNode] == 0) q.push(adjNode);
+        }
+    }
+    
+    if (ans.size() == v){
+        printVector(ans); 
+        return ; // no cycle
+    }
+    cout << "tasks cant be finished" << endl;
+}
+
+// ? 2706231411
+void reverseEdgesSafeNodes(int v,vector<int>adj[],vector<int>adjReverse[]){
+    for (int i = 0;i < v;i++){
+        for (auto it : adj[i]){
+            // actually edge from i to it
+            adjReverse[it].push_back(i);
+        }
+    }
+}
+void eventualSafeNodesTopoSort(int v, vector<int> adj[]) {
+    
+    vector<int>adjReverse[v];
+    reverseEdgesSafeNodes(v,adj,adjReverse);    // reverse edges
+    
+    vector<int>ans; // topo sort
+    int degree[v] = {0};
+    for (int i = 0;i < v;i++){
+        for(auto it : adjReverse[i]){
+            degree[it]++;
+        }
+    }
+    
+    queue<int>q;
+    for (int i = 0;i < v;i++){
+        if (degree[i] == 0){
+            q.push(i);
+        }
+    }
+    while (q.empty() == false){
+        int f = q.front();
+        q.pop();
+        ans.push_back(f);
+        for (auto adjNode : adjReverse[f]){
+            degree[adjNode]--;
+            if (degree[adjNode] == 0){
+                q.push(adjNode);
+            }
+        }
+    }
+    sort(ans.begin(),ans.end());
+    printVector(ans);
+}
+
+// ? 2706231500
+void alienOrder(string dict[], int n, int k) {
+    
+    string order = "";
+    
+    vector<int>adj[k] = {}; // constructing a graph of size k
+    int degree[k] = {0};
+    
+    for (int i = 0;i < n-1;i++){
+        int x = min(dict[i].length(),dict[i+1].length());
+        for(int j = 0; j < x;j++){
+            if (dict[i][j] != dict[i+1][j]){
+                // dict[i][j] appears before dict[i+1][j]
+                adj[dict[i][j] - 'a'].push_back(dict[i+1][j] - 'a');
+                degree[dict[i+1][j]-'a']++;
+                break;
+            }
+        }
+    }
+    
+    queue<int>q;
+    for(int i = 0;i < k;i++){
+        if (degree[i] == 0) q.push(i);
+    }
+    while (q.empty() == false){
+        int f = q.front();
+        q.pop();
+        order = order + char(f + 'a');
+        for (auto adjNode : adj[f]){
+            degree[adjNode]--;
+            if (degree[adjNode] == 0) q.push(adjNode);
+        }
+    }
+    cout << "alien order : " << order << endl;
+}
+
 int main(){
     cout << endl;
 
@@ -7052,6 +7168,17 @@ int main(){
     // ? 2706231151
     // vector<int>adj[10] = {{1},{2},{3,6},{4},{5},{},{4},{1,9},{7},{8}};
     // isDirectedGraphCyclicKhans(10,adj);
+
+    // ? 2706231356
+    // courseSchedule1(4,{{1,0},{2,0},{3,1},{3,2}});
+
+    // ? 2706231411
+    // vector<int>adj[10] = {{1},{2},{3,6},{4},{5},{},{4},{1,9},{7},{8}};
+    // eventualSafeNodesTopoSort(10,adj);
+
+    // ? 2706231500
+    // string dic[5] = {"baa","abcd","abca","cab","cad"}; 
+    // alienOrder(dic,5,4);
 
     cout << endl;
     return 0;
