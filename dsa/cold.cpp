@@ -6140,6 +6140,71 @@ void alienOrder(string dict[], int n, int k) {
     cout << "alien order : " << order << endl;
 }
 
+// ? 2706231621
+void shortestPathDAG(int v,int src, vector<vector<int>>edges){
+    vector<int>shortPath(v,1e9);
+    shortPath[src] = 0;
+    
+    vector<pair<int,int>>adj[v]; // adj[i] = edges from i to adj[i].first with weight adj[i].second;
+    int degree[v] = {0};
+    for (auto edge : edges){
+        adj[edge[0]].push_back({edge[1],edge[2]});
+        degree[edge[1]]++;
+    }
+    vector<int>topo;
+    queue<int>q;
+    for (int i = 0;i < v;i++){
+        if (degree[i] == 0) q.push(i);
+    }
+    while (q.empty() == false){
+        int f = q.front();
+        q.pop();
+        topo.push_back(f);
+        for (auto adjNode: adj[f]){
+            degree[adjNode.first]--;
+            if (degree[adjNode.first] == 0) q.push(adjNode.first);
+        }
+    }
+    for (int i = 0;i < v;i++){
+        for (auto adjNode : adj[i]){
+            if ((shortPath[i] + adjNode.second)<= shortPath[adjNode.first]){
+                shortPath[adjNode.first] = (shortPath[i] + adjNode.second);
+            }
+        }
+    }
+    for (int i = 0;i < v;i++){
+        if (shortPath[i] == 1e9) shortPath[i] = -1;
+    } 
+    printVector(shortPath);
+}
+
+// ? 2706231712
+void shortestPathUnitWeightGraph(vector<vector<int>>edges, int v, int src){
+    vector<int>shortPath(v,-1);
+    int vis[v] = {0};
+    vector<int>adj[v];
+    for (auto edge : edges){
+        adj[edge[0]].push_back(edge[1]);
+        adj[edge[1]].push_back(edge[0]);
+    }
+    queue<pair<int,int>>q; // node , dis
+    vis[src] = 1;
+    q.push({src,0});
+    while (q.empty() == false){
+        int f = q.front().first;
+        int dis = q.front().second;
+        q.pop();
+        shortPath[f] = dis;
+        for (auto adjNode : adj[f]){
+            if (vis[adjNode] == 0){
+                vis[adjNode] = 1;
+                q.push({adjNode,dis+1});
+            }
+        }
+    }
+    printVector(shortPath);
+}
+
 int main(){
     cout << endl;
 
@@ -7179,6 +7244,13 @@ int main(){
     // ? 2706231500
     // string dic[5] = {"baa","abcd","abca","cab","cad"}; 
     // alienOrder(dic,5,4);
+
+    // ? 2706231621
+    // shortestPathDAG(5,0,{{0,1,2},{2,1,2},{1,3,6},{1,4,8},{2,4,3}});
+    // shortestPathDAG(5,1,{{0,1,2},{1,2,2},{1,3,6},{1,4,8},{4,2,3}});
+
+    // ? 2706231712
+    // shortestPathUnitWeightGraph({{0,1},{0,3},{1,3},{1,2},{2,6},{3,4},{4,5},{5,6},{6,7},{7,8},{6,8}},9,4);
 
     cout << endl;
     return 0;
