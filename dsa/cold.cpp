@@ -6141,34 +6141,37 @@ void alienOrder(string dict[], int n, int k) {
 }
 
 // ? 2706231621
+void topoDAG(int n,stack<int>&topo,int vis[],vector<pair<int,int>>adj[]){
+    vis[n] = 1;
+    for (auto adjNode : adj[n]){
+        if (vis[adjNode.first] == 0){
+            topoDAG(adjNode.first,topo,vis,adj);
+        }
+    }
+    topo.push(n);
+}
 void shortestPathDAG(int v,int src, vector<vector<int>>edges){
     vector<int>shortPath(v,1e9);
     shortPath[src] = 0;
     
+    int vis[v] = {0};
     vector<pair<int,int>>adj[v]; // adj[i] = edges from i to adj[i].first with weight adj[i].second;
-    int degree[v] = {0};
     for (auto edge : edges){
         adj[edge[0]].push_back({edge[1],edge[2]});
-        degree[edge[1]]++;
     }
-    vector<int>topo;
-    queue<int>q;
+    stack<int>topo;
     for (int i = 0;i < v;i++){
-        if (degree[i] == 0) q.push(i);
-    }
-    while (q.empty() == false){
-        int f = q.front();
-        q.pop();
-        topo.push_back(f);
-        for (auto adjNode: adj[f]){
-            degree[adjNode.first]--;
-            if (degree[adjNode.first] == 0) q.push(adjNode.first);
+        if (vis[i] == 0){
+            topoDAG(i,topo,vis,adj);
         }
     }
-    for (int i = 0;i < v;i++){
-        for (auto adjNode : adj[i]){
-            if ((shortPath[i] + adjNode.second)<= shortPath[adjNode.first]){
-                shortPath[adjNode.first] = (shortPath[i] + adjNode.second);
+    while (topo.empty() == false){
+        int f = topo.top();
+        cout << f << " ";
+        topo.pop();
+        for (auto adjNode : adj[f]){
+            if (shortPath[adjNode.first] > (shortPath[f] + adjNode.second)){
+                shortPath[adjNode.first] = (shortPath[f] + adjNode.second);
             }
         }
     }
@@ -6203,6 +6206,335 @@ void shortestPathUnitWeightGraph(vector<vector<int>>edges, int v, int src){
         }
     }
     printVector(shortPath);
+}
+
+// ? 2806230812
+int wordLadderLength1(string startWord, string targetWord, vector<string>wordList) {
+    int n = startWord.length();
+    unordered_set<string>dict(wordList.begin(),wordList.end());
+    if (dict.find(targetWord) == dict.end()) return 0;
+    
+    queue<pair<string,int>>q;
+    q.push({startWord,1});
+    dict.erase(startWord);
+    
+    while (q.empty() == false){
+        string str = q.front().first;
+        int cnt = q.front().second;
+        q.pop();
+        
+        if (str == targetWord) return cnt;
+        
+        for (int i = 0;i < n;i++){
+            char original = str[i];
+            for (char j = 'a';j <= 'z';j++){
+                str[i] = j;
+                if (dict.find(str) != dict.end()){
+                    q.push({str,cnt+1});
+                    dict.erase(str);
+                }
+            }
+            str[i] = original;
+        }
+        
+    }
+    
+    return 0;
+}
+
+// ? 2806231026
+void wordLadderLength2(string beginWord, string endWord, vector<string>wordList) {
+    vector<vector<string>>ans;
+    unordered_set<string>dict(wordList.begin(),wordList.end());
+    if (dict.find(endWord) == dict.end()) return ;
+    
+    queue<vector<string>>q;
+    q.push({beginWord});
+    
+    // A vector defined to store the words being currently used
+    // on a level during BFS.
+    vector<string> usedOnLevel;
+    usedOnLevel.push_back(beginWord);
+    
+    int level = 0;
+
+    while (q.empty() == false){
+        vector<string>vec = q.front();
+        q.pop();
+        
+        // Now, erase all words that have been
+        // used in the previous levels to transform
+        if (vec.size() > level){
+            level++;
+            for (auto it : usedOnLevel){
+                dict.erase(it);
+            }
+        }
+        
+        string word = vec.back();
+
+        // store the answers if the end word matches with targetWord.
+        if (word == endWord){
+            // the first sequence where we reached end
+            if (ans.size() == 0){
+                ans.push_back(vec);
+            }
+            else if (ans[0].size() == vec.size()){ // to find minTransformations
+                ans.push_back(vec);
+            }
+        }
+
+        for (int i = 0; i < word.size(); i++){   
+            // Now, replace each character of ‘word’ with char
+            // from a-z then check if ‘word’ exists in wordList.
+            char original = word[i];
+            for (char c = 'a'; c <= 'z'; c++)
+            {
+                word[i] = c;
+                if (dict.count(word) > 0){ 
+                    // Check if the word is present in the wordList and
+                    // push the word along with the new sequence in the queue.
+                    vec.push_back(word);
+                    q.push(vec);
+                    // mark as visited on the level
+                    usedOnLevel.push_back(word);
+                    vec.pop_back();
+                }
+            }
+            word[i] = original;
+        }
+    }
+    
+    for (auto path : ans){
+        for (auto w : path) cout << w << " -> ";
+        cout << endl;
+    }
+}
+
+// ? 2806231115
+void dijkstra(int v, vector<vector<int>> adj[], int src){
+    vector<int>dist(v,1e9);
+    dist[src] = 0;
+    
+    priority_queue<pair<int, int>,vector<pair<int,int>>,greater<pair<int, int>>>pq;
+    pq.push({0,src}); // dis, node  to reach src from src = 0; 
+    
+    while (pq.empty() == false){
+        int d = pq.top().first;
+        int f = pq.top().second;
+        pq.pop();
+        for (auto adjNode : adj[f]){
+            if ((d + adjNode[1]) < dist[adjNode[0]]){
+                dist[adjNode[0]] = d + adjNode[1];
+                pq.push({dist[adjNode[0]],adjNode[0]});
+            }
+        }
+    }
+    for (int i = 0; i < v;i++){
+        if (dist[i] == 1e9) dist[i] = -1;
+    }
+    printVector(dist);
+}
+
+// ? 2806231428
+void shortestPathDijkstra(int src, int dest, int n, vector<vector<int>>edges) {
+    
+    int parent[n+1] = {-1};
+    parent[src] = src;
+    
+    vector<int>dist(n+1,1e9);
+    dist[src] = 0;
+    
+    vector<vector<int>>adj[n+1];
+    for(auto edge : edges){
+        adj[edge[0]].push_back({edge[1],edge[2]});
+        adj[edge[1]].push_back({edge[0],edge[2]});
+    }
+    
+    priority_queue<pair<int,int>, vector<pair<int,int>> ,greater<pair<int,int>> >pq;
+    pq.push({0,src}); // dis, node to reach src from src = 0;
+    
+    while(pq.empty() == false){
+        int d = pq.top().first;
+        int f = pq.top().second;
+        pq.pop();
+        for (auto edge : adj[f]){
+            if ( (d + edge[1]) < dist[edge[0]] ){
+                dist[edge[0]] = d + edge[1];
+                parent[edge[0]] = f;
+                pq.push({dist[edge[0]],edge[0]});
+            }
+        }
+    }
+    if (dist[dest] == 1e9){
+        cout << "no path found" << endl;
+        return ;
+    }
+    
+    vector<int>path = {}; // from dest -> src
+    int temp = dest;
+    while (true){
+        path.push_back(temp);
+        temp = parent[temp];
+        if (temp == parent[temp]){
+            path.push_back(temp); // reached src
+            break;
+        }
+    }
+    reverse(path.begin(),path.end());
+    printVector(path);
+}
+
+// ? 2806231458
+void shortestPathMaze(vector<vector<int>>grid, pair<int,int>src, pair<int,int>dest){
+    int r = grid.size();
+    int c = grid[0].size();
+    
+    if (grid[dest.first][dest.second] == 0 || grid[src.first][src.second] == 0){ 
+        cout << "no path" << endl;
+        return ;
+    }
+    
+    queue<pair<int,pair<int,int>>>q;
+    q.push({0,src});
+    grid[src.first][src.second] = 0; // mark visited
+    
+    while (q.empty() == false){
+        int d = q.front().first;
+        int x1 = q.front().second.first;
+        int y1 = q.front().second.second;
+        q.pop();
+        if (x1 == dest.first && y1 == dest.second){
+            cout << d << endl;
+            return ;
+        }
+        vector<pair<int,int>>dir = {{0,1},{1,0},{-1,0},{0,-1}}; 
+        for(auto it: dir){
+            int x2 = it.first;
+            int y2 = it.second;
+            if (x1 + x2 >= 0 && x1 + x2 < r && y1 + y2 >= 0 && y1 + y2 < c){
+                if (grid[x1+x2][y1+y2] == 1){
+                    grid[x1+x2][y1+y2] = 0;
+                    q.push({d+1,{x1+x2,y1+y2}});
+                }
+            }
+        }
+    }
+    cout << "no path" << endl;
+}
+
+// ? 2806231518
+void maxProbabilityGraph(int v, vector<vector<int>>edges, vector<double>succProb, int src, int dest) {
+    
+    vector<double>prob(v,0.0);
+    prob[src] = 1.0;
+
+    vector<pair<int,double>>adj[v];
+    for (int i = 0;i < edges.size();i++){
+        adj[edges[i][0]].push_back({edges[i][1],succProb[i]});
+        adj[edges[i][1]].push_back({edges[i][0],succProb[i]});
+    }
+    
+    priority_queue<pair<double,int>>pq;
+    pq.push({1.0,src});
+
+    while (pq.empty() == false){
+        double pro = pq.top().first;
+        int f = pq.top().second;
+        pq.pop();
+        if (f == dest){
+            cout << "max Probablity for " << src << " -> " << dest << " : " << pro << endl;
+            return ; 
+        }
+        for (auto edge : adj[f]){
+            if (pro * edge.second > prob[edge.first]){
+                prob[edge.first] = pro*edge.second;
+                pq.push({prob[edge.first],edge.first});
+            }
+        }
+    }
+    
+    cout << "no path : probabilty : 0 " << endl;
+}
+
+// ? 2806231923
+void MinimumEffortGrid(vector<vector<int>>heights){
+    int r = heights.size();
+    int c = heights[0].size();
+    
+    vector<vector<int>>dist(r,vector<int>(c,1e9));
+    dist[0][0] = 0;
+    
+    priority_queue<pair<int,pair<int,int>>,vector<pair<int,pair<int,int>>>,greater<pair<int,pair<int,int>>>>pq;
+    pq.push({0,{0,0}}); // dis, {coords}        
+    
+    while (pq.empty() == false){
+        int d = pq.top().first;
+        int x1 = pq.top().second.first;
+        int y1 = pq.top().second.second;
+        pq.pop();
+        
+        if (x1 == r-1 && y1 == c-1){
+            cout << "min effort : " << d << endl;
+            return ;
+        }
+        
+        vector<pair<int,int>>dir = {{0,1},{1,0},{-1,0},{0,-1}}; 
+        for(auto it: dir){
+            int x2 = it.first;
+            int y2 = it.second;
+            if (x1 + x2 >= 0 && x1 + x2 < r && y1 + y2 >= 0 && y1 + y2 < c){
+
+                int newDistance = max(abs(heights[x1][y1] - heights[x1+x2][y1+y2]), d);
+                
+                if (newDistance < dist[x1+x2][y1+y2]){
+                    dist[x1+x2][y1+y2] = newDistance;
+                    pq.push({newDistance,{x1+x2,y1+y2}});
+                }
+                
+            }
+        }
+    }
+    cout << "un reachable" << endl;
+}
+
+// ? 2806232002
+void CheapestFlight(int v, vector<vector<int>>flights, int src, int dst, int k)  {
+    int dist[v];
+    for (int i = 0;i < v;i++) dist[i] = 1e9;
+    dist[src] = 0;
+    
+    vector<pair<int,int>>adj[v];
+    for(auto edge : flights){
+        adj[edge[0]].push_back({edge[1],edge[2]});
+    }
+    
+    queue<pair<int,pair<int,int>>>q;
+    q.push({0,{src,0}}); // q = {stops,{node, price}}
+    
+    while (q.empty() == false){
+        int stops = q.front().first;
+        int node = q.front().second.first;
+        int price = q.front().second.second;
+        q.pop();
+        
+        if (stops <= k){
+            for(auto it : adj[node]){
+                int adjNode = it.first;
+                int cost = it.second;
+                if (price + cost < dist[adjNode]){
+                    dist[adjNode] = price + cost;
+                    q.push({stops+1,{adjNode,dist[adjNode]}});
+                }
+            }    
+        }
+    }
+    
+    if (dist[dst] == 1e9){
+        cout << "no path" << endl;
+        return ; // no path withIn K stops
+    }
+    cout << dist[dst] << endl;
 }
 
 int main(){
@@ -7248,9 +7580,36 @@ int main(){
     // ? 2706231621
     // shortestPathDAG(5,0,{{0,1,2},{2,1,2},{1,3,6},{1,4,8},{2,4,3}});
     // shortestPathDAG(5,1,{{0,1,2},{1,2,2},{1,3,6},{1,4,8},{4,2,3}});
+    // shortestPathDAG(5,4,{{0,1,2},{2,1,2},{1,3,6},{4,1,8},{4,2,3}});
 
     // ? 2706231712
     // shortestPathUnitWeightGraph({{0,1},{0,3},{1,3},{1,2},{2,6},{3,4},{4,5},{5,6},{6,7},{7,8},{6,8}},9,4);
+
+    // ? 2806230812
+    // cout << wordLadderLength1("toon","plea",{"poon", "plee", "same", "poie","plea","plie","poin"}) << endl;
+
+    // ? 2806231026
+    // wordLadderLength2("bat","coz",{"pat","bat","bot","pot","poz","coz"});
+
+    // ? 2806231115
+    // vector<vector<int>>adj[6] = {{{1,4},{2,1}},{{0,4},{2,2}},{{0,1},{1,2},{3,2},{4,1},{5,6}},{{2,3},{5,2}},{{2,1},{5,3}},{{3,2},{2,6},{4,3}}};
+    // dijkstra(6,adj,0);
+
+    // ? 2806231428
+    // shortestPathDijkstra(1,5,5,{{1,2,2},{2,5,5}, {2,3,4}, {1,4,1},{4,3,3},{3,5,1}});
+    // shortestPathDijkstra(3,1,5,{{1,2,2},{2,5,5}, {2,3,4}, {1,4,1},{4,3,3},{3,5,1}});
+
+    // ? 2806231458
+    // shortestPathMaze({{1, 1, 1, 1},{1, 1, 0, 1},{1, 1, 1, 1},{1, 1, 0, 0},{1, 0, 0, 1}},{0,1},{2,2});
+
+    // ? 2806231518
+    // maxProbabilityGraph(3,{{0,1},{1,2},{0,2}},{0.5,0.5,0.2},0,2);
+
+    // ? 2806231923
+    // MinimumEffortGrid({{1,2,1,1,1},{1,2,1,2,1},{1,2,1,2,1},{1,1,1,2,1}});
+
+    // ? 2806232002
+    // CheapestFlight(4,{{0,1,100},{1,2,100},{2,1,100},{2,3,200},{1,3,600}},0,3,1);
 
     cout << endl;
     return 0;

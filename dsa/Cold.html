@@ -4455,7 +4455,7 @@
           </div>
           <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/shortest-path-in-undirected-graph/1?">https://practice.geeksforgeeks.org/problems/shortest-path-in-undirected-graph/1?</a> </p>
           <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/ZUFQfFaU-8U">https://youtu.be/ZUFQfFaU-8U</a> </p>
-          <div style="font-size:13px;">Hint : after topoSortVector -> distanceVector</div>
+          <div style="font-size:13px;">Hint : DFS topoSortStack -> distanceVector</div>
     </section>
     
     <section class="all medium graphs">
@@ -4469,6 +4469,117 @@
           <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/shortest-path-in-undirected-graph-having-unit-distance/1">https://practice.geeksforgeeks.org/problems/shortest-path-in-undirected-graph-having-unit-distance/1</a> </p>
           <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/C4gxoTaI71U">https://youtu.be/C4gxoTaI71U</a> </p>
           <div style="font-size:13px;">Hint : vis[v], q({src,0}) bfs</div>
+    </section>
+    
+    <section class="all medium revisit graphs">
+          <h5>Word Ladder I</h5>
+          <p class="question">Given two distinct words startWord and targetWord, and a list denoting wordList of unique words of equal lengths. Find the length of the shortest transformation sequence from startWord to targetWord.</p>
+          <p class="id">Question ID : 2806230812 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">ReVisit</div>
+              <div class="cat">Graphs</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/word-ladder/1">https://practice.geeksforgeeks.org/problems/word-ladder/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/tRPda0rcf8E">https://youtu.be/tRPda0rcf8E</a> </p>
+          <div style="font-size:13px;">Hint : str[every char check with a to z] -> q.push -> replace original char</div>
+    </section>
+
+    <section class="all hard revisit graphs">
+          <h5>Word Ladder II</h5>
+          <p class="question">Given two distinct words startWord and targetWord, and a list denoting wordList of unique words of equal lengths. Find all shortest transformation sequence(s) from startWord to targetWord.</p>
+          <p class="id">Question ID : 2806231026 </p>
+          <div class="keys">
+              <div class="cat">Hard</div>
+              <div class="cat">ReVisit</div>
+              <div class="cat">Graphs</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/word-ladder-ii/1">https://practice.geeksforgeeks.org/problems/word-ladder-ii/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/tRPda0rcf8E">https://youtu.be/tRPda0rcf8E</a> </p>
+          <div style="font-size:13px;">Hint : marks words used in level, after completing level then remove from dict</div>
+    </section>
+
+    <section class="all medium revisit graphs">
+          <h5>Dijkstra Algorithm</h5>
+          <p class="question">Given a weighted, undirected and connected graph of V vertices and an adjacency list adj where adj[i] is a list of lists containing two integers where the first integer of each list j denotes there is edge between i and j , second integers corresponds to the weight of that  edge .<br>You are given the source vertex S and You to Find the shortest distance of all the vertex's from the source vertex S</p>
+          <p class="id">Question ID : 2806231115 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Graphs</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/implementing-dijkstra-set-1-adjacency-matrix/1">https://practice.geeksforgeeks.org/problems/implementing-dijkstra-set-1-adjacency-matrix/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/V6H1qAeB-l4">https://youtu.be/V6H1qAeB-l4</a> </p>
+          <div style="font-size:13px;">Hint : pq({dis = 0,node = src}), pop compare adjNode push</div>
+    </section>
+    
+    <section class="all medium graphs">
+          <h5>Shortest Path in Weighted undirected graph</h5>
+          <p class="question">You are given a weighted undirected graph having n vertices numbered from 1 to n and m edges describing there are edges between a to b with some weight, find the shortest path between the vertex 1 and the vertex n.</p>
+          <p class="id">Question ID : 2806231428 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Graphs</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/shortest-path-in-weighted-undirected-graph/1">https://practice.geeksforgeeks.org/problems/shortest-path-in-weighted-undirected-graph/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/rp1SMw7HSO8">https://youtu.be/rp1SMw7HSO8</a> </p>
+          <div style="font-size:13px;">Hint : pq(dist, vector path) </div>
+    </section>
+    
+    <section class="all medium graphs">
+          <h5>Shortest Distance in a Binary Maze</h5>
+          <p class="question">Given a n * m grid, each element can be 0 or 1. You need to find the shortest distance between a given source cell to a destination cell. The path can only be created out of a cell if its value is 1. </p>
+          <p class="id">Question ID : 2806231458 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Graphs</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/shortest-path-in-a-binary-maze-1655453161/1">https://practice.geeksforgeeks.org/problems/shortest-path-in-a-binary-maze-1655453161/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/U5Mw4eyUmw4">https://youtu.be/U5Mw4eyUmw4</a> </p>
+          <div style="font-size:13px;">Hint : bfs / flood fill</div>
+    </section>
+    
+    <section class="all graphs medium">
+          <h5>Path with Maximum Probability</h5>
+          <p class="question">You are given an undirected weighted graph of n nodes (0-indexed),connecting the nodes a and b with a probability of success of traversing that edge succProb[i].Given two nodes start and end.<br>find the path with the maximum probability of success to go from start to end and return its success probability. </p>
+          <p class="id">Question ID : 2806231518 </p>
+          <div class="keys">
+              <div class="cat">Graphs</div>
+              <div class="cat">Medium</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/path-with-maximum-probability/">https://leetcode.com/problems/path-with-maximum-probability/</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/aPThR7YBCAM">https://youtu.be/aPThR7YBCAM</a> </p>
+          <div style="font-size:13px;">Hint : prob[src] = 1, pq{1,src} (more probabily on top), dijkstra's</div>
+    </section>
+    
+    
+    <section class="all medium graphs revisit">
+          <h5>Path With Minimum Effort</h5>
+          <p class="question">You are given heights, a 2D array. where heights[row][col] = the height of cell (row, col). <br>You have to travel from (0, 0) to (rows-1, columns-1).find a route that requires the minimum effort.<br>
+          A route's effort is the maximum absolute difference in heights between two consecutive cells of the route.</p>
+          <p class="id">Question ID : 2806231923 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Graphs</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/path-with-minimum-effort/1">https://practice.geeksforgeeks.org/problems/path-with-minimum-effort/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/0ytpZyiZFhA">https://youtu.be/0ytpZyiZFhA</a> </p>
+          <div style="font-size:13px;">Hint : newDist = max(abs(heights[x1][y1] - heights[x2][y2]), d) </div>
+    </section>
+    
+    <section class="all medium graphs revist">
+          <h5>Cheapest Flights Within K Stops</h5>
+          <p class="question">There are n cities and m edges connected by some number of flights. You are given an array flights where flights[i] = [fromi, toi, pricei] indicates that there is a flight from the city fromi to city toi with cost pricei.<br>You are also given three integers src, dst, and k, return the cheapest price from src to dst with at most k stops.</p>
+          <p class="id">Question ID : 2806232002 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Graphs</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/cheapest-flights-within-k-stops/1">https://practice.geeksforgeeks.org/problems/cheapest-flights-within-k-stops/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/9XybHVqTHcQ">https://youtu.be/9XybHVqTHcQ</a> </p>
+          <div style="font-size:13px;">Hint : queue({stops, {node, price}}) </div>
     </section>
     
     <div class="select">
@@ -4578,7 +4689,7 @@
     <section class="all">
           <h5></h5>
           <p class="question"></p>
-          <p class="id">Question ID : 270623 </p>
+          <p class="id">Question ID : 280623 </p>
           <div class="keys">
               <div class="cat"> </div>
           </div>
