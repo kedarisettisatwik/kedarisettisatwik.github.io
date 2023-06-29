@@ -6688,6 +6688,257 @@ void minTimeTravel(vector<vector<int>>grid){
     cout << "time : " << dist[r-1][c-1] << endl;
 }
 
+// ? 2906231438
+void primsAlgoMinSpanTree(int v, vector<vector<int>> adj[]){
+    int vis[v] = {0};
+    int sum = 0;
+    
+    priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
+    pq.push({0,0}); // wt node
+    
+    while (pq.empty() == false){
+        int wt1 = pq.top().first;
+        int node = pq.top().second;
+        pq.pop();
+        
+        if (vis[node] == 1) continue;
+        vis[node] = 1;
+        sum += wt1;
+        
+        for (auto it : adj[node]){
+            int adjNode = it[0];
+            int wt2 = it[1];
+            if (vis[adjNode] == 0){
+                pq.push({wt2,adjNode});
+            }
+        }
+    }
+    cout << "tree weight : " << sum << endl;
+}
+
+// ? 2906231514
+class DisJointSet{
+  vector<int>rank,parent,size;
+  public:
+    DisJointSet(int n){
+        rank.resize(n+1,0);
+        size.resize(n+1,1);
+        parent.resize(n+1);
+        for(int i = 0; i <= n;i++){
+            parent[i] = i;
+        }
+    }
+    int findSize(int x){
+        return size[x];
+    }
+    int findParent(int x){
+        return parent[x];
+    }
+    int findUltimateParent(int n){
+        if (parent[n] == n) return n;
+        parent[n] = findUltimateParent(parent[n]);
+        return parent[n];
+    }
+    void unionByrank(int u,int v){
+        int ulp_u = findUltimateParent(u);
+        int ulp_v = findUltimateParent(v);
+        if (ulp_v == ulp_u) return ; // both are already connected
+        if (rank[ulp_v] < rank[ulp_u]){
+            parent[ulp_v] = ulp_u;
+        }else if (rank[ulp_u] < rank[ulp_v]){
+            parent[ulp_u] = ulp_v;
+        }else{
+            parent[ulp_v] = ulp_u;
+            rank[ulp_u]++;
+        }
+    }
+    void unionBySize(int u,int v){
+        int ulp_u = findUltimateParent(u);
+        int ulp_v = findUltimateParent(v);
+        if (ulp_v == ulp_u) return ; // both are already connected
+        if (size[ulp_u] < size[ulp_v]){
+            parent[ulp_u] = ulp_v;
+            size[ulp_v] += size[ulp_u];
+        }else{
+            parent[ulp_v] = ulp_u;
+            size[ulp_u] += size[ulp_v];
+        }
+    }
+};
+
+// ? 2906231529
+void krushalMinSpanTree(int v, vector<vector<int>> adj[]){
+    vector<pair<int,pair<int,int>>>edges; // wt, node1, node2
+    for (int i = 0; i < v; i++) {
+        for (auto it : adj[i]) {
+            int adjNode = it[0];
+            int wt = it[1];
+            int node = i;
+            edges.push_back({wt, {node, adjNode}});
+        }
+    }
+    sort(edges.begin(),edges.end());
+    
+    int sum = 0;
+    
+    DisJointSet tree(v+1);
+    for (auto edge : edges){
+        int wt = edge.first;
+        int n1 = edge.second.first;
+        int n2 = edge.second.second;
+        if (tree.findUltimateParent(n1) != tree.findUltimateParent(n2)){
+            sum += wt;
+            tree.unionBySize(n1,n2);
+        }
+    }
+    cout << "tree sum : " << sum << endl;
+}
+
+// ? 2906231554
+int connectingGraph(int n, vector<vector<int>>edges) {
+    int cnt_extras = 0;
+    DisJointSet tree(n);
+    for (auto it : edges){
+        int p1 = tree.findUltimateParent(it[0]);
+        int p2 = tree.findUltimateParent(it[1]);
+        if (p1 == p2){
+            cnt_extras++;
+        }else{
+            tree.unionBySize(it[0],it[1]);
+            
+        }
+    }
+    int cnt_components = 0;
+    for (int i = 0; i < n;i++){
+        if (tree.findParent(i) == i){
+            cnt_components++;
+        }
+    }
+    int edgesNeedToConnect = cnt_components-1;
+    if (cnt_extras >= edgesNeedToConnect) return edgesNeedToConnect;
+    return -1;
+}
+
+// ? 2906231929
+class isLandSet {
+    vector<int> parent, size;
+    int count;
+    public:
+    isLandSet(int n) {
+        size.resize(n, 0);
+        parent.resize(n);
+        count = 0;
+    }
+    int getCount() {
+        return count;
+    }
+    int findUltimateParent(int x) {
+        if (parent[x] == x)
+            return x;
+        parent[x] = findUltimateParent(parent[x]);
+        return parent[x];
+    }
+    void unionBySize(int u, int v) {
+        int rootU = findUltimateParent(u);
+        int rootV = findUltimateParent(v);
+        if (rootU == rootV) return;
+
+        if (size[rootU] < size[rootV]) {
+            parent[rootU] = rootV;
+            size[rootV] += size[rootU];
+        } else {
+            parent[rootV] = rootU;
+            size[rootU] += size[rootV];
+        }
+        count--;
+    }
+    void makeIsland(int x) {
+        parent[x] = x;
+        size[x] = 1;
+        count++;
+    }
+};
+void numOfIslands2(int r, int c, vector<vector<int>>operators) {
+    // [i][j] => (i * c + j)
+    vector<int> result;
+    vector<vector<int>> grid(r, vector<int>(c, 0));
+
+    isLandSet ds(r * c);
+
+    vector<pair<int, int>> directions{{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+    for (auto op : operators) {
+        int x = op[0];
+        int y = op[1];
+        if (grid[x][y] == 1) {
+            result.push_back(ds.getCount()); // already old land due to past opeation
+            continue;
+        }
+        grid[x][y] = 1;
+        ds.makeIsland(x * c + y);
+        for (auto dir : directions) {
+            int nx = x + dir.first;
+            int ny = y + dir.second;
+            if (nx >= 0 && nx < r && ny >= 0 && ny < c && grid[nx][ny] == 1) {
+                ds.unionBySize(x * c + y, nx * c + ny);
+            }
+        }
+        result.push_back(ds.getCount());
+    }
+    printVector(result);
+}
+
+// ? 2906232011
+int maxConnectionLand(vector<vector<int>>grid) {
+    int r = grid.size();
+    int c = grid[0].size();
+    DisJointSet ds(r * c);
+    // step - 1
+    for (int row = 0; row < r ; row++) {
+        for (int col = 0; col < c ; col++) {
+            if (grid[row][col] == 0) continue;
+            int dr[] = { -1, 0, 1, 0};
+            int dc[] = {0, -1, 0, 1};
+            for (int ind = 0; ind < 4; ind++) {
+                int newr = row + dr[ind];
+                int newc = col + dc[ind];
+                if (newr >= 0 && newr < r && newc >= 0 && newc < c && grid[newr][newc] == 1) {
+                    int nodeNo = row * c + col;
+                    int adjNodeNo = newr * c + newc;
+                    ds.unionBySize(nodeNo, adjNodeNo);
+                }
+            }
+        }
+    }
+    // step 2
+    int mx = 0;
+    for (int row = 0; row < r; row++) {
+        for (int col = 0; col < c; col++) {
+            if (grid[row][col] == 1) continue;
+            int dr[] = { -1, 0, 1, 0};
+            int dc[] = {0, -1, 0, 1};
+            set<int> components;
+            for (int ind = 0; ind < 4; ind++) {
+                int newr = row + dr[ind];
+                int newc = col + dc[ind];
+                if (newr >= 0 && newr < r && newc >= 0 && newc < c) {
+                    if (grid[newr][newc] == 1) {
+                        components.insert(ds.findUltimateParent(newr * c + newc));
+                    }
+                }
+            }
+            int sizeTotal = 0;
+            for (auto it : components) {
+                sizeTotal += ds.findSize(it);
+            }
+            mx = max(mx, sizeTotal + 1);
+        }
+    }
+    for (int cellNo = 0; cellNo < r * c; cellNo++) {
+        mx = max(mx, ds.findSize(ds.findUltimateParent(cellNo)));
+    }
+    return mx;
+}
+
 int main(){
     cout << endl;
 
@@ -7777,9 +8028,39 @@ int main(){
     // ? 2906231234
     // minTimeTravel({{0,1,2,4},{12,13,14,9},{15,5,11,10},{3,6,7,8}});
 
+    // ? 2906231438
+    // vector<vector<int>>adj[5] = {{{1,2},{2,1}},{{0,2},{2,1}},{{0,2},{1,1},{4,2},{3,2}},{{2,2},{4,1}},{{2,2},{3,1}}};
+    // primsAlgoMinSpanTree(5,adj);
+
+    // ? 2906231514
+    // DisJointSet set1(7);
+    // cout << set1.findUltimateParent(2) << endl;
+    // set1.unionBySize(1,2);
+    // cout << set1.findUltimateParent(2) << endl;
+    // set1.unionBySize(2,3);
+    // set1.unionBySize(4,5);
+    // cout << set1.findUltimateParent(5) << endl;
+    // set1.unionBySize(6,7);
+    // set1.unionBySize(5,6);
+    // cout << set1.findUltimateParent(7) << endl;
+    // set1.unionBySize(3,7);
+    // cout << set1.findUltimateParent(7) << endl;
+
+    // ? 2906231529
+    // vector<vector<int>>adj[5] = {{{1,2},{2,1}},{{0,2},{2,1}},{{0,2},{1,1},{4,2},{3,2}},{{2,2},{4,1}},{{2,2},{3,1}}};
+    // krushalMinSpanTree(5,adj);
+
+    // ? 2906231554
+    // cout << connectingGraph(6,{{0,1},{0,2},{0,3},{1,2},{1,3}}) << endl;
+
+    // ? 2906231929
+    // numOfIslands2(4,5,{{0,0},{1,3},{1,1},{0,4},{0,3},{0,1},{0,2}});
+
+    // ? 2906232011
+    // cout << maxConnectionLand({{1,1,0,1,1},{0,1,0,1,0},{0,0,0,0,0}}) << endl;
+
     cout << endl;
     return 0;
 }
-
 
 
