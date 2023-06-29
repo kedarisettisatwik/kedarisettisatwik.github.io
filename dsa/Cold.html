@@ -4582,6 +4582,87 @@
           <div style="font-size:13px;">Hint : queue({stops, {node, price}}) </div>
     </section>
     
+    <section class="all medium graphs">
+          <h5>Minimum Multiplications to reach End</h5>
+          <p class="question">Given start, end and an array arr of n numbers. At each step, start is multiplied with any number in the array and then mod operation with 100000 is done to get the new start.<br>Your task is to find the minimum steps in which end can be achieved starting from start. If it is not possible to reach end, then return -1.</p>
+          <p class="id">Question ID : 2906230747 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Graphs</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/minimum-multiplications-to-reach-end/1">https://practice.geeksforgeeks.org/problems/minimum-multiplications-to-reach-end/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/_BvEJ3VIDWw">https://youtu.be/_BvEJ3VIDWw</a> </p>
+          <div style="font-size:13px;">Hint : cnt[100000], all possible multiplications are in range(1,10^5),<br>queue</div>
+    </section>
+    
+    <section class="all medium graphs">
+          <h5>No of Ways to Arrive at Destination</h5>
+          <p class="question">You are given an integer n and a 2D integer array roads where roads[i] = [ui, vi, timei] means that there is a road between intersections ui and vi that takes timei minutes to travel. <br>You want to know in how many ways you can travel from intersection 0 to intersection n - 1 in the shortest amount of time.<br>Return the number of ways you can arrive at your destination in the shortest amount of time.</p>
+          <p class="id">Question ID : 2906230801 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Graphs</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/number-of-ways-to-arrive-at-destination/1">https://practice.geeksforgeeks.org/problems/number-of-ways-to-arrive-at-destination/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/_-0mx0SmYxA">https://youtu.be/_-0mx0SmYxA</a> </p>
+          <div style="font-size:13px;">Hint : pq(time,node) </div>
+    </section>
+    
+    <section class="all medium graphs revisit">
+          <h5>Bellman-Ford Algorithm</h5>
+          <p class="question">Given a weighted, directed and connected graph of V vertices and E edges, Find the shortest distance of all the vertex's from the source vertex S.<br>Note: If the Graph contains a negative cycle then return an array consisting of only -1.</p>
+          <p class="id">Question ID : 2906231036 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Graphs</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/distance-from-the-source-bellman-ford-algorithm/1">https://practice.geeksforgeeks.org/problems/distance-from-the-source-bellman-ford-algorithm/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/0vVofAhAYjc">https://youtu.be/0vVofAhAYjc</a> </p>
+          <div style="font-size:13px;">Hint : for(all edges, v-1 times){ (dis[u] + d &lt; dist[v] relax) }</div>
+    </section>
+    
+    <section class="all medium graphs reivist">
+          <h5>Floyd Warshall</h5>
+          <p class="question">The problem is to find the shortest distances between every pair of vertices in a given edge-weighted directed graph. The graph is represented as an adjacency matrix of size n*n. Matrix[i][j] denotes the weight of the edge from i to j. If Matrix[i][j]=-1, it means there is no edge from i to j.</p>
+          <p class="id">Question ID : 2906231052 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Graphs</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://youtu.be/YbY8cVwWAvw">https://youtu.be/YbY8cVwWAvw</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/implementing-floyd-warshall2042/1">https://practice.geeksforgeeks.org/problems/implementing-floyd-warshall2042/1</a> </p>
+          <div style="font-size:13px;">Hint : if (dist[a][i] + dist[i][b] &lt; dist[a][b])<br>i.e going a to b via i</div>
+    </section>
+    
+    <section class="all medium graphs">
+          <h5>City With the Smallest Number of Neighbors at a Threshold Distance</h5>
+          <p class="question">There are n cities numbered from 0 to n-1. Given the array edges of a bidirectional and weighted edge, and given the integer distance Threshold.<br> You need to find out a city with the smallest number of cities that are reachable through some path and whose distance is at most Threshold Distance.</p>
+          <p class="id">Question ID : 2906231141 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Graphs</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/0">https://practice.geeksforgeeks.org/problems/city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/0</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/PwMVNSJ5SLI">https://youtu.be/PwMVNSJ5SLI</a> </p>
+          <div style="font-size:13px;">Hint : floyd warshall algorithm</div>
+    </section>
+
+    <section class="all medium graphs revisit">
+          <h5>Minimum travel time</h5>
+          <p class="question">You are given an n x n integer matrix grid where each value grid[i][j] represents height of the cell (i, j).<br>You can travel from a cell to another 4-directionally adjacent cell if and only the height of the both cells are at most T. You can travel infinite distances in zero time but you must stay within the boundaries of the grid during your travel.<br>You are currently at cell (0 , 0) and the value of T is 0.and you wish to go to cell (n-1,m-1).<br>Find the minimum time it will take to reach the cell (n, m) if the value of T increase by 1 every second.</p>
+          <p class="id">Question ID : 2906231234 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Graphs</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/minimum-travel-time/1">https://practice.geeksforgeeks.org/problems/minimum-travel-time/1</a> </p>
+          <div style="font-size:13px;">Hint : newD = max(dist[x1][y1], grid[x2][y2],grid[x1][y1])</div>
+    </section>
+
+    
     <div class="select">
           <p>Hardness : </p>
           <label onclick="level(0)">ALL</label>
@@ -4689,7 +4770,7 @@
     <section class="all">
           <h5></h5>
           <p class="question"></p>
-          <p class="id">Question ID : 280623 </p>
+          <p class="id">Question ID : 290623 </p>
           <div class="keys">
               <div class="cat"> </div>
           </div>

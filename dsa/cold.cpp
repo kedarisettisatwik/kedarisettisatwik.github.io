@@ -6537,6 +6537,157 @@ void CheapestFlight(int v, vector<vector<int>>flights, int src, int dst, int k) 
     cout << dist[dst] << endl;
 }
 
+// ? 2906230747
+int minimumMultiplications(vector<int>arr, int start, int end) {
+    vector<int>cnt(100000,1e9);
+    cnt[start] = 0;
+    
+    queue<pair<int,int>>q; // {no of multiplications, num}
+    q.push({0,start});
+    
+    while (q.empty() == false){
+        int steps = q.front().first;
+        int n = q.front().second;
+        q.pop();
+        if (n == end) return steps;
+        for (auto it : arr){
+            int n1 = (n * it) % 100000;
+            if (steps + 1  < cnt[n1]){
+                cnt[n1] = steps+1;
+                q.push({steps+1,n1});
+            } 
+        }
+    }
+    return -1;
+}
+
+// ? 2906231036
+void bellman_ford(int v, vector<vector<int>>edges, int src) {
+    vector<int>dist(v,1e8);
+    dist[src] = 0;
+    for (int i = 0; i < v;i++){
+        for (auto it : edges){
+            int a = it[0];
+            int b = it[1];
+            int d = it[2];
+            if (dist[a] != 1e9 && dist[a] + d < dist[b]){
+                dist[b] = dist[a] + d;
+            }
+        }
+    } // if the graph is normal the dist[] won't update anymore, we found the shortPath from src to all nodes
+    // now even after v-1 iterations if again we got shortPath i.e the path is negative
+    for (auto it : edges) {
+        int u = it[0];
+        int v = it[1];
+        int wt = it[2];
+        if (dist[u] != 1e8 && dist[u] + wt < dist[v]) {
+            // if any dist decreases even after n iterations then we have negative cycle
+            cout << "negative cycle" << endl;
+            return ;
+        }
+    }
+    printVector(dist);
+}
+
+// ? 2906231052
+void floydWarshall(vector<vector<int>>matrix){
+    
+    int v = matrix.size();
+    printGrid(matrix);
+
+    for (int a = 0; a < v;a++){
+        for (int b = 0; b < v;b++){
+            if (matrix[a][b] == -1) matrix[a][b] = 1e9;                    
+        }
+    }
+    for (int i = 0; i < v;i++){
+        for (int a = 0; a < v;a++){
+            for (int b = 0; b < v;b++){
+                if (matrix[a][i] + matrix[i][b] < matrix[a][b]){
+                    matrix[a][b] = (matrix[a][i] + matrix[i][b]); 
+                }
+            }
+        }
+    }
+    for (int a = 0; a < v;a++){
+        for (int b = 0; b < v;b++){
+            if (matrix[a][b] == 1e9) matrix[a][b] = -1;                    
+        }
+    }
+    printGrid(matrix);
+}
+
+// ? 2906231141
+void cityWithLessNeighbours(int v, vector<vector<int>> edges,int distanceThreshold){
+    vector<vector<int>>matrix(v,vector<int>(v,1e9));
+    for (int i = 0;i < v;i++){
+        matrix[i][i] = 0;
+    }
+    for (auto it : edges){
+        matrix[it[0]][it[1]] = it[2];
+        matrix[it[1]][it[0]] = it[2];
+    }
+    
+    for (int i = 0; i < v;i++){
+        for (int a = 0; a < v;a++){
+            for (int b = 0; b < v;b++){
+                if (matrix[a][i] + matrix[i][b] < matrix[a][b]){
+                    matrix[a][b] = (matrix[a][i] + matrix[i][b]); 
+                }
+            }
+        }
+    }
+    
+    int ans = -1;
+    int neighboursCnt = INT_MAX;
+    
+    for (int a = 0; a < v;a++){
+        int cnt_a = 0;
+        for (int b = 0; b < v;b++){
+            if (matrix[a][b] <= distanceThreshold){
+                cnt_a++;
+            }
+        }
+        if (cnt_a <= neighboursCnt){
+            neighboursCnt = cnt_a;
+            ans = a;
+        }
+    }
+    cout << ans  << " : "  << neighboursCnt << " neighbours " << endl;
+}
+
+// ? 2906231234
+void minTimeTravel(vector<vector<int>>grid){
+    int r = grid.size();
+    int c = grid[0].size();
+    vector<vector<int>>dist(r,vector<int>(c,1e9));
+    dist[0][0] = 0;
+    
+    priority_queue<pair<int,pair<int,int>>,vector<pair<int,pair<int,int>>>,greater<pair<int,pair<int,int>>>>pq;
+    pq.push({0,{0,0}});
+    
+    while (pq.empty() == false){
+        int t1 = pq.top().first;
+        int x1 = pq.top().second.first;
+        int y1 = pq.top().second.second;
+        pq.pop();
+        vector<pair<int,int>>dir = {{0,1},{1,0},{-1,0},{0,-1}}; 
+        for(auto it: dir){
+            int x2 = it.first;
+            int y2 = it.second;
+            if (x1 + x2 >= 0 && x1 + x2 < r && y1 + y2 >= 0 && y1 + y2 < c){
+                int newDist = max(t1,grid[x1+x2][y1+y2]);
+                newDist = max(newDist,grid[x1][y1]);
+                if (newDist < dist[x1+x2][y1+y2]){
+                    dist[x1+x2][y1+y2] = newDist;
+                    pq.push({newDist,{x1+x2,y1+y2}});
+                }
+            }
+        }
+    }
+    cout << "time : " << dist[r-1][c-1] << endl;
+}
+
 int main(){
     cout << endl;
 
@@ -7610,6 +7761,21 @@ int main(){
 
     // ? 2806232002
     // CheapestFlight(4,{{0,1,100},{1,2,100},{2,1,100},{2,3,200},{1,3,600}},0,3,1);
+
+    // ? 2906230747
+    // cout << minimumMultiplications({2,5,7},3,30) << endl;
+
+    // ? 2906231036
+    // bellman_ford(6,{{3,2,6},{5,3,1},{0,1,5},{1,5,-3},{1,2,-2},{3,4,-2},{2,4,3}},0);
+
+    // ? 2906231052
+    // floydWarshall({{0,1,43},{1,0,6},{-1,-1,0}});
+
+    // ? 2906231141
+    // cityWithLessNeighbours(4,{{0,1,3},{1,2,1},{1,3,4},{2,3,1}},4);
+
+    // ? 2906231234
+    // minTimeTravel({{0,1,2,4},{12,13,14,9},{15,5,11,10},{3,6,7,8}});
 
     cout << endl;
     return 0;
