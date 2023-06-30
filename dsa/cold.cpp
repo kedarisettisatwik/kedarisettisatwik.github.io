@@ -6939,6 +6939,127 @@ int maxConnectionLand(vector<vector<int>>grid) {
     return mx;
 }
 
+// ? 3006232047
+int maxStonesRemove(vector<vector<int>>stones) {
+    int n = stones.size(); // total no of stones in grid
+    int maxRow = 0; // gridSize 
+    int maxCol = 0;
+    for (auto it : stones) {
+        maxRow = max(maxRow, it[0]);
+        maxCol = max(maxCol, it[1]);
+    }
+    DisJointSet ds(maxRow + maxCol + 1);
+    // if maxRow = 3 , maxCol = 4
+    // 0 4 5 6 7
+    // 1
+    // 2
+    // 3
+    unordered_map<int, int> stoneNodes;
+    for (auto it : stones) {
+        // if stone is in [r][c] -> union(r,r+c+1)
+        int nodeRow = it[0];
+        int nodeCol = it[1] + maxRow + 1;
+        ds.unionBySize(nodeRow, nodeCol);
+        stoneNodes[nodeRow] = 1;
+        stoneNodes[nodeCol] = 1;
+    }
+    int cnt = 0;
+    for (auto it : stoneNodes) {
+        if (ds.findUltimateParent(it.first) == it.first) {
+            cnt++;
+        }
+    }
+    return n - cnt;
+}
+
+// ? 3006230954
+void dfsBridge(int n,vector<int>adjLs[],int vis[]){
+    vis[n] = 1;
+    for(auto it : adjLs[n]){
+        if (vis[it] == 0){
+            dfsBridge(it,adjLs,vis);
+        }
+    }
+}
+int numProvincesBridge(vector<int>adjLs[], int v) {
+    int vis[v] = {0};
+    int cnt = 0;
+    for (int i = 0;i < v;i++){
+        if (vis[i] == 0){
+            cnt++;
+            dfsBridge(i,adjLs,vis);        
+        }
+    }
+    return cnt;
+}
+int isEdgeBridge(int v, vector<int> adj[], int c, int d){
+    int cnt1 = numProvincesBridge(adj,v);
+    
+    vector<int>adj1[v];
+    for (int i = 0; i < v;i++){
+        for (auto it : adj[i]){
+            if ((i == c && it == d ) || (i == d && it == c)){
+                continue ;
+            }
+            adj1[i].push_back(it);
+        }
+    }
+    int cnt2 = numProvincesBridge(adj1,v);
+    
+    if (cnt2 > cnt1) return 1;
+    
+    return 0;
+}
+
+// ? 3006231001
+void dfsBridges(int node, int parent,int& timer,vector<int>&vis,vector<int> adj[], int tin[], int low[], vector<vector<int>>& bridges) {
+    vis[node] = 1;
+    tin[node] = low[node] = timer;
+    timer++;
+    for (auto it : adj[node]) {
+        if (it == parent) continue;
+        if (vis[it] == 0) {
+            dfsBridges(it, node,timer,vis, adj, tin, low, bridges);
+            low[node] = min(low[it], low[node]);
+            // node --- it
+            if (low[it] > tin[node]) {
+                bridges.push_back({it, node});
+            }
+        }
+        else {
+            low[node] = min(low[node], low[it]);
+        }
+    }
+}
+void criticalConnections(int v, vector<vector<int>>connections) {
+    vector<int>vis(v,0);
+    int tin[v];
+    int low[v];
+    int timer = 0;
+    vector<vector<int>>bridges;
+
+    vector<int>adj[v]; 
+    for (auto it : connections){
+        adj[it[0]].push_back(it[1]);
+        adj[it[1]].push_back(it[0]);
+    }
+
+    for (int i = 0; i < v;i++){
+        if (vis[i] == 0){
+            dfsBridges(i,-1,timer,vis,adj,tin,low,bridges);
+        }
+    }
+    for (int i = 0; i < v; i++){
+        cout << low[i] << " ";
+    }
+    cout << endl;
+    for (int i = 0; i < v; i++){
+        cout << tin[i] << " ";
+    }
+    cout << endl;
+    printGrid(bridges);
+}
+
 int main(){
     cout << endl;
 
@@ -8058,6 +8179,17 @@ int main(){
 
     // ? 2906232011
     // cout << maxConnectionLand({{1,1,0,1,1},{0,1,0,1,0},{0,0,0,0,0}}) << endl;
+
+    // ? 3006232047
+    // cout << maxStonesRemove({{0,0},{0,1},{1,0},{1,2},{2,1} ,{2,2}}) << endl;
+
+    // ? 3006230954
+    // vector<int>adj[5] = {{1,3,2},{0,2},{1,0},{0,4},{3}};
+    // cout << isEdgeBridge(5,adj,0,3) << endl;
+
+    // ? 3006231001
+    // criticalConnections(12,{{0,1},{0,3},{1,2},{2,3},{3,4},{4,5},{5,6},{5,8},{6,7},{7,8},{7,9},{9,10},{9,11},{11,10}});
+    // criticalConnections(13,{{0,1},{0,3},{1,2},{2,3},{3,4},{4,5},{5,6},{5,8},{6,7},{7,8},{7,9},{9,12},{12,8},{9,10},{9,11},{11,10}});
 
     cout << endl;
     return 0;

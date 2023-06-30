@@ -4744,6 +4744,46 @@
           <div style="font-size:13px;">Hint : disJoint set, grid[i][j] = 0 check all sides different components</div>
     </section>
 
+    <section class="all hard revisit graphs">
+          <h5>Max Stones Remove</h5>
+          <p class="question">There are n stones at some integer coordinate points on a 2D plane. Each coordinate point may have at most one stone.<br>You need to remove some stones.<br>A stone can be removed if it shares either the same row or the same column as another stone that has not been removed.</p>
+          <p class="id">Question ID : 3006232047 </p>
+          <div class="keys">
+              <div class="cat">Hard</div>
+              <div class="cat">ReVisit</div>
+              <div class="cat">Graphs</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/maximum-stone-removal-1662179442/1">https://practice.geeksforgeeks.org/problems/maximum-stone-removal-1662179442/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/OwMNX8SPavM">https://youtu.be/OwMNX8SPavM</a> </p>
+          <div style="font-size:13px;">Hint : maxRow, maxCol, ds(row+col+1)</div>
+    </section>
+    
+    <section class="all medium graphs">
+          <h5>Is edge = bridge</h5>
+          <p class="question">Given a Graph of V vertices and E edges and another edge(c - d), the task is to find if the given edge is a Bridge. i.e., removing the edge disconnects the graph.</p>
+          <p class="id">Question ID : 3006230954 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Graphs</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/bridge-edge-in-graph/1">https://practice.geeksforgeeks.org/problems/bridge-edge-in-graph/1</a> </p>
+          <div style="font-size:13px;">Hint : cnt1 Components, remove edge [new adjList] and cnt2 componets </div>
+    </section>
+
+    <section class="all hard revisit graphs">
+          <h5>All Bridges in Graph</h5>
+          <p class="question">here are n servers numbered from 0 to n - 1 connected by undirected server-to-server connections forming a network where connections[i] = [ai, bi] represents a connection between servers ai and bi. Any server can reach other servers directly or indirectly through the network.<br>A critical connection is a connection that, if removed, will make some servers unable to reach some other server.<br>Return all critical connections in the network in any order.</p>
+          <p class="id">Question ID : 3006231001 </p>
+          <div class="keys">
+              <div class="cat">Hard</div>
+              <div class="cat">ReVisit</div>
+              <div class="cat">Graphs</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/critical-connections-in-a-network/">https://leetcode.com/problems/critical-connections-in-a-network/</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/qrAub5z8FeA">https://youtu.be/qrAub5z8FeA</a> </p>
+          <div style="font-size:13px;">Hint : tin, low | tin[node] > low[adjNode] = bridge </div>
+    </section>
+    
     <div class="select">
           <p>Hardness : </p>
           <label onclick="level(0)">ALL</label>
@@ -4851,7 +4891,7 @@
     <section class="all">
           <h5></h5>
           <p class="question"></p>
-          <p class="id">Question ID : 290623 </p>
+          <p class="id">Question ID : 300623 </p>
           <div class="keys">
               <div class="cat"> </div>
           </div>
