@@ -499,6 +499,12 @@
             font-size:12px;
             padding:none;
         }
+        
+        @media print{
+            .menu,.select,.select.active{
+                display:none;
+            }
+        }
     </style>
     
     </head>
@@ -4869,8 +4875,6 @@
             chapter();
         }
         function print_page(){
-            document.querySelector('.menu').style.display = "none";
-            document.querySelector('.select').style.display = "none";
             window.print();
         }
         
