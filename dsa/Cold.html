@@ -484,9 +484,6 @@
             margin:5px 5px 5px 0;
             cursor:pointer;
         }
-        a{
-            user-select:all;
-        }
         @media (max-width:500px){
             .menu{
                 left:20px;
@@ -4790,6 +4787,73 @@
           <div style="font-size:13px;">Hint : tin, low | tin[node] > low[adjNode] = bridge </div>
     </section>
     
+    <section class="all easy dp">
+          <h5>Count ways to reach the n'th stair</h5>
+          <p class="question">There are n stairs, a person standing at the bottom wants to reach the top. The person can climb either 1 stair or 2 stairs at a time. Count the number of ways, the person can reach the top (order does matter).</p>
+          <p class="id">Question ID : 0407231011 </p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">DP</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/count-ways-to-reach-the-nth-stair-1587115620/1">https://practice.geeksforgeeks.org/problems/count-ways-to-reach-the-nth-stair-1587115620/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/mLfjzJsN8us">https://youtu.be/mLfjzJsN8us</a> </p>
+          <div style="font-size:13px;">Hint : prev2, prev1 [ curr = prev1 + prev2, prev2 = prev1, prev1 = curr ]</div>
+    </section>
+    
+    <section class="all easy dp">
+          <h5>Geek Jump</h5>
+          <p class="question"> Geek wants to climb from the 0th stair to the (n-1)th stair. At a time the Geek can climb either one or two steps. A height[N] array is also given. Whenever the geek jumps from stair i to stair j, the energy consumed in the jump is abs(height[i]- height[j]), where abs() means the absolute difference. return the minimum energy that can be used by the Geek to jump from stair 0 to stair N-1.</p>
+          <p class="id">Question ID : 0407231134 </p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">DP</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/geek-jump/1">https://practice.geeksforgeeks.org/problems/geek-jump/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/EgG3jsGoPvQ">https://youtu.be/EgG3jsGoPvQ</a> </p>
+          <div style="font-size:13px;">Hint : prev2 = inf, perv1 = 0</div>
+    </section>
+    
+    <section class="all medium dp revisit">
+          <h5>Minimal Cost</h5>
+          <p class="question">There are n stones and an array of heights and Geek is standing at stone 1 and can jump to one of the following: Stone i+1, i+2, ... i+k stone and cost will be [hi-hj] is incurred, where j is the stone to land on. Find the minimum possible total cost incurred before the Geek reaches Stone N.</p>
+          <p class="id">Question ID : 0407231203 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">ReVisit</div>
+              <div class="cat">DP</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/minimal-cost/1">https://practice.geeksforgeeks.org/problems/minimal-cost/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/Kmh3rhyEtB8">https://youtu.be/Kmh3rhyEtB8</a> </p>
+          <div style="font-size:13px;">Hint : [ i 1 &lt; n] [ j 1 &le; k] dp[i-j] + abs(height[i] - height[i - j])</div>
+    </section>
+    
+    <section class="all easy dp">
+          <h5>Max Sum without Adjacents</h5>
+          <p class="question">Given an array Arr of size N containing positive integers. Find the maximum sum of a subsequence such that no two numbers in the sequence should be adjacent in the array.</p>
+          <p class="id">Question ID : 0407231238 </p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">DP</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/max-sum-without-adjacents2430/1">https://practice.geeksforgeeks.org/problems/max-sum-without-adjacents2430/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/GrMBfJNk_NY">https://youtu.be/GrMBfJNk_NY</a> </p>
+          <div style="font-size:13px;">Hint : pick, not pick</div>
+    </section>
+    
+    <section class="all medium dp revisit">
+          <h5>Geek's Training</h5>
+          <p class="question">Geek is going for n days training program, he can perform any one of these three activities Running, Fighting, and Learning Practice. Each activity has some point on each day. as Geek wants to improve all his skills, he can't do the same activity on two consecutive days, help Geek to maximize his merit points as we were given a 2D array of n*3 points corresponding to each day and activity.</p>
+          <p class="id">Question ID : 0407231853 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">DP</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/geeks-training/1">https://practice.geeksforgeeks.org/problems/geeks-training/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/AE39gJYuRog">https://youtu.be/AE39gJYuRog</a> </p>
+          <div style="font-size:13px;">Hint : dp[row][col]</div>
+    </section>
+    
     <div class="select">
           <p>Hardness : </p>
           <label onclick="level(0)">ALL</label>
@@ -4895,7 +4959,7 @@
     <section class="all">
           <h5></h5>
           <p class="question"></p>
-          <p class="id">Question ID : 300623 </p>
+          <p class="id">Question ID : 050723 </p>
           <div class="keys">
               <div class="cat"> </div>
           </div>

@@ -7060,6 +7060,94 @@ void criticalConnections(int v, vector<vector<int>>connections) {
     printGrid(bridges);
 }
 
+// ? 0407231011
+int climbStairs1(int n){
+    int mod = 1e9 + 7;
+    long long prev2 = 1;
+    long long prev1 = 1;
+    int i = 2;
+    while (i <= n){
+        long long curr = (prev2 + prev1) % mod;
+        prev2 = prev1;
+        prev1 = curr;
+        i++;
+    }
+    return (prev1 % mod);
+}
+
+// ? 0407231134
+int minEnergyFrogJump(vector<int>height){
+    int n = height.size();
+    int prev2 = INT_MAX;
+    int prev1 = 0;
+    int i = 1;
+    while (i <= n-1){
+        int jump1 = prev1 + abs(height[i-1] - height[i]);
+        int jump2 = (i > 1) ? (prev2 + abs(height[i-2] - height[i])) : INT_MAX;
+        int curr = min(jump1, jump2);
+        prev2 = prev1;
+        prev1 = curr;
+        i++;
+    }
+    return prev1;
+}
+
+// ? 0407231203
+int minCostKJumps(vector<int>heights,int k){
+    int n = heights.size();
+    vector<int>dp(n,1e9);
+    dp[0] = 0;
+    for (int i = 1; i < n;i++){
+        // to reach step i we can k posibilites
+        int minCost = 1e9;
+        for (int j = 1;j <= k;j++){
+            if(i - j >= 0){
+                minCost = min(minCost, dp[i-j] + abs(heights[i] - heights[i-j]) );
+            }
+        }
+        dp[i] = minCost;
+    }
+    return dp[n-1];
+}
+
+// ? 0407231238
+int houseRobber1(vector<int>arr){
+    int n = arr.size();
+    int prev2 = 0;
+    int prev1 = arr[0];
+    for (int i = 1;i < n;i++){
+        int take = arr[i];
+        if (i - 1 >= 0) take += prev2;
+        int notTake = 0 + prev1;
+        
+        int curr = max(notTake,take);
+        prev2 = prev1;
+        prev1 = curr;
+    }
+    return prev1;
+}
+
+// ? 0407231853
+int maxPoints(vector<vector<int>>&points,vector<vector<int>>&dp,int n,int row,int col){
+    if (row == n) return 0;
+    if (dp[row][col] != -1) return dp[row][col];
+    int ans = INT_MIN;
+    for (int i = 0;i < 3;i++){
+        if (i != col) ans = max(ans, points[row][col]  +  maxPoints(points,dp,n,row+1,i) );
+    }
+    dp[row][col] = ans;
+    return ans;
+}
+int maxPointsTrain(vector<vector<int>>& points){
+    int n = points.size();
+    int ans = INT_MIN;
+    vector<vector<int>>dp(n,vector<int>(3,-1));
+    for (int i = 0; i < 3;i++){
+        ans = max(ans,maxPoints(points,dp,n,0,i));
+    }
+    return ans;
+}
+
 int main(){
     cout << endl;
 
@@ -8190,6 +8278,22 @@ int main(){
     // ? 3006231001
     // criticalConnections(12,{{0,1},{0,3},{1,2},{2,3},{3,4},{4,5},{5,6},{5,8},{6,7},{7,8},{7,9},{9,10},{9,11},{11,10}});
     // criticalConnections(13,{{0,1},{0,3},{1,2},{2,3},{3,4},{4,5},{5,6},{5,8},{6,7},{7,8},{7,9},{9,12},{12,8},{9,10},{9,11},{11,10}});
+
+    // ? 0407231011
+    // cout << climbStairs1(10) << endl;
+
+    // ? 0407231134
+    // cout << minEnergyFrogJump({10,10}) << endl;
+
+    // ? 0407231203
+    // cout << minCostKJumps({10,30,40,50,20},3) << endl;
+
+    // ? 0407231238
+    // cout << houseRobber1({5,5,10,100,10,5}) << endl;
+
+    // ? 0407231853
+    // vector<vector<int>>points = {{1,2,5},{3,1,1},{3,3,3}};
+    // cout << maxPointsTrain(points) << endl;
 
     cout << endl;
     return 0;
