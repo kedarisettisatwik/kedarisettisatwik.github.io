@@ -7148,6 +7148,127 @@ int maxPointsTrain(vector<vector<int>>& points){
     return ans;
 }
 
+// ? 0507231006
+int gridPaths1(int n, int m){
+    vector<int>prev(m,0);
+    for (int i = 0;i < n;i++){
+        vector<int>curr(m,0);
+        for (int j = 0;j < m;j++){
+            if (i == 0 && j == 0) curr[j] = 1;
+            else{
+                int up = 0;
+                int left = 0;
+                if (i > 0) up = prev[j];
+                if (j > 0) left = curr[j-1];
+                curr[j] = up + left;
+            }
+        }
+        prev = curr;
+    }
+    return prev[m-1];
+}
+
+// ? 0507231106
+int gridPaths2(int n, int m, vector<vector<int>>grid){
+    if (grid[n-1][m-1] == 1 || grid[0][0] == 1) return 0;
+    vector<int>prev(m,0);
+    int mod = 1e9 + 7;
+    for (int i = 0;i < n;i++){
+        vector<int>curr(m,0);
+        for (int j = 0;j < m;j++){
+            if (i == 0 && j == 0) curr[j] = 1;
+            else{
+                int up = 0;
+                int left = 0;
+                if (i > 0) {
+                    if (grid[i-1][j] == 0) up = prev[j];
+                }
+                if (j > 0){
+                    if (grid[i][j-1] == 0) left = curr[j-1];
+                }
+                curr[j] = (up + left) % mod;
+            }
+        }
+        prev = curr;
+    }
+    return prev[m-1];
+}
+
+// ? 0507231135
+int minSumPathGrid(vector<vector<int>>grid){
+    int n = grid.size();
+    int m = grid[0].size();
+    vector<int>prev(m,0);
+    for (int i = 0; i < n;i++){
+        vector<int>curr(m,0);
+        for (int j = 0; j < m;j++){
+            if (i == 0 && j == 0) curr[j] = grid[i][j];
+            
+            int up = 0;
+            if (i > 0) up += prev[j];
+            else up += 1e9;
+
+            int left = 0;
+            if (j > 0) left += curr[j-1];
+            else left += 1e9;
+
+            curr[j] = min(up,left);
+        }
+        prev = curr;
+    }
+    return prev[m-1];
+}
+
+// ? 0507231145
+int minSumTriangle(vector<vector<int>>triangle){
+    int n = triangle.size();
+    vector<int>bottom(n+1,0);
+    for (int i = n-1;i >= 0;i--){
+        vector<int>curr(n+1,0);
+        for (int j = 0; j <= i;j++){
+            if (i == n-1){
+                curr[j] = triangle[i][j];
+            }else{
+                curr[j] = min( triangle[i][j] + bottom[j+1],triangle[i][j] + bottom[j] );
+            }
+        }
+        bottom = curr;
+    }
+    return bottom[0];
+}
+
+// ? 0507231404
+int maxSumFallGrid(vector<vector<int>>grid){
+    int r = grid.size();
+    int c = grid[0].size();
+    
+    vector<int>prev(c,0), curr(c,0);
+    
+    for (int j = 0;j < c;j++) prev[j] = grid[0][j];
+    
+    for (int i = 1;i < r;i++){
+        for (int j = 0;j < c;j++){
+            
+            int u = grid[i][j] + prev[j];
+            
+            int ld = grid[i][j];
+            if (j-1 >= 0) ld += prev[j-1];
+            
+            int rd = grid[i][j];
+            if (j+1 < c) rd += prev[j+1];
+            
+            curr[j] = max(u, max(ld,rd));
+        }
+        prev = curr;
+    }
+    
+    int ans = 0;
+    for (int j = 0;j < c;j++){
+        ans = max(ans, prev[j]);
+    }
+    return ans;
+}
+
 int main(){
     cout << endl;
 
@@ -8294,6 +8415,21 @@ int main(){
     // ? 0407231853
     // vector<vector<int>>points = {{1,2,5},{3,1,1},{3,3,3}};
     // cout << maxPointsTrain(points) << endl;
+
+    // ? 0507231006
+    // cout << gridPaths1(3,3) << endl;
+
+    // ? 0507231106
+    // cout << gridPaths2(3,3,{{0,0,0},{0,1,0},{0,0,0}}) << endl;
+
+    // ? 0507231135
+    // cout << minSumPathGrid({{9,4,9,9},{6,7,6,4},{8,3,3,7},{7,4,9,10}}) << endl;
+
+    // ? 0507231145
+    // cout << minSumTriangle({{2},{3,4},{6,5,7},{4,1,8,3}}) << endl;
+
+    // ? 0507231404
+    // cout << maxSumFallGrid({{348, 391},{618, 193}}) << endl;
 
     cout << endl;
     return 0;
