@@ -7269,6 +7269,237 @@ int maxSumFallGrid(vector<vector<int>>grid){
     return ans;
 }
 
+// ? 0607230753
+bool subSetTarget(vector<int>arr, int k){
+    int n = arr.size();
+    vector<vector<bool>> dp(n,vector<bool>(k+1,false));
+
+    for(int i = 0; i < n; i++){
+        dp[i][0] = true;
+    }
+    
+    if(arr[0] <= k)
+        dp[0][arr[0]] = true;
+    
+    for(int ind = 1; ind < n; ind++){
+        for(int target= 1; target <= k; target++){
+            
+            bool notTaken = dp[ind-1][target];
+    
+            bool taken = false;
+                if(arr[ind]<=target)
+                    taken = dp[ind-1][target-arr[ind]];
+        
+            dp[ind][target]= notTaken||taken;
+        }
+    }
+    
+    return dp[n-1][k];
+}
+
+// ? 0607230850
+int minDiffSubSetPartition(vector<int>arr){
+    int n = arr.size(); 
+    int sum = 0;
+    for (int i = 0;i < n;i++) sum += arr[i];
+    
+    vector<vector<bool>>dp(n,vector<bool>(sum+1,false));
+    
+    for (int i = 0; i < n;i++){
+        dp[i][0] = true;
+    }
+    dp[0][arr[0]] = true;
+    
+    for (int i = 1;i < n;i++){
+        for (int target = 1;target <= sum;target++){
+            bool notPick = dp[i-1][target];
+            bool pick = false;
+            if (arr[i] <= target){
+                pick = dp[i-1][target-arr[i]];
+            }
+            dp[i][target] = notPick || pick;
+        }
+    }
+    
+    int minDiff = INT_MAX;
+    
+    for (int target = 0; target <= sum;target++){
+        if (dp[n-1][target]){
+            minDiff = min(minDiff, abs(target - (sum - target)) );
+        }
+    }
+    return minDiff;
+} 
+
+// ? 0607230858
+bool equalPartitionSubSet(vector<int>arr){
+    int n = arr.size();
+    int sum = 0;
+    for (int i = 0;i < n;i++) sum += arr[i];
+    
+    if (sum % 2 != 0) return false;
+    
+    int half = sum >> 1;
+    vector<vector<bool>>dp(n,vector<bool>(half + 1,false));
+    
+    for (int i = 0; i < n;i++){
+        dp[i][0] = true;
+    }
+    if (arr[0] <= half) dp[0][arr[0]] = true;
+    
+    for (int i = 1;i < n;i++){
+        for (int target = 1;target <= half;target++){
+            bool notPick = dp[i-1][target];
+            bool pick = false;
+            if (arr[i] <= target){
+                pick = dp[i-1][target-arr[i]];
+            }
+            dp[i][target] = notPick || pick;
+        }
+    }
+    
+    return dp[n-1][half];
+}
+
+// ? 0607231009
+int countSubSetsSumK(vector<int>arr, int k){
+    int n = arr.size();
+	int mod = 1e9 + 7;
+    vector<vector<int>> dp(n, vector<int>(k + 1, 0));
+    
+    if (arr[0] <= k){
+        dp[0][arr[0]] = 1;
+    }
+    
+    dp[0][0] = 1; 
+    if (arr[0] == 0) dp[0][0] = 2;
+    
+    for (int i = 1; i < n; i++){
+        for (int target = 0; target <= k; target++){
+            int notTake = dp[i-1][target];
+            int take = 0;
+            if (arr[i] <= target) take = dp[i-1][target-arr[i]];
+            dp[i][target] = (take + notTake) % mod;
+        }
+    }
+
+    return dp[n-1][k];
+}
+
+// ? 0607231112
+int countSubSetsDiff(int n, int k,vector<int>arr){
+    int mod = 1e9 + 7;
+    vector<vector<int>> dp(n, vector<int>(k + 1, 0));
+    
+    if (arr[0] <= k){
+        dp[0][arr[0]] = 1;
+    }
+    
+    dp[0][0] = 1; 
+    if (arr[0] == 0) dp[0][0] = 2;
+    
+    for (int i = 1; i < n; i++){
+        for (int target = 0; target <= k; target++){
+            int notTake = dp[i-1][target];
+            int take = 0;
+            if (arr[i] <= target) take = dp[i-1][target-arr[i]];
+            dp[i][target] = (take + notTake) % mod;
+        }
+    }
+
+    return dp[n-1][k];
+}
+int countPartitionsDiff(int d,vector<int>arr){
+    int n = arr.size();
+    int mod = 1e9 + 7;
+    int sum = 0;
+    for (int i = 0;i < n;i++) sum += arr[i];
+    
+    if (d > sum) return 0;
+    
+    // s1 = t
+    // s2 = t - d 
+    // sum = 2t - d => t = (sum + d)/2
+
+    if ((sum + d) % 2 != 0) return 0;
+    int target = (sum + d) >> 1;
+    
+    return countSubSetsDiff(n,target,arr);
+}
+
+// ? 0607231149
+int knapSack10(int w, vector<int>wt, vector<int>val){
+    int n = wt.size();
+    vector<vector<int>> dp(n,vector<int>(w+1,0));
+
+    for(int i = wt[0]; i <= w; i++){
+        dp[0][i] = val[0];
+    }
+    
+    for(int ind =1; ind < n; ind++){
+        for(int cap = 0; cap <= w; cap++){
+            
+            int notTaken = 0 + dp[ind-1][cap];
+            
+            int taken = INT_MIN;
+            if(wt[ind] <= cap)
+                taken = val[ind] + dp[ind-1][cap - wt[ind]];
+                
+            dp[ind][cap] = max(notTaken, taken);
+        }
+    }
+    
+    return dp[n-1][w];
+}
+
+// ? 0607231522
+int minCoinsInfiniteSupply(vector<int>coins, int x){
+    int n = coins.size();
+    vector<vector<int>>dp(n,vector<int>(x+1,1e9));
+    
+    // base case if x = 0 , 0 coins required
+    for(int i = 0;i < n;i++) dp[i][0] = 0;
+    
+    for (int v = coins[0];v <= x;v++){
+        if (v % coins[0] == 0) dp[0][v] = (v / coins[0]);
+    }
+
+    for (int i = 1;i < n;i++){
+        for (int v = 1;v <= x;v++){
+            int notPick = 0 + dp[i-1][v];
+            int pick = 1e9;
+            
+            if (coins[i] <= v) pick = 1 + dp[i][v - coins[i]]; // dp[i] beacuse we have infinite supply of coins
+
+            dp[i][v] = min(pick,notPick);
+        }
+    }
+    if (dp[n-1][x] == 1e9) return -1;
+    return dp[n-1][x];
+}
+
+// ? 0607232217
+int countWaysInfiniteSupply(vector<int>coins, int x){
+    int n = coins.size();
+    vector<vector<int>>dp(n,vector<int>(x+1,0));
+    
+    for (int v = 0;v <= x;v++){
+        if (v % coins[0] == 0) dp[0][v] = 1;
+    }
+
+    for (int i = 1;i < n;i++){
+        for (int v = 0;v <= x;v++){
+            int notPick = dp[i-1][v];
+            int pick = 0;
+            
+            if (coins[i] <= v) pick = dp[i][v - coins[i]]; // dp[i] beacuse we have infinite supply of coins
+
+            dp[i][v] = (pick + notPick);
+        }
+    }
+    return dp[n-1][x];
+}
+
 int main(){
     cout << endl;
 
@@ -8430,6 +8661,30 @@ int main(){
 
     // ? 0507231404
     // cout << maxSumFallGrid({{348, 391},{618, 193}}) << endl;
+
+    // ? 0607230753
+    // cout << subSetTarget({3,34,4,12,5,2},9) << endl;
+
+    // ? 0607230850
+    // cout << minDiffSubSetPartition({1,6,11,5}) << endl;
+
+    // ? 0607230858
+    // cout << equalPartitionSubSet({1,5,11,5}) << endl;
+
+    // ? 0607231009
+    // cout << countSubSetsSumK({0,0,1},1) << endl;
+
+    // ? 0607231112
+    // cout << countPartitionsDiff(3,{5,2,6,4}) << endl;
+
+    // ? 0607231149
+    // cout << knapSack10(4,{4,5,1},{1,2,3}) << endl;
+
+    // ? 0607231522
+    // cout << minCoinsInfiniteSupply({1,2,3},7) << endl;
+
+    // ? 0607232217
+    // cout << countWaysInfiniteSupply({1,2,3},4) << endl;
 
     cout << endl;
     return 0;
