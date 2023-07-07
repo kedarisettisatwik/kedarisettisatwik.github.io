@@ -7500,6 +7500,318 @@ int countWaysInfiniteSupply(vector<int>coins, int x){
     return dp[n-1][x];
 }
 
+// ? 0707230809
+int knapSackInfinite(int w, vector<int>val,vector<int>wt){
+    int n = wt.size();
+    vector<vector<int>>dp(n,vector<int>(w+1,0));
+    
+    for (int cap = 0;cap <= w;cap++){
+        if (wt[0] <= cap){
+            dp[0][cap] = int(cap / wt[0]) * val[0];
+        }
+    }
+    for (int i = 1;i < n;i++){
+        for (int cap = 1;cap <= w;cap++){
+            int notPick = 0 + dp[i-1][cap];
+            int pick = 0;
+            if (wt[i] <= cap){
+                pick = val[i] + dp[i][cap - wt[i]];
+            }
+            dp[i][cap] = max(notPick,pick);
+        }
+    }
+    return dp[n-1][w];
+}
+
+// ? 0707230827
+int rodCutting(vector<int>val){
+    int n = val.size();
+    vector<vector<int>>dp(n+1,vector<int>(n+1,0)); // 1 based index
+    
+    for (int l = 1;l <= n;l++){
+        dp[1][l] = val[0]*(l);
+    }
+    
+    for (int i = 2;i <= n;i++){
+        for (int l = 1;l <= n;l++){
+            int notCut = dp[i-1][l];
+            int cut = 0;
+            if (i <= l){
+                cut = val[i-1] + dp[i][l - i]; 
+            }
+            dp[i][l] = max(notCut,cut);
+        }
+    }
+    
+    return dp[n][n];
+}
+
+// ? 0707230846
+int longCommonSubSeqString(string s1, string s2){
+    int n=s1.size();
+    int m=s2.size();
+
+    vector<vector<int>> dp(n+1,vector<int>(m+1,0));
+    
+    for(int ind1 = 1;ind1 <= n;ind1++){
+        for(int ind2 = 1;ind2 <= m;ind2++){
+            if(s1[ind1-1] == s2[ind2-1])
+                dp[ind1][ind2] = 1 + dp[ind1-1][ind2-1];
+            else
+                dp[ind1][ind2] = 0 + max(dp[ind1-1][ind2],dp[ind1][ind2-1]);
+        }
+    }
+    
+    return dp[n][m];
+}
+
+// ? 0707231053
+void all_longest_common_subsequences(string s1, string s2){
+    int n = s1.size();
+    int m = s2.size();
+    vector<vector<int>>dp(n+1,vector<int>(m+1,0));
+    
+    for (int i = 1;i <= n;i++){
+        for (int j = 1;j <= m;j++){
+            if (s1[i-1] == s2[j-1]){
+                dp[i][j] = 1 + dp[i-1][j-1];
+            }else{
+                dp[i][j] = max(dp[i-1][j], dp[i][j-1]);
+            }
+        }
+    } // longest subSeq = dp[n][m] 
+    
+    // now backTrack
+    int i = n;
+    int j = m;
+    unordered_set<string>st;
+    queue<pair<pair<int,int>,string>>q; // coords, string
+    q.push({{n,m},""});
+    
+    while (q.empty() == false){
+        int r = q.front().first.first;
+        int c = q.front().first.second;
+        string str = q.front().second;
+        q.pop();
+        
+        if (r == 0 || c == 0){
+            st.insert(str);
+            continue;
+        }
+        
+        if (s1[r-1] == s2[c-1]){
+            str = s1[r-1] + str;
+            if (r-1 >= 0 && c-1 >= 0) q.push({{r-1,c-1},str});
+        }else{
+            // two ways {r-1,c} or {r,c-1} which is max
+            int way1 = dp[r-1][c];
+            int way2 = dp[r][c-1];
+            
+            if (way1 > way2){
+                q.push({{r-1,c},str});
+            }else if (way2 > way1){
+                q.push({{r,c-1},str});
+            }else{
+                q.push({{r-1,c},str});
+                q.push({{r,c-1},str});
+            }
+        }
+    }
+    for (auto& it : st){
+        cout << it << " ";
+    }
+    cout << endl;
+}
+
+// ? 0707231144
+int longestCommonSubstr(string s1, string s2){
+    int n = s1.length();
+    int m = s2.length();
+    vector<vector<int>>dp(n+1,vector<int>(m+1,0));
+    int ans = 0;
+    for (int i = 1;i <= n;i++){
+        for (int j = 1;j <= m;j++){
+            if (s1[i-1] == s2[j-1]){
+                dp[i][j] = 1 + dp[i-1][j-1];
+                ans = max(ans,dp[i][j]);
+            }else{
+                dp[i][j] = 0;
+            }
+        }
+    }
+    return ans;
+}
+
+// ? 0707231324
+int longestPalinSubseq(string s) {
+    int n = s.size();
+    string s1 = s;
+    string s2 = "";
+    for (auto it : s) s2 = it + s2;
+    // longestPalindrom subSeq in s == longest common subSequence in (S,reverse of S)
+    vector<vector<int>>dp(n+1,vector<int>(n+1,0));
+    for (int i = 1;i <= n;i++){
+        for (int j = 1;j <= n;j++){
+            if (s1[i-1] == s2[j-1]){
+                dp[i][j] = 1 + dp[i-1][j-1];
+            }else{
+                dp[i][j] = max(dp[i-1][j],dp[i][j-1]);
+            }
+        }
+    }
+    return dp[n][n];
+}
+
+// ? 0707231417
+int maxConsecutiveTF(string str, int k) {
+    int n = str.length();
+    int ans = 0;
+    
+    // finding max consecutive T's
+    int l = 0;
+    int chances = 0;
+    for (int r = 0;r < n;r++){
+        if (str[r] == 'F'){
+            chances++;
+        }
+        while (chances > k){
+            if (str[l] == 'F') chances--;
+            l++;
+        }
+        ans = max(ans,(r - l+1));
+    }
+
+    // finding max consecutive F's
+    l = 0;
+    chances = 0;
+    for (int r = 0;r < n;r++){
+        if (str[r] == 'T'){
+            chances++;
+        }
+        while (chances > k){
+            if (str[l] == 'T') chances--;
+            l++;
+        }
+        ans = max(ans,(r - l+1));
+    }
+
+    return ans;
+}
+
+// ? 0707231451
+int minInsertionsToMakePalindrome(string s) {
+    int n = s.size();
+    string s1 = s;
+    string s2 = "";
+    for (auto it : s) s2 = it + s2;
+    // longestPalindrom subSeq in s == longest common subSequence in (S,reverse of S)
+    vector<vector<int>>dp(n+1,vector<int>(n+1,0));
+    for (int i = 1;i <= n;i++){
+        for (int j = 1;j <= n;j++){
+            if (s1[i-1] == s2[j-1]){
+                dp[i][j] = 1 + dp[i-1][j-1];
+            }else{
+                dp[i][j] = max(dp[i-1][j],dp[i][j-1]);
+            }
+        }
+    }
+    return n - dp[n][n];
+}
+
+// ? 0707231510
+int convertStringMinInsDel(string s1, string s2){
+    int n = s1.size();
+    int m = s2.size();
+
+    vector<vector<int>> dp(n+1,vector<int>(m+1,0));
+    
+    for(int ind1 = 1;ind1 <= n;ind1++){
+        for(int ind2 = 1;ind2 <= m;ind2++){
+            if(s1[ind1-1] == s2[ind2-1])
+                dp[ind1][ind2] = 1 + dp[ind1-1][ind2-1];
+            else
+                dp[ind1][ind2] = 0 + max(dp[ind1-1][ind2],dp[ind1][ind2-1]);
+        }
+    }
+    int lcs = dp[n][m];
+    int del = n - lcs;
+    int ins = m - lcs;
+    return del + ins;
+}
+
+// ? 0707231518
+int shortestCommonSuperSeq(string s1, string s2){
+    int n = s1.size();
+    int m = s2.size();
+
+    vector<vector<int>> dp(n+1,vector<int>(m+1,0));
+    
+    for(int ind1 = 1;ind1 <= n;ind1++){
+        for(int ind2 = 1;ind2 <= m;ind2++){
+            if(s1[ind1-1] == s2[ind2-1])
+                dp[ind1][ind2] = 1 + dp[ind1-1][ind2-1];
+            else
+                dp[ind1][ind2] = 0 + max(dp[ind1-1][ind2],dp[ind1][ind2-1]);
+        }
+    }
+    int lcs = dp[n][m];
+    return (n + m - lcs);
+}
+
+// ? 0707231916
+int find_s2_in_s1(string s1, string s2,int i,int j,vector<vector<int>>&dp){
+    int mod = 1e9 + 7;
+    if (j < 0) return 1; // found all char's of s2 in s1
+    if (i < 0) return 0; // crossed s1 still some s2 char's not found
+    if (dp[i][j] != -1) return dp[i][j];
+    int ans = 0;
+    if (s1[i] == s2[j]){
+        ans += find_s2_in_s1(s1,s2,i-1,j-1,dp); // we can keep s1[i] as a matching char
+        ans += find_s2_in_s1(s1,s2,i-1,j,dp); // or we can look for another duplicate char
+    }else{
+        ans = find_s2_in_s1(s1,s2,i-1,j,dp); 
+    }
+    dp[i][j] = ans % mod;
+    return dp[i][j];
+}
+int subsequenceMatchCount(string t, string s){
+    int lt = t.size();
+    int ls = s.size();
+    vector<vector<int>>dp(lt,vector<int>(ls,-1));
+    find_s2_in_s1(t,s,lt-1,ls-1,dp);
+    return dp[lt-1][ls-1];
+} 
+
+// ? 0707232043
+int delReplaceInsert(string s1,string s2,int i,int j,vector<vector<int>>&dp){
+    if (i < 0){
+        return j + 1; // convert "" into s2[0..j] -> j + 1 insert operations  
+    }
+    if (j < 0){
+        return i + 1; // convert s1[0..i] to "" -> i+1 delete operations
+    }
+    if (dp[i][j] != -1) return dp[i][j];
+    
+    if (s1[i] == s2[j]){
+        dp[i][j] = delReplaceInsert(s1,s2,i-1,j-1,dp);
+        return dp[i][j];
+    }
+    int ans = INT_MAX;
+    ans = min(ans, 1 + delReplaceInsert(s1,s2,i-1,j,dp)); // del char in s1
+    ans = min(ans, 1 + delReplaceInsert(s1,s2,i,j-1,dp)); // insert char after index i s1
+    ans = min(ans, 1 + delReplaceInsert(s1,s2,i-1,j-1,dp)); // replace char in s1
+    
+    dp[i][j] = ans;
+    return ans;
+}
+int delReplaceInsertString(string s1, string s2) {
+    int n = s1.size();
+    int m = s2.size();
+    vector<vector<int>>dp(n,vector<int>(m,-1));
+    delReplaceInsert(s1,s2,n-1,m-1,dp);
+    return dp[n-1][m-1];
+}
+
 int main(){
     cout << endl;
 
@@ -8685,6 +8997,42 @@ int main(){
 
     // ? 0607232217
     // cout << countWaysInfiniteSupply({1,2,3},4) << endl;
+
+    // ? 0707230809
+    // cout << knapSackInfinite(8,{1,4,5,7},{1,3,4,5}) << endl;
+
+    // ? 0707230827
+    // cout << rodCutting({1,5,8,9,10,17,17,20}) << endl;
+
+    // ? 0707230846
+    // cout << longCommonSubSeqString("ABCDGH","AEDFHR") << endl;
+
+    // ? 0707231053
+    // all_longest_common_subsequences("abaaa","baabaca");
+
+    // ? 0707231144
+    // cout << longestCommonSubstr("ABCDGH","ACDGHR") << endl;
+
+    // ? 0707231324
+    // cout << longestPalinSubseq("bbabcbcab") << endl;
+
+    // ? 0707231417
+    // cout << maxConsecutiveTF("TTFTF",1) << endl;
+    
+    // ? 0707231451
+    // cout << minInsertionsToMakePalindrome("abcaa") << endl;
+
+    // ? 0707231510
+    // cout << convertStringMinInsDel("heap","pea") << endl;
+
+    // ? 0707231518
+    // cout << shortestCommonSuperSeq("abcd","cdyx") << endl;
+
+    // ? 0707231916
+    // cout << subsequenceMatchCount("babgbag","bag") << endl;
+
+    // ? 0707232043
+    // cout << delReplaceInsertString("geek","gesek") << endl;
 
     cout << endl;
     return 0;

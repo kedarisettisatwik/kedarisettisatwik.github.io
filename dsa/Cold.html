@@ -5027,6 +5027,166 @@
           <div style="font-size:13px;">Hint : dp[i][v-coins[i]] </div>
     </section>
     
+    <section class="all medium dp">
+          <h5>Knapsack Infinite</h5>
+          <p class="question">Given a set of N items, each with a weight and a value, represented by the array w[] and val[] respectively. Also, a knapsack with weight limit W.<br>The task is to fill the knapsack in such a way that we can get the maximum profit. Return the maximum profit.<br>Note: Each item can be taken any number of times.</p>
+          <p class="id">Question ID : 0707230809 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">DP</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/knapsack-with-duplicate-items4201/1">https://practice.geeksforgeeks.org/problems/knapsack-with-duplicate-items4201/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/OgvOZ6OrJoY">https://youtu.be/OgvOZ6OrJoY</a> </p>
+          <div style="font-size:13px;">Hint : dp[0][i] = val[0]*(cap / wt[0])</div>
+    </section>
+    
+    <section class="all medium dp">
+          <h5>Rod Cutting</h5>
+          <p class="question">Given a rod of length N inches and an array of prices, price[]. price[i] denotes the value of a piece of length i. Determine the maximum value obtain.</p>
+          <p class="id">Question ID : 0707230827 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">DP</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/rod-cutting0840/1">https://practice.geeksforgeeks.org/problems/rod-cutting0840/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/mO8XpGoJwuo">https://youtu.be/mO8XpGoJwuo</a> </p>
+          <div style="font-size:13px;">Hint : dp(size n+1 * n+1)</div>
+    </section>
+    
+    <section class="all medium dp">
+          <h5>Longest common SubSequence string</h5>
+          <p class="question">Given two sequences, find the length of longest subsequence present in both of them. Both the strings are of uppercase.</p>
+          <p class="id">Question ID : 0707230846 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">DP</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/longest-common-subsequence-1587115620/1">https://practice.geeksforgeeks.org/problems/longest-common-subsequence-1587115620/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/NPZn9jBrX8U">https://youtu.be/NPZn9jBrX8U</a> </p>
+          <div style="font-size:13px;">Hint : dp[i][j] = 0 + max(dp[i-1][j],dp[i][j-1]);</div>
+    </section>
+    
+    <section class="all medium dp revisit">
+          <h5>Print all LCS sequences</h5>
+          <p class="question">You are given two strings s and t. Now your task is to print all longest common sub-sequences in lexicographical order.</p>
+          <p class="id">Question ID : 0707231053 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">DP</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/print-all-lcs-sequences3413/1">https://practice.geeksforgeeks.org/problems/print-all-lcs-sequences3413/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/-zI4mrF2Pb4">https://youtu.be/-zI4mrF2Pb4</a> </p>
+          <div style="font-size:13px;">Hint : backTrack from {n, m}</div>
+    </section>
+    
+    <section class="all medium dp">
+          <h5>Longest Common Substring</h5>
+          <p class="question">Given two strings. The task is to find the length of the longest common substring.</p>
+          <p class="id">Question ID : 0707231144 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">DP</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/longest-common-substring1452/1">https://practice.geeksforgeeks.org/problems/longest-common-substring1452/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/_wP9mWNPL5w">https://youtu.be/_wP9mWNPL5w</a> </p>
+          <div style="font-size:13px;">Hint : (s1[i] != s2[j]) -> dp[i][j] = 0; return ans</div>
+    </section>
+    
+    <section class="all medium dp">
+          <h5>Longest Palindromic Subsequence</h5>
+          <p class="question">Given a String, find the longest palindromic subsequence.</p>
+          <p class="id">Question ID : 0707231324 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">DP</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/longest-palindromic-subsequence-1612327878/1">https://practice.geeksforgeeks.org/problems/longest-palindromic-subsequence-1612327878/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/6i_T5kkfv4A">https://youtu.be/6i_T5kkfv4A</a> </p>
+          <div style="font-size:13px;">Hint : longestPalindrom subSeq in s == longest common subSequence in (S,reverse of S)</div>
+    </section>
+    
+    <section class="all arrays medium">
+          <h5>Maximize the Confusion of an Exam</h5>
+          <p class="question">Given a string of T & F, and integer k, we can change T to F or F to T atmost K times, Return the maximum number of consecutive 'T's or 'F's in the answer</p>
+          <p class="id">Question ID : 0707231417 </p>
+          <div class="keys">
+              <div class="cat">Arrays</div>
+              <div class="cat">Medium</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/maximize-the-confusion-of-an-exam">https://leetcode.com/problems/maximize-the-confusion-of-an-exam</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/gwhMrBPoEEw">https://youtu.be/gwhMrBPoEEw</a> </p>
+          <div style="font-size:13px;">Hint : maxConsecutive 1's , convert atmost K zeros</div>
+    </section>
+    
+    <section class="all medium dp revisit">
+          <h5>Min Insertions to make Palindrome</h5>
+          <p class="question">Given a string, find the minimum number of characters to be inserted to convert it to palindrome.</p>
+          <p class="id">Question ID : 0707231451 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">DP</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/form-a-palindrome1455/1">https://practice.geeksforgeeks.org/problems/form-a-palindrome1455/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/xPBLEj41rFU">https://youtu.be/xPBLEj41rFU</a> </p>
+          <div style="font-size:13px;">Hint : length - longestPalindromSubSequence</div>
+    </section>
+    
+    <section class="all medium dp">
+          <h5>Min Delete,Insertions</h5>
+          <p class="question">Given two strings str1 and str2. The task is to remove or insert the minimum number of characters from/in str1 so as to transform it into str2.</p>
+          <p class="id">Question ID : 0707231510 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">DP</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/minimum-number-of-deletions-and-insertions0209/1">https://practice.geeksforgeeks.org/problems/minimum-number-of-deletions-and-insertions0209/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/yMnH0jrir0Q">https://youtu.be/yMnH0jrir0Q</a> </p>
+          <div style="font-size:13px;">Hint : delOp = n - lcs, insOp = m - lcs</div>
+    </section>
+    
+    <section class="all medium dp">
+          <h5>Shortest Common Supersequence</h5>
+          <p class="question">Given two strings X and Y of lengths m and n respectively, find the length of the smallest string which has both, X and Y as its sub-sequences.</p>
+          <p class="id">Question ID : 0707231518 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">DP</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/shortest-common-supersequence0322/1">https://practice.geeksforgeeks.org/problems/shortest-common-supersequence0322/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/xElxAuBcvsU">https://youtu.be/xElxAuBcvsU</a> </p>
+          <div style="font-size:13px;">Hint : n + m - lcs</div>
+    </section>
+    
+    <section class="all medium dp revisit">
+          <h5>Subsequence Counting</h5>
+          <p class="question">We are given two strings, ‘TEXT' and ‘S’. We have to calculate the no. of subsequences of ‘TEXT’, which are equal to ‘S’. Since the answer can be very large print it modulo (10^9)+7.</p>
+          <p class="id">Question ID : 0707231916 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">DP</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.codingninjas.com/studio/problems/subsequence-counting_3755256">https://www.codingninjas.com/studio/problems/subsequence-counting_3755256</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/nVG7eTiD2bY">https://youtu.be/nVG7eTiD2bY</a> </p>
+          <div style="font-size:13px;">Hint : if(s1[i] == s2[j]) (i-1,j-1 or i-1,j) else (i-1,j) </div>
+    </section>
+    
+    <section class="all medium dp revisit">
+          <h5>Del Insert Replace</h5>
+          <p class="question">Given two strings s and t. Return the minimum number of operations required to convert s to t.<br>Insert a character<br>Remove any character<br>Replace any character.</p>
+          <p class="id">Question ID : 0707232043 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">DP</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://practice.geeksforgeeks.org/problems/edit-distance3702/1">https://practice.geeksforgeeks.org/problems/edit-distance3702/1</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/fJaKO8FbDdo">https://youtu.be/fJaKO8FbDdo</a> </p>
+          <div style="font-size:13px;">Hint : del(i-1,j) replace(i-1,j-1) insert(i,j-1)</div>
+    </section>
+    
     <div class="select">
           <p>Hardness : </p>
           <label onclick="level(0)">ALL</label>
