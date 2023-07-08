@@ -7976,6 +7976,127 @@ long long maxProfitMultipleStocks(vector<long long>prices){
     return profit;
 }
 
+// ? 0807231244
+int maxBombs(vector<vector<int>>bombs) {
+    int n = bombs.size();
+    vector<int>adjLs[n];
+    for (int i = 0;i < n;i++){
+        for (int j = 0;j < n;j++){
+            if (i != j){
+                int x1 = bombs[i][0], y1 = bombs[i][1], r1 = bombs[i][2];
+                int x2 = bombs[j][0], y2 = bombs[j][1], r2 = bombs[j][2];
+                long long dis = (long long)(x1 - x2)*(x1 - x2) + (long long)(y1 - y2)*(y1-y2);
+                if (dis <= (long long)r1*r1){
+                    adjLs[i].push_back(j);
+                } 
+            }
+        }
+    }
+    int maxCnt = 0;
+    for(int i = 0;i < n;i++){
+        // bfs
+        int cnt = 0;
+        vector<bool>vis(n,false);
+        queue<int>q;
+        vis[i] = true;
+        q.push(i);
+        cnt++;
+        while (q.empty() == false){
+            int f = q.front();
+            q.pop();
+            for(auto adjNode : adjLs[f]){
+                if (vis[adjNode] == false){
+                    vis[adjNode] = true;
+                    cnt++;
+                    q.push(adjNode);
+                }
+            }
+        }
+        maxCnt = max(maxCnt,cnt);
+    }
+    return maxCnt;
+}
+
+// ? 0807231344
+ int buyStocks(int ind,int canBuy,int c,vector<int>&prices,int n,vector<vector<vector<int>>>&dp){
+    if (c == 0) return 0;
+    if (ind == n) return 0;
+    if (dp[ind][canBuy][c] != -1) return dp[ind][canBuy][c];
+    if (canBuy){
+        int buy = -prices[ind] + buyStocks(ind+1,0,c,prices,n,dp);
+        int notBuy = 0 + buyStocks(ind+1,1,c,prices,n,dp);
+        return dp[ind][canBuy][c] = max(buy,notBuy);
+    }else{
+        int sell = prices[ind] + buyStocks(ind+1,1,c-1,prices,n,dp); // sell means a transcation completed, next we can Buy
+        int notSell = 0 + buyStocks(ind+1,0,c,prices,n,dp);
+        return dp[ind][canBuy][c] = max(sell,notSell);
+    }
+}
+int stock_n_transactions(vector<int>&prices,int cap){
+    int n = prices.size();
+    vector<vector<vector<int>>>dp(n,vector<vector<int>>(2,vector<int>(cap + 1,-1))); // n , 1 = buy 0 = notBuy, cap
+    return buyStocks(0,1,cap,prices,n,dp);
+}
+
+// ? 0807231847
+int longestSquareStreak(vector<int>nums){
+    int n = nums.size();
+    int maxLen = 0;
+    unordered_set<int>st(nums.begin(),nums.end());
+    for(int i = 0;i < n;i++){
+        long long  x = nums[i];
+        bool x_square = false;
+        
+        double sqrt_x1 = (sqrt(nums[i]));
+        double r = sqrt_x1 - (int)sqrt_x1;
+        if (r == 0.0){
+            x_square = true;
+        }
+
+        long long sqrt_x = (long long)(sqrt(nums[i]));
+        if (st.find(sqrt_x) == st.end() || x_square == false){
+            // if x is not prefect square seq may start from
+            // else if x is prefect square and if we have sqrt(x) in arr then longest seq won't start from x
+            // if sqrt(x) not present then longest seq may start from x
+            int len = 0;
+            while (st.find(x) != st.end() && x <= 1e5){ // nums[i] max is 1e5
+                x = x * x;
+                len++;
+            }
+            maxLen = max(maxLen,len);
+        }
+    
+    }
+    if (maxLen < 2) return -1;
+    return maxLen;
+}
+
+// ? 0807231936
+int captureForts(vector<int>forts) {
+    // ans = max zeros in btw -1 , 1
+    int maxLen = 0;
+    int n = forts.size();
+    int startFort = 0;
+    int l = 0;
+    int r = 0;
+    for (int i = 0;i < n;i++){
+        if (startFort == 0 && forts[i] != 0){
+            startFort = forts[i];
+            l = i;
+        }else{
+            if (startFort == forts[i]){
+                l = i;
+            }else if (startFort == forts[i] * -1){
+                r = i;
+                maxLen = max(maxLen,r-l-1);
+                startFort = forts[i];
+                l = i;
+            }
+        }
+    }
+    return maxLen;
+}
+
 int main(){
     cout << endl;
 
@@ -9215,6 +9336,19 @@ int main(){
 
     // ? 0807231134
     // cout << maxProfitMultipleStocks({100,180,260,310,40,535,695}) << endl;
+
+    // ? 0807231244
+    // cout << maxBombs({{1,2,3},{2,3,1},{3,4,2},{4,5,3},{5,6,4}}) << endl;
+
+    // ? 0807231344
+    // vector<int>prices = {10,22,5,75,65,80};
+    // cout << stock_n_transactions(prices,2) << endl;
+
+    // ? 0807231847
+    // cout << longestSquareStreak({2,1,4,8,16,64}) << endl;
+
+    // ? 0807231936
+    // cout << captureForts({1,0,0,-1,0,0,0,1}) << endl;
 
     cout << endl;
     return 0;
