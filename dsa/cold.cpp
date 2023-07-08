@@ -7812,6 +7812,170 @@ int delReplaceInsertString(string s1, string s2) {
     return dp[n-1][m-1];
 }
 
+// ? 0807230739
+int minScoreGraphCities(int n, vector<vector<int>>roads){
+    // 1 based index
+    vector<vector<pair<int,int>>>adjLs(n+1);
+    for (auto r : roads){
+        adjLs[r[0]].push_back({r[1],r[2]});
+        adjLs[r[1]].push_back({r[0],r[2]});
+    }
+    vector<int>dis(n+1,1e9);
+    queue<pair<int,int>>q;
+    q.push({1e9,1}); // dis 0 node 1
+    while (q.empty() == false){
+        int node = q.front().second;
+        int d = q.front().first;
+        q.pop();
+        for (auto it : adjLs[node]){
+            int adjNode = it.first;
+            int d1 = it.second;
+            if (min(d,d1) < dis[adjNode]){
+                dis[adjNode] = min(d,d1);
+                q.push({dis[adjNode],adjNode});
+            } 
+        }
+    }
+    return dis[n];
+}
+
+// ? 0807230747
+long long dividePlayers(vector<int>skill) {
+    sort(skill.begin(),skill.end());
+    int n = skill.size();
+    int s = skill[0] + skill[n-1];
+    long long chemistry = 0;
+    int l = 0;
+    int r = n-1;
+    while (l < r){
+        int temp = skill[l] + skill[r];
+        if (temp != s) return -1;
+        chemistry += (skill[l] * skill[r]);
+        l++;
+        r--;
+    }
+    return chemistry;
+}
+
+// ? 0807230756
+bool isAllStars(string & S1, int i) {
+    // S1 is taken in 1-based indexing
+    for (int j = 1; j <= i; j++) {
+    if (S1[j - 1] != '*')
+        return false;
+    }
+    return true;
+}
+int wildCardMatchStrings(string S1,string S2){
+    // S1 = pattern
+    // S2 = text
+    int n = S1.size();
+    int m = S2.size();
+
+    vector <vector<bool>>dp(n + 1, vector <bool>(m, false));
+
+    dp[0][0] = true;
+
+    for (int j = 1; j <= m; j++) dp[0][j] = false; // empty pattern != non empty str
+    for (int i = 1; i <= n; i++){
+        // star * pattern == empty str 
+        if (S1[i-1] == '*') dp[i][0] = dp[i-1][0];
+        else dp[i][0] = false;
+    }
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= m; j++) {
+
+            if (S1[i - 1] == S2[j - 1] || S1[i - 1] == '?') dp[i][j] = dp[i - 1][j - 1];
+            else {
+                if (S1[i - 1] == '*')
+                    dp[i][j] = dp[i - 1][j] || dp[i][j - 1];
+
+                else dp[i][j] = false;
+            }
+        }
+    }
+
+    return dp[n][m];
+}
+
+// ? 0807231041
+int maxProfitStock1(vector<int>prices){
+    int n = prices.size();
+    int mini = prices[0];
+    int maxProfit = 0;
+    
+    for(int i = 0;i < n;i++){
+        int cost = prices[i] - mini;
+        maxProfit = max(maxProfit,cost);
+        mini = min(mini,prices[i]);
+    }
+    
+    return maxProfit;
+}
+
+// ? 0807231055
+void stockBuySellSegments(vector<int>prices){
+    int n = prices.size();
+    vector<vector<int>> segments;
+
+    int start = -1; // Start of the segment
+    int end = -1;   // End of the segment
+    
+    for (int i = 1; i < n; i++){
+        if (prices[i] > prices[i-1]){
+            // Potential selling day
+            if (start == -1) {
+                // If there was no previous segment, mark this as the start of a new segment
+                start = i - 1;
+            }
+        }else if (prices[i] < prices[i-1]){
+            // Potential buying day
+            if (start != -1) {
+                // If a start has been marked, mark this as the end of the segment and add it to the results
+                end = i - 1;
+                segments.push_back({start, end});
+                start = -1; // Reset start for the next segment
+            }
+        }
+    }
+    
+    // Check if there is an open segment at the end of the array
+    // like if prices increased continously till last
+    if (start != -1) {
+        end = n - 1;
+        segments.push_back({start, end});
+    }
+
+    printGrid(segments);
+}
+
+// ? 0807231134
+long long maxProfitMultipleStocks(vector<long long>prices){
+    int n = prices.size();
+    long long profit = 0;
+    int buy = -1;
+    int sell = -1;
+    for (int i = 1;i < n;i++){
+        if (prices[i] > prices[i-1]){
+            // price is increasing, good to buy at i - 1 if not yet bought
+            if (buy == -1){
+                buy = i-1;
+            }
+        }else if (prices[i] < prices[i-1]){
+            // price is decreasing, if you already bought good to sell at i-1
+            if (buy != -1){
+                sell = i-1;
+                profit += (prices[sell] - prices[buy]);
+                buy = -1; // new stock
+            }
+        }
+    }
+    if (buy != -1){
+        profit += (prices[n-1] - prices[buy]);
+    }
+    return profit;
+}
+
 int main(){
     cout << endl;
 
@@ -9033,6 +9197,24 @@ int main(){
 
     // ? 0707232043
     // cout << delReplaceInsertString("geek","gesek") << endl;
+
+    // ? 0807230739
+    // cout << minScoreGraphCities(4,{{1,2,9},{2,3,6},{2,4,5},{1,4,7}}) << endl;
+
+    // ? 0807230747
+    // cout << dividePlayers({3,2,5,1,3,4}) << endl;
+
+    // ? 0807230756
+    // cout << wildCardMatchStrings("**a?b","acb") << endl;
+
+    // ? 0807231041
+    // cout << maxProfitStock1({7,1,2,9,10}) << endl;
+
+    // ? 0807231055
+    // stockBuySellSegments({100,180,260,310,40,535,695});
+
+    // ? 0807231134
+    // cout << maxProfitMultipleStocks({100,180,260,310,40,535,695}) << endl;
 
     cout << endl;
     return 0;
