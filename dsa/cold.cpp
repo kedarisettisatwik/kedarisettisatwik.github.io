@@ -8097,6 +8097,275 @@ int captureForts(vector<int>forts) {
     return maxLen;
 }
 
+// ? 0907230758
+int collectApples(int node,vector<int>&vis,vector<vector<int>>&adjLs,vector<int>hasApple){
+    vis[node] = 1;
+    int time = 0;
+    for (auto child : adjLs[node]){
+        if (vis[child] == 0) time += collectApples(child,vis,adjLs,hasApple);
+    }
+    if (node == 0){
+        return time;
+    }
+    if (time == 0){
+        // if child have no apples
+        if (hasApple[node]){
+            // if node itself have apples, 
+            time = 2;
+        }
+        return 0;
+    }
+    return time + 2; // child have apples, so we should come and go back from this node
+}
+int collectAppleGraph(int n, vector<vector<int>>edges, vector<int>hasApple) {
+    vector<int>vis(n,0);
+    vector<vector<int>>adjLs(n);
+    for (auto it : edges){
+        adjLs[it[1]].push_back(it[0]);
+        adjLs[it[0]].push_back(it[1]);
+    }
+    return collectApples(0,vis,adjLs,hasApple);
+}
+
+// ? 0907230942
+int stockProfitCoolDown(bool canBuy,vector<int>&prices,int ind,int n,vector<vector<int>>&dp){
+    if (ind >= n) return 0;
+    if (dp[canBuy][ind] != -1) return dp[canBuy][ind];
+    if (canBuy){
+        int buy = -prices[ind] + stockProfitCoolDown(0,prices,ind+1,n,dp);
+        int notBuy = 0 + stockProfitCoolDown(1,prices,ind+1,n,dp); 
+        dp[canBuy][ind] = max(buy,notBuy);
+    }else{
+        int sell = prices[ind] + stockProfitCoolDown(1,prices,ind+2,n,dp);
+        int notSell = 0 + stockProfitCoolDown(0,prices,ind+1,n,dp);
+        dp[canBuy][ind] = max(sell,notSell);
+    }
+    return dp[canBuy][ind];
+}
+int sellBuyStockCoolDown(vector<int> &prices){
+    int n = prices.size();
+    vector<vector<int>>dp(2,vector<int>(n,-1));
+    return stockProfitCoolDown(1,prices,0,n,dp);
+}
+
+// ? 0907230957
+int stockProfitFee(int ind,int canBuy,vector<int>&prices,int fee,int n,vector<vector<int>>&dp){
+    if (ind >= n) return 0;
+    if (dp[canBuy][ind] != -1) return dp[canBuy][ind];
+    if (canBuy){
+        int buy = -prices[ind] + stockProfitFee(ind+1,0,prices,fee,n,dp);
+        int notBuy = 0 + stockProfitFee(ind+1,1,prices,fee,n,dp);
+        dp[canBuy][ind] =  max(buy,notBuy);
+    }else{
+        int sell = prices[ind] - fee + stockProfitFee(ind+1,1,prices,fee,n,dp);
+        int notSell = 0 + stockProfitFee(ind+1,0,prices,fee,n,dp);
+        dp[canBuy][ind] = max(sell,notSell);
+    }
+    return dp[canBuy][ind];
+}
+int sellBuyStockFee(int fee, vector<int> &prices){
+    int n = prices.size();
+    vector<vector<int>>dp(2,vector<int>(n,-1));
+    return stockProfitFee(0,1,prices,fee,n,dp);
+}
+
+// ? 0907231136
+void printLongestIncreasingSubSeq(vector<int> arr) {
+    int n = arr.size();
+	vector<int>dp(n,1),hash(n,0);
+	int maxi = 1;
+	int lastIndex = 0;
+	for(int i = 0;i < n;i++){
+		hash[i] = i;
+		for(int prev = 0;prev < i;prev++){
+			if (arr[prev] < arr[i] && dp[i] < (1 + dp[prev])){
+				dp[i] = 1 + dp[prev];
+				hash[i] = prev;
+			}
+		}
+		if (dp[i] > maxi){
+			maxi = dp[i];
+			lastIndex = i;
+		}
+	}
+	vector<int>ans;
+	ans.push_back(arr[lastIndex]);
+	while (lastIndex != hash[lastIndex]){
+		lastIndex = hash[lastIndex];
+		ans.push_back(arr[lastIndex]);
+	}
+	reverse(ans.begin(),ans.end());
+    printVector(ans);
+}
+
+// ? 0907231233
+void divisibleSet(vector<int>arr){
+    sort(arr.begin(),arr.end());
+    int n = arr.size();
+    vector<int>dp(n,1),hash(n,0);
+    int maxi = 1;
+    int lastIndex = 0;
+    for (int i = 0;i < n;i++){
+        hash[i] = i;
+        for(int prev = 0;prev < i;prev++){
+            if ((arr[i] != 0 && arr[prev] % arr[i] == 0) || (arr[prev] != 0 && arr[i] % arr[prev] == 0)){
+                if (dp[i] < 1 + dp[prev]){
+                    dp[i] = 1 + dp[prev];
+                    hash[i] = prev;
+                }
+            }
+        }
+        if (dp[i] > maxi){
+            maxi = dp[i];
+            lastIndex = i;
+        }
+    }
+    vector<int>ans;
+    ans.push_back(arr[lastIndex]);
+    while (hash[lastIndex] != lastIndex){
+        lastIndex = hash[lastIndex];
+        ans.push_back(arr[lastIndex]);
+    }
+    printVector(ans);
+}
+
+// ? 0907231407
+bool compareStrings(string str1,string str2){
+    // str2 + char = str1
+    int n = str1.size();
+    int m = str2.size();
+    if (n - m != 1) return false;
+    
+    int p1 = 0;
+    int p2 = 0;
+    while (p1 < n){
+        if (p2 < m && str1[p1] == str2[p2]){
+            p1++;
+            p2++;
+        }else{
+            p1++;
+        }
+    }
+    if (p1 == n && p2 == m) return true;
+    return false;
+}
+bool comp(string s1, string s2){
+    return s1.size() < s2.size();
+}
+void longestStrChain(vector<string>arr){
+    sort(arr.begin(),arr.end(),comp);
+    int n = arr.size();
+    vector<int>dp(n,1);
+    vector<int>hash(n,0);
+    int maxi = 1;
+    int lastIndex = 0;
+    for(int i = 0;i < n;i++){
+        hash[i] = i;
+        for(int prev = 0;prev < i;prev++){
+            if (compareStrings(arr[i],arr[prev])){
+                if (dp[i] < 1 + dp[prev]){
+                    dp[i] = 1 + dp[prev];
+                    hash[i] = prev;
+                }
+            }
+        }
+        if (dp[i] > maxi){
+            maxi = dp[i];
+            lastIndex = i;
+        }
+    }
+    vector<string>ans;
+    ans.push_back(arr[lastIndex]);
+    while (hash[lastIndex] != lastIndex){
+        lastIndex = hash[lastIndex];
+        ans.push_back(arr[lastIndex]);
+    }
+    for(auto it : ans) cout << it << " - ";
+    cout << endl;
+}
+
+// ? 0907231537
+int findNumberOfLIS(vector<int>arr){
+    int n = arr.size();
+    int maxi = 1;
+    vector<int>cnt(n,0),dp(n,0);
+    for(int i = 0;i < n;i++){
+        dp[i] = 1;
+        cnt[i] = 1;
+        for (int prev = 0;prev < i;prev++){
+            if (arr[prev] < arr[i]){
+                if (dp[i] < 1 + dp[prev]){
+                    dp[i] = 1 + dp[prev];
+                    cnt[i] = cnt[prev];
+                }else if (dp[i] == 1 + dp[prev]){
+                    cnt[i] += cnt[prev];
+                }
+            }
+        }
+        if (dp[i] > maxi){
+            maxi = dp[i];
+        }
+    }
+    int ans = 0;
+    for (int i = 0;i < n;i++){
+        if (dp[i] == maxi) ans += cnt[i];
+    }
+    return ans;
+}
+
+// ? 0907231751
+int longestBitonicSequence(vector<int>arr){
+    int n = arr.size();
+	vector<int>dp1(n,1);
+	vector<int>dp2(n,1);
+	vector<int>bitonic(n,1);
+	
+	for(int i = 0;i < n;i++){
+		for(int prev = 0;prev < i;prev++){
+			if (arr[prev] < arr[i]){
+				dp1[i] = max(dp1[i],1 + dp1[prev]);
+			}
+		}
+	} 
+	for(int i = n-1;i >= 0;i--){
+		for(int prev = n-1;prev > i;prev--){
+			if(arr[prev] < arr[i]){
+				dp2[i] = max(dp2[i],1 + dp2[prev]);
+			}
+		}
+	}
+	int maxi = 0;
+	for(int i = 0;i < n;i++){
+		bitonic[i] = (dp1[i] + dp2[i] - 1);
+		maxi = max(maxi,bitonic[i]);
+	}
+	return maxi;
+} 
+
+// ? 0907231835
+int matrixPartition(int i,int j,vector<int>arr,vector<vector<int>>&dp){
+    if (i == j) return 0; // no more multiplications needed
+    if (dp[i][j] != -1) return dp[i][j];
+    int mini = 1e9;
+    // we want to divide at index k
+    // i to k, k+1 to j
+    for(int k = i;k < j;k++){
+        // multiplication of A[i] ... A[k] will give matrix[ A[i-1] * A[k] ]
+        // multiplication of A[k+1] .... A[j] will give matrix[ A[k+1-1] * A[j] ] 
+        int x = arr[i - 1] * arr[k] * arr[j] + matrixPartition(i,k,arr,dp) + matrixPartition(k+1,j,arr,dp);
+        mini = min(mini,x); 
+    }
+    dp[i][j] = mini;
+    return mini;
+}
+int matrixChainMultiplication(vector<int>arr){
+    int n = arr.size()-1;
+    // n = 2, two matrixs, arr = [10,20,30]
+    // -> M1 = [10 x 20] , M2 = [20 x 30]
+    vector<vector<int>>dp(n+1,vector<int>(n+1,-1));
+    return matrixPartition(1,n,arr,dp); // multiply 1 to n matrixs
+}
+
 int main(){
     cout << endl;
 
@@ -9350,8 +9619,35 @@ int main(){
     // ? 0807231936
     // cout << captureForts({1,0,0,-1,0,0,0,1}) << endl;
 
+    // ? 0907230758
+    // cout << collectAppleGraph(7,{{0,1},{0,2},{2,3},{2,6},{1,4},{1,5}},{0,0,1,0,1,1,0}) << endl;
+
+    // ? 0907230942
+    // vector<int>prices = {4,9,0,4,10};
+    // cout << sellBuyStockCoolDown(prices) << endl;
+
+    // ? 0907230957
+    // vector<int>prices = {1,3,5,6};
+    // cout << sellBuyStockFee(2,prices) << endl;
+
+    // ? 0907231136
+    // printLongestIncreasingSubSeq({1,3,4,2,11,5});
+
+    // ? 0907231233
+    // divisibleSet({1,15,16,3,4,8});
+
+    // ? 0907231407
+    // longestStrChain({"x","xy","xx","xyx","y"});
+
+    // ? 0907231537
+    // cout << findNumberOfLIS({20,3,60,50,90,80}) << endl;
+
+    // ? 0907231751
+    // cout << longestBitonicSequence({12,11,40,5,3,1}) << endl;
+
+    // ? 0907231835
+    // cout << matrixChainMultiplication({10,15,20,25}) << endl;
+
     cout << endl;
     return 0;
 }
-
-

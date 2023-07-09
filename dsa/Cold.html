@@ -5343,7 +5343,130 @@
           <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/iXaboKjGTmM">https://youtu.be/iXaboKjGTmM</a> </p>
           <div style="font-size:13px;">Hint : maxZeros in btw -1, 1</div>
     </section>
+    
+    <section class="all medium trees graphs revisit">
+          <h5>Min Time to Collect All Apples in a Tree</h5>
+          <p class="question">Given an undirected tree consisting of n vertices numbered from 0 to n-1, which has some apples in their vertices. You spend 1 second to walk over one edge of the tree. Return the minimum time in seconds you have to spend to collect all apples in the tree, starting at vertex 0 and coming back to this vertex.</p>
+          <p class="id">Question ID : 0907230758 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Trees</div>
+              <div class="cat">Graphs</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/minimum-time-to-collect-all-apples-in-a-tree/">https://leetcode.com/problems/minimum-time-to-collect-all-apples-in-a-tree/</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/PE5qdXqgs6Y">https://youtu.be/PE5qdXqgs6Y</a> </p>
+          <div style="font-size:13px;">Hint : dfs, childTime = 0 hasApple return 2, else return time + 2 </div>
+    </section>
 
+    <section class="all medium dp">
+          <h5>Buy and Sell Stock with Cooldown</h5>
+          <p class="question">You are given a list of stock prices, ‘prices’. Where ‘prices[i]’ represents the price on ‘i’th day. Your task is to calculate the maximum profit you can earn by trading stocks if you can only hold one stock at a time. After you sell your stock on the ‘i’th day, you can only buy another stock on ‘i + 2’ th day or later.</p>
+          <p class="id">Question ID : 0907230942 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">DP</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.codingninjas.com/studio/problems/best-time-to-buy-and-sell-stock-with-cooldown_3125969">https://www.codingninjas.com/studio/problems/best-time-to-buy-and-sell-stock-with-cooldown_3125969</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/IGIe46xw3YY">https://youtu.be/IGIe46xw3YY</a> </p>
+          <div style="font-size:13px;">Hint : dp[canBuy][ind] </div>
+    </section>
+    
+    <section class="all medium dp">
+          <h5>Buy and Sell Stock with Transaction Fee</h5>
+          <p class="question">Given 'N' number of days and an array 'PRICES' of size 'N' price of the chocolate each day. and variable 'FEE' fee for the transaction. Find the maximum profit.</p>
+          <p class="id">Question ID : 0907230957 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">DP</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.codingninjas.com/studio/problems/best-time-to-buy-and-sell-stock-with-transaction-fee_3118974">https://www.codingninjas.com/studio/problems/best-time-to-buy-and-sell-stock-with-transaction-fee_3118974</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/k4eK-vEmnKg">https://youtu.be/k4eK-vEmnKg</a> </p>
+          <div style="font-size:13px;">Hint : sell = prices[ind] - fee</div>
+    </section>
+    
+    <section class="all medium dp revisit">
+          <h5>Printing Longest Increasing Subsequence</h5>
+          <p class="question">Find the Longest Increasing Subsequence of the array.</p>
+          <p class="id">Question ID : 0907231136 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">DP</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.codingninjas.com/studio/problems/printing-longest-increasing-subsequence_8360670">https://www.codingninjas.com/studio/problems/printing-longest-increasing-subsequence_8360670</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/IFfYfonAFGc">https://youtu.be/IFfYfonAFGc</a> </p>
+          <div style="font-size:13px;">Hint : dp[i] = max(dp[i], 1 + dp[prev])</div>
+    </section>
+    
+     <section class="all medium dp">
+          <h5>Divisible Set</h5>
+          <p class="question">Array of distinct numbers. Your task is to return the largest subset of numbers from ‘arr’, such that any pair of numbers ‘a’ and ‘b’ from the subset satisfies the following: a % b == 0 or b % a == 0.</p>
+          <p class="id">Question ID : 0907231233 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">DP</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.codingninjas.com/studio/problems/divisible-set_3754960">https://www.codingninjas.com/studio/problems/divisible-set_3754960</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/gDuZwBW9VvM">https://youtu.be/gDuZwBW9VvM</a> </p>
+          <div style="font-size:13px;">Hint : sort arr -> dp[i] = 1 + dp[prev] , hash</div>
+    </section>
+    
+    <section class="all medium dp">
+          <h5>Longest String Chain</h5>
+          <p class="question">string chain (str1, str2) means str2 = str1 + one character, find longest string chain</p>
+          <p class="id">Question ID : 0907231407 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">DP</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.codingninjas.com/studio/problems/longest-string-chain_3752111">https://www.codingninjas.com/studio/problems/longest-string-chain_3752111</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/YY8iBaYcc4g">https://youtu.be/YY8iBaYcc4g</a> </p>
+          <div style="font-size:13px;">Hint : compare strings(i,prev) , prev + one char = i </div>
+    </section>
+    
+    <section class="all medium dp revisit">
+          <h5>Number of Longest Increasing Subsequence</h5>
+          <p class="question">Given an integer array ‘ARR’ of length ‘N’, return the number of longest increasing subsequences in it.</p>
+          <p class="id">Question ID : 0907231537 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">DP</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.codingninjas.com/studio/problems/number-of-longest-increasing-subsequence_3751627">https://www.codingninjas.com/studio/problems/number-of-longest-increasing-subsequence_3751627</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/cKVl1TFdNXg">https://youtu.be/cKVl1TFdNXg</a> </p>
+          <div style="font-size:13px;">Hint : cnt(n,0) if (dp[i] == 1 + dp[prev]) cnt[prev] += cnt[prev]</div>
+    </section>
+    
+    <section class="all medium dp revisit">
+          <h5>Longest Bitonic Sequence</h5>
+          <p class="question">You are given an array/list 'ARR' consisting of 'N' positive integers. A subsequence of 'ARR' is called bitonic if it is first increasing and then decreasing.</p>
+          <p class="id">Question ID : 0907231751 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">DP</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.codingninjas.com/studio/problems/longest-bitonic-sequence_1062688">https://www.codingninjas.com/studio/problems/longest-bitonic-sequence_1062688</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/y4vN0WNdrlg">https://youtu.be/y4vN0WNdrlg</a> </p>
+          <div style="font-size:13px;">Hint : LIS + reverseLIS - 1 </div>
+    </section>
+    
+    <section class="all hard revisit dp">
+          <h5>Matrix Chain Multiplication</h5>
+          <p class="question">You will be given an array p[] of size n + 1. Dimension of matrix Ai is p[i - 1]*p[i]. You need to find minimum number of multiplications needed to multiply the chain.</p>
+          <p class="id">Question ID : 0907231835 </p>
+          <div class="keys">
+              <div class="cat">Hard</div>
+              <div class="cat">ReVisit</div>
+              <div class="cat">DP</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.codingninjas.com/studio/problems/matrix-chain-multiplication_624880">https://www.codingninjas.com/studio/problems/matrix-chain-multiplication_624880</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/vRVfmbCFW7Y">https://youtu.be/vRVfmbCFW7Y</a> </p>
+          <div style="font-size:13px;">Hint : f(arr,i,k) + f(arr, k+1,j) + arr[i-1] * arr[k] * arr[j] </div>
+    </section>
+    
     <div class="select">
           <p>Hardness : </p>
           <label onclick="level(0)">ALL</label>
