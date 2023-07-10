@@ -308,7 +308,7 @@
             background-color: skyblue;
         }
         .all{
-            background-color: whitesmoke;
+            background-color:rgb(0,0,0,0.03);
             padding:30px 20px;
             margin:20px auto;
         }
@@ -5467,6 +5467,160 @@
           <div style="font-size:13px;">Hint : f(arr,i,k) + f(arr, k+1,j) + arr[i-1] * arr[k] * arr[j] </div>
     </section>
     
+    <section class="all medium strings">
+          <h5>Lexicographically Smallest Equivalent String</h5>
+          <p class="question">You are given two strings of the same length s1 and s2 and a string baseStr.<br>We say s1[i] and s2[i] are equivalent characters.<br>Return the lexicographically smallest equivalent string of baseStr by using the equivalency information from s1 and s2.</p>
+          <p class="id">Question ID : 1007231025 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Strings</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/lexicographically-smallest-equivalent-string/description/">https://leetcode.com/problems/lexicographically-smallest-equivalent-string/description/</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/J6NfkPSUecQ">https://youtu.be/J6NfkPSUecQ</a> </p>
+          <div style="font-size:13px;">Hint : disJoint set</div>
+    </section>
+    
+    <section class="all hard dp revisit">
+          <h5>Cost to Cut a Chocolate</h5>
+          <p class="question">You are given chocolate of ‘N’ length. The chocolate is labeled from 0 to ‘N’. You are also given an array ‘CUTS’ of size ‘C’, denoting the positions at which you can do a cut. The order of cuts can be changed. The cost of one cut is the length of the chocolate to be cut. Therefore, the total cost is the sum of all the cuts. Print the minimum cost to cut the chocolate.</p>
+          <p class="id">Question ID : 1007231123 </p>
+          <div class="keys">
+              <div class="cat">Hard</div>
+              <div class="cat">DP</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.codingninjas.com/studio/problems/cost-to-cut-a-chocolate_3208460">https://www.codingninjas.com/studio/problems/cost-to-cut-a-chocolate_3208460</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/xwomavsC86c">https://youtu.be/xwomavsC86c</a> </p>
+          <div style="font-size:13px;">Hint : sort cuts arr, chocoLength + (i,cut-1) + (cut+1,j) </div>
+    </section>
+
+    <section class="all medium dp">
+          <h5>Rod cutting problem</h5>
+          <p class="question">Given a rod of length ‘N’ units. The rod can be cut into different sizes and each size has a cost associated with it. Determine the maximum cost obtained by cutting the rod and selling its pieces.</p>
+          <p class="id">Question ID : 1007231136 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">DP</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.codingninjas.com/studio/problems/rod-cutting-problem_800284">https://www.codingninjas.com/studio/problems/rod-cutting-problem_800284</a> </p>
+          <div style="font-size:13px;">Hint : price[i-1] + f(length-i,prices)</div>
+    </section>
+
+    <section class="all hard revisit dp">
+          <h5>Mining Diamonds</h5>
+          <p class="question">There are ‘N’ diamonds in a mine. The size of each diamond is given in the form of integer array ‘A’. If the miner mines a diamond, then he gets 'size of previous unmined diamond * size of currently mined diamond * size of next unmined diamond' number of coins. <br>find the max coins</p>
+          <p class="id">Question ID : 1007231420 </p>
+          <div class="keys">
+              <div class="cat">Hard</div>
+              <div class="cat">ReVisit</div>
+              <div class="cat">DP</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.codingninjas.com/studio/problems/mining-diamonds_4244494">https://www.codingninjas.com/studio/problems/mining-diamonds_4244494</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/Yz4LlDSlkns">https://youtu.be/Yz4LlDSlkns</a> </p>
+          <div style="font-size:13px;">Hint : add 1's to ends of arr,<br> select the last mine you want to blast, back .. </div>
+    </section>
+    
+    <section class="all hard revisit dp strings">
+          <h5>Boolean Expresion</h5>
+          <p class="question">You are given an expression ‘EXP’ in the form of a string where operands will be : (TRUE and FALSE) and operators will be :  (AND, OR, XOR). Now you have to find the number of ways we can parenthesize the expression such that it will evaluate to TRUE.</p>
+          <p class="id">Question ID : 1007231437 </p>
+          <div class="keys">
+              <div class="cat">Hard</div>
+              <div class="cat">ReVisit</div>
+              <div class="cat">DP</div>
+              <div class="cat">Strings</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.codingninjas.com/studio/problems/boolean-evaluation_1214650">https://www.codingninjas.com/studio/problems/boolean-evaluation_1214650</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/MM7fXopgyjw">https://youtu.be/MM7fXopgyjw</a> </p>
+          <div style="font-size:13px;">Hint : k = i+1,k &le; j-1,k+=2 -> lt,lf, rt,rf</div>
+    </section>
+    
+    <section class="all medium revisit recursion">
+          <h5>Palindrome Partitioning</h5>
+          <p class="question">partition s such that every partition string is a palindrome.Return all possible palindrome partitioning of s.</p>
+          <p class="id">Question ID : 1007231523 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">ReVisit</div>
+              <div class="cat">Recursion</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.codingninjas.com/studio/problems/palindrome-partitioning_626181">https://www.codingninjas.com/studio/problems/palindrome-partitioning_626181</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/WBgsABoClE0">https://youtu.be/WBgsABoClE0</a> </p>
+          <div style="font-size:13px;">Hint : i = ind to n, palindrom(ind,i) -> f(i+1) </div>
+    </section>
+    
+    <section class="all hard revisit dp strings">
+          <h5>Palindrome Partitioning II</h5> 
+          <p class="question">Given a string, make cuts in that string to make partitions containing substrings with size at least 1, and also each partition is a palindrome.Among all such valid partitions, return the minimum number of cuts to be made such that the resulting substrings in the partitions are palindromes.</p>
+          <p class="id">Question ID : 1007231543 </p>
+          <div class="keys">
+              <div class="cat">Hard</div>
+              <div class="cat">ReVisit</div>
+              <div class="cat">DP</div>
+              <div class="cat">Strings</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.codingninjas.com/studio/problems/palindrome-partitioning-ll_873266">https://www.codingninjas.com/studio/problems/palindrome-partitioning-ll_873266</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/_H8V5hJUGd0">https://youtu.be/_H8V5hJUGd0</a> </p>
+          <div style="font-size:13px;">Hint : front partition, check if palindrom(index,i) if -> next move to i + 1</div>
+    </section>
+    
+    <section class="all medium arrays dp">
+          <h5>Partition Array for Maximum Sum</h5>
+          <p class="question">You have to divide the array into some subarrays of length atmost k such that each element is present in exactly one of the subarrays.After partitioning all the elements of each subarray will be changed to the maximum element present in that subarray. You have to maximize the sum of all the elements after partitioning.</p>
+          <p class="id">Question ID : 1007231604 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Arrays</div>
+              <div class="cat">DP</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.codingninjas.com/studio/problems/partition-array-for-maximum-sum_3755255">https://www.codingninjas.com/studio/problems/partition-array-for-maximum-sum_3755255</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/PhWWJmaKfMc">https://youtu.be/PhWWJmaKfMc</a> </p>
+          <div style="font-size:13px;">Hint : front partition, <br>// (maximum upto i,ind)*(ind - i + 1) + f(ind+1,n,nums,k,dp)</div>
+    </section>
+    
+    <section class="all hard arrays revisit">
+          <h5>Largest Rectangle in Histogram</h5>
+          <p class="question">Given an array of integers heights representing the histogram's bar height,return the area of the largest rectangle in the histogram.</p>
+          <p class="id">Question ID : 1007231716 </p>
+          <div class="keys">
+              <div class="cat">Hard</div>
+              <div class="cat">Arrays</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/largest-rectangle-in-histogram/">https://leetcode.com/problems/largest-rectangle-in-histogram/</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/X0X6G-eWgQ8">https://youtu.be/X0X6G-eWgQ8</a> </p>
+          <div style="font-size:13px;">Hint : rightSmall - leftSmall + 1 * heights[i]</div>
+    </section>
+    
+    <section class="all medium arrays grid">
+          <h5>Maximal Rectangle</h5>
+          <p class="question">Given a rows x cols binary matrix filled with 0's and 1's, find the largest rectangle containing only 1's and return its area.</p>
+          <p class="id">Question ID : 1007231725 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Arrays</div>
+              <div class="cat">Grid</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/maximal-rectangle/">https://leetcode.com/problems/maximal-rectangle/</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/tOylVCugy9k">https://youtu.be/tOylVCugy9k</a> </p>
+          <div style="font-size:13px;">Hint : histogram rectangle </div>
+    </section>
+    
+    <section class="all hard revisit dp grid">
+          <h5>Count Squares</h5>
+          <p class="question">Given a m * n matrix of ones and zeros, return how many square submatrices have all ones.</p>
+          <p class="id">Question ID : 1007231752 </p>
+          <div class="keys">
+              <div class="cat">Hard</div>
+              <div class="cat">ReVisit</div>
+              <div class="cat">DP</div>
+              <div class="cat">Grid</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/count-square-submatrices-with-all-ones/">https://leetcode.com/problems/count-square-submatrices-with-all-ones/</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/auS1fynpnjo">https://youtu.be/auS1fynpnjo</a> </p>
+          <div style="font-size:13px;">Hint : dp[i][j] = 0 -> 0, dp[i][j] = 1 -> 1 + min(dp[i-1,j-1] [i-1,j] [i,j-1] )</div>
+    </section>
+    
     <div class="select">
           <p>Hardness : </p>
           <label onclick="level(0)">ALL</label>
@@ -5572,7 +5726,7 @@
     <section class="all">
           <h5></h5>
           <p class="question"></p>
-          <p class="id">Question ID : 090723 </p>
+          <p class="id">Question ID : 100723 </p>
           <div class="keys">
               <div class="cat"> </div>
           </div>

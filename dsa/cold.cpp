@@ -6764,6 +6764,16 @@ class DisJointSet{
             size[ulp_u] += size[ulp_v];
         }
     }
+    void unionByNum(int u,int v){
+        int parent_u = findUltimateParent(u);
+        int parent_v = findUltimateParent(v);
+        if (parent_u == parent_v) return ;
+        if (parent_u <= parent_v){
+            parent[parent_v] = parent_u;
+        }else{
+            parent[parent_u] = parent_v;
+        }
+    }
 };
 
 // ? 2906231529
@@ -8366,6 +8376,269 @@ int matrixChainMultiplication(vector<int>arr){
     return matrixPartition(1,n,arr,dp); // multiply 1 to n matrixs
 }
 
+// ? 1007231025
+string smallestEquivalentString(string s1, string s2, string baseStr){
+    DisJointSet ds(26);
+    int n = s1.length();
+    for(int i = 0;i < n;i++){
+        if (s1[i] < s2[i]){
+            ds.unionByNum(int(s1[i]-'a'),int(s2[i]-'a'));
+        }else if (s1[i] > s2[i]){
+            ds.unionByNum(int(s2[i]-'a'),int(s1[i]-'a'));
+        }
+    }
+    string ans = baseStr;
+    n = baseStr.length();
+    for(int i = 0;i < n;i++){
+        ans[i] = char(ds.findUltimateParent(int(baseStr[i] - 'a')) + 'a');
+    }
+    return ans;
+}
+
+// ? 1007231123
+int cutProfit(int i,int j,vector<int>&cuts,int rodStart,int rodEnd,vector<vector<vector<int>>>&dp){
+	if (i > j) return 0;
+    int length = rodEnd - rodStart+1;
+    if (dp[i][j][length] != -1) return dp[i][j][length];
+	int ans = 1e9;
+	for(int k = i;k <= j;k++){
+        int c = cuts[k];
+		int cost = length + cutProfit(i,k-1,cuts,rodStart,c,dp) + cutProfit(k+1,j,cuts,c+1,rodEnd,dp);
+		ans = min(ans, cost);
+	}
+	return dp[i][j][length] = ans;
+}
+int minCostCutting(int length,vector<int>cuts){
+	int c = cuts.size();
+    sort(cuts.begin(),cuts.end());
+    vector<vector<vector<int>>>dp(c,vector<vector<int>>(c,vector<int>(length+1,-1)));
+	return cutProfit(0,c-1,cuts,1,length,dp);
+}
+
+// ? 1007231136
+int cutRod(int length,vector<int>price,vector<int>&dp){
+	if (length <= 0) return 0;
+	if(dp[length] != -1) return dp[length];
+	int ans = 0;
+	for(int i = 1;i <= length;i++){
+		int c = price[i-1] + cutRod(length-i,price,dp);
+		ans = max(ans,c);
+	}
+	return dp[length] = ans;
+}
+int maxCutRod(vector<int>price, int n){
+	vector<int>dp(n+1,-1);
+	return cutRod(n,price,dp);
+}
+
+// ? 1007231420
+int maxBallonCoins(int i,int j,vector<int>a,vector<vector<int>>&dp){
+    if (i > j) return 0;
+    if (dp[i][j] != -1) return dp[i][j];
+    int ans = 0;
+    for(int k = i;k <= j;k++){
+        int x = a[i-1] * a[k] * a[j+1] + maxBallonCoins(i,k-1,a,dp) + maxBallonCoins(k+1,j,a,dp);  
+        ans = max(ans, x);
+    }
+    return dp[i][j] = ans;
+}
+int ballonCoins(vector<int>a) {
+    int n = a.size();
+    a.push_back(1);
+    a.insert(a.begin(),1);
+    vector<vector<int>>dp(n+1,vector<int>(n+1,-1));
+    return maxBallonCoins(1,n,a,dp);
+}
+
+// ? 1007231437
+int evaluateExpTF(int i,int j,bool isTrue,string exp,vector<vector<vector<long long>>>&dp){
+    int mod = 1e9 + 7;
+    if(i > j) return 0;
+    if (dp[i][j][isTrue] != -1) return dp[i][j][isTrue];
+    if (i == j){
+        if (isTrue) dp[i][j][isTrue] = ( exp[i] == 'T');
+        else dp[i][j][isTrue] = ( exp[i] == 'F');
+        return dp[i][j][isTrue]; 
+    }
+    int ans = 0;
+    for(int k = i+1;k <= j-1;k+=2){
+        long long lt = evaluateExpTF(i,k-1,true,exp,dp); // how many ways to make left exp true;
+        long long lf = evaluateExpTF(i,k-1,false,exp,dp); // how many ways to make left exp false;
+        long long rt = evaluateExpTF(k+1,j,true,exp,dp); // how many ways to make right exp true;
+        long long rf = evaluateExpTF(k+1,j,false,exp,dp); // how many ways to make right exp false;
+        if (exp[k] == '|'){
+            if (isTrue) ans += (lt * rt)%mod + (lf * rt)%mod + (lt * rf)%mod;
+            else ans += (lf * rf)%mod;
+        }else if (exp[k] == '&'){
+            if (isTrue) ans += (lt * rt)%mod;
+            else ans += (lf * rf)%mod + (lt * rf)%mod + (lf * rt)%mod;
+        }else if (exp[k] == '^'){
+            if (isTrue) ans += (lt * rf)%mod + (lf * rt)%mod;
+            else ans += (lf * rf)%mod + (lt * rt)%mod;
+        }
+    }
+    return dp[i][j][isTrue] = ans % mod;
+}
+int noWaysToMakeExpTrue(string exp){
+    int n = exp.size();
+    vector<vector<vector<long long>>>dp(n,vector<vector<long long>>(n,vector<long long>(2,-1)));
+    return evaluateExpTF(0,n-1,true,exp,dp);
+}
+
+// ? 1007231523
+bool isPalindrome(string str, int l, int r) {
+    while (l < r) {
+        if (str[l] != str[r]) return false;
+        l++;
+        r--;
+    }
+    return true;
+}
+void partitionStr(string str, int index, vector<string>& path, vector<vector<string>>& res) {
+    if (index == str.size()) {
+        res.push_back(path);
+        return;
+    }
+    for (int i = index; i < str.size(); i++) {
+        if (isPalindrome(str, index, i)) {
+            path.push_back(str.substr(index, i - index + 1));
+            partitionStr(str, i + 1, path, res);  // Fixed the recursive call here
+            path.pop_back();
+        }
+    }
+}
+void palindromePartitioning1(string s) {
+    vector<vector<string>> res;
+    vector<string> path;
+    partitionStr(s, 0, path, res);
+    for(auto it : res){
+        for(auto i : it) cout << i << " ";
+        cout << endl;
+    }
+}
+
+// ? 1007231543
+int minPartitions(string str,int i,int n,vector<int>&dp){
+    if (i == n) return 0;
+    if (dp[i] != -1) return dp[i];
+    int ans = INT_MAX;
+    for(int j = i;j < n;j++){
+        if (isPalindrome(str,i,j)){
+            ans = min(ans, 1 + minPartitions(str,j+1,n,dp));
+        }
+    }
+    return dp[i] = ans;
+}
+int palindromePartitioning2(string str){
+    int n = str.size();
+    vector<int>dp(n,-1);
+    return minPartitions(str,0,n,dp) - 1;
+}
+
+// ? 1007231604
+int maxSubArray(int i,int n,vector<int>nums,int k,vector<int>&dp){
+    if (i == n) return 0;
+    if (dp[i] != -1) return dp[i];
+    int ans = INT_MIN;
+    int maxi = INT_MIN;
+    int len = 0;
+    for(int ind = i;ind < min(i + k,n);ind++){
+        len++;
+        maxi = max(maxi,nums[ind]);
+        int x = maxi * len + maxSubArray(ind+1,n,nums,k,dp); // (maximum upto i,ind)*(ind - i + 1) + f(ind+1,j,n,nums,k,dp)
+        ans = max(ans,x);
+    }
+    return dp[i] = ans;
+}
+int maxSumPartitionArray(vector<int>nums, int k){
+    int n = nums.size();
+    vector<int>dp(n,-1);
+    return maxSubArray(0,n,nums,k,dp);
+}
+
+// ? 1007231716
+int maxRectangleAreaHistogram(vector<int>heights) {
+    int n = heights.size();
+    vector<int>leftSmall(n,0);
+    vector<int>rightSmall(n,0);
+    
+    stack<int>st;
+    for(int i = 0;i < n;i++){
+        while(st.empty() == false && heights[st.top()] >= heights[i]){
+            st.pop();
+        }
+        if (st.empty()) leftSmall[i] = 0;
+        else leftSmall[i] = st.top() + 1;
+        st.push(i);
+    }
+    
+    while (st.empty() == false) st.pop();
+
+    for(int i = n-1;i >= 0;i--){
+        while(st.empty() == false && heights[st.top()] >= heights[i]){
+            st.pop();
+        }
+        if (st.empty()) rightSmall[i] = n-1;
+        else rightSmall[i] = st.top() - 1;
+        st.push(i);
+    }
+
+    int ans = 0;
+    for(int i = 0;i < n;i++){
+        ans = max(ans, (rightSmall[i]-leftSmall[i]+1)*heights[i]);
+    }
+    return ans;
+}
+
+// ? 1007231725
+int maxRectangleGrid(vector<vector<int>>matrix) {
+    int maxi = 0;
+    int r = matrix.size();
+    int c = matrix[0].size();
+    vector<int>heights(c,0);
+    for(int i = 0;i < r;i++){
+        for(int j = 0;j < c;j++){
+            if (matrix[i][j] == 1) heights[j]++;
+            else heights[j] = 0;
+        }
+        maxi = max(maxi,maxRectangleAreaHistogram(heights));
+    }
+    return maxi;
+}
+
+// ? 1007231752
+int countSubSquares(vector<vector<int>>matrix) {
+    int r = matrix.size();
+    int c = matrix[0].size();
+    vector<vector<int>>dp(r,vector<int>(c,0)); // now of squares with in grid[i][j]
+    
+    // top row, left col only single side squares are possible
+    for(int i = 0;i < r;i++){
+        dp[i][0] = matrix[i][0];
+    }
+    for(int j = 0;j < c;j++){
+        dp[0][j] = matrix[0][j];
+    }
+    
+    for(int i = 1;i < r;i++){
+        for(int j = 1;j < c;j++){
+            if(matrix[i][j] == 0){
+                dp[i][j] = 0;
+            }else{
+                dp[i][j] = 1 + min(dp[i-1][j-1],min(dp[i-1][j],dp[i][j-1]));
+            }
+        }
+    }
+    
+    int sum = 0;
+    for(int i = 0; i < r;i++){
+        for(int j = 0;j < c;j++){
+            sum += dp[i][j];
+        }
+    }
+    return sum;
+}
+
 int main(){
     cout << endl;
 
@@ -9647,6 +9920,39 @@ int main(){
 
     // ? 0907231835
     // cout << matrixChainMultiplication({10,15,20,25}) << endl;
+
+    // ? 1007231025
+    // cout << smallestEquivalentString("aba","mxt","abmxtv") << endl;
+
+    // ? 1007231123
+    // cout << minCostCutting(7,{1,4,3,5}) << endl;
+
+    // ? 1007231136
+    // cout << maxCutRod({2,5,7,8,10},5) << endl;
+
+    // ? 1007231420
+    // cout << ballonCoins({7,1,8}) << endl;
+
+    // ? 1007231437
+    // cout << noWaysToMakeExpTrue("T^F|T&F^T|F") << endl;
+
+    // ? 1007231523
+    // palindromePartitioning1("aaba");
+
+    // ? 1007231543
+    // cout << palindromePartitioning2("aaba") << endl;
+
+    // ? 1007231604
+    // cout << maxSumPartitionArray({1,20,13,4,4,1},3) << endl;
+
+    // ? 1007231716
+    // cout << maxRectangleAreaHistogram({2,1,5,6,2,3}) << endl;
+
+    // ? 1007231725
+    // cout << maxRectangleGrid({{1,0,1,0,0},{1,1,1,1,1},{1,0,1,1,1},{0,0,0,1,1}}) << endl;
+
+    // ? 1007231752
+    // cout << countSubSquares({{1,0,1,1},{1,1,1,1},{1,0,1,1}}) << endl;
 
     cout << endl;
     return 0;
