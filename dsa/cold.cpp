@@ -8639,6 +8639,268 @@ int countSubSquares(vector<vector<int>>matrix) {
     return sum;
 }
 
+// ? 1107230901
+int minCostConnectRopes(vector<int>arr){
+	int n = arr.size();
+    int cost = 0;
+	
+	priority_queue<int,vector<int>,greater<int>>pq;
+	for(int i = 0;i < n;i++) pq.push(arr[i]);
+
+	while (pq.empty() == false){
+		int x1 = (pq.empty() == false) ? pq.top() : 0;
+		pq.pop();
+		int x2 = (pq.empty() == false) ? pq.top() : 0;
+		pq.pop();
+		cost += (x1 + x2);
+		if (pq.empty() == false) pq.push({x1+x2});
+	}
+
+	return cost;
+}
+
+// ? 1107231030
+int trappingWater(vector<int>heights){
+    int n = heights.size();
+    if (n == 0) return 0;
+    
+    stack<int>st;
+    vector<int>leftMax(n,0);
+    for(int i = 0;i < n;i++){
+        if (st.empty()){
+            leftMax[i] = 0;
+            st.push(heights[i]);
+        }
+        else{
+            int x = st.top();
+            leftMax[i] = x;
+            if (heights[i] >= x){
+                st.pop();
+                st.push(heights[i]);
+            }
+        }
+    }
+
+    while (st.empty() == false) st.pop(); // clear stack 
+    vector<int>rightMax(n,0);
+    for(int i = n-1;i >= 0;i--){
+        if (st.empty()){
+                rightMax[i] = 0;
+                st.push(heights[i]);
+        }
+        else{
+            int x = st.top();
+            rightMax[i] = x;
+            if (heights[i] >= x){
+                st.pop();
+                st.push(heights[i]);
+            }
+        }
+    }
+
+    vector<int>res(n,0);
+    int ans = 0;
+    for(int i = 0;i < n;i++){
+        res[i] = min(leftMax[i],rightMax[i]);
+        ans += max(0,res[i]-heights[i]);
+    }
+    return ans;
+}
+
+// ? 1107231133
+class QUEUE {
+
+	int front, rear;
+	int cnt;
+	int cap;
+	vector<int> arr;
+
+    public:
+        QUEUE(int n){
+            front = 0;
+            rear = 0;
+            cnt = 0;
+            cap = n; 
+            arr.resize(n+1);
+        }
+
+        // Enqueue (add) element 'e' at the end of the queue.
+        void enqueue(int e){
+            if (cnt == cap) return;
+            arr[rear % cap] = e;
+            rear++;
+        }
+
+        // Dequeue (retrieve) the element from the front of the queue.
+        int dequeue(){
+            if (front != rear){
+                front++;
+                return arr[front-1];
+            }
+            return -1;
+        }
+};
+
+// ? 1107231146
+class STACK {
+    queue<int>q1;
+    queue<int>q2;
+    int size;
+   public:
+    STACK(){
+        size = 0;
+    }
+    int getSize(){
+        return size;
+    }
+    bool isEmpty(){
+        return (size == 0);
+    }
+    void push(int ele){
+        size++;
+        // push ele to Q2
+        // shift all elements from Q1 to Q2 one by one
+        // swap q1 q2
+        q2.push(ele);
+        while (q1.empty() == false){
+            q2.push(q1.front());
+            q1.pop();
+        }
+        queue<int>q;
+        q = q1;
+        q1 = q2;
+        q2 = q;
+    }
+    int pop(){
+        if (size == 0) return -1;
+        // top of q1
+        size--;
+        int x = q1.front();
+        q1.pop();
+        return x;
+    }
+    int top(){
+        if (size == 0) return -1;
+        return q1.front();
+    }
+};
+
+// ? 1107231407
+void nextGreaterElement(vector<int>arr){
+    int n = arr.size();
+	vector<int>nextMax(n,0);
+	stack<int>st;
+	for(int i = n-1;i >= 0;i--){
+		while(st.empty()==false && st.top() <= arr[i]){
+			st.pop();
+		}
+		if (st.empty()){
+			nextMax[i] = -1;
+		}else{
+			nextMax[i] = st.top();
+		}
+		st.push(arr[i]);
+	}
+    printVector(arr);
+    printVector(nextMax);
+}
+
+// ? 1107231428
+void countGreater(vector<int>arr){
+    int n = arr.size();
+    vector<int>nextGreater(n,0);
+    for(int i = 0;i < n;i++){
+        int cnt = 0;
+        for(int j = i+1;j < n;j++){
+            if (arr[j] > arr[i]) cnt++;
+        }
+        nextGreater[i] = cnt;
+    }
+    printVector(arr);
+    printVector(nextGreater);
+}
+
+// ? 1107231514
+void collidingAsteroids(vector<int>rocks){
+    int n = rocks.size();
+    stack<int>st;
+    for(int i = 0;i < n;i++){
+        if (rocks[i] > 0){
+            st.push(rocks[i]);
+        }else{
+            int r1 = rocks[i]*-1; // size of rock = absolute val
+            // r1 moving in left direction
+
+            if(st.empty()){
+                st.push(r1 * -1);
+                continue;
+            }
+            // if nearest left rock is moving left there is no rock to collide
+            if (st.top() <= 0){
+                st.push(r1 * -1);
+                continue;
+            }
+            // if nearest left rock > r1, r1 will blast
+            if(st.top() > r1){
+                continue;
+            }
+            // if nearest left rock == r1 , both will blast
+            if (st.top() == r1){
+                st.pop();
+                continue;
+            }
+            // r1 will remove all rocks to its left which are smaller in size
+            while(st.empty() == false && st.top() >= 0 && st.top() < r1){
+                st.pop();
+            }
+            if (st.empty()){
+                st.push(-1 * r1);
+            }else if (st.top() < 0) {
+                st.push(-1 * r1);
+            }else if (st.top() == r1) {
+              st.pop();
+            }
+        }
+    }
+    vector<int>ans = {};
+    while(st.empty() == false){
+        ans.push_back(st.top());
+        st.pop();
+    }
+    reverse(ans.begin(),ans.end());
+    printVector(rocks);
+    printVector(ans);
+}
+
+// ? 1107231639
+int sumSubarrayMins(vector<int>arr){
+    int ans = 0;
+    int n = arr.size();
+    for (int i = 0; i < n; i++) {
+        int left = 1;  // Count of subarrays with arr[i] as the minimum element
+        int right = 1;
+
+        // Count the number of subarrays on the left side of arr[i]
+        int j = i - 1;
+        while (j >= 0 && arr[j] >= arr[i]) {
+            left++;
+            j--;
+        }
+
+        // Count the number of subarrays on the right side of arr[i]
+        j = i + 1;
+        while (j < n && arr[j] > arr[i]) {
+            right++;
+            j++;
+        }
+
+        // Update the answer
+        ans += arr[i] * left * right;
+        ans %= 1000000007;  // Take the modulo to avoid overflow
+    }
+    return ans;
+}
+
 int main(){
     cout << endl;
 
@@ -9953,6 +10215,36 @@ int main(){
 
     // ? 1007231752
     // cout << countSubSquares({{1,0,1,1},{1,1,1,1},{1,0,1,1}}) << endl;
+
+    // ? 1107230901
+    // cout << minCostConnectRopes({4,3,2,6}) << endl;
+
+    // ? 1107231030
+    // cout << trappingWater({0,1,0,2,1,0,1,3,2,1,2,1}) << endl;
+
+    // ? 1107231133
+    // QUEUE q1(7);
+    // q1.enqueue(5);
+    // q1.enqueue(2);
+    // cout << q1.dequeue() << endl;
+
+    // ? 1107231146
+    // STACK st;
+    // st.push(2);
+    // st.push(3);
+    // cout << st.top() << endl;
+
+    // ? 1107231407
+    // nextGreaterElement({1,3,4,2,6,8,10,7,3});
+
+    // ? 1107231428
+    // countGreater({1,2,4,3,10,6});
+
+    // ? 1107231514
+    // collidingAsteroids({6,7,-9,7});
+
+    // ? 1107231639
+    // cout << sumSubarrayMins({1,5,4,2,3,6,7}) << endl;
 
     cout << endl;
     return 0;

@@ -5621,6 +5621,113 @@
           <div style="font-size:13px;">Hint : dp[i][j] = 0 -> 0, dp[i][j] = 1 -> 1 + min(dp[i-1,j-1] [i-1,j] [i,j-1] )</div>
     </section>
     
+    <section class="all medium arrays">
+          <h5>Connect n ropes with minimum cost</h5>
+          <p class="question">There are given n ropes of different lengths, we need to connect these ropes into one rope. The cost to connect two ropes is equal to sum of their lengths. We need to connect the ropes with minimum cost.</p>
+          <p class="id">Question ID : 1107230901 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Arrays</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.codingninjas.com/studio/problems/connect-n-ropes-with-minimum-cost_625783">https://www.codingninjas.com/studio/problems/connect-n-ropes-with-minimum-cost_625783</a> </p>
+          <div style="font-size:13px;">Hint : use a priorityQueue and pop cost = smallTwo, push(sum)</div>
+    </section>
+    
+    <section class="all revisit hard arrays">
+          <h5>Trapping Water</h5>
+          <p class="question">Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.</p>
+          <p class="id">Question ID : 1107231030 </p>
+          <div class="keys">
+              <div class="cat">Hard</div>
+              <div class="cat">ReVisit</div>
+              <div class="cat">Arrays</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/trapping-rain-water/">https://leetcode.com/problems/trapping-rain-water/</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/m18Hntz4go8">https://youtu.be/m18Hntz4go8</a> </p>
+          <div style="font-size:13px;">Hint : leftMax, rightMax <br> result[i] = min(leftMax,rightMax) water = max(0,resutl[i] - height[i]) </div>
+    </section>
+    
+    <section class="all stackqueue easy arrays revisit">
+          <h5>Implement Queue using Arrays</h5>
+          <p class="question">Implement a simple queue using arrays.</p>
+          <p class="id">Question ID : 1107231133 </p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">Queue</div>
+              <div class="cat">Arrays</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.codingninjas.com/studio/problems/implement-queue-using-arrays_8390825">https://www.codingninjas.com/studio/problems/implement-queue-using-arrays_8390825</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/M6GnoUDpqEE">https://youtu.be/M6GnoUDpqEE</a> </p>
+          <div style="font-size:13px;">Hint : front, rear</div>
+    </section>
+    
+    <section class="all easy stackqueue">
+          <h5>Stack using queue</h5>
+          <p class="question">Implement a Stack Data Structure specifically to store integer data using two Queues.</p>
+          <p class="id">Question ID : 1107231146 </p>
+          <div class="keys">
+              <div class="cat">Easy</div>
+              <div class="cat">Stacks</div>
+              <div class="cat">Queues</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.codingninjas.com/studio/problems/stack-using-queue_795152">https://www.codingninjas.com/studio/problems/stack-using-queue_795152</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/jDZQKzEtbYQ">https://youtu.be/jDZQKzEtbYQ</a> </p>
+          <div style="font-size:13px;">Hint : using q1,q2 -> st.push() -> push to q2, shift all ele from q1 to q2, swap q1 q2</div>
+    </section>
+    
+    <section class="all arrays stackqueue revisit medium">
+          <h5>Next Greater Element</h5>
+          <p class="question">Print the Next Greater Element(NGE) for every element.</p>
+          <p class="id">Question ID : 1107231407 </p>
+          <div class="keys">
+              <div class="cat">Arrays</div>
+              <div class="cat">Stacks</div>
+              <div class="cat">Medium</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.codingninjas.com/studio/problems/next-greater-element_670312">https://www.codingninjas.com/studio/problems/next-greater-element_670312</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/Du881K7Jtk8">https://youtu.be/Du881K7Jtk8</a> </p>
+          <div style="font-size:13px;">Hint : while (st.empty() == false && st.top() &le; arr[i]) st.pop()</div>
+    </section>
+         
+    <section class="all medium arrays">
+          <h5>Count Of Greater Elements To The Right</h5>
+          <p class="question">return a array of ans, where ans[i] = no of greater elements to the right of arr[i]</p>
+          <p class="id">Question ID : 1107231428 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Arrays</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.codingninjas.com/studio/problems/count-of-greater-elements-to-the-right_8365436">https://www.codingninjas.com/studio/problems/count-of-greater-elements-to-the-right_8365436</a> </p>
+          <div style="font-size:13px;">Hint : for( for() )</div>
+    </section>
+    
+    <section class="all arrays medium">
+          <h5>Asteroid Collision</h5>
+          <p class="question">For each element of the given array, its absolute value denotes the size of that asteroid, and its sign denotes the direction it moves in(+ve meaning right and -ve meaning left). 0 means moving left.<br>Whenever two asteroids collide, the smaller asteroid gets destroyed.If both asteroids are the same size, then both asteroids get destroyed. Two asteroids moving in the same direction never collide.<br>You are supposed to find the state of the asteroids after all collisions.</p>
+          <p class="id">Question ID : 1107231514 </p>
+          <div class="keys">
+              <div class="cat">Arrays</div>
+              <div class="cat">Medium</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.codingninjas.com/studio/problems/asteroid-collision_977232">https://www.codingninjas.com/studio/problems/asteroid-collision_977232</a> </p>
+          <div style="font-size:13px;">Hint : while (+ve st.top() &lt; -ve rock) pop</div>
+    </section>
+    
+    <section class="all medium revisit arrays">
+          <h5>Sum of Subarray Minimums</h5>
+          <p class="question">let x be the minimum element of any contiguous subarray of ‘arr’.You need to return the sum of 'X' over all the contiguous subarrays of 'arr'.</p>
+          <p class="id">Question ID : 1107231639 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Arrays</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.codingninjas.com/studio/problems/sum-of-subarray-minimums_8365431">https://www.codingninjas.com/studio/problems/sum-of-subarray-minimums_8365431</a> </p>
+          <div style="font-size:13px;">Hint : count leftEle >= i, rightEle > i, ans += i*l*r </div>
+    </section>
+    
     <div class="select">
           <p>Hardness : </p>
           <label onclick="level(0)">ALL</label>
@@ -5726,7 +5833,7 @@
     <section class="all">
           <h5></h5>
           <p class="question"></p>
-          <p class="id">Question ID : 100723 </p>
+          <p class="id">Question ID : 110723 </p>
           <div class="keys">
               <div class="cat"> </div>
           </div>
