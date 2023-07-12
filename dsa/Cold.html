@@ -5912,13 +5912,23 @@
             var l = ["all","revisit","easy","medium","hard"];
             hardness = 0;
             var cnt = 0;
+            var first = null;
             for (var i = 0;i < probs.length;i++){
                 var ele = probs[i];
                 if (ele.classList.contains(l[a])){
-                    ele.style.display = "block";
+                    if (cnt == 0){
+                        first = ele;
+                    }
+                    ele.style.opacity = "1";
                     cnt++;
                 }else{
-                    ele.style.display = "none";
+                    ele.style.opacity = "0.4";
+                }
+            }
+            if (first != null){
+                var rect = first.getBoundingClientRect();
+                if (rect.top < 0 || rect.bottom > window.innerHeight) {
+                    first.scrollIntoView();
                 }
             }
             var select = document.querySelector(".select");
@@ -5931,13 +5941,21 @@
             var c = ["all","sorting","arrays","linkedlist","binary","strings","recursion","stackqueue","greedy","trees","bst", "graphs","dp","window","grid"];
             var cc = ["all","sorting","arrays","linked - list","binary search","strings","recursion","stack - queue","greedy","trees","bst", "graphs","dp","sliding window","Grid"];     
             var cnt = 0;
+            var first = null;
             for (var i = 0;i < probs.length;i++){
                 var ele = probs[i];
                 if (ele.classList.contains(c[a])){
-                    ele.style.display = "block";
+                    ele.style.opacity = "1";
+                    if (cnt == 0 ) first = ele;
                     cnt++;
                 }else{
-                    ele.style.display = "none";
+                    ele.style.opacity = "0.4";
+                }
+            }
+            if (first != null){
+                var rect = first.getBoundingClientRect();
+                if (rect.top < 0 || rect.bottom > window.innerHeight){
+                    first.scrollIntoView();
                 }
             }
             document.getElementById("chapter").innerHTML = cc[a];
