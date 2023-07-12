@@ -5728,6 +5728,138 @@
           <div style="font-size:13px;">Hint : count leftEle >= i, rightEle > i, ans += i*l*r </div>
     </section>
     
+    <section class="all hard revisit linkedlist">
+          <h5>LRU Cache Implementation</h5>
+          <p class="question">Design a data structure that follows the constraints of a Least Recently Used (LRU) cache.</p>
+          <p class="id">Question ID : 1107231927 </p>
+          <div class="keys">
+              <div class="cat">Hard</div>
+              <div class="cat">ReVisit</div>
+              <div class="cat">LinkedList</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/lru-cache">https://leetcode.com/problems/lru-cache</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/xDEuM5qa0zg">https://youtu.be/xDEuM5qa0zg</a> </p>
+          <div style="font-size:13px;">Hint : Double LinkedList, most recent at head, least used at tail</div>
+    </section>
+    
+    <section class="all hard revisit linkedlist">
+          <h5>LFU Cache</h5>
+          <p class="question">Design and implement a data structure for a Least Frequently Used (LFU) cache.</p>
+          <p class="id">Question ID : 1207230801 </p>
+          <div class="keys">
+              <div class="cat">LinkedList</div>
+              <div class="cat">Hard</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/lfu-cache/">https://leetcode.com/problems/lfu-cache/</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/0PSB9y8ehbk">https://youtu.be/0PSB9y8ehbk</a> </p>
+          <div style="font-size:13px;">Hint : freqMap of ListHead, keyMap of Nodes </div>
+    </section>
+    
+    <section class="all revisit arrays medium">
+          <h5>The Celebrity Problem</h5>
+          <p class="question">There are ‘N’ people at a party. Each person has been assigned a unique id between 0 to 'N' - 1(both inclusive).  A celebrity is a person who is known to everyone but does not know anyone at the party.</p>
+          <p class="id">Question ID : 1207231142 </p>
+          <div class="keys">
+              <div class="cat">Arrays</div>
+              <div class="cat">Medium</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.codingninjas.com/studio/problems/the-celebrity-problem_982769">https://www.codingninjas.com/studio/problems/the-celebrity-problem_982769</a> </p>
+          <div style="font-size:13px;">Hint : for(i = 1 -> n), if (cand,i know) cand = i, <br> check wether cand can be celebrity</div>
+    </section>
+    
+    <section class="all medium strings">
+          <h5>Longest Substring Without Repeating Characters</h5>
+          <p class="question">Given a string s, find the length of the longest substring without repeating characters.</p>
+          <p class="id">Question ID : 1207231206 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Strings</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/longest-substring-without-repeating-characters">https://leetcode.com/problems/longest-substring-without-repeating-characters</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/qtVh-XEpsJo">https://youtu.be/qtVh-XEpsJo</a> </p>
+          <div style="font-size:13px;">Hint : set, l r , remove l++ , r++</div>
+    </section>
+    
+    <section class="all medium strings">
+          <h5>Longest Substring with At Most K Distinct Characters</h5>
+          <p class="question">You are given a string 'str' and an integer ‘K’. Your task is to find the length of the largest substring with at most ‘K’ distinct characters.</p>
+          <p class="id">Question ID : 1207231219 </p>
+          <div class="keys">
+              <div class="cat">Strings</div>
+              <div class="cat">Medium</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.codingninjas.com/studio/problems/longest-substring-with-at-most-k-distinct-characters_2221410">https://www.codingninjas.com/studio/problems/longest-substring-with-at-most-k-distinct-characters_2221410</a> </p>
+          <div style="font-size:13px;">Hint : map, if (mapSize > k) decrease l, if l == 0 erase map </div>
+    </section>
+    
+    <section class="all medium arrays">
+          <h5>Subarrays With At Most ‘K’ Distinct Values</h5>
+          <p class="question">You are given an array ‘ARR’ having ‘N’ integers. You are also given an integer ‘K’. The task is to count the number of subarrays that have at most ‘K’ distinct values.</p>
+          <p class="id">Question ID : 1207231225 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Arrays</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.codingninjas.com/studio/problems/subarrays-with-at-most-%E2%80%98k%E2%80%99-distinct-values_1473804">https://www.codingninjas.com/studio/problems/subarrays-with-at-most-%E2%80%98k%E2%80%99-distinct-values_1473804</a> </p>
+          <div style="font-size:13px;">Hint : same as k distinct chars, map, mapSize > k - remove L erase ans += (r-l+1)</div>
+    </section>
+    
+    <section class="all revisit strings medium">
+          <h5>Longest Repeating Character Replacement</h5>
+          <p class="question">You are given a string s and an integer k. You can choose any character of the string and change it to any other uppercase English character. You can perform this operation at most k times.<br>Return the length of the longest substring containing the same letter you can get after performing the above operations.</p>
+          <p class="id">Question ID : 1207231310 </p>
+          <div class="keys">
+              <div class="cat">Strings</div>
+              <div class="cat">ReVisit</div>
+              <div class="cat">Medium</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/longest-repeating-character-replacement">https://leetcode.com/problems/longest-repeating-character-replacement</a> </p>
+          <div style="font-size:13px;">Hint : maxCount -> max in FreqMap, maxLen = ans</div>
+    </section>
+    
+    <section class="all medium arrays">
+          <h5>Binary Subarrays With Sum</h5>
+          <p class="question">Given a binary array nums and an integer goal, return the number of non-empty subarrays with a sum goal.</p>
+          <p class="id">Question ID : 1207231341 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Arrays</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/binary-subarrays-with-sum">https://leetcode.com/problems/binary-subarrays-with-sum</a> </p>
+          <div style="font-size:13px;">Hint : count leading zeros</div>
+    </section>
+    
+    <section class="all medium revisit stackqueue">
+          <h5>Min Stack</h5>
+          <p class="question">Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.</p>
+          <p class="id">Question ID : 1207231459 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Stack</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/min-stack/">https://leetcode.com/problems/min-stack/</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/V09NfaGf2ao">https://youtu.be/V09NfaGf2ao</a> </p>
+          <div style="font-size:13px;">Hint : stack(val, min till now)</div>
+    </section>
+    
+    <section class="all medium revisit stackqueue">
+          <h5>Queue Using Stack</h5>
+          <p class="question">Implement a queue data structure which follows FIFO(First In First Out) property, using only the instances of the stack data structure.</p>
+          <p class="id">Question ID : 1207231533 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">ReVisit</div>
+              <div class="cat">Stacks</div>
+              <div class="cat">Queues</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.codingninjas.com/studio/problems/day-25-:-queue-using-stack_799482">https://www.codingninjas.com/studio/problems/day-25-:-queue-using-stack_799482</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/3Et9MrMc02A">https://youtu.be/3Et9MrMc02A</a> </p>
+          <div style="font-size:13px;">Hint : push( s1 -> s2, s1 push, s2 -> s1)</div>
+    </section>
+    
     <div class="select">
           <p>Hardness : </p>
           <label onclick="level(0)">ALL</label>
@@ -5833,7 +5965,7 @@
     <section class="all">
           <h5></h5>
           <p class="question"></p>
-          <p class="id">Question ID : 110723 </p>
+          <p class="id">Question ID : 130723 </p>
           <div class="keys">
               <div class="cat"> </div>
           </div>

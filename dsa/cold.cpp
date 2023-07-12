@@ -8901,6 +8901,466 @@ int sumSubarrayMins(vector<int>arr){
     return ans;
 }
 
+// ? 1107231927
+struct DNode{
+    int key;
+    int value;
+    DNode* prev;
+    DNode* next;
+    DNode(int k,int v){
+        key = k;
+        value = v;
+        prev = NULL;
+        next = NULL;
+    }
+};
+class LRUCache{
+    DNode* head;
+    DNode* tail;
+    unordered_map<int,DNode*>mp;
+    int cap;
+    int size;
+
+    DNode* update(DNode* x){
+        DNode* x1 = new DNode(x->key,x->value);
+        // key is most used 
+
+        // delete x 
+        DNode* prevX = x->prev;
+        DNode* nextX = x->next;
+        prevX->next = nextX;
+        nextX->prev = prevX;
+        
+        // and insert new Node with same key,value after head
+        DNode* headNext = head->next;
+        head->next = x1;
+        x1->next = headNext;
+        x1->prev = head;
+        headNext->prev = x1;
+
+        return x1;
+    }
+
+public:
+    LRUCache(int capacity){
+        head = new DNode(0,0);
+        tail = new DNode(0,0);
+        head->next = tail;
+        head->prev = NULL;
+        tail->prev = head;
+        tail->next = NULL;
+        cap = capacity;
+        size = 0;
+    }
+    int get(int key){
+        if (mp.find(key) == mp.end()){
+            return -1;
+        }
+        // now key is most recent, so remove x and add x1 with same values of x after head
+        DNode* x = mp[key];
+        DNode* x1 = update(x);
+
+        // update map 
+        mp[key] = x1;
+        return x1->value;
+    }
+
+    void put(int key, int value){
+        if (mp.find(key) != mp.end()){
+            // now key is most recent, so remove x and add x1 with same values of x after head
+            DNode* x = mp[key];
+            DNode* x1 = update(x);
+
+            // update map
+            mp[key] = x1;
+            x1->value = value;
+        }else{
+            if (size == cap){
+                // remove lcu
+                DNode* lcu = tail->prev;
+                DNode* lcuPrev = lcu->prev;
+                lcuPrev->next = tail;
+                tail->prev = lcuPrev;
+
+                mp.erase(lcu->key);
+                size--;
+            }
+            DNode* x1 = new DNode(key,value);
+            DNode* headNext = head->next;
+            head->next = x1;
+            x1->prev = head;
+            headNext->prev = x1;
+            x1->next = headNext;
+            mp[key] = x1;
+            size++;
+        }
+    }
+};
+
+// ? 1207230801
+struct DNode1{
+    int key;
+    int value;
+    int freq;
+    DNode1* prev;
+    DNode1* next;
+    DNode1(int k,int v,int f){
+        key = k;
+        value = v;
+        freq = f;
+        prev = NULL;
+        next = NULL;
+    }
+};
+class LRUList{
+    DNode1* head;
+    DNode1* tail;
+    int size;
+    int cap;
+    public:
+        LRUList(int capacity){
+            head = new DNode1(0,0,0);
+            tail = new DNode1(0,0,0);
+            cap = capacity;
+            size = 0;
+            head->next = tail;
+            head->prev = NULL;
+            tail->prev = head;
+            tail->next = NULL;
+        }
+        int getSize(){
+            return size;
+        }
+        DNode1* getLRU(){
+            if (size == 0) return NULL; 
+            DNode1* lru = tail->prev;
+            return lru;
+        }
+        void removeNode(DNode1* x){
+            DNode1* xPrev = x->prev;
+            DNode1* xNext = x->next;
+            x->prev = NULL;
+            x->next = NULL;
+            xPrev->next = xNext;
+            xNext->prev = xPrev;
+            size--;
+        }
+        void push(DNode1* x1){
+            if (size == cap){
+                DNode1* lru = getLRU();
+                removeNode(lru);
+                size--;
+            }
+            DNode1* headNext = head->next;
+            head->next = x1;
+            x1->prev = head;
+            x1->next = headNext;
+            headNext->prev = x1;
+            size++;
+        }
+};
+class LFUCache{
+    int size;
+    int cap;
+    int minFreq;
+    unordered_map<int,DNode1*>mp; // key , node address
+    unordered_map<int,LRUList*>freqMap; // freq, lru list
+public:
+    LFUCache(int capacity) {
+        size = 0;
+        cap = capacity;
+        minFreq = 0;
+    }
+    void update(DNode1* x){   
+        DNode1* x1 = new DNode1(x->key,x->value,x->freq+1);
+        
+        // remove x from current freqList 
+        int f = x->freq;
+        LRUList* f_list = freqMap[f];
+        f_list->removeNode(x);
+        mp[x1->key] = x1;
+
+        // and add to nextList
+        if (freqMap.find(x1->freq) == freqMap.end()){
+            LRUList* x_List = new LRUList(cap);
+            x_List->push(x1); 
+            freqMap[x1->freq] = x_List;
+        }else{
+            LRUList* x_List = freqMap[x1->freq];
+            x_List->push(x1); 
+        }
+
+        // if x is in MinFreq and afterRemoving x if (size of List == 0) increase minFreq
+        if (f == minFreq){
+            if (f_list->getSize() == 0){
+                minFreq++;
+            }
+        }
+    }
+    int get(int key){
+        if (mp.find(key) == mp.end()){
+            return -1;
+        }else{
+            // update node
+            DNode1* x = mp[key];
+            int v = x->value;
+            update(x);
+            return v;
+        }
+    }
+    void put(int key, int value){
+        if (mp.find(key) == mp.end()){
+            // new Node
+            DNode1* x1 = new DNode1(key,value,1);
+            if (size == cap){
+                LRUList* x_List = freqMap[minFreq];
+                DNode1* lru = x_List->getLRU();
+                x_List->removeNode(lru);
+                mp.erase(lru->key);
+
+                LRUList* x1_List = freqMap[1];
+                x1_List->push(x1);
+                mp[x1->key] = x1;
+            }else{
+                if (freqMap.find(1) == freqMap.end()){
+                    LRUList* x1_List = new LRUList(cap);
+                    x1_List->push(x1);
+                    mp[x1->key] = x1;
+                    freqMap[1] = x1_List;
+                }else{
+                    LRUList* x1_List = freqMap[1];
+                    x1_List->push(x1);
+                    mp[x1->key] = x1;
+                }
+                size++;
+            }
+            minFreq = 1;
+        }else{
+            // update node
+            DNode1* x = mp[key];
+            x->value = value;
+            update(x);
+        }
+    }
+};
+
+// ? 1207231142
+bool knows(int a,int b){
+    // given in question
+    return true; // if a knows b, else false
+}
+int findCelebrity(int n){
+	int candidate = 0;
+
+    // Find a potential candidate who might be the celebrity
+    for (int i = 1; i < n; i++) {
+        if (knows(candidate, i)){
+			// candidate knows i -> so candidate can't be a celebrity
+			// i may have chance to be a celebrity
+            candidate = i;
+        }
+    }
+
+    // Verify if the candidate is the celebrity
+    for (int i = 0; i < n; i++) {
+        if (i != candidate && (knows(candidate, i) || !knows(i, candidate))) {
+            return -1;  // The candidate is not a celebrity
+        }
+    }
+
+    return candidate;
+}
+
+// ? 1207231206
+int lengthOfLongestSubstring(string s) {
+    int maxLen = 0;
+    int n = s.length();
+    int l = 0;
+    int r = 0;
+    unordered_set<char>st;
+    while (r < n){
+        if (st.find(s[r]) == st.end()){
+            st.insert(s[r]);
+        }else{
+            while(st.find(s[r]) != st.end()){
+                st.erase(s[l]);
+                l++;
+            }
+            st.insert(s[r]);
+        }
+        maxLen = max(maxLen,(r-l+1));
+        r++;
+    }
+    return maxLen;
+}
+
+// ? 1207231219
+int kDistinctChars(int k, string str){
+    int n = str.size();
+    int maxLen = 0;
+    int l = 0;
+    int r = 0;
+    unordered_map<char,int>mp;
+    
+    while (r < n){
+        if (mp.find(str[r]) == mp.end()){
+            // new char
+            mp[str[r]] = 1;
+            while (mp.size() > k){
+                mp[str[l]]--;
+                if (mp[str[l]] == 0){
+                    mp.erase(str[l]);
+                }
+                l++;
+            }
+        }else{
+            mp[str[r]]++;
+        }
+        maxLen = max(maxLen,r-l+1);
+        r++;
+    }
+
+    return maxLen;
+}
+
+// ? 1207231225
+int kDistinctSubarrays(vector<int>arr, int k){
+    int n = arr.size();
+    int ans = 0;
+    int l = 0;
+    int r = 0;
+    unordered_map<int,int>mp;
+    
+    while (r < n){
+        if (mp.find(arr[r]) == mp.end()){
+            // new char
+            mp[arr[r]] = 1;
+            while (mp.size() > k){
+                mp[arr[l]]--;
+                if (mp[arr[l]] == 0){
+                    mp.erase(arr[l]);
+                }
+                l++;
+            }
+        }else{
+            mp[arr[r]]++;
+        }
+        ans += (r-l+1);
+        r++;
+    }
+
+    return ans;
+}
+
+// ? 1207231310
+int characterReplacement(string str, int k){
+    int n = str.length();
+    int l = 0;
+    int r = 0;
+    unordered_map<char,int>mp;
+    int maxLen = 0;
+    int maxCount = 0; // stores the cnt of  max Repeating char
+    
+    while(r < n){
+        mp[str[r]]++;
+        maxCount = max(maxCount,mp[str[r]]);
+        if ((r-l+1)-maxCount > k){
+            mp[str[l]]--;
+            l++;
+        }
+        maxLen = max(maxLen,(r-l+1));
+        r++;
+    }
+    return maxLen;
+}
+
+// ? 1207231341
+ int numBinarySubarraysWithSum(vector<int>arr, int goal) {
+    int ans = 0;
+    int n = arr.size();
+    int l = 0;
+    int r = 0;
+    int sum = 0;
+    
+    while (r < n){
+        sum += arr[r];
+        while (sum > goal){
+            sum -= arr[l];
+            l++;
+        }
+        if (sum == goal && l <= r){
+            ans += 1;
+            for(int i = l;i < r;i++){
+                if (arr[i] == 0) ans++;
+                else break;
+            }
+        }
+        r++;
+    }
+
+    return ans;
+}
+
+// ? 1207231459
+class MinStack {
+    stack<pair<int,int>>st; // value , minimal till now
+public:
+    MinStack() { }
+    void push(int val) {
+        if (st.empty()){
+            st.push({val,val});
+        }else{
+            int t = st.top().second;
+            if (t < val){
+                st.push({val,t});
+            }else{
+                st.push({val,val});
+            }
+        }
+    }
+    void pop() {
+        st.pop();
+    }
+    int top() {
+        return st.top().first;
+    }
+    int getMin() {
+        return st.top().second;
+    }
+};
+
+// ? 1207231533
+class Queue2{
+    stack<int>st1;
+    stack<int>st2;
+    public:
+    Queue2(){ }
+    void enQueue(int val){
+        while(st1.empty() == false){
+            st2.push(st1.top());
+            st1.pop();
+        }
+        st1.push(val);
+        while(st2.empty() == false){
+            st1.push(st2.top());
+            st2.pop();
+        }
+    }
+    int deQueue(){
+        if (st1.empty()) return -1;
+        int x = st1.top();
+        st1.pop();
+        return x;
+    }
+    int peek(){
+        if (st1.empty()) return -1;
+        return st1.top();
+    }
+    bool isEmpty() {
+        return (st1.empty());
+    }
+};
+
 int main(){
     cout << endl;
 
@@ -10245,6 +10705,39 @@ int main(){
 
     // ? 1107231639
     // cout << sumSubarrayMins({1,5,4,2,3,6,7}) << endl;
+
+    // ? 1107231927
+
+    // ? 1107232103
+    
+    // ? 1207231142
+    // cout << findCelebrity(5) << endl;
+
+    // ? 1207231206
+    // cout << lengthOfLongestSubstring("abcabdcabe") << endl;
+
+    // ? 1207231219
+    // cout << kDistinctChars(2,"abbbbbbc") << endl;
+
+    // ? 1207231225
+    // cout << kDistinctSubarrays({1,1,2,3},2) << endl;
+
+    // ? 1207231310
+    // cout << characterReplacement("aabcaac",2) << endl;
+
+    // ? 1207231341
+    // cout << numBinarySubarraysWithSum({1,0,1,0,0,1},2) << endl;
+
+    // ? 1207231459
+    // MinStack* st = new MinStack();
+    // st->push(4);
+    // st->push(-1);
+    // st->push(3);
+    // cout << st->getMin() << endl;
+    // st->pop();
+    // cout << st->getMin() << endl;
+
+    // ? 1207231533
 
     cout << endl;
     return 0;
