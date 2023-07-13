@@ -9361,6 +9361,392 @@ class Queue2{
     }
 };
 
+// ? 1307230817
+int getRank(char c){
+	if (c == '^') return 3;
+  	
+	if (c == '/' || c == '*') return 2;
+  
+  	if (c == '+' || c == '-') return 1;
+  
+    return -1;
+}
+string infixToPostfix(string exp){
+	string ans = "";
+	stack<char>st;
+
+	for(char op : exp){
+		if ((op >= 'a' && op <= 'z') || (op >= 'A' && op <= 'Z') || (op >= '0' && op <= '9')){
+			ans += op;
+		}else if (op == '('){
+			st.push(op);
+		}else if (op == ')'){
+			// all operations remaining in btw ( and )to be completed
+			while(st.top() != '('){
+				ans += st.top();
+				st.pop();
+			}
+			st.pop(); // pop (
+		}else{
+			while(st.empty() == false && getRank(st.top()) >= getRank(op)){
+				ans += st.top();
+				st.pop();
+			}
+			st.push(op);
+		}
+    }
+	
+	while (st.empty() == false) {
+        ans += st.top();
+        st.pop();
+    }
+	
+	return ans;
+}
+
+// ? 1307230833
+string infixToPrefix(string exp){
+    reverse(exp.begin(),exp.end());
+    for(int i = 0; i < exp.length();i++){
+        if (exp[i] == '('){
+            exp[i] = ')';
+        }
+        else if (exp[i] == ')'){
+            exp[i] = '(';
+        }
+    }
+    string postfixOfReverseExp = infixToPostfix(exp);
+    reverse(postfixOfReverseExp.begin(),postfixOfReverseExp.end());
+    return postfixOfReverseExp;
+}
+
+// ? 1307230911
+string postToInfix(string postfix) {
+    stack<string>st;
+    for(char op : postfix){
+        if ((op >= 'A' && op <= 'Z') || (op >= 'a' && op <= 'z') || (op >= '0' && op <= '9')){
+            st.push(string(1, op)); // Convert char to string
+        }else{
+            string exp2 = st.top(); // 2nd operand
+            st.pop();
+            string exp1 = st.top(); // 1st operand
+            st.pop();
+            st.push('('+exp1 + string(1, op) + exp2+')');
+        }
+    }
+    return st.top();
+}
+
+// ? 1307231018
+string prefixToInfix(string prefix){
+	stack<string>st;
+	reverse(prefix.begin(),prefix.end());
+	string postfix = prefix;
+	string ans = "";
+	for(auto op : postfix){
+		if ((op >= 'A' && op <= 'Z') || (op >= 'a' && op <= 'z') || (op >= '0' && op <= '9')){
+			st.push(string(1,op));
+		}else{
+			string exp2 = st.top();
+			st.pop();
+			string exp1 = st.top();
+			st.pop();
+			st.push('('+exp1+op+exp2+')');
+		}
+	}
+	ans = st.top();
+	reverse(ans.begin(),ans.end());
+	for(int i = 0; i < ans.length();i++){
+		if (ans[i] == '('){
+			ans[i] = ')';
+		}else if (ans[i] == ')'){
+			ans[i] = '(';
+		}
+	}
+	return ans;
+}
+
+// ? 1307231155
+class BinaryTreeNode{
+public :
+    char data;
+    BinaryTreeNode* left;
+    BinaryTreeNode* right;
+    BinaryTreeNode(char d) {
+        data = d;
+        left = NULL;
+        right = NULL;
+    }
+};
+int getRank1(char op){
+    if(op == '+' || op == '-'){
+        return 1;
+    }
+    if (op == '*' || op == '/'){
+        return 2;
+    }
+    if (op == '^'){
+        return 3;
+    }
+    return -1;
+}
+string infix_Postfix(string exp){
+    string ans = "";
+    stack<char>st;
+    for(char op : exp){
+        if (op == '('){
+            st.push(op);
+        }
+        else if (op == ')'){
+            // pop all in btw ( )
+            while (st.top() != '('){
+                ans += st.top();
+                st.pop();
+            }
+            st.pop(); // remove (
+        }
+        else if ((op >= 'A' && op <= 'Z') || (op >= 'a' && op <= 'z') ||(op >= '0' && op <= '9')){
+            ans += op;
+        }else{
+            while(st.empty() == false && getRank1(st.top()) >= getRank1(op)){
+                ans += st.top();
+                st.pop();
+            }
+            st.push(op);
+        }
+    }
+    while (st.empty() == false){
+        ans += st.top();
+        st.pop();
+    }
+    return ans;
+}
+void binaryExpressionTree(string exp){
+    string postFix = infix_Postfix(exp);
+    stack<BinaryTreeNode*>st;
+    
+    for(auto op : postFix){
+        if ((op >= 'A' && op <= 'Z') || (op >= 'a' && op <= 'z') || (op >= '0' && op <= '9')){
+            st.push(new BinaryTreeNode(op));
+        }else{
+            BinaryTreeNode* exp2 = st.top();
+            st.pop();
+            BinaryTreeNode* exp1 = st.top();
+            st.pop();
+            BinaryTreeNode* op1 = new BinaryTreeNode(op);
+            op1->left = exp1;
+            op1->right = exp2;
+            st.push(op1);
+        }
+    }
+    // st.top() is the answer
+}
+
+// ? 1307231417
+struct TrieNode{
+    TrieNode* dict[26];
+    bool end = false;
+
+    bool containChar(char ch){
+        return (dict[ch-'a'] != NULL);
+    }
+    void put(char ch,TrieNode* n){
+        dict[ch-'a'] = n;
+    }
+    TrieNode* getSubNode(char ch){
+        return dict[ch-'a'];
+    }
+    void setEnd(){
+        end = true;
+    }
+    bool isEnd(){
+        return end;
+    }
+};
+class Trie{
+    TrieNode* root;
+public:
+    Trie(){
+        root = new TrieNode();
+    }
+    void insert(string word) {
+        TrieNode* node = root;
+        for(auto ch : word){
+            if (node->containChar(ch) == false){
+                node->put(ch,new TrieNode());
+            }
+            // node moves to subNode
+            node = node->getSubNode(ch);
+        }
+        node->setEnd(); // end of the word
+    }
+    bool search(string word) {
+        TrieNode* node = root;
+        for(auto ch : word){
+            if (node->containChar(ch) == false) return false;
+            node = node->getSubNode(ch);
+        }
+        // word completed, trie should also be completed
+        return node->isEnd();
+    }
+    bool startsWith(string prefix) {
+        TrieNode* node = root;
+        for(auto ch : prefix){
+            if (node->containChar(ch) == false) return false;
+            node = node->getSubNode(ch);
+        }
+        // prefix completed, but trie need not be completed
+        return true;
+    }
+};
+
+// ? 1307231513
+struct TrieNode1{
+    TrieNode1* dict[26];
+    int cntEnd = 0;
+    int cntPrefix = 0;
+    
+    void put(char ch,TrieNode1* n){ dict[ch-'a'] = n; }
+    TrieNode1* getSubNode(char ch){ return dict[ch-'a']; }
+    bool containsChar(char ch){ return (dict[ch-'a'] != NULL); }
+    void increaseEnd(){ cntEnd++; }
+    void increasePrefix(){ cntPrefix++; }
+    int getPrefix(){ return cntPrefix; }
+    int getEnd(){ return cntEnd; }
+    void reducePrefix(){ cntPrefix--; }
+    void deleteEnd(){ cntEnd--; }
+};
+class Trie1{
+    TrieNode1* root;
+    public:
+    Trie1(){
+        root = new TrieNode1();
+    }
+    void insert(string word){
+        TrieNode1* node = root;
+        for(auto ch : word){
+            if (node->containsChar(ch) == false){
+                node->put(ch,new TrieNode1());
+            }
+            node = node->getSubNode(ch);
+            node->increasePrefix();
+        }
+        node->increaseEnd();
+    }
+    int cntWordEqualTo(string word){
+        TrieNode1* node = root;
+        for(auto ch : word){
+            if (node->containsChar(ch) == false) return 0;
+            node = node->getSubNode(ch);
+        }
+        return node->getEnd();
+    }
+    int cntWordsStartsWith(string word){
+        TrieNode1* node = root;
+        for(auto ch : word){
+            if (node->containsChar(ch) == false) return 0;
+            node = node->getSubNode(ch);
+        }
+        return node->getPrefix();
+    }
+    void remove(string word){ 
+        // words are not deleted from trie, but instead we decrease the cnt
+        TrieNode1* node = root;
+        for(auto ch : word){
+            if (node->containsChar(ch) == false) return ; // word not exisited;
+            node = node->getSubNode(ch);
+            node->reducePrefix();
+        }
+        node->deleteEnd();
+    }
+    bool isCompleteString(string str){
+        TrieNode1* node = root;
+        for(auto ch : str){
+            if (node->containsChar(ch) == false) return false; // word not even exists
+            node = node->getSubNode(ch);
+            // check if any word ended here
+            // if no word ended here means one of the prefix of str is not present in trie
+            // so str can't be a complete string
+            if (node->getEnd() == 0) return false;
+        }
+        return true;
+    }
+};
+
+// ? 1307231552
+string completeString(vector<string>words){
+    int n = words.size();
+    Trie1* trie = new Trie1();
+    for(auto str : words){
+        trie->insert(str);
+    }
+    string maxString = "";
+    // all words inserted to trie
+    for(int i = 0;i < n;i++){
+        string str = words[i];
+        int l = str.length();
+        if (trie->isCompleteString(str)){
+            if (l >= maxString.length()){
+                maxString = str;
+            }
+        }
+    }
+    if (maxString == "") return "None";
+    return maxString;
+}
+
+// ? 1307231647
+class Trie2{
+    TrieNode* root;
+public:
+    int cntDistinct;
+    Trie2(){
+        root = new TrieNode();
+        cntDistinct = 1; // empty string
+    }
+    void insert(string word){
+        TrieNode* node = root;
+        for(auto ch : word){
+            if (node->containChar(ch) == false){
+                node->put(ch,new TrieNode());
+                cntDistinct++;
+            }
+            node = node->getSubNode(ch);
+        }
+        node->setEnd();
+    }
+};
+int countDistinctSubstrings(string str){
+    Trie2* trie = new Trie2();
+    int n = str.length();
+    for(int i = 0;i < n;i++){
+        trie->insert(str.substr(i,n-i));
+    }
+    return trie->cntDistinct;
+}
+
+// ? 1307232027
+void per(vector<int>nums,int n,int ind,vector<vector<int>>&ans){
+    if (ind == n){
+        ans.push_back(nums);
+        return ;
+    }
+    for(int i = ind;i < n;i++){
+        // swap i,ind -> recursive
+        swap(nums[i],nums[ind]);
+
+        per(nums,n,ind+1,ans);
+
+        // swap i,ind back
+        swap(nums[i],nums[ind]);
+    }
+}
+void permutationList(vector<int> nums) {
+    vector<vector<int>>ans;
+    per(nums,nums.size(),0,ans);
+    printGrid(ans);
+}
+
 int main(){
     cout << endl;
 
@@ -10738,6 +11124,47 @@ int main(){
     // cout << st->getMin() << endl;
 
     // ? 1207231533
+
+    // ? 1307230817
+    // cout << infixToPostfix("A+B/C*(D-E)") << endl;
+
+    // ? 1307230833
+    // cout << infixToPrefix("A+B/C*(D-E)") << endl;
+
+    // ? 1307230911
+    // cout << postToInfix("sl+Pi+-") << endl;
+
+    // ? 1307231018
+    // cout << prefixToInfix("/*/sy+jt*/wj*dc") << endl;
+
+    // ? 1307231155
+    // cout << binaryExpressionTree("A+B/C*(D-E)") << endl;
+
+    // ? 1307231417
+    // Trie* t = new Trie();
+    // t->insert("apple");
+    // t->insert("apps");
+    // t->insert("age");
+    // cout << t->startsWith("app") << endl; // gives 1 if there is atleast one word starting with app
+
+    // ? 1307231513
+    // Trie1* t = new Trie1();
+    // t->insert("apple");
+    // t->insert("apps");
+    // t->insert("apple");
+    // t->insert("bat");
+    // t->insert("age");
+    // cout << t->cntWordsStartsWith("app") << endl; 
+    // cout << t->cntWordEqualTo("apple") << endl; 
+
+    // ? 1307231552
+    // cout << completeString({"n","ni","nin","ninj","ninja","ning"}) << endl;
+
+    // ? 1307231647
+    // cout << countDistinctSubstrings("abab") << endl;
+
+    // ? 1307232027
+    // permutationList({1,2,3,4});
 
     cout << endl;
     return 0;
