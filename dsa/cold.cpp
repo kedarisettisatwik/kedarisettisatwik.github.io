@@ -9747,6 +9747,110 @@ void permutationList(vector<int> nums) {
     printGrid(ans);
 }
 
+// ? 1307230811
+int getXOR(int a, int b){
+    // a xor b
+    return (a ^ b);
+}
+int getBit(int num, int i){
+    // checking if i th bit of num is 1
+    return ((num >> i) & 1 != 0);
+}
+int setBit(int num, int i){
+    // making i th bit of num as 1
+    return (num | (1 << i));
+}
+int eraseBit(int num,int i){
+    // making i th bit of num as 0
+    return(num & (~(1 << i)));
+}
+string evenOdd(int num){
+    // if first bit is set then odd
+    int firstBit = 1 & (num); 
+    if (firstBit == 1){
+        return "odd";
+    }
+    return "false";
+}
+bool isPowerOfTwo(int n){
+    // check if n = power of 2
+    int x = 1;
+    while (x < n){
+        x = (x << 1);
+    }
+    return (x == n);
+}
+
+// ? 1307231013
+int setRightMostBit(int n){
+    int x = n;
+    int i = 0;
+    int j = -1;
+    while (x != 0){
+        if ((x & 1) == 0){
+            j = i;
+            break;
+        }
+        i++;
+        x = x >> 1;
+    }
+    // j th bit is the rightMost unset bit in n
+    if (j == -1) return n;
+    n = (n | (1 << j));
+    return n;
+}
+
+// ? 1307231153
+int flipBits(int A, int B){
+    // number of bits needed to be flip to make A -> B
+    int x = A ^ B;
+    // count set bits in x
+    int cnt = 0;
+    while (x != 0){
+        if ((1 & x) == 1) cnt++;
+        x = x >> 1;
+    }
+    return cnt;
+}
+
+// ? 1307231354
+void permuteUnique(vector<int>nums){
+    // nums may have duplicates
+    int n = nums.size();
+    if (n == 0) return ;
+    vector<vector<int>>ans;
+
+    queue<pair<vector<int>,int>>q;
+    q.push({nums,0});
+    
+    while(q.empty() == false){
+        vector<int>vec = q.front().first;
+        int ind = q.front().second;
+        q.pop();
+        if (ind == n-1){
+            ans.push_back(vec);
+            continue;
+        }
+        unordered_set<int>st;
+        for(int j = ind;j < n;j++){
+            if (st.find(vec[j]) != st.end()) continue;
+            
+            st.insert(vec[j]);
+            // swap ind,j
+            int x = vec[ind];
+            vec[ind] = vec[j];
+            vec[j] = x;
+
+            q.push({vec,ind+1});
+            // swap back
+            x = vec[ind];
+            vec[ind] = vec[j];
+            vec[j] = x;
+        }
+    }
+    printGrid(ans);
+}
+
 int main(){
     cout << endl;
 
@@ -11165,6 +11269,17 @@ int main(){
 
     // ? 1307232027
     // permutationList({1,2,3,4});
+
+    // ? 1307230811
+
+    // ? 1307231013
+    // cout << setRightMostBit(13) << endl;
+
+    // ? 1307231153
+    // cout << flipBits(3,9) << endl;
+
+    // ? 1307231354
+    // permuteUnique({1,2,1});
 
     cout << endl;
     return 0;

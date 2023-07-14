@@ -6002,6 +6002,56 @@
           <div style="font-size:13px;">Hint : {vec,i} -> swap i with next indexs -> recursive i + 1</div>
     </section>
     
+    <section class="all easy revisit bits">
+          <h5>Bitwise Basic Operations</h5>
+          <p class="question">You will be given three functions , getXOR , getBit, setBit</p>
+          <p class="id">Question ID : 1307230811 </p>
+          <div class="keys">
+              <div class="cat">Bits</div>
+              <div class="cat">Easy</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.codingninjas.com/studio/problems/bitwise-basic-operations_8382552">https://www.codingninjas.com/studio/problems/bitwise-basic-operations_8382552</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/5iyuU4hQFrw">https://youtu.be/5iyuU4hQFrw</a> </p>
+          <div style="font-size:13px;">Hint : get(1 & (num >> i)), set(num | (1 &lt;&lt; i)), erase(num & (~(1 &lt;&lt; i))) </div>
+    </section>
+    
+    <section class="all bits medium">
+          <h5>Set The Rightmost Unset Bit</h5>
+          <p class="question">The problem is to find the rightmost bit of a non-negative number 'N' that is currently unset (i.e., has a value of 0) in its binary representation and set it to 1.</p>
+          <p class="id">Question ID : 1307231013 </p>
+          <div class="keys">
+              <div class="cat">Bits</div>
+              <div class="cat">Medium</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.codingninjas.com/studio/problems/set-the-rightmost-unset-bit_8160456">https://www.codingninjas.com/studio/problems/set-the-rightmost-unset-bit_8160456</a> </p>
+          <div style="font-size:13px;">Hint : while (x != 0,cnt) {if (x & 1 == 0) -> j = cnt, j is the rightMost unsetBit } </div>
+    </section>
+    
+    <section class="all easy bits">
+          <h5>Flip Bits</h5>
+          <p class="question">Given two integers start and goal, return the minimum number of bit flips to convert start to goal.</p>
+          <p class="id">Question ID : 1307231153 </p>
+          <div class="keys">
+              <div class="cat">Bits</div>
+              <div class="cat">Easy</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://www.codingninjas.com/studio/problems/flip-bits_8160405">https://www.codingninjas.com/studio/problems/flip-bits_8160405</a> </p>
+          <div style="font-size:13px;">Hint : x = A ^ B, count setBits in x</div>
+    </section>
+    
+    <section class="all medium arrays">
+          <h5>Permutations II</h5>
+          <p class="question">Given a collection of numbers, nums, that might contain duplicates, return all possible unique permutations in any order.</p>
+          <p class="id">Question ID : 1307231354 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Arrays</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/permutations-ii">https://leetcode.com/problems/permutations-ii</a> </p>
+          <div style="font-size:13px;">Hint : set, ind swap unique vec[j], </div>
+    </section>
+
     <div class="select">
           <p>Hardness : </p>
           <label onclick="level(0)">ALL</label>
@@ -6026,6 +6076,7 @@
           <span onclick="filterChapter(13)">window</span>
           <span onclick="filterChapter(14)">Grid</span>
           <span onclick="filterChapter(15)">Tries</span>
+          <span onclick="filterChapter(16)">Bits</span>
           <p style="margin-top:20px;">solution : </p>
           <span><a target="_blank" href="https://github.com/kedarisettisatwik/kedarisettisatwik.github.io/blob/master/dsa/syntax.cpp" style="color: white">SYNTAX.c++</a></span>
           <span><a target="_blank" href="https://github.com/kedarisettisatwik/kedarisettisatwik.github.io/blob/master/dsa/oops.cpp" style="color: white">OOPS.c++</a></span>
@@ -6071,8 +6122,8 @@
         }
         function filterChapter(a){
             course = a;
-            var c = ["all","sorting","arrays","linkedlist","binary","strings","recursion","stackqueue","greedy","trees","bst", "graphs","dp","window","grid","tries"];
-            var cc = ["all","sorting","arrays","linked - list","binary search","strings","recursion","stack - queue","greedy","trees","bst", "graphs","dp","sliding window","Grid","Tries"];     
+            var c = ["all","sorting","arrays","linkedlist","binary","strings","recursion","stackqueue","greedy","trees","bst", "graphs","dp","window","grid","tries","bits"];
+            var cc = ["all","sorting","arrays","linked - list","binary search","strings","recursion","stack - queue","greedy","trees","bst", "graphs","dp","sliding window","Grid","Tries","Bits"];     
             var cnt = 0;
             for (var i = 0;i < probs.length;i++){
                 var ele = probs[i];
