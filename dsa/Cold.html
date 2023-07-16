@@ -6052,6 +6052,69 @@
           <div style="font-size:13px;">Hint : set, ind swap unique vec[j], </div>
     </section>
 
+    <section class="all medium revisit sorting arrays">
+          <h5>Heap Sort</h5>
+          <p class="question">Given an array of integers nums, sort the array in ascending order and return it.</p>
+          <p class="id">Question ID : 1607231006 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">ReVisit</div>
+              <div class="cat">Sorting</div>
+              <div class="cat">Arrays</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/sort-an-array/">https://leetcode.com/problems/sort-an-array/</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/MMTQz-G8e-I">https://youtu.be/MMTQz-G8e-I</a> </p>
+          <div style="font-size:13px;">Hint : buildHeap -> [i = n/2 - 1 to 0 heapify]</div>
+    </section>
+
+    <section class="all medium strings">
+          <h5>Minimum Add to Make Parentheses Valid</h5>
+          <p class="question">You are given a parentheses string s. In one move, you can insert a parenthesis at any position of the string.Return the minimum number of moves required to make s valid.</p>
+          <p class="id">Question ID : 1607231020 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Strings</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/minimum-add-to-make-parentheses-valid">https://leetcode.com/problems/minimum-add-to-make-parentheses-valid</a> </p>
+          <div style="font-size:13px;">Hint : count openBrackets, closedBracket -> open--; if (closedBrackets noOpenBracekt present) => moves++; last moves += open</div>
+    </section>
+    
+    <section class="all medium linkedlist">
+          <h5>Swap Nodes in Pairs</h5>
+          <p class="question">Given a linked list, swap every two adjacent nodes and return its head. You must solve the problem without modifying the values in the list's nodes (i.e., only nodes themselves may be changed.)</p>
+          <p class="id">Question ID : 1607231039 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">LinkedList</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/swap-nodes-in-pairs">https://leetcode.com/problems/swap-nodes-in-pairs</a> </p>
+          <div style="font-size:13px;">Hint : if (l &lt; 2 return )</div>
+    </section>
+    
+    <section class="all medium strings">
+          <h5>Add Binary</h5>
+          <p class="question">Given two binary strings a and b, return their sum as a binary string.</p>
+          <p class="id">Question ID : 1607231926 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Strings</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/add-binary">https://leetcode.com/problems/add-binary</a> </p>
+          <div style="font-size:13px;">Hint : a + b + carry, </div>
+    </section>
+    
+    <section class="all medium linkedlist">
+          <h5>Partition List</h5>
+          <p class="question">Given the head of a linked list and a value x, partition it such that all nodes less than x come before nodes greater than or equal to x.<br>You should preserve the original relative order of the nodes in each of the two partitions.</p>
+          <p class="id">Question ID : 1607232013 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">LinkedList</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/partition-list">https://leetcode.com/problems/partition-list</a> </p>
+          <div style="font-size:13px;">Hint : merge lists, dummy1 , dummy2 </div>
+    </section>
+    
     <div class="select">
           <p>Hardness : </p>
           <label onclick="level(0)">ALL</label>
@@ -6108,11 +6171,11 @@
             var cnt = 0;
             for (var i = 0;i < probs.length;i++){
                 var ele = probs[i];
-                if (ele.classList.contains(l[a])){
-                    ele.style.opacity = "1";
+                if (ele.classList.contains(c[a])){
+                    ele.style.display = "block";
                     cnt++;
                 }else{
-                    ele.style.opacity = "0.1";
+                    ele.style.display = "none";
                 }
             }
             var select = document.querySelector(".select");
@@ -6128,10 +6191,10 @@
             for (var i = 0;i < probs.length;i++){
                 var ele = probs[i];
                 if (ele.classList.contains(c[a])){
-                    ele.style.opacity = "1";
+                    ele.style.display = "block";
                     cnt++;
                 }else{
-                    ele.style.opacity = "0.1";
+                    ele.style.display = "none";
                 }
             }
             document.getElementById("chapter").innerHTML = cc[a];
@@ -6159,7 +6222,7 @@
     <section class="all">
           <h5></h5>
           <p class="question"></p>
-          <p class="id">Question ID : 130723 </p>
+          <p class="id">Question ID : 160723 </p>
           <div class="keys">
               <div class="cat"> </div>
           </div>

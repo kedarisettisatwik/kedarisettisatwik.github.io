@@ -9851,6 +9851,149 @@ void permuteUnique(vector<int>nums){
     printGrid(ans);
 }
 
+// ? 1607231006
+void heapify(vector<int>&nums,int ind,int n){
+    int l = 2 * ind + 1;
+    int r = 2 * ind + 2;
+    int largest = ind;
+
+    if (l < n && nums[l] > nums[largest]) {
+        largest = l;
+    }
+    if (r < n && nums[r] > nums[largest]) {
+        largest = r;
+    }
+
+    if (largest != ind) {
+        swap(nums[ind], nums[largest]);
+        heapify(nums, largest, n);
+    }
+}
+void buildHeap(vector<int>&nums,int n){
+    for(int i = n/2-1;i >= 0;i--){
+        heapify(nums,i,n);
+    }
+}
+vector<int> heapSort(vector<int>& nums){
+    int n = nums.size();
+    buildHeap(nums,n);
+    for(int i = n-1;i >= 0;i--){
+        // swap nums[0] <-> nums[i]
+        swap(nums[0],nums[i]);
+        heapify(nums,0,i);
+    }
+    return nums;
+}
+
+// ? 1607231020
+int minBracketsAddToMakeValid(string str) {
+    int openCount = 0;
+    int moves = 0;
+
+    for (char c : str){
+        if (c == '(') {
+            openCount++;
+        } else if (c == ')'){
+            if (openCount > 0) {
+                openCount--;
+            } else {
+                moves++;
+            }
+        }
+    }
+
+    moves += openCount;
+    return moves;
+}
+
+// ? 1607231039
+LLNode* swapTwo(LLNode* head,int l){
+    if (head == NULL || l < 2) return head;
+    LLNode* n1 = head;
+    LLNode* n2 = head->next;
+    LLNode* n3 = head->next->next;
+    n2->next = n1;
+    n1->next = swapTwo(n3,l-2);
+    return n2;
+}
+LLNode* swapPairs(LLNode* head){
+    int len = 0;
+    LLNode* temp = head;
+    while (temp != NULL){
+        len++;
+        temp = temp->next;
+    }
+    return swapTwo(head,len);
+}
+
+// ? 1607231926
+string addBinary(string a, string b) {
+    string ans = "";
+
+    int aN = a.length()-1;
+    int bN = b.length()-1;
+    int carry = 0;
+
+    while (aN >= 0 || bN >= 0 || carry != 0){
+        int a1 = (aN >= 0) ? (a[aN] == '1' ? 1 : 0) : 0;
+        int b1 = (bN >= 0) ? (b[bN] == '1' ? 1 : 0) : 0;
+        
+        if (a1 + b1 + carry == 0){
+            ans = '0' + ans;
+            carry = 0;
+        }
+        else if (a1 + b1 + carry == 1){
+            ans = '1' + ans;
+            carry = 0;
+        }
+        else if (a1 + b1 + carry == 2){
+            ans = '0' + ans;
+            carry = 1;
+        }
+        else if (a1 + b1 + carry == 3){
+            ans = '1' + ans;
+            carry = 1;
+        }
+        aN--;
+        bN--;
+    }
+    return ans;
+}
+
+// ? 1607232013
+LLNode* partitionList(LLNode* head, int x){
+    LLNode* dummy1 = new LLNode(0);
+    LLNode* dummy2 = new LLNode(0);
+    
+    LLNode* t1 = dummy1;
+    LLNode* t2 = dummy2;
+
+    
+    LLNode* temp = head;
+    
+    while (temp != NULL){
+        if(temp->data < x){
+            LLNode* t = temp->next;
+            temp->next = NULL;
+            t1->next = temp;
+            t1 = t1->next;
+            temp = t;
+        }
+        else{
+            LLNode* t = temp->next;
+            temp->next = NULL;
+            t2->next = temp;
+            t2 = t2->next;
+            temp = t;
+        }
+    }
+    
+    if (dummy1->next == NULL) return dummy2->next;
+
+    t1->next = dummy2->next;
+    return dummy1->next;
+}
+
 int main(){
     cout << endl;
 
@@ -11280,6 +11423,30 @@ int main(){
 
     // ? 1307231354
     // permuteUnique({1,2,1});
+
+    // ? 1607231006
+    // vector<int>vec = {-4,0,7,4,9,-5,-1,0,-7,-1};
+    // printVector(vec);
+    // heapSort(vec);
+    // printVector(vec);
+
+    // ? 1607231020
+    // cout << minBracketsAddToMakeValid("((()(()))(") << endl;
+
+    // ? 1607231039
+    // LLNode* l = buildList({1,2,3,4,5});
+    // printList(l);
+    // l = swapPairs(l);
+    // printList(l);
+
+    // ? 1607231926
+    // cout << addBinary("111","101") << endl;
+
+    // ? 1607232013
+    LLNode* l = buildList({1,4,3,2,5,2});
+    printList(l);
+    l = partitionList(l,3);
+    printList(l);
 
     cout << endl;
     return 0;
