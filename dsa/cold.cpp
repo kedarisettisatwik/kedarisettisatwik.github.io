@@ -6805,7 +6805,7 @@ void krushalMinSpanTree(int v, vector<vector<int>> adj[]){
 }
 
 // ? 2906231554
-int connectingGraph(int n, vector<vector<int>>edges) {
+int connectingGraph(int n, vector<vector<int>>edges){
     int cnt_extras = 0;
     DisJointSet tree(n);
     for (auto it : edges){
@@ -9994,6 +9994,40 @@ LLNode* partitionList(LLNode* head, int x){
     return dummy1->next;
 }
 
+// ? 1707230839
+int maxPointsLine(vector<vector<int>>points){
+    int n = points.size();
+    unordered_map<double, int> mp; // {slope, count}
+    int maxPoints = 0;
+
+    for (int i = 0; i < n; i++){
+        mp.clear(); // Clear the map for each point
+
+        int verticalPoints = 0; // Count of points with vertical lines
+
+        for (int j = i + 1; j < n; j++){
+            if (points[i][0] == points[j][0]){
+                // Count the points with the same x-coordinate
+                verticalPoints++;
+            }else{
+                // Calculate the slope of the line passing through points[i] and points[j]
+                double slope = (double)(points[j][1] - points[i][1]) / (points[j][0] - points[i][0]);
+                mp[slope]++;
+            }
+        }
+
+        // Find the maximum count of points on the same line
+        int currentMax = verticalPoints;
+        for (auto it = mp.begin(); it != mp.end(); it++) {
+            currentMax = max(currentMax, it->second);
+        }
+
+        maxPoints = max(maxPoints, currentMax + 1);
+    }
+
+    return maxPoints;
+}
+
 int main(){
     cout << endl;
 
@@ -11443,10 +11477,13 @@ int main(){
     // cout << addBinary("111","101") << endl;
 
     // ? 1607232013
-    LLNode* l = buildList({1,4,3,2,5,2});
-    printList(l);
-    l = partitionList(l,3);
-    printList(l);
+    // LLNode* l = buildList({1,4,3,2,5,2});
+    // printList(l);
+    // l = partitionList(l,3);
+    // printList(l);
+
+    // ? 1707230839
+    // cout << maxPointsLine({{1,1},{3,3},{4,4},{-1,0},{-2,-1}}) << endl;
 
     cout << endl;
     return 0;
