@@ -340,7 +340,7 @@ int main(){
     }
     delete ob1_c6; // dynamically delete
 
-    // c7 is aclass connected with c7_support
+    // c7 is a class connected with c7_support
     cout << "\nclass 7" << endl;
     c7 ob1_c7;
     // c7_support ob2_c7; error as c7_support is a abstract class beacuse it has a pure virtual function
