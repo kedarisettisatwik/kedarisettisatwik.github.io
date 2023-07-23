@@ -1387,34 +1387,36 @@ struct Node{
         bottom = NULL;
     }
 };
-Node* flattenList(Node* root){
+Node* mergeLists(Node* t1,Node* t2){
+    Node* dummy = new Node(0);
+    Node* temp = dummy;
+    while (t1 != NULL && t2 != NULL){
+        if (t1->data <= t2->data){
+            temp->bottom = t1;
+            temp = temp->bottom;
+            t1 = t1->bottom;
+        }else{
+            temp->bottom = t2;
+            temp = temp->bottom;
+            t2 = t2->bottom;
+        }
+    }
+    if (t1 != NULL){
+        temp->bottom = t1;
+    }
+    if (t2 != NULL){
+        temp->bottom = t2;
+    }
+    return dummy->bottom;
+}
+Node*flattenList(Node *root){
     if (root == NULL) return NULL;
     if (root->next == NULL) return root;
     root->next = flattenList(root->next);
-    Node* t1 = root;
-    Node* t2 = root->next;
-    Node* dummy = new Node(0);
-    Node* temp = dummy;
-    while (t1->bottom != NULL && t2->bottom != NULL){
-        if (t1->data <= t2->data){
-            temp->bottom = t1;
-            t1 = t1->bottom;
-            temp = temp->bottom;
-        }else{
-            temp->bottom = t2;
-            t2 = t2->bottom;
-            temp = temp->bottom;
-        }
-    }
-    if (t1->bottom != NULL){
-        temp->bottom = t1->bottom;
-    }
-    if (t2->bottom != NULL){
-        temp->bottom = t2->bottom;
-    }
-    root->next = NULL;
-    return dummy->bottom;
+    root = mergeLists(root,root->next);
+    return root;
 }
+
 
 // ? 0606232044
 void reverseListGrpK(LLNode* head,int k){
@@ -5771,7 +5773,6 @@ void countDistinctIslands(vector<vector<int>>grid) {
 // ? 2606231753
 void isCycleGraphBFS(int v, vector<int> adj[]) {
     int vis[v] = {0};
-    queue<int>q;
     for (int i = 0;i < v;i++){
         if (vis[i] == 0){
             vis[i] = 1; 
@@ -6250,59 +6251,38 @@ void wordLadderLength2(string beginWord, string endWord, vector<string>wordList)
     
     queue<vector<string>>q;
     q.push({beginWord});
+    dict.erase(beginWord);
     
-    // A vector defined to store the words being currently used
-    // on a level during BFS.
-    vector<string> usedOnLevel;
-    usedOnLevel.push_back(beginWord);
-    
-    int level = 0;
-
     while (q.empty() == false){
-        vector<string>vec = q.front();
-        q.pop();
         
-        // Now, erase all words that have been
-        // used in the previous levels to transform
-        if (vec.size() > level){
-            level++;
-            for (auto it : usedOnLevel){
-                dict.erase(it);
-            }
-        }
+        int s = q.size();
+        vector<string>wordsUsed;
         
-        string word = vec.back();
-
-        // store the answers if the end word matches with targetWord.
-        if (word == endWord){
-            // the first sequence where we reached end
-            if (ans.size() == 0){
-                ans.push_back(vec);
+        for (int i = 0; i < s; i++){
+            vector<string>path = q.front();
+            string word = q.front().back();
+            q.pop();
+            
+            if (word == endWord){
+                ans.push_back(path);
+                continue;
             }
-            else if (ans[0].size() == vec.size()){ // to find minTransformations
-                ans.push_back(vec);
-            }
-        }
-
-        for (int i = 0; i < word.size(); i++){   
-            // Now, replace each character of ‘word’ with char
-            // from a-z then check if ‘word’ exists in wordList.
-            char original = word[i];
-            for (char c = 'a'; c <= 'z'; c++)
-            {
-                word[i] = c;
-                if (dict.count(word) > 0){ 
-                    // Check if the word is present in the wordList and
-                    // push the word along with the new sequence in the queue.
-                    vec.push_back(word);
-                    q.push(vec);
-                    // mark as visited on the level
-                    usedOnLevel.push_back(word);
-                    vec.pop_back();
+            for (int i = 0; i < word.size(); i++){
+                char original = word[i];
+                for (char c = 'a'; c <= 'z'; c++) {
+                    word[i] = c;
+                    if ( dict.find(word) != dict.end() ) { 
+                        path.push_back(word);
+                        q.push(path);
+                        wordsUsed.push_back(word);
+                        path.pop_back();
+                    }
                 }
+                word[i] = original;
             }
-            word[i] = original;
         }
+        for(auto it : wordsUsed) dict.erase(it);
+    
     }
     
     for (auto path : ans){
@@ -6559,6 +6539,43 @@ int minimumMultiplications(vector<int>arr, int start, int end) {
         }
     }
     return -1;
+}
+
+// ? 2906230801
+int arriveDestination(int n, vector<vector<int>> &roads){
+    vector<pair<int, int>> adj[n];
+    for (auto it : roads){
+        adj[it[0]].push_back({it[1], it[2]});
+        adj[it[1]].push_back({it[0], it[2]});
+    }
+
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+
+    vector<int> dist(n, INT_MAX), ways(n, 0);
+    dist[0] = 0;
+    ways[0] = 1;
+    pq.push({0, 0});
+
+    int mod = (int)(1e9 + 7);
+    while (!pq.empty()){
+        int dis = pq.top().first;
+        int node = pq.top().second;
+        pq.pop();
+
+        for (auto it : adj[node]){
+            int adjNode = it.first;
+            int edW = it.second;
+            if (dis + edW < dist[adjNode]){
+                dist[adjNode] = dis + edW;
+                pq.push({dis + edW, adjNode});
+                ways[adjNode] = ways[node];
+            }
+            else if (dis + edW == dist[adjNode]){
+                ways[adjNode] = (ways[adjNode] + ways[node]) % mod;
+            }
+        }
+    }
+    return ways[n - 1] % mod;
 }
 
 // ? 2906231036
@@ -6830,71 +6847,41 @@ int connectingGraph(int n, vector<vector<int>>edges){
 }
 
 // ? 2906231929
-class isLandSet {
-    vector<int> parent, size;
-    int count;
-    public:
-    isLandSet(int n) {
-        size.resize(n, 0);
-        parent.resize(n);
-        count = 0;
-    }
-    int getCount() {
-        return count;
-    }
-    int findUltimateParent(int x) {
-        if (parent[x] == x)
-            return x;
-        parent[x] = findUltimateParent(parent[x]);
-        return parent[x];
-    }
-    void unionBySize(int u, int v) {
-        int rootU = findUltimateParent(u);
-        int rootV = findUltimateParent(v);
-        if (rootU == rootV) return;
-
-        if (size[rootU] < size[rootV]) {
-            parent[rootU] = rootV;
-            size[rootV] += size[rootU];
-        } else {
-            parent[rootV] = rootU;
-            size[rootU] += size[rootV];
-        }
-        count--;
-    }
-    void makeIsland(int x) {
-        parent[x] = x;
-        size[x] = 1;
-        count++;
-    }
-};
-void numOfIslands2(int r, int c, vector<vector<int>>operators) {
+vector<int> numOfIslands(int n, int m, vector<vector<int>>operators) {
     // [i][j] => (i * c + j)
-    vector<int> result;
-    vector<vector<int>> grid(r, vector<int>(c, 0));
-
-    isLandSet ds(r * c);
-
-    vector<pair<int, int>> directions{{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
-    for (auto op : operators) {
-        int x = op[0];
-        int y = op[1];
-        if (grid[x][y] == 1) {
-            result.push_back(ds.getCount()); // already old land due to past opeation
+    DisJointSet ds(n * m);
+    int vis[n][m];
+    memset(vis, 0, sizeof vis);
+    int cnt = 0;
+    vector<int> ans;
+    for (auto it : operators) {
+        int row = it[0];
+        int col = it[1];
+        if (vis[row][col] == 1) {
+            ans.push_back(cnt);
             continue;
         }
-        grid[x][y] = 1;
-        ds.makeIsland(x * c + y);
-        for (auto dir : directions) {
-            int nx = x + dir.first;
-            int ny = y + dir.second;
-            if (nx >= 0 && nx < r && ny >= 0 && ny < c && grid[nx][ny] == 1) {
-                ds.unionBySize(x * c + y, nx * c + ny);
+        vis[row][col] = 1;
+        cnt++;
+        int dr[] = { -1, 0, 1, 0};
+        int dc[] = {0, 1, 0, -1};
+        for (int ind = 0; ind < 4; ind++) {
+            int adjr = row + dr[ind];
+            int adjc = col + dc[ind];
+            if ( adjr >= 0 && adjr < n && adjc >= 0 && adjc < m ) {
+                if (vis[adjr][adjc] == 1) {
+                    int nodeNo = row * m + col;
+                    int adjNodeNo = adjr * m + adjc;
+                    if (ds.findUltimateParent(nodeNo) != ds.findUltimateParent(adjNodeNo)) {
+                        cnt--;
+                        ds.unionBySize(nodeNo, adjNodeNo);
+                    }
+                }
             }
         }
-        result.push_back(ds.getCount());
+        ans.push_back(cnt);
     }
-    printVector(result);
+    return ans;
 }
 
 // ? 2906232011
@@ -6951,28 +6938,23 @@ int maxConnectionLand(vector<vector<int>>grid) {
 
 // ? 3006232047
 int maxStonesRemove(vector<vector<int>>stones) {
-    int n = stones.size(); // total no of stones in grid
-    int maxRow = 0; // gridSize 
+    int n = stones.size();
+    int maxRow = 0;
     int maxCol = 0;
     for (auto it : stones) {
         maxRow = max(maxRow, it[0]);
         maxCol = max(maxCol, it[1]);
     }
     DisJointSet ds(maxRow + maxCol + 1);
-    // if maxRow = 3 , maxCol = 4
-    // 0 4 5 6 7
-    // 1
-    // 2
-    // 3
     unordered_map<int, int> stoneNodes;
     for (auto it : stones) {
-        // if stone is in [r][c] -> union(r,r+c+1)
         int nodeRow = it[0];
         int nodeCol = it[1] + maxRow + 1;
         ds.unionBySize(nodeRow, nodeCol);
         stoneNodes[nodeRow] = 1;
         stoneNodes[nodeCol] = 1;
     }
+
     int cnt = 0;
     for (auto it : stoneNodes) {
         if (ds.findUltimateParent(it.first) == it.first) {
@@ -7145,8 +7127,7 @@ int maxPoints(vector<vector<int>>&points,vector<vector<int>>&dp,int n,int row,in
     for (int i = 0;i < 3;i++){
         if (i != col) ans = max(ans, points[row][col]  +  maxPoints(points,dp,n,row+1,i) );
     }
-    dp[row][col] = ans;
-    return ans;
+    return dp[row][col] = ans;
 }
 int maxPointsTrain(vector<vector<int>>& points){
     int n = points.size();
@@ -7552,7 +7533,6 @@ int rodCutting(vector<int>val){
             dp[i][l] = max(notCut,cut);
         }
     }
-    
     return dp[n][n];
 }
 
@@ -7811,8 +7791,7 @@ int delReplaceInsert(string s1,string s2,int i,int j,vector<vector<int>>&dp){
     ans = min(ans, 1 + delReplaceInsert(s1,s2,i,j-1,dp)); // insert char after index i s1
     ans = min(ans, 1 + delReplaceInsert(s1,s2,i-1,j-1,dp)); // replace char in s1
     
-    dp[i][j] = ans;
-    return ans;
+    return dp[i][j] = ans;
 }
 int delReplaceInsertString(string s1, string s2) {
     int n = s1.size();
@@ -7868,14 +7847,6 @@ long long dividePlayers(vector<int>skill) {
 }
 
 // ? 0807230756
-bool isAllStars(string & S1, int i) {
-    // S1 is taken in 1-based indexing
-    for (int j = 1; j <= i; j++) {
-    if (S1[j - 1] != '*')
-        return false;
-    }
-    return true;
-}
 int wildCardMatchStrings(string S1,string S2){
     // S1 = pattern
     // S2 = text
@@ -8636,6 +8607,7 @@ int countSubSquares(vector<vector<int>>matrix) {
             sum += dp[i][j];
         }
     }
+    printGrid(dp);
     return sum;
 }
 
@@ -11218,7 +11190,7 @@ int main(){
     // cout << knapSackInfinite(8,{1,4,5,7},{1,3,4,5}) << endl;
 
     // ? 0707230827
-    // cout << rodCutting({1,5,8,9,10,17,17,20}) << endl;
+    // cout << rodCutting({2,5,8,9,10,17,17,20}) << endl;
 
     // ? 0707230846
     // cout << longCommonSubSeqString("ABCDGH","AEDFHR") << endl;
@@ -11341,7 +11313,7 @@ int main(){
     // cout << maxRectangleGrid({{1,0,1,0,0},{1,1,1,1,1},{1,0,1,1,1},{0,0,0,1,1}}) << endl;
 
     // ? 1007231752
-    // cout << countSubSquares({{1,0,1,1},{1,1,1,1},{1,0,1,1}}) << endl;
+    // cout << countSubSquares({{1,0,1,1},{0,1,1,1},{1,1,1,1},{0,1,1,1}}) << endl;
 
     // ? 1107230901
     // cout << minCostConnectRopes({4,3,2,6}) << endl;
