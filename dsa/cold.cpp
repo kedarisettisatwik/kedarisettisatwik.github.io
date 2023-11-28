@@ -892,44 +892,35 @@ void printSpiral(vector<vector<int>>grid){
     vector<int>spiral;
     printGrid(grid);
     // four sides boundaries
-    int topB = 0;
-    int rightB = c-1;
-    int downB = r-1;
-    int leftB = 0;
-    int i = 0;
-    int j = 0;
-    while (topB <= downB && leftB <= rightB){
-        // first move to right Boundary
-        while (j <= rightB){
-            spiral.push_back(grid[i][j]);
-            j++;
-        }j--; 
-        rightB--; // for next cycle shrink boundary
-        i++; // now move one step down
-        // now move to bottom Boundary
-        while (i <= downB){
-            spiral.push_back(grid[i][j]);
-            i++;
-        }i--;
-        downB--; // for next cycle shrink boundary
-        j--; // now move one step left
-        // now move to left Boundary
-        if (leftB <= rightB){
-            while (j >= leftB){
-                spiral.push_back(grid[i][j]);
-                j--;
-            }j++;
-            leftB++; // for next cycle shrink boundary
+    int top = 0;
+    int right = c-1;
+    int bottom = r-1;
+    int left = 0;
+    while (top <= bottom && left <= right){
+        // move right , along top boundary
+        for (int col = left; col <= right; col++){
+            spiral.push_back(grid[top][col]);
         }
-        if (topB < downB){
-            i--; // now move one step up
-            while (i > topB){
-                spiral.push_back(grid[i][j]);
-                i--;
-            }i++;
-            topB++;
+        top++;
+        // move down , along right boundary
+        for (int row = top; row <= bottom; row++){
+            spiral.push_back(grid[row][right]);
         }
-        j++;
+        right--;
+        // move left , along bottom boundary
+        if (top <= bottom){
+            for (int col = right; col >= left; col--){
+                spiral.push_back(grid[bottom][col]);
+            }
+            bottom--;
+        }
+        // move up , along left boudary
+        if (left <= right){
+            for(int row = bottom;row >= top;row--){
+                spiral.push_back(grid[row][left]);
+            }
+            left++;
+        }
     }
     printVector(spiral);
 }
@@ -2227,9 +2218,6 @@ bool isPossibleBooks(vector<int>&pages,int n,int students,int mid){
 }
 void allocateBooks(vector<int>pages,int students){
     int n = pages.size();
-    if (n < students){
-
-    }
     int ans = INT_MAX;
     int low = 0;
     int high = 0;
@@ -2411,7 +2399,7 @@ void KthMissingElement(vector<int>arr, int k){
     return ;
 }
 
-// ? 1206231801
+// ? 1206231844
 void maxDepthBrackets(string word) {
     stack<char>st;
     int size = 0;
@@ -3153,7 +3141,7 @@ bool sortCompare(pair<int,int>item1,pair<int,int>item2){
 void fractionalKnapsack(int maxW, vector<pair<int,int>>items) {
     // items = {price,weight}
     // maxW = maxWeightAvailable
-    sort(items.begin(),items.end());
+    sort(items.begin(),items.end(),sortCompare);
     for (auto item : items){
         cout << "p : " << item.first << " , w : " << item.second << endl;
     }
@@ -4133,7 +4121,8 @@ TNode* insertNodeBST(TNode* root, int k) {
 }
 
 // ? 1906231350
-TNode* delMergeBST(TNode* root){
+
+TNode* delMerge(TNode* root){
     // root is to be removed, so we will merge all leftSubTree to right subTree and return a node
     // returned node will act like subsitute for del Node
     
@@ -4158,53 +4147,34 @@ TNode* delMergeBST(TNode* root){
     
     return rightSubTree;
 }
-TNode* del_prevNodeBST(TNode* root,int x){
+
+TNode* del_Node(TNode* root,int x){
     if (root == NULL) return NULL;
     TNode* temp = root;
-    while (temp->left != NULL || temp->right != NULL){
-        if (temp->left != NULL){
-            if (temp->left->data == x){
-                return temp;
-            }
-        }
-        if (temp->right != NULL){
-            if (temp->right->data == x){
-                return temp;
-            }
+    while (temp != NULL){
+        if (temp-> data == x){
+            return temp;
         }
         if (temp->data < x){
             temp = temp->right;
         }else if (temp->data > x){
             temp = temp->left;
         }
-        if (temp == NULL){
-            return NULL;
-        }
     }
     return NULL;
 }
-TNode* deleteNodeBST(TNode* root, int x) {
+
+TNode* deleteNode(TNode* root, int x) {
     if (root == NULL) return NULL;
     
-    if (root->data == x){
-        return delMergeBST(root);
-    }
+    TNode* n = del_Node(root,x);
     
-    TNode* prevNode = del_prevNodeBST(root,x);
-    if (prevNode == NULL) return root;
+    if (n == NULL) return root;
     
-    if (prevNode->left != NULL && prevNode->left->data == x){
-        prevNode->left = delMergeBST(prevNode->left);
-        return root;
-    }
-    if (prevNode->right != NULL && prevNode->right->data == x){
-        prevNode->right = delMergeBST(prevNode->right);
-        return root;
-    }
-    
-    return root;
+    return delMerge(n);
 }
 
+// ? 1906231751
 TNode* kthsmallest(TNode* root,int &k){
     if(root == NULL) return NULL;
     
@@ -4954,6 +4924,7 @@ TNode* constructMaxTree(vector<int>&nums,int l,int r){
     t->right = constructMaxTree(nums,maxInd+1,r);
     return t;
 }
+
 // ? 2306231513
 void inOrder4(TNode* root,vector<int>&ans){
     if (root == NULL) return ;
@@ -5075,21 +5046,10 @@ bool isSubtree(TNode* root, TNode* subRoot) {
 // ? 2306232157
 int longestUnivaluePath(TNode* root,int& maxCount){
     if (root == NULL) return 0;
-    int l = longestUnivaluePath(root->left,maxCount);
-    int r = longestUnivaluePath(root->right,maxCount);
-    int ans = 1;
-    int ll = 0;
-    int rr = 0;
-    if (root->left != NULL && root->left->data == root->data){
-        ans += l;
-        ll = l;
-    }
-    if (root->right != NULL && root->right->data == root->data){
-        ans += r;
-        rr = r;
-    }
-    maxCount = max(maxCount,ans);
-    return 1 + max(ll,rr);
+    int l = (root->left != NULL && root->left->data == root->data) ? longestUnivaluePath(root->left, maxCount) : 0;
+    int r = (root->right != NULL && root->right->data == root->data) ? longestUnivaluePath(root->right, maxCount) : 0;
+    maxCount = max(maxCount,1 + l + r);
+    return 1 + max(l,r);
 }
 
 // ? 2406230816
@@ -5110,7 +5070,7 @@ TNode* increasingBST(TNode* root) {
 }
 
 // ? 2406230847
-vector<TNode*>possibleFullTrees(int l,int r){
+vector<TNode*>possibleFullTrees(int l,int r) {
     if (l > r) return {NULL};
     if (l == r) return {new TNode(0)};
     vector<TNode*>trees;
@@ -8530,33 +8490,31 @@ int maxSumPartitionArray(vector<int>nums, int k){
 // ? 1007231716
 int maxRectangleAreaHistogram(vector<int>heights) {
     int n = heights.size();
-    vector<int>leftSmall(n,0);
-    vector<int>rightSmall(n,0);
+    vector<int>leftWidth(n,0);
+    vector<int>rightWidth(n,0);
     
     stack<int>st;
     for(int i = 0;i < n;i++){
         while(st.empty() == false && heights[st.top()] >= heights[i]){
             st.pop();
         }
-        if (st.empty()) leftSmall[i] = 0;
-        else leftSmall[i] = st.top() + 1;
+        if (st.empty()) leftWidth[i] = i;
+        else leftWidth[i] = i - st.top() - 1;
         st.push(i);
     }
-    
-    while (st.empty() == false) st.pop();
+    while (st.empty() == false) st.pop(); // clear stack
 
     for(int i = n-1;i >= 0;i--){
         while(st.empty() == false && heights[st.top()] >= heights[i]){
             st.pop();
         }
-        if (st.empty()) rightSmall[i] = n-1;
-        else rightSmall[i] = st.top() - 1;
+        if (st.empty()) rightWidth[i] = n-i-1;
+        else rightWidth[i] = st.top() - i - 1;
         st.push(i);
     }
-
     int ans = 0;
     for(int i = 0;i < n;i++){
-        ans = max(ans, (rightSmall[i]-leftSmall[i]+1)*heights[i]);
+        ans = max(ans, ( rightWidth[i] + leftWidth[i] + 1)*heights[i]);
     }
     return ans;
 }
@@ -10000,6 +9958,188 @@ int maxPointsLine(vector<vector<int>>points){
     return maxPoints;
 }
 
+// ? 2507231142
+class MedianFinder {
+    priority_queue<int>pq1; // max heap
+    priority_queue<int,vector<int>,greater<int>>pq2; // min heap
+public:
+    MedianFinder() {}
+    void addNum(int num) {
+        if (pq1.empty() || num < pq1.top()){
+            pq1.push(num);
+        }else{
+            pq2.push(num);
+        }
+        // make sure sizes of pq2 , pq1 differ atmost by 1 
+
+        if (pq1.size() > pq2.size() + 1){ 
+            // move one ele from pq1 to pq2
+            pq2.push(pq1.top());
+            pq1.pop();
+        }
+        else if (pq2.size() > pq1.size() + 1){
+            // move one ele from pq2 to pq1
+            pq1.push(pq2.top());
+            pq2.pop();
+        }
+    }
+    double findMedian() {
+        if (pq1.size() == 0) return 0.0;
+        if (pq1.size() == pq2.size()) { 
+            // even count
+            return (pq1.top() + pq2.top())/ 2.0;
+        }else{
+            // odd count
+            if (pq2.size() > pq1.size()) return double( pq2.top() );
+            return double( pq1.top() );
+        }
+    }
+};
+
+// ? 2507231431
+int nearestExit(vector<vector<int>>maze, vector<int>entrance){
+    // 1 -> open. 0 -> wall
+    int r = maze.size();
+    int c = maze[0].size();
+    queue<pair<int,pair<int,int>>>q; // {dis , x1 , y1}
+    q.push({0,{entrance[0],entrance[1]}});
+    maze[entrance[0]][entrance[1]] = 0;
+    while (q.empty() == false){
+        int d = q.front().first;
+        int r1 = q.front().second.first;
+        int c1 = q.front().second.second;
+        q.pop();
+        int d1[4] = {-1,0,1,0};
+        int d2[4] = {0,-1,0,1};
+        for(int i = 0; i < 4;i++){
+            int r2 = r1 + d1[i];
+            int c2 = c1 + d2[i];
+            if (r2 >= 0 && c2 >= 0 && r2 < r && c2 < c){
+                if (maze[r2][c2] == 1){
+                    if (c2 == 0 || c2 == c-1 || r2 == 0 || r2 == r-1) return d+1;
+                    q.push({d+1,{r2,c2}});
+                    maze[r2][c2] = 0;
+                }
+            }
+        }
+    }
+    return -1;
+}
+
+// ? 2607231206
+static bool compareEvents(vector<int>&e1,vector<int>&e2){
+    // sorted based on end day, 
+    // same end day => based on start day
+    if (e1[1] == e2[1]) return e1[0] < e2[0];
+    return e1[1] < e2[1];
+}
+int maxTime(vector<vector<int>>events){
+    int maxi = 0;
+    for(auto e : events){
+        maxi = max(maxi,e[1]);
+    }
+    return maxi;
+}
+int maxEventsAttend(vector<vector<int>>events){
+    int n = events.size();
+    if (n == 0) return 0;
+    sort(events.begin(),events.end(),compareEvents);
+    unordered_map<int,int>mp;
+    int cnt = 1;
+    int endTime = events[0][1];
+    mp[events[0][0]] = 1; 
+    for(int i = 1;i < n;i++){
+        if (events[i][0] > endTime){
+            cnt++;
+            mp[events[i][0]] = 1;
+            continue;
+        }
+        for(int j = events[i][0]; j <= events[i][1];j++){
+            if (mp.find(j) == mp.end()){
+                cnt++;
+                mp[j] = 1;
+                break;
+            }
+        }
+    }
+    return cnt;
+}
+
+// ? 2707231004
+int dfsGrid(vector<vector<int>>&matrix,int r1,int c1,vector<vector<int>>& dp,int r,int c){
+    if (dp[r1][c1] != 0) return dp[r1][c1];
+    int maxLen = 1;
+    int d1[4] = {-1,0,1,0};
+    int d2[4] = {0,-1,0,1};
+    for(int i = 0;i < 4;i++){
+        int r2 = r1 + d1[i];
+        int c2 = c1 + d2[i];
+        if (r2 >= 0 && r2 < r && c2 >=0 && c2 < c){
+            if (r2 >= 0 && r2 < r && c2 >= 0 && c2 < c && matrix[r2][c2] > matrix[r1][c1]) {
+                maxLen = max(maxLen, 1 + dfsGrid(matrix, r2, c2, dp, r, c));
+            }
+        }
+    }
+    return dp[r1][c1] = maxLen;
+}
+int longestIncreasePathGrid(vector<vector<int>>matrix){
+    int ans = 0;
+    int r = matrix.size();
+    int c = matrix[0].size();
+    vector<vector<int>>dp(r,vector<int>(c,0));
+    for(int i = 0; i < r;i++){
+        for(int j = 0;j < c;j++){
+            int maxLen = dfsGrid(matrix,i,j,dp,r,c);
+            ans = max(ans,maxLen);
+        }
+    }
+    return ans;
+}
+
+// ? 2607231136
+int mostBooked(int n, vector<vector<int>>meetings) {
+    sort(meetings.begin(), meetings.end()); // based on starting time
+
+    priority_queue<pair<long long,int>,vector<pair<long long,int>>,greater<pair<long long,int>>>engaged; // end Time, room
+    priority_queue<int,vector<int>,greater<int>>unused;
+    
+    unordered_map<int,int>m;
+    for(int i = 0; i < n; i++) unused.push(i);
+
+    for(auto x : meetings) {
+        int start = x[0],end = x[1];
+        // free room with completed meetings
+        while(engaged.size() > 0 && engaged.top().first <= start){
+            int room = engaged.top().second;
+            engaged.pop();
+            unused.push(room);
+        }
+        if(unused.size() > 0){
+            int room = unused.top();
+            unused.pop();
+            m[room]++;
+            engaged.push({end,room});    // room not available until end time
+        }
+        else{
+            // no free room , waiting 
+            // meet x will continue the top meet room which will complete first
+            pair<long long,int>topmost = engaged.top();
+            engaged.pop();
+            m[topmost.second]++; // usage of room
+            long long newend = topmost.first;
+            newend += (end-start);   // end time of room increased by x meet duration 
+            engaged.push({newend,topmost.second});
+        }
+    }
+
+    int maxi=0;
+    for(int i=0; i<n; i++){
+        if(m[i] > m[maxi])
+            maxi=i;
+    }
+    return maxi;
+}
+
 int main(){
     cout << endl;
 
@@ -10326,7 +10466,7 @@ int main(){
     // ? 1206231801
     // KthMissingElement({1,3,4,5,7,9},3);
 
-    // ? 1206231801
+    // ? 1206231844
     // maxDepthBrackets("((((()))(()))(()))");
 
     // ? 1206231850
@@ -11456,6 +11596,18 @@ int main(){
 
     // ? 1707230839
     // cout << maxPointsLine({{1,1},{3,3},{4,4},{-1,0},{-2,-1}}) << endl;
+
+    // ? 2507231431
+    // cout << nearestExit({{0,0,0},{1,1,1},{0,0,0}},{1,0}) << endl;
+
+    // ? 2607231206
+    // cout << maxEventsAttend({{3,5},{3,5},{3,5}}) << endl;
+
+    // ? 2707231004
+    // cout << longestIncreasePathGrid({{9,9,4},{6,6,8},{2,1,1}}) << endl;
+
+    // ? 2607231136
+    cout << mostBooked(3,{{1,20},{2,10},{3,5},{4,9},{6,8}}) << endl;
 
     cout << endl;
     return 0;

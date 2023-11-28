@@ -6128,6 +6128,74 @@
           <div style="font-size:13px;">Hint : for i, j , check if it is vertical line else mp[slope]++, current max of map</div>
     </section>
     
+    <section class="all hard revisit stackqueue">
+          <h5>Median of data Stream</h5>
+          <p class="id">Question ID : 2507231142 </p>
+          <div class="keys">
+              <div class="cat">Hard</div>
+              <div class="cat">ReVisit</div>
+              <div class="cat">Queue</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/find-median-from-data-stream">https://leetcode.com/problems/find-median-from-data-stream</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/EcNbRjEcb14">https://youtu.be/EcNbRjEcb14</a> </p>
+          <div style="font-size:13px;">Hint : while insert, make sure sizes of queues differ by atmost 1</div>
+    </section>
+    
+    <section class="all medium graphs grid">
+          <h5>Nearest Exit from Entrance in Maze</h5>
+          <p class="question">You are given an m x n matrix maze with empty cells (represented as '.') and walls (represented as '+'). You are also given the entrance of the maze.<br>An exit is defined as an empty cell that is at the border of the maze. <br> Return the number of steps in the shortest path from the entrance to the nearest exit, or -1 if no such path exists.</p>
+          <p class="id">Question ID : 2507231431 </p>
+          <div class="keys">
+              <div class="cat">Medium</div>
+              <div class="cat">Graphs</div>
+              <div class="cat">Grid</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href=""></a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href=""></a> </p>
+          <div style="font-size:13px;">Hint : bfs from entrance, if cell is in border and its open return dist </div>
+    </section>
+    
+    <section class="all arrays medium revisit">
+          <h5>Maximum Number of Events That Can Be Attended</h5>
+          <p class="question">You are given an array of events where events[i] = [startDayi, endDayi]. Every event i starts at startDayi and ends at endDayi. <br>You can attend an event i at any day d where startTimei &le; d &le; endTimei. You can only attend one event at any time d.<br>Return the maximum number of events you can attend.</p>
+          <p class="id">Question ID : 2607231206 </p>
+          <div class="keys">
+              <div class="cat">Arrays</div>
+              <div class="cat">Medium</div>
+              <div class="cat">ReVisit</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended">https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended</a> </p>
+          <p class="solve"><span>Solution : </span><a target="_blank" href="https://youtu.be/ABH9cRhwmlg">https://youtu.be/ABH9cRhwmlg</a> </p>
+          <div style="font-size:13px;">Hint : sort based on end, equal end day => start day, lower_bound(set)</div>
+    </section>
+    
+    <section class="all hard revisit dp grid">
+          <h5>Longest Increasing Path</h5>
+          <p class="question">Given an m x n integers matrix, return the length of the longest increasing path in matrix.<br>From each cell, you can either move in four directions: left, right, up, or down.</p>
+          <p class="id">Question ID : 2707231004 </p>
+          <div class="keys">
+              <div class="cat">Hard</div>
+              <div class="cat">ReVisit</div>
+              <div class="cat">DP</div>
+              <div class="cat">Grid</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/longest-increasing-path-in-a-matrix">https://leetcode.com/problems/longest-increasing-path-in-a-matrix</a> </p>
+          <div style="font-size:13px;">Hint : dp[r1][c1]</div>
+    </section>
+    
+    <section class="all stackqueue hard revisit">
+          <h5>Meeting Rooms III</h5>
+          <p class="question">There are n rooms 0 to n - 1.<br>You are given a array meetings will be held during the half-closed time interval [starti, endi).<br>Each meeting will take place in the unused room with the lowest number.<br>If there are no available rooms, the meeting will be delayed until a room becomes free. The delayed meeting should have the same duration as the original meeting.<br>When a room becomes unused, meetings that have an earlier original start time should be given the room.<br>Return the number of the room that held the most meetings. If there are multiple rooms, return the room with the lowest number </p>
+          <p class="id">Question ID : 2607231136 </p>
+          <div class="keys">
+              <div class="cat">ReVisit</div>
+              <div class="cat">Hard</div>
+              <div class="cat">Queue</div>
+          </div>
+          <p class="solve"><span>Problem : </span><a target="_blank" href="https://leetcode.com/problems/meeting-rooms-iii">https://leetcode.com/problems/meeting-rooms-iii</a> </p>
+          <div style="font-size:13px;">Hint : sort on starting time, pq of {endTime, room}, pq of unused rooms , mp [ count of usage of room] </div>
+    </section>
+    
     <div class="select">
           <p>Hardness : </p>
           <label onclick="level(0)">ALL</label>
@@ -6235,7 +6303,7 @@
     <section class="all">
           <h5></h5>
           <p class="question"></p>
-          <p class="id">Question ID : 170723 </p>
+          <p class="id">Question ID : 260723 </p>
           <div class="keys">
               <div class="cat"> </div>
           </div>
