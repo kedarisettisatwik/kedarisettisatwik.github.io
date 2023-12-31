@@ -1,0 +1,750 @@
+<html>
+<head>
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.1/css/all.css">
+    
+    <title>satwik _ kedar</title>
+    
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            font-family:'poppins',sans-serif;
+/*            font-family: 'Quicksand', sans-serif;     */
+            box-sizing:border-box;
+            scroll-behavior: smooth;
+        }
+        .flex{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        body{
+            width:100vw;
+            height:100vh;
+            overflow-x: hidden;
+            position:relative;
+        }
+        
+/*        side bar    */
+        
+        .side-bar{
+            z-index:2;
+            width:300px;
+            height:100vh;
+            position: absolute;
+            top:0;
+            left:0;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            display: flex;
+            justify-content: flex-start;
+            align-items:flex-end;
+            flex-direction: column;
+            padding:30px 30px 20px 10px;
+            background-color: white;
+            opacity:1;
+        }
+        .side-bar::-webkit-scrollbar{
+            -webkit-appearance: none;
+            background-color: whitesmoke;
+            width:12px;
+        }
+        .side-bar div:nth-child(1){
+            margin-bottom:20px;
+        }
+        .side-bar div:nth-child(1) .name{
+            box-shadow:0 0 10px rgb(0,0,0,0.1);
+        }
+        .side-bar div:nth-child(1) .name div{
+            margin:0px;
+        }
+        .side-bar div:nth-child(1) .name div i{
+            width:40px;
+            height:40px;
+            font-size:20px;
+            line-height:40px;
+            color: white;
+            font-style: normal;
+            display: inline-block;
+            text-align: center;
+            font-family: 'Quicksand', sans-serif;
+            font-weight:100;
+            background-color: black;
+            transition:0.4s;
+            cursor:pointer;
+        }
+        .side-bar div:nth-child(1) .name div i:hover{
+            background-color: white;
+            color: black;
+        }
+        .side-bar .menu{
+            list-style: none;
+            text-align: center;
+            margin-bottom:40px;
+            width:100%;
+            position:relative;
+        }
+        .side-bar .menu li{
+            display: block;
+            margin:20px 0;
+            text-align: end;
+            cursor:pointer;
+            width:100%;
+        }
+        .side-bar .menu li i{
+            font-style: normal;
+            font-family: 'Quicksand', sans-serif;
+            position:relative;
+            color: black;
+        }
+        .side-bar .menu li i::after{
+            content: '';
+            position:absolute;
+            bottom:-5px;
+            right:0;
+            width:calc(100% + 5px);
+            height:1px;
+            background-color: black;
+            transition:0.3s;
+            opacity:0;
+            transform: scale(0);
+        }
+        .side-bar .menu li.active i{
+            color:blue;
+        }
+        .side-bar .menu li:hover i::after,.side-bar .menu li.active i::after{
+            opacity:1;
+            transform: scale(1);
+        }
+        .side-bar p{
+            text-align: end;
+            font-size:12px;
+            letter-spacing:1px;
+            font-weight:200;
+            opacity:0.7;
+            cursor:not-allowed;
+            margin-bottom:30px;
+        }
+        
+/*        side bar    */
+        
+        .main{
+            width:100%;
+            height:100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+            position:relative;
+            padding-left:300px;
+            z-index:1;
+        }
+        
+/*      intro       */
+        
+        .main .intro{
+            width:100%;
+            height:100vh;
+            position:relative;
+        }
+        .main .intro .bg{
+            width:50%;
+            height:100%;
+            background-color:#ebefff;
+            position:relative;
+        }
+        .main .intro span{
+            position: absolute;
+            bottom:100px;
+            left:100%;
+            transform:translate(-50%,-50%) rotateZ(45deg);
+            width:60px;
+            height:60px;
+            background-color:#ebefff;
+            text-align: center;
+            overflow: hidden;
+        }
+        .main .intro span i{
+            line-height:60px;
+            font-size:20px;
+            -webkit-animation:scrollDown 1s linear infinite;
+            color:blue;
+            opacity:1;
+        }
+        @keyframes scrollDown{
+            0%{
+                transform:rotateZ(-45deg) translateY(-20px);
+                opacity:1;
+            }
+            100%{
+                transform:rotateZ(-45deg) translateY(20px);
+                opacity:0.2;
+            }
+        } 
+        .main .intro .name{
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform:translate(-50%,-50%);
+            width:100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .main .intro .name label{
+            font-size:25px;
+            color:blue;
+            font-weight:bold;
+            letter-spacing:1px;
+            transform:scaleY(0.71);
+        }
+        .main .intro .name div{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+        }
+        .main .intro .name h1{
+            font-size:60px;
+        }
+        .main .intro .name div h1:nth-child(1){
+            margin-right:20px;
+        }
+        .main .intro p{
+            position: absolute;
+            bottom:30px;
+            left:10px;
+            font-size:100px;
+            font-weight:bold;
+            letter-spacing:10px;
+            transform:rotateZ(-90deg) translateY(100%);
+            transform-origin:left bottom;
+            color: blue;
+            z-index:3;
+            opacity:0.3;
+        }
+        
+/*      intro       */
+        
+/*      about       */
+        
+        .main .about{
+            width:100%;
+            position:relative;
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+        }
+        .main .about .imgs{
+            width:50%;
+            position:relative;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+        }
+        .main .about .imgs .img{
+            width:400px;
+            height:500px;
+            background-color: whitesmoke;
+            transform:translate(-10px,-20px);
+            color: rgb(0,0,0,0.5);
+            display:flex;
+            justify-content: center;
+            align-items: center
+        }
+        .main .about .content{
+            width:50%;
+            padding:0 20px;
+        }
+        .main .about .content h2{
+            color:blue
+        }
+        .main .about .content p{
+            margin:20px 0;
+            font-size:14px;
+        }
+        
+/*      about       */
+        
+/*      companies       */
+        
+        .main .companies{
+            display: flex;
+            justify-content:flex-start;
+            align-items: flex-start;
+            flex-direction: row;
+            padding:0 30px;
+        }
+        .main .companies div{
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+            padding:30px 20px;
+        }
+        .main .companies div img{
+            height:50px;
+            margin-right:10px;
+        }
+        
+/*      companies       */
+        
+/*      education, experience       */
+        
+        .main .edu,.main .exp{
+            padding:0 20px;
+            margin-bottom:40px;
+        }
+        .main .edu .box,.main .exp .box{
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: row;
+            padding:30px 0;
+            border-bottom:1px solid rgb(0,0,0,0.2);
+            transform: translateX(50px);
+        }
+        .main .edu .box:nth-child(2n+1),.main .exp .box:nth-child(2n+1){
+            justify-content: flex-end;
+            transform: translateX(-50px);
+        }
+        .main .edu .box img,.main .exp .box img{
+            width:50px;
+            margin-right:20px;
+            filter: grayscale(1);
+        }
+        .main .edu .box div,.main .exp .box div{
+            width:500px;
+            max-width:calc(100% - 80px);
+        }
+        .main .edu .box div p,.main .exp .box div p{
+            font-size:18px;
+            margin:10px 0;
+        }
+        .main .edu .box div label,.main .exp .box div label{
+            font-size:13px;
+        }
+        
+/*      education, experience         */
+
+/*      skills          */
+        
+        .main .skills{
+            padding:0 20px;
+            position:relative;
+            margin-bottom:30px;
+        }
+        .main .skills .all{
+            width:100%;
+            display: grid;
+            grid-template-columns:1fr 1fr 1fr;
+        }
+        .main .skills .all .b{
+            padding:20px 0;
+            position:relative;
+            display: inline-block;
+        }
+        .main .skills .all .b p{
+            font-size:16px;
+            position:relative;
+            margin-bottom:15px;
+        }
+        .main .skills .all .b p i{
+            font-style:normal;
+            letter-spacing:1px;
+        }
+        .main .skills .all .b p span{
+            position: absolute;
+            top:0%;
+            right:35px;
+            font-size:13px;
+        }
+        .main .skills .all .b .bar{
+            width:90%;
+            height:8px;
+            background-color:whitesmoke;
+            position:relative;
+        }
+        .main .skills .all .b .col{
+            width:calc(var(--p)*1%);
+            height:8px;
+            background-color:darkgrey;
+        }
+        
+        
+/*      skills          */
+        
+/*      contact          */
+        
+        .main .contact{
+            width:100%;
+            position:relative;
+            background-color:#ebefff;
+            padding:20px;
+        }
+        .main .contact h2{
+            font-size:25px;
+            margin:20px 0 10px 0;
+            text-align: center;
+        }
+        .main .contact p{
+            opacity:0.5;
+            text-align:center;
+            margin-bottom:30px;
+        }
+        .main .contact .lr{
+            margin:30px 0 20px 0;
+            padding:0 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        .main .contact .lr a{
+            color:black;
+            text-decoration:none;
+            padding:0px 30px;
+            margin:20px;
+            font-size:25px;
+            cursor:pointer;
+            opacity:0.5;
+        }
+        .main .contact .lr a:hover{
+            color: blue;
+        }
+        
+/*      contact          */
+        
+/*        tablet  */
+        
+        @media (max-width:1180px){
+            .side-bar{
+                width:100%;
+                height:60px;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+                padding:0 10px;
+                transition:0.5s;
+                opacity:0;
+            }
+            .side-bar.active{
+                opacity:1;
+            }
+            .side-bar .name{
+                display: none;
+            }
+            .side-bar .menu{
+                display: flex;
+                flex-direction: row;
+                list-style: none;
+                margin-bottom:0px;
+                width:100%;
+                position:relative;
+            }
+            .side-bar .menu li{
+                display: block;
+                margin:20px 0;
+                text-align: center;
+                cursor:pointer;
+                width:100%;
+            }
+            .side-bar .menu li i{
+                font-style: normal;
+                font-family: 'Quicksand', sans-serif;
+                position:relative;
+                color: black;
+            }
+            .side-bar .menu li i::after{
+                content: '';
+                position:absolute;
+                bottom:-5px;
+                right:0;
+                width:calc(100% + 5px);
+                height:1px;
+                background-color: black;
+                transition:0.3s;
+                opacity:0;
+                transform: scale(0);
+            }
+            .side-bar .menu li.active i{
+                color:blue;
+            }
+            .side-bar .menu li:hover i::after,.side-bar .menu li.active i::after{
+                opacity:1;
+                transform: scale(1);
+            }
+            .side-bar p{
+                display: none;
+            }
+            .side-bar ul{
+                display: none;
+            }
+            .main{
+                padding-left:0px;
+            }
+        }
+        
+/*      tablet           */
+        
+/*      phone           */
+        
+        @media (max-width:860px){
+            .side-bar{
+                display: none;
+            }
+            .main .edu .box{
+                transform: translateX(0px);
+            }
+            .main .edu .box:nth-child(2n+1){
+                transform: translateX(0px);
+            }
+            .main .skills .all{
+                grid-template-columns:1fr 1fr;
+            }
+        }
+        
+        @media (max-width:480px){
+            .main .skills .all{
+                grid-template-columns:1fr;
+            }
+        }
+        
+        
+/*      phone          */
+        
+    </style>
+    
+    </head>
+<body>
+   
+   <section class="side-bar" id="side-bar">
+       <div>
+           <div class="name">
+               <div><i>T</i><i>K</i><i>I</i></div>
+               <div><i>A</i><i>S</i><i>W</i></div>
+           </div>
+       </div>
+       <ol class="menu">
+           <li class="btn active" onclick="scrollPage(0)"><i>Home</i></li>
+           <li class="btn" onclick="scrollPage(1)"><i>About</i></li>
+           <li class="btn" onclick="scrollPage(2)"><i>Education</i></li>
+           <li class="btn" onclick="scrollPage(3)"><i>Skills</i></li>
+           <li class="btn" onclick="scrollPage(4)"><i>Experience</i></li>
+           <li class="btn" onclick="scrollPage(5)"><i>Contact</i></li>
+       </ol>
+       <p>
+           Copyright ©2023 <br>  All rights reserved | <br> This template is made  with <i class="fa-solid fa-heart" style="color:red"></i> <br> - By <span style="color:red;">Satwik</span> Kedarisetti
+       </p>
+   </section>
+   
+   <section class="main" id="main">
+       
+        <section class="intro" id="introPage">
+            <div class="bg"><span><i class="fa-solid fa-arrow-down-long"></i></span></div>
+            <div class="name">
+                <label>Hey! I AM</label>
+                <div><h1>Satwik</h1><h1>Kedarisetti</h1></div>
+            </div>
+            <p>HELLO</p>
+        </section>
+        
+        <section class="about" id="aboutPage">
+            <div class="imgs">
+                <div class="img">
+                    PROFILE PIC
+                </div>
+            </div>
+            <div class="content">
+                <h2>About Me</h2>
+                <p>Name : Kedarisetti Satwik<br>DOB : 13 / 11 / 2002<br><br> I am present studying B.tech Electrical and Electronics Engineering,<br>In NITK SURATHKAL, Intrested to go in Coding Side.<br>All My schooling happened in Kakinada, Andhra Pradesh.<br><br>COVID lockdown changed my path a lot,<br>Before that I don't have any touch of laptop<br>In covid free time my uncle taught me about coding<br>After that with my curiosity of Learning more and new things, I learned so many thingsand in my free times I will do frontend works.<br><br>Tools,softwares I have used/using till now<br>Brackets, VS Code, Word, Power Point, Github, Code Blocks ...
+                </p>
+            </div>
+        </section>
+        
+        <section class="companies">
+            <div>
+                <img src="brane.jpeg">
+                <h3>Brane Enterprises</h3>
+            </div>
+        </section>
+        
+        <section class="edu" id="eduPage">
+            <h2 style="color: blue">Education</h2>
+            <div class="box">
+                <img src="nitk.png">
+                <div>
+                    <span>2020 - 2024</span>
+                    <p>B.Tech in NITK</p>
+                    <label>Done Bachelor of Technology in National Instiute of Technology Karnataka, taking Electrical & Electronics as major course, passed out with CGPA of 8.19</label>
+                </div>
+            </div>
+            <div class="box">
+               <img src="aditya.png">
+                <div>
+                    <span>2018 - 2020</span>
+                    <p>Higher secondary education in ADITYA</p>
+                    <label>Done MPC course in Aditya Junior College, kakinada, passed out with Marks of 945 / 100, JEE Mains Percentile of 99.4</label>
+                </div>
+            </div>
+            <div class="box">
+               <img src="kkr.jpg">
+                <div>
+                    <span>2014 - 2018</span>
+                    <p>Secondary Education in KKR</p>
+                    <label>cleared State Board Examination in Dr.KKR Gowtham school with CGPA of 10</label>
+                </div>
+            </div>
+        </section>
+        
+        <section class="skills" id="skillsPage">
+            <h2 style="color: blue">Skills</h2>
+            <div class="all">
+                <div class="b">
+                    <p><i>HTML</i><span>98%</span></p>
+                    <div class="bar">
+                        <div class="col" style="--p:98"></div>
+                    </div>
+                </div>
+                <div class="b">
+                    <p><i>CSS</i><span>88%</span></p>
+                    <div class="bar">
+                        <div class="col" style="--p:88"></div>
+                    </div>
+                </div>
+                <div class="b">
+                    <p><i>JS</i><span>76%</span></p>
+                    <div class="bar">
+                        <div class="col" style="--p:76"></div>
+                    </div>
+                </div>
+                <div class="b">
+                    <p><i>REACT</i><span>20%</span></p>
+                    <div class="bar">
+                        <div class="col" style="--p:20"></div>
+                    </div>
+                </div>
+                <div class="b">
+                    <p><i>PYTHON</i><span>60%</span></p>
+                    <div class="bar">
+                        <div class="col" style="--p:60"></div>
+                    </div>
+                </div>
+                <div class="b">
+                    <p><i>C / C++</i><span>91%</span></p>
+                    <div class="bar">
+                        <div class="col" style="--p:91"></div>
+                    </div>
+                </div>
+                <div class="b">
+                    <p><i>FIREBASE</i><span>35%</span></p>
+                    <div class="bar">
+                        <div class="col" style="--p:35"></div>
+                    </div>
+                </div>
+                <div class="b">
+                    <p><i>FIREBASE</i><span>35%</span></p>
+                    <div class="bar">
+                        <div class="col" style="--p:35"></div>
+                    </div>
+                </div>
+                <div class="b">
+                    <p><i>GIT / GITHUB</i><span>38%</span></p>
+                    <div class="bar">
+                        <div class="col" style="--p:38"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="exp" id="expPage">
+            <h2 style="color: blue">Experience</h2>
+            <div class="box">
+                <img src="brane.jpeg">
+                <div>
+                    <span>2024 - Present</span>
+                    <p>Associative Solution Leader</p>
+                    <label>Working as Associative Solution Leader in Brane Enterprises.</label>
+                </div>
+            </div>
+        </section>
+        
+        <section class="contact" id="contPage">
+            <h2>Contact Me</h2>
+            <p>Feel Free to contact me AND please support me on social accounts</p>
+            <div class="lr">
+                <a class="b" href="mailto:satwik1330@gmail.com">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+                <a class="b" href="tel:+917386484905">
+                   <i class="fa-solid fa-phone"></i>
+                </a>
+                <a class="b" href="https://maps.app.goo.gl/TkWEq9TAXnoAntPw8">
+                   <i class="fa-solid fa-location-dot"></i>
+                </a>
+                <a href="https://www.instagram.com/satwikkedaresetti/">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://kedarisettisatwik.github.io">
+                    <i class="fa-solid fa-globe"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/satwik-kedar-21a89a202/">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/kedarisettisatwik">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+            </div>
+        </section>
+        
+   </section>
+   
+    <script>
+        
+        var main = document.getElementById("main");
+        var sideBar = document.getElementById("side-bar");
+        
+        var intro = document.getElementById("introPage");
+        var aboutPage = document.getElementById("aboutPage");
+        var eduPage = document.getElementById("eduPage");
+        var skillsPage = document.getElementById("skillsPage");
+        var expPage = document.getElementById("expPage");
+        var contPage = document.getElementById("contPage");
+        
+        var btn = document.querySelectorAll('.btn');
+        var activePage = 0;
+        
+        main.addEventListener("scroll",(e) => {
+            var top = main.scrollTop;
+            if (top > 40){
+                sideBar.classList.add("active");
+            }else{
+                sideBar.classList.remove("active");
+            }
+        });
+        
+        function scrollPage(a){
+            var ls = [intro,aboutPage,eduPage,skillsPage,expPage,contPage];
+            var y = ls[a].getBoundingClientRect().top;
+            btn[activePage].classList.remove("active");
+            main.scrollBy(0,y);
+            btn[a].classList.add("active");
+            activePage=a;
+        }
+        
+        
+    </script>
+    
+    
+    </body>
+</html>
