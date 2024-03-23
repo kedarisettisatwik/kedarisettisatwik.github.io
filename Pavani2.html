@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Pavani</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .container{
+            width:800px;
+            max-height: 100vh;
+            max-width: 100vw;
+            border:2px solid black;
+            border-radius:30px;
+            padding: 10px 20px;
+            position: relative;
+        }
+        .box1{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            padding-bottom: 10px;
+            border-bottom: 1px solid black;
+        }
+        .box2{
+            width: 100%;
+            max-height:400px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .weather,.date{
+            border:1px solid black;
+            padding : 10px;
+            border-radius:10px;
+        }
+        .p{
+            margin:10px 0;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box1">
+        <div class="weather" style="margin-right: 20px;">
+            <select id="city" onchange="getCity()">
+                <option value="0">Manguluru</option>
+                <option value="1">Delhi</option>
+                <option value="2">Hyderabad</option>
+            </select>
+            <p id="temp"></p>
+        </div>
+        <div class="intro" style="margin-right: 20px;">
+            <h3>THIS IS RATHOD PAVANI</h3>
+            <p>VIII year student at NITK surathkal</p>
+            <br>
+            <p><span>LinkedIn : </span> <a href="https://www.linkedin.com/in/rathod-pavani-a9a44321b/">rathod-pavani</a> </p>
+            <p><span>Phone number : </span><a href="tel : +919652319756">9652319756</a></p>
+            <p><span>Email to Contact : </span><a href="mailto : pavanirathod2003@gmail.com">pavanirathod2003@gmail.com</a></p>
+        </div>
+        <div class="date">
+            <p>Date : </p>
+            <p id="date"></p>
+        </div>
+      </div>
+      <div class="box2">
+        <div class="p">
+            <h2>Receipe 1</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed, quibusdam omnis repudiandae culpa voluptatem aperiam earum ullam fugiat officia esse cupiditate placeat delectus necessitatibus nostrum animi quis ducimus cum odit.</p>
+        </div>
+        <div class="p">
+            <h2>Receipe 2</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed, quibusdam omnis repudiandae culpa voluptatem aperiam earum ullam fugiat officia esse cupiditate placeat delectus necessitatibus nostrum animi quis ducimus cum odit.</p>
+        </div>
+        <div class="p">
+            <h2>Receipe 3</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed, quibusdam omnis repudiandae culpa voluptatem aperiam earum ullam fugiat officia esse cupiditate placeat delectus necessitatibus nostrum animi quis ducimus cum odit.</p>
+        </div>
+      </div>
+      <div class="button" onclick="add()" style="width:100%;text-align: center;padding:10px 0;">Load 3 more</div>
+    </div>
+
+    <script>
+        var dateP = document.getElementById("date");
+        var date = new Date();
+        dateP.innerText = date.getDate() + " - " + date.getMonth() + " - " + date.getFullYear();
+        var box2 = document.querySelector('.box2');
+        var x = 4;
+        var ls = ["Manguluru","Delhi","hyderabad"]
+        var city = ls[document.getElementById('city').value];
+
+        const key = 'a1aa491c2cb2113ad316ee318d0bf647';
+
+        getLocation();
+
+        function add(){
+            for(var i = 0;i < 2;i++){
+                box2.innerHTML += "<div class='p'><h2>Receipe " + x + "</h2><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed, quibusdam omnis repudiandae culpa voluptatem aperiam earum ullam fugiat officia esse cupiditate placeat delectus necessitatibus nostrum animi quis ducimus cum odit.</p></div>";
+                x++;
+            }
+        }
+
+        function getCity(){
+            city = ls[document.getElementById('city').value];
+            getLocation();
+        }
+
+
+        function displayWeather(lat,lon,name,country,sunrise,sunset,list,tt){
+            document.getElementById("temp").innerText = list[0].main.temp.toFixed(2);
+            console.log(list[0].main.temp.toFixed(2));
+        }
+
+        function getLocation(){
+            api = 'https://api.openweathermap.org/geo/1.0/direct?q='+city+'&limit=1&appid='+key
+            fetch(api).then(function(response){
+                var data = response.json();
+                return data;
+            }).then(function(data){
+                if (data.length == 0){
+                    alert('Invalid City Name');
+                }else{
+                    name = data[0].name;
+                    country = data[0].country;
+                    lat = data[0].lat;
+                    lon=data[0].lon;
+                    console.log(data);
+                    getWeather(lat,lon,name,country);
+                }
+            })
+        }
+
+
+        function getWeather(lat,lon,name,country){
+            api = 'https://api.openweathermap.org/data/2.5/forecast?lat='+lat+'&units=metric&lon='+lon+'&appid='+key;
+            fetch(api).then(function(response){
+                var data = response.json();
+                return data;
+            }).then(function(data){
+                if (data.length == 0){
+                    alert('Invalid location');
+                }else{
+                    list = data.list;
+                    days = [];
+                    var tt = data.city.timezone;
+                    var dd = []
+                    for (var i = 0;i<list.length;i++){
+                        var d = new Date(list[i].dt_txt).getDate();
+                        if (dd.includes(d)){
+                            continue;
+                        }else{
+                            days.push(list[i]);
+                            dd.push(d);
+                        }
+                    }
+                    console.log(data);
+                    if (name == '*'){
+                        name = data.city.name;
+                        country = data.city.country;
+                    }
+                    displayWeather(lat,lon,name,country,data.city.sunrise,data.city.sunset,days,tt);
+                }
+            })
+        }
+
+
+    </script> 
+  </body>
+</html>
