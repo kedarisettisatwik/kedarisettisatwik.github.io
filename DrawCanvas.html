@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Drawing App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+        }
+        body{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background: #4A98F7;
+        }
+        .container{
+        display: flex;
+        width: 100%;
+        gap: 10px;
+        padding: 10px;
+        max-width: 1050px;
+        }
+        section{
+        background: #fff;
+        border-radius: 7px;
+        }
+        .tools-board{
+        width: 210px;
+        padding: 15px 22px 0;
+        }
+        .tools-board .row{
+        margin-bottom: 20px;
+        }
+        .row .options{
+        list-style: none;
+        margin: 10px 0 0 5px;
+        }
+        .row .options .option{
+        display: flex;
+        cursor: pointer;
+        align-items: center;
+        margin-bottom: 10px;
+        }
+        .option:is(:hover, .active) img{
+        filter: invert(17%) sepia(90%) saturate(3000%) hue-rotate(900deg) brightness(100%) contrast(100%);
+        }
+        .option :where(span, label){
+        color: #5A6168;
+        cursor: pointer;
+        padding-left: 10px;
+        }
+        .option:is(:hover, .active) :where(span, label){
+        color: #4A98F7;
+        }
+        .drawing-board{
+        flex: 1;
+        overflow: hidden;
+        }
+        .drawing-board canvas{
+        width: 100%;
+        height: 500px;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <section class="tools-board">
+        <div class="row">
+          <label class="title">Shapes</label>
+          <ul class="options">
+            <li class="option tool" id="rectangle" onclick="selectShape(0)">
+              <span>Rectangle</span>
+            </li>
+            <li class="option tool" id="circle" onclick="selectShape(1)">
+              <span>Circle</span>
+            </li>
+            <li class="option tool" id="octagon" onclick="selectShape(2)">
+              <span>Octagon</span>
+            </li>
+            <li class="option tool" id="diamond" onclick="selectShape(3)">
+              <span>Diamond</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <section class="drawing-board">
+        <canvas></canvas>
+      </section>
+    </div>
+    <script>
+        const canvas = document.querySelector("canvas"),
+        toolBtns = document.querySelectorAll(".tool"),
+        ctx = canvas.getContext("2d");
+
+        // global variables with default value
+        let prevMouseX, prevMouseY, snapshot,
+        isDrawing = false,
+        selectedTool = "rectangle",
+        brushWidth = 5,
+        selectedColor = "#000";
+
+        function selectShape(a){
+          const sh = ["rectangle","circle","octagon","diamond"]
+          selectedTool = sh[a];
+        }
+
+        const setCanvasBackground = () => {
+            ctx.fillStyle = "#fff";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = selectedColor;
+        }
+
+        window.addEventListener("load", () => {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = 500;
+            setCanvasBackground();
+        });
+
+        const drawRect = (e) => {
+            ctx.strokeRect(e.offsetX, e.offsetY, prevMouseX - e.offsetX, prevMouseY - e.offsetY);
+        }
+
+        const drawCircle = (e) => {
+            ctx.beginPath();
+            let radius = Math.sqrt(Math.pow((prevMouseX - e.offsetX), 2) + Math.pow((prevMouseY - e.offsetY), 2));
+            ctx.arc(prevMouseX, prevMouseY, radius, 0, 2 * Math.PI);
+            ctx.stroke();
+        }
+
+        const drawDiamond = (e) => {
+          ctx.beginPath();
+          ctx.moveTo(prevMouseX, prevMouseY + (prevMouseY - e.offsetY)); // Top point
+          ctx.lineTo(prevMouseX - (prevMouseX - e.offsetX), prevMouseY); // Left point
+          ctx.lineTo(prevMouseX, prevMouseY - (prevMouseY - e.offsetY)); // Bottom point
+          ctx.lineTo(prevMouseX + (prevMouseX - e.offsetX), prevMouseY); // Right point
+          ctx.closePath();
+          ctx.stroke();
+        }
+
+        const drawOctagon = (e) => {
+          ctx.beginPath();
+          const radius = Math.sqrt(Math.pow((prevMouseX - e.offsetX), 2) + Math.pow((prevMouseY - e.offsetY), 2));
+          const angle = Math.PI / 4; // Angle between each vertex of the octagon
+          
+          // Calculate the starting coordinates
+          const startX = prevMouseX + radius * Math.cos(angle);
+          const startY = prevMouseY + radius * Math.sin(angle);
+          
+          ctx.moveTo(startX, startY); // Move to the starting point
+
+          // Draw each side of the octagon
+          for (let i = 1; i <= 8; i++) {
+            const x = prevMouseX + radius * Math.cos(angle * i);
+            const y = prevMouseY + radius * Math.sin(angle * i);
+            ctx.lineTo(x, y);
+          }
+
+          ctx.closePath();
+          ctx.stroke();
+        }
+
+        const startDraw = (e) => {
+            isDrawing = true;
+            prevMouseX = e.offsetX;
+            prevMouseY = e.offsetY;
+            ctx.beginPath();
+            ctx.lineWidth = brushWidth;
+            ctx.strokeStyle = selectedColor;
+            snapshot = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        }
+
+        const drawing = (e) => {
+            if(!isDrawing) return;
+            ctx.putImageData(snapshot, 0, 0);
+
+            if(selectedTool === "rectangle"){
+                drawRect(e);
+            } else if (selectedTool === "circle") {
+                drawCircle(e);
+            } else if (selectedTool === "octagon") {
+                drawOctagon(e);
+            } else if (selectedTool === "diamond") {
+                drawDiamond(e);
+            }
+        }
+
+        toolBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.querySelector(".options .active").classList.remove("active");
+                btn.classList.add("active");
+                selectedTool = btn.id;
+            });
+        });
+
+        canvas.addEventListener("mousedown", startDraw);
+        canvas.addEventListener("mousemove", drawing);
+        canvas.addEventListener("mouseup", () => isDrawing = false);
+    </script>
+  </body>
+</html>
