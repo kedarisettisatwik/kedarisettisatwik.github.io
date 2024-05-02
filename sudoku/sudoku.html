@@ -1,0 +1,651 @@
+
+<html>
+<head>
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.2/css/all.css">
+    
+    <title>sudoku</title>
+    
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            font-family:'poppins',sans-serif;
+            box-sizing:border-box;
+            scroll-behavior: smooth;
+        }
+        .flex{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        body{
+            width:100vw;
+            height:100vh;
+            overflow-x: hidden;
+            position:relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .start{
+            padding:10px 20px;
+            width:250px;
+            max-width:100%;
+            background-color: cadetblue;
+            color: white;
+            box-shadow:0 0 20px rgb(0,0,0,0.1);
+        }
+        .start h2{
+            margin-bottom:30px;
+            letter-spacing:1px;
+        }
+        .start .level{
+            position:relative;
+            width:100%;
+            border:2px solid white;
+            padding:0 20px;
+        }
+        .start .level span{
+            position: absolute;
+            top:0;
+            transform: translateY(-50%);
+            left:20px;
+            background-color: cadetblue;
+            padding:5px;
+        }
+        .start .level i{
+            position: absolute;
+            font-size:12px;
+            color:cadetblue;
+            background-color: white;
+            line-height:20px;
+            width:20px;
+            text-align: center;
+            border-radius:50%;
+            top:50%;
+            transform: translate(-50%,-50%);
+            cursor:pointer;
+        }
+        .start .level i:nth-of-type(1){
+            left:0;
+        }
+        .start .level i:nth-of-type(2){
+            left:100%;
+        }
+        .start .level p{
+            width:100%;
+            text-align: center;
+            font-size:25px;
+            margin:10px 0;
+        }
+        .start button{
+            padding:10px;
+            cursor:pointer;
+            background-color: white;
+            color: cadetblue;
+            font-size:15px;
+            font-weight:bold;
+            outline:none;
+            border:none;
+            margin:40px 0 10px 0;
+            width:100%;
+        }
+        .game{
+            display: none;
+            height:600px;
+            max-width:100%;
+            max-height:100vh;
+        }
+        .game h3{
+            font-size:18px;
+            letter-spacing:1px;
+        }
+        .board{
+            margin:10px 0 20px 0;
+        }
+        .row{
+            display: flex;
+            flex-direction: row;
+        }
+        .cell{
+            width:35px;
+            height:35px;
+            line-height:35px;
+            text-align:center;
+            font-size:20px;
+            border-radius:4px;
+            background-color: #e6e6e6;
+            margin:2px;
+            font-weight:bold;
+            cursor:pointer;
+            transition:0.3s;
+            color:black;
+        }
+        .cell.fill{
+            background-color: #80ffdf;
+            color:black;
+            cursor:default;
+        }
+        .cell.line{
+            border:3px solid cadetblue;
+        }
+        .cell.select{
+            background-color: cadetblue;
+            color:white;
+        }
+        .cell.wrong{
+            background-color: red;
+        }
+        .row:nth-child(3n){
+            margin-bottom:7px;
+        }
+        .row .cell:nth-child(3n){
+            margin-right:7px;
+        }
+        .keys span{
+            width:30px;
+            line-height:30px;
+            text-align:center;
+            cursor:pointer;
+            background-color:cadetblue;
+            color:white;
+            font-size:20px;
+            font-weight:bold;
+            display: inline-block;
+            margin:2px;
+        }
+        .keys span:nth-last-child(1){
+            background-color: red;
+        }
+    </style>
+    
+    </head>
+<body>
+   
+    <section class="start">
+       <h2>sudoku</h2>
+        <div class="level">
+            <span>Level</span>
+            <p id="level">Easy</p>
+            <i class="fa-solid fa-angle-left" onclick="down()" id="down" style="display: none"></i>
+            <i class="fa-solid fa-angle-right" onclick="up()" id="up"></i>
+        </div>
+        <button onclick="newGame()">New Game</button>
+    </section>
+    
+    <section class="game">
+        <h3>sudoku</h3>
+        <p style="margin-top:10px;"><span>Mistakes : </span><i id="mis">0</i></p>
+        <section class="board">
+            <div class="row">
+                <div class="cell" onclick="selectCell(0,0)"></div>
+                <div class="cell" onclick="selectCell(0,1)"></div>
+                <div class="cell" onclick="selectCell(0,2)"></div>
+                <div class="cell" onclick="selectCell(0,3)"></div>
+                <div class="cell" onclick="selectCell(0,4)"></div>
+                <div class="cell" onclick="selectCell(0,5)"></div>
+                <div class="cell" onclick="selectCell(0,6)"></div>
+                <div class="cell" onclick="selectCell(0,7)"></div>
+                <div class="cell" onclick="selectCell(0,8)"></div>
+            </div>
+            <div class="row">
+                <div class="cell" onclick="selectCell(1,0)"></div>
+                <div class="cell" onclick="selectCell(1,1)"></div>
+                <div class="cell" onclick="selectCell(1,2)"></div>
+                <div class="cell" onclick="selectCell(1,3)"></div>
+                <div class="cell" onclick="selectCell(1,4)"></div>
+                <div class="cell" onclick="selectCell(1,5)"></div>
+                <div class="cell" onclick="selectCell(1,6)"></div>
+                <div class="cell" onclick="selectCell(1,7)"></div>
+                <div class="cell" onclick="selectCell(1,8)"></div>
+            </div>
+            <div class="row">
+                <div class="cell" onclick="selectCell(2,0)"></div>
+                <div class="cell" onclick="selectCell(2,1)"></div>
+                <div class="cell" onclick="selectCell(2,2)"></div>
+                <div class="cell" onclick="selectCell(2,3)"></div>
+                <div class="cell" onclick="selectCell(2,4)"></div>
+                <div class="cell" onclick="selectCell(2,5)"></div>
+                <div class="cell" onclick="selectCell(2,6)"></div>
+                <div class="cell" onclick="selectCell(2,7)"></div>
+                <div class="cell" onclick="selectCell(2,8)"></div>
+            </div>
+            <div class="row">
+                <div class="cell" onclick="selectCell(3,0)"></div>
+                <div class="cell" onclick="selectCell(3,1)"></div>
+                <div class="cell" onclick="selectCell(3,2)"></div>
+                <div class="cell" onclick="selectCell(3,3)"></div>
+                <div class="cell" onclick="selectCell(3,4)"></div>
+                <div class="cell" onclick="selectCell(3,5)"></div>
+                <div class="cell" onclick="selectCell(3,6)"></div>
+                <div class="cell" onclick="selectCell(3,7)"></div>
+                <div class="cell" onclick="selectCell(3,8)"></div>
+            </div>
+            <div class="row">
+                <div class="cell" onclick="selectCell(4,0)"></div>
+                <div class="cell" onclick="selectCell(4,1)"></div>
+                <div class="cell" onclick="selectCell(4,2)"></div>
+                <div class="cell" onclick="selectCell(4,3)"></div>
+                <div class="cell" onclick="selectCell(4,4)"></div>
+                <div class="cell" onclick="selectCell(4,5)"></div>
+                <div class="cell" onclick="selectCell(4,6)"></div>
+                <div class="cell" onclick="selectCell(4,7)"></div>
+                <div class="cell" onclick="selectCell(4,8)"></div>
+            </div>
+            <div class="row">
+                <div class="cell" onclick="selectCell(5,0)"></div>
+                <div class="cell" onclick="selectCell(5,1)"></div>
+                <div class="cell" onclick="selectCell(5,2)"></div>
+                <div class="cell" onclick="selectCell(5,3)"></div>
+                <div class="cell" onclick="selectCell(5,4)"></div>
+                <div class="cell" onclick="selectCell(5,5)"></div>
+                <div class="cell" onclick="selectCell(5,6)"></div>
+                <div class="cell" onclick="selectCell(5,7)"></div>
+                <div class="cell" onclick="selectCell(5,8)"></div>
+            </div>
+            <div class="row">
+                <div class="cell" onclick="selectCell(6,0)"></div>
+                <div class="cell" onclick="selectCell(6,1)"></div>
+                <div class="cell" onclick="selectCell(6,2)"></div>
+                <div class="cell" onclick="selectCell(6,3)"></div>
+                <div class="cell" onclick="selectCell(6,4)"></div>
+                <div class="cell" onclick="selectCell(6,5)"></div>
+                <div class="cell" onclick="selectCell(6,6)"></div>
+                <div class="cell" onclick="selectCell(6,7)"></div>
+                <div class="cell" onclick="selectCell(6,8)"></div>
+            </div>
+            <div class="row">
+                <div class="cell" onclick="selectCell(7,0)"></div>
+                <div class="cell" onclick="selectCell(7,1)"></div>
+                <div class="cell" onclick="selectCell(7,2)"></div>
+                <div class="cell" onclick="selectCell(7,3)"></div>
+                <div class="cell" onclick="selectCell(7,4)"></div>
+                <div class="cell" onclick="selectCell(7,5)"></div>
+                <div class="cell" onclick="selectCell(7,6)"></div>
+                <div class="cell" onclick="selectCell(7,7)"></div>
+                <div class="cell" onclick="selectCell(7,8)"></div>
+            </div>
+            <div class="row">
+                <div class="cell" onclick="selectCell(8,0)"></div>
+                <div class="cell" onclick="selectCell(8,1)"></div>
+                <div class="cell" onclick="selectCell(8,2)"></div>
+                <div class="cell" onclick="selectCell(8,3)"></div>
+                <div class="cell" onclick="selectCell(8,4)"></div>
+                <div class="cell" onclick="selectCell(8,5)"></div>
+                <div class="cell" onclick="selectCell(8,6)"></div>
+                <div class="cell" onclick="selectCell(8,7)"></div>
+                <div class="cell" onclick="selectCell(8,8)"></div>
+            </div>
+        </section>
+        <div class="keys">
+            <span onclick="fillCell(1)">1</span>
+            <span onclick="fillCell(2)">2</span>
+            <span onclick="fillCell(3)">3</span>
+            <span onclick="fillCell(4)">4</span>
+            <span onclick="fillCell(5)">5</span>
+            <span onclick="fillCell(6)">6</span>
+            <span onclick="fillCell(7)">7</span>
+            <span onclick="fillCell(8)">8</span>
+            <span onclick="fillCell(9)">9</span>
+            <span onclick="clearCell()">X</span>
+        </div>
+    </section>
+   
+    <script>
+        
+    
+    const newGrid = () => {
+        let grid = new Array(9);
+
+        for (let i = 0; i < 9; i++) {
+            grid[i] = new Array(9);
+        }
+
+        for (let i = 0; i < 81; i++) {
+            grid[Math.floor(i / 9)][i % 9] = 0;
+        }
+
+        return grid;
+    }
+
+    // Check if a number can be placed in a specific position
+    const isValid = (grid, row, col, num) => {
+        return isColSafe(grid, col, num) && isRowSafe(grid, row, num) && isBoxSafe(grid, row - row % 3, col - col % 3, num) && num !== 0;
+    }
+
+    // Check if a number is duplicate in the same column
+    const isColSafe = (grid, col, value) => {
+        for (let row = 0; row < 9; row++) {
+            if (grid[row][col] === value) return false;
+        }
+        return true;
+    }
+
+    // Check if a number is duplicate in the same row
+    const isRowSafe = (grid, row, value) => {
+        for (let col = 0; col < 9; col++) {
+            if (grid[row][col] === value) return false;
+        }
+        return true;
+    }
+
+    // Check if a number is duplicate in the same 3x3 box
+    const isBoxSafe = (grid, boxRow, boxCol, value) => {
+        for (let row = 0; row < 3; row++) {
+            for (let col = 0; col < 3; col++) {
+                if (grid[row + boxRow][col + boxCol] === value) return false;
+            }
+        }
+        return true;
+    }
+
+    // Find an unassigned cell
+    const findEmptyPos = (grid, pos) => {
+        for (let row = 0; row < 9; row++) {
+            for (let col = 0; col < 9; col++) {
+                if (grid[row][col] === 0) {
+                    pos.row = row;
+                    pos.col = col;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    // Shuffle an array
+    const shuffleArray = (arr) => {
+        let currIndex = arr.length;
+
+        while (currIndex !== 0) {
+            let randIndex = Math.floor(Math.random() * currIndex);
+            currIndex -= 1;
+
+            let temp = arr[currIndex];
+            arr[currIndex] = arr[randIndex];
+            arr[randIndex] = temp;
+        }
+
+        return arr;
+    }
+
+    // Check if the grid is full
+    const isFullGrid = (grid) => {
+        return grid.every((row, i) => {
+            return row.every((value, j) => {
+                return value !== 0;
+            });
+        });
+    }
+
+    // Solve the Sudoku puzzle
+    const solveSudoku = (grid) => {
+        let emptyPos = {
+            row: -1,
+            col: -1
+        };
+
+        if (!findEmptyPos(grid, emptyPos)) return true;
+
+        let numberList = shuffleArray([1,2,3,4,5,6,7,8,9]);
+
+        let row = emptyPos.row;
+        let col = emptyPos.col;
+
+        numberList.forEach((num, i) => {
+            if (isValid(grid, row, col, num)) {
+                grid[row][col] = num;
+
+                if (isFullGrid(grid)) {
+                    return true;
+                } else {
+                    if (solveSudoku(grid)) {
+                        return true;
+                    }
+                }
+
+                grid[row][col] = 0;
+            }
+        });
+
+        return isFullGrid(grid);
+    }
+    
+    // Remove cells from the solved grid based on the hardness level
+    const removeCells = (grid, level) => {
+      const solvedGrid = [...grid.map(row => [...row])]; // Create a copy of the solved grid
+      const totalCells = 81;
+      const cellsToRemove = Math.floor(level); // Calculate the number of cells to remove based on the level
+
+      let removedCells = 0;
+      while (removedCells < cellsToRemove) {
+        const row = Math.floor(Math.random() * 9);
+        const col = Math.floor(Math.random() * 9);
+
+        if (solvedGrid[row][col] !== 0) {
+          solvedGrid[row][col] = 0;
+          removedCells++;
+        }
+      }
+
+      return solvedGrid;
+    }
+
+    // Generate a Sudoku puzzle
+    const generateSudoku = () => {
+        let sudoku = newGrid();
+        solveSudoku(sudoku);
+        return sudoku;
+    }
+
+    // Generate a Sudoku puzzle with a difficulty level
+    const generateSudokuWithLevel = (level) => {
+        const solvedGrid = generateSudoku();
+        const puzzleGrid = removeCells(solvedGrid, level);
+        return { solvedGrid, puzzleGrid };
+    }
+        
+    var hard = 0;
+    var levelP = document.getElementById("level");
+    var ls = ["Easy","Medium","Hard"];
+    var dA = document.getElementById("down");
+    var uA = document.getElementById("up");
+        
+    function down(){
+        hard--;
+        levelP.innerHTML = ls[hard];
+        
+        dA.style.display = "block";
+        uA.style.display = "block";
+
+        if (hard == 0){
+            dA.style.display = "none";
+            uA.style.display = "block";
+        }    
+    }
+    function up(){
+        hard++;
+        levelP.innerHTML = ls[hard];
+        
+        dA.style.display = "block";
+        uA.style.display = "block";
+
+        if (hard == 2){
+            dA.style.display = "block";
+            uA.style.display = "none";
+        }
+    }
+        
+    var empty = 0;
+    
+    var gameBool = true;
+    var mistakes = 0;
+        
+    var start = document.querySelector('.start');
+    var game = document.querySelector('.game');    
+        
+    var selectedA = -1;
+    var selectedB = -1;
+        
+    var board = [];
+    var cells = document.querySelectorAll('.cell');
+    var k = 0;
+    for(var i = 0;i < 9;i++){
+        var l = [];
+        for(var j = 0;j < 9;j++){
+            l.push(cells[k]);
+            k++;
+        }
+        board.push(l);
+    }
+    
+    function newGame(){
+        start.style.display = "none";
+        game.style.display = "block";
+        
+        var h = [30,40,50]
+        const { solvedGrid, puzzleGrid } = generateSudokuWithLevel(Math.floor(Math.random()*6+h[hard]));
+//        console.log(puzzleGrid)
+        console.log(solvedGrid)
+        
+        var gameGrid = puzzleGrid;
+        
+        for(var i = 0;i < 9;i++){
+            for(var j = 0;j < 9;j++){
+                if (gameGrid[i][j] != 0){
+                    board[i][j].innerHTML = gameGrid[i][j];
+                    board[i][j].classList.add("fill");
+                }
+                else{
+                    empty++;
+                }
+            }
+        }   
+    }
+    
+    function selectCell(a,b){
+        if (gameBool == false) return ;
+        if (board[a][b].classList.contains("fill")){
+            return ;
+        }
+        if (selectedA != -1 && selectedB != -1){
+            board[selectedA][selectedB].classList.remove("select");
+            for(var i = 0;i < 9;i++){
+                board[i][selectedB].classList.remove("line");
+            }
+            for(var i = 0;i < 9;i++){
+                board[selectedA][i].classList.remove("line");
+            }
+            for (var i = 0; i < 9; i++) {
+                for (var j = 0; j < 9; j++) {
+                  if (Math.floor(i / 3) === Math.floor(selectedA/3) && Math.floor(j / 3) === Math.floor(selectedB/3)) {
+                    board[i][j].classList.remove("line");
+                  }
+                }
+            }
+        }
+        
+        board[a][b].classList.add("select");
+        for(var i = 0;i < 9;i++){
+            board[i][b].classList.add("line");
+        }
+        for(var i = 0;i < 9;i++){
+            board[a][i].classList.add("line");
+        }
+        
+        for (var i = 0; i < 9; i++) {
+            for (var j = 0; j < 9; j++) {
+              if (Math.floor(i / 3) === Math.floor(a/3) && Math.floor(j / 3) === Math.floor(b/3)) {
+                board[i][j].classList.add("line");
+              }
+            }
+        }
+        
+        selectedA = a;
+        selectedB = b;
+        if (empty == 0){
+            alert("completed");
+        }
+    }
+        
+    function isCorrect(row, col,num){
+        return isColCorrect(col, num) && isRowCorrect(row, num) && isBoxCorrect(row - row % 3, col - col % 3, num) && num !== 0;
+    }
+    function isColCorrect(col, value){
+        for (let row = 0; row < 9; row++) {
+            if (board[row][col].innerHTML == "") continue ;
+            if (parseInt(board[row][col].innerHTML) === value) return false;
+        }
+        return true;
+    }
+    function isRowCorrect(row, value){
+        for (let col = 0; col < 9; col++) {
+            if (board[row][col].innerHTML == "") continue ;
+            if (parseInt(board[row][col].innerHTML) === value) return false;
+        }
+        return true;
+    }
+    function isBoxCorrect(boxRow, boxCol, value){
+        for (let row = 0; row < 3; row++) {
+            for (let col = 0; col < 3; col++) {
+                if (board[row][col].innerHTML == "") continue ;
+                if (parseInt(board[row + boxRow][col + boxCol].innerHTML) === value) return false;
+            }
+        }
+        return true;
+    }
+        
+    function fillCell(v){
+        if (gameBool == false) return ;
+        if (selectedA == -1 && selectedB == -1){
+            return ;
+        }
+        gameBool = false;
+        board[selectedA][selectedB].innerHTML = "0";
+        if (isCorrect(selectedA,selectedB,v) == false){
+            board[selectedA][selectedB].innerHTML = v;
+            board[selectedA][selectedB].classList.add("wrong");
+            setTimeout(function(){
+                mistakes++;
+                document.getElementById("mis").innerHTML = mistakes;
+                board[selectedA][selectedB].classList.remove("wrong");
+                board[selectedA][selectedB].innerHTML = "";
+                gameBool = true;
+            },1000)   
+        }
+        else { 
+            empty--;
+            board[selectedA][selectedB].innerHTML = v;
+            gameBool = true;
+        }
+        if (empty == 0){
+            alert("completed");
+        }
+    }
+    function clearCell(){
+        if (gameBool == false) return ;
+        if (selectedA == -1 && selectedB == -1){
+            return ;
+        }
+        empty++;
+        board[selectedA][selectedB].innerHTML = "";
+        board[selectedA][selectedB].classList.remove("wrong");
+    }
+        
+    </script>
+    
+    
+    </body>
+</html>
+
+
+
