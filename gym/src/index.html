@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cagliostro&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Wallpoet&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Spicy+Rice&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -22,9 +23,8 @@
         <div class="menu">
             <ul class="flex-row">
                 <li class="active">Home</li>
+                <li>About</li>
                 <li>Plans</li>
-                <li>Trainers</li>
-                <li>Equipments</li>
                 <li>Reviews</li>
                 <li>Contact</li>
             </ul>
@@ -37,19 +37,133 @@
             <h1>REBUILD Fitness</h1>
             <p>Discover personalized workout plans tailored to your goals.</p>
             <p>
-                <span>LogIn</span>
+                <span>LogIn <i class="fa-solid fa-key"></i></span>
                 <span>Enroll Now <i class="fa-solid fa-dumbbell"></i></span>
             </p>
         </div>
     </section>
 
-    <section id="about" style="height: 100vh;width: 100vw;background-color: black;">
-
+    <section id="login">
+        <div class="form" id="loginForm">
+            <input type="email" placeholder="Rebuild@gmail.com">
+            <input type="password" placeholder="* password *">
+            <button onclick="login()">LogIn <i class="fa-solid fa-key"></i></button>
+        </div>
     </section>
     
-    <section id="Trainers">
+    <section id="about" class="flex-col">
+        <h1>More About Us</h1>
+        <div class="scrollUs">
+            <div class="box flex-row">
+                <div class="card flex-col">
+                    <img src="../stock/fitness.png" height="80px" width="80px">
+                    <p>Elevate your workout with our range of top-quality treadmills, exercise bikes, weighlifting equipment and more.</p>
+                </div>
+
+                <div class="card flex-col">
+                    <img src="../stock/power.png" height="80px" width="80px">
+                    <p>Fuel your body with our selection of protien powders, pre-workout supplements,and other nutritional products.</p>
+                </div>
+
+                <div class="card flex-col">
+                    <img src="../stock/treadmill.png" height="80px" width="80px">
+                    <p>We have seperate section of place for cardio activites, outdoor fun activites also.</p>
+                </div>
+
+                <div class="card flex-col">
+                    <img src="../stock/clock.png" height="80px" width="80px">
+                    <p>We are pleased to welcome you <b>every day</b>, Gym Timings <b>Morning 5:30 to 9:00 <Br> Evening 4:30 to 8:30</b></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="scrollUs imgs">
+            <div class="box flex-row">
+                <div class="card flex-col">
+                    <img src="../stock/1.jpg">
+                </div>
+
+                <div class="card flex-col">
+                    <img src="../stock/2.jpg">
+                </div>
+
+                <div class="card flex-col">
+                    <img src="../stock/3.jpg">
+                </div>
+
+                <div class="card flex-col">
+                    <img src="../stock/4.jpg">
+                </div>
+            </div>
+        </div>
 
     </section>
+
+    <section id="plans" class="flex-col">
+        <h1>Choose a Plan</h1>
+        <div class="scrollPlans">
+            <div class="box flex-row">
+                <div class="card flex-col">
+                    <h2>Popular</h2>
+                    <label><i class="fa-solid fa-indian-rupee-sign"></i><span>1500</span></label>
+                    <ul>
+                        <li class="active"><i class="fa-regular fa-circle-check"></i> Strengthing</li>
+                        <li class="active"><i class="fa-regular fa-circle-check"></i> WorkOut Plan</li>
+                        <li class="active"><i class="fa-regular fa-circle-check"></i> Cardio</li>
+                        <li><i class="fa-regular fa-circle-xmark"></i> Wifi</li>
+                        <li><i class="fa-regular fa-circle-xmark"></i> Suppliments</li>
+                        <li><i class="fa-regular fa-circle-xmark"></i> Personal Training</li>
+                    </ul>
+                    <button>Enroll Now</button>
+                </div>
+
+                <div class="card flex-col">
+                    <h2>Basic</h2>
+                    <label><i class="fa-solid fa-indian-rupee-sign"></i><span>1000</span></label>
+                    <ul>
+                        <li class="active"><i class="fa-regular fa-circle-check"></i> Strengthing</li>
+                        <li class="active"><i class="fa-regular fa-circle-check"></i> WorkOut Plan</li>
+                        <li><i class="fa-regular fa-circle-xmark"></i> Cardio</li>
+                        <li><i class="fa-regular fa-circle-xmark"></i> Wifi</li>
+                        <li><i class="fa-regular fa-circle-xmark"></i> Suppliments</li>
+                        <li><i class="fa-regular fa-circle-xmark"></i> Personal Training</li>
+                    </ul>
+                    <button>Enroll Now</button>
+                </div>
+
+                <div class="card flex-col">
+                    <h2>Gold</h2>
+                    <label><i class="fa-solid fa-indian-rupee-sign"></i><span>2000</span></label>
+                    <ul>
+                        <li class="active"><i class="fa-regular fa-circle-check"></i> Strengthing</li>
+                        <li class="active"><i class="fa-regular fa-circle-check"></i> WorkOut Plan</li>
+                        <li class="active"><i class="fa-regular fa-circle-check"></i> Cardio</li>
+                        <li class="active"><i class="fa-regular fa-circle-check"></i> Wifi</li>
+                        <li class="active"><i class="fa-regular fa-circle-check"></i> Suppliments</li>
+                        <li><i class="fa-regular fa-circle-xmark"></i> Personal Training</li>
+                    </ul>
+                    <button>Enroll Now</button>
+                </div>
+
+                <div class="card flex-col">
+                    <h2>Diamond</h2>
+                    <label><i class="fa-solid fa-indian-rupee-sign"></i><span>4000</span></label>
+                    <ul>
+                        <li class="active"><i class="fa-regular fa-circle-check"></i> Strengthing</li>
+                        <li class="active"><i class="fa-regular fa-circle-check"></i> WorkOut Plan</li>
+                        <li class="active"><i class="fa-regular fa-circle-check"></i> Cardio</li>
+                        <li class="active"><i class="fa-regular fa-circle-check"></i> Wifi</li>
+                        <li class="active"><i class="fa-regular fa-circle-check"></i> Suppliments</li>
+                        <li class="active"><i class="fa-regular fa-circle-check"></i> Personal Training</li>
+                    </ul>
+                    <button>Enroll Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section style="width:100vw; height: 100vh;"></section>
 
     <script src="script.js"></script>
 </body>
