@@ -63,10 +63,10 @@ body{
         height:40px;
     }
     .header{
+        padding-left:25px;
         justify-content: space-between;
     }
     .header .menu{
-        min-width:250px;
         width: calc(100% - 100px);
         overflow-x: scroll;
         overflow-y: hidden;
@@ -77,6 +77,11 @@ body{
         -webkit-appearance: none;
     }
 }
+@media (max-width:400px) {
+    .header .menu{
+        width:200px;
+    }
+}
 /* header  */
 
 
@@ -85,13 +90,13 @@ body{
     position: relative;
     width:100%;
     min-height:90vh;
-    background-image: url('../stock/bg.png');
-    background-attachment: fixed;
-    background-size: cover;
     overflow: hidden;
     padding-right:20%;
     align-items: center;
     justify-content: flex-end;
+    background-image: url('../stock/bg.png');
+    background-attachment: fixed;
+    background-size: cover;
 }
 #home img{
     position: absolute;
@@ -135,7 +140,7 @@ body{
 }
 #home div span i{
     margin-left:10px;
-    transform:scale(1.5) rotateZ(30deg);
+    transform:scale(1.5);
 }
 @media (max-width:1033px){
     #home{
@@ -145,12 +150,6 @@ body{
 @media (max-width:830px){
     #home{
         justify-content: center;
-    }
-    #home div h1{
-        color: white;
-    }
-    #home div p:nth-child(2){
-        color:black;
     }
     #home div{    
         backdrop-filter: blur(10px);
@@ -163,7 +162,232 @@ body{
 @media (max-width:420px) {
     #home div h1{
         font-size:45px;
-        color: white;
     }
 }
 /* home */
+
+
+/* login */
+
+#login{
+    width:100%;
+    background-color: black;
+    padding:20px;
+    padding-left:50px;
+    position: relative;
+}
+#login .form{
+    display:flex;
+    flex-direction:row;
+    gap:10px;
+    backdrop-filter:brightness(0.35);
+}
+#login .form input{
+    padding:10px 20px;
+    font-size:15px;
+    color: var(--yellow);
+    background:none;
+    outline: none;
+    border:2px solid transparent;
+    transition:0.5s;
+    position: relative;
+}
+#login .form input:focus{
+    border-bottom: 2px solid var(--yellow);
+}
+#login .form input::placeholder{
+    color: white;
+}
+#login .form button{
+    background-color: var(--yellow);
+    padding:10px;
+    font-size: 15px;
+    cursor: pointer;
+    outline:none;
+    border: none;
+}
+#login .form button i{
+    margin-left: 10px;
+}
+@media (max-width:630px) {
+    #login{    
+        padding:20px;
+        background-image: url("../stock/lock.png");
+        background-size:300px;
+        background-repeat: no-repeat;
+        background-position:50% 50%;
+    }
+    #login img{
+        opacity:0.3;
+    }
+    #login .form{
+        height:300px;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    #login .form input{
+        width:240px;   
+    }
+    #login .form button{
+        margin-top:30px;
+        width:120px;
+    }
+}
+
+/* login */
+
+
+/* plans */
+
+#plans{
+    position: relative;
+    width:100%;
+    padding:20px;
+    align-items: center;
+    background-color: var(--yellow);
+}
+#plans h1{
+    font-family: "Spicy Rice", serif;
+    font-size:35px;
+    font-weight:400;
+    margin:10px 0;
+}
+#plans .scrollPlans{
+    margin:40px 0;
+    width:100%;
+    height:440px;
+    position: relative;
+    overflow-x: scroll;
+    overflow-y: visible;
+}
+#plans .scrollPlans::-webkit-scrollbar{
+    appearance: none;
+    height:0;
+    -webkit-appearance: none;
+}
+#plans .scrollPlans .box{
+    padding:0 60px;
+    gap:40px;
+    flex-direction: row;
+    width: calc(350px*4 + 100px);
+}
+#plans .scrollPlans .card{
+    width:350px;
+    height:420px;
+    background-color: black;
+    box-shadow: 10px 10px 15px rgb(0,0,0,0.25);
+    color: white;
+    padding:20px 20px 20px 30px;
+}
+#plans .scrollPlans .card h2{
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+#plans .scrollPlans .card label{
+    text-align: right;
+    padding-right:10px;
+}
+#plans .scrollPlans .card label i{
+    font-size:30px;
+}
+#plans .scrollPlans .card label span{
+    color: var(--yellow);
+    font-size: 30px;
+    font-style: oblique;
+    font-weight:bold;
+    margin-left:10px;
+}
+#plans .scrollPlans .card ul{
+    list-style: none;
+}
+#plans .scrollPlans .card ul li{
+    margin:10px 0;
+    opacity:0.5;
+}
+#plans .scrollPlans .card ul li.active{
+    opacity:1;
+}
+#plans .scrollPlans .card button{
+    width:120px;
+    cursor: pointer;
+    color: black;
+    background-color:var(--yellow);
+    outline: none;
+    border: none;
+    padding:10px;
+    font-size:15px;
+    margin-top:10px;
+}
+@media (max-width:653px){
+    #plans .scrollPlans .box{
+        padding:0 10px;
+    }
+}
+
+/* plans */
+
+/* about */
+
+#about{
+    width:100%;
+    background-color: white;
+    position: relative;
+    align-items: center;
+    padding:20px;
+}
+#about h1{
+    font-family: "Spicy Rice", serif;
+    font-size:35px;
+    font-weight:400;
+    margin:10px 0;
+    letter-spacing:1px;
+}
+#about .scrollUs{
+    margin:30px 0 10px 0;
+    width:100%;
+    height:180px;
+    position: relative;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+#about .scrollUs::-webkit-scrollbar{
+    appearance: none;
+    height:0;
+    -webkit-appearance: none;
+}
+#about .scrollUs .box{
+    padding:0 60px;
+    gap:40px;
+    flex-direction: row;
+    width: calc(350px*4 + 100px);
+}
+#about .scrollUs .card{
+    width:350px;
+    height:180px;
+    align-items: center;
+}
+#about .scrollUs .card p{
+    margin-top: 20px;
+    text-align:center;
+}
+#about .scrollUs.imgs{
+    width:100%;
+    height:400px;
+}
+#about .scrollUs.imgs .card{
+    width: auto;
+}
+#about .scrollUs.imgs img{
+    height:400px;
+}
+#about .scrollUs.imgs .box {
+    width:calc(510px * 4);
+}
+@media (max-width:653px){
+    #about .scrollUs .box{
+        padding:0 10px;
+    }
+}
+
+/* about */
