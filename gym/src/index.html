@@ -17,32 +17,7 @@
 </head>
 
 <body>
-
-    <nav class="header flex-row"> 
-        <img src="../stock/logo.png" alt="Rebuild Fitness" height="60px">
-        <div class="menu">
-            <ul class="flex-row">
-                <li class="active">Home</li>
-                <li>About</li>
-                <li>Plans</li>
-                <li>Reviews</li>
-                <li>Contact</li>
-            </ul>
-        </div>
-    </nav>
     
-    <section id="home" class="flex-row">
-        <img src="../stock/workout.png" alt="workout">
-        <div class="flex-col">
-            <h1>REBUILD Fitness</h1>
-            <p>Discover personalized workout plans tailored to your goals.</p>
-            <p>
-                <span>LogIn <i class="fa-solid fa-key"></i></span>
-                <span>Enroll Now <i class="fa-solid fa-dumbbell"></i></span>
-            </p>
-        </div>
-    </section>
-
     <section id="login">
         <div class="form" id="loginForm">
             <input type="email" placeholder="Rebuild@gmail.com">
@@ -50,6 +25,18 @@
             <button onclick="login()">LogIn <i class="fa-solid fa-key"></i></button>
         </div>
     </section>
+    
+    <section id="home" class="flex-row">
+        <img src="../stock/workout.png" alt="workout">
+        <div class="flex-col">
+            <h1>REBUILD Fitness</h1>
+            <p>Discover personalized workout plans tailored to your goals.</p>
+            <a href="#plans">
+                <span>Enroll Now <i class="fa-solid fa-dumbbell"></i></span>
+            </a>
+        </div>
+    </section>
+
     
     <section id="about" class="flex-col">
         <h1>More About Us</h1>
@@ -101,11 +88,18 @@
 
     <section id="plans" class="flex-col">
         <h1>Choose a Plan</h1>
+        <select onchange="planChange()" id="planSelect">
+            <option value="0">1 Month</option>
+            <option value="1">3 Months</option>
+            <option value="2">6 Months ( 1 month Free Gold Membership )</option>
+            <option value="3">1 Year ( 1 month Free Diamond Membership )</option>
+        </select>
+    
         <div class="scrollPlans">
             <div class="box flex-row">
                 <div class="card flex-col">
                     <h2>Popular</h2>
-                    <label><i class="fa-solid fa-indian-rupee-sign"></i><span>1500</span></label>
+                    <label><i class="fa-solid fa-indian-rupee-sign"></i><span class="amount">1500</span></label>
                     <ul>
                         <li class="active"><i class="fa-regular fa-circle-check"></i> Strengthing</li>
                         <li class="active"><i class="fa-regular fa-circle-check"></i> WorkOut Plan</li>
@@ -119,7 +113,7 @@
 
                 <div class="card flex-col">
                     <h2>Basic</h2>
-                    <label><i class="fa-solid fa-indian-rupee-sign"></i><span>1000</span></label>
+                    <label><i class="fa-solid fa-indian-rupee-sign"></i><span class="amount">1000</span></label>
                     <ul>
                         <li class="active"><i class="fa-regular fa-circle-check"></i> Strengthing</li>
                         <li class="active"><i class="fa-regular fa-circle-check"></i> WorkOut Plan</li>
@@ -133,7 +127,7 @@
 
                 <div class="card flex-col">
                     <h2>Gold</h2>
-                    <label><i class="fa-solid fa-indian-rupee-sign"></i><span>2000</span></label>
+                    <label><i class="fa-solid fa-indian-rupee-sign"></i><span class="amount">2000</span></label>
                     <ul>
                         <li class="active"><i class="fa-regular fa-circle-check"></i> Strengthing</li>
                         <li class="active"><i class="fa-regular fa-circle-check"></i> WorkOut Plan</li>
@@ -147,7 +141,7 @@
 
                 <div class="card flex-col">
                     <h2>Diamond</h2>
-                    <label><i class="fa-solid fa-indian-rupee-sign"></i><span>4000</span></label>
+                    <label><i class="fa-solid fa-indian-rupee-sign"></i><span class="amount">4000</span></label>
                     <ul>
                         <li class="active"><i class="fa-regular fa-circle-check"></i> Strengthing</li>
                         <li class="active"><i class="fa-regular fa-circle-check"></i> WorkOut Plan</li>
@@ -162,8 +156,65 @@
         </div>
     </section>
 
+    <section id="reviews" class="flex-col">
+        <h1>Real Stories, Real Results</h1>
+        <div class="scrollReviews">
+            <div class="box flex-row">
+                <div class="card flex-col">
+                    <h2>Satwik</h2>
+                    <p>I joined the gym in september 2024, doing consistencly for 3 months. I can see the change in the body. </p>
+                </div>
 
-    <section style="width:100vw; height: 100vh;"></section>
+                <div class="card flex-col">
+                    <h2>Aarav</h2>
+                    <p>The trainers are very supportive, and I’ve learned proper workout techniques. Feeling much stronger now!</p>
+                </div>
+
+                <div class="card flex-col">
+                    <h2>Ananya</h2>
+                    <p>I’ve been a member for 6 months, and the atmosphere is so motivating. Highly recommend it to everyone!</p>
+                </div>
+
+                <div class="card flex-col">
+                    <h2>Rohan</h2>
+                    <p>The equipment is top-notch, and the routines have really helped me get in shape. Love the energy here!</p>
+                </div>
+
+                <div class="card flex-col">
+                    <h2>Priya</h2>
+                    <p>Joining this gym was the best decision! The group classes are fun, and I’ve made great progress.</p>
+                </div>
+                
+                <div class="card flex-col">
+                    <h2>Kavya</h2>
+                    <p>The staff is very friendly, and the personalized plans have been a game-changer for my fitness journey.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="contact" class="flex-col">
+        <h1>Get in Touch with Us Today!</h1>
+        <div class="con">
+            <div>
+                <h2 style="margin-bottom: 20px;">Rebuild Fitness</h2>
+                <p style="margin-bottom: 10px;">
+                    <a>Branch 1</a>
+                    <span> : Backside of TTD, balajicheruvu, Kakinada</span>
+                </p>
+                <p style="margin-bottom: 20px;">
+                    <a>Branch 2</a>
+                    <span>: 1st floor of LG show room, Opposite to siva temple, Kakinada</span>
+                </p>
+                <p style="margin-bottom: 20px;"><a>+91 756568***</a>, <a>+91 735848***</a></p>
+                <p>Follow us on <a>instagram</a></p>
+            </div>
+            <div>
+                <img src="../stock/logo.png" alt="Rebuild fitness">
+            </div>
+        </div>
+    </section>
 
     <script src="script.js"></script>
 </body>
