@@ -1,0 +1,236 @@
+%-------------------------
+% Resume in Latex
+% Author : Abey George
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{transparent}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\usepackage{graphicx}
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\input{glyphtounicode}
+
+\RequirePackage{xcolor}
+\RequirePackage{fontawesome}
+\usepackage{tikz}
+\usetikzlibrary{svg.path}
+
+
+\definecolor{cvblue}{HTML}{0E5484}
+\definecolor{black}{HTML}{130810}
+\definecolor{darkcolor}{HTML}{0F4539}
+\definecolor{cvgreen}{HTML}{3BD80D}
+\definecolor{taggreen}{HTML}{00E278}
+\definecolor{SlateGrey}{HTML}{2E2E2E}
+\definecolor{LightGrey}{HTML}{666666}
+\colorlet{name}{black}
+\colorlet{tagline}{darkcolor}
+\colorlet{heading}{darkcolor}
+\colorlet{headingrule}{cvblue}
+\colorlet{accent}{darkcolor}
+\colorlet{emphasis}{SlateGrey}
+\colorlet{body}{LightGrey}
+
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+% \pagestyle{fancy}
+% \fancyhf{}  % clear all header and footer fields
+% \fancyfoot{}
+% \renewcommand{\headrulewidth}{0pt}
+% \renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.4in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\classesList}[4]{
+    \item\small{
+        {#1 #2 #3 #4 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{\large#1} & \textbf{\small #2} \\
+      \textit{\large#3} & \textit{\small #4} \\
+      
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{1.001\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \textbf{\small #2}\\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemi{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+
+\newcommand\sbullet[1][.5]{\mathbin{\vcenter{\hbox{\scalebox{#1}{$\bullet$}}}}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+
+\begin{center}
+    {\Huge \scshape SATWIK KEDARISETTI} \\ \vspace{10pt}
+    \small \href{tel:+91 7386484905}{ \raisebox{-0.1\height}\faPhone\ {+91 7386484905} ~} \href{mailto:satwik1330@gmail.com}{\raisebox{-0.2\height}\faEnvelope\  {satwik1330@gmail.com}} ~ 
+    \href{https://www.linkedin.com/in/satwik-kedar-21a89a202/}{\raisebox{-0.2\height}\faLinkedinSquare\ {satwik-kedar-21a89a202}}  ~ \href{https://github.com/kedarisettisatwik}{\raisebox{-0.2\height}\faGithub\ {kedarisettisatwik}} ~
+\end{center}
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}[remember picture, overlay]
+        % Set image position absolutely at the bottom right corner
+        \node [anchor=south east, inner sep = 0pt,xshift=-20pt, yshift=15pt, opacity=0.6] at ( current page.south east) {\includegraphics[width=0.1\linewidth]{qr.png}};
+    \end{tikzpicture}
+\end{figure}
+
+%-----------EDUCATION-----------
+\section{EDUCATION}
+  \vspace{5pt}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {National Institute Of Technology, Karnataka }{2020 – Present }
+      {CGPA - 8.23 , HIGHEST - 9.73}{B.Tech, Electrical and Electronics Engineering}
+  \resumeSubHeadingListEnd
+  
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Aditya Inter College}{2018 - 2020}
+      {MARKS - 945 / 1000 , JEE Mains - 99.4\%} {Higher secondary education, Kakinada}
+  \resumeSubHeadingListEnd
+
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Dr KKR Gowtham School}{2014 - 2018}
+      {CGPA - 10.00}{Secondary Education, Kakinada}
+  \resumeSubHeadingListEnd
+
+  \vspace{1pt}
+  
+%-----------PROJECTS-----------
+\section{PROJECTS}
+  \linespread{1.2}
+    \vspace{10pt}
+    
+       \textbf{\large{\underline{TND WebApp - React, FireBase}}}
+    \vspace{4pt}
+       \normalsize{\\ A react based WebApp usefull to mark up the tasks we want to do, edit and delete tasks and you can also write dairy for each day and you can also create multiple notes. For database and authentication FireBase is used. Used useState and useEffect in react.}
+
+      \vspace{10pt}
+      
+       \textbf{\large{\underline{FrontEnd Projects}}}
+    \vspace{4pt}
+       \normalsize{\\ Developed a collection of interactive web applications utilizing JavaScript, HTML, and CSS. Implemented logic-driven games such as Sudoku, 2048, and Snake, employing JavaScript for dynamic gameplay. Integrated a Weather API to fetch and display real-time meteorological data. Created a Ping Pong game utilizing canvas rendering and event handling.}
+
+%-----------PROGRAMMING SKILLS-----------
+
+\section{TECHNICAL SKILLS}
+  \linespread{1}
+  \vspace{5pt}
+    %\resumeSubHeadingListStart
+        \begin{multicols}{3}
+            \begin{itemize}[itemsep=-2pt, parsep=7pt]
+                \item HTML + CSS + JS
+                \item REACT JS
+                \item DBMS, SQL
+                \item OS
+                \item FIREBASE
+                \item PYTHON, JAVA [basics]
+                \item C++ [DSA, OOPS]
+            \end{itemize}
+        \end{multicols}
+        \vspace*{1.0\multicolsep}
+    %\resumeSubHeadingListEnd
+
+\vspace{10pt}
+%-----------experience---------------
+\section{EXPERIENCE}
+    \vspace{5pt}
+    \linespread{1.2}
+    \normalsize{- \textbf{{\underline{Brane Enterprises :  24 June 2024 - 08 August 2024 }}} -  Worked in Brane Group as Assosiative Solution Leader, Worked on NSL. Learned about the sms, otp generation. Created a sample projects like online movie tickets booking, online food booking applications.}
+    
+\vspace{2pt}
+%-----------MY SELF---------------
+\section{MY SELF}
+    \vspace{5pt}
+    \linespread{1.2}
+    \normalsize{- My curiosity and passion for learning have driven me to explore various programming concepts. I am proficient in tools and software such as Brackets, VS Code, Word, PowerPoint, Github, and Code Blocks, and I also enjoy working on frontend development during my free time. I have deployed all projects on GitHub, demonstrating proficiency in version control and web deployment. Online portfolio showcases my skills, abilities, and coding expertise, highlighting my proficiency in DSA. Providing insights into my learning journey. \\Qualities that Describe's Me: Elucidator, Diligent, Curious, Self-motivated.\\Areas of Intrest: SDE, Frontend Developer.\\ \href{https://leetcode.com/satwik1330/}{\underline{LeetCode}} - 500+ problems , MY Portfolio - \href{https://kedarisettisatwik.github.io/me/resume.html}{\underline{Here}}}
+
+    
+\end{document}

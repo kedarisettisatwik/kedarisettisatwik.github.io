@@ -26,6 +26,7 @@
             --defaultColor:white;
             --linkColor:white;
             --bg:black;
+            --popBg:#4d4d4d;
         }
         .flex{
             display: flex;
@@ -40,6 +41,10 @@
             background-color: var(--bg);
             color: var(--defaultColor);
         }
+        body::-webkit-scrollbar{
+            -webkit-apperance:none;
+            width:0;
+        }
         .container{
             width:100%;
             position:relative;
@@ -49,7 +54,6 @@
             position: relative;
             width:850px;
             min-height:500px;
-            padding:30px;
             padding:20px 40px;
         }
         .container .resume .header{
@@ -228,7 +232,6 @@
             }
             .container .resume{
                 width:100%;
-                box-shadow:0 0 20px rgb(0,0,0,0);
             }
         }
         @media (max-width:800px){
@@ -274,6 +277,122 @@
             .container .resume .header .name{
                 width:100%;
                 text-align:center;
+            }
+        }
+
+        #BBU{
+            width:100%;
+            position: relative;
+            margin:40px 0 20px 0;
+        }
+        #BBU .lineDiv{
+            height:1px;
+            width:100%;
+            position: absolute;
+            top:50%;
+            left:0;
+            background-color: var(--fontColor);
+        }
+        #BBU .header{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            color: var(--fontColor);
+            position: relative;
+        }
+        #BBU .header .bg{
+            position: absolute;
+            top:0;
+            left:50%;
+            transform: translateX(-50%);
+            background-color: var(--bg);
+            height:100%;
+            width:150px;
+        }
+        #BBU .header div:nth-child(3),#BBU .header div:nth-child(5){
+            font-size:60px;
+            transform:scaleX(0.5);
+        }
+        #BBU .header div:nth-child(5){
+            margin-left:5px;
+        }
+        #BBU .header div:nth-child(4){
+            transform:translateX(-5px);
+        }
+        #BBU .content{
+            margin-top:60px;
+            width:100%;
+            position: relative;
+        }
+        #BBU .content li{
+            font-size:15px;
+        }
+        #BBU .content li span{
+            cursor: pointer;
+            color: var(--fontColor);
+        }
+
+        .popUps{
+            position: fixed;
+            top:0;
+            left:0;
+            width:100vw;
+            height:100vh;
+            background-color:var(--bg);
+            backdrop-filter: blur(5px);
+            overflow: hidden;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding:10px;
+        }
+        .popUps .closePopUp{
+            position: absolute;
+            top:20px;
+            right:20px;
+            font-size:20px;
+            cursor: pointer;
+        }
+
+
+
+        .popUps #resume{
+            position: relative;
+            width:100%;
+            height:100%;
+            padding:20px 40px;
+            background-color: var(--popBg);
+            border-radius:20px;
+            box-shadow: 0 0 20px rgb(255,255,255,0.1);
+            border:1px solid rgb(255,255,255,0.1);
+            display: flex;
+            justify-content:start;
+            align-items: start;
+            flex-direction: row;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .popUps #resume .main{
+            width:calc(100% - 700px);
+        }
+        .popUps #resume .pdf{
+            width:680px;
+            height:100%;
+            min-height:600px;
+            max-width:100%;
+        }
+        .popUps #resume ul li{
+            margin:20px 0;
+        }
+
+        @media (max-width:1200px) {
+            .popUps #resume{
+                flex-direction: column;
+            }
+            .popUps #resume .main{
+                width:100%;
+                margin:40px 0;
             }
         }
     </style>
@@ -461,8 +580,49 @@
                    </div>
                </div>
            </div>
+
+           <section id="BBU">
+                <div class="header">
+                    <span class="lineDiv"></span>
+                    <div class="bg"></div>
+                    <div>B</div>
+                    <div><p>UILD</p><p>ETTER</p></div>
+                    <div>U</div>
+                </div>
+                <ul class="content">
+                    <li><b style="letter-spacing: 1px;">Resume Building,</b> 
+                        Resume is the main tool to display our talent 
+                        <br> Only A Good Resume can bring Good Oppurtunities.
+                        <br><span onclick="displayPopUp(0)">Click Here</span> to know more tips, tools, platforms to building resume, and my resume code.
+                    </li>
+                </ul>
+           </section>
             
+
         </section>      
+    </section>
+
+    <section class="popUps">
+        <section id="resume">
+            <div class="main">
+                <ul>
+                    <li>OverLeaf is a free website platform to create a resume or for any documents
+                        <br><a href="https://www.overleaf.com/" target="_blank" style="text-decoration: none;color: var(--fontColor);">Click Here to go to OverLeaf</a>
+                        <br> <a href="https://youtu.be/eiRUln4oc6I?si=vAxeAG_F5dCE6e3O" target="_blank" style="text-decoration: none;color: var(--fontColor);">Click Here to see some tutotrial videos</a>
+                    </li>
+                    <li>Companies use ATS (Automatic Tracking System) to review / filter out the resumes.</li>
+                    <li>Projects description should be more engaging.</li>
+                    <li>Try to use Skills only which are you perfect at.</li>
+                    <li>Try to make multiple resumes for multiple roles.</li>
+                    <li>Add certifications (important).</li>
+                    <li><a href="https://drive.google.com/file/d/1HfMRzAQBM_ICCSvBQbZ02jJO8xYX541a/view?usp=sharing" target="_blank"  style="text-decoration: none;color: var(--fontColor);">Click Here to Copy my resume Code.</a></li>
+                </ul>
+            </div>
+            <embed src="myResume.pdf" type="application/pdf" class="pdf">
+            <div class="closePopUp" onclick="closePopUp(0)">
+                <i class="fas fa-times"></i>
+            </div>
+        </section>
     </section>
    
     <script>
@@ -476,18 +636,31 @@
                 root.style.setProperty('--defaultColor', 'black'); 
                 root.style.setProperty('--bg', 'white'); 
                 root.style.setProperty('--linkColor', 'black'); 
+                root.style.setProperty('--fontColor',"#4b7fb1");
+                root.style.setProperty('--popBg',"whitesmoke");
                 document.getElementById("profilePic").style.boxShadow = "0 0 20px rgb(51, 153, 255,0.4)";   
             }
             else{
                 root.style.setProperty('--defaultColor', 'white'); 
                 root.style.setProperty('--bg', 'black'); 
                 root.style.setProperty('--linkColor', 'white'); 
+                root.style.setProperty('--fontColor',"#3399ff");
+                root.style.setProperty('--popBg',"#4d4d4d");
                 document.getElementById("profilePic").style.boxShadow = "0 0 200px rgb(51, 153, 255,1)";  
             }
             mode *= -1;           
         }
 
+        var popUps = document.querySelectorAll(".popUps");
         
+        function displayPopUp(a){
+            popUps[a].style.display = "flex";
+        }
+        
+        function closePopUp(a){
+            popUps[a].style.display = "none";
+        }
+
     </script>
     
     </body>
