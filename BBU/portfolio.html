@@ -8,8 +8,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
     <!-- google fonts -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
+
+    <meta name="author" content="Satwik Kedarisetti">
     
-    <title>satwik _ kedar</title>
+    <title>BBU</title>
     
     <style>
         *{
@@ -17,8 +19,13 @@
             padding:0;
             font-family:poppins;
             box-sizing:border-box;
+        }
+        :root{
             --fontColor:#3399ff;
             --borderColor: #3f67b9;
+            --defaultColor:white;
+            --linkColor:white;
+            --bg:black;
         }
         .flex{
             display: flex;
@@ -30,8 +37,8 @@
             width:100vw;
             overflow-x: hidden;
             position:relative;
-            background-color: black;
-            color: white;
+            background-color: var(--bg);
+            color: var(--defaultColor);
         }
         .container{
             width:100%;
@@ -55,7 +62,7 @@
             width:200px;
             border-radius:50%;
             background-color: #edeff1;
-            box-shadow: 0 0 200px rgb(51, 153, 255,0.8);
+            box-shadow: 0 0 200px rgb(51, 153, 255,1);
         }
         .container .resume .header .name{
             width:calc(100% - 250px);
@@ -136,7 +143,7 @@
         .container .resume .left .contact .link{
             display: block;
             text-decoration:none;
-            color:white;
+            color:var(--linkColor);
             margin:20px 0;
             font-size:14px;
             width:200px;
@@ -200,7 +207,7 @@
             display:inline-block;
             width:200px;
             margin:5px 0;
-            color:white;
+            color:var(--linkColor);
             font-size:14px;
             text-decoration:none;
         }
@@ -278,10 +285,11 @@
         <section class="resume">
 
            <div class="header flex">
-               <img src="me.jpg">
+               <img src="me.jpg" id="profilePic">
                <div class="name">
                    <h1>Satwik</h1>
                    <h3>Kedarisetti</h3>
+                   <p style="color: var(--defaultColor);margin-top: 20px; font-size:15px;"><input type="checkbox" value="DarkMode" checked style="margin-right: 10px;" onchange="changeMode()">DarkMode</p>
                </div>
            </div>
            <div class="more flex">
@@ -458,6 +466,27 @@
     </section>
    
     <script>
+
+        var mode = -1; // dark mode
+
+        function changeMode(){
+            const root = document.documentElement;
+
+            if (mode == -1){ // change to lyt
+                root.style.setProperty('--defaultColor', 'black'); 
+                root.style.setProperty('--bg', 'white'); 
+                root.style.setProperty('--linkColor', 'black'); 
+                document.getElementById("profilePic").style.boxShadow = "0 0 20px rgb(51, 153, 255,0.4)";   
+            }
+            else{
+                root.style.setProperty('--defaultColor', 'white'); 
+                root.style.setProperty('--bg', 'black'); 
+                root.style.setProperty('--linkColor', 'white'); 
+                document.getElementById("profilePic").style.boxShadow = "0 0 200px rgb(51, 153, 255,1)";  
+            }
+            mode *= -1;           
+        }
+
         
     </script>
     
