@@ -359,7 +359,7 @@
 
 
 
-        .popUps #resume{
+        .popUps .content{
             position: relative;
             width:100%;
             height:100%;
@@ -375,24 +375,24 @@
             overflow-x: hidden;
             overflow-y: auto;
         }
-        .popUps #resume .main{
+        .popUps .content .main{
             width:calc(100% - 700px);
         }
-        .popUps #resume .pdf{
+        .popUps .content .pdf{
             width:680px;
             height:100%;
             min-height:600px;
             max-width:100%;
         }
-        .popUps #resume ul li{
+        .popUps .content ul li{
             margin:20px 0;
         }
 
         @media (max-width:1200px) {
-            .popUps #resume{
+            .popUps .content{
                 flex-direction: column;
             }
-            .popUps #resume .main{
+            .popUps .content .main{
                 width:100%;
                 margin:40px 0;
             }
@@ -601,6 +601,10 @@
                         Get all PDF's on CS topics [React, ML, System Desgin, etc...], Just 
                         <a href="https://drive.google.com/drive/folders/1ivMcG_C-53oU7SBx9JdF4hO5Xua8aKTx?usp=sharing" target="_blank">Click Here</a>
                     </li>
+                    <li><b style="letter-spacing: 1px;">HTML + CSS</b> 
+                        HTML, CSS are basic concepts for frontend development
+                        <br><span onclick="displayPopUp(1)">Click Here</span> to know more tips, tools, learning resources.
+                    </li>
                 </ul>
            </section>
             
@@ -609,7 +613,7 @@
     </section>
 
     <section class="popUps">
-        <section id="resume">
+        <section class="content">
             <div class="main">
                 <ul>
                     <li>OverLeaf is a free website platform to create a resume or for any documents
@@ -626,6 +630,27 @@
             </div>
             <embed src="myResume.pdf" type="application/pdf" class="pdf">
             <div class="closePopUp" onclick="closePopUp(0)">
+                <i class="fas fa-times"></i>
+            </div>
+        </section>
+    </section>
+
+    <section class="popUps">
+        <section class="content">
+            <div class="main">
+                <ul>
+                    <li>HTML, CSS are basic languages to create a website.</li>
+                    <li>You can learn using online websites, apps like 
+                        <br><a href="https://www.sololearn.com/en/" target="_blank" style="text-decoration: none;color: var(--fontColor);">SoloLearn Website</a>
+                        <br> <a href="https://play.google.com/store/apps/details?id=com.sololearn&pcampaignid=web_share" target="_blank" style="text-decoration: none;color: var(--fontColor);">SoloLearn App</a>
+                        <br> <a href="https://www.w3schools.com/html/" target="_blank" style="text-decoration: none;color: var(--fontColor);">W3 Schools</a>
+                    </li>
+                    <li>You can see the website Desgins for ideas, improve creativity in frontend 
+                        <br> <a href="https://www.youtube.com/@OnlineTutorialsYT" target="_blank" style="text-decoration: none;color: var(--fontColor);">OnlineTutorials YouTube Channel</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="closePopUp" onclick="closePopUp(1)">
                 <i class="fas fa-times"></i>
             </div>
         </section>
