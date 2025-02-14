@@ -306,11 +306,13 @@
    
     <script>
         
-        player = 1
+        var player = 1
         
-        blocks = [0,0,0,0,0,0,0,0,0]
+        var blocks = [0,0,0,0,0,0,0,0,0]
+
+        var queue = [];
         
-        game_bool = false;
+        var game_bool = false;
         
         setTimeout(function(){
             game_bool = true;
@@ -364,11 +366,21 @@
       
         function play(a){
             
+
             if (blocks[a] == 0 && game_bool){
-                
                 blocks[a] = player;
                 blo = document.querySelectorAll('.block');
                 
+                queue.push(a);
+
+                if (queue.length == 7){
+                    var x = queue[0];
+                    queue.shift();
+                    blocks[x] = 0;
+                    blo[x].classList.remove('cr');
+                    blo[x].classList.remove('ci');
+                }
+
                 if (player == 1){
                     blo[a].classList.add('cr');
                     document.querySelector('.cross').style.display = 'none';
@@ -379,10 +391,8 @@
                     document.querySelector('.circle').style.display = 'none';
                 }
                 player *= -1;
-                check()
-                
+                check();
             }
-            
         }
         
         
