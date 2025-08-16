@@ -794,6 +794,9 @@
                   <i>-- * means all</i><br>
                   <span>select </span><label>id, first_name </label><span> from </span><label> employees </label><span> ; </span>
                   <i>-- we can select custom columns</i><br>
+                  <span>select </span> id, first_name, phone_no<span> from </span> employees, contacts<br>
+                  <span>WHERE </span>employees.id = contacts.emp_id<span> ; </span><br>
+                  <i>-- we can select custom columns</i><br>
               </div>
           </div>
       </section>
@@ -883,7 +886,7 @@
       
       <section class="sql">
           <div class="sqlText">
-              select data with a condition check.
+              <b>WHERE</b>, select data with a condition check.
           </div>
           <div class="sqlCode">
               <div>
@@ -1082,7 +1085,12 @@
               <div>
                   <span>create table </span><label> transactions </label><span> ( </span><br>
                   <b></b><label>trans_id </label><span> int primary_key , </span><br>
-                  <b></b><label>amount </label><span> decimal(4,2) default 0 </span><br>
+                  <b></b><label>amount </label><span>decimal(</span> 4, 2 <span>)</span> <span> default </span> 0<br>
+                  <span>); </span><br>
+                  <span>create table </span><label> transactions </label><span> ( </span><br>
+                  <b></b><label>trans_id </label><span> int, </span><br>
+                  <b></b><label>amount </label><span> decimal(</span> 4, 2 <span>)</span> <span> default </span> 0 <span>,</span><br>
+                  <b></b><span>primary key(</span> trans_id<span> )</span><br>
                   <span>); </span><br>
               </div>
           </div>
@@ -1106,9 +1114,11 @@
           <div class="sqlCode">
               <div>
                   <span>create table </span><label> transactions </label><span> ( </span><br>
-                  <b></b><label>trans_id </label><span> int primary_key auto_increment, </span><br>
-                  <b></b><label>amount </label><span> decimal(4,2) default 0 </span><br>
+                  <b></b><label>row_no </label><span> int NOT NULL auto_increment, </span><br>
+                  <b></b><label>amount </label><span> decimal(</span> 4, 2 <span>)</span> <span> default </span> 0<br>
                   <span>); </span><br>
+                  <span>ALTER TABLE </span> transactions <span>auto_incerment = </span>50<br>
+                  <i>-- this will start auto numbers from 50</i>
               </div>
           </div>
           <div class="sqlCode">
@@ -1175,11 +1185,16 @@
           </div>
           <div class="sqlCode">
               <div>
-                  <span>select count( </span><label>amount )</label><span>from transactions ; </span><br>
+                  <span>select count( </span><label>amount )</label><span> from </span> transactions <span> ; </span><br>
+                  <i>-- COUNT(*) will give count of total number of rows in the query</i><br>
+                  <span>select count( </span><label>* )</label><span> from </span> Customers <span> GROUP BY </span> City <span>;</span><br>
                   <i>-- MAX( amount )</i><br>      
                   <i>-- AVG( amount )</i><br>
-                  <span>select concat(</span><label>first_name , last_name )</label><span>as </span><label> full_name </label><span>from transactions ; </span><br>
-              </div>
+                  <span>select CONCAT(</span><label>first_name , last_name )</label><span>as </span><label> full_name </label><span> from </span> transactions <span>;</span><br>
+                  <span>select SUBSTRING(</span><label>first_name , 3, 2)</label><span>as </span><label> name </label><span> from </span> transactions <span>;</span><br>
+                  <i>-- SUBSTRING(name, x, y) means substring of name starting from index x and of length y</i><br>
+                  <span>select REPLACE(</span><label>col1 , "a", "b" )</label><span> from </span> transactions <span>;</span><br>
+                </div>
           </div>
           <div class="sqlCode">
               <div>
@@ -1228,11 +1243,32 @@
           <div class="sqlCode">
               <div>
                   <span>select </span><label> * </label><span> from </span><label>employees</label><br>
-                  <span>order by </span><label> last_name </label><span> limit </span><label> 2</label> <span> ; </span><i> -- first two row's will be displayed </i>
-                  <br><br>
+                  <span>order by </span><label> last_name </label><span> LIMIT </span><label> 2</label> <span> ; </span><i> -- first two row's will be displayed </i>
+                  <br>
                   <span>select </span><label> * </label><span> from </span><label>employees</label><br>
-                  <span>order by </span><label> last_name </label><span> limit </span><label> 3 , 5</label> <span> ;</span><br>
+                  <span>order by </span><label> last_name </label><span> LIMIT </span><label> 3 , 5</label> <span> ;</span><br>
                   <i>-- after odering after 3rd record i.e from 4th row 5 records will be displayed.</i>
+                  <br>
+                  <span>select </span><label> * </label><span> from </span><label>employees</label><br>
+                  <span>order by </span><label> last_name </label><span> LIMIT </span><label> 2</label> <span> OFFSET </span> 5 <span>;</span><br>
+                  <i>-- offset is same as skip; so first 5 records will skip and next 2 records will appear</i>
+              </div>
+          </div>
+      </section>
+
+      <section class="sql">
+          <div class="sqlText">
+              CASE
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>select </span><label> name, </label><br>
+                  <span>CASE</span><br>
+                  <span>    WHEN</span> age <span> >= </span> 65 <span>THEN</span> "SENIOR" <br>
+                  <span>    WHEN</span> age <span> &lt; </span> 18 <span>THEN</span> "MINOR" <br>
+                  <span>    ELSE </span> "Adult" <br>
+                  <span>END AS </span> "Category" <br>
+                  <span>from </span><label>employees </label><span>;</span><br>
               </div>
           </div>
       </section>
@@ -1243,9 +1279,14 @@
           </div>
           <div class="sqlCode">
               <div>
-                  <span>select </span><label> * </label><span> from </span><label>income</label><br>
+                  <span>select </span><label> name, phone_no </label><span> from </span><label>contacts</label><br>
                   <span>union</span><br>
-                  <span>select </span><label> * </label><span> from </span><label>expenses</label><span> ; </span><br>
+                  <span>select </span><label> name, phone_no </label><span> from </span><label>customers</label><span> ; </span><br>
+                  <i>-- union removes duplicate records, we can use "UNION ALL" if we want duplicates</i><br>
+                  <span>select </span><label> name, age, city </label><span> from </span><label>contacts</label><br>
+                  <span>union all</span><br>
+                  <span>select </span><label> name, age, NULL </label><span> from </span><label>customers</label><span> ; </span><br>
+                  <i>-- we can give null if we dont have anything to equalize the no of columns</i>
               </div>
           </div>
       </section>
