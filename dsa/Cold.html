@@ -369,8 +369,8 @@
         }
         .sql .sqlCode{
             overflow-x: auto;
-            padding:10px 20px;
-            margin:2px 0 10px 0;
+            padding:15px 20px;
+            margin:5px 0 10px 0;
             overflow-y: hidden;
             background-color:rgb(0,0,0,0.03);
             line-height:2rem;
@@ -1191,9 +1191,23 @@
                   <i>-- MAX( amount )</i><br>      
                   <i>-- AVG( amount )</i><br>
                   <span>select CONCAT(</span><label>first_name , last_name )</label><span>as </span><label> full_name </label><span> from </span> transactions <span>;</span><br>
+                  <span>select CAST(</span><label>quantiy </label><span>as int64) from </span> transactions <span>;</span><br>
+                  <i>-- cast() means changes the data type of coloumn</i><br>
+                  <span>select UPPERCASE(</span>first_name<span>), </span> <span>Lowercase(</span> last_name<span>) from </span> transactions <span>;</span><br>
+                  <span>select INITCAP(</span>first_name<span>) from </span> transactions <span>;</span><br>
+                  <i>-- init cap means first letter of each word will be uppercase</i>
                   <span>select SUBSTRING(</span><label>first_name , 3, 2)</label><span>as </span><label> name </label><span> from </span> transactions <span>;</span><br>
                   <i>-- SUBSTRING(name, x, y) means substring of name starting from index x and of length y</i><br>
                   <span>select REPLACE(</span><label>col1 , "a", "b" )</label><span> from </span> transactions <span>;</span><br>
+                  <br>
+                  Few more functions, CHAR_LENGTH() or LENGTH(), TRIM('character' FROM "string"), <br>
+                  REVERSE("string"), CONCAT_WS('seperator','word1','word2',...)<br>
+                  REPEAT("string",count), RTRIM("string","groups of characters you want to remove") -- removes trailing characters<br>
+                  SPACE(7), STRCMP("string1", "string2") -- Compare Two Strings <br>
+                  NOW(), CURDATE(), CURTIME(), DATE(sales_date) -- extract only date<br>
+                  EXTRACT(YEAR FROM sale_date),  DATE_ADD(sale_date, INTERVAL 7 DAY) <br>
+                  DATE_SUB(sale_date, INTERVAL 3 DAY), DATEDIFF(date1, sale_date)<br>
+                  DATE_FORMAT(sale_date, '%W, %M %d, %Y') 
                 </div>
           </div>
           <div class="sqlCode">
@@ -1373,7 +1387,59 @@
               </div>
           </div>
       </section>
-      
+
+      <section class="sql">
+          <div class="sqlText">
+              Window Functions
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>select </span><label> name, department, salary,</label><br>
+                  <span>    SUM ( </span><label>salary </label><span> )  , over(partition by </span> department <span> order by </span> salary <span>) AS </span> runnig_total<br>
+                  <span>from </span>employees <span>;</span><br><br>
+                  Row_Number()
+                  <br>
+                  <span>ROW_NUMBER() Over( partition by </span> department <span>order by </span>salary<span> ) AS </span> row_no <span>;</span><br>
+                  <span>ROW_NUMBER() Over( order by </span>salary<span> ) AS </span> row_no <span>;</span><br>
+                  <span>ROW_NUMBER() Over( order by (select null)) AS </span> row_no <span>;</span><br><br>
+                  RANK()
+                  <br>
+                  <span>RANK() Over( partition by </span> department <span>order by </span>salary<span> desc ) AS </span> salary_rank <span>;</span><br>
+                  <i>-- emp with same salary will get same rank, next rank will be skipped, use DENSE_RANK() to make no int is skipped</i><br><br>
+                  NTILE( x )
+                  <br>
+                  <span>NTILE(5) Over( order by </span>salary<span> desc ) AS </span> salary_rank <span>;</span><br>
+                  <i>-- after sorting by salary, whole data set is divided into 5 equalize parts and salary_rank is given as 1,2,3,4,5 </i><br><br>
+                  LEAD( col_name, offset, default_value)
+                  <br>
+                  <span>LEAD(salary, 2, 0) Over( order by </span>salary<span> desc ) AS </span> nxt_row_salary <span>;</span><br>
+                  <i>-- after sorting by salary, for each nth row in nxt_row_salary column the (n+2)th row salary displays </i><br><br>
+                  LAG( col_name, offset, default_value)
+                  <br>
+                  <span>LAG(salary, 2, 0) Over( order by </span>salary<span> desc ) AS </span> nxt_row_salary <span>;</span><br>
+                  <i>-- after sorting by salary, for each nth row in nxt_row_salary column the (n-2)th row salary displays </i><br><br>
+                  <a href="https://youtu.be/oYGImzTqoHE?si=MuM6JamOht16J4Nb" target="_blank" style="color: black;">referece resource</a>
+              </div>
+          </div>
+      </section>
+
+      <section class="sql">
+          <div class="sqlText">
+              CTE - Common Table Expresion
+          </div>
+          <div class="sqlCode">
+              <div>
+                  <span>WITH </span>RankedEmployees <span>AS ( </span><br>
+                  <b></b><span>select </span>Name, department, salary,<br>
+                  <b></b><b></b> <span>RANK() OVER(PARTITION BY </span> department <span>ORDER BY </span> salary <span>DESC ) AS</span> Emp_rank<br>
+                  <b></b><span>FROM </span>Employees<br>
+                  <span>)</span><br>
+                  <span>SELECT * FROM </span>RankedEmployees <span>WHERE </span> Emp_rank <span>&lt;= 3 </span><br>
+                  <i>-- select should be right after with() statement </i>
+              </div>
+          </div>
+      </section>     
+
       <section class="sql">
           <div class="sqlText">
               On Delete
