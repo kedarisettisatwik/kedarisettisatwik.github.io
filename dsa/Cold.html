@@ -1207,7 +1207,8 @@
                   NOW(), CURDATE(), CURTIME(), DATE(sales_date) -- extract only date<br>
                   EXTRACT(YEAR FROM sale_date),  DATE_ADD(sale_date, INTERVAL 7 DAY) <br>
                   DATE_SUB(sale_date, INTERVAL 3 DAY), DATEDIFF(date1, sale_date)<br>
-                  DATE_FORMAT(sale_date, '%W, %M %d, %Y') 
+                  DATE_FORMAT(sale_date, '%W, %M %d, %Y') <br>
+                 COALESCE(value1, value2) -> if value1 is null then value2 is given as output<br> 
                 </div>
           </div>
           <div class="sqlCode">
