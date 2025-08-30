@@ -33,7 +33,7 @@
             width: 0px;
         }
         :root{
-            --width:19px;
+            --width:40px;
         }
         
         body {
@@ -44,7 +44,7 @@
         
         #page1 {
             position: relative;
-            width:450px;
+            width:400px;
             overflow: hidden;
             border-radius:10px;
         }
@@ -69,50 +69,31 @@
             margin:10px 0;
             position:relative;
         }
+        .table .fruits{
+            position: absolute;
+            width: 40px;
+            height: 40px;
+        }
         .table ul{
             width:100%;
             display:flex;
             flex-direction: row;
-            justify-content: space-around;
             padding:0 2px;
-            margin:2px 0;
         }
         .table ul li{
             width:var(--width);
             height:var(--width);
-            border:3px solid #282828;
-            opacity:0.1;
             position:relative;
         }
-        .table ul li:after{
-            content:'';
-            position: absolute;
-            top:50%;
-            left:50%;
-            width:calc(50%);
-            height:calc(50%);
-            border-radius:50%;
-            transform:translate(-50%,-50%);
-            background-color:#282828;
-            display:none;
+        .table ul li.even{
+            background-color:#1cfc03;
         }
-        .table ul li.fruit{
-            border:3px solid red;
-            opacity:1;
-            transform:scale(0.9);
-        }
-        .table ul li.fruit:after{
-            background-color:red;
-            display:block;
-        }
-        .table ul li.active:after{
-            background-color:#282828;
-            display:block;
+        .table ul li.odd{
+            background-color:#209113;
         }
         .table ul li.active{
-            opacity:1;
-            transform:scale(0.9);
-            border:3px solid #282828;
+            background-color:rgb(231, 16, 44);
+            display:block;
         }
         .buttons{
             width:100%;
@@ -127,6 +108,33 @@
             margin:2px;
             font-size:20px;
         }
+
+        .table ul li.head {
+            position: relative;
+        }
+
+        .table ul li.head::before {
+            content: "";
+            position: absolute;
+            top: 10%;
+            left: 25%;
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .table ul li.head::after {
+            content: "";
+            position: absolute;
+            top: 10%;
+            right: 25%;
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+        }
+
         @media (max-width:500px){
             #page1 {
                 width:calc(100vw - 10px);
@@ -156,273 +164,199 @@
            
        <p style="width:100%;padding:0 10px;font-size:13px;letter-spacing:1px;font-family: 'Poppins', sans-serif;margin-bottom:15px;"> use space bar to start and stop <br> use arrows to change direction</p>
        
+
     </section>
 
  
-   
-    <script>
-      
-        var game_bool = false;
-        var direction = "R";
-        var score = 0;
-        var blocks = [82,83,84,85];
-        var fruitplace = 0;
-        
-        var points = document.querySelector("#score");
-        
-        function draw(){
-            
-            var bodyw = window.innerWidth;
-            if (bodyw < 500){
-                var wi = (bodyw - 13 )/23 + "px";
-                document.documentElement.style.setProperty("--width",wi);
-            }
-            
-         var table = document.querySelector(".table");
-         var id_n = 0;
-         for (var i = 0;i<20;i++){
-             var ul1 = document.createElement("ul");
-             for (var j = 0;j<20;j++){
-                 var li1 = document.createElement("li");
-                 var cl = "box" + id_n;
-                 li1.classList.add(cl);
-                 li1.classList.add("block");
-                 ul1.appendChild(li1);
-                 id_n += 1;
-             }
-             table.appendChild(ul1);
-         }
-    
-         for (var z = 82;z<86;z++){
-             var ele1 = document.querySelector(".box"+z);
-             ele1.classList.add("active");
-         }
-         
-            generate();
-         
-     }
-        
-    draw();
-    
-        
-        
-        function generate(){
-            var available = [];
-            for (var x = 0;x<400;x++){
-                var x1 = document.querySelector(".box"+x);
-                if (x1.classList.contains("active")){
+   <script>
+    const GRID_SIZE = 10;
+    const TOTAL_BLOCKS = GRID_SIZE * GRID_SIZE;
 
-                }else{
-                    available.push(x);
+    let game_bool = false;
+    let direction = "R";
+    let score = 0;
+    let blocks = [64, 65, 66, 67]; // Starting in middle
+    let fruitplace = 0;
+
+    const points = document.querySelector("#score");
+
+    function draw() {
+        const bodyw = window.innerWidth;
+        if (bodyw < 500) {
+            const wi = (bodyw - 13) / (GRID_SIZE + 1) + "px";
+            document.documentElement.style.setProperty("--width", wi);
+        }
+
+        const table = document.querySelector(".table");
+        let id_n = 0;
+
+        for (let i = 0; i < GRID_SIZE; i++) {
+            const ul1 = document.createElement("ul");
+            for (let j = 0; j < GRID_SIZE; j++) {
+                const li1 = document.createElement("li");
+                li1.classList.add(`box${id_n}`, "block");
+
+                // Optional: alternating background classes
+                if ((i + j) % 2 === 0) {
+                    li1.classList.add("even");
+                } else {
+                    li1.classList.add("odd");
                 }
+
+                ul1.appendChild(li1);
+                id_n++;
             }
-            var ran = Math.floor(Math.random()*available.length);
-            document.querySelector(".box"+available[ran]).classList.add("fruit");
-            fruitplace = available[ran];
-            // console.log(fruitplace);
+            table.appendChild(ul1);
         }
         
-        function down1(){
-            if (direction != "U"){
-                direction = "D";
-            }
-            game_bool = true;
-        }
+        const im1 = document.createElement("img");
+        im1.src="1.png";
+        im1.classList.add("fruits");
+        im1.classList.add("img1");
+        table.appendChild(im1);
         
-        function up1(){
-            if (direction != "D"){
-                direction = "U";
-            }
-            game_bool = true;
+        // Initial snake body
+        for (let z = 0; z < blocks.length; z++) {
+            document.querySelector(`.box${blocks[z]}`).classList.add("active");
         }
-        
-        function right1(){
-            if (direction != "L"){
-                direction = "R";
-            }
-            game_bool = true;
-        }
-        
-        function left1(){
-            if (direction != "R"){
-                direction = "L";
-            }
-            game_bool = true;
-        }
-        
-        window.addEventListener("keydown", (e) => {
-          // space = 32
-            
-          if (e.keyCode == 32){
-              if (game_bool){
-                  game_bool = false;
-              }else{
-                  alert("game starts in 3 sec ");
-                  setTimeout(function(){
-                      game_bool = true;
-                  },2000);
-              }
-          }
-            
-          // left = 37
-          // up = 38
-          // right = 39
-          // down = 40
-            
-    if (game_bool){
-             
-         if (e.keyCode == 37){
-            left1();
-         }else if (e.keyCode == 38){
-            up1(); 
-         }else if (e.keyCode == 39){
-            right1();
-         }else if (e.keyCode == 40){
-            down1();
-         }
-  
+
+        document.querySelector(`.box${blocks[blocks.length - 1]}`).classList.add("head");
+
+        generate();
     }
-                
-      });
-        
-        function check(){
-            
-            var in1 = blocks.indexOf(fruitplace);
-           // console.log(in1);
-            
-                if (in1 > -1){
-                   score += 1;
-                   points.innerHTML = score;
-                   var fp = document.querySelector(".box"+fruitplace);
-                   fp.classList.remove("fruit");
-                   generate();
-                 //   console.log("a");
-                }
-                else{
-                    var s2 = ".box" + blocks[0];
-                    var ele22 = document.querySelector(s2);
-                    ele22.classList.remove("active");   
-                    blocks.splice(0,1);
-                }
-            
+
+    draw();
+
+    
+    
+    function generate() {
+        const available = [];
+        for (let x = 0; x < TOTAL_BLOCKS; x++) {
+            const x1 = document.querySelector(`.box${x}`);
+            if (!x1.classList.contains("active")) {
+                available.push(x);
+            }
         }
+
+        const ran = Math.floor(Math.random() * available.length);
+        fruitplace = available[ran];
+
+        const row = Math.floor(fruitplace / GRID_SIZE);
+        const col = fruitplace % GRID_SIZE;
+
+        const img1 = document.querySelector('.img1');
+
+        img1.style.top = row*40 + "px";
+        img1.style.left = col*40 + "px";
+
+        console.log(row,col);
+        console.log(ran);
+
+        document.querySelector(`.box${available[ran]}`).classList.add("fruit");
         
-        function coll(a){
-            check();
-            var inn = blocks.indexOf(a);
-            if (inn > -1){
+
+    }
+
+    function down1() {
+        if (direction !== "U") direction = "D";
+        game_bool = true;
+    }
+
+    function up1() {
+        if (direction !== "D") direction = "U";
+        game_bool = true;
+    }
+
+    function right1() {
+        if (direction !== "L") direction = "R";
+        game_bool = true;
+    }
+
+    function left1() {
+        if (direction !== "R") direction = "L";
+        game_bool = true;
+    }
+
+    window.addEventListener("keydown", (e) => {
+        if (e.keyCode === 32) {
+            if (game_bool) {
                 game_bool = false;
-                alert("game over");
-                setTimeout(function(){
-                    location.reload();
-                },1000);
+            } else {
+                alert("game starts in 3 sec");
+                setTimeout(() => {
+                    game_bool = true;
+                }, 2000);
             }
         }
-        
-        setInterval(function(){
-            
-            if (game_bool){
-                
-                var cb = 0;
-                
-                if (direction == "R"){
-                    
-                var head = blocks[blocks.length - 1];
-                var row1 = Math.floor((head - (head % 10)) / 20);
-                var row_end = row1*20 + 20;
-                if (head + 1 < row_end){
-                    cb = head + 1;
-                    coll(cb);
-                    blocks.push(head + 1);
-                    var s1 = ".box" + eval(head + 1);
-                    var ele11 = document.querySelector(s1);
-                    ele11.classList.add("active");
-                    
-                }else{
-                    cb = row1*20;
-                    coll(cb);
-                    blocks.push(row1*20);
-                    var s1 = ".box" + eval(row1*20);
-                    var ele11 = document.querySelector(s1);
-                    ele11.classList.add("active");
-                }
-                    
-                }
-                
-                else if (direction == "L"){
-                    
-                var head = blocks[blocks.length - 1];
-                var row1 = Math.floor((head - (head % 10)) / 20);
-                var row_end = row1*20 + 19;
-                if (head > row1*20){
-                    cb = head - 1;
-                    coll(cb);
-                    blocks.push(head - 1);
-                    var s1 = ".box" + eval(head - 1);
-                    var ele11 = document.querySelector(s1);
-                    ele11.classList.add("active");
-                }else{
-                    cb = row_end;
-                    coll(cb);
-                    blocks.push(row_end);
-                    var s1 = ".box" + eval(row_end);
-                    var ele11 = document.querySelector(s1);
-                    ele11.classList.add("active");
-                }
-                    
-                }
-                
-                else if (direction == "U"){
-                    
-                var head = blocks[blocks.length - 1];
-                var col1 = head%20;
-                var col_end = col1 + 380;
-                if (head - 20 > 0){
-                    cb = head - 20;
-                    coll(cb);
-                    blocks.push(head - 20);
-                    var s1 = ".box" + eval(head - 20);
-                    var ele11 = document.querySelector(s1);
-                    ele11.classList.add("active");
-                }else{
-                    cb = col_end;
-                    coll(cb);
-                    blocks.push(col_end);
-                    var s1 = ".box" + col_end;
-                    var ele11 = document.querySelector(s1);
-                    ele11.classList.add("active");
-                }
-                    
-                }
-                
-                else if (direction == "D"){
-                    
-                var head = blocks[blocks.length - 1];
-                var col1 = head%20;
-                var col_end = col1 + 400;
-                if (head + 20 < col_end){
-                    cb = head + 20;
-                    coll(cb);
-                    blocks.push(head + 20);
-                    var s1 = ".box" + eval(head + 20);
-                    var ele11 = document.querySelector(s1);
-                    ele11.classList.add("active");
-                }else{
-                    cb = col1;
-                    coll(cb);
-                    blocks.push(col1);
-                    var s1 = ".box" + col1;
-                    var ele11 = document.querySelector(s1);
-                    ele11.classList.add("active");
-                }
-                    
-                }
-                
-            }
-            
-        },340);
-        
-    </script>
+
+        if (!game_bool) return;
+
+        switch (e.keyCode) {
+            case 37: left1(); break;
+            case 38: up1(); break;
+            case 39: right1(); break;
+            case 40: down1(); break;
+        }
+    });
+
+    function check() {
+        if (blocks.includes(fruitplace)) {
+            score += 1;
+            points.innerHTML = score;
+            document.querySelector(`.box${fruitplace}`).classList.remove("fruit");
+            generate();
+        } else {
+            const tail = blocks.shift();
+            document.querySelector(`.box${tail}`).classList.remove("active");
+        }
+    }
+
+    function coll(a) {
+        check();
+        if (blocks.includes(a)) {
+            game_bool = false;
+            alert("game over");
+            setTimeout(() => location.reload(), 1000);
+        }
+    }
+
+    setInterval(() => {
+        if (!game_bool) return;
+
+        const head = blocks[blocks.length - 1];
+        let next;
+
+        switch (direction) {
+            case "R":
+                next = (head % GRID_SIZE === GRID_SIZE - 1) ? head - (GRID_SIZE - 1) : head + 1;
+                break;
+
+            case "L":
+                next = (head % GRID_SIZE === 0) ? head + (GRID_SIZE - 1) : head - 1;
+                break;
+
+            case "U":
+                next = (head - GRID_SIZE < 0) ? head + GRID_SIZE * (GRID_SIZE - 1) : head - GRID_SIZE;
+                break;
+
+            case "D":
+                next = (head + GRID_SIZE >= TOTAL_BLOCKS) ? head % GRID_SIZE : head + GRID_SIZE;
+                break;
+        }
+
+        // Remove old head marker
+        const prevHead = blocks[blocks.length - 1];
+        document.querySelector(`.box${prevHead}`)?.classList.remove("head");
+
+        coll(next);
+        blocks.push(next);
+        const nextBox = document.querySelector(`.box${next}`);
+        nextBox.classList.add("active", "head");
+
+    }, 340);
+
+</script>
+
 
 </body>
 
