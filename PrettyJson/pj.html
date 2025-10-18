@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    
+    <title>Pretty Json</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            list-style:none;
+            font-family: 'Poppins', cursive;
+        }
+        .flex {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        body {
+            width: 100vw;
+            overflow-x: auto;
+            background-color: rgb(224, 213, 213);
+            padding: 0 20px 20px 20px;
+        }
+        
+        nav{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-direction: row;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgb(134, 126, 126,0.7);
+            padding:20px 30px 20px 0;
+            position: sticky;
+            background-color: rgb(224, 213, 213);
+            top: 0;
+        }
+        nav h1{
+            font-size: 20px;
+        }
+        nav button, #modal main button{
+            cursor: pointer;
+            padding: 10px;
+            background-color: black;
+            color: white;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+        }
+
+        #output{
+            font-size: 15px;
+            line-height: 30px;
+        }
+
+        #modal{
+            display: none;
+            position: fixed;
+            top:0;
+            left: 0;
+            width:100vw;
+            height: 100vh;
+            overflow:hidden;
+            backdrop-filter: blur(2px);
+        }
+        #modal main{
+            position: relative;
+            background-color: white;
+            width: 80%;
+            max-width: calc(100vw - 100px);
+            padding: 20px;
+            height: calc(100vh - 100px);
+        }
+        #modal main header{
+            margin-bottom: 20px;
+        }
+        #modal main textarea{
+            outline: none;
+            border:1px solid rgb(134, 126, 126,0.7);
+            width: 100%;
+            height: calc(100% - 100px);
+            resize: none;
+            padding: 20px;
+        }
+        
+    </style>
+
+</head>
+
+<body>
+
+    <nav>
+        <h1><label>&#123;</label><span>PrettyJson</span><label>&#125;</label></h1>
+        <button onclick="openEditor()">Editor</button>
+    </nav>
+
+    <pre id="output"></pre>
+
+
+    <section id="modal" class="flex">
+        <main>
+            <header>
+                <button onclick="saveJson()">save</button>
+                <button onclick="importJSON()">import</button>
+                <button onclick="convertToJSON()">Convert to JSON</button>
+            </header>
+
+            <textarea id="jsonInput">
+{
+  "title": "Welcome to PrettyJson!",
+  "description": "This tool helps you format (prettify) your JSON data for better readability.",
+  "how_to_use": "Click the 'Editor' button to open the JSON editor window.",
+  "tips": [
+    "Make sure your JSON keys and strings are inside double quotes.",
+    "You can use nested objects and arrays | PrettyJson will handle them neatly."
+  ],
+  "example": {
+    "name": "John Doe",
+    "skills": ["HTML", "CSS", "JavaScript"]
+  }
+}</textarea>
+            
+        </main>
+    </section>
+
+  
+   <script>
+
+    function openEditor(){
+        document.getElementById('modal').style.display = 'flex';
+    }
+
+    function convertToJSON() {
+        const input = document.getElementById('jsonInput').value;
+        try {
+        const jsonData = JSON.parse(input);
+        
+        document.getElementById("output").textContent =  JSON.stringify(jsonData, null, 6);
+        
+        console.log("JSON object:", jsonData);
+        document.getElementById('modal').style.display = 'none';
+        
+        } catch (error) {
+            window.alert(error.message);
+        }
+    }
+
+    function saveJson(){
+        const text = document.getElementById("jsonInput").value;
+        const blob = new Blob([text], { type: "application/json" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "data.json";
+        link.click();
+        URL.revokeObjectURL(link.href);
+    }
+
+    function importJSON() {
+        const input = document.createElement("input");
+        input.type = "file";
+        input.accept = ".json";
+
+        input.onchange = e => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = event => {
+                try {
+                    const json = JSON.parse(event.target.result);
+                    document.getElementById("jsonInput").value = JSON.stringify(json, null, 6);
+                } catch (error) {
+                    alert("Invalid file!");
+                }
+            };
+            reader.readAsText(file);
+        };
+
+        input.click();
+}
+
+    convertToJSON();
+
+    </script>
+
+</body>
+
+</html>
