@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Happy Diwali</title>
+  <style>
+    :root{--bg:#071126}
+    html,body{
+      height:100%;
+      margin:0;
+      background:linear-gradient(180deg,var(--bg),#02030a);
+      font-family:Inter,system-ui,Segoe UI,Roboto,Arial;
+      overflow:hidden;
+    }
+    canvas{display:block}
+    .ui{
+      position:fixed;
+      left:16px;
+      top:16px;
+      z-index:10;
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    button{
+      background:#ffcf66;
+      border:0;
+      padding:10px 14px;
+      border-radius:10px;
+      font-weight:600;
+      cursor:pointer;
+      box-shadow:0 6px 18px rgba(0,0,0,0.4);
+    }
+    h1{
+      position:absolute;
+      top:50%;
+      left:50%;
+      color:white;
+      transform:translate(-50%,-50%);
+      font-size:40px;
+      text-shadow:0 0 15px #ffd24a;
+    }
+  </style>
+</head>
+<body>
+  <div class="ui">
+    <button id="launchBtn">Launch Fireworks</button>
+    <button id="burstBtn">Burst Random</button>
+  </div>
+  <h1>Happy Diwali</h1>
+  <canvas id="c"></canvas>
+
+  <script>
+    const canvas = document.getElementById('c');
+    const ctx = canvas.getContext('2d');
+    let W = canvas.width = innerWidth;
+    let H = canvas.height = innerHeight;
+
+    addEventListener('resize', ()=>{
+      W = canvas.width = innerWidth;
+      H = canvas.height = innerHeight;
+    });
+
+    const rand = (a,b)=> Math.random()*(b-a)+a;
+    const colors = ['#ff3f3f','#ff904d','#ffd24a','#7afcff','#7fff8a','#d57bff','#ff7bd1','#ffffff'];
+    const GRAVITY = 0.06;
+    const AIR = 0.99;
+
+    const rockets = [];
+    const particles = [];
+
+    class Rocket{
+      constructor(x,y,tx,ty){
+        this.x = x; this.y = y;
+        const angle = Math.atan2(ty - y, tx - x);
+        const speed = rand(4.5,7.5);
+        this.vx = Math.cos(angle)*speed + rand(-0.5,0.5);
+        this.vy = Math.sin(angle)*speed + rand(-1,1);
+        this.trail = [];
+        this.color = colors[Math.floor(rand(0,colors.length))];
+        this.exploded = false;
+        this.life = 0;
+      }
+      update(){
+        this.trail.push({x:this.x,y:this.y});
+        if(this.trail.length>10) this.trail.shift();
+        this.vy += GRAVITY*0.2;
+        this.vx *= 0.999;
+        this.x += this.vx;
+        this.y += this.vy;
+        this.life++;
+        if(this.vy>0 || this.life>110) this.explode();
+      }
+      explode(){
+        if(this.exploded) return;
+        this.exploded = true;
+        const count = Math.floor(rand(30,120));
+        for(let i=0;i<count;i++){
+          const angle = rand(0,Math.PI*2);
+          const speed = rand(1.5,6);
+          particles.push(new Particle(this.x,this.y,Math.cos(angle)*speed,Math.sin(angle)*speed,this.color));
+        }
+      }
+      draw(ctx){
+        ctx.beginPath();
+        for(const t of this.trail) ctx.lineTo(t.x,t.y);
+        ctx.strokeStyle = this.color;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(this.x,this.y,2.8,0,Math.PI*2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+    }
+
+    class Particle{
+      constructor(x,y,vx,vy,color){
+        this.x = x; this.y = y;
+        this.vx = vx; this.vy = vy;
+        this.life = 0;
+        this.ttl = Math.floor(rand(60,150));
+        this.color = color;
+        this.size = rand(1.2,3.5);
+        this.alpha = 1;
+      }
+      update(){
+        this.vy += GRAVITY;
+        this.vx *= AIR;
+        this.vy *= AIR;
+        this.x += this.vx;
+        this.y += this.vy;
+        this.life++;
+        this.alpha = Math.max(0, 1 - this.life/this.ttl);
+      }
+      draw(ctx){
+        ctx.save();
+        ctx.globalAlpha = this.alpha;
+        ctx.beginPath();
+        ctx.arc(this.x,this.y,this.size*1.6,0,Math.PI*2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        ctx.globalCompositeOperation = 'lighter';
+        ctx.beginPath();
+        ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    function loop(){
+      requestAnimationFrame(loop);
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.fillStyle = 'rgba(2,3,10,0.35)';
+      ctx.fillRect(0,0,W,H);
+      ctx.globalCompositeOperation = 'lighter';
+
+      for(let i=rockets.length-1;i>=0;i--){
+        const r = rockets[i];
+        r.update(); r.draw(ctx);
+        if(r.exploded) rockets.splice(i,1);
+      }
+
+      for(let i=particles.length-1;i>=0;i--){
+        const p = particles[i];
+        p.update(); p.draw(ctx);
+        if(p.life>p.ttl || p.y>H+50) particles.splice(i,1);
+      }
+    }
+
+    document.getElementById('launchBtn').addEventListener('click', ()=>{
+      const tx = rand(W*0.2,W*0.8);
+      rockets.push(new Rocket(W/2, H-10, tx, rand(H*0.15, H*0.45)));
+    });
+
+    document.getElementById('burstBtn').addEventListener('click', ()=>{
+      const cx = rand(100,W-100), cy = rand(H*0.1,H*0.6);
+      const count = Math.floor(rand(60,180));
+      const color = colors[Math.floor(rand(0,colors.length))];
+      for(let i=0;i<count;i++){
+        const angle = rand(0,Math.PI*2);
+        const speed = rand(0.5,6);
+        particles.push(new Particle(cx,cy,Math.cos(angle)*speed,Math.sin(angle)*speed,color));
+      }
+    });
+
+    canvas.addEventListener('pointerdown',(e)=>{
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      rockets.push(new Rocket(rand(50,W-50), H-10, x, y));
+    });
+
+    addEventListener('keydown',(e)=>{
+      if(e.code==='Space'){document.getElementById('launchBtn').click();e.preventDefault();}
+    });
+
+    loop();
+  </script>
+</body>
+</html>
