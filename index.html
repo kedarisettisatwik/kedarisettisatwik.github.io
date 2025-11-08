@@ -3,12 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v7.1.0/css/all.css">
+  
   <title>Satwik</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      font-family: 'Poppins',sans-serif;
     }
 
     html, body {
@@ -33,7 +38,7 @@
       overflow: hidden;
     }
 
-    .section1 { background-color: #0d1117; }
+    .section1 { background-color: #003333; }
     .section2 { background-color: #161b22; }
     .section3 { background-color: #1f2933; }
     .section4 { background-color: #2d3748; }
@@ -48,17 +53,66 @@
       z-index: 0;
     }
 
-    .section1-content {
+    .section1 .content {
       position: relative;
       z-index: 1;
+      flex-direction: column;
+      margin-top: 80px;
     }
+    .section1 .content h1{
+      font-size: 4rem;
+      letter-spacing:1px;
+      color: #11e947;
+    }
+    .section1 .content .intro{
+      margin: 20px 0;
+      font-size:18px;
+      font-weight: bold;
+      background-color: #003333;
+    }
+    .section1 .content .intro span:nth-child(1){
+      padding-right: 15px;
+      border-right:3px solid #11e947;
+    }
+    .section1 .content .intro span:nth-child(2){
+      padding-left: 10px;
+    }
+    .section1 .content p{
+      font-size:14px;
+      background-color: #003333;
+    }
+    .section1 .content .btns{
+      margin: 20px 0;
+    }
+    .section1 .content .btns button{
+      padding: 10px;
+      margin: 0 10px;
+      font-size: 12px;
+      background-color: #003333;
+      color: white;
+      cursor: pointer;
+      border: 1px solid #11e947;
+      border-radius: 5px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
   </style>
 </head>
 <body>
-  <section class="page flex section1">
+  <section class="page section1">
     <canvas id="particle-canvas"></canvas>
-    <div class="section1-content">
-
+    <div class="content flex">
+      <h1>Satwik Kedarisetti</h1>
+      <div class="intro">
+        <span>Web Developer</span>
+        <span>Machine Learning Enthusiast</span>
+      </div>
+      <p>Building web applications using React, Firebase, MongoDB</p>
+      <div class="btns">
+          <button style="background-color: #0ca633;"><i class="fa-solid fa-eye"></i> View Projects</button>
+          <button style="box-shadow: inset 0 0 5px rgb(12, 166, 51, 0.5);"><i class="fa-solid fa-file-lines"></i> Download CV</button>
+      </div>
     </div>
   </section>
 
@@ -160,6 +214,8 @@
         particles.push(new Particle(x, y, true));
       }
     });
+
   </script>
+
 </body>
 </html>
