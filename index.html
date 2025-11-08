@@ -99,6 +99,9 @@
       background-color: #1f2933;
       flex-wrap: wrap;
     }
+    .section1 .content .intro:hover{
+      background-color: transparent;
+    }
     .section1 .content .intro span:nth-child(1){
       padding-right: 15px;
       border-right:3px solid #11e947;
@@ -115,6 +118,12 @@
       margin: 20px 0 10px 0;
       font-size: 28px;
       background-color: #1f2933;
+    }
+    .section1 .content p:hover{
+      background-color: transparent;
+    }
+    .section1 .content .contact:hover{
+      background-color: transparent;
     }
     .section1 .contact a{
       color: #11e947;
@@ -308,7 +317,7 @@
           <a href="mailto:satwik1330@gmail.com" target="_blank"><i class="fa-solid fa-envelope"></i></a>
       </div>
       <div class="btns">
-          <button style="background-color: #0ca633;"><i class="fa-solid fa-eye"></i> View Projects</button>
+          <button style="background-color: #0ca633;" onclick="scrollToSection4()"><i class="fa-solid fa-eye"></i> View Projects</button>
           <button style="box-shadow: inset 0 0 5px rgb(12, 166, 51, 0.5);"><a style="color: white;text-decoration: none;" href="src/cv.pdf" target="_blank"><i class="fa-solid fa-file-lines"></i> Download CV</a></button>
       </div>
     </div>
@@ -523,6 +532,13 @@ reporting, SQL Queries.</label></div>
         particles.push(new Particle(x, y, true));
       }
     });
+
+    function scrollToSection4() {
+      const section = document.querySelector('.section4');
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
 
   </script>
 
