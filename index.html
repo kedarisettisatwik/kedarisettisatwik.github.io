@@ -14,6 +14,7 @@
       padding: 0;
       box-sizing: border-box;
       font-family: 'Poppins',sans-serif;
+      user-select: none;
     }
 
     html, body {
@@ -36,9 +37,11 @@
       height: 100vh;
       position: relative;
       overflow: hidden;
+      padding: 15px;
     }
 
     .section1 { background-color: #003333; }
+    .section1 { background-color: #1f2933; }
     .section2 { background-color: #161b22; }
     .section3 { background-color: #1f2933; }
     .section4 { background-color: #2d3748; }
@@ -64,10 +67,16 @@
       letter-spacing:1px;
       color: #11e947;
     }
+    @media (max-width:450px) {
+      .section1 .content h1{
+        font-size: 40px;
+      }
+    }
     .section1 .content .intro{
       margin: 20px 0;
       font-size:18px;
       font-weight: bold;
+      letter-spacing: 1px;
       background-color: #003333;
     }
     .section1 .content .intro span:nth-child(1){
@@ -100,7 +109,7 @@
   </style>
 </head>
 <body>
-  <section class="page section1">
+  <section class="page section1" id="section1">
     <canvas id="particle-canvas"></canvas>
     <div class="content flex">
       <h1>Satwik Kedarisetti</h1>
@@ -206,7 +215,9 @@
     }
     animate();
 
-    canvas.addEventListener('pointerdown', (e) => {
+    const sec1 = document.getElementById("section1");
+
+    sec1.addEventListener('pointerdown', (e) => {
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
