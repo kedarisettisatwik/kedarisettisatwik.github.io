@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    
+    <title>snake</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            list-style:none;
+            font-family: 'Caveat', cursive;
+        }
+
+        .flex {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        ::-webkit-scrollbar {
+            width: 0px;
+        }
+        :root{
+            --width:40px;
+        }
+        
+        body {
+            width: 100vw;
+            height: 100vh;
+            background-color: white;
+        }
+        
+        #page1 {
+            position: relative;
+            width:400px;
+            overflow: hidden;
+            border-radius:10px;
+        }
+        .nav{
+            width:100%;
+            padding:10px;
+            flex-direction:row;
+            justify-content: space-between;
+        }
+        .nav h3{
+            font-size:30px;
+            font-weight:500;
+            letter-spacing:2px;
+        }
+        #score{
+            margin-right:15px;
+            font-size:30px;
+            font-weight:600;
+        }
+        .table{
+            width:100%;
+            margin:10px 0;
+            position:relative;
+        }
+        .table .fruits{
+            position: absolute;
+            width: 40px;
+            height: 40px;
+        }
+        .table ul{
+            width:100%;
+            display:flex;
+            flex-direction: row;
+            padding:0 2px;
+        }
+        .table ul li{
+            width:var(--width);
+            height:var(--width);
+            position:relative;
+        }
+        .table ul li.even{
+            background-color:#1cfc03;
+        }
+        .table ul li.odd{
+            background-color:#209113;
+        }
+        .table ul li.active{
+            background-color:rgb(231, 16, 44);
+            display:block;
+        }
+        .buttons{
+            width:100%;
+            position:relative;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .buttons i{
+            height:40px;
+            width:40px;
+            cursor:pointer;
+            margin:2px;
+            font-size:20px;
+        }
+
+        .table ul li.head {
+            position: relative;
+        }
+
+        .table ul li.head::before {
+            content: "";
+            position: absolute;
+            top: 10%;
+            left: 25%;
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .table ul li.head::after {
+            content: "";
+            position: absolute;
+            top: 10%;
+            right: 25%;
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        @media (max-width:500px){
+            #page1 {
+                width:calc(100vw - 10px);
+            }
+        }
+        
+    </style>
+
+</head>
+
+<body class="flex">
+
+    <section id="page1" class="flex">
+
+       <nav class="nav flex"><h3>snake</h3><span id="score">0</span></nav>
+       
+       <div class="table">
+           
+       </div>
+       
+       <div class="buttons flex">
+           <i class="fas fa-long-arrow-alt-left flex" onclick="left1()"></i>
+           <i class="fas fa-long-arrow-alt-up flex" onclick="up1()"></i>
+           <i class="fas fa-long-arrow-alt-down flex" onclick="down1()"></i>
+           <i class="fas fa-long-arrow-alt-right flex" onclick="right1()"></i> 
+       </div>   
+           
+       <p style="width:100%;padding:0 10px;font-size:13px;letter-spacing:1px;font-family: 'Poppins', sans-serif;margin-bottom:15px;"> use space bar to start and stop <br> use arrows to change direction</p>
+       
+
+    </section>
+
+ 
+   <script>
+    const GRID_SIZE = 10;
+    const TOTAL_BLOCKS = GRID_SIZE * GRID_SIZE;
+
+    let game_bool = false;
+    let direction = "R";
+    let score = 0;
+    let blocks = [64, 65, 66, 67]; // Starting in middle
+    let fruitplace = 0;
+
+    const points = document.querySelector("#score");
+
+    function draw() {
+        const bodyw = window.innerWidth;
+        if (bodyw < 500) {
+            const wi = (bodyw - 13) / (GRID_SIZE + 1) + "px";
+            document.documentElement.style.setProperty("--width", wi);
+        }
+
+        const table = document.querySelector(".table");
+        let id_n = 0;
+
+        for (let i = 0; i < GRID_SIZE; i++) {
+            const ul1 = document.createElement("ul");
+            for (let j = 0; j < GRID_SIZE; j++) {
+                const li1 = document.createElement("li");
+                li1.classList.add(`box${id_n}`, "block");
+
+                // Optional: alternating background classes
+                if ((i + j) % 2 === 0) {
+                    li1.classList.add("even");
+                } else {
+                    li1.classList.add("odd");
+                }
+
+                ul1.appendChild(li1);
+                id_n++;
+            }
+            table.appendChild(ul1);
+        }
+        
+        const im1 = document.createElement("img");
+        im1.src="lib/snake/1.png";
+        im1.classList.add("fruits");
+        im1.classList.add("img1");
+        table.appendChild(im1);
+        
+        // Initial snake body
+        for (let z = 0; z < blocks.length; z++) {
+            document.querySelector(`.box${blocks[z]}`).classList.add("active");
+        }
+
+        document.querySelector(`.box${blocks[blocks.length - 1]}`).classList.add("head");
+
+        generate();
+    }
+
+    draw();
+
+    
+    
+    function generate() {
+        const available = [];
+        for (let x = 0; x < TOTAL_BLOCKS; x++) {
+            const x1 = document.querySelector(`.box${x}`);
+            if (!x1.classList.contains("active")) {
+                available.push(x);
+            }
+        }
+
+        const ran = Math.floor(Math.random() * available.length);
+        fruitplace = available[ran];
+
+        const row = Math.floor(fruitplace / GRID_SIZE);
+        const col = fruitplace % GRID_SIZE;
+
+        const img1 = document.querySelector('.img1');
+
+        img1.style.top = row*40 + "px";
+        img1.style.left = col*40 + "px";
+
+        console.log(row,col);
+        console.log(ran);
+
+        document.querySelector(`.box${available[ran]}`).classList.add("fruit");
+        
+
+    }
+
+    function down1() {
+        if (direction !== "U") direction = "D";
+        game_bool = true;
+    }
+
+    function up1() {
+        if (direction !== "D") direction = "U";
+        game_bool = true;
+    }
+
+    function right1() {
+        if (direction !== "L") direction = "R";
+        game_bool = true;
+    }
+
+    function left1() {
+        if (direction !== "R") direction = "L";
+        game_bool = true;
+    }
+
+    window.addEventListener("keydown", (e) => {
+        if (e.keyCode === 32) {
+            if (game_bool) {
+                game_bool = false;
+            } else {
+                alert("game starts in 3 sec");
+                setTimeout(() => {
+                    game_bool = true;
+                }, 2000);
+            }
+        }
+
+        if (!game_bool) return;
+
+        switch (e.keyCode) {
+            case 37: left1(); break;
+            case 38: up1(); break;
+            case 39: right1(); break;
+            case 40: down1(); break;
+        }
+    });
+
+    function check() {
+        if (blocks.includes(fruitplace)) {
+            score += 1;
+            points.innerHTML = score;
+            document.querySelector(`.box${fruitplace}`).classList.remove("fruit");
+            generate();
+        } else {
+            const tail = blocks.shift();
+            document.querySelector(`.box${tail}`).classList.remove("active");
+        }
+    }
+
+    function coll(a) {
+        check();
+        if (blocks.includes(a)) {
+            game_bool = false;
+            alert("game over");
+            setTimeout(() => location.reload(), 1000);
+        }
+    }
+
+    setInterval(() => {
+        if (!game_bool) return;
+
+        const head = blocks[blocks.length - 1];
+        let next;
+
+        switch (direction) {
+            case "R":
+                next = (head % GRID_SIZE === GRID_SIZE - 1) ? head - (GRID_SIZE - 1) : head + 1;
+                break;
+
+            case "L":
+                next = (head % GRID_SIZE === 0) ? head + (GRID_SIZE - 1) : head - 1;
+                break;
+
+            case "U":
+                next = (head - GRID_SIZE < 0) ? head + GRID_SIZE * (GRID_SIZE - 1) : head - GRID_SIZE;
+                break;
+
+            case "D":
+                next = (head + GRID_SIZE >= TOTAL_BLOCKS) ? head % GRID_SIZE : head + GRID_SIZE;
+                break;
+        }
+
+        // Remove old head marker
+        const prevHead = blocks[blocks.length - 1];
+        document.querySelector(`.box${prevHead}`)?.classList.remove("head");
+
+        coll(next);
+        blocks.push(next);
+        const nextBox = document.querySelector(`.box${next}`);
+        nextBox.classList.add("active", "head");
+
+    }, 340);
+
+</script>
+
+
+</body>
+
+</html>

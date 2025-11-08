@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.7.2/css/all.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="lib/arts/style.css" />
+    <!-- google fonts -->
+    <title>Arts</title>
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+        body{
+            width:100vw;
+            height:100vh;
+            position: relative;
+            background-color: #dde7ef;
+            overflow-x: hidden;
+        }
+        .gallery{
+            position: relative;
+            width:100%;
+            display:flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            padding:100px 0 100px 0;
+            overflow-x: hidden;
+        }
+        .art{
+            width:400px;
+            height:300px;
+            margin:20px;
+            overflow: hidden;
+        }
+        .flex{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="gallery">
+
+        <div class="art plane">
+            <div class="button">
+                <div class="road">
+                    <li class="line"></li>
+                    <li class="line"></li>
+                    <i class="light" style="left:60px; top:4.5px;"></i>
+                    <i class="light" style="left:80px; top:4.5px;"></i>
+                    <i class="light" style="left:100px; top:4.5px;"></i>
+                    <i class="light" style="left:120px; top:4.5px;"></i>
+                    <i class="light" style="left:60px; bottom:4.5px;"></i>
+                    <i class="light" style="left:80px; bottom:4.5px;"></i>
+                    <i class="light" style="left:100px; bottom:4.5px;"></i>
+                    <i class="light" style="left:120px; bottom:4.5px;"></i>
+                    <span style="left:70px;"></span>
+                    <span style="left:95px;"></span>
+                    <span style="left:120px;"></span>
+                </div>
+                <div class="clouds">
+                    <li>
+                        <i class="fa-solid fa-cloud" style="top: 20px;font-size: 15px;animation-delay: 0s;" ></i>
+                        <i class="fa-solid fa-cloud" style="top: 5px;font-size: 12px;animation-delay:2s;"></i>
+                        <i class="fa-solid fa-cloud" style="top: 40px;font-size: 10px;animation-delay:0.8s;"></i>
+                        <i class="fa-solid fa-cloud" style="top: 25px;font-size: 10px;animation-delay:1s;"></i>
+                        <i class="fa-solid fa-cloud" style="top: 2px;font-size: 16px;animation-delay:0.5s;"></i>
+                        <i class="fa-solid fa-cloud" style="top: 30px;font-size: 8px;animation-delay:1s;"></i>
+                        <i class="fa-solid fa-cloud" style="top: 20px;font-size: 15px;animation-delay:0.6;" ></i>
+                        <i class="fa-solid fa-cloud" style="top: 5px;font-size: 12px;animation-delay:0.7s;"></i>
+                        <i class="fa-solid fa-cloud" style="top: 40px;font-size: 10px;animation-delay:1.5s;"></i>
+                        <i class="fa-solid fa-cloud" style="top: 25px;font-size: 10px;animation-delay:1.5s;"></i>
+                        <i class="fa-solid fa-cloud" style="top: 2px;font-size: 16px;animation-delay:2s;"></i>
+                        <i class="fa-solid fa-cloud" style="top: 30px;font-size: 8px;animation-delay:0.8s;"></i>
+                    </li>
+                </div>
+                <div class="flight" onclick="fly()">
+                    <i class="fa-solid fa-plane"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="art btn1">
+            <button class="bt">
+                hover me
+            </button>
+        </div>
+
+        <div class="art btn2">
+            <button class="bt">
+                <span>hover me</span>
+                <span>hover me</span>
+            </button>
+        </div>
+
+        <div class="art btn3">
+            <div class="bt1">
+                <span>hover me</span>
+            </div>
+        </div>
+
+        <section class="art btn4">
+            <div class="bt" onclick="addani()" id="btn">
+            <div id="pro">
+            
+    <svg viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" class="cart">
+    <path style="fill:#6972DA;" d="M451.938,374.154H156.023c-6.878,0-12.844-4.747-14.391-11.448L67.02,39.385H14.769
+        C6.613,39.385,0,32.772,0,24.616S6.613,9.846,14.769,9.846h64c6.878,0,12.844,4.747,14.391,11.448l74.612,323.321h284.166
+        c8.157,0,14.769,6.613,14.769,14.769C466.708,367.541,460.095,374.154,451.938,374.154z"/>
+    <path style="fill:#1692FF;" d="M508.764,74.466c-2.803-3.503-7.046-5.542-11.533-5.542H92.402c-4.501,0-8.756,2.052-11.558,5.575
+        s-3.845,8.13-2.833,12.515l45.444,196.923c1.547,6.701,7.514,11.448,14.391,11.448h315.077c6.908,0,12.893-4.788,14.409-11.527
+        L511.64,86.935C512.625,82.557,511.567,77.97,508.764,74.466z"/>
+    <path style="fill:#6972DA;" d="M216.615,393.846c-29.86,0-54.154,24.293-54.154,54.154c0,29.86,24.293,54.154,54.154,54.154
+        s54.154-24.293,54.154-54.154C270.769,418.14,246.476,393.846,216.615,393.846z"/>
+    <g>
+        <path style="fill:#4F5EC6;" d="M393.846,393.846c-29.86,0-54.154,24.293-54.154,54.154c0,29.86,24.293,54.154,54.154,54.154
+            c29.86,0,54.154-24.293,54.154-54.154C448,418.14,423.707,393.846,393.846,393.846z"/>
+        <path style="fill:#4F5EC6;" d="M451.938,344.616H256v29.538h195.938c8.157,0,14.769-6.613,14.769-14.769
+            C466.708,351.228,460.095,344.616,451.938,344.616z"/>
+    </g>
+    <path style="fill:#007FDD;" d="M497.231,68.923H256v226.462h196.923c6.908,0,12.893-4.788,14.409-11.527L511.64,86.935
+        c0.986-4.378-0.073-8.965-2.876-12.469C505.96,70.962,501.718,68.923,497.231,68.923z"/>
+    <g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+    </svg>
+
+        
+        <svg viewBox="0 0 392.8 392.8" style="enable-background:new 0 0 392.8 392.8;" xml:space="preserve" class="box">
+    <g>
+        <polygon style="fill:#D9AC80;" points="196.4,0 292,49.2 388,98 292,147.2 196.4,196.4 100.8,147.2 4.8,98 100.8,49.2 	"/>
+        <polygon style="fill:#D7BAA4;" points="316,179.6 316,135.2 268,159.6 268,204 294.4,171.6 	"/>
+        <polygon style="fill:#A67E4F;" points="196.4,196.4 196.4,392.8 388,294.8 388,98 316,135.2 314.4,136 314.4,179.2 294.4,171.6 
+            268,204 268,159.6 	"/>
+        <polygon style="fill:#926E43;" points="196.4,392.8 196.4,196.4 100.8,147.2 4.8,98 4.8,294.8 	"/>
+        <polygon style="fill:#F2D3BA;" points="76.8,61.2 268,159.6 314.4,136 316,135.2 124.8,36.8 100.8,49.2 	"/>
+    </g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+        
+    </div>
+            <label id="check"><i class="far fa-check-circle"></i></label>
+                <span id="text">add to cart</span>
+            </div>
+        </section>
+
+        <section id="phone" class="art">
+            <ul id="box1" class="flex">
+            
+            <section class="bb">
+                <div class="black">
+                <div class="box"></div>
+                <div class="line1"></div>
+                <div class="line2"></div>
+                </div>
+            </section>
+            
+            <section class="circle">
+                <div class="pie">
+                    <div class="red"></div>
+                </div>
+            </section>
+            
+            <li onclick="gob(0)" class="box2 flex active"><i class="fas fa-home"></i></li>
+            
+            <li onclick="gob(1)" class="box2 flex"><i class="fas fa-search"></i></li>
+            
+            <li onclick="gob(2)" class="box2 flex"><i class="fas fa-plus"></i></li>
+            
+            <li onclick="gob(3)" class="box2 flex"><i class="fas fa-heart"></i></li>
+            
+            <li onclick="gob(4)" class="box2 flex"><i class="fas fa-user"></i></li>
+            
+        </ul>
+        </section>
+
+        <div class="art art1">
+            <div class="out a">
+                <div class="in"></div>
+            </div>
+            <div class="out b">
+                <div class="in"></div>
+            </div>
+            <div class="out c">
+                <div class="in"></div>
+            </div>
+            <div class="out d">
+                <div class="in"></div>
+            </div>
+        </div>
+
+        <div class="art art2">
+            <div class="circle"></div>
+            <div class="a z">
+            <div>
+                <li></li>
+            </div>
+            </div>
+            <div class="b z">
+            <div>
+                <li></li>
+            </div>
+            </div>
+            <div class="c z">
+            <div>
+                <li></li>
+            </div>
+            </div>
+            <div class="d z">
+            <div>
+                <li></li>
+            </div>
+            </div>
+        </div>
+
+        <div class="art art3">
+            <div class="circle"></div>
+            <div class="stem">
+                <div class="a z"></div>
+                <div class="b z"></div>
+            </div>
+        </div>
+
+        <div class="art art4">
+            <div class="circle">
+                <div class="a z"></div>
+                <div class="b z"></div>
+                <div class="c z"></div>
+            </div>
+        </div>
+
+        <div class="art art5">
+            <div class="square"></div>
+        </div>
+
+        <div class="art art6">
+            <div class="box">
+                <div class="a z"></div>
+                <div class="b z"></div>
+                <div class="c z"></div>
+                <div class="d z"></div>
+            </div>
+        </div>
+
+        <div class="art art7">
+            <div class="box">
+                <div class="outer">
+                    <div class="inner">
+                        <div class="core"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="art art8">
+            <div class="a z"></div>
+            <div class="b z"></div>
+            <div class="c z"></div>
+        </div>
+
+        <div class="art art9">
+            <div class="drop a"></div>
+            <div class="drop c"></div>
+            <div class="drop b"></div>
+        </div>
+
+        <div class="art art10">
+            <div class="fork a"></div>
+            <div class="fork b"></div>
+            <div class="c">
+                <div class="fork d"></div>
+                <div class="bg e"></div>
+                <div class="fork f"></div>
+                <div class="bg g"></div>
+                <div class="fork h"></div>
+                <div class="bg i"></div>
+                <div class="fork j"></div>
+            </div>
+        </div>
+
+        <div class="art art11">
+            <div class="blue a"></div>
+            <div class="dark b"></div>
+            <div class="blue c"></div>
+            <div class="dark d"></div>
+        </div>
+
+        <div class="art art12">
+            <div class="yellow a">
+                <div class="darkred out">
+                    <div class="red in"></div>
+                </div>
+            </div>
+            <div class="yellow b">
+                <div class="red out">
+                    <div class="darkred in"></div>
+                </div>
+            </div>
+            <div class="yellow c">
+                <div class="darkred out">
+                    <div class="red in"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="art art13">
+            <div class="a"></div>
+            <div class="b center"></div>
+            <div class="c center"></div>
+            <div class="d"></div>
+        </div>
+
+        <div class="art art14">
+            <div class="out a">
+                <div class="in"></div>
+            </div>
+            <div class="out b">
+                <div class="in"></div>
+            </div>
+            <div class="out c">
+                <div class="in"></div>
+            </div>
+            <div class="dot d"></div>
+            <div class="dot e"></div>
+        </div>
+
+        <div class="art art15">
+            <div class="a">
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+            </div>
+            <div class="b">
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+            </div>
+        </div>
+
+        <div class="art art16">
+            <div class="tri a"></div>
+            <div class="tri b"></div>
+            <div class="tri c"></div>
+            <div class="tri d"></div>
+        </div>
+
+        <div class="art art17">
+            <div class="right z"></div>
+            <div class="left z"></div>
+        </div>
+
+        <div class="art art18">
+            <div class="left a"></div>
+            <div class="right a"></div>
+            <div class="ring z"></div>
+            <div class="out z"></div>
+            <div class="in z"></div>
+        </div>
+
+        <div class="art art19">
+            <div class="join"></div>
+
+            <div class="a z"></div>
+            <div class="b z"></div>
+
+            <div class="c y"></div>
+            <div class="d y"></div>
+        </div>
+
+        <div class="art art20">
+            <div class="sq a"></div>
+            <div class="sq b"></div>
+            <div class="sq a"></div>
+            <div class="sq b"></div>
+            <div class="sq b"></div>
+            <div class="sq a"></div>
+            <div class="sq b"></div>
+            <div class="sq a"></div>
+            <div class="sq a"></div>
+            <div class="sq b"></div>
+            <div class="sq a"></div>
+            <div class="sq b"></div>
+        </div>
+
+        <div class="art art21">
+            <div class="c"></div>
+            <div class="a"></div>
+            <div class="b"></div>
+        </div>
+
+        <div class="art art22">
+            <div class="y z">
+                <i class="a"></i>
+                <i class="b"></i>
+                <i class="c"></i>
+                <i class="d"></i>
+            </div>
+            <div class="r z">
+                <i class="e"></i>
+                <i class="f"></i>
+                <i class="g"></i>
+                <i class="h"></i>
+            </div>
+        </div>
+
+    </section>
+
+
+    <script>
+        var x = 1;
+        function fly(){
+            if (x == 1){
+                x = -1;
+                document.querySelector('.plane').classList.add("active");
+            }
+            else{
+                x = 1;
+                document.querySelector('.plane').classList.remove("active");
+            }
+        }
+
+        function addani(){
+            var ele = document.getElementById("pro");
+            var tt  = document.getElementById("text");
+            var btn  = document.getElementById("btn");
+            
+            if (ele.classList.contains("totalani")){
+                btn.classList.remove("start");
+                tt.classList.remove("textanim");
+                ele.classList.remove("totalani");
+            }else{
+                tt.classList.add("textanim");
+                ele.classList.add("totalani");
+                btn.classList.add("start");
+            }
+        }
+
+        var actives = 0;
+       
+       var tf = true;
+       var box2 = document.querySelectorAll(".box2");
+       var bb = document.querySelector(".black");
+       var box = document.querySelector(".box");
+       var pie = document.querySelector(".pie");
+       var red1 = document.querySelector(".red");
+       
+       function gob(a){
+           if (tf){
+               tf = false;
+               box2[actives].classList.remove("active");
+               
+               actives = a;
+               bb.style.transform = "translateY(-100%)";
+               bb.style.opacity = "0";
+               
+               pie.style.transform = "translateY(-100%)";
+               pie.style.left = (a * 20) + "%";
+               
+               setTimeout(function(){
+                   bb.style.left = (a * 20) + "%";
+                   pie.style.transform = "translateY(0%)";
+                   bb.style.transform = "translateY(0%)";
+                   bb.style.opacity = "1";
+                   box2[a].classList.add("active");
+               },300);
+               
+               setTimeout(function(){
+                   box.style.height = "calc(100% - 12px)";
+                   red1.style.transform = "translate(-50%,calc(-50% + 10px))";
+               },500);
+               
+               setTimeout(function(){
+                   box.style.height = "calc(100% - 20px)";
+                   red1.style.transform = "translate(-50%,calc(-50% + 0px))";
+                   tf = true;
+               },800);
+               
+           }
+       }
+       
+       gob(0);
+
+    </script>
+
+
+</body>
+</html>
