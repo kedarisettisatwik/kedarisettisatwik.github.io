@@ -34,7 +34,7 @@
 
     .page {
       width: 100vw;
-      height: 100vh;
+      min-height: 100vh;
       position: relative;
       overflow: hidden;
       padding: 15px;
@@ -121,6 +121,100 @@
       letter-spacing: 1px;
     }
 
+    .section2{
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .section2 h1{
+      margin-top: 25px;
+      font-size: 25px;
+      letter-spacing: 1px;
+      font-weight: 300;
+    }
+    .section2 .content{
+      box-shadow: 0 0 20px rgb(0,0,0,0.3);
+      background-color: #1f2933;
+      margin: 30px 0;
+      width: 650px;
+      max-width: calc(100% - 30px);
+      position: relative;
+      border-radius: 20px;
+      padding:10px 10px 10px 50px;
+      overflow: hidden;
+    }
+    .section2 .content .list{
+      background-color: #161b22;
+      border-radius: 20px;
+      padding: 10px 20px;
+      margin: 15px 0;
+      position: relative;
+    }
+    .section2 .content .list .grade{
+      margin-top: 5px;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .section2 .content .list span{
+      font-size: 10px;
+      letter-spacing: 1px;
+      font-weight: bold;
+    }
+    .section2 .content .list .grade h3{
+      letter-spacing: 1px;
+      font-size:15px;
+    }
+    .section2 .content .list .grade h4{
+      border-radius: 12px;
+      color: white;
+      padding: 0 10px;
+      line-height: 25px;
+      margin:5px 0;
+    }
+    .section2 .content .timeline{
+      position: absolute;
+      top:25px;
+      left: 24px;
+      height:calc(100% - 50px);
+      width: 5px;
+      background-color:#9d9d9d6e;
+      border-radius: 10px;
+    }
+    .section2 .content .list::before{
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #1f2933;
+      top:50%;
+      left: -30px;
+      transform: translateY(-50%);
+    }
+    .section2 .content .list::after{
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      top:50%;
+      left: -28px;
+      transform: translateY(-50%);
+    }
+    .section2 .content .list1::after{
+      background-color: #ee6b38;
+    }
+    .section2 .content .list2::after{
+      background-color: #ebee38;
+    }
+    .section2 .content .list3::after{
+      background-color: #38ee99;
+    }
+    .section2 .content .list4::after{
+      background-color: #2f85e7;
+    }
+    .section2 .content .list5::after{
+      background-color: #bc21e2;
+    }
+
   </style>
 </head>
 <body>
@@ -145,7 +239,69 @@
     </div>
   </section>
 
-  <section class="page section2"></section>
+  <section class="page section2 flex">
+    <h1>Educatoin & Experience</h1>
+    <p>🚀 My Journey : From Campus to Corporate</p>
+    <div class="content">
+      <div class="timeline">
+
+      </div>
+      <div class="list list1">
+        <div>
+          <div class="grade flex">
+            <h3>ADP</h3>
+            <h4 style="background-color: #691803;"><span style="font-size: 11px; letter-spacing: 1px;">Member Techincal</span></h4>
+          </div>
+          <span style="color: #ee6b38;font-weight: bold;">Dec 2024 - Present</span>
+          <div style="margin-top: 10px;font-size:12px;"><label> Worked on Lyric (HCM global
+platform). Learned about the debugging, used local no code platform to develop product and took part in
+reporting, SQL Queries.</label></div>
+          <label style="display:block;font-size: 12px;margin: 10px 0;"><i class="fa-solid fa-location-dot" style="opacity:0.5;"></i> Hyderabad</label>
+        </div>
+      </div>
+      <div class="list list2">
+        <div>
+          <div class="grade flex">
+            <h3>Brane Enterprises </h3>
+            <h4 style="background-color: #776f05;"><span style="font-size: 11px; letter-spacing: 1px;">Assosiative Solution Leader</span></h4>
+          </div>
+          <span style="color: #ebee38;font-weight: bold;">June 2024 - Aug 2024</span>
+          <div style="margin-top: 10px;font-size:12px;"><label> Worked on NSL. Learned about the sms, otp generation. Created a sample projects like online movie tickets booking, online food booking applications.</label></div>
+          <label style="display:block;font-size: 12px;margin: 10px 0;"><i class="fa-solid fa-location-dot" style="opacity:0.5;"></i> Hyderabad</label>
+        </div>
+      </div>
+      <div class="list list3">
+        <div>
+          <div class="grade flex">
+            <h3>NIT Karnataka </h3>
+            <h4 style="background-color: #058f3a;"><span style="font-size: 11px;">8.25</span> <span style="font-size: 9px; opacity: 0.7;"> / 10.0</span></h4>
+          </div>
+          <span style="color: #38ee99;font-weight: bold;">2020 - 2024</span>
+          <div style="margin-bottom: 10px;font-size:12px;"><label>Bachelor of Technology in EEE</label></div>
+          </div>
+      </div>
+      <div class="list list4">
+        <div>
+          <div class="grade flex">
+            <h3>Aditya College </h3>
+            <h4 style="background-color: #0d09d8;"><span style="font-size: 11px;">945</span> <span style="font-size: 9px; opacity: 0.7;"> / 1000</span></h4>
+          </div>
+          <span style="color: #2f85e7;font-weight: bold;">2018 - 2020</span>
+          <div style="margin-bottom: 10px;font-size:12px;"><label>JEE Mains 99.4%</label></div>
+          </div>
+      </div>
+      <div class="list list5">
+        <div>
+          <div class="grade flex">
+            <h3>KKR  Gowtham School </h3>
+            <h4 style="background-color: #9308b6;"><span style="font-size: 11px;">10.0</span> <span style="font-size: 9px; opacity: 0.7;"> / 10.0</span></h4>
+          </div>
+          <span style="color: #bc21e2;font-weight: bold;">2015 - 2018</span>
+          <div style="font-size:12px;margin-bottom: 10px;"><label>Secondary Schooling</label></div>
+          </div>
+      </div>
+    </div> 
+  </section>
   
   <section class="page section3"></section>
   
