@@ -298,6 +298,67 @@
       letter-spacing: 1px;
       font-weight: 300;
     }
+    .section4 .list{
+      margin:20px 0;
+      flex-wrap: wrap;
+      position: relative;
+    }
+    .section4 img{
+      height:200px;
+      max-width: calc(100% - 20px);
+      object-fit: contain;
+    }
+    .section4 .project{
+      width: 400px;
+      max-width: 100%;
+      box-shadow: 0 0 20px rgb(0, 0, 0, 0.2);
+      border-radius: 20px;
+      background-color: #303133;
+      border: 1px solid rgb(255, 255, 255, 0.1);
+      margin: 10px;
+    }
+    .section4 .project .img{
+      margin:10px 0;
+    }
+    .section4 h2{
+      padding: 0 20px;
+      font-size: 19px;
+      letter-spacing: 1px;
+      margin: 10px 0;
+    }
+    .section4 p{
+      padding: 0 20px;
+      font-size: 14px;
+      opacity: 0.8;
+      margin:5px 0;
+    }
+    .section4 .lang{
+      flex-wrap: wrap;
+      padding: 0 10px;
+      justify-content: flex-start;
+    }
+    .section4 .lang li{
+      list-style: none;
+      padding:2px 10px;
+      margin: 10px;
+      background-color: rgb(230, 229, 229);
+      color: black;
+      border-radius: 5px;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    .section4 .links{
+      margin: 5px 0 10px 0;
+      padding: 0 10px;
+    }
+    .section4 .links a{
+      margin:0 10px;
+      font-size: 14px;
+      cursor: pointer;
+      padding: 5px;
+      color: white;
+    }
 
   </style>
 </head>
@@ -435,7 +496,236 @@ reporting, SQL Queries.</label></div>
   
   <section class="page section4 flex">
     <h1>Projects</h1>
+    <div class="list flex">
 
+      <div class="project">
+          <div class="img flex">
+            <img src="src/projects/tnd.png">
+          </div>
+          <h2>TND</h2>
+          <p>An web application in which users can make notes, organize tasks and also add dairy.</p>
+          <div class="lang flex">
+            <li>React JS</li>
+            <li>Firebase</li>
+          </div>
+          <div class="links">
+              <a href="https://github.com/kedarisettisatwik/tend" target="_blank">Code</a>
+              <a href="https://kedarisettisatwik.github.io/tend/" target="_blank">Live</a>
+          </div>
+      </div>
+
+      <div class="project">
+          <div class="img flex">
+            <img src="src/projects/uber.png">
+          </div>
+          <h2>Uber Report</h2>
+          <p>PowerBI representation of uber revenue, trips distance and more.</p>
+          <div class="lang flex">
+            <li>PowerBI</li>
+          </div>
+          <div class="links">
+              <a href="https://github.com/kedarisettisatwik/kedarisettisatwik.github.io/tree/master/powerBI_Projects/uber" target="_blank">Code</a>
+              <a href="powerBI_Projects/uber/Uber_dashboard.pbix" target="_blank">Live</a>
+          </div>
+      </div>
+
+      <div class="project">
+          <div class="img flex">
+            <img src="src/projects/weather.png">
+          </div>
+          <h2>Weather</h2>
+          <p>Integrated with open weather API, uses device location and gets the weather report</p>
+          <div class="lang flex">
+            <li>API</li>
+            <li>HTML</li>
+          </div>
+          <div class="links">
+              <a href="https://github.com/kedarisettisatwik/kedarisettisatwik.github.io/blob/master/weatherData.html" target="_blank">Code</a>
+              <a href="weatherData.html" target="_blank">Live</a>
+          </div>
+      </div>
+
+      <div class="project">
+          <div class="img flex">
+            <img src="src/projects/ping.png">
+          </div>
+          <h2>pingpong</h2>
+          <p>pure magic of CSS, JS. You can play with ping pong with computer.</p>
+          <div class="lang flex">
+            <li>Java Script</li>
+            <li>CSS</li>
+          </div>
+          <div class="links">
+              <a href="https://github.com/kedarisettisatwik/kedarisettisatwik.github.io/blob/master/pingpong.html" target="_blank">Code</a>
+              <a href="pingpong.html" target="_blank">Live</a>
+          </div>
+      </div>
+
+      <div class="project">
+          <div class="img flex">
+            <img src="src/projects/arts.png">
+          </div>
+          <h2>ART's By Code</h2>
+          <p>Collection of buttons and navigation buttons.</p>
+          <div class="lang flex">
+            <li>HTML</li>
+            <li>Java Script</li>
+            <li>CSS</li>
+          </div>
+          <div class="links">
+              <a href="https://github.com/kedarisettisatwik/kedarisettisatwik.github.io/blob/master/artsbycode.html" target="_blank">Code</a>
+              <a href="artsbycode.html" target="_blank">Live</a>
+          </div>
+      </div>
+
+      <div class="project">
+          <div class="img flex">
+            <img src="src/projects/cold.png">
+          </div>
+          <h2>COLD</h2>
+          <p>Reference books and resources to DSA, SQL, OS, Computer Network</p>
+          <div class="lang flex">
+            <li>HTML</li>
+          </div>
+          <div class="links">
+              <a href="https://github.com/kedarisettisatwik/kedarisettisatwik.github.io/blob/master/cold.html" target="_blank">Code</a>
+              <a href="Cold.html" target="_blank">Live</a>
+          </div>
+      </div>
+
+      <div class="project">
+          <div class="img flex">
+            <img src="src/projects/diwali.png">
+          </div>
+          <h2>Diwali Bursts</h2>
+          <p>Magic of Canvas in javascript, you can click on screen and you can see the burst effects.</p>
+          <div class="lang flex">
+            <li>HTML</li>
+            <li>Canvas</li>
+            <li>javascript</li>
+          </div>
+          <div class="links">
+              <a href="https://github.com/kedarisettisatwik/kedarisettisatwik.github.io/blob/master/diwali.html" target="_blank">Code</a>
+              <a href="diwali.html" target="_blank">Live</a>
+          </div>
+      </div>
+
+      <div class="project">
+          <div class="img flex">
+            <img src="src/projects/canvas.png">
+          </div>
+          <h2>Draw Canvas</h2>
+          <p>Made with canvas elements and javascript</p>
+          <div class="lang flex">
+            <li>HTML</li>
+            <li>Java Script</li>
+          </div>
+          <div class="links">
+              <a href="https://github.com/kedarisettisatwik/kedarisettisatwik.github.io/blob/master/drawcanvas.html" target="_blank">Code</a>
+              <a href="drawcanvas.html" target="_blank">Live</a>
+          </div>
+      </div>
+
+      <div class="project">
+          <div class="img flex">
+            <img src="src/projects/editor.png">
+          </div>
+          <h2>Image Editor</h2>
+          <p>you can upload image and setup brightness, saturation, gray and download.</p>
+          <div class="lang flex">
+            <li>HTML</li>
+            <li>CSS</li>
+          </div>
+          <div class="links">
+              <a href="https://github.com/kedarisettisatwik/kedarisettisatwik.github.io/blob/master/imgeditor.html" target="_blank">Code</a>
+              <a href="imgeditor.html" target="_blank">Live</a>
+          </div>
+      </div>
+
+      <div class="project">
+          <div class="img flex">
+            <img src="src/projects/color.png">
+          </div>
+          <h2>Color Game</h2>
+          <p>Simple relax game, made with javascript random function and css</p>
+          <div class="lang flex">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>javascript</li>
+          </div>
+          <div class="links">
+              <a href="https://github.com/kedarisettisatwik/kedarisettisatwik.github.io/blob/master/colors.html" target="_blank">Code</a>
+              <a href="colors.html" target="_blank">Live</a>
+          </div>
+      </div>
+
+      <div class="project">
+          <div class="img flex">
+            <img src="src/projects/snake.png">
+          </div>
+          <h2>Snake</h2>
+          <p>popular sony keybord snake game is here, enjoy !!</p>
+          <div class="lang flex">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>javascript</li>
+          </div>
+          <div class="links">
+              <a href="https://github.com/kedarisettisatwik/kedarisettisatwik.github.io/blob/master/snake.html" target="_blank">Code</a>
+              <a href="snake.html" target="_blank">Live</a>
+          </div>
+      </div>
+
+      <div class="project">
+          <div class="img flex">
+            <img src="src/projects/sudoko.png">
+          </div>
+          <h2>Sudoko</h2>
+          <p>Multi level Sudoko, made with back tracking method</p>
+          <div class="lang flex">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>javascript</li>
+          </div>
+          <div class="links">
+              <a href="https://github.com/kedarisettisatwik/kedarisettisatwik.github.io/blob/master/sudoko.html" target="_blank">Code</a>
+              <a href="sudoku.html" target="_blank">Live</a>
+          </div>
+      </div>
+
+      <div class="project">
+          <div class="img flex">
+            <img src="src/projects/json.png">
+          </div>
+          <h2>PrettyJson</h2>
+          <p>you want to open json files and want to look neat, use this website.</p>
+          <div class="lang flex">
+            <li>HTML</li>
+            <li>javascript</li>
+          </div>
+          <div class="links">
+              <a href="https://github.com/kedarisettisatwik/kedarisettisatwik.github.io/blob/master/prettyJson.html" target="_blank">Code</a>
+              <a href="prettyJson.html" target="_blank">Live</a>
+          </div>
+      </div>
+
+      <div class="project">
+          <div class="img flex">
+            <img src="src/projects/speech.png">
+          </div>
+          <h2>Text2Speech</h2>
+          <p>Enter any text you want to hear and click convert speech.</p>
+          <div class="lang flex">
+            <li>HTML</li>
+            <li>javascript</li>
+          </div>
+          <div class="links">
+              <a href="https://github.com/kedarisettisatwik/kedarisettisatwik.github.io/blob/master/text2speech.html" target="_blank">Code</a>
+              <a href="text2speech.html" target="_blank">Live</a>
+          </div>
+      </div>
+
+    </div>
   </section>
   
   <section class="page section5"></section>
