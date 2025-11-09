@@ -360,6 +360,27 @@
       color: white;
     }
 
+    .section5{
+      flex-direction: column;
+      justify-content: flex-start;
+      min-height: 400px;
+    }
+    .section5 h1{
+      margin-top: 25px;
+      font-size: 25px;
+      letter-spacing: 1px;
+      font-weight: 300;
+    }
+    .section5 .list{
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+    .section5 .list img{
+      height: 200px;
+      margin: 15px;
+    }
+
+
   </style>
 </head>
 <body>
@@ -728,7 +749,19 @@ reporting, SQL Queries.</label></div>
     </div>
   </section>
   
-  <section class="page section5"></section>
+  <section class="page section5 flex">
+    <h1>Certificates</h1>
+    <div class="list flex">
+      <img src="src/certificates/1.jpg">
+      <img src="src/certificates/cpp.jpg">
+      <img src="src/certificates/python.jpg">
+      <img src="src/certificates/sql.jpg">
+      <img src="src/certificates/powerBI.png">
+      <img src="src/certificates/js.jpg">
+      <img src="src/certificates/html.png">
+      <img src="src/certificates/responsive design.jpg">
+    </div>
+  </section>
 
   <script>
     const canvas = document.getElementById('particle-canvas');
