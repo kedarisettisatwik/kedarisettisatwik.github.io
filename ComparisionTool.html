@@ -141,12 +141,17 @@
     align-items:flex-start;
     justify-content: space-between;
     gap:8px;
+    position:relative;
   }
   .item-tag{
     font-family:'IBM Plex Mono', monospace;
     font-size: 11px;
     color: var(--ink-soft);
     letter-spacing: 0.04em;
+  }
+  .item-tag.score-best{
+    position: absolute;
+    bottom: -15px;
   }
 
   tbody th{
@@ -357,10 +362,9 @@
       <label for="attrTypeInput">Row type</label>
       <select id="attrTypeInput">
         <option value="text">Text</option>
-        <option value="number">Number</option>
+        <option value="Number">Number</option>
         <option value="url">URL / link</option>
         <option value="date">Date</option>
-        <option value="price">Price</option>
         <option value="yesno">Yes / No</option>
         <option value="rating">Rating (1–5)</option>
       </select>
@@ -454,7 +458,7 @@
       parsed.attributes.forEach(function(a){
         if(!a.direction){
           a.direction =
-            (a.type === "price") ? "lower" :
+            (a.type === "Number") ? "lower" :
             (a.type === "rating") ? "higher" :
             "none";
         }
@@ -547,6 +551,24 @@
     state.values[itemId][attrId] = value;
   }
 
+  function computeScores() {
+      var scores = {};
+
+      state.items.forEach(function(item){
+          scores[item.id] = 0;
+      });
+
+      state.attributes.forEach(function(attr){
+          var winners = computeWinners(attr);
+
+          Object.keys(winners).forEach(function(id){
+              if(winners[id]) scores[id]++;
+          });
+      });
+
+      return scores;
+  }
+
   function computeWinners(attr){
     var dir = attr.direction || "none";
     if(dir === "none") return {};
@@ -591,7 +613,7 @@
 
   var TYPE_BASE_LABELS = {
     text: "text", url: "url", date: "date",
-    price: "price", yesno: "yes / no", rating: "rating", number:"number"
+    Number: "number", yesno: "yes / no", rating: "rating"
   };
 
   function attrBadgeLabel(attr){
@@ -629,17 +651,12 @@
       return '<input class="cell-input" type="date" ' + d + ' value="' + escapeAttr(val) + '">';
     }
 
-    if(attr.type === "price"){
-      return '<div class="cell-price"><span class="prefix">$</span>' +
-        '<input class="cell-input" type="text" ' + d + ' value="' + escapeAttr(val) + '" placeholder="0">' +
-        '</div>';
-    }
-    
-    if(attr.type === "number"){
+    if(attr.type === "Number"){
       return '<div class="cell-price"><span class="prefix">#</span>' +
         '<input class="cell-input" type="text" ' + d + ' value="' + escapeAttr(val) + '" placeholder="0">' +
         '</div>';
     }
+  
 
     if(attr.type === "yesno"){
       var opts = ["", "Yes", "No"].map(function(o){
@@ -662,6 +679,7 @@
   }
 
   function render(){
+    var scores = computeScores();
     var hasItems = state.items.length > 0;
 
     if(!hasItems){
@@ -684,6 +702,7 @@
       th.innerHTML =
         '<div class="item-card-name">' +
           '<span>' + escapeHtml(item.title || "Untitled") + '</span>' +
+          '<div class="item-tag score-best">★ ' + scores[item.id] + '</div>' +
           '<span>' +
             '<button class="icon-x" title="Edit item" data-edit-item="' + item.id + '">✎</button>' +
             '<button class="icon-x" title="Remove item" data-del-item="' + item.id + '">✕</button>' +
@@ -859,12 +878,12 @@
   var attrDirectionField = document.getElementById("attrDirectionField");
   var attrDirectionInput = document.getElementById("attrDirectionInput");
 
-  var TYPES_WITH_DIRECTION = { price: "lower", rating: "higher", number:"number", "yesno":"yes" };
+  var TYPES_WITH_DIRECTION = { Number: "lower", rating: "higher", "yesno":"yes" };
 
   function syncDirectionField(){
     var type = attrTypeInput.value;
 
-    if(type === "price"){
+    if(type === "Number"){
       attrDirectionField.classList.remove("hidden");
       attrDirectionInput.innerHTML = `
         <option value="lower">Lowest wins</option>
