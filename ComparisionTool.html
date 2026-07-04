@@ -550,6 +550,22 @@
   function computeWinners(attr){
     var dir = attr.direction || "none";
     if(dir === "none") return {};
+    if(attr.type === "yesno"){
+      var winners = {};
+
+      state.items.forEach(function(item){
+        var value = (getVal(item.id, attr.id) || "").toLowerCase();
+
+        if(
+          (attr.direction === "yes" && value === "yes") ||
+          (attr.direction === "no" && value === "no")
+        ){
+          winners[item.id] = true;
+        }
+      });
+
+      return winners;
+    }
     var best = null, nums = {};
     state.items.forEach(function(item){
       var n = parseNumber(getVal(item.id, attr.id));
@@ -580,8 +596,12 @@
 
   function attrBadgeLabel(attr){
     var base = TYPE_BASE_LABELS[attr.type] || attr.type;
+
     if(attr.direction === "lower") return base + " · lowest wins";
     if(attr.direction === "higher") return base + " · highest wins";
+    if(attr.direction === "yes") return base + " · yes wins";
+    if(attr.direction === "no") return base + " · no wins";
+
     return base;
   }
 
@@ -839,18 +859,44 @@
   var attrDirectionField = document.getElementById("attrDirectionField");
   var attrDirectionInput = document.getElementById("attrDirectionInput");
 
-  var TYPES_WITH_DIRECTION = { price: "lower", rating: "higher", number:"number" };
+  var TYPES_WITH_DIRECTION = { price: "lower", rating: "higher", number:"number", "yesno":"yes" };
 
   function syncDirectionField(){
     var type = attrTypeInput.value;
-    if(TYPES_WITH_DIRECTION[type]){
+
+    if(type === "price"){
       attrDirectionField.classList.remove("hidden");
-      attrDirectionInput.value = TYPES_WITH_DIRECTION[type];
-    } else {
+      attrDirectionInput.innerHTML = `
+        <option value="lower">Lowest wins</option>
+        <option value="higher">Highest wins</option>
+        <option value="none">Don't highlight a winner</option>
+      `;
+      attrDirectionInput.value = "lower";
+    }
+    else if(type === "rating"){
+      attrDirectionField.classList.remove("hidden");
+      attrDirectionInput.innerHTML = `
+        <option value="higher">Highest wins</option>
+        <option value="lower">Lowest wins</option>
+        <option value="none">Don't highlight a winner</option>
+      `;
+      attrDirectionInput.value = "higher";
+    }
+    else if(type === "yesno"){
+      attrDirectionField.classList.remove("hidden");
+      attrDirectionInput.innerHTML = `
+        <option value="yes">Highlight Yes</option>
+        <option value="no">Highlight No</option>
+        <option value="none">Don't highlight a winner</option>
+      `;
+      attrDirectionInput.value = "yes";
+    }
+    else{
       attrDirectionField.classList.add("hidden");
       attrDirectionInput.value = "none";
     }
   }
+
   attrTypeInput.addEventListener("change", syncDirectionField);
 
   function openAttrModal(){
