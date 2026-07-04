@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>sideByside — Projects</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --bg:#EAEEF2;
+    --paper:#fff;
+    --ink:#1C2733;
+    --ink-soft:#5B6675;
+    --line:#D6DCE3;
+    --gold:#E3A23C;
+    --teal:#2F6F6B;
+    --teal-soft:#E1EFEE;
+    --brick:#B5484D;
+    --radius:10px;
+    --shadow:0 1px 2px rgba(28,39,51,.06),0 8px 24px rgba(28,39,51,.06);
+}
+
+*{box-sizing:border-box;}
+
+body{
+    margin:0;
+    font-family:'Inter',sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+
+    background-image:
+    radial-gradient(circle at center,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,.15) 10%,
+    rgba(255,255,255,.5) 20%),
+    linear-gradient(var(--line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line) 1px,transparent 1px);
+
+    background-size:28px 28px;
+    background-position:-1px -1px;
+
+    padding:40px 24px 80px;
+}
+
+.wrap{
+    max-width:1100px;
+    margin:auto;
+}
+
+.eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    background:var(--teal-soft);
+    color:var(--teal);
+    display:inline-block;
+    padding:4px 10px;
+    border-radius:999px;
+    font-size:12px;
+    text-transform:uppercase;
+    margin-bottom:14px;
+}
+
+h1{
+    font-family:'Fraunces',serif;
+    font-size:52px;
+    margin:0;
+}
+
+h1 em{
+    color:var(--teal);
+    font-style:italic;
+}
+
+.sub{
+    color:var(--ink-soft);
+    max-width:600px;
+    line-height:1.6;
+    margin-top:12px;
+}
+
+.toolbar{
+    margin:35px 0;
+}
+
+button{
+    font-family:'Inter',sans-serif;
+    cursor:pointer;
+    border-radius:8px;
+    padding:10px 18px;
+    font-weight:600;
+    border:1.5px solid var(--ink);
+    background:white;
+}
+
+button.primary{
+    background:var(--ink);
+    color:white;
+}
+
+button.danger{
+    border-color:var(--brick);
+    color:var(--brick);
+}
+
+button:hover{
+    box-shadow:var(--shadow);
+}
+
+.table{
+    background:white;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:white;
+    text-align:left;
+    padding:18px;
+    border-bottom:2px solid var(--ink);
+}
+
+td{
+    padding:16px 18px;
+    border-bottom:1px solid var(--line);
+}
+
+.actions{
+    display:flex;
+    gap:10px;
+}
+
+.openButton{
+    padding: 10px 20px;
+    border: 1px solid blue;
+    border-radius: 10px;
+    color: blue;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.empty{
+    background:white;
+    border:1px dashed var(--line);
+    border-radius:10px;
+    padding:50px;
+    text-align:center;
+    color:var(--ink-soft);
+}
+
+.overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.4);
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
+
+.overlay.open{
+    display:flex;
+}
+
+.modal{
+    background:white;
+    width:420px;
+    border-radius:10px;
+    padding:25px;
+}
+
+.modal h2{
+    font-family:'Fraunces',serif;
+    margin-top:0;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    border-radius:8px;
+    border:1px solid var(--line);
+    margin:15px 0;
+    font-size:15px;
+}
+
+.modal-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+}
+
+footer{
+    margin-top:50px;
+    text-align:center;
+    color:var(--ink-soft);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+<header>
+<span class="eyebrow">Side by side</span>
+
+<h1>Compare anything, <em>clearly</em>.</h1>
+
+<p class="sub">
+Create projects and organize your comparison tables. Everything stays stored locally in your browser.
+</p>
+</header>
+
+<div class="toolbar">
+<button class="primary" id="addProjectBtn">+ Add Project</button>
+</div>
+
+<div id="emptyState" class="empty" style="display:none">
+No projects yet.<br><br>
+Create your first project.
+</div>
+
+<div id="tableContainer" class="table">
+<table>
+
+<thead>
+<tr>
+<th>Project</th>
+<th>Actions</th>
+</tr>
+</thead>
+
+<tbody id="projectTable"></tbody>
+
+</table>
+</div>
+
+<footer>
+stored locally in this browser · nothing leaves your device
+</footer>
+
+</div>
+
+<div class="overlay" id="modal">
+
+<div class="modal">
+
+<h2>Create Project</h2>
+
+<input
+id="projectTitle"
+placeholder="Project Title">
+
+<div class="modal-actions">
+
+<button id="cancelBtn">
+Cancel
+</button>
+
+<button class="primary" id="createBtn">
+Create Project
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const PROJECTS_KEY="ledger_compare_projects";
+
+const data_key ="ledger_compare_data_v3";
+
+function uid(){
+    return Math.random().toString(36).slice(2,9)+
+    Date.now().toString(36).slice(-4);
+}
+
+let projects=JSON.parse(localStorage.getItem(PROJECTS_KEY))||[];
+
+const table=document.getElementById("projectTable");
+const empty=document.getElementById("emptyState");
+const container=document.getElementById("tableContainer");
+
+function save(){
+    localStorage.setItem(PROJECTS_KEY,JSON.stringify(projects));
+}
+
+function render(){
+
+    table.innerHTML="";
+
+    if(projects.length===0){
+        empty.style.display="block";
+        container.style.display="none";
+        return;
+    }
+
+    empty.style.display="none";
+    container.style.display="block";
+
+    projects.forEach(project=>{
+
+        const tr=document.createElement("tr");
+
+        tr.innerHTML=`
+        <td>${project.title}</td>
+
+        <td>
+
+        <div class="actions">
+
+        <a href='ComparisionTool.html?id=${project.id}&title=${project.title}' class='openButton' target='blank'>Open</a>
+
+        <button class="danger"
+        onclick="deleteProject('${project.id}')">
+        Delete
+        </button>
+
+        </div>
+
+        </td>
+        `;
+
+        table.appendChild(tr);
+
+    });
+
+}
+
+
+function deleteProject(id){
+
+    if(!confirm("Delete this project?")) return;
+
+    projects=projects.filter(p=>p.id!==id);
+    
+     const compareData = JSON.parse(
+        localStorage.getItem("ledger_compare_data_v3") || "{}"
+    );
+
+    delete compareData[id];
+
+    localStorage.setItem(
+        "ledger_compare_data_v3",
+        JSON.stringify(compareData)
+    );
+
+    save();
+
+    render();
+
+}
+
+const modal=document.getElementById("modal");
+
+document.getElementById("addProjectBtn").onclick=()=>{
+
+    document.getElementById("projectTitle").value="";
+
+    modal.classList.add("open");
+
+    setTimeout(()=>{
+        document.getElementById("projectTitle").focus();
+    },100);
+
+};
+
+document.getElementById("cancelBtn").onclick=()=>{
+
+    modal.classList.remove("open");
+
+};
+
+document.getElementById("createBtn").onclick=()=>{
+
+    const title=document.getElementById("projectTitle").value.trim();
+
+    if(!title){
+        alert("Enter a project title.");
+        return;
+    }
+
+    projects.push({
+        id:uid(),
+        title:title
+    });
+
+    save();
+
+    modal.classList.remove("open");
+
+    render();
+
+};
+
+modal.onclick=e=>{
+    if(e.target===modal){
+        modal.classList.remove("open");
+    }
+};
+
+render();
+
+</script>
+
+</body>
+</html>
