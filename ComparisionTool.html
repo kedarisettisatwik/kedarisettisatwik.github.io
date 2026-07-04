@@ -357,6 +357,7 @@
       <label for="attrTypeInput">Row type</label>
       <select id="attrTypeInput">
         <option value="text">Text</option>
+        <option value="number">Number</option>
         <option value="url">URL / link</option>
         <option value="date">Date</option>
         <option value="price">Price</option>
@@ -574,7 +575,7 @@
 
   var TYPE_BASE_LABELS = {
     text: "text", url: "url", date: "date",
-    price: "price", yesno: "yes / no", rating: "rating"
+    price: "price", yesno: "yes / no", rating: "rating", number:"number"
   };
 
   function attrBadgeLabel(attr){
@@ -610,6 +611,12 @@
 
     if(attr.type === "price"){
       return '<div class="cell-price"><span class="prefix">$</span>' +
+        '<input class="cell-input" type="text" ' + d + ' value="' + escapeAttr(val) + '" placeholder="0">' +
+        '</div>';
+    }
+    
+    if(attr.type === "number"){
+      return '<div class="cell-price"><span class="prefix">#</span>' +
         '<input class="cell-input" type="text" ' + d + ' value="' + escapeAttr(val) + '" placeholder="0">' +
         '</div>';
     }
@@ -745,7 +752,7 @@
       };
     });
 
-    // plain text / textarea / date / price / url-text
+    // plain text / textarea / date / price / url-text / number
     document.querySelectorAll("input.cell-input[type='text'], input.cell-input[type='date'], textarea.cell-input").forEach(function(input){
       input.addEventListener("input", function(){
         setVal(input.getAttribute("data-item"), input.getAttribute("data-attr"), input.value);
@@ -832,7 +839,7 @@
   var attrDirectionField = document.getElementById("attrDirectionField");
   var attrDirectionInput = document.getElementById("attrDirectionInput");
 
-  var TYPES_WITH_DIRECTION = { price: "lower", rating: "higher" };
+  var TYPES_WITH_DIRECTION = { price: "lower", rating: "higher", number:"number" };
 
   function syncDirectionField(){
     var type = attrTypeInput.value;
