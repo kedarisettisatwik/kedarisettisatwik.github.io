@@ -314,6 +314,7 @@
         flex: 1;
         min-width: 0;
         overflow-wrap: anywhere;
+        padding-bottom: 5px;
       }
       .record-title {
         font-weight: 650;
@@ -523,7 +524,7 @@
       }
       .goal-input {
         width: 110px;
-        padding:5px 10px;
+        padding:0px 10px;
         font-size:12px;
         border: 1px solid var(--line);
         border-radius: 8px;
@@ -1784,7 +1785,7 @@
           if (k === "tasks")
             b.innerHTML = `<div class="toolbar task-filters"><input class="search" placeholder="Filter by task title"><select class="search status-filter" aria-label="Filter by status"><option value="all">All statuses</option><option value="inprogress">In Progress</option><option value="pending">Pending</option><option value="completed">Completed</option></select><button class="secondary-btn" data-add>＋ New task</button></div><div class="records">${rows.length ? rows.map((t) => `<article class="record task-row" data-task-title="${esc(t.title).toLowerCase()}" data-task-status="${t.status === "completed" || t.completed ? "completed" : t.status === "inprogress" ? "inprogress" : "pending"}"><div class="record-main"><button class="task-title" data-edit="${esc(t.id)}">${esc(t.title)}</button><label class="field status-control"><select data-status="${esc(t.id)}"><option value="inprogress" ${t.status === "inprogress" ? "selected" : ""}>In Progress</option><option value="pending" ${!t.status || t.status === "pending" ? "selected" : ""}>Pending</option><option value="completed" ${t.status === "completed" || t.completed ? "selected" : ""}>Completed</option></select></label></div></article>`).join("") : '<div class="empty">No tasks yet.</div>'}</div>`;
           if (k === "notes")
-            b.innerHTML = `<div class="toolbar"><input class="search" placeholder="Search notes and lists"><button class="secondary-btn" data-add>＋ New Note</button></div><div class="records">${rows.length ? rows.map((n) => `<article class="record note-open" data-note="${esc(n.id)}" style="cursor:pointer"><span>${n.type === "list" ? "☷" : "▤"}</span><div class="record-main"><b class="record-title">${esc(n.title || "Untitled")}</b><div class="meta">${n.type === "list" ? `${(n.items || []).length} items` : esc(n.preview || "Note")}</div></div></article>`).join("") : '<div class="empty">No notes yet.</div>'}</div>`;
+            b.innerHTML = `<div class="toolbar"><input class="search" placeholder="Search notes and lists"><button class="secondary-btn" data-add>＋ New Note</button></div><div class="records">${rows.length ? rows.map((n) => `<article class="record note-open" data-note="${esc(n.id)}" style="cursor:pointer"><div class="record-main"><b class="record-title">${esc(n.title || "Untitled")}</b></div></article>`).join("") : '<div class="empty">No notes yet.</div>'}</div>`;
           if (k === "tasks") {
             scopeFormInputs(b, "tasks-view");
             b.querySelector(".search")?.classList.add("task-title-filter-input");
