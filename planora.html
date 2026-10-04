@@ -1,0 +1,2001 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Life Space</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dangrek&family=Passero+One&family=Syne+Mono&family=VT323&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg: #f3f1ec;
+        --ink: #1d2540;
+        --dot: #000000;
+        --dot-alt: #c2410c;
+        --panel: rgba(255, 255, 255, 0.7);
+        --line: rgba(29, 37, 64, 0.22);
+        --accent: #2b3a8f;
+        --accent-ink: #ffffff;
+        box-sizing: border-box;
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --bg: #0b1020;
+          --ink: #e8ecff;
+          --dot: #ffffff;
+          --dot-alt: #ffb86b;
+          --panel: rgba(20, 28, 52, 0.7);
+          --line: rgba(232, 236, 255, 0.25);
+          --accent: #8fb4ff;
+          --accent-ink: #0b1020;
+        }
+      }
+      :root[data-theme="dark"] {
+        --bg: #0b1020;
+        --ink: #e8ecff;
+        --dot: #ffffff;
+        --dot-alt: #ffb86b;
+        --panel: rgba(20, 28, 52, 0.7);
+        --line: rgba(232, 236, 255, 0.25);
+        --accent: #8fb4ff;
+        --accent-ink: #0b1020;
+      }
+      html {
+        scroll-padding-top: env(safe-area-inset-top, 0px);
+        height: 100%;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        height: 100%;
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          "Inter",
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+        transition:
+          background 0.3s,
+          color 0.3s;
+      }
+      canvas {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      :root {
+        --sidebar: var(--panel);
+        --window: var(--bg);
+        --muted: #778;
+        --soft: rgba(80, 100, 180, 0.12);
+      }
+      :root[data-theme="dark"] {
+        --muted: #aab;
+        --soft: rgba(140, 170, 255, 0.13);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --muted: #aab;
+          --soft: rgba(140, 170, 255, 0.13);
+        }
+      }
+      .workspace {
+        position: fixed;
+        inset: 0;
+        z-index: 2;
+        pointer-events: none;
+      }
+      .sidebar {
+        pointer-events: auto;
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 238px;
+        padding: 22px 12px;
+        background: var(--sidebar);
+        border-right: 1px solid var(--line);
+        backdrop-filter: blur(18px);
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        transition: width 0.2s;
+      }
+      .sidebar.collapsed {
+        width: 68px;
+      }
+      .brand,
+      .nav-item,
+      .collapse-btn {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 11px;
+        border: 0;
+        border-radius: 11px;
+        color: var(--ink);
+        background: transparent;
+        font: inherit;
+        text-align: left;
+        white-space: nowrap;
+      }
+      .brand {
+        font-size: 18px;
+        font-weight: 750;
+        padding-bottom: 22px;
+      }
+      .brand i {
+        display: grid;
+        place-items: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 10px;
+        background: var(--accent);
+        color: var(--accent-ink);
+      }
+      .nav-item,
+      .collapse-btn {
+        cursor: pointer;
+      }
+      .nav-item:hover,
+      .nav-item.active,
+      .collapse-btn:hover {
+        background: var(--soft);
+      }
+      .nav-label {
+        padding: 8px 11px;
+        color: var(--muted);
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+      }
+      .nav-icon {
+        width: 22px;
+        text-align: center;
+        font-size: 17px;
+      }
+      .collapse-btn {
+        margin-top: auto;
+        border: 1px solid var(--line);
+      }
+      .collapsed .brand span,
+      .collapsed .nav-label,
+      .collapsed .nav-text,
+      .collapsed .collapse-text {
+        display: none;
+      }
+      .collapsed .brand,
+      .collapsed .nav-item,
+      .collapsed .collapse-btn {
+        justify-content: center;
+        padding-inline: 6px;
+      }
+      .main-stage {
+        position: absolute;
+        inset: 0 0 0 238px;
+        transition: left 0.2s;
+      }
+      .sidebar.collapsed ~ .main-stage {
+        left: 68px;
+      }
+      .theme {
+        z-index: 5;
+      }
+      .theme span {
+        padding: 6px 9px;
+      }
+      .windows {
+        position: absolute;
+        inset: 66px 20px 18px;
+        pointer-events: none;
+      }
+      .window {
+        pointer-events: auto;
+        position: absolute;
+        width: min(560px, calc(100vw - 90px));
+        max-height: calc(100dvh - 100px);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        background: var(--window);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        box-shadow: 0 20px 60px #1115;
+        backdrop-filter: blur(20px);
+      }
+      .window-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-bottom: 1px solid var(--line);
+        cursor: grab;
+        touch-action: none;
+        user-select: none;
+      }
+      .window-title {
+        flex: 1;
+        font-weight: 700;
+      }
+      .window-close,
+      .icon-btn,
+      .secondary-btn {
+        padding: 7px 20px;
+        background: transparent;
+        color: var(--ink);
+        font: inherit;
+        cursor: pointer;
+        outline:none;
+        border:none;
+      }
+      .window-body {
+        padding: 16px;
+        overflow: auto;
+      }
+      .intro,
+      .meta {
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-bottom: 12px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .field input,
+      .field select,
+      .field textarea,
+      .search {
+        width: 100%;
+        padding: 0 10px;
+        background: transparent;
+        color: var(--ink);
+        font: inherit;
+        border:none;
+        outline:none;
+      }
+      .field textarea {
+        min-height: 50px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 12px;
+      }
+      .wide {
+        grid-column: 1/-1;
+      }
+      .primary {
+        border: 0;
+        border-radius: 9px;
+        padding: 10px 14px;
+        background: var(--accent);
+        color: var(--accent-ink);
+        font: inherit;
+        cursor: pointer;
+      }
+      .actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+      }
+      .toolbar {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 12px;
+        justify-content: space-between;
+        align-items:center;
+      }
+      .search {
+        flex: 1;
+      }
+      .records {
+        display: grid;
+        gap: 8px;
+      }
+      .record {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 0 10px;
+        border-bottom: 1px solid var(--line);
+      }
+      .record-main {
+        flex: 1;
+        min-width: 0;
+        overflow-wrap: anywhere;
+      }
+      .record-title {
+        font-weight: 650;
+      }
+      .record-actions {
+        display: flex;
+        gap: 4px;
+      }
+      .record.done .record-title {
+        text-decoration: line-through;
+        opacity: 0.55;
+      }
+      .badge {
+        font-size: 10px;
+        padding: 3px 6px;
+        margin-left: 5px;
+        border-radius: 20px;
+        background: var(--soft);
+      }
+      .empty {
+        text-align: center;
+        padding: 25px;
+        color: var(--muted);
+        border: 1px dashed var(--line);
+        border-radius: 10px;
+      }
+      .toast {
+        position: fixed;
+        z-index: 10;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--ink);
+        color: var(--bg);
+        padding: 10px 15px;
+        border-radius: 10px;
+        opacity: 0;
+        transition: 0.2s;
+        pointer-events: none;
+      }
+      .toast.show {
+        opacity: 1;
+      }
+      :root {
+        --bg: #f5f5f5;
+        --ink: #151515;
+        --dot: #111;
+        --dot-alt: #777;
+        --panel: rgba(255, 255, 255, 0.8);
+        --line: rgba(0, 0, 0, 0.18);
+        --accent: #171717;
+        --accent-ink: #fff;
+        --sidebar: rgba(250, 250, 250, 0.93);
+        --window: rgba(255, 255, 255, 0.97);
+        --muted: #666;
+        --soft: rgba(0, 0, 0, 0.065);
+      }
+      :root[data-theme="dark"] {
+        --bg: #080808;
+        --ink: #f2f2f2;
+        --dot: #fff;
+        --dot-alt: #aaa;
+        --panel: rgba(18, 18, 18, 0.86);
+        --line: rgba(255, 255, 255, 0.2);
+        --accent: #eee;
+        --accent-ink: #111;
+        --sidebar: rgba(13, 13, 13, 0.95);
+        --window: rgba(20, 20, 20, 0.98);
+        --muted: #aaa;
+        --soft: rgba(255, 255, 255, 0.08);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --bg: #080808;
+          --ink: #f2f2f2;
+          --dot: #fff;
+          --dot-alt: #aaa;
+          --panel: rgba(18, 18, 18, 0.86);
+          --line: rgba(255, 255, 255, 0.2);
+          --accent: #eee;
+          --accent-ink: #111;
+          --sidebar: rgba(13, 13, 13, 0.95);
+          --window: rgba(20, 20, 20, 0.98);
+          --muted: #aaa;
+          --soft: rgba(255, 255, 255, 0.08);
+        }
+      }
+      body,
+      .nav-item,
+      .collapse-btn,
+      .field input,
+      .field select,
+      .field textarea,
+      .search,
+      .primary,
+      .secondary-btn,
+      .icon-btn,
+      .window-close {
+        font-family: "Dangrek", system-ui, sans-serif;
+        letter-spacing: 0.02em;
+      }
+      .window-title,
+      .brand,
+      .nav-label {
+        font-family: "VT323", monospace;
+        letter-spacing: 0.045em;
+      }
+      .window-title {
+        font-size: 25px;
+        padding-left:20px;
+      }
+      .brand {
+        font-size: 27px;
+      }
+      .nav-label {
+        font-size: 17px;
+      }
+      .record-title {
+        font-family: "Dangrek", sans-serif;
+      }
+      .window {
+        box-shadow:
+          0 0 0 1px rgba(0, 0, 0, 0.04),
+          0 20px 60px #0002;
+      }
+      .window-header {
+        background: linear-gradient(90deg, rgba(0, 0, 0, 0.045), transparent);
+      }
+      .day-picker {
+        display: flex;
+        gap: 8px;
+        margin: 4px 0 15px;
+      }
+      .day-picker label {
+        cursor: pointer;
+      }
+      .day-picker input {
+        position: absolute;
+        opacity: 0;
+      }
+      .day-picker span {
+        display: grid;
+        place-items: center;
+        width: 34px;
+        height: 34px;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        color: var(--ink);
+      }
+      .day-picker input:checked + span {
+        background: var(--accent);
+        color: var(--accent-ink);
+      }
+      .date-list {
+        margin-bottom: 14px;
+      }
+      .task-filters .status-filter {
+        max-width: 150px;
+        flex: none;
+      }
+      .task-title {
+        border: 0;
+        padding: 0;
+        background: none;
+        color: var(--ink);
+        font-weight: 700;
+        text-align: left;
+        cursor: pointer;
+      }
+      .task-title:hover {
+        text-decoration: underline;
+      }
+      .status-control {
+        max-width: 180px;
+        margin: 8px 0 0;
+      }
+      .task-row {
+        align-items: center;
+      }
+      .task-row .record-main {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        padding:10px 0;
+      }
+      .task-row .status-control {
+        margin: 0;
+        min-width: 145px;
+      }
+      .goal-date-field {
+        width: 190px;
+        max-width: 55%;
+        margin: 0;
+      }
+      .goal-records {
+        margin-top: 8px;
+      }
+      .goal-record {
+        align-items: center;
+        padding: 8px 12px 10px 12px;
+      }
+      .goal-title {
+        flex: 1;
+        font: 23px "VT323", monospace;
+        letter-spacing: 0.03em;
+      }
+      .goal-input {
+        width: 110px;
+        padding:5px 10px;
+        font-size:12px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--bg);
+        color: var(--ink);
+        font: 18px "Dangrek", sans-serif;
+      }
+      .diary-field {
+        margin-top: 16px;
+      }
+      .diary-field textarea {
+        min-height: 50px;
+      }
+      @media (max-width: 640px) {
+        .sidebar {
+          width: 64px;
+          padding: 14px 6px;
+        }
+        .sidebar .brand span,
+        .sidebar .nav-label,
+        .sidebar .nav-text,
+        .sidebar .collapse-text {
+          display: none;
+        }
+        .sidebar .brand,
+        .sidebar .nav-item,
+        .sidebar .collapse-btn {
+          justify-content: center;
+          padding-inline: 4px;
+        }
+        .main-stage {
+          left: 64px;
+        }
+        .windows {
+          inset: 76px 6px 8px;
+        }
+        .window {
+          width: calc(100vw - 78px);
+        }
+        .theme {
+          right: 7px;
+          top: 8px;
+        }
+        .theme span {
+          padding: 5px 6px;
+          font-size: 11px;
+        }
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .wide {
+          grid-column: auto;
+        }
+      }
+
+      .theme {
+        position: fixed;
+        top: calc(env(safe-area-inset-top, 0px) + 14px);
+        right: 14px;
+        display: flex;
+        gap: 2px;
+        padding: 3px;
+        border-radius: 999px;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        backdrop-filter: blur(8px);
+      }
+      .theme label {
+        position: relative;
+        cursor: pointer;
+      }
+      .theme input {
+        position: absolute;
+        opacity: 0;
+        inset: 0;
+        cursor: pointer;
+      }
+      .theme span {
+        display: block;
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 13px;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .theme input:checked + span {
+        background: var(--accent);
+        color: var(--accent-ink);
+      }
+      .theme input:focus-visible + span {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+
+      .controls {
+        display: none;
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 18px);
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: max-content;
+        max-width: calc(100% - 24px);
+      }
+      .controls button {
+        font: inherit;
+        font-size: 14px;
+        color: var(--ink);
+        background: var(--panel);
+        border: 1px solid var(--line);
+        padding: 10px 16px;
+        border-radius: 10px;
+        cursor: pointer;
+        backdrop-filter: blur(8px);
+        transition:
+          background 0.2s,
+          color 0.2s,
+          transform 0.1s;
+      }
+      .controls button:hover {
+        background: var(--accent);
+        color: var(--accent-ink);
+      }
+      .controls button:active {
+        transform: scale(0.96);
+      }
+      .controls button[aria-pressed="true"] {
+        background: var(--accent);
+        color: var(--accent-ink);
+      }
+      .controls button:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+      :root {
+        color-scheme: light;
+        --scroll-track: var(--bg);
+        --scroll-thumb: #777;
+      }
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --scroll-thumb: #fff;
+      }
+      :root[data-theme="light"] {
+        color-scheme: light;
+        --scroll-thumb: #777;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          color-scheme: dark;
+          --scroll-thumb: #fff;
+        }
+      }
+      * {
+        scrollbar-width: thin;
+        scrollbar-color: var(--scroll-thumb) var(--scroll-track);
+      }
+      *::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+      }
+      *::-webkit-scrollbar-track {
+        background: var(--scroll-track);
+      }
+      *::-webkit-scrollbar-thumb {
+        background: var(--scroll-thumb);
+        border-radius: 5px;
+      }
+      select,
+      .field select,
+      select.search,
+      option {
+        color-scheme: inherit;
+        background-color: var(--window);
+        color: var(--ink);
+      }
+      .goals-create-input {
+          border-bottom: 1px dotted var(--ink);
+      }
+
+      /* Checkboxes: transparent, hairline border, theme-aware tick */
+      input[type="checkbox"]:not(.day-picker input) {
+        -webkit-appearance: none;
+        appearance: none;
+        flex: none;
+        width: 18px;
+        height: 18px;
+        margin: 0;
+        padding: 0;
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 14px 14px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        cursor: pointer;
+        vertical-align: middle;
+        --tick: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-7' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      }
+      input[type="checkbox"]:not(.day-picker input):checked {
+        background-color: transparent;
+        background-image: var(--tick);
+      }
+      input[type="checkbox"]:not(.day-picker input):focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+      :root[data-theme="dark"] input[type="checkbox"]:not(.day-picker input) {
+        border-color: rgba(255, 255, 255, 0.1);
+        --tick: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-7' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) input[type="checkbox"]:not(.day-picker input) {
+          border-color: rgba(255, 255, 255, 0.1);
+          --tick: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-7' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+        }
+      }
+      button#saveTask, button#saveItems, button#saveNotes, button#saveTasks1, button#saveGoals1 {
+          padding: 5px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="c" aria-label="Animated sphere made of dots"></canvas>
+    <div class="workspace"><aside class="sidebar" id="sidebar"><div class="brand"><i>✦</i><span>Life space</span></div><div class="nav-label">Workspace</div>
+        <button class="nav-item" data-open="goals"><span class="nav-icon">◎</span><span class="nav-text">Goals</span></button><button class="nav-item" data-open="tasks"><span class="nav-icon">☷</span><span class="nav-text">Tasks</span></button><button class="nav-item" data-open="notes"><span class="nav-icon">▤</span><span class="nav-text">Notes</span></button>
+        <button class="collapse-btn" id="collapse"><span class="nav-icon">⇤</span></button></aside><main class="main-stage"><div class="windows" id="windows"></div></main></div>
+
+    <div class="theme" role="radiogroup" aria-label="Theme">
+      <label><input type="radio" name="theme" value="light"><span>Light</span></label>
+      <label><input type="radio" name="theme" value="dark"><span>Dark</span></label>
+      <label><input type="radio" name="theme" value="auto" checked><span>Auto</span></label>
+    </div>
+
+    <div class="controls">
+      <button id="b1" type="button">1 · Go inside</button>
+      <button id="b2" type="button" aria-pressed="false">2 · Shapes</button>
+      <button id="b3" type="button" aria-pressed="false">3 · Arrange</button>
+      <button id="b4" type="button">4 · Reset size</button>
+    </div>
+
+    <script>
+      (() => {
+        const canvas = document.getElementById("c");
+        const ctx = canvas.getContext("2d");
+        let W = 0,
+          H = 0,
+          dpr = 1;
+
+        function resize() {
+          dpr = Math.min(window.devicePixelRatio || 1, 2);
+          W = window.innerWidth;
+          H = window.innerHeight;
+          canvas.width = W * dpr;
+          canvas.height = H * dpr;
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+        window.addEventListener("resize", resize);
+        resize();
+
+        /* ---------- theme ---------- */
+        const root = document.documentElement;
+        let colors = { dot: "#fff", alt: "#fff" };
+        function readColors() {
+          const cs = getComputedStyle(root);
+          colors.dot = cs.getPropertyValue("--dot").trim();
+          colors.alt = cs.getPropertyValue("--dot-alt").trim();
+        }
+        function applyTheme(v) {
+          if (v === "auto") root.removeAttribute("data-theme");
+          else root.setAttribute("data-theme", v);
+          try {
+            localStorage.setItem("sphere-theme", v);
+          } catch (e) {}
+          requestAnimationFrame(readColors);
+        }
+        document
+          .querySelectorAll('input[name="theme"]')
+          .forEach((r) => r.addEventListener("change", () => applyTheme(r.value)));
+        try {
+          const saved = localStorage.getItem("sphere-theme");
+          if (saved) {
+            const el = document.querySelector(
+              'input[name="theme"][value="' + saved + '"]',
+            );
+            if (el) {
+              el.checked = true;
+              applyTheme(saved);
+            }
+          }
+        } catch (e) {}
+        window
+          .matchMedia("(prefers-color-scheme: dark)")
+          .addEventListener("change", readColors);
+        readColors();
+
+        /* ---------- points ---------- */
+        const N = 2400;
+        const pts = [];
+        const golden = Math.PI * (3 - Math.sqrt(5));
+        for (let i = 0; i < N; i++) {
+          const y = 1 - (i / (N - 1)) * 2;
+          const r = Math.sqrt(1 - y * y);
+          const th = golden * i;
+          pts.push({
+            x: Math.cos(th) * r,
+            y,
+            z: Math.sin(th) * r,
+            jit: 1 + (Math.random() - 0.5) * 0.14, // static roughness
+            ph: Math.random() * Math.PI * 2,
+            shape: i % 3, // 0 circle, 1 square, 2 triangle
+            spin: (Math.random() < 0.5 ? -1 : 1) * (0.6 + Math.random() * 1.2),
+            dl: Math.random(),
+            rr: Math.random(),
+            fx: 0,
+            fy: 0, // arrange: delay, speed, current 2D spot
+          });
+        }
+
+        /* ---------- 2D formations (heart, triangle, square) ---------- */
+        function inside(poly, x, y) {
+          let c = false;
+          for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+            const xi = poly[i][0],
+              yi = poly[i][1],
+              xj = poly[j][0],
+              yj = poly[j][1];
+            if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi)
+              c = !c;
+          }
+          return c;
+        }
+        // evenly spread dots (jittered hex grid) filling the whole shape
+        function fillShape(poly) {
+          const hex = (h) => {
+            const out = [];
+            const rh = h * 0.866;
+            for (let row = 0, y = -1; y <= 1; row++, y += rh) {
+              for (let x = -1 + (row % 2 ? h / 2 : 0); x <= 1; x += h) {
+                const px = x + (Math.random() - 0.5) * h * 0.3;
+                const py = y + (Math.random() - 0.5) * h * 0.3;
+                if (inside(poly, px, py)) out.push([px, py]);
+              }
+            }
+            return out;
+          };
+          let h = 0.05,
+            g = hex(h);
+          for (let it = 0; it < 25 && !(g.length >= N && g.length < N * 1.06); it++) {
+            h *= Math.sqrt(g.length / N);
+            g = hex(h);
+          }
+          while (g.length < N) {
+            h *= 0.99;
+            g = hex(h);
+          }
+          for (let i = g.length - 1; i > 0; i--) {
+            // drop extras at random
+            const j = Math.floor(Math.random() * (i + 1));
+            [g[i], g[j]] = [g[j], g[i]];
+          }
+          g = g.slice(0, N);
+          g.sort((p, q) => Math.atan2(p[1], p[0]) - Math.atan2(q[1], q[0])); // same sector -> same sector across shapes
+          const out = new Float32Array(N * 2);
+          for (let i = 0; i < N; i++) {
+            out[i * 2] = g[i][0];
+            out[i * 2 + 1] = g[i][1];
+          }
+          return out;
+        }
+        const heartPoly = [];
+        for (let k = 0; k < 720; k++) {
+          const t = (k / 720) * Math.PI * 2;
+          const hx = 16 * Math.pow(Math.sin(t), 3);
+          const hy =
+            13 * Math.cos(t) -
+            5 * Math.cos(2 * t) -
+            2 * Math.cos(3 * t) -
+            Math.cos(4 * t);
+          heartPoly.push([(hx / 16) * 0.95, (-(hy + 2.5) / 16) * 0.95]);
+        }
+        const triPoly = [
+          [0, -0.85],
+          [0.95, 0.8],
+          [-0.95, 0.8],
+        ];
+        const sqPoly = [
+          [-0.85, -0.85],
+          [0.85, -0.85],
+          [0.85, 0.85],
+          [-0.85, 0.85],
+        ];
+        const FORMS = [fillShape(heartPoly), fillShape(triPoly), fillShape(sqPoly)];
+
+        /* ---------- state ---------- */
+        let scale = 1,
+          scaleTarget = 1;
+        let morph = 0,
+          morphTarget = 0;
+        let wanderK = 1; // 1 = free drifting, 0 = centered
+        let ox = 0,
+          oy = 0; // drift offset (px)
+        let heading = Math.random() * Math.PI * 2;
+        let headingTarget = heading;
+        let nextTurn = 0;
+
+        const CAM = 3; // camera distance to sphere centre (radius = 1)
+
+        const $ = (id) => document.getElementById(id);
+        const b2 = $("b2");
+
+        // shape loop: one shape at a time -> squares, triangles, circles, repeat
+        const SHAPES = [1, 2, 0]; // 1 square, 2 triangle, 0 circle
+        const HOLD = 4; // seconds each shape stays
+        const GAP = 0.8; // seconds spent as dots between shapes
+        let cycleOn = false,
+          shapeIdx = 0,
+          cycleStart = 0,
+          cycleStage = "show";
+        let curShape = 1;
+        let recentre = false;
+        let pendingStart = false;
+
+        // arrange: sphere -> filled heart -> triangle -> square -> heart ... (loops until cancelled)
+        const b3 = $("b3");
+        const ARR_REACH = 1.6,
+          ARR_HOLD = 2; // seconds to form, seconds held
+        let form = 0,
+          formTarget = 0;
+        let arrActive = false,
+          pendingArrange = false,
+          arrStage = 0,
+          arrStart = 0;
+        function stopArrange() {
+          arrActive = false;
+          pendingArrange = false;
+          formTarget = 0;
+          b3.setAttribute("aria-pressed", "false");
+          b3.textContent = "3 · Arrange";
+        }
+        function startArrange(t) {
+          arrActive = true;
+          arrStage = 0;
+          arrStart = t;
+          formTarget = 1;
+          for (let i = 0; i < N; i++) {
+            pts[i].fx = FORMS[0][i * 2];
+            pts[i].fy = FORMS[0][i * 2 + 1];
+          }
+        }
+        function tickArrange(t) {
+          if (
+            pendingArrange &&
+            !recentre &&
+            Math.abs(scale - 1) < 0.02 &&
+            morph < 0.05
+          ) {
+            pendingArrange = false;
+            startArrange(t);
+          }
+          if (arrActive && t - arrStart > ARR_REACH + ARR_HOLD) {
+            arrStage++;
+            arrStart = t;
+            if (arrStage > 2) arrStage = 0; // loop: heart > triangle > square > heart
+          }
+        }
+
+        function stopShapes() {
+          cycleOn = false;
+          pendingStart = false;
+          morphTarget = 0;
+          b2.setAttribute("aria-pressed", "false");
+          b2.textContent = "2 · Shapes";
+        }
+        function startShapes(now) {
+          cycleOn = true;
+          shapeIdx = 0;
+          curShape = SHAPES[0];
+          cycleStage = "show";
+          cycleStart = now / 1000;
+          morphTarget = 1;
+          b2.setAttribute("aria-pressed", "true");
+          b2.textContent = "2 · Back to dots";
+        }
+        function tickShapes(t) {
+          tickArrange(t);
+          if (pendingStart && !recentre && Math.abs(scale - 1) < 0.02) {
+            pendingStart = false;
+            startShapes(t * 1000);
+          }
+          if (!cycleOn) return;
+          const el = t - cycleStart;
+          if (cycleStage === "show" && el > HOLD) {
+            cycleStage = "gap";
+            cycleStart = t;
+            morphTarget = 0;
+          } else if (cycleStage === "gap" && el > GAP) {
+            shapeIdx = (shapeIdx + 1) % SHAPES.length;
+            curShape = SHAPES[shapeIdx];
+            cycleStage = "show";
+            cycleStart = t;
+            morphTarget = 1;
+          }
+        }
+
+        // 1: step slightly inside, back to the plain dot sphere
+        $("b1").onclick = () => {
+          stopShapes();
+          stopArrange();
+          scaleTarget = 3.5;
+        };
+        // 2: toggle the one-shape-at-a-time loop
+        b2.onclick = () => {
+          if (cycleOn || pendingStart) {
+            stopShapes();
+            return;
+          }
+          stopArrange();
+          morphTarget = 0;
+          scaleTarget = 1;
+          recentre = true;
+          pendingStart = true;
+          b2.setAttribute("aria-pressed", "true");
+          b2.textContent = "2 · Back to dots";
+        };
+        // 3: original view, then filled heart -> triangle -> square loop (click again to return to sphere)
+        b3.onclick = () => {
+          if (arrActive || pendingArrange) {
+            stopArrange();
+            return;
+          }
+          stopShapes();
+          morphTarget = 0;
+          scaleTarget = 1;
+          recentre = true;
+          pendingArrange = true;
+          b3.setAttribute("aria-pressed", "true");
+          b3.textContent = "3 · Back to sphere";
+        };
+        // 4: same as first page load
+        $("b4").onclick = () => {
+          stopShapes();
+          stopArrange();
+          scaleTarget = 1;
+          recentre = true;
+        };
+        window.addEventListener("keydown", (e) => {
+          if (e.target.tagName === "INPUT") return;
+          if (e.key === "1") $("b1").click();
+          if (e.key === "2") b2.click();
+          if (e.key === "3") $("b3").click();
+          if (e.key === "4") $("b4").click();
+        });
+
+        const reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+        const BUCKETS = 4;
+        const buckets = Array.from({ length: BUCKETS }, () => []);
+
+        function shapePath(p, x, y, s, a) {
+          if (curShape === 0) {
+            ctx.moveTo(x + s, y);
+            ctx.arc(x, y, s, 0, Math.PI * 2);
+          } else if (curShape === 1) {
+            const c = Math.cos(a) * s,
+              d = Math.sin(a) * s;
+            ctx.moveTo(x + c - d, y + d + c);
+            ctx.lineTo(x - c - d, y - d + c);
+            ctx.lineTo(x - c + d, y - d - c);
+            ctx.lineTo(x + c + d, y + d - c);
+            ctx.closePath();
+          } else {
+            for (let k = 0; k < 3; k++) {
+              const ang = a + k * ((Math.PI * 2) / 3) - Math.PI / 2;
+              const px = x + Math.cos(ang) * s * 1.2,
+                py = y + Math.sin(ang) * s * 1.2;
+              k === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+            }
+            ctx.closePath();
+          }
+        }
+
+        let last = performance.now();
+        function frame(now) {
+          const dt = Math.min((now - last) / 1000, 0.05);
+          last = now;
+          const t = now / 1000;
+          const motion = reduceMotion ? 0.25 : 1;
+
+          tickShapes(t);
+
+          // smooth transitions
+          scale += (scaleTarget - scale) * (1 - Math.exp(-dt * 2.2));
+          morph += (morphTarget - morph) * (1 - Math.exp(-dt * 3));
+          form += (formTarget - form) * (1 - Math.exp(-dt * 2.2));
+          const inside = scaleTarget > 1.5 ? 0 : 1;
+          wanderK += (inside - wanderK) * (1 - Math.exp(-dt * 2));
+
+          // sphere diameter = 60% of screen height (clamped so it fits narrow screens)
+          const D = Math.min(H * 0.6, W * 0.92);
+          const f = (D / 2) * Math.sqrt(CAM * CAM - 1); // focal length so r=1 spans D at scale 1
+
+          // slow random drift
+          if (t > nextTurn) {
+            headingTarget = heading + (Math.random() - 0.5) * Math.PI * 1.2;
+            nextTurn = t + 3 + Math.random() * 4;
+          }
+          heading += (headingTarget - heading) * (1 - Math.exp(-dt * 0.8));
+          const speed = 22 * motion;
+          if (recentre) {
+            const k = 1 - Math.exp(-dt * 2.5);
+            ox -= ox * k;
+            oy -= oy * k;
+            if (Math.abs(ox) + Math.abs(oy) < 1) recentre = false;
+          } else {
+            ox += Math.cos(heading) * speed * dt;
+            oy += Math.sin(heading) * speed * dt;
+          }
+          const maxX = Math.max(0, (W - D) / 2) * 0.9 + 20;
+          const maxY = Math.max(0, (H - D) / 2) * 0.6;
+          if (ox > maxX) {
+            ox = maxX;
+            headingTarget = heading = Math.PI - heading;
+          }
+          if (ox < -maxX) {
+            ox = -maxX;
+            headingTarget = heading = Math.PI - heading;
+          }
+          if (oy > maxY) {
+            oy = maxY;
+            headingTarget = heading = -heading;
+          }
+          if (oy < -maxY) {
+            oy = -maxY;
+            headingTarget = heading = -heading;
+          }
+
+          const cx = W / 2;
+          const cy = H / 2;
+
+          // slow spin
+          const ay = t * 0.12 * motion,
+            ax = Math.sin(t * 0.07) * 0.5;
+          const cyA = Math.cos(ay),
+            syA = Math.sin(ay),
+            cxA = Math.cos(ax),
+            sxA = Math.sin(ax);
+
+          ctx.clearRect(0, 0, W, H);
+          for (const b of buckets) b.length = 0;
+
+          const sizeK = scale < 1 ? Math.sqrt(scale) : scale; // dots grow with the sphere
+          const baseDot = 0.006 * sizeK;
+          const baseShape = 0.0095 * sizeK;
+          const dotW = baseDot + (baseShape - baseDot) * morph;
+
+          const formOn = form > 0.001;
+          const tgt = FORMS[Math.min(arrStage, 2)];
+          const fr = 1 - Math.exp(-dt * 3.2);
+          for (let i = 0; i < N; i++) {
+            const p = pts[i];
+            // disturbed surface: layered waves + per-point roughness
+            const w =
+              1 +
+              0.1 *
+                Math.sin(p.x * 3.1 + t * 0.7 * motion) *
+                Math.cos(p.y * 2.7 - t * 0.5 * motion) +
+              0.06 * Math.sin(p.z * 5.3 + p.x * 2 + t * 1.1 * motion) +
+              (p.jit - 1) +
+              0.015 * Math.sin(t * 2 * motion + p.ph);
+            let x = p.x * w,
+              y = p.y * w,
+              z = p.z * w;
+            // rotate Y then X
+            let x1 = x * cyA + z * syA,
+              z1 = -x * syA + z * cyA;
+            let y1 = y * cxA - z1 * sxA,
+              z2 = y * sxA + z1 * cxA;
+
+            let X = x1,
+              Y = y1,
+              Z = z2;
+            if (formOn) {
+              const g = fr * (0.6 + 0.8 * p.rr);
+              p.fx += (tgt[i * 2] - p.fx) * g;
+              p.fy += (tgt[i * 2 + 1] - p.fy) * g;
+              let fi = Math.min(Math.max((form * 1.02 - p.dl * 0.35) / 0.65, 0), 1);
+              fi = fi * fi * (3 - 2 * fi);
+              X = x1 + (p.fx - x1) * fi;
+              Y = y1 + (p.fy - y1) * fi;
+              Z = z2 * (1 - fi);
+            }
+            const zc = CAM + Z * scale;
+            if (zc < 0.12) continue; // behind / too close to camera
+            const k = f / zc;
+            const sx = cx + X * scale * k;
+            const sy = cy + Y * scale * k;
+            if (sx < -40 || sx > W + 40 || sy < -40 || sy > H + 40) continue;
+
+            let size = dotW * k;
+            if (morph > 0.02) {
+              size *= 1 + 0.25 * Math.sin(t * 2.2 * motion + p.ph); // looping pulse
+            }
+            size = Math.min(size, 24);
+            const near = Math.min(
+              Math.max((CAM + 1 * scale - zc) / (2 * scale), 0),
+              1,
+            );
+            const bi = Math.min(BUCKETS - 1, Math.floor(near * BUCKETS));
+            buckets[bi].push(sx, sy, size, i);
+          }
+
+          const useShapes = morph > 0.12;
+          for (let b = 0; b < BUCKETS; b++) {
+            const arr = buckets[b];
+            if (!arr.length) continue;
+            const alpha = 0.65 + 0.35 * (b / (BUCKETS - 1));
+            ctx.globalAlpha = alpha;
+            ctx.beginPath();
+            if (useShapes) {
+              ctx.strokeStyle = b % 2 ? colors.dot : colors.dot;
+              ctx.lineWidth = 0.9;
+              for (let j = 0; j < arr.length; j += 4) {
+                const p = pts[arr[j + 3]];
+                const a = t * p.spin * motion + p.ph; // looping rotation
+                shapePath(p, arr[j], arr[j + 1], Math.max(arr[j + 2], 1.2), a);
+              }
+              ctx.stroke();
+            } else {
+              ctx.fillStyle = colors.dot;
+              for (let j = 0; j < arr.length; j += 4) {
+                const s = Math.max(arr[j + 2], 0.6);
+                ctx.moveTo(arr[j] + s, arr[j + 1]);
+                ctx.arc(arr[j], arr[j + 1], s, 0, Math.PI * 2);
+              }
+              ctx.fill();
+            }
+          }
+          ctx.globalAlpha = 1;
+          requestAnimationFrame(frame);
+        }
+        requestAnimationFrame(frame);
+      })();
+    </script>
+    <script>
+      (() => {
+        const K = "life-space-v1",
+          box = document.getElementById("windows");
+        let d = { goals: [], tasks: [], notes: [] },
+          z = 4;
+        try {
+          d = { ...d, ...JSON.parse(localStorage.getItem(K) || "{}") };
+        } catch (e) {}
+        const save = () => localStorage.setItem(K, JSON.stringify(d)),
+          esc = (s) =>
+            String(s || "").replace(
+              /[&<>"']/g,
+              (c) =>
+                ({
+                  "&": "&amp;",
+                  "<": "&lt;",
+                  ">": "&gt;",
+                  '"': "&quot;",
+                  "'": "&#39;",
+                })[c],
+            ),
+          date = () => new Date().toISOString().slice(0, 10);
+        function drag(w, h) {
+          let p;
+          h.onpointerdown = (e) => {
+            if (e.target.closest("button")) return;
+            let r = w.getBoundingClientRect();
+            p = [e.clientX, e.clientY, r.left, r.top];
+            h.setPointerCapture(e.pointerId);
+          };
+          h.onpointermove = (e) => {
+            if (p) {
+              w.style.left =
+                Math.max(
+                  0,
+                  Math.min(innerWidth - w.offsetWidth, p[2] + e.clientX - p[0]),
+                ) + "px";
+              w.style.top =
+                Math.max(0, Math.min(innerHeight - 50, p[3] + e.clientY - p[1])) +
+                "px";
+            }
+          };
+          h.onpointerup = () => (p = null);
+        }
+        function open(type) {
+          let add = type.startsWith("add-"),
+            k = add ? type.slice(4) : type,
+            names = {
+              goals: "Your goals",
+              tasks: "Your tasks",
+              notes: "Your notes",
+              "add-goal": "Create a goal",
+              "add-task": "Create a task",
+              "add-note": "Write a note",
+            },
+            w = document.createElement("section");
+          w.className = "window";
+          w.dataset.k = k;
+          w.style.cssText = `left:${60 + (box.children.length % 6) * 25}px;top:${50 + (box.children.length % 6) * 25}px;z-index:${++z}`;
+          w.innerHTML = `<header class="window-header"><b class="window-title">${names[type]}</b><button class="window-close">✕</button></header><div class="window-body"></div>`;
+          box.append(w);
+          let h = w.querySelector(".window-header");
+          drag(w, h);
+          w.onpointerdown = () => (w.style.zIndex = ++z);
+          w.querySelector(".window-close").onclick = () => w.remove();
+          show(w, add);
+        }
+        function show(w, add = false) {
+          let k = w.dataset.k,
+            b = w.querySelector(".window-body");
+          if (add) {
+            let f =
+              k === "goals"
+                ? `<div class="grid"><label class="field wide">Goal<input name="title" required></label><label class="field">Type<select name="goalType"><option value="checklist">Checklist</option><option value="tracker">Tracker</option></select></label><label class="field">Schedule<select name="schedule"><option>Every day</option><option>Weekdays</option><option>Weekly</option><option>Date range</option></select></label><label class="field">Start<input name="from" type="date" value="${date()}"></label><label class="field">End<input name="to" type="date"></label><label class="field wide">Icon / emoji<input name="icon"></label></div>`
+                : k === "tasks"
+                  ? `<div class="grid"><label class="field wide">Task<input name="title" required></label><label class="field">Due<input name="due" type="date"></label><label class="field">Priority<select name="priority"><option>Low</option><option selected>Medium</option><option>High</option></select></label><label class="field wide">Details<textarea name="description"></textarea></label></div>`
+                  : `<label class="field">Title<input name="title" placeholder="Untitled note"></label><label class="field">Note<textarea name="text" required></textarea></label>`;
+            b.innerHTML = `<p class="intro">Add details, then save.</p><form>${f}<div class="actions"><button class="primary">Save</button></div></form>`;
+            b.querySelector("form").onsubmit = (e) => {
+              e.preventDefault();
+              let x = Object.fromEntries(new FormData(e.currentTarget));
+              d[k].unshift({ id: Date.now(), ...x, done: false, progress: 0 });
+              save();
+              w.remove();
+            };
+            return;
+          }
+          let a = d[k];
+          b.innerHTML = `<div class="toolbar"><input class="search" placeholder="Search ${k}"><button class="secondary" data-add>＋ Add</button></div><div class="records">${a.length ? a.map((x) => `<article class="record ${x.done ? "done" : ""}">${k === "tasks" ? `<input type="checkbox" data-toggle="${x.id}" ${x.done ? "checked" : ""}>` : ""}<div class="record-main"><b class="record-title">${esc(x.icon)} ${esc(x.title)} ${k === "tasks" ? `<span class="badge">${esc(x.priority)}</span>` : ""}</b><div class="meta">${k === "goals" ? `${esc(x.schedule)} · ${esc(x.goalType)}` : k === "tasks" ? `${esc(x.due || "No due date")} ${esc(x.description)}` : esc(x.text)}</div>${k === "goals" && x.goalType === "tracker" ? `<label class="field">Progress<input type="number" min="0" value="${x.progress || 0}" data-progress="${x.id}"></label>` : ""}</div><div class="record-actions"><button class="icon-btn" data-edit="${x.id}">✎</button><button class="icon-btn" data-del="${x.id}">⌫</button></div></article>`).join("") : '<div class="empty">Nothing here yet.</div>'}</div>`;
+          b.querySelector("[data-add]").onclick = () => open("add-" + k);
+          b.querySelector(".search").oninput = (e) =>
+            b
+              .querySelectorAll(".record")
+              .forEach(
+                (r) =>
+                  (r.hidden = !r.textContent
+                    .toLowerCase()
+                    .includes(e.target.value.toLowerCase())),
+              );
+          b.querySelectorAll("[data-toggle]").forEach(
+            (c) =>
+              (c.onchange = () => {
+                a.find((x) => x.id == c.dataset.toggle).done = c.checked;
+                save();
+                show(w);
+              }),
+          );
+          b.querySelectorAll("[data-progress]").forEach(
+            (c) =>
+              (c.onchange = () => {
+                a.find((x) => x.id == c.dataset.progress).progress =
+                  Number(c.value) || 0;
+                save();
+              }),
+          );
+          b.querySelectorAll("[data-del]").forEach(
+            (c) =>
+              (c.onclick = () => {
+                d[k] = a.filter((x) => x.id != c.dataset.del);
+                save();
+                show(w);
+              }),
+          );
+          b.querySelectorAll("[data-edit]").forEach(
+            (c) =>
+              (c.onclick = () => {
+                let x = a.find((i) => i.id == c.dataset.edit),
+                  fields =
+                    k === "goals"
+                      ? `<label class="field">Goal<input name="title" value="${esc(x.title)}"></label><label class="field">Schedule<input name="schedule" value="${esc(x.schedule)}"></label>`
+                      : k === "tasks"
+                        ? `<label class="field">Task<input name="title" value="${esc(x.title)}"></label><label class="field">Due<input name="due" type="date" value="${esc(x.due)}"></label><label class="field">Priority<select name="priority">${["Low", "Medium", "High"].map((v) => `<option ${x.priority === v ? "selected" : ""}>${v}</option>`)}</select></label><label class="field">Details<textarea name="description">${esc(x.description)}</textarea></label>`
+                        : `<label class="field">Title<input name="title" value="${esc(x.title)}"></label><label class="field">Note<textarea name="text">${esc(x.text)}</textarea></label>`;
+                let q = document.createElement("section");
+                q.className = "window";
+                q.style.cssText = `left:${w.offsetLeft + 30}px;top:${w.offsetTop + 30}px;z-index:${++z}`;
+                q.innerHTML = `<header class="window-header"><b class="window-title">Edit</b><button class="window-close">✕</button></header><div class="window-body"><form>${fields}<button class="primary">Save changes</button></form></div>`;
+                box.append(q);
+                drag(q, q.querySelector(".window-header"));
+                q.querySelector(".window-close").onclick = () => q.remove();
+                q.querySelector("form").onsubmit = (e) => {
+                  e.preventDefault();
+                  Object.assign(x, Object.fromEntries(new FormData(e.currentTarget)));
+                  save();
+                  show(w);
+                  q.remove();
+                };
+              }),
+          );
+        }
+        document.querySelectorAll(".nav-item").forEach(
+          (x) =>
+            (x.onclick = () => {
+              document
+                .querySelectorAll(".nav-item")
+                .forEach((b) => b.classList.remove("active"));
+              x.classList.add("active");
+              open(x.dataset.open);
+            }),
+        );
+        let s = document.getElementById("sidebar");
+        try {
+          if (localStorage.getItem("life-sidebar") === "1")
+            s.classList.add("collapsed");
+        } catch (e) {}
+        document.getElementById("collapse").onclick = () => {
+          s.classList.toggle("collapsed");
+          localStorage.setItem(
+            "life-sidebar",
+            s.classList.contains("collapsed") ? "1" : "0",
+          );
+        };
+      })();
+    </script>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script>
+      (() => {
+        const EMAIL = "satwik1330@gmail.com",
+          cfg = {
+            apiKey: "AIzaSyB3TNi4OXrQNtzyFZd9g2ZMazaV4djIXiE",
+            authDomain: "planora-db5c1.firebaseapp.com",
+            projectId: "planora-db5c1",
+            storageBucket: "planora-db5c1.firebasestorage.app",
+            messagingSenderId: "28495612438",
+            appId: "1:28495612438:web:9ccbd259bd53d90f564337",
+          };
+        const box = document.getElementById("windows"),
+          side = document.getElementById("sidebar");
+        let db,
+          auth,
+          uid,
+          z = 20,
+          data = { goals: [], tasks: [], notes: [], diary: {} };
+        const esc = (s) =>
+            String(s || "").replace(
+              /[&<>"']/g,
+              (c) =>
+                ({
+                  "&": "&amp;",
+                  "<": "&lt;",
+                  ">": "&gt;",
+                  '"': "&quot;",
+                  "'": "&#39;",
+                })[c],
+            ),
+          today = () => {
+            let d = new Date();
+            return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+          };
+        const message = (s) => {
+          let t = document.getElementById("toast");
+          t.textContent = s;
+          t.classList.add("show");
+          setTimeout(() => t.classList.remove("show"), 2200);
+        };
+        const scopeFormInputs = (root, scope) => {
+          root.querySelectorAll("label.field").forEach((label) => {
+            label.classList.add(`${scope}-field`);
+            label
+              .querySelector("input, select, textarea")
+              ?.classList.add(`${scope}-input`);
+          });
+        };
+        function showLogin(error = "") {
+          let modal = document.getElementById("authGate");
+          if (!modal) {
+            modal = document.createElement("div");
+            modal.id = "authGate";
+            modal.style.cssText =
+              "position:fixed;inset:0;z-index:99;display:grid;place-items:center;background:#090909e8;backdrop-filter:blur(16px);padding:20px";
+            modal.innerHTML = `<form id="authForm" style="width:min(390px,100%);padding:28px;border:1px solid var(--line);border-radius:18px;background:var(--window);color:var(--ink);box-shadow:0 0 40px #0003"><h1 style="font:34px VT323;margin:0 0 4px">J.A.R.V.I.S. ACCESS</h1><p style="color:var(--muted);margin:0 0 18px">Sign in to Planora to open your workspace data.</p><label class="field">Account email<input value="${EMAIL}" readonly></label><label class="field">Password<input name="password" type="password" required autocomplete="current-password"></label><p id="authError" style="color:var(--ink);font-size:13px">${esc(error)}</p><button class="primary" style="width:100%">Connect to Firestore</button></form>`;
+            document.body.append(modal);
+            modal.querySelector("form").onsubmit = async (e) => {
+              e.preventDefault();
+              let pass = new FormData(e.currentTarget).get("password");
+              modal.querySelector("#authError").textContent = "Connecting…";
+              try {
+                await auth.signInWithEmailAndPassword(EMAIL, pass);
+              } catch (err) {
+                modal.querySelector("#authError").textContent =
+                  err.code === "auth/unauthorized-domain"
+                    ? "Firebase rejected this file origin. Open the page from an authorized web origin."
+                    : err.code === "auth/wrong-password" ||
+                        err.code === "auth/invalid-credential"
+                      ? "The password was not accepted. Please try again."
+                      : `Sign-in failed: ${err.message}`;
+              }
+            };
+          } else {
+            modal.style.display = "grid";
+            modal.querySelector("#authError").textContent = error;
+          }
+        }
+        function drag(w, h) {
+          let p;
+          h.onpointerdown = (e) => {
+            if (e.target.closest("button")) return;
+            const r = w.getBoundingClientRect();
+            const area = w.offsetParent.getBoundingClientRect();
+            p = [e.clientX, e.clientY, r.left - area.left, r.top - area.top];
+            h.setPointerCapture(e.pointerId);
+          };
+          h.onpointermove = (e) => {
+            if (p) {
+              const area = w.offsetParent;
+              const bounds = area.getBoundingClientRect();
+              w.style.left =
+                Math.max(
+                  -w.offsetWidth / 2 - bounds.left,
+                  Math.min(
+                    innerWidth - w.offsetWidth / 2 - bounds.left,
+                    p[2] + e.clientX - p[0],
+                  ),
+                ) + "px";
+              w.style.top =
+                Math.max(
+                  -w.offsetHeight / 2 - bounds.top,
+                  Math.min(
+                    innerHeight - w.offsetHeight / 2 - bounds.top,
+                    p[3] + e.clientY - p[1],
+                  ),
+                ) +
+                "px";
+            }
+          };
+          h.onpointerup = () => (p = null);
+        }
+        const ref = (collection, id) =>
+          db.collection(EMAIL).doc(collection).collection(id);
+        async function load() {
+          try {
+            const [g, t, n, diary] = await Promise.all([
+              ref("DailyGoals", "ListGoals").get(),
+              ref("TTD", "List").get(),
+              ref("Notes", "List").get(),
+              db.collection(EMAIL).doc("diary").get(),
+            ]);
+            data = {
+              goals: g.docs.map((x) => ({ id: x.id, ...x.data() })),
+              tasks: t.docs.map((x) => ({ id: x.id, ...x.data() })),
+              notes: n.docs.map((x) => ({ id: x.id, ...x.data() })),
+              diary: diary.exists ? diary.data() : {},
+            };
+            document.getElementById("authGate")?.remove();
+            document.querySelectorAll(".window[data-kind]").forEach((w) => {
+              if (["goals", "tasks", "notes"].includes(w.dataset.kind)) render(w);
+            });
+          } catch (e) {
+            showLogin(`Could not read Planora data: ${e.message}`);
+          }
+        }
+        function open(type, record) {
+          const windowKey = record ? `${type}:${record.id}` : type;
+          const existing = [...box.querySelectorAll(".window")].find(
+            (item) => item.dataset.windowKey === windowKey,
+          );
+          if (existing) {
+            existing.style.zIndex = ++z;
+            return existing;
+          }
+          let add = type.startsWith("add-"),
+            k = add ? type.slice(4) : type,
+            title =
+              {
+                goals: "Goals",
+                tasks: "Tasks",
+                notes: "Notes",
+                "add-goal": "New Goal",
+                "add-task": "New Task",
+                "add-note": "New Note",
+                "task-detail": "Task details",
+              }[type] ||
+              record?.title ||
+              "Note details",
+            w = document.createElement("section");
+          w.className = "window";
+          w.dataset.kind = k;
+          w.dataset.windowKey = windowKey;
+          w.style.cssText = `left:${55 + (box.children.length % 6) * 24}px;top:${48 + (box.children.length % 6) * 24}px;z-index:${++z}`;
+          w.innerHTML = `<header class="window-header"><b class="window-title">${esc(title)}</b><button class="window-close">✕</button></header><div class="window-body"></div>`;
+          box.append(w);
+          drag(w, w.querySelector(".window-header"));
+          w.onpointerdown = () => (w.style.zIndex = ++z);
+          w.querySelector(".window-close").onclick = () => w.remove();
+          if (record) {
+            type === "task-detail" ? taskWindow(w, record) : noteWindow(w, record);
+            return;
+          }
+          render(w, add);
+        }
+        const todayGoal = (g, date = today()) => {
+          let s = g.schedule || {},
+            d = new Date(`${date}T12:00:00`),
+            wd = d.getDay();
+          switch (s.type) {
+            case "everyday":
+              return true;
+            case "days":
+              return (s.days || []).includes(wd);
+            case "dates":
+              return (s.dates || []).includes(date);
+            case "range":
+              return (!s.from || date >= s.from) && (!s.to || date <= s.to);
+            default:
+              return true;
+          }
+        };
+        function render(w, add = false) {
+          let k = w.dataset.kind,
+            b = w.querySelector(".window-body");
+          if (k === "goal") k = "goals";
+          if (k === "task") k = "tasks";
+          if (k === "note") k = "notes";
+          if (add) {
+            let html =
+              k === "goals"
+                ? `<form><label class="field">Goal title<input name="title" required></label><label class="field">Goal style<select name="goalType"><option value="checklist">Checklist</option><option value="tracker">Tracker</option></select></label><label class="field">Repeats<select name="schedule"><option value="everyday">Every day</option><option value="days">Particular days</option><option value="dates">Particular dates</option></select></label><div class="schedule-options"></div><button class="primary" id="saveGoals1">Save goal</button></form>`
+                : k === "tasks"
+                  ? `<form><label class="field">Task title<input name="title" required></label><label class="field">Description<textarea name="description"></textarea></label><label class="field">Notes<textarea name="privateNotes"></textarea></label><label class="field">Status<select name="status"><option value="pending">Pending</option><option value="inprogress">In Progress</option><option value="completed">Completed</option></select></label><label class="field">Start date<input name="startDate" type="date" value="${today()}"></label><label class="field">End date<input name="endDate" type="date"></label><button class="primary" id="saveTasks1">Save task</button></form>`
+                  : `<form><label class="field">Title<input name="title" required></label><label class="field">Description<textarea name="description" placeholder="Write your note…"></textarea></label><button class="primary" id="saveNotes">Save note</button></form>`;
+            b.innerHTML = `<p class="intro">${k === "goals" ? "Goals scheduled for today appear in this view." : ""}</p>${html}`;
+            let form = b.querySelector("form");
+            scopeFormInputs(form, `${k}-create`);
+            if (k === "goals") {
+              const select = form.elements.schedule,
+                slot = form.querySelector(".schedule-options"),
+                days = ["S", "M", "T", "W", "T", "F", "S"];
+              function scheduleUI() {
+                slot.innerHTML =
+                  select.value === "days"
+                    ? `<div class="day-picker">${days.map((x, i) => `<label><input type="checkbox" name="goalDay" value="${i}"><span>${x}</span></label>`).join("")}</div>`
+                    : select.value === "dates"
+                      ? `<div class="date-list"><label class="field">Choose dates<input type="date" name="goalDate"></label><button type="button" class="secondary-btn" data-add-date>＋ Add another date</button></div>`
+                      : "";
+                scopeFormInputs(slot, "goal-create-schedule");
+                slot
+                  .querySelector("[data-add-date]")
+                  ?.addEventListener("click", () => {
+                    let row = document.createElement("label");
+                    row.className = "field";
+                    row.innerHTML =
+                      '<span>Another date</span><input type="date" name="goalDate">';
+                    slot
+                      .querySelector(".date-list")
+                      .insertBefore(row, slot.querySelector("[data-add-date]"));
+                  });
+              }
+              select.onchange = scheduleUI;
+              scheduleUI();
+            }
+            form.onsubmit = async (e) => {
+              e.preventDefault();
+              let f = Object.fromEntries(new FormData(e.currentTarget)),
+                id =
+                  k === "goals"
+                    ? `${f.title.trim()}__${crypto.randomUUID()}`
+                    : k === "tasks"
+                      ? `${f.title.trim()}_${crypto.randomUUID()}`
+                      : crypto.randomUUID(),
+                path =
+                  k === "goals"
+                    ? ref("DailyGoals", "ListGoals")
+                    : k === "tasks"
+                      ? ref("TTD", "List")
+                      : ref("Notes", "List"),
+                now = new Date().toISOString();
+              let schedule = { type: f.schedule || "everyday" };
+              if (f.schedule === "days")
+                schedule.days = [
+                  ...form.querySelectorAll('[name="goalDay"]:checked'),
+                ].map((x) => Number(x.value));
+              if (f.schedule === "dates")
+                schedule.dates = [...form.querySelectorAll('[name="goalDate"]')]
+                  .map((x) => x.value)
+                  .filter(Boolean);
+              let doc =
+                k === "goals"
+                  ? {
+                      title: f.title.trim(),
+                      icon: f.icon,
+                      schedule,
+                      goalType: f.goalType,
+                      createdAt: now,
+                      ...(f.goalType === "tracker"
+                        ? { trackerUnit: "count", trackerValues: {} }
+                        : { completedDates: [] }),
+                    }
+                  : k === "tasks"
+                    ? {
+                        id,
+                        title: f.title.trim(),
+                        description: f.description.trim(),
+                        startDate: f.startDate,
+                        endDate: f.endDate,
+                        assign: {
+                          [EMAIL]: {
+                            email: EMAIL,
+                            done: f.status === "completed",
+                            privateNotes: f.privateNotes.trim(),
+                          },
+                        },
+                        createdBy: EMAIL,
+                        createdAt: now,
+                        status: f.status,
+                        completed: f.status === "completed",
+                        selfSelected: true,
+                        hasOtherAssignees: false,
+                      }
+                    : {
+                        id,
+                        type: "note",
+                        title: f.title.trim(),
+                        content: f.description.trim(),
+                        preview: f.description.trim().slice(0, 200),
+                        items: [],
+                        color: "#fff8b8",
+                        createdAt: now,
+                        updatedAt: now,
+                      };
+              try {
+                await path.doc(id).set(doc);
+                await load();
+                w.remove();
+                message("Saved to Planora");
+              } catch (err) {
+                message("Save failed: " + err.message);
+              }
+            };
+            return;
+          }
+          let selectedDate = w.dataset.selectedDate || today();
+          let rows = k === "goals" ? data.goals.filter((g) => todayGoal(g, selectedDate)) : data[k] || [];
+          // Goals with a number input (trackers) first, then checkbox goals; original order kept within each group
+          if (k === "goals") rows = [...rows.filter((g) => g.goalType === "tracker"), ...rows.filter((g) => g.goalType !== "tracker")];
+          if (k === "goals") {
+            b.innerHTML = `<div class="toolbar"><label class="field goal-date-field">Date<input type="date" data-goal-date value="${selectedDate}"></label><button class="secondary-btn" data-add>＋ Add goal</button></div><label class="field diary-field">Daily note<textarea data-diary placeholder="Write a note for this day…">${esc(data.diary?.[selectedDate]?.note || "")}</textarea></label><div class="records goal-records">${rows.length ? rows.map((g) => { let done=(g.completedDates||[]).includes(selectedDate), v=(g.trackerValues||{})[selectedDate]||""; return `<article class="record goal-record"><span class="goal-title">${esc(g.title)}</span>${g.goalType==='tracker'?`<input class="goal-input" type="number" min="0" value="${esc(v)}" data-track="${esc(g.id)}" aria-label="Goal progress">`:`<input type="checkbox" data-goal="${esc(g.id)}" ${done?'checked':''} aria-label="Complete ${esc(g.title)}">`}</article>`; }).join(""):'<div class="empty">No goals scheduled for this date.</div>'}</div>`;
+            scopeFormInputs(b, "goals-view");
+            b.querySelector("[data-goal-date]")?.classList.add("goal-date-view-input");
+            b.querySelector("[data-diary]")?.classList.add("daily-note-view-input");
+            b.querySelectorAll("[data-track]").forEach((input) => input.classList.add("goal-progress-view-input"));
+            b.querySelectorAll("[data-goal]").forEach((input) => input.classList.add("goal-completion-view-input"));
+            b.querySelector("[data-goal-date]").onchange=(event)=>{w.dataset.selectedDate=event.target.value||today();render(w)};
+            b.querySelector("[data-diary]").onchange=async(event)=>{let date=w.dataset.selectedDate||today(),note=event.target.value;try{await db.collection(EMAIL).doc("diary").set({[date]:{note}},{merge:true});data.diary[date]={...(data.diary[date]||{}),note};message("Daily note saved")}catch(error){message("Could not save daily note: "+error.message)}};
+          }
+          if (k === "tasks")
+            b.innerHTML = `<div class="toolbar task-filters"><input class="search" placeholder="Filter by task title"><select class="search status-filter" aria-label="Filter by status"><option value="all">All statuses</option><option value="inprogress">In Progress</option><option value="pending">Pending</option><option value="completed">Completed</option></select><button class="secondary-btn" data-add>＋ New task</button></div><div class="records">${rows.length ? rows.map((t) => `<article class="record task-row" data-task-title="${esc(t.title).toLowerCase()}" data-task-status="${t.status === "completed" || t.completed ? "completed" : t.status === "inprogress" ? "inprogress" : "pending"}"><div class="record-main"><button class="task-title" data-edit="${esc(t.id)}">${esc(t.title)}</button><label class="field status-control"><select data-status="${esc(t.id)}"><option value="inprogress" ${t.status === "inprogress" ? "selected" : ""}>In Progress</option><option value="pending" ${!t.status || t.status === "pending" ? "selected" : ""}>Pending</option><option value="completed" ${t.status === "completed" || t.completed ? "selected" : ""}>Completed</option></select></label></div></article>`).join("") : '<div class="empty">No tasks yet.</div>'}</div>`;
+          if (k === "notes")
+            b.innerHTML = `<div class="toolbar"><input class="search" placeholder="Search notes and lists"><button class="secondary-btn" data-add>＋ New Note</button></div><div class="records">${rows.length ? rows.map((n) => `<article class="record note-open" data-note="${esc(n.id)}" style="cursor:pointer"><span>${n.type === "list" ? "☷" : "▤"}</span><div class="record-main"><b class="record-title">${esc(n.title || "Untitled")}</b><div class="meta">${n.type === "list" ? `${(n.items || []).length} items` : esc(n.preview || "Note")}</div></div></article>`).join("") : '<div class="empty">No notes yet.</div>'}</div>`;
+          if (k === "tasks") {
+            scopeFormInputs(b, "tasks-view");
+            b.querySelector(".search")?.classList.add("task-title-filter-input");
+            b.querySelector(".status-filter")?.classList.add("task-status-filter-input");
+            b.querySelectorAll("[data-status]").forEach((input) => input.classList.add("task-status-view-input"));
+          }
+          if (k === "notes") b.querySelector(".search")?.classList.add("notes-view-filter-input");
+          b.querySelector("[data-add]")?.addEventListener("click", () =>
+            open("add-" + ({ goals: "goal", tasks: "task", notes: "note" }[k] || k)),
+          );
+          const applyTaskFilters = () => {
+            if (k !== "tasks") return;
+            let q = b.querySelector(".search")?.value.toLowerCase() || "",
+              s = b.querySelector(".status-filter")?.value || "all";
+            b.querySelectorAll(".task-row").forEach((r) => {
+              let matchTitle = r.dataset.taskTitle.includes(q),
+                matchStatus = s === "all" || r.dataset.taskStatus === s;
+              r.hidden = !(matchTitle && matchStatus);
+            });
+          };
+          b.querySelector(".search")?.addEventListener("input", (e) => {
+            if (k === "tasks") {
+              applyTaskFilters();
+              return;
+            }
+            b.querySelectorAll(".record").forEach(
+              (r) =>
+                (r.hidden = !r.textContent
+                  .toLowerCase()
+                  .includes(e.target.value.toLowerCase())),
+            );
+          });
+          b.querySelector(".status-filter")?.addEventListener(
+            "change",
+            applyTaskFilters,
+          );
+          b.querySelectorAll("[data-goal]").forEach(
+            (c) =>
+              (c.onchange = async () => {
+                let g = data.goals.find((x) => x.id === c.dataset.goal),
+                  dates = g.completedDates || [];
+                let goalDate = w.dataset.selectedDate || today();
+                await ref("DailyGoals", "ListGoals")
+                  .doc(g.id)
+                  .update({
+                    completedDates: c.checked
+                      ? [...dates.filter((x) => x !== goalDate), goalDate]
+                      : dates.filter((x) => x !== goalDate),
+                  });
+                await load();
+              }),
+          );
+          b.querySelectorAll("[data-track]").forEach(
+            (c) =>
+              (c.onchange = async () => {
+                let g = data.goals.find((x) => x.id === c.dataset.track);
+                let goalDate = w.dataset.selectedDate || today();
+                await ref("DailyGoals", "ListGoals")
+                  .doc(g.id)
+                  .update({ [`trackerValues.${goalDate}`]: Number(c.value) || 0 });
+                await load();
+              }),
+          );
+          b.querySelectorAll("[data-status]").forEach(
+            (c) =>
+              (c.onchange = async () => {
+                let t = data.tasks.find((x) => x.id === c.dataset.status),
+                  done = c.value === "completed",
+                  u = { status: c.value, completed: done },
+                  doc = ref("TTD", "List").doc(t.id);
+                if (t.assign?.[EMAIL])
+                  await doc.update(
+                    u,
+                    new firebase.firestore.FieldPath("assign", EMAIL, "done"),
+                    done,
+                  );
+                else await doc.update(u);
+                await load();
+              }),
+          );
+          b.querySelectorAll("[data-notes]").forEach(
+            (c) =>
+              (c.onchange = async () => {
+                let t = data.tasks.find((x) => x.id === c.dataset.notes);
+                await ref("TTD", "List")
+                  .doc(t.id)
+                  .update(
+                    new firebase.firestore.FieldPath("assign", EMAIL, "privateNotes"),
+                    c.value,
+                  );
+              }),
+          );
+          b.querySelectorAll("[data-edit]").forEach(
+            (c) =>
+              (c.onclick = () => {
+                let t = data.tasks.find((x) => x.id === c.dataset.edit);
+                open("task-detail", t);
+              }),
+          );
+          b.querySelectorAll("[data-note]").forEach(
+            (c) =>
+              (c.onclick = () => {
+                let n = data.notes.find((x) => x.id === c.dataset.note);
+                open("note-detail", n);
+              }),
+          );
+        }
+        function taskWindow(w, t) {
+          let b = w.querySelector(".window-body");
+          b.innerHTML = `<label class="field">Title<input id="taskTitle" value="${esc(t.title)}"></label><label class="field">Description<textarea id="taskDescription">${esc(t.description)}</textarea></label><label class="field">Notes<textarea id="taskNotes">${esc(t.assign?.[EMAIL]?.privateNotes || "")}</textarea></label><label class="field">Status<select id="taskStatus"><option value="inprogress" ${t.status === "inprogress" ? "selected" : ""}>In Progress</option><option value="pending" ${!t.status || t.status === "pending" ? "selected" : ""}>Pending</option><option value="completed" ${t.status === "completed" || t.completed ? "selected" : ""}>Completed</option></select></label><div class="actions"><button class="primary" id="saveTask">Save task</button></div>`;
+          scopeFormInputs(b, "task-detail");
+          b.querySelector("#saveTask").onclick = async () => {
+            let status = b.querySelector("#taskStatus").value,
+              update = {
+                title: b.querySelector("#taskTitle").value.trim(),
+                description: b.querySelector("#taskDescription").value.trim(),
+                status,
+                completed: status === "completed",
+              },
+              doc = ref("TTD", "List").doc(t.id),
+              notes = b.querySelector("#taskNotes").value.trim();
+            try {
+              if (t.assign?.[EMAIL])
+                await doc.update(
+                  update,
+                  new firebase.firestore.FieldPath("assign", EMAIL, "privateNotes"),
+                  notes,
+                  new firebase.firestore.FieldPath("assign", EMAIL, "done"),
+                  status === "completed",
+                );
+              else await doc.update(update);
+              await load();
+              w.remove();
+              message("Task updated");
+            } catch (e) {
+              message("Update failed: " + e.message);
+            }
+          };
+        }
+        function noteWindow(w, n) {
+          let b = w.querySelector(".window-body");
+          if (n.type === "list")
+            b.innerHTML = `<label class="field">Title<input id="noteTitle" value="${esc(n.title)}"></label><div class="records">${(n.items || []).map((i, index) => `<label class="record"><input type="checkbox" data-item-index="${index}" ${i.done ? "checked" : ""}><span>${esc(i.text)}</span></label>`).join("")}</div><label class="field" style="margin-top:12px">Add item<input id="newItem"></label><button class="primary" id="saveItems">Save list</button>`;
+          else
+            b.innerHTML = `<label class="field">Title<input id="noteTitle" value="${esc(n.title)}"></label><label class="field">Note<textarea id="noteContent">${esc(n.content || n.preview || "")}</textarea></label><button class="primary" id="saveItems">Save note</button>`;
+          scopeFormInputs(b, "note-detail");
+          b.querySelectorAll("[data-item-index]").forEach((input) => input.classList.add("note-detail-item-input"));
+          b.querySelector("#newItem")?.classList.add("note-detail-new-item-input");
+          b.querySelector("#saveItems").onclick = async () => {
+            let title = b.querySelector("#noteTitle").value,
+              items = (n.items || []).map((i, index) => ({
+                ...i,
+                done: !!b.querySelector(`[data-item-index="${index}"]`)?.checked,
+              })),
+              newItem = b.querySelector("#newItem")?.value.trim();
+            if (newItem)
+              items.push({ id: crypto.randomUUID(), text: newItem, done: false });
+            let content = b.querySelector("#noteContent")?.value || "",
+              patch = { title, updatedAt: new Date().toISOString() };
+            if (n.type === "list") patch.items = items;
+            else {
+              patch.content = esc(content);
+              patch.preview = content.slice(0, 200);
+            }
+            try {
+              await ref("Notes", "List").doc(n.id).update(patch);
+              await load();
+              message("Note updated");
+            } catch (e) {
+              message("Update failed: " + e.message);
+            }
+          };
+        }
+        document.querySelectorAll(".nav-item").forEach(
+          (x) =>
+            (x.onclick = () => {
+              document
+                .querySelectorAll(".nav-item")
+                .forEach((b) => b.classList.remove("active"));
+              x.classList.add("active");
+              open(x.dataset.open);
+            }),
+        );
+        try {
+          if (localStorage.getItem("life-sidebar") === "1")
+            side.classList.add("collapsed");
+        } catch (e) {}
+        document.getElementById("collapse").onclick = () => {
+          side.classList.toggle("collapsed");
+          localStorage.setItem(
+            "life-sidebar",
+            side.classList.contains("collapsed") ? "1" : "0",
+          );
+        };
+        try {
+          if (!firebase.apps.length) firebase.initializeApp(cfg);
+          auth = firebase.auth();
+          db = firebase.firestore();
+          auth.onAuthStateChanged((user) => {
+            if (user && user.email?.toLowerCase() === EMAIL) {
+              uid = user.uid;
+              load();
+            } else {
+              if (user) auth.signOut();
+              showLogin();
+            }
+          });
+        } catch (e) {
+          showLogin("Firebase could not initialize: " + e.message);
+        }
+      })();
+    </script>
+  </body>
+</html>
