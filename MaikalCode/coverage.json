@@ -1,0 +1,720 @@
+{
+  "total": 3687,
+  "excluded_database": 323,
+  "excluded_shell": 4,
+  "excluded_language_exercises": 82,
+  "descriptions": 3687,
+  "all_three_solutions": 3554,
+  "python_solutions": 3561,
+  "official_hints": 2432,
+  "missing_solutions": [
+    {
+      "id": "642",
+      "title": "Design Search Autocomplete System",
+      "languages": [
+        "python",
+        "java"
+      ]
+    },
+    {
+      "id": "1226",
+      "title": "The Dining Philosophers",
+      "languages": [
+        "cpp"
+      ]
+    },
+    {
+      "id": "1242",
+      "title": "Web Crawler Multithreaded",
+      "languages": [
+        "cpp"
+      ]
+    },
+    {
+      "id": "1516",
+      "title": "Move Sub-Tree of N-Ary Tree",
+      "languages": [
+        "cpp",
+        "python"
+      ]
+    },
+    {
+      "id": "1597",
+      "title": "Build Binary Expression Tree From Infix Expression",
+      "languages": [
+        "cpp",
+        "java"
+      ]
+    },
+    {
+      "id": "3245",
+      "title": "Alternating Groups III",
+      "languages": [
+        "cpp"
+      ]
+    },
+    {
+      "id": "3382",
+      "title": "Maximum Area Rectangle With Point Constraints II",
+      "languages": [
+        "cpp"
+      ]
+    },
+    {
+      "id": "3410",
+      "title": "Maximize Subarray Sum After Removing All Occurrences of One Element",
+      "languages": [
+        "cpp"
+      ]
+    },
+    {
+      "id": "3470",
+      "title": "Permutations IV",
+      "languages": [
+        "python"
+      ]
+    },
+    {
+      "id": "3515",
+      "title": "Shortest Path in a Weighted Tree",
+      "languages": [
+        "cpp"
+      ]
+    },
+    {
+      "id": "3519",
+      "title": "Count Numbers with Non-Decreasing Digits ",
+      "languages": [
+        "cpp"
+      ]
+    },
+    {
+      "id": "3520",
+      "title": "Minimum Threshold for Inversion Pairs Count",
+      "languages": [
+        "cpp",
+        "java"
+      ]
+    },
+    {
+      "id": "3526",
+      "title": "Range XOR Queries with Subarray Reversals",
+      "languages": [
+        "cpp"
+      ]
+    },
+    {
+      "id": "3538",
+      "title": "Merge Operations for Minimum Travel Time",
+      "languages": [
+        "python"
+      ]
+    },
+    {
+      "id": "3569",
+      "title": "Maximize Count of Distinct Primes After Split",
+      "languages": []
+    },
+    {
+      "id": "3575",
+      "title": "Maximum Good Subtree Score",
+      "languages": []
+    },
+    {
+      "id": "3589",
+      "title": "Count Prime-Gap Balanced Subarrays",
+      "languages": []
+    },
+    {
+      "id": "3592",
+      "title": "Inverse Coin Change",
+      "languages": []
+    },
+    {
+      "id": "3593",
+      "title": "Minimum Increments to Equalize Leaf Paths",
+      "languages": []
+    },
+    {
+      "id": "3594",
+      "title": "Minimum Time to Transport All Individuals",
+      "languages": []
+    },
+    {
+      "id": "3595",
+      "title": "Once Twice",
+      "languages": []
+    },
+    {
+      "id": "3603",
+      "title": "Minimum Cost Path with Alternating Directions II",
+      "languages": []
+    },
+    {
+      "id": "3604",
+      "title": "Minimum Time to Reach Destination in Directed Graph",
+      "languages": []
+    },
+    {
+      "id": "3605",
+      "title": "Minimum Stability Factor of Array",
+      "languages": []
+    },
+    {
+      "id": "3609",
+      "title": "Minimum Moves to Reach Target in Grid",
+      "languages": []
+    },
+    {
+      "id": "3615",
+      "title": "Longest Palindromic Path in Graph",
+      "languages": []
+    },
+    {
+      "id": "3621",
+      "title": "Number of Integers With Popcount-Depth Equal to K I",
+      "languages": []
+    },
+    {
+      "id": "3624",
+      "title": "Number of Integers With Popcount-Depth Equal to K II",
+      "languages": []
+    },
+    {
+      "id": "3630",
+      "title": "Partition Array for Maximum XOR and AND",
+      "languages": []
+    },
+    {
+      "id": "3632",
+      "title": "Subarrays with XOR at Least K",
+      "languages": []
+    },
+    {
+      "id": "3636",
+      "title": "Threshold Majority Queries",
+      "languages": []
+    },
+    {
+      "id": "3639",
+      "title": "Minimum Time to Activate String",
+      "languages": []
+    },
+    {
+      "id": "3646",
+      "title": "Next Special Palindrome Number",
+      "languages": []
+    },
+    {
+      "id": "3648",
+      "title": "Minimum Sensors to Cover Grid",
+      "languages": []
+    },
+    {
+      "id": "3649",
+      "title": "Number of Perfect Pairs",
+      "languages": []
+    },
+    {
+      "id": "3654",
+      "title": "Minimum Sum After Divisible Sum Deletions",
+      "languages": []
+    },
+    {
+      "id": "3656",
+      "title": "Determine if a Simple Graph Exists",
+      "languages": []
+    },
+    {
+      "id": "3664",
+      "title": "Two-Letter Card Game",
+      "languages": []
+    },
+    {
+      "id": "3670",
+      "title": "Maximum Product of Two Integers With No Common Bits",
+      "languages": []
+    },
+    {
+      "id": "3671",
+      "title": "Sum of Beautiful Subsequences",
+      "languages": []
+    },
+    {
+      "id": "3676",
+      "title": "Count Bowl Subarrays",
+      "languages": []
+    },
+    {
+      "id": "3677",
+      "title": "Count Binary Palindromic Numbers",
+      "languages": []
+    },
+    {
+      "id": "3680",
+      "title": "Generate Schedule",
+      "languages": []
+    },
+    {
+      "id": "3681",
+      "title": "Maximum XOR of Subsequences",
+      "languages": []
+    },
+    {
+      "id": "3685",
+      "title": "Subsequence Sum After Capping Elements",
+      "languages": []
+    },
+    {
+      "id": "3686",
+      "title": "Number of Stable Subsequences",
+      "languages": []
+    },
+    {
+      "id": "3695",
+      "title": "Maximize Alternating Sum Using Swaps",
+      "languages": []
+    },
+    {
+      "id": "3710",
+      "title": "Maximum Partition Factor",
+      "languages": []
+    },
+    {
+      "id": "3715",
+      "title": "Sum of Perfect Square Ancestors",
+      "languages": []
+    },
+    {
+      "id": "3720",
+      "title": "Lexicographically Smallest Permutation Greater Than Target",
+      "languages": [
+        "python"
+      ]
+    },
+    {
+      "id": "3725",
+      "title": "Count Ways to Choose Coprime Integers from Rows",
+      "languages": []
+    },
+    {
+      "id": "3733",
+      "title": "Minimum Time to Complete All Deliveries",
+      "languages": []
+    },
+    {
+      "id": "3735",
+      "title": "Lexicographically Smallest String After Reverse II",
+      "languages": []
+    },
+    {
+      "id": "3743",
+      "title": "Maximize Cyclic Partition Score",
+      "languages": []
+    },
+    {
+      "id": "3752",
+      "title": "Lexicographically Smallest Negated Permutation that Sums to Target",
+      "languages": []
+    },
+    {
+      "id": "3757",
+      "title": "Number of Effective Subsequences",
+      "languages": []
+    },
+    {
+      "id": "3762",
+      "title": "Minimum Operations to Equalize Subarrays",
+      "languages": []
+    },
+    {
+      "id": "3768",
+      "title": "Minimum Inversion Count in Subarrays of Fixed Length",
+      "languages": []
+    },
+    {
+      "id": "3771",
+      "title": "Total Score of Dungeon Runs",
+      "languages": []
+    },
+    {
+      "id": "3772",
+      "title": "Maximum Subgraph Score in a Tree",
+      "languages": []
+    },
+    {
+      "id": "3782",
+      "title": "Last Remaining Integer After Alternating Deletion Operations",
+      "languages": []
+    },
+    {
+      "id": "3785",
+      "title": "Minimum Swaps to Avoid Forbidden Values",
+      "languages": []
+    },
+    {
+      "id": "3786",
+      "title": "Total Sum of Interaction Cost in Tree Groups",
+      "languages": []
+    },
+    {
+      "id": "3796",
+      "title": "Find Maximum Value in a Constrained Sequence",
+      "languages": []
+    },
+    {
+      "id": "3797",
+      "title": "Count Routes to Climb a Rectangular Grid",
+      "languages": []
+    },
+    {
+      "id": "3802",
+      "title": "Number of Ways to Paint Sheets",
+      "languages": []
+    },
+    {
+      "id": "3826",
+      "title": "Minimum Partition Score",
+      "languages": []
+    },
+    {
+      "id": "3883",
+      "title": "Count Non Decreasing Arrays With Given Digit Sums",
+      "languages": []
+    },
+    {
+      "id": "3887",
+      "title": "Incremental Even-Weighted Cycle Queries",
+      "languages": []
+    },
+    {
+      "id": "3892",
+      "title": "Minimum Operations to Achieve At Least K Peaks",
+      "languages": []
+    },
+    {
+      "id": "3911",
+      "title": "K-th Smallest Remaining Even Integer in Subarray Queries",
+      "languages": []
+    },
+    {
+      "id": "3916",
+      "title": "Number of ZigZag Arrays III",
+      "languages": []
+    },
+    {
+      "id": "3920",
+      "title": "Maximize Fixed Points After Deletions",
+      "languages": []
+    },
+    {
+      "id": "3922",
+      "title": "Minimum Flips to Make Binary String Coherent",
+      "languages": []
+    },
+    {
+      "id": "3923",
+      "title": "Minimum Generations to Target Point",
+      "languages": []
+    },
+    {
+      "id": "3924",
+      "title": "Minimum Threshold Path With Limited Heavy Edges",
+      "languages": []
+    },
+    {
+      "id": "3927",
+      "title": "Minimize Array Sum Using Divisible Replacements",
+      "languages": []
+    },
+    {
+      "id": "3928",
+      "title": "Minimum Cost to Buy Apples II",
+      "languages": []
+    },
+    {
+      "id": "3929",
+      "title": "Minimum Partition Score II",
+      "languages": []
+    },
+    {
+      "id": "3930",
+      "title": "Power Update After K-th Largest Insertion II",
+      "languages": [
+        "python",
+        "cpp"
+      ]
+    },
+    {
+      "id": "3933",
+      "title": "Largest Local Values in a Matrix II",
+      "languages": []
+    },
+    {
+      "id": "3934",
+      "title": "Smallest Unique Subarray",
+      "languages": [
+        "python"
+      ]
+    },
+    {
+      "id": "3938",
+      "title": "Maximum Path Intersection Sum in a Grid",
+      "languages": []
+    },
+    {
+      "id": "3939",
+      "title": "Count Non Adjacent Subsets in a Rooted Tree",
+      "languages": []
+    },
+    {
+      "id": "3943",
+      "title": "Number of Pairs After Increment",
+      "languages": []
+    },
+    {
+      "id": "3944",
+      "title": "Minimum Operations to Make Array Modulo Alternating II",
+      "languages": []
+    },
+    {
+      "id": "3947",
+      "title": "Maximum Number of Items From Sale II",
+      "languages": []
+    },
+    {
+      "id": "3948",
+      "title": "Lexicographically Maximum MEX Array",
+      "languages": []
+    },
+    {
+      "id": "3949",
+      "title": "Subtree Inversion Sum II",
+      "languages": []
+    },
+    {
+      "id": "3952",
+      "title": "Maximum Total Value of Covered Indices",
+      "languages": []
+    },
+    {
+      "id": "3953",
+      "title": "Maximum Score with Co-Prime Element",
+      "languages": []
+    },
+    {
+      "id": "3956",
+      "title": "Maximum Sum of M Non-Overlapping Subarrays I",
+      "languages": []
+    },
+    {
+      "id": "3957",
+      "title": "Maximum Sum of M Non-Overlapping Subarrays II",
+      "languages": []
+    },
+    {
+      "id": "3962",
+      "title": "Maximum Subarray Sum After at Most K Swaps",
+      "languages": [
+        "java"
+      ]
+    },
+    {
+      "id": "3966",
+      "title": "Count Good Integers in a Range",
+      "languages": []
+    },
+    {
+      "id": "3967",
+      "title": "Finish Time of Tasks II",
+      "languages": []
+    },
+    {
+      "id": "3971",
+      "title": "Maximum Total Value",
+      "languages": []
+    },
+    {
+      "id": "3972",
+      "title": "Valid Subarrays With Matching Sum Digits II",
+      "languages": []
+    },
+    {
+      "id": "3973",
+      "title": "Distinct Gate Paths to LCA",
+      "languages": []
+    },
+    {
+      "id": "3980",
+      "title": "Minimum Operations to Transform Binary String",
+      "languages": []
+    },
+    {
+      "id": "3981",
+      "title": "Count Distinct Ways to Form Target from Two Strings",
+      "languages": []
+    },
+    {
+      "id": "3984",
+      "title": "Divisible Game",
+      "languages": []
+    },
+    {
+      "id": "3985",
+      "title": "Palindromic Subarray Sum",
+      "languages": []
+    },
+    {
+      "id": "3988",
+      "title": "Create Grid With Exactly K Paths I",
+      "languages": []
+    },
+    {
+      "id": "3989",
+      "title": "Maximum Consistent Columns in a Grid",
+      "languages": []
+    },
+    {
+      "id": "3990",
+      "title": "Create Grid With Exactly K Paths II",
+      "languages": []
+    },
+    {
+      "id": "3994",
+      "title": "Minimum Adjacent Swaps to Partition Array",
+      "languages": []
+    },
+    {
+      "id": "3995",
+      "title": "Minimum Cost to Convert String III",
+      "languages": []
+    },
+    {
+      "id": "3998",
+      "title": "Transform Binary String Using Subsequence Sort",
+      "languages": []
+    },
+    {
+      "id": "3999",
+      "title": "Minimum Number of String Groups Through Transformations",
+      "languages": []
+    },
+    {
+      "id": "4005",
+      "title": "Minimum Operations to Make Array Equal III",
+      "languages": []
+    },
+    {
+      "id": "4009",
+      "title": "Minimum Possible Maximum Waiting Time",
+      "languages": []
+    },
+    {
+      "id": "4017",
+      "title": "Peaks in Array II",
+      "languages": []
+    },
+    {
+      "id": "4018",
+      "title": "Total Sum of Interaction Cost in Tree Groups II",
+      "languages": []
+    },
+    {
+      "id": "4023",
+      "title": "Elevator Requests II",
+      "languages": []
+    },
+    {
+      "id": "4029",
+      "title": "Elevator Requests IV",
+      "languages": []
+    },
+    {
+      "id": "4033",
+      "title": "Valid K-Unique Subarrays I",
+      "languages": []
+    },
+    {
+      "id": "4042",
+      "title": "Valid K-Unique Subarrays II",
+      "languages": []
+    },
+    {
+      "id": "4045",
+      "title": "Count Robot Groups",
+      "languages": []
+    },
+    {
+      "id": "4046",
+      "title": "Minimum Cost Path With At Most K Turns",
+      "languages": []
+    },
+    {
+      "id": "4047",
+      "title": "Minimum Operations to Make XOR of All Elements Zero",
+      "languages": []
+    },
+    {
+      "id": "4054",
+      "title": "Count Shadow Pairs I",
+      "languages": []
+    },
+    {
+      "id": "4055",
+      "title": "Count Shadow Pairs II",
+      "languages": []
+    },
+    {
+      "id": "4058",
+      "title": "Maximum Pulse Value After One Subarray Rotation",
+      "languages": []
+    },
+    {
+      "id": "4059",
+      "title": "Lexicographically Largest Power Array",
+      "languages": []
+    },
+    {
+      "id": "4069",
+      "title": "Best Time to Buy and Sell Stock with Cooldown II",
+      "languages": []
+    },
+    {
+      "id": "4072",
+      "title": "Maximum Alternating Subarray Sum With One Deletion",
+      "languages": []
+    },
+    {
+      "id": "4073",
+      "title": "Count Good Strings",
+      "languages": []
+    },
+    {
+      "id": "4077",
+      "title": "Minimize Inversions in a Prefix Tree",
+      "languages": []
+    },
+    {
+      "id": "4081",
+      "title": "Prime Subset Selection II",
+      "languages": []
+    },
+    {
+      "id": "4082",
+      "title": "Minimum Operations to Stabilize a Binary Tree",
+      "languages": []
+    },
+    {
+      "id": "4095",
+      "title": "Count Frequency Staircase Subarrays II",
+      "languages": []
+    },
+    {
+      "id": "4096",
+      "title": "Simulate Bomb Explosions and Falling Boxes",
+      "languages": []
+    }
+  ],
+  "built_at_utc": "2026-11-07T10:17:33.899797+00:00",
+  "source_archive_sha256": "a5c7e8e7b6cd8719017f07eafaf09162d077bb41eb29b995960a40505295ddda"
+}

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="MaikalCode: a searchable DSA problem library with explanations, hints, C++, Python and Java solutions, and interactive execution walkthroughs.">
+<meta name="theme-color" content="#111719"><title>MaikalCode · DSA, understood.</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem('maikalcode-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark')}catch{}</script>
+<link rel="stylesheet" href="styles.css">
+<script src="catalog.js" defer></script><script src="app.js" defer></script>
+</head>
+<body>
+<header class="topbar"><a class="brand" href="#1"><span class="mark" aria-hidden="true">M<span>.</span></span><span>MaikalCode<small>DSA, understood.</small></span></a><div class="top-actions"><span class="library-count" id="header-count">DSA problem library</span><button id="theme" class="quiet" aria-label="Switch to light theme">Light theme</button><button id="library-toggle" class="mobile-only" aria-expanded="false" aria-controls="sidebar">Problems</button></div></header>
+<div class="shell">
+<aside id="sidebar" aria-label="Problem library">
+<div class="sidebar-heading"><h2>Problem library</h2><span class="badge">DSA only</span></div>
+<label class="search-label" for="search">Search title or problem number</label><input id="search" type="search" placeholder="e.g. binary search, 704" autocomplete="off">
+<div class="filter-grid"><label>Difficulty<select id="difficulty"><option value="">All levels</option><option>Easy</option><option>Medium</option><option>Hard</option></select></label><label>Topic<select id="topic"><option value="">All topics</option></select></label></div>
+<div class="filter-grid"><label>Show<select id="coverage"><option value="">All problems</option><option value="complete">3 languages available</option><option value="python">Python solution available</option><option value="missing">Solution gaps</option><option value="done">Understood</option><option value="todo">To study</option></select></label><label>Sort<select id="sort"><option value="id">Problem number</option><option value="title">Title A–Z</option><option value="difficulty">Difficulty</option></select></label></div>
+<div class="list-meta"><span id="result-count" aria-live="polite"></span><button id="clear-filters" class="text-button">Clear filters</button></div>
+<nav id="problem-list" aria-label="Filtered problems"></nav><div id="empty" class="empty" hidden><strong>No matches</strong><p>Try another title or clear the filters.</p></div>
+<div class="pagination"><button id="prev-page" aria-label="Previous page">←</button><span id="page-label"></span><button id="next-page" aria-label="Next page">→</button></div>
+<div class="sidebar-foot"><div><span id="progress-count">0</span> understood<span id="progress-percent"></span></div><progress id="progress" max="1" value="0" aria-label="Study progress"></progress><button class="text-button" id="export-progress">Export progress</button><label class="text-button import-label">Import progress<input id="import-progress" type="file" accept="application/json,.json" hidden></label></div>
+</aside>
+<main id="main">
+<section class="intro" aria-label="Library summary"><div><p class="eyebrow">Your algorithm workspace</p><h1>Make the logic click.</h1><p class="muted">Read the problem. Follow the state. Understand the solution.</p></div><div class="stats"><div><strong id="stat-total">3,687</strong><span>coding problems</span></div><div><strong id="stat-solutions">3,554</strong><span>with 3 languages</span></div><div><strong id="stat-done">0</strong><span>understood</span></div></div></section>
+<div id="load-status" class="notice" role="status" hidden></div>
+<section id="problem-view" aria-label="Selected problem">
+<div class="problem-heading"><div><div class="crumb" id="breadcrumb">Arrays &amp; hashing</div><h2 id="problem-title">1. Two Sum</h2><div id="tags" class="tags"></div></div><div class="problem-actions"><a id="original-link" class="button-link" href="https://leetcode.com/problems/two-sum/" target="_blank" rel="noopener noreferrer">LeetCode ↗</a><button id="understood" aria-pressed="false">Mark understood</button></div></div>
+<div class="workspace">
+<section class="panel description-panel"><div class="panel-heading"><h3>Problem &amp; examples</h3><span id="statement-source"></span></div><div id="statement" class="statement"></div></section>
+<div class="learning-column">
+<section class="panel learning-panel"><div class="tabs" role="tablist" aria-label="Learning mode"><button role="tab" id="tab-visualize" aria-selected="true" aria-controls="visualize" data-tab="visualize">Visualize</button><button role="tab" id="tab-hints" aria-selected="false" aria-controls="hints" tabindex="-1" data-tab="hints">Hints <span>04</span></button><button role="tab" id="tab-dryrun" aria-selected="false" aria-controls="dryrun" tabindex="-1" data-tab="dryrun">Dry run</button><button role="tab" id="tab-approach" aria-selected="false" aria-controls="approach" tabindex="-1" data-tab="approach">Approach</button></div>
+<div id="visualize" role="tabpanel" aria-labelledby="tab-visualize" class="tabbody">
+<div class="section-title"><h3 id="visual-title">See the algorithm in motion.</h3><span class="badge" id="trace-kind">Python execution</span></div><p class="helper" id="visual-help">Follow the actual solution line by line, with live variable snapshots.</p>
+<label class="input-caption" for="arguments">Input arguments <span>JSON array, one element per parameter</span></label><textarea id="arguments" rows="3" spellcheck="false" aria-describedby="argument-help">[[2,7,11,15],9]</textarea>
+<div class="run-actions"><button id="run" class="primary">Build walkthrough</button><button id="sample" class="quiet">Reset example</button><button id="cancel" hidden>Cancel</button></div><p id="argument-help" class="helper">Arrays for linked lists; level-order arrays for binary trees. Custom judge APIs need their own harness.</p>
+<div class="notice" id="trace-status" role="status">Build a walkthrough to see execution states.</div>
+<div id="trace-workspace" hidden><div class="trace-caption"><strong id="frame-caption"></strong><span id="frame-function"></span></div><div id="variable-state" class="variable-state"></div><p id="trace-note" class="helper"></p><div class="playback"><button id="play" class="primary">Play</button><button id="back" aria-label="Previous execution step">←</button><button id="next" aria-label="Next execution step">Step →</button><button id="reset" aria-label="Reset execution">Reset</button><select id="speed" aria-label="Playback speed"><option value="1400">0.5×</option><option value="800" selected>1× speed</option><option value="350">2× speed</option></select></div><div class="timeline"><span id="step-label"></span><input id="timeline" type="range" min="0" value="0" aria-label="Execution step"></div><details class="trace-code-details"><summary>Execution source <span>Python</span></summary><div id="trace-code" class="trace-code"></div></details></div>
+<p class="runtime-note" id="runtime-note">Python runs in a browser worker using Pyodide. Initial loading requires internet and HTTP(S) hosting. Traces are limited to 1,200 events / 5 seconds; value previews are shortened.</p>
+</div>
+<div id="hints" role="tabpanel" aria-labelledby="tab-hints" class="tabbody" hidden><div class="section-title"><h3>One clue at a time.</h3></div><p class="helper">Each hint is labeled by its source. Study prompts fill gaps when fewer than four problem-specific hints are available.</p><div id="hint-list"></div></div>
+<div id="dryrun" role="tabpanel" aria-labelledby="tab-dryrun" class="tabbody" hidden><h3>Execution log</h3><p class="helper">Generate a walkthrough in Visualize first. Each row is a recorded execution event; select it to inspect the state.</p><div id="dry-summary" class="notice">No execution yet.</div><div class="table-scroll"><table><thead><tr><th>Step</th><th>Line</th><th>Event</th><th>Function / action</th></tr></thead><tbody id="dry-rows"></tbody></table></div><div class="pagination"><button id="dry-prev">←</button><span id="dry-page"></span><button id="dry-next">→</button></div></div>
+<div id="approach" role="tabpanel" aria-labelledby="tab-approach" class="tabbody" hidden><h3>Reasoning &amp; complexity</h3><div class="prose" id="approach-content"></div><a id="approach-source" class="source-link" target="_blank" rel="noopener noreferrer">Read source explanation ↗</a></div>
+</section>
+<section class="panel solution-panel"><div class="panel-heading"><h3>Full solution</h3><span id="solution-status"></span></div><div class="languages" aria-label="Solution language"><button data-lang="cpp" aria-pressed="false">C++</button><button data-lang="python" aria-pressed="true">Python</button><button data-lang="java" aria-pressed="false">Java</button><button id="copy" class="copy">Copy code</button></div><div id="missing-solution" class="notice" hidden></div><pre id="solution-pre" tabindex="0" aria-label="Full solution code"><code id="solution-code"></code></pre><div class="solution-credit" id="solution-credit"></div><p class="solution-note">Solutions target LeetCode's judge environment. C++ may require C++20/23; Java may need standard library imports.</p></section>
+</div></div></section>
+<footer><span>MaikalCode · DSA library · SQL, databases &amp; shell excluded.</span><div><a href="ATTRIBUTION.md" target="_blank">Sources &amp; licenses</a><a href="coverage.json" target="_blank">Coverage report</a><a href="README.md" target="_blank">Project guide</a></div></footer>
+</main></div><div id="toast" class="toast" role="status" hidden></div>
+</body></html>
