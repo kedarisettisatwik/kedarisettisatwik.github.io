@@ -1,0 +1,84 @@
+\documentclass[letterpaper,10pt]{article}
+\usepackage[margin=0.55in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tabularx}
+\input{glyphtounicode}
+\pdfgentounicode=1
+\pagestyle{empty}
+\urlstyle{same}
+\raggedright
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\tabcolsep}{0pt}
+\titleformat{\section}{\large\bfseries\scshape}{}{0pt}{}[\titlerule]
+\titlespacing*{\section}{0pt}{13pt}{7pt}
+\setlist[itemize]{leftmargin=14pt,topsep=4pt,itemsep=3pt,parsep=0pt,partopsep=0pt}
+\newcommand{\entry}[2]{\textbf{#1}\hfill #2\par}
+\newcommand{\project}[3]{\entry{#1}{\href{#2}{GitHub}}{\small\textit{#3}\par}}
+
+\begin{document}
+\begin{center}
+{\LARGE\bfseries SATWIK KEDARISETTI}\\[4pt]
+\small
+\href{tel:+917386484905}{+91 7386484905}\enspace$|$\enspace
+\href{mailto:satwik1330@gmail.com}{satwik1330@gmail.com}\enspace$|$\enspace
+\href{https://www.linkedin.com/in/satwik-kedar-21a89a202/}{LinkedIn}\enspace$|$\enspace
+\href{https://github.com/kedarisettisatwik}{GitHub}\enspace$|$\enspace
+\href{https://kedarisettisatwik.github.io}{Portfolio}
+\end{center}
+\vspace{-3pt}
+
+\section{Experience}
+\vspace{5px}
+\entry{ADP -- Member Technical}{\textbf{December 2024 -- Present}}
+\begin{itemize}
+\item Contribute to Lyric, a global HCM platform, through debugging, reporting, SQL queries, and product development using an internal no-code platform.
+\item Received Service Excellence and Dashing Debut awards for ticket resolution, quality, quick learning, and adaptability.
+\end{itemize}
+\vspace{10pt}
+\entry{Brane Enterprises -- Assosiative Solution Leader}{\textbf{June 2024 -- August 2024}}
+\begin{itemize}
+\item Worked with NSL on SMS and OTP generation; built sample movie-ticket and food-booking applications.
+\end{itemize}
+
+\section{Projects}
+\vspace{5px}
+\project{MANTRA -- Productivity Web \& Android App}{https://github.com/kedarisettisatwik/maikal}{React, JavaScript, Capacitor, Java, Firebase Authentication, Cloud Firestore}
+\begin{itemize}
+\item Independently built and published an Android app on Google Play for recurring goals, tasks, daily reflections, notes, and expense tracking.
+\item Developed offline and cloud-synced editions with native alarms, actionable tracker notifications, home-screen widgets, and optional screen-time tracking.
+\end{itemize}
+\vspace{7pt}
+\project{ScanDine -- QR-Based Restaurant Ordering}{https://github.com/kedarisettisatwik/scanDine}{React, TypeScript, Vite, Firebase Authentication, Cloud Firestore}
+\begin{itemize}
+\item Built QR-accessible menus, carts, order add-ons, service requests, and owner/admin dashboards with live order updates.
+\item Implemented staff-approved table sessions, Firestore transactions, and access rules to validate orders and prevent duplicate open service requests.
+\end{itemize}
+\vspace{7pt}
+\project{KSR -- Ecommerce Website}{https://github.com/kedarisettisatwik/ksr}{React, JavaScript, Cloud Firestore, Progressive Web App}
+\begin{itemize}
+\item Developed an ecommerce website used by my shop, with multilingual product browsing, search, category filters, and unit- or weight-based pricing.
+\item Added persistent carts, pickup scheduling, live order status, and order history; used atomic batch writes and WhatsApp handoff for order coordination.
+\end{itemize}
+
+\section{Technical Skills}
+\vspace{5px}
+\textbf{Frontend:} HTML, CSS, JavaScript, React, TypeScript (project use)\\[5pt]
+\textbf{Backend \& Data:} Firebase, Cloud Firestore, SQL, DBMS\\[5pt]
+\textbf{Programming:} C++ (DSA, OOP), Python and Java (basics)\\[5pt]
+\textbf{Other:} Operating Systems, power automation
+
+\section{Education}
+\vspace{5px}
+\entry{National Institute of Technology Karnataka}{2020 -- Present}
+B.Tech, Electrical and Electronics Engineering\\
+CGPA: 8.23; Highest CGPA: 9.73\par
+\vspace{6pt}
+\entry{Aditya Inter College, Kakinada}{2018 -- 2020}
+Higher Secondary: 945/1000; JEE Main: 99.4\%
+
+\end{document}
